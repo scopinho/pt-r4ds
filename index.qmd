@@ -24,4 +24,4 @@ Ao contribuir para este livro, você concorda em cumprir estes termos.
 
 ## Agradecimentos {.unnumbered}
 
-A versão em Inglês do livro é hospedado pela <https://www.netlify.com> como parte de seu apoio ao software livre e às comunidades.
+A versão original do livro (em Inglês) é hospedado pela <https://www.netlify.com> como parte de seu apoio ao software livre e às comunidades.
