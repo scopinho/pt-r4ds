@@ -15,7 +15,7 @@ Este livro vai te ensinar como fazer ciência de dados com R: você irá aprende
 Neste livro, você vai encontrar um conjunto de habilidades para a ciência de dados.
 Assim como um químico aprende a limpar tubos de ensaio e abastecer um laboratório, você vai aprender a limpar dados e fazer gráficos -- e muitas outras coisas além disso.
 Essas são as habilidades que permitem a realização da ciência de dados, e aqui você vai encontrar as melhores práticas para fazer cada uma dessas coisas com o R.
-Você vai aprender a usar a gramática dos gráficos, programação literária e pesquisa reprodutível para economizar tempo.
+Você vai aprender a usar a gramática dos gráficos, programação letrada (*literate programming*) e pesquisa reprodutível para economizar tempo.
 Você também vai aprender a gerenciar recursos cognitivos para facilitar descobertas ao lidar, visualizar e explorar dados.
 
 Este site é e sempre será gratuito, licenciado sob a Licença [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/us/).
