@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "R para Ciência de Dados (2a edição)",
+    "section": "",
+    "text": "Welcome\nThis is the website for the 2nd edition of “R for Data Science”. This book will teach you how to do data science with R: You’ll learn how to get your data into R, get it into the most useful structure, transform it and visualize.\nIn this book, you will find a practicum of skills for data science. Just as a chemist learns how to clean test tubes and stock a lab, you’ll learn how to clean data and draw plots—and many other things besides. These are the skills that allow data science to happen, and here you will find the best practices for doing each of these things with R. You’ll learn how to use the grammar of graphics, literate programming, and reproducible research to save time. You’ll also learn how to manage cognitive resources to facilitate discoveries when wrangling, visualizing, and exploring data.\nThis website is and will always be free, licensed under the CC BY-NC-ND 3.0 License. If you’d like a physical copy of the book, you can order it on Amazon. If you appreciate reading the book for free and would like to give back, please make a donation to Kākāpō Recovery: the kākāpō (which appears on the cover of R4DS) is a critically endangered parrot native to New Zealand; there are only 248 left.\nIf you speak another language, you might be interested in the freely available translations of the 1st edition:\nPlease note that R4DS uses a Contributor Code of Conduct. By contributing to this book, you agree to abide by its terms."
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "R para Ciência de Dados (2a edição)",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nR4DS is hosted by https://www.netlify.com as part of their support of open source software and communities."
+  }
+]
