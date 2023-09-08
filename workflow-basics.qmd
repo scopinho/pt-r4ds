@@ -200,7 +200,7 @@ Se isso acontecer, o R mostrará o caractere de continuação "+":
 +
 ```
 
-O `+` indica que o R está esperando mais entrada(input); ele acha que você não terminou de digitar.
+O `+` indica que o R está esperando mais alguma entrada (*input*); ele acha que você ainda não terminou de digitar.
 Normalmente, isso significa que você esqueceu de adicionar um `"` ou um `)`. Adicione o par que está faltando ou pressione ESCAPE para abortar a expressão e tentar novamente.
 
 Observe que a guia de ambiente no painel superior direito exibe todos os objetos que você criou:
