@@ -6,7 +6,7 @@
 source("_common.R")
 ```
 
-Você agora tem alguma experiência em executar código R.
+Você agora tem alguma experiência em executar código em R.
 Não lhe demos muitos detalhes, mas você obviamente descobriu o básico, ou teria se frustrado e jogado este livro fora!
 Frustração é natural quando você começa a programar em R porque ele é muito rigoroso com a pontuação, e mesmo um caractere fora do lugar pode fazer com que ele reclame.
 Mas, embora você deva esperar um pouco de frustração, tenha em mente que essa experiência é típica e temporária: acontece com todo mundo, e a única maneira de superá-la é continuar tentando.
