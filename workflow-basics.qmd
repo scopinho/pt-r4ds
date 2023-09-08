@@ -124,7 +124,7 @@ esse_e_um_nome_bem_longo <- 2.5
 Para inspecionar esse objeto, experimente o recurso de autocompletar do RStudio: digite "esse", pressione TAB, adicione caracteres até ter um prefixo único e pressione enter.
 
 Vamos supor que você cometeu um erro e que o valor de `esse_e_um_nome_bem_longo` deveria ser 3.5, não 2.5.
-Você pode usar outro atalho de teclado para ajudá-lo a corrigi-lo.
+Você pode usar outro atalho de teclado para te ajudar a corrigi-lo.
 Por exemplo, você pode pressionar ↑ para recuperar o último comando que você digitou e editá-lo.
 Ou, digite "esse" e pressione Cmd/Ctrl + ↑ para listar todos os comandos que você digitou que começam com essas letras.
 Use as setas para navegar e, em seguida, pressione enter para digitar novamente o comando.
