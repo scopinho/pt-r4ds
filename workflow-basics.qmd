@@ -46,7 +46,7 @@ primos * 2
 primos - 1
 ```
 
-Todos os comandos R em que você cria objetos, **comandos de atribuição**, têm a mesma forma:
+Todos os comandos em R onde que você cria objetos, **comandos de atribuição**, têm a mesma forma:
 
 ```{r}
 #| eval: false
