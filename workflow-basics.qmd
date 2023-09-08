@@ -167,7 +167,7 @@ Digite `se` e pressione TAB.
 Uma janela pop-up mostra as possíveis conclusões.
 Especifique `seq()` digitando mais (um `q`) para desambiguar ou usando as setas ↑/↓ para selecionar.
 Observe a dica flutuante que aparece, lembrando-o dos argumentos e propósito da função.
-Se você quiser mais ajuda, pressione F1 para obter todos os detalhes na guia de ajuda na parte inferior direita.
+Se você quiser mais ajuda, pressione F1 para obter todos os detalhes no painel ajuda (*Help*) na parte inferior direita.
 
 Quando você selecionar a função que deseja, pressione TAB novamente.
 O RStudio adicionará parênteses de abertura (`(`) e fechamento (`)`) correspondentes para você automaticamente.
