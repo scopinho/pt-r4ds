@@ -64,7 +64,7 @@ Ler código pode ser desafiador até mesmo nos seus melhores dias, então dê um
 ## Comentários
 
 O R ignorará qualquer texto após `#` em uma linha.
-Isso permite que você escreva **comentários**, texto que é ignorado pelo R, mas que pode ser lido por outros humanos.
+Isso permite que você escreva **comentários**, que são textos que são ignorados pelo R, mas que podem ser lidos por outros humanos.
 Às vezes, incluiremos comentários nos exemplos explicando o que está acontecendo com o código.
 
 Comentários podem ser úteis para descrever brevemente o que o código a seguir faz.
