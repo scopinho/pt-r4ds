@@ -78,7 +78,7 @@ primos * 2
 ```
 
 Em pequenos trechos de código como este, deixar um comentário para cada linha de código pode não ser necessário.
-Mas, à medida que o código que você está escrevendo fica mais complexo, os comentários podem economizar muito tempo seu (e de seus colaboradores) para descobrir o que foi feito no código.
+Mas, à medida que o código que você está escrevendo fica mais complexo, os comentários podem economizar muito tempo seu (e das pessoas que colaboram com você) para descobrir o que foi feito no código.
 
 Use comentários para explicar o *porquê* do seu código, não o *como* ou o *o quê*.
 O *o quê* e o *como* do seu código são sempre possíveis de descobrir, mesmo que possa ser chato, lendo-o cuidadosamente.
