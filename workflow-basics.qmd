@@ -109,7 +109,7 @@ E_aLgumas.Pessoas_nAoUsamConvencao
 
 Vamos voltar aos nomes quando discutirmos o estilo de código em @sec-workflow-style.
 
-Você pode inspecionar um objeto digitando seu nome:
+Você pode ver o conteúdo de um objeto (chamaremos isso de inspecionar) digitando seu nome:
 
 ```{r}
 x
