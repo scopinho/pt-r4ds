@@ -22,7 +22,7 @@ book:
     - index.qmd
 #
 #     - preface-2e.qmd
-#     - intro.qmd
+    - intro.qmd
 #
 #     - part: whole-game.qmd
 #       chapters:
