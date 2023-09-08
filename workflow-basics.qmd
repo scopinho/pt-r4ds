@@ -150,7 +150,7 @@ R_rocks
 Isso ilustra o contrato implícito entre você e o R: o R fará os cálculos chatos para você, mas em troca, você deve ser escrever suas instruções de forma precisa.
 Se não, você provavelmente receberá um erro que diz que o objeto que você está procurando não foi encontrado.
 Erros de digitação importam; o R não pode ler sua mente e dizer: "ah, você provavelmente quis dizer `r_rocks` quando digitou `r_rock`". 
-A caixa alta importa; da mesma forma, o R não pode ler sua mente e dizer: "ah, você provavelmente quis dizer `r_rocks` quando digitou `R_rocks`".
+A caixa alta (letras maiúsculas) importa; da mesma forma, o R não pode ler sua mente e dizer: "ah, você provavelmente quis dizer `r_rocks` quando digitou `R_rocks`".
 
 ## Chamando funções
 
