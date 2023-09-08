@@ -85,7 +85,7 @@ O *o quê* e o *como* do seu código são sempre possíveis de descobrir, mesmo 
 Se você descrever cada etapa nos comentários e, em seguida alterar o código, terá que se lembrar de atualizar os comentários também, caso contrário, será confuso quando você retornar ao seu código no futuro.
 
 Descobrir *por que* algo foi feito é muito mais difícil, senão impossível.
-Por exemplo, `geom_smooth()` tem um argumento chamado `span`, que controla a suavidade da curva(smoothness), com valores maiores produzindo uma curva mais suave.
+Por exemplo, `geom_smooth()` tem um argumento chamado `span`, que controla a suavidade da curva (*smoothness*), com valores maiores produzindo uma curva mais suave.
 Suponha que você decida alterar o valor de `span` de seu padrão de 0,75 para 0,9: é fácil para um leitor futuro entender *o que* está acontecendo, mas a menos que você anote seu pensamento em um comentário, ninguém entenderá o *por que* de você ter alterado o padrão.
 
 Para código de análise de dados, use comentários para explicar sua abordagem estratégica e registrar informações importantes à medida que as encontrar.
