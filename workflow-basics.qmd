@@ -92,7 +92,7 @@ Para código de análise de dados, use comentários para explicar sua abordagem 
 Não há como recuperar esse conhecimento do próprio código sem comentários.
 
 
-## A importância dos nomes {#sec-whats-in-a-name} <!-- Não consegui pensar numa tradução melhor para esse subtítulo, sugestões sao bem-vindas. -->
+## A importância dos nomes {#sec-whats-in-a-name} 
 
 Nomes de objetos devem começar com uma letra e só podem conter letras, números, `_` e `.`.
 Você quer que os nomes dos seus objetos sejam descritivos, então você precisará adotar uma convenção para várias palavras.
