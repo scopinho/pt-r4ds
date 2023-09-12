@@ -44,7 +44,7 @@ jobs:
         with:
           render: false
           target: gh-pages
-          path: "_book/"
+          path: "docs/"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
 
