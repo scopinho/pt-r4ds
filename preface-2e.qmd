@@ -11,7 +11,7 @@ Segue abaixo um breve resumo das maiores mudanças:
 
 -   A segunda parte do livro é chamada "Visualizar".
     Esta parte oferece uma cobertura mais abrangente das ferramentas e práticas recomendadas de visualização de dados em comparação à primeira edição.
-    O melhor lugar para obter todos os detalhes ainda é o [livro do ggplot2](http://ggplot2-book.org/), mas agora o R4DS aborda mais técnicas importantes.
+    O melhor lugar para obter todos os detalhes ainda é o [livro do ggplot2](http://ggplot2-book.org/), mas agora o R4DS aborda de forma mais abrangente as técnicas importantes.
 
 -   A terceira parte do livro agora é chamada de "Transformar" e inclui novos capítulos sobre números, vetores lógicos e valores faltantes (*missing values* - *NA*).
     Esses tópicos eram anteriormente parte do capítulo de transformação de dados, mas precisavam de mais espaço para cobrir todos os detalhes.
