@@ -1,15 +1,19 @@
 on:
   push:
     branches: main
-  # pull_request:
-  #   branches: main
+  pull_request:
+    branches: main
   # to be able to trigger a manual build
   workflow_dispatch:
-  # schedule:
-  #   # run every day at 11 PM
-  #   - cron: '0 23 * * *'
+  schedule:
+    # run every day at 11 PM
+    - cron: '0 23 * * *'
 
 name: Render and deploy Book to Netlify
+
+env:
+  isExtPR: ${{ github.event.pull_request.head.repo.fork == true }}
+  RUST_BACKTRACE: 1
 
 jobs:
   build-deploy:
@@ -38,13 +42,19 @@ jobs:
         run: |
           quarto render
 
-
-      - name: Publish to GitHub Pages (and render)
-        uses: quarto-dev/quarto-actions/publish@v2
+      - name: Deploy to Netlify
+        if: contains(env.isExtPR, 'false')
+        id: netlify-deploy
+        uses: nwtgck/actions-netlify@v1.1
         with:
-          render: false
-          target: gh-pages
-          path: "docs/"
+          publish-dir: './_book'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message:
+            'Deploy from GHA: ${{ github.event.pull_request.title || github.event.head_commit.message }} (${{ github.sha }})'
+          enable-pull-request-comment: false
+          enable-commit-comment: false
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
-
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_2E }}
+        timeout-minutes: 1
