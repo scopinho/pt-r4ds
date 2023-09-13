@@ -2,15 +2,15 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "R para Ciência de Dados (2a edição)",
+    "title": "R para Ciência de Dados (2ª edição)",
     "section": "",
-    "text": "Welcome\nThis is the website for the 2nd edition of “R for Data Science”. This book will teach you how to do data science with R: You’ll learn how to get your data into R, get it into the most useful structure, transform it and visualize.\nIn this book, you will find a practicum of skills for data science. Just as a chemist learns how to clean test tubes and stock a lab, you’ll learn how to clean data and draw plots—and many other things besides. These are the skills that allow data science to happen, and here you will find the best practices for doing each of these things with R. You’ll learn how to use the grammar of graphics, literate programming, and reproducible research to save time. You’ll also learn how to manage cognitive resources to facilitate discoveries when wrangling, visualizing, and exploring data.\nThis website is and will always be free, licensed under the CC BY-NC-ND 3.0 License. If you’d like a physical copy of the book, you can order it on Amazon. If you appreciate reading the book for free and would like to give back, please make a donation to Kākāpō Recovery: the kākāpō (which appears on the cover of R4DS) is a critically endangered parrot native to New Zealand; there are only 248 left.\nIf you speak another language, you might be interested in the freely available translations of the 1st edition:\nPlease note that R4DS uses a Contributor Code of Conduct. By contributing to this book, you agree to abide by its terms."
+    "text": "Boas-vindas\nEste é o website para a tradução em Português da 2ª edição do livro “R for Data Science”. Este livro vai te ensinar como fazer ciência de dados com R: você irá aprender como importar os seus dados para o R, arrumá-los em uma estrutura mais útil, transformá-los e visualizá-los.\nNeste livro, você vai encontrar um conjunto de habilidades para a ciência de dados. Assim como estudantes de química aprendem a limpar tubos de ensaio e montar um laboratório, você vai aprender a limpar dados e fazer gráficos – além de muitas outras coisas. Essas são as habilidades que fazem a ciência de dados acontecer, e aqui você vai encontrar as melhores práticas para fazer cada uma dessas coisas com o R. Você vai aprender a usar a gramática dos gráficos, programação letrada (literate programming) e pesquisa reprodutível para economizar tempo. Você também vai aprender a gerenciar recursos cognitivos para facilitar descobertas ao lidar com, visualizar e explorar dados.\nEste site é e sempre será gratuito, licenciado sob a Licença CC BY-NC-ND 3.0. Se você gostaria de ter uma cópia física do livro, você pode comprar a versão em Inglês na Amazon. Se você aprecia ler o livro gratuitamente e gostaria de retribuir, por favor faça uma doação para a Kākāpō Recovery: o kākāpō (que aparece na capa do livro) é uma espécie de papagaio nativa da Nova Zelândia que está criticamente ameaçada de extinção; restam apenas 248 espécimes.\nSe você fala outra língua, pode se interessar pelas traduções gratuitas da primeira edição do livro:\nPor favor, note que o R4DS usa um Código de Conduta para Contribuidores. Ao contribuir para este livro, você concorda em seguir estes termos."
   },
   {
-    "objectID": "index.html#acknowledgements",
-    "href": "index.html#acknowledgements",
-    "title": "R para Ciência de Dados (2a edição)",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nR4DS is hosted by https://www.netlify.com as part of their support of open source software and communities."
+    "objectID": "index.html#agradecimentos",
+    "href": "index.html#agradecimentos",
+    "title": "R para Ciência de Dados (2ª edição)",
+    "section": "Agradecimentos",
+    "text": "Agradecimentos\nA versão original do livro (em Inglês) é hospedada pela https://www.netlify.com como parte de seu apoio ao software e às comunidades open source."
   }
 ]
