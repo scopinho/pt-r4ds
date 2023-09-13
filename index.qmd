@@ -1,8 +1,7 @@
-# Boas vindas {.unnumbered}
+# Boas-vindas {.unnumbered}
 
 ::: callout-important
 Este website contém a tradução **em andamento** para Português da [2ª edição do livro **"R for Data Science"**](https://r4ds.hadley.nz/).
-Caso queira ler a versão original, [clique aqui](https://r4ds.hadley.nz/).
 
 Apenas os capítulos com versões traduzidas aparecerão neste site.
 
@@ -10,17 +9,17 @@ Caso queira contribuir com a tradução deste livro, leia o [Guia de contribuiç
 :::
 
 Este é o website para a tradução em Português da [2ª edição do livro **"R for Data Science"**](https://r4ds.hadley.nz/).
-Este livro vai te ensinar como fazer ciência de dados com R: você irá aprender como importar os seus dados para o R, transformá-los na estrutura mais útil, transformá-los e visualizá-los.
+Este livro vai te ensinar como fazer ciência de dados com R: você irá aprender como importar os seus dados para o R, arrumá-los em uma estrutura mais útil, transformá-los e visualizá-los.
 
 Neste livro, você vai encontrar um conjunto de habilidades para a ciência de dados.
-Assim como um químico aprende a limpar tubos de ensaio e abastecer um laboratório, você vai aprender a limpar dados e fazer gráficos -- e muitas outras coisas além disso.
-Essas são as habilidades que permitem a realização da ciência de dados, e aqui você vai encontrar as melhores práticas para fazer cada uma dessas coisas com o R.
+Assim como estudantes de química aprendem a limpar tubos de ensaio e montar um laboratório, você vai aprender a limpar dados e fazer gráficos -- além de muitas outras coisas.
+Essas são as habilidades que fazem a ciência de dados acontecer, e aqui você vai encontrar as melhores práticas para fazer cada uma dessas coisas com o R.
 Você vai aprender a usar a gramática dos gráficos, programação letrada (*literate programming*) e pesquisa reprodutível para economizar tempo.
-Você também vai aprender a gerenciar recursos cognitivos para facilitar descobertas ao lidar, visualizar e explorar dados.
+Você também vai aprender a gerenciar recursos cognitivos para facilitar descobertas ao lidar com, visualizar e explorar dados.
 
 Este site é e sempre será gratuito, licenciado sob a Licença [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/us/).
 Se você gostaria de ter uma cópia física do livro, você pode comprar a versão em Inglês na [Amazon](https://www.amazon.com/dp/1492097403?&tag=hadlwick-20).
-Se você aprecia ler o livro gratuitamente e gostaria de retribuir, por favor, faça uma doação para a [Kākāpō Recovery](https://www.doc.govt.nz/kakapo-donate): o [kākāpō](https://www.youtube.com/watch?v=9T1vfsHYiKY) (que aparece na capa do livro) é uma espécie de papagaio nativo da Nova Zelândia e em extinção; restam apenas 248 espécimes.
+Se você aprecia ler o livro gratuitamente e gostaria de retribuir, por favor faça uma doação para a [Kākāpō Recovery](https://www.doc.govt.nz/kakapo-donate): o [kākāpō](https://www.youtube.com/watch?v=9T1vfsHYiKY) (que aparece na capa do livro) é uma espécie de papagaio nativa da Nova Zelândia que está criticamente ameaçada de extinção; restam apenas 248 espécimes.
 
 Se você fala outra língua, pode se interessar pelas traduções gratuitas da primeira edição do livro:
 
@@ -29,7 +28,7 @@ Se você fala outra língua, pode se interessar pelas traduções gratuitas da p
 -   [Turco](https://tr.r4ds.hadley.nz)
 
 Por favor, note que o R4DS usa um [Código de Conduta para Contribuidores](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
-Ao contribuir para este livro, você concorda em cumprir estes termos.
+Ao contribuir para este livro, você concorda em seguir estes termos.
 
 ## Agradecimentos {.unnumbered}
 
