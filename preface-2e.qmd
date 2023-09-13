@@ -1,7 +1,7 @@
 # Prefácio da segunda edição {.unnumbered}
 
 Boas vindas à segunda edição do livro "R para Ciência de Dados"!
-Esta é uma revisão importante da primeira edição, removendo material que não consideramos mais útil, adicionando material que desejamos incluir na primeira edição e atualizando o texto e o código de acordo com as melhores práticas.
+Esta é uma revisão importante da primeira edição, removendo material que não consideramos mais útil, adicionando material que gostaríamos de ter incluído na primeira edição e atualizando o texto e o código de acordo com as melhores práticas.
 Também estamos muito animados em dar as boas-vindas a uma nova co-autora: Mine Çetinkaya-Rundel, uma renomada educadora em ciência de dados e uma de nossas colegas na Posit (antiga RStudio).
 
 Segue abaixo um breve resumo das maiores mudanças:
