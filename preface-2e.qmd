@@ -7,7 +7,7 @@ Também estamos muito animados em dar as boas-vindas a uma nova co-autora: Mine 
 Segue abaixo um breve resumo das maiores mudanças:
 
 -   A primeira parte do livro foi renomeada para "Visão geral".
-    O objetivo desta seção é fornecer a você os detalhes aproximados do "jogo completo" da ciência de dados antes de nos aprofundarmos nos detalhes.
+    O objetivo desta seção é fornecer a você os detalhes aproximados da "visão geral" da ciência de dados antes de nos aprofundarmos nos detalhes.
 
 -   A segunda parte do livro é chamada "Visualizar".
     Esta parte oferece uma cobertura mais abrangente das ferramentas e práticas recomendadas de visualização de dados em comparação à primeira edição.
