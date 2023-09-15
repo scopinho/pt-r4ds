@@ -25,7 +25,7 @@ Segue abaixo um breve resumo das maiores mudanças nesta edição:
 
 -   A parte de modelagem foi removida.
     Nunca tivemos espaço suficiente para fazer justiça à modelagem e agora existem recursos muito melhores disponíveis.
-    Geralmente, recomendamos o uso do pacote [tidymodels](https://www.tidymodels.org/) e a leitura do livro [Tidy Modeling with R](https://www.tmwr.org/) de Max Kuhn e Julia Silge.
+    Geralmente, recomendamos o uso do pacote [tidymodels](https://www.tidymodels.org/) e a leitura do livro [Tidy Modeling with R](https://www.tmwr.org/) escrito por Max Kuhn e Julia Silge.
 
 -   A parte de "Comunicar" permanece, mas foi atualizada em detalhes para apresentar o [Quarto](https://quarto.org/) em vez do R Markdown.
     Esta edição do livro foi escrita no Quarto e ele claramente é a ferramenta do futuro.
