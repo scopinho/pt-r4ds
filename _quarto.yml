@@ -20,8 +20,8 @@ book:
   repo-actions: [edit, issue]
   chapters:
     - index.qmd
-#
-#     - preface-2e.qmd
+
+    - preface-2e.qmd
 #     - intro.qmd
 #
 #     - part: whole-game.qmd
