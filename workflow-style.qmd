@@ -25,7 +25,7 @@ A @fig-styler mostra os resultados.
 #| fig-cap: | 
 #|   A paleta de comando do RStudio torna fácil acessar todos os comandos do RStudio usando apenas o teclado.
 #| fig-alt: | 
-#|   Uma captura de  tela mostrando a paleta de comando depois de digitar "styler", mostrando as quatro ferramentas de formatação fornecidas pelo pacote.
+#|   Uma captura de tela mostrando a paleta de comando depois de digitar "styler", mostrando as quatro ferramentas de formatação fornecidas pelo pacote.
 
 knitr::include_graphics("screenshots/rstudio-palette.png")
 ```
