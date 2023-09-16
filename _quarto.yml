@@ -3,12 +3,12 @@ project:
   output-dir: _book
 
 book:
-  title: "R para Ciência de Dados (2a edição)"
+  title: "R para Ciência de Dados (2ª edição)"
   reader-mode: true
 
   page-footer:
     left: |
-      R para Ciência de Dados (2a edição) foi escrito por Hadley Wickham, Mine
+      R para Ciência de Dados (2ª edição) foi escrito por Hadley Wickham, Mine
       Çetinkaya-Rundel, e Garrett Grolemund.
     right: |
       Este livro foi contruído com <a href="https://quarto.org/">Quarto</a>.
@@ -20,8 +20,7 @@ book:
   repo-actions: [edit, issue]
   chapters:
     - index.qmd
-#
-#     - preface-2e.qmd
+    - preface-2e.qmd
     - intro.qmd
 #
 #     - part: whole-game.qmd
