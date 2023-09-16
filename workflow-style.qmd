@@ -8,7 +8,7 @@ source("_common.R")
 
 As boas práticas de convenção de estilo em programação são como as regras gramaticais: você pode até viver sem elas, mas elas certamente tornam asCoIsaSmaisfáCeiSdeler.
 Mesmo sendo iniciante em programação, é uma boa ideia desenvolver boas práticas na escrita do seu código.
-Usar um estilo de escrita consistente torna mais fácil para os outros (incluindo o seu eu do futuro!) ler o seu trabalho e é particularmente importante se você precisar de ajuda de outra pessoa.
+Usar um estilo de escrita consistente torna mais fácil para outras pessoas (incluindo você no futuro!) ler o seu trabalho, e é particularmente importante se você precisar pedir ajuda para outra pessoa.
 Este capítulo apresentará os pontos mais importantes do [guia de estilo tidyverse](https://style.tidyverse.org), que é usado em todos os capítulos deste livro.
 
 Formatar seu código de acordo com as convenções de estilo pode parecer um pouco chato no início, mas se você praticar, isso vai se tornar natural rapidamente.
