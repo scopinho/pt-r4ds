@@ -78,7 +78,7 @@ z<-( a + b ) ^ 2/d
 ```
 
 Não coloque espaços dentro ou fora de parênteses para chamadas de funções normais.
-Sempre coloque um espaço depois de uma vírgula, assim como na normal culta da lingua portuguesa.
+Sempre coloque um espaço depois de uma vírgula, assim como escrevemos em português.
 
 ```{r}
 #| eval: false
