@@ -52,7 +52,7 @@ Use `_` para separar palavras dentro de um nome.
 # Tente escrever assim
 voos_curto <- voos |> filter(tempo_voo < 60)
 
-# Eviste escrever assim
+# Evite escrever assim
 VOOSCURTOS <- voos |> filter(tempo_voo < 60)
 ```
 
