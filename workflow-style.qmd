@@ -101,8 +101,8 @@ Isso facilita a leitura do código.
 
 voos |> 
   mutate(
-    velocidade = distancia / tempo_voo,
-    hora_saida = horario_saida %/% 100,
+    velocidade     = distancia / tempo_voo,
+    hora_saida     = horario_saida %/% 100,
     minuto_saida = horario_saida %%  100
   ) 
 ```
