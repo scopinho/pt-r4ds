@@ -57,7 +57,7 @@ VOOSCURTOS <- voos |> filter(tempo_voo < 60)
 ```
 
 Como regra geral, é melhor preferir nomes longos e descritivos que sejam fáceis de entender do que nomes curtos só pela rapidez para digitar.
-Os nomes curtos economizam relativamente pouco tempo ao escrever o código (especialmente porque o recurso de autocompletar ajuda a terminar de digitar eles), mas isso pode te atrasar depois, quando você volta ao código antigo e é forçado a decifrar uma abreviação bem difícil de entender.
+Os nomes curtos economizam relativamente pouco tempo ao escrever o código (especialmente porque o recurso de autocompletar (*autocomplete*) ajuda a terminar de digitar eles), mas isso pode te atrasar depois, quando você volta ao código antigo e precisa decifrar uma abreviação bem difícil de entender.
 
 Se você tem um monte de nomes para coisas que estão relacionadas entre sí, faça o possível para ser consistente.
 É fácil surgirem inconsistências quando você esquece uma convenção anterior, então não se sinta mal se você tiver que voltar e renomear as coisas.
