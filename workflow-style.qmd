@@ -109,7 +109,7 @@ voos |>
 
 ## Pipes (Encadeamento) {#sec-pipes}
 
-O `|>` deve sempre ter um espaço antes dele e deve ser sempre a última coisa em uma linha.
+O `|>` (chamado de *pipe*) deve sempre ter um espaço antes dele e deve ser sempre a última coisa em uma linha.
 Isso torna mais fácil adicionar novas etapas, reorganizar etapas existentes, modificar elementos dentro de uma etapa e obter uma visão geral do código ao passar os olhos sobre os verbos no lado esquerdo.
 
 ```{r}
