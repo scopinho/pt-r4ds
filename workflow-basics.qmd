@@ -86,7 +86,7 @@ Se você descrever cada etapa nos comentários e, em seguida alterar o código, 
 
 Descobrir *por que* algo foi feito é muito mais difícil, senão impossível.
 Por exemplo, `geom_smooth()` tem um argumento chamado `span`, que controla a suavidade da curva (*smoothness*), com valores maiores produzindo uma curva mais suave.
-Suponha que você decida alterar o valor de `span` de seu padrão de 0.75 para 0.9: é fácil para um leitor futuro entender *o que* está acontecendo, mas a menos que você anote seu pensamento em um comentário, ninguém entenderá o *por que* de você ter alterado o padrão.
+Suponha que você decida alterar o valor de `span` de seu padrão de 0.75 para 0.9: é fácil para alguém que está lendo no futuro entender *o que* está acontecendo, mas a menos que você anote seu pensamento em um comentário, ninguém entenderá o *por que* de você ter alterado o padrão.
 
 Para código de análise de dados, use comentários para explicar sua abordagem estratégica e registrar informações importantes à medida que as encontrar.
 Não há como recuperar esse conhecimento do próprio código sem comentários.
