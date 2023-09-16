@@ -121,7 +121,7 @@ Fazendo outra atribuição:
 esse_e_um_nome_bem_longo <- 2.5
 ```
 
-Para inspecionar esse objeto, experimente o recurso de autocompletar do RStudio: digite "esse", pressione TAB, adicione caracteres até ter um prefixo único e pressione enter.
+Para inspecionar esse objeto, experimente o recurso de autocompletar (*autocomplete*) do RStudio: digite "esse", pressione TAB, adicione caracteres até ter um prefixo único e pressione enter.
 
 Vamos supor que você cometeu um erro e que o valor de `esse_e_um_nome_bem_longo` deveria ser 3.5, não 2.5.
 Você pode usar outro atalho de teclado para te ajudar a corrigi-lo.
