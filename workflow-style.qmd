@@ -14,7 +14,7 @@ Este capítulo apresentará os pontos mais importantes do [guia de estilo tidyve
 Formatar seu código de acordo com as convenções de estilo pode parecer um pouco chato no início, mas se você praticar, isso vai se tornar natural rapidamente.
 Além disso, existem algumas ótimas ferramentas para formatar de forma rápida códigos antigos, como o pacote [**styler**](https://styler.r-lib.org) de Lorenz Walthert.
 Depois de instalar o pacote com o comando `install.packages("styler")`, uma maneira fácil de usá-lo é através da paleta de comando (**command palette**) do RStudio.
-A paleta de comando permite que você use qualquer comando interno do RStudio e muitas extensões (**addins**) fornecidas por pacotes.
+A paleta de comando permite que você use qualquer comando interno do RStudio e muitas extensões (*addins*) fornecidas por pacotes.
 Abra a paleta pressionando Cmd/Ctrl + Shift + P, em seguida, digite "styler" para ver todos os atalhos oferecidos pelo styler.
 A @fig-styler mostra os resultados.
 
