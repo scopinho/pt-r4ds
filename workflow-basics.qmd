@@ -170,7 +170,7 @@ Observe a janelinha que aparece, mostrando os argumentos e o objetivo da funçã
 Se você quiser mais ajuda, pressione F1 para obter todos os detalhes no painel ajuda (*Help*) na parte inferior direita.
 
 Quando você selecionar a função que deseja, pressione TAB novamente.
-O RStudio adicionará parênteses de abertura (`(`) e fechamento (`)`) correspondentes para você automaticamente.
+O RStudio adicionará os parênteses de abertura (`(`) e fechamento (`)`) correspondentes para você automaticamente.
 Digite o nome do primeiro argumento, `from`, e defina-o como `1`.
 Em seguida, digite o nome do segundo argumento, `to`, e defina-o como `10`.
 Por último, pressione enter.
