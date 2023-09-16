@@ -201,7 +201,7 @@ Se isso acontecer, o console do R mostrará o caractere de continuação "+":
 ```
 
 O `+` indica que o R está esperando mais alguma entrada (*input*); ele acha que você ainda não terminou de digitar.
-Normalmente, isso significa que você esqueceu de adicionar um `"` ou um `)`. Adicione o par que está faltando ou pressione ESCAPE (ou ESC) para abortar a expressão e tentar novamente.
+Normalmente, isso significa que você esqueceu de adicionar um `"` ou um `)`. Adicione o par que está faltando ou pressione ESCAPE (ou ESC) para cancelar a expressão e tentar novamente.
 
 Observe que o painel ambiente (*Environment*) no painel superior direito exibe todos os objetos que você criou:
 
