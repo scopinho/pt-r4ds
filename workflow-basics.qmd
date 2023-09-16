@@ -164,7 +164,7 @@ nome_da_funcao(argumento1 = valor1, argumento2 = valor2, ...)
 
 Vamos tentar usar `seq()`, que faz **seq**uências regulares de números, e enquanto fazemos nisso, vamos aprender mais sobre os recursos do RStudio.
 Digite `se` e pressione TAB.
-Uma janela pop-up mostra as possíveis conclusões.
+Uma janela pop-up mostra as possíveis formas de completar o código.
 Especifique `seq()` digitando mais (um `q`) para desambiguar ou usando as setas ↑/↓ para selecionar.
 Observe a dica flutuante que aparece, lembrando-o dos argumentos e propósito da função.
 Se você quiser mais ajuda, pressione F1 para obter todos os detalhes no painel ajuda (*Help*) na parte inferior direita.
