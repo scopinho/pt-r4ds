@@ -166,7 +166,7 @@ Vamos tentar usar `seq()`, que faz **seq**uências regulares de números, e enqu
 Digite `se` e pressione TAB.
 Uma janela pop-up mostra as possíveis formas de completar o código.
 Especifique `seq()` digitando mais (um `q`) para desambiguar ou usando as setas ↑/↓ para selecionar.
-Observe a dica flutuante que aparece, lembrando-o dos argumentos e propósito da função.
+Observe a janelinha que aparece, mostrando os argumentos e o objetivo da função.
 Se você quiser mais ajuda, pressione F1 para obter todos os detalhes no painel ajuda (*Help*) na parte inferior direita.
 
 Quando você selecionar a função que deseja, pressione TAB novamente.
