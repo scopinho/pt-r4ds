@@ -179,7 +179,7 @@ voos|>
   )
 ```
 
-Tudo bem ignorar algumas dessas regras se a sua sequências de encadeamento (**pipeline**) se encaixar facilmente em uma linha.
+Tudo bem ignorar algumas dessas regras se a sua sequências de encadeamento (*pipeline*) se encaixar facilmente em uma linha.
 Mas, em nossa experiência coletiva, é comum que pequenos trechos de código cresçam, então você vai acabar economizando tempo no longo prazo começando com todo o espaço vertical de que precisa.
 
 ```{r}
