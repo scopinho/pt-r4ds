@@ -193,7 +193,7 @@ x <- "olá mundo"
 
 As aspas e parênteses devem sempre vir em pares.
 O RStudio faz o melhor para te ajudar, mas ainda é possível cometer um erro e acabar com aspas não fechadas.
-Se isso acontecer, o R mostrará o caractere de continuação "+":
+Se isso acontecer, o console do R mostrará o caractere de continuação "+":
 
 ```         
 > x <- "olá
