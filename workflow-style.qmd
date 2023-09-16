@@ -205,7 +205,7 @@ Isso significa que você tem que dividir os encadeamentos longos se houver estad
 
 ## ggplot2
 
-As mesmas regras básicas que se aplicam ao encadeamento (**pipe**) também se aplicam ao ggplot2; você deve tratar o `+` da mesma forma que o `|>`.
+As mesmas regras básicas que se aplicam ao *pipe* também se aplicam ao ggplot2; você deve tratar o `+` da mesma forma que o `|>`.
 
 ```{r}
 #| eval: false
