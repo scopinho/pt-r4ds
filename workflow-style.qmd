@@ -243,7 +243,7 @@ voos |>
 ```
 
 Preste atenção quando mudar do `|>` para o `+` no encademanto do código.
-Gostaríamos que essa transição não fosse necessária, mas infelizmente, o ggplot2 foi escrito antes do encadeamento (**pipe**) ser descoberto.
+Gostaríamos que essa transição não fosse necessária, mas infelizmente, o ggplot2 foi escrito antes do *pipe* ser descoberto.
 
 ## Comentários de seção
 
