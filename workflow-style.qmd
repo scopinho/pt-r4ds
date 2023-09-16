@@ -91,7 +91,7 @@ mean (x ,na.rm=TRUE)
 ```
 
 Tudo bem adicionar espaços extras se isso melhorar o alinhamento.
-Por exemplo, se você estiver criando várias variáveis em `mutate()`, você pode querer adicionar espaços para que todos os sinais de `=` fiquem alinhados.[^workflow-style-1]
+Por exemplo, se você estiver criando várias variáveis com um `mutate()`, você pode querer adicionar espaços para que todos os sinais de `=` fiquem alinhados.[^workflow-style-1]
 Isso facilita a leitura do código.
 
 [^workflow-style-1]: Como `horario_saida` está no formato `HMM` ou `HHMM`, fazemos uma divisão do número inteiro (`%/%`) para obter a hora e o resto (também conhecido como módulo, `%%`) para obter o minuto.
