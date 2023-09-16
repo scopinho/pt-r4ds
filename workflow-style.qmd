@@ -189,7 +189,7 @@ Mas, em nossa experiência coletiva, é comum que pequenos trechos de código cr
 df |> mutate(y = x + 1)
 
 # Enquanto isso ocupa 4x mais linhas, é facilmente estendido para
-# mais variaveis e mais etapas no futuro
+# mais variáveis e mais etapas no futuro
 df |> 
   mutate(
     y = x + 1
