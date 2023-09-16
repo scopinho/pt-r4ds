@@ -34,7 +34,7 @@ knitr::include_graphics("diagrams/data-science/base.png", dpi = 270)
 ```
 
 Primeiro, você deve **importar** seus dados para o R.
-Isso geralmente significa que você pega dados armazenados em um arquivo, um banco de dados ou uma interface de programação de aplicativo da web (API) e importa em uma base de dados no R.
+Isso geralmente significa que você pega dados armazenados em um arquivo, um banco de dados ou uma interface de programação de aplicação (*API*) da web e importa em uma base de dados no R.
 Se você não conseguir importar seus dados para o R, não poderá fazer ciência de dados com eles!
 
 Depois de importar seus dados, é uma boa ideia **organizá-los**.
@@ -44,7 +44,7 @@ Dados organizados (*tidy data*) são importantes porque a estrutura consistente 
 
 Depois de ter dados organizados, um próximo passo comum é **transformá-los**.
 A transformação inclui focar em observações de interesse (como todas as pessoas em uma cidade ou todos os dados do último ano), criar novas variáveis que são funções de variáveis existentes (como calcular a velocidade a partir da distância e do tempo) e calcular um conjunto de estatísticas resumidas (como contagens ou médias).
-Juntos, organizar e transformar são chamados de **manipulação** porque colocar seus dados em uma forma natural de trabalhar frequentemente parece uma luta!
+Juntos, organizar e transformar são chamados de **manipulação de dados** (em inglês: *data wrangling*) porque colocar seus dados em uma forma natural de trabalhar frequentemente parece uma luta!
 
 Uma vez que você tenha dados organizados com as variáveis de que precisa, existem duas principais fontes de geração de conhecimento: visualização e modelagem.
 Essas têm pontos fortes e fracos complementares, portanto, qualquer análise de dados real irá iterar entre elas muitas vezes.
@@ -82,7 +82,7 @@ Dessa forma, quando você importar e organizar seus próprios dados, sua motiva�
 
 Dentro de cada capítulo, procuramos seguir um padrão consistente: começar com alguns exemplos motivadores para que você possa entender o panorama geral e, em seguida, aprofundar nos detalhes.
 Cada seção do livro é acompanhada de exercícios para ajudar você a praticar o que aprendeu.
-Embora possa ser tentador pular os exercícios, não há melhor maneira de aprender do que praticando em problemas reais.
+Embora possa ser tentador pular os exercícios, a melhor maneira de aprender é praticando com problemas reais.
 
 ## O que você não aprenderá
 
@@ -93,20 +93,20 @@ Isso significa que este livro não pode abordar todos os tópicos importantes.
 ### Modelagem
 
 A modelagem é extremamente importante para a ciência de dados, mas é um tópico amplo e, infelizmente, não temos espaço suficiente para abordá-lo adequadamente aqui.
-Para aprender mais sobre modelagem, recomendamos fortemente o livro [Modelagem Tidy com R](https://www.tmwr.org), escrito por nossos colegas Max Kuhn e Julia Silge.
+Para aprender mais sobre modelagem, recomendamos fortemente o livro [Tidy Modeling with R](https://www.tmwr.org), escrito por nossos colegas Max Kuhn e Julia Silge.
 Este livro ensinará a você a família de pacotes tidymodels, que, como você pode imaginar pelo nome, compartilha muitas convenções com os pacotes do tidyverse que usamos neste livro.
 
 ### Big data
 
 Este livro orgulhosamente e principalmente foca em conjuntos de dados pequenos e que cabem na memória (*in-memory*).
 Este é o lugar certo para começar, porque você não pode lidar com *big data* a menos que tenha experiência com bases de dados pequenas.
-As ferramentas que você aprenderá ao longo da maioria deste livro lidarão facilmente com centenas de megabytes de dados e, com um pouco de cuidado, você geralmente pode usá-las para trabalhar com alguns gigabytes de dados.
+As ferramentas que você aprenderá ao longo da maior parte deste livro lidarão facilmente com centenas de megabytes de dados e, com um pouco de cuidado, você geralmente pode usá-las para trabalhar com alguns gigabytes de dados.
 Também mostraremos como obter dados de bancos de dados e arquivos parquet, ambos frequentemente usados para armazenar *big data*.
-Você não necessariamente conseguirá trabalhar com o conjunto de dados inteiro, mas isso não é um problema, pois você só precisa de um subconjunto ou uma amostra para responder à pergunta que lhe interessa.
+Você não necessariamente conseguirá trabalhar com o conjunto de dados inteiro, mas isso não é um problema, pois você só precisa de um subconjunto ou uma amostra para responder à pergunta que te interessa.
 
 Se você está rotineiramente lidando com dados maiores (digamos, de 10 a 100 GB), recomendamos aprender mais sobre o pacote [data.table](https://github.com/Rdatatable/data.table).
 Não o ensinamos aqui porque ele usa uma interface diferente do tidyverse e requer que você aprenda algumas convenções diferentes.
-No entanto, ele é incrivelmente mais rápido, e o retorno de desempenho vale a pena investir algum tempo em aprendê-lo se você estiver trabalhando com grandes conjuntos de dados.
+No entanto, ele é incrivelmente mais rápido, e o retorno de desempenho compensa o tempo investido para aprender a usá-lo, se você estiver trabalhando com *big data*.
 
 ### Python, Julia e outros
 
@@ -138,11 +138,11 @@ Recomendamos o R 4.2.0 ou posterior para este livro.
 
 O RStudio é um ambiente de desenvolvimento integrado, ou IDE, para programação em R, que você pode baixar em <https://posit.co/download/rstudio-desktop/>.
 O RStudio é atualizado algumas vezes por ano e ele o informará automaticamente quando uma nova versão estiver disponível, portanto, não é necessário verificar periodicamente.
-É uma boa ideia atualizar regularmente para aproveitar os recursos mais recentes e melhores.
+É uma boa ideia atualizar regularmente para aproveitar os recursos mais recentes e melhorados.
 Para este livro, certifique-se de ter pelo menos o RStudio 2022.02.0.
 
-Quando você inicia o RStudio, @fig-rstudio-console, você verá duas regiões-chave na interface: o painel de console (*Console*) e o painel de saída (*Output*).
-Por enquanto, tudo o que você precisa saber é que você digita o código R no painel de console e pressiona Enter para executá-lo.
+Quando você inicia o RStudio, @fig-rstudio-console, você verá duas partes principais na interface: o painel de console (*Console*) e o painel de saída (*Output*).
+Por enquanto, tudo o que você precisa saber é que você digita o código R no *Console* e pressiona Enter para executá-lo.
 Você aprenderá mais à medida que avançarmos![^intro-1]
 
 [^intro-1]: Se você deseja uma visão abrangente de todos os recursos do RStudio, consulte o Guia de uso do RStudio em <https://docs.posit.co/ide/user>.
@@ -152,8 +152,8 @@ Você aprenderá mais à medida que avançarmos![^intro-1]
 #| echo: false
 #| out-width: ~
 #| fig-cap: |
-#|   O IDE do RStudio possui duas regiões principais: digite código R no painel de console
-#|   à esquerda e procure gráficos no painel de saída à direita.
+#|   O IDE do RStudio possui duas partes principais: digite o código em R no Console
+#|   à esquerda e procure o painel Plots dentro do painel Output à direita.
 #| fig-alt: |
 #|   O IDE do RStudio com os painéis Console e Output destacados.
 knitr::include_graphics("diagrams/rstudio/console.png", dpi = 270)
@@ -161,8 +161,8 @@ knitr::include_graphics("diagrams/rstudio/console.png", dpi = 270)
 
 ### O tidyverse
 
-Você também precisará instalar alguns pacotes R.
-Um **pacote** R é uma coleção de funções, dados e documentação que estende as capacidades do R base.
+Você também precisará instalar alguns pacotes do R.
+Um **pacote** do R é uma coleção de funções, dados e documentação que estende as capacidades do R base.
 O uso de pacotes é fundamental para o uso bem-sucedido do R.
 A maioria dos pacotes que você aprenderá neste livro faz parte do chamado tidyverse.
 Todos os pacotes no tidyverse compartilham uma filosofia comum de dados e programação em R e são projetados para funcionar juntos.
@@ -205,9 +205,9 @@ Por exemplo, usaremos os seguintes pacotes porque eles fornecem conjuntos de dad
 #| eval: false
 
 install.packages(
-  c("arrow", "babynames", "curl", "duckdb", "gapminder", 
-    "ggrepel", "ggridges", "ggthemes", "hexbin", "janitor", "Lahman", 
-    "leaflet", "maps", "nycflights13", "openxlsx", "palmerpenguins", 
+  c("arrow", "curl", "dados", "duckdb",
+    "ggrepel", "ggridges", "ggthemes", "hexbin", "janitor",  
+    "leaflet", "maps", "openxlsx", 
     "repurrrsive", "tidymodels", "writexl")
   )
 ```
@@ -234,7 +234,7 @@ O código no livro parece assim:
 1 + 2
 ```
 
-Se você executar o mesmo código em seu console local, ele parecerá assim:
+Se você executar o mesmo código no seu *console*, ele parecerá assim:
 
 ```         
 > 1 + 2
@@ -242,9 +242,9 @@ Se você executar o mesmo código em seu console local, ele parecerá assim:
 ```
 
 Existem duas diferenças principais.
-No seu console, você digita após o `>`, chamado de **prompt**; não mostramos o prompt no livro.
-No livro, a saída é comentada com `#>`; no seu console, ela aparece diretamente após o código.
-Essas duas diferenças significam que se você estiver trabalhando com uma versão eletrônica do livro, poderá copiar facilmente o código do livro e colá-lo no console.
+No seu *console*, você digita após o `>`, chamado de **prompt**; não mostramos o prompt no livro.
+No livro, a saída é comentada com `#>`; no seu *console*, ela aparece diretamente após o código.
+Essas duas diferenças significam que se você estiver trabalhando com uma versão online do livro, poderá copiar facilmente o código do livro e colá-lo no *console*.
 
 Ao longo do livro, usamos um conjunto consistente de convenções para se referir ao código:
 
@@ -252,7 +252,7 @@ Ao longo do livro, usamos um conjunto consistente de convenções para se referi
 
 -   Outros objetos R (como dados ou argumentos de função) estão em uma fonte de código, sem parênteses, como `flights` ou `x`.
 
--   Às vezes, para deixar claro de qual pacote um objeto vem, usaremos o nome do pacote seguido por dois dois-pontos, como `dplyr::mutate()` ou `nycflights13::flights`.
+-   Às vezes, para deixar claro de qual pacote um objeto vem, usaremos o nome do pacote seguido por quatro-pontos `::`, como `dplyr::mutate()` ou `nycflights13::flights`.
     Isso também é código em R válido.
 
 ## Agradecimentos
@@ -321,9 +321,8 @@ cat(".\n")
 
 ## Considerações Finais
 
-Uma versão online deste livro está disponível em <https://r4ds.hadley.nz>.
-Ele continuará a evoluir entre as reimpressões do livro físico.
-A fonte do livro está disponível em <https://github.com/hadley/r4ds>.
+A versão online deste livro está disponível em <https://cienciadedatos.github.io/pt-r4ds/>.
+O código fonte do livro está disponível em <https://github.com/cienciadedatos/pt-r4ds>.
 O livro é gerado pelo [Quarto](https://quarto.org), que facilita a escrita de livros que combinam texto e código executável.
 
 ```{r}
