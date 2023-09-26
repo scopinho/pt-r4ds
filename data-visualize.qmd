@@ -466,7 +466,7 @@ ggplot(
   geom_point()
 ```
 
-Normalmente, o primeiro ou os dois primeiros argumentos de uma função são tão importantes que você deve sabê-los de cor.
+Normalmente, o primeiro ou os dois primeiros argumentos de uma função são tão importantes que você deve saber usar de cor.
 Os dois primeiros argumentos de `ggplot()` são `data` e `mapping`; no restante do livro, não forneceremos esses nomes.
 Isso economiza digitação e, ao reduzir a quantidade de texto extra, facilita a visualização das diferenças entre os gráficos.
 Essa é uma preocupação de programação realmente importante, à qual voltaremos em @sec-functions.
