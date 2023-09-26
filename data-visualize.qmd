@@ -237,7 +237,7 @@ Faremos isso representando as espécies com pontos de cores diferentes.
 Para conseguir isso, precisaremos modificar o atributo estético ou a geometria?
 Se você pensou "no mapeamento estético, dentro de `aes()`", você já está pegando o jeito de criar visualizações de dados com o ggplot2!
 Caso contrário, não se preocupe.
-Ao longo do livro, você criará muito mais ggplots e terá muito mais oportunidades de verificar sua intuição ao criá-los.
+Ao longo do livro, você criará muito mais visualizações com ggplot e terá muito mais oportunidades de verificar sua intuição.
 
 ```{r}
 #| warning: false
