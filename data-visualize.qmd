@@ -47,7 +47,7 @@ library(tidyverse)
 
 Você só precisa instalar um pacote uma vez, mas precisa carregá-lo sempre que iniciar uma nova sessão.
 
-Além do tidyverse, nós também usaremos o pacote **dados**, que inclui um banco de dados com medidas corporais de pinguins de três ilhas do Arquipélago Palmer, junto do pacote ggthemes, que fornece uma paleta de cores segura para daltônicos.
+Além do tidyverse, nós também usaremos o pacote **dados**, que inclui um banco de dados com medidas corporais de pinguins de três ilhas do Arquipélago Palmer, junto do pacote ggthemes, que fornece uma paleta de cores segura para pessoas com daltonismo.
 
 ```{r}
 library(dados)
