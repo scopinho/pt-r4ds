@@ -36,7 +36,7 @@ Ela também te diz quais funções do tidyverse possuem conflitos com as funçã
 [^data-visualize-1]: Você pode eliminar essa mensagem e forçar com que a resolução de conflitos aconteça sob demanda utilizando o pacote conflicted, que se torna mais importante à medida que carrega mais pacotes.
     Você pode ler mais sobre o pacote conflicted no endereço <https://conflicted.r-lib.org>.
 
-Se você rodar este código e receber a mensagem de erro `there is no package called 'tidyverse'`, você precisará instalar o pacote antes, e então rodar `library()` novamente.
+Se você rodar este código e receber a mensagem de erro `there is no package called 'tidyverse'`, você precisará instalar o pacote antes usando a função `install.packages()` ou a interface de instalação do RStudio, e então rodar `library()` novamente.
 
 ```{r}
 #| eval: false
