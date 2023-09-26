@@ -30,7 +30,7 @@ Para acessar os bancos de dados, páginas de ajuda e funções utilizadas neste 
 library(tidyverse)
 ```
 
-Essa única linha de código carrega o essencial do tidyverse; os pacotes que você irá utilizar em quase toda análise de dados.
+Essa única linha de código carrega os pacotes essenciais do tidyverse, que você irá utilizar em quase toda análise de dados.
 Ela também te diz quais funções do tidyverse possuem conflitos com as função do R base (ou de outro pacote que você tenha carregado)[^data-visualize-1].
 
 [^data-visualize-1]: Você pode eliminar essa mensagem e forçar com que a resolução de conflitos aconteça sob demanda utilizando o pacote conflicted, que se torna mais importante à medida que carrega mais pacotes.
