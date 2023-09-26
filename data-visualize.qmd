@@ -307,7 +307,7 @@ Pronto!
 Temos algo que se parece muito com nosso objetivo final, embora ainda não esteja perfeito.
 Ainda precisamos usar formas diferentes para cada espécie de pinguim e melhorar os rótulos.
 
-Em geral, não é uma boa ideia representar informações usando apenas cores em um gráfico, pois as pessoas percebem as cores de forma diferente devido ao daltonismo ou a outras diferenças de visão de cores.
+Geralmente, não é uma boa ideia representar informações usando apenas cores em um gráfico, pois as pessoas percebem as cores de forma diferente devido ao daltonismo ou a outras diferenças de visão de cores.
 Portanto, além da cor, também podemos mapear `especie` para a estética `shape` (forma).
 
 ```{r}
