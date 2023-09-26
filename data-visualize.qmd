@@ -98,7 +98,7 @@ Neste contexto, uma variável refere-se a um atributo de todos os pinguins, e um
 
 Digite o nome do *data frame* no console e o R mostrará uma visualização de seu conteúdo.
 Observe que aparece escrito `tibble` no topo desta visualização.
-No tidyverse, usamos *data frames* especiais chamados ***tibbles***, dos quais você aprenderá mais em breve.
+No tidyverse, usamos *data frames* especiais chamados **tibbles**, dos quais você aprenderá mais em breve.
 
 ```{r}
 pinguins
