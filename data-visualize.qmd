@@ -188,7 +188,7 @@ ggplot(
 )
 ```
 
-Nossa tela vazia agora tem mais estrutura: está claro onde os comprimentos das nadadeiras serão exibidos (no eixo x) e onde as massas corporais serão exibidas (no eixo y).
+Nossa tela vazia agora está mais estruturada: está claro onde os comprimentos das nadadeiras serão exibidos (no eixo x) e onde as massas corporais serão exibidas (no eixo y).
 Mas os pinguins em si ainda não estão no gráfico.
 Isso ocorre porque ainda não definimos, em nosso código, como representar as observações de nosso *data frame* em nosso gráfico.
 
