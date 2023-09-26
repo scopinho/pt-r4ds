@@ -215,7 +215,7 @@ ggplot(
 ```
 
 Agora temos algo que se parece com o que poderíamos chamar de "gráfico de dispersão".
-Ele ainda não corresponde ao nosso gráfico de "objetivo final", mas, usando esse gráfico, podemos começar a responder à pergunta que motivou nossa exploração: "Como é a relação entre o comprimento da nadadeira e a massa corporal?" A relação parece ser positiva (à medida que o comprimento da nadadeira aumenta, a massa corporal também aumenta), razoavelmente linear (os pontos estão agrupados em torno de uma linha em vez de uma curva) e moderadamente forte (não há muita dispersão em torno dessa linha).
+Ele ainda não corresponde ao nosso gráfico mostrado no início da seção "objetivo final", mas, usando esse gráfico, podemos começar a responder à pergunta que motivou nossa exploração: "Como é a relação entre o comprimento da nadadeira e a massa corporal?" A relação parece ser positiva (à medida que o comprimento da nadadeira aumenta, a massa corporal também aumenta), razoavelmente linear (os pontos estão agrupados em torno de uma linha em vez de uma curva) e moderadamente forte (não há muita dispersão em torno dessa linha).
 Os pinguins com nadadeiras mais longas geralmente são maiores em termos de massa corporal.
 
 Antes de adicionarmos mais camadas a esse gráfico, vamos parar por um momento e revisar a mensagem de aviso que recebemos:
