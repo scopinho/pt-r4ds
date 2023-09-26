@@ -628,7 +628,7 @@ Conforme mostrado em @fig-eda-boxplot, cada boxplot consiste em:
 -   Pontos que apresentam observações com valores maiores que 1,5 vezes o IIQ de qualquer borda da caixa.
     Esses pontos discrepantes são incomuns e, por isso, são plotados individualmente.
 
--   Uma linha que se estende de cada extremidade da caixa e vai até o ponto mais distante sem *outlier* na distribuição.
+-   Uma linha que se estende de cada extremidade da caixa e vai até o ponto mais distante (sem considerar os valores discrepantes - *outliers*) na distribuição.
 
 ```{r}
 #| label: fig-eda-boxplot
