@@ -92,7 +92,7 @@ Para facilitar a discussão, vamos definir alguns termos:
     Às vezes, vamos nos referir a uma observação como um ponto de dados.
 
 -   **Dados tabulares** são um conjunto de valores, cada um associado a uma variável e uma observação.
-    Os dados tabulares estarão no formato ***tidy*** se cada valor estiver em sua própria "célula", cada variável em sua própria coluna e cada observação em sua própria linha.
+    Os dados tabulares estarão no formato *tidy* (arrumado) se cada valor estiver em sua própria "célula", cada variável em sua própria coluna e cada observação em sua própria linha.
 
 Neste contexto, uma variável refere-se a um atributo de todos os pinguins, e uma observação refere-se a todos os atributos de um único pinguim.
 
