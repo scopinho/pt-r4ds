@@ -21,7 +21,7 @@ Terminaremos salvando seus gráficos e com dicas de resolução de problemas.
 
 ### Pré-requisitos
 
-Este capítulo tem foco no ggplot2, um dos pacotes principais do tidyverse.
+Este capítulo tem foco no ggplot2, um dos principais pacotes do tidyverse.
 Para acessar os bancos de dados, páginas de ajuda e funções utilizadas neste capítulo, carregue o tidyverse executando:
 
 ```{r}
