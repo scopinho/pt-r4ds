@@ -283,7 +283,7 @@ ggplot(
 Adicionamos linhas com sucesso, mas esse gráfico não se parece com o gráfico do @sec-ultimate-goal, que tem apenas uma linha para todo o conjunto de dados, em vez de linhas separadas para cada espécie de pinguim.
 
 Quando os mapeamentos estéticos são definidos em `ggplot()`, no nível **global**, eles são passados para cada uma das camadas de geometria (geom) subsequentes do gráfico.
-Entretanto, cada função geom no ggplot2 também pode receber um argumento `mapping`, que permite mapeamentos estéticos em nível *local* que são adicionados àqueles herdados do nível global.
+Entretanto, cada função geom no ggplot2 também pode receber um argumento `mapping`, que permite mapeamentos estéticos em nível **local** que são adicionados àqueles herdados do nível global.
 Como queremos que os pontos sejam coloridos com base na espécie, mas não queremos que as linhas sejam separadas para eles, devemos especificar `color = especie` somente para `geom_point()`.
 
 ```{r}
