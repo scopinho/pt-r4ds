@@ -34,7 +34,7 @@ Essa única linha de código carrega os pacotes essenciais do tidyverse, que voc
 Ela também te diz quais funções do tidyverse possuem conflitos com as função do R base (ou de outro pacote que você tenha carregado)[^data-visualize-1].
 
 [^data-visualize-1]: Você pode eliminar essa mensagem e forçar com que a resolução de conflitos aconteça sob demanda utilizando o pacote conflicted, que se torna mais importante à medida que carrega mais pacotes.
-    Você pode ler mais sobre o pacote conflicted em <https://conflicted.r-lib.org>.
+    Você pode ler mais sobre o pacote conflicted no endereço <https://conflicted.r-lib.org>.
 
 Se você rodar este código e receber a mensagem de erro `there is no package called 'tidyverse'`, você precisará instalar o pacote antes, e então rodar `library()` novamente.
 
