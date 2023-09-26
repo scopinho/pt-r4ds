@@ -574,7 +574,7 @@ Não entraremos em detalhes sobre como `geom_density()` estima a densidade (voc�
 Imagine um histograma feito de blocos de madeira.
 Em seguida, imagine que você jogue um fio de espaguete cozido sobre ele.
 A forma que o espaguete assumirá sobre os blocos pode ser considerada como a forma da curva de densidade.
-Ela mostra menos detalhes do que um histograma, mas pode facilitar a obtenção rápida da forma da distribuição, principalmente com relação aos modos e à assimetria.
+Ela mostra menos detalhes do que um histograma, mas pode facilitar a obtenção rápida da forma da distribuição, principalmente com relação à moda (valor que ocorre com maior frequência) e à assimetria.
 
 ```{r}
 #| fig-alt: |
