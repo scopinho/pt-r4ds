@@ -375,7 +375,7 @@ Finalmente temos um gráfico que corresponde perfeitamente ao nosso "objetivo fi
     Descreva a relação entre essas duas variáveis.
 
 4.  O que acontece se você fizer um gráfico de dispersão de `especie` em função de `profundidade_bico`?
-    Qual seria uma melhor escolha de geometria?
+    Qual seria uma melhor escolha de geometria (*geom*)?
 
 5.  Por que o seguinte erro ocorre e como você poderia corrigi-lo?
 
