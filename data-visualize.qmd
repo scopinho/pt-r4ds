@@ -153,7 +153,7 @@ ggplot(pinguins, aes(x = comprimento_nadadeira, y = massa_corporal)) +
   scale_color_colorblind()
 ```
 
-### Criando um ggplot
+### Criando um gráfico ggplot
 
 Vamos recriar esse gráfico passo a passo.
 
