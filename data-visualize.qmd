@@ -260,7 +260,7 @@ O ggplot2 também adicionará uma legenda que explica quais valores correspondem
 Agora vamos adicionar mais uma camada: uma curva suave que exibe a relação entre a massa corporal e o comprimento das nadadeiras.
 Antes de prosseguir, consulte o código acima e pense em como podemos adicionar isso ao nosso gráfico existente.
 
-Como esse é uma nova geometria que representa nossos dados, adicionaremos uma nova geometria como uma camada sobre o nossa geometria de pontos: `geom_smooth()`.
+Como essa é uma nova geometria que representa nossos dados, adicionaremos uma nova geometria como uma camada sobre o nossa geometria de pontos: `geom_smooth()`.
 E especificaremos que queremos desenhar a linha de melhor ajuste com base em um modelo linear (`l`inear `m`odel em inglês) com `method = "lm"`.
 
 ```{r}
