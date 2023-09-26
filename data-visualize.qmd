@@ -859,7 +859,7 @@ Isso salvará o gráfico no seu diretório de trabalho, um conceito sobre o qual
 
 Se você não especificar a largura `width` e a altura `height`, elas serão tiradas das dimensões do dispositivo de plotagem atual.
 Para obter um código reprodutível, você deverá especificá-los.
-Você pode obter mais informações sobre `ggsave()` na documentação.
+Você pode obter mais informações sobre a função `ggsave()` na documentação.
 
 De modo geral, entretanto, recomendamos que você monte seus relatórios finais usando o Quarto, um sistema de autoria reproduzível que permite intercalar seu código e sua escrita e incluir automaticamente seus gráficos em seus relatórios.
 Você saberá mais sobre o Quarto em @sec-quarto.
