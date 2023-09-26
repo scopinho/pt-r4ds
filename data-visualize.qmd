@@ -57,7 +57,7 @@ library(ggthemes)
 ## Primeiros passos
 
 Os pinguins com nadadeiras mais compridas pesam mais ou menos que pinguins com nadadeiras curtas?
-Você provavelmentejá tem uma resposta, mas tente torná-la mais precisa.
+Você provavelmente já tem uma resposta, mas tente torná-la mais precisa.
 Como é a relação entre o comprimento da nadadeira e massa corporal?
 Ela é positiva?
 Negativa?
