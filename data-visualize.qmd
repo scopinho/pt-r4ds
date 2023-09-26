@@ -332,7 +332,7 @@ Observe que a legenda também é atualizada automaticamente para refletir as dif
 E, finalmente, podemos melhorar os rótulos do nosso gráfico usando a função `labs()` em uma nova camada.
 Alguns dos argumentos de `labs()` podem ser autoexplicativos: `title` adiciona um título e `subtitle` adiciona um subtítulo ao gráfico.
 Outros argumentos correspondem aos mapeamentos estéticos, `x` é o rótulo do eixo x, `y` é o rótulo do eixo y e `color` e `shape` definem o rótulo da legenda.
-Além disso, podemos aprimorar a paleta de cores para que seja segura para daltônicos com a função `scale_color_colorblind()` do pacote ggthemes.
+Além disso, podemos aprimorar a paleta de cores para que seja segura para pessoas com daltonismo com a função `scale_color_colorblind()` do pacote ggthemes.
 
 ```{r}
 #| warning: false
