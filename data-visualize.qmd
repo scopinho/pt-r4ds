@@ -170,7 +170,7 @@ ggplot(data = pinguins)
 
 Em seguida, precisamos informar ao `ggplot()` como as informações dos nossos dados serão representadas visualmente.
 O argumento `mapping` (mapeamento) da função `ggplot()` define como as variáveis em seu conjunto de dados são mapeadas para as propriedades visuais (**estética**) do gráfico.
-O argumento `mapping` é sempre definido na função `aes()`, e os argumentos `x` e `y` de `aes()` especificam quais variáveis devem ser mapeadas para os eixos x e y.
+O argumento `mapping` é sempre definido na função `aes()`, e os argumentos `x` e `y` de `aes()` especificam quais variáveis devem ser mapeadas nos eixos x e y.
 Por enquanto, mapearemos apenas o comprimento da nadadeira para o atributo estético `x` e a massa corporal para o atributo `y`.
 O ggplot2 procura as variáveis mapeadas no argumento `data`, nesse caso, `pinguins`.
 
