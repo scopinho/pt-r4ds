@@ -391,7 +391,7 @@ ggplot(data = pinguins) +
     Crie um gráfico de dispersão em que você use esse argumento definido como `TRUE` (verdadeiro).
 
 7.  Adicione a seguinte legenda ao gráfico que você criou no exercício anterior: "Os dados são provenientes do pacote dados".
-    Dica: dê uma olhada na documentação de `labs()`.
+    Dica: dê uma olhada na documentação da função `labs()`.
 
 8.  Recrie a visualização a seguir.
     Para qual atributo estético `profundidade_bico` deve ser mapeada?
