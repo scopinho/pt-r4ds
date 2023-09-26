@@ -368,7 +368,7 @@ Finalmente temos um gráfico que corresponde perfeitamente ao nosso "objetivo fi
     E quantas colunas?
 
 2.  O que a variável `profundidade_bico` no *data frame* `pinguins` descreve?
-    Leia a ajuda do `?pinguins` para descobrir.
+    Leia a documentação da base pinguins para descobrir, utilizando o comando `?pinguins` .
 
 3.  Faça um gráfico de dispersão de `profundidade_bico` em função de `comprimento_bico`.
     Ou seja, faça um gráfico de dispersão com `profundidade_bico` no eixo y e `comprimento_bico` no eixo x.
