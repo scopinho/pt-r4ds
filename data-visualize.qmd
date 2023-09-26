@@ -47,7 +47,7 @@ library(tidyverse)
 
 Você só precisa instalar um pacote uma vez, mas precisa carregá-lo sempre que iniciar uma nova sessão.
 
-Além do tidyverse, nós também usaremos o pacote **dados**, que inclui um banco de dados com medidas corporais de pinguins de três ilhas do Arquipélago Palmer, junto do pacote ggthemes, que fornece uma paleta de cores segura para pessoas com daltonismo.
+Além do tidyverse, nós também usaremos o pacote **dados**, que inclui várias bases de dados, incluindo um com medidas corporais de pinguins de três ilhas do Arquipélago Palmer, junto do pacote ggthemes, que fornece uma paleta de cores segura para pessoas com daltonismo.
 
 ```{r}
 library(dados)
@@ -158,7 +158,7 @@ ggplot(pinguins, aes(x = comprimento_nadadeira, y = massa_corporal)) +
 Vamos recriar esse gráfico passo a passo.
 
 No ggplot2, você inicia um gráfico com a função `ggplot()`, definindo um objeto de gráfico ao qual você adiciona **camadas**.
-O primeiro argumento de `ggplot()` é o conjunto de dados a ser usado no gráfico e, portanto, `ggplot(data = pinguins)` cria um gráfico vazio que está preparado para exibir os dados dos `pinguins`, mas, como ainda não dissemos como fazer a visualização, por enquanto ele está vazio.
+O primeiro argumento da função `ggplot()` é o conjunto de dados a ser usado no gráfico e, portanto, `ggplot(data = pinguins)` cria um gráfico vazio que está preparado para exibir os dados dos `pinguins`, mas, como ainda não dissemos como fazer a visualização, por enquanto ele está vazio.
 Esse não é um gráfico muito interessante, mas você pode pensar nele como uma tela vazia na qual você pintará as camadas restantes do seu gráfico.
 
 ```{r}
@@ -192,7 +192,7 @@ Nossa tela vazia agora está mais estruturada: está claro onde os comprimentos 
 Mas os pinguins em si ainda não estão no gráfico.
 Isso ocorre porque ainda não definimos, em nosso código, como representar as observações de nosso *data frame* em nosso gráfico.
 
-Para isso, precisamos definir uma **geom**: a geometria que um gráfico usa para representar os dados.
+Para isso, precisamos definir um **geom**: A geometria que um gráfico usa para representar os dados.
 Essas geometrias são disponibilizados no ggplot2 com funções que começam com `geom_`.
 As pessoas geralmente descrevem os gráficos pelo tipo de geom que o gráfico usa.
 Por exemplo, os gráficos de barras usam geometrias de barras (`geom_bar()`), os gráficos de linhas usam geometrias de linhas (`geom_line()`), os boxplots usam geometrias de boxplot (`geom_boxplot()`), os gráficos de dispersão usam geometrias de pontos (`geom_point()`) e assim por diante.
@@ -222,14 +222,14 @@ Antes de adicionarmos mais camadas a esse gráfico, vamos parar por um momento e
 
 > Removed 2 rows containing missing values (`geom_point()`).
 
-Estamos vendo essa mensagem porque há dois pinguins em nosso conjunto de dados com valores faltantes (*missing values - *NA*) de massa corporal e/ou comprimento da nadadeira e o ggplot2 não tem como representá-los no gráfico sem esses dois valores.
+Estamos vendo essa mensagem porque há dois pinguins em nosso conjunto de dados com valores faltantes (*missing values -* NA\*) de massa corporal e/ou comprimento da nadadeira e o ggplot2 não tem como representá-los no gráfico sem esses dois valores.
 Assim como o R, o ggplot2 adota a filosofia de que os valores faltantes nunca devem desaparecer silenciosamente.
 Esse tipo de aviso é provavelmente um dos tipos mais comuns de avisos que você verá ao trabalhar com dados reais - os valores faltantes são um problema muito comum e você aprenderá mais sobre eles ao longo do livro, especialmente em @sec-missing-values.
 Nos demais gráficos deste capítulo, vamos suprimir esse aviso para que ele não seja mostrado em cada gráfico que fizermos.
 
 ### Adicionando atributos estéticos e camadas {#sec-adding-aesthetics-layers}
 
-Gráficos de dispersão são úteis para exibir a relação entre duas variáveis numéricas, mas é sempre uma boa ideia ser cético em relação a qualquer relação aparente entre duas variáveis e perguntar se pode haver outras variáveis que expliquem ou mudem a natureza dessa relação aparente.
+Gráficos de dispersão são úteis para exibir a relação entre duas variáveis numéricas, mas é sempre uma boa ideia ter uma postura cética em relação a qualquer relação aparente entre duas variáveis e perguntar se pode haver outras variáveis que expliquem ou mudem a natureza dessa relação aparente.
 Por exemplo, a relação entre o comprimento das nadadeira e a massa corporal difere de acordo com a espécie?
 Vamos incluir as espécies em nosso gráfico e ver se isso revela alguma ideia adicional sobre a relação aparente entre essas variáveis.
 Faremos isso representando as espécies com pontos de cores diferentes.
@@ -466,7 +466,7 @@ ggplot(
   geom_point()
 ```
 
-Normalmente, o primeiro ou os dois primeiros argumentos de uma função são tão importantes que você deve saber usar de cor.
+Normalmente, o primeiro ou os dois primeiros argumentos de uma função são tão importantes que você logo saberá usar eles de cor.
 Os dois primeiros argumentos de `ggplot()` são `data` e `mapping`; no restante do livro, não escreveremos esses nomes.
 Isso economiza digitação e, ao reduzir a quantidade de texto extra, facilita a visualização das diferenças entre os gráficos.
 Essa é uma preocupação de programação realmente importante, à qual voltaremos em @sec-functions.
@@ -762,7 +762,7 @@ ggplot(pinguins, aes(x = comprimento_nadadeira, y = massa_corporal)) +
 ```
 
 No entanto, mapear muitos atributos estéticos a um gráfico faz com que ele fique desordenado e difícil de entender.
-Outra maneira, que é particularmente útil para variáveis categóricas, é dividir seu gráfico em **facetas**, subdivisões ou janelas que exibem um subconjunto dos dados cada uma.
+Outra maneira, que é particularmente útil para variáveis categóricas, é dividir seu gráfico em **facetas** (*facets*), subdivisões ou janelas que exibem um subconjunto dos dados cada uma.
 
 Para separar seu gráfico em facetas por uma única variável, use `facet_wrap()`.
 O primeiro argumento de `facet_wrap()` é uma fórmula[^data-visualize-3], que você cria com `~` seguido do nome de uma variável.
@@ -861,7 +861,7 @@ Se você não especificar a largura `width` e a altura `height`, elas serão tir
 Para obter um código reprodutível, você deverá especificá-los.
 Você pode obter mais informações sobre a função `ggsave()` na documentação.
 
-De modo geral, entretanto, recomendamos que você monte seus relatórios finais usando o Quarto, um sistema de autoria reproduzível que permite intercalar seu código e sua escrita e incluir automaticamente seus gráficos em seus relatórios.
+De modo geral, entretanto, recomendamos que você monte seus relatórios finais usando o Quarto, um sistema de escrita reprodutível que permite intercalar seu código e sua escrita e incluir automaticamente seus gráficos em seus relatórios.
 Você aprenderá mais sobre o Quarto em @sec-quarto.
 
 ### Exercícios
@@ -917,9 +917,9 @@ Outra ferramenta excelente é o Google: tente pesquisar a mensagem de erro no Go
 Neste capítulo, você aprendeu os fundamentos da visualização de dados com o ggplot2.
 Começamos com a ideia básica que sustenta o ggplot2: uma visualização é um mapeamento de variáveis em seus dados para atributos estéticos como posição (*position*), cor (*color*), tamanho (*size*) e forma (*shape*).
 Em seguida, você aprendeu a aumentar a complexidade e melhorar a apresentação de seus gráficos camada por camada.
-Você também aprendeu sobre gráficos comumente usados para visualizar a distribuição de uma única variável, bem como para visualizar relações entre duas ou mais variáveis ao utilizar mapeamentos de atributos estéticos adicionais e/ou dividindo seu gráfico em pequenos múltiplos usando facetas.
+Você também aprendeu sobre gráficos comumente usados para visualizar a distribuição de uma única variável, bem como para visualizar relações entre duas ou mais variáveis ao utilizar mapeamentos de atributos estéticos adicionais e/ou dividindo seu gráfico em pequenos gráficos usando facetas.
 
 Usaremos as visualizações repetidamente ao longo deste livro, introduzindo novas técnicas à medida que precisarmos delas, além de nos aprofundarmos na criação de visualizações com o ggplot2 em @sec-layers por meio da @sec-communication.
 
 Com as noções básicas de visualização em seu currículo, no próximo capítulo mudaremos um pouco a direção e daremos algumas orientações práticas sobre o fluxo de trabalho.
-Intercalamos conselhos sobre fluxo de trabalho com ferramentas de ciência de dados ao longo desta parte do livro, pois isso o ajudará a se manter organizado à medida que você escreve quantidades cada vez maiores de código em R.
+Intercalamos conselhos sobre fluxo de trabalho com ferramentas de ciência de dados ao longo desta parte do livro, pois isso te ajudará a manter a organização à medida que você escreve quantidades cada vez maiores de código em R.
