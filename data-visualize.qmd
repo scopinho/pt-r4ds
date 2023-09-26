@@ -223,7 +223,7 @@ Antes de adicionarmos mais camadas a esse gráfico, vamos parar por um momento e
 > Removed 2 rows containing missing values (`geom_point()`).
 
 Estamos vendo essa mensagem porque há dois pinguins em nosso conjunto de dados com valores faltantes (*missing values - *NA*) de massa corporal e/ou comprimento da nadadeira e o ggplot2 não tem como representá-los no gráfico sem esses dois valores.
-Assim como o R, o ggplot2 adota a filosofia de que os valores ausentes nunca devem desaparecer silenciosamente.
+Assim como o R, o ggplot2 adota a filosofia de que os valores faltantes nunca devem desaparecer silenciosamente.
 Esse tipo de aviso é provavelmente um dos tipos mais comuns de avisos que você verá ao trabalhar com dados reais - os valores ausentes são um problema muito comum e você aprenderá mais sobre eles ao longo do livro, especialmente em @sec-missing-values.
 Nos demais gráficos deste capítulo, suprimiuprimir esse aviso para que ele não seja mostrado em cada gráfico que fizermos.
 
