@@ -192,7 +192,7 @@ Nossa tela vazia agora está mais estruturada: está claro onde os comprimentos 
 Mas os pinguins em si ainda não estão no gráfico.
 Isso ocorre porque ainda não definimos, em nosso código, como representar as observações de nosso *data frame* em nosso gráfico.
 
-Para isso, precisamos definir uma **geom**: A geometria que um gráfico usa para representar os dados.
+Para isso, precisamos definir uma **geom**: a geometria que um gráfico usa para representar os dados.
 Essas geometrias são disponibilizados no ggplot2 com funções que começam com `geom_`.
 As pessoas geralmente descrevem os gráficos pelo tipo de geom que o gráfico usa.
 Por exemplo, os gráficos de barras usam geometrias de barras (`geom_bar()`), os gráficos de linhas usam geometrias de linhas (`geom_line()`), os boxplots usam geometrias de boxplot (`geom_boxplot()`), os gráficos de dispersão usam geometrias de pontos (`geom_point()`) e assim por diante.
