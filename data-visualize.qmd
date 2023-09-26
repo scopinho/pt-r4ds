@@ -434,7 +434,7 @@ ggplot(
     #| eval: false
 
     ggplot(
-      datai = pinguins,
+      data = pinguins,
       mapping = aes(x = comprimento_nadadeira, y = massa_corporal)
     ) +
       geom_point() +
