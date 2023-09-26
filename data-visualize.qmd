@@ -158,7 +158,7 @@ ggplot(pinguins, aes(x = comprimento_nadadeira, y = massa_corporal)) +
 Vamos recriar esse gráfico passo a passo.
 
 No ggplot2, você inicia um gráfico com a função `ggplot()`, definindo um objeto de gráfico ao qual você adiciona **camadas**.
-O primeiro argumento de `ggplot()` é o conjunto de dados a ser usado no gráfico e, portanto, `ggplot(data = pinguins)` cria um gráfico vazio que está preparado para exibir os dados dos `pinguins`, mas, como ainda não dissemos como visualizá-los, por enquanto ele está vazio.
+O primeiro argumento de `ggplot()` é o conjunto de dados a ser usado no gráfico e, portanto, `ggplot(data = pinguins)` cria um gráfico vazio que está preparado para exibir os dados dos `pinguins`, mas, como ainda não dissemos como fazer a visualização, por enquanto ele está vazio.
 Esse não é um gráfico muito interessante, mas você pode pensar nele como uma tela vazia na qual você pintará as camadas restantes do seu gráfico.
 
 ```{r}
