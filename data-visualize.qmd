@@ -480,7 +480,7 @@ ggplot(pinguins, aes(x = comprimento_nadadeira, y = massa_corporal)) +
   geom_point()
 ```
 
-No futuro, você também aprenderá sobre o pipe, `|>`, que permitirá que você crie esse gráfico com:
+No futuro, você também aprenderá sobre o *pipe* (encadeamento), `|>`, que permitirá que você crie esse gráfico com a seguinte sintaxe:
 
 ```{r}
 #| eval: false
