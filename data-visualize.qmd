@@ -163,7 +163,7 @@ Esse não é um gráfico muito interessante, mas você pode pensar nele como uma
 
 ```{r}
 #| fig-alt: |
-#|   Uma área de gráfico vazia em cinza
+#|   Uma área de plotagem vazia em cinza
 
 ggplot(data = pinguins)
 ```
