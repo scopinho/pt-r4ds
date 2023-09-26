@@ -692,7 +692,7 @@ ggplot(pinguins, aes(x = massa_corporal, color = especie, fill = especie)) +
 Observe a terminologia que usamos aqui:
 
 -   Nós **mapeamos** variáveis para atributos estéticos se quisermos que o atributo visual representado por esse atributo varie de acordo com os valores dessa variável.
--   Caso contrário, nós *definimos* o valor de um atributo estético.
+-   Caso contrário, nós **definimos** o valor de um atributo estético.
 
 ### Duas variáveis categóricas
 
