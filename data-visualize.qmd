@@ -675,7 +675,7 @@ Também personalizamos a espessura das linhas usando o argumento `linewidth` par
 
 Além disso, podemos mapear `especie` para os atributos estéticos `color` e `fill` e usar o atributo `alpha` para adicionar transparência às curvas de densidade preenchidas.
 Esse atributo assume valores entre 0 (completamente transparente) e 1 (completamente opaco).
-No gráfico a seguir, ela está *definida* como 0,5.
+No gráfico a seguir, ela está *definida* como 0.5.
 
 ```{r}
 #| warning: false
