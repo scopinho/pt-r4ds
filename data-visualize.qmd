@@ -838,7 +838,7 @@ ggplot(pinguins, aes(x = especie, fill = ilha)) +
 ## Salvando seus gráficos {#sec-ggsave}
 
 Depois de criar um gráfico, talvez você queira tirá-lo do R salvando-o como uma imagem que possa ser usada em outro lugar.
-Essa é a função de `ggsave()`, que salvará no computador o gráfico criado mais recentemente:
+Esse é o objetivo da função `ggsave()`, que salvará no computador o gráfico criado mais recentemente:
 
 ```{r}
 #| fig-show: hide
