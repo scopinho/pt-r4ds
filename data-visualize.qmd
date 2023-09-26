@@ -711,7 +711,7 @@ ggplot(pinguins, aes(x = ilha, fill = especie)) +
 ```
 
 O segundo gráfico é um gráfico de frequência relativa, criado pela definição de `position = "fill"` na geometria, que é mais útil para comparar as distribuições de espécies entre as ilhas, pois não é afetado pelo número desigual de pinguins entre as ilhas.
-Usando esse gráfico, podemos ver que todos os Pinguim-gentoo vivem na ilha Biscoe e constituem aproximadamente 75% dos pinguins dessa ilha, todos os Pinguim-de-barbicha vivem na ilha Dream e constituem aproximadamente 50% dos pinguins dessa ilha, e os Pinguim-de-adélia vivem nas três ilhas e constituem todos os pinguins de Torgersen.
+Usando esse gráfico, podemos ver que todos os Pinguim-gentoo vivem na ilha Biscoe e constituem aproximadamente 75% dos pinguins dessa ilha, todos os Pinguim-de-barbicha vivem na ilha Dream e constituem aproximadamente 50% dos pinguins dessa ilha, e os Pinguim-de-adélia vivem nas três ilhas e constituem todos os pinguins da ilha Torgersen.
 
 ```{r}
 #| fig-alt: |
