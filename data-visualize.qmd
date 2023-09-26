@@ -909,7 +909,7 @@ Não se preocupe se a ajuda não parecer muito útil - em vez disso, pule para o
 
 Se isso não ajudar, leia atentamente a mensagem de erro.
 Às vezes, a resposta estará escondida lá!
-Mas quando você é novo no R, mesmo que a resposta esteja na mensagem de erro, talvez você ainda não saiba como entendê-la.
+Mas quando você é iniciante no R, mesmo que a resposta esteja na mensagem de erro, talvez você ainda não saiba como entendê-la.
 Outra ferramenta excelente é o Google: tente pesquisar a mensagem de erro no Google, pois é provável que outra pessoa tenha tido o mesmo problema e tenha obtido ajuda on-line.
 
 ## Resumo
