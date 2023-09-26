@@ -550,7 +550,7 @@ Você pode definir a largura dos intervalos em um histograma com o argumento *bi
 Você deve sempre explorar uma variedade de larguras de intervalos ao trabalhar com histogramas, pois diferentes larguras de intervalos podem revelar padrões diferentes.
 Nos gráficos abaixo, uma largura de intervalo de 20 é muito estreita, resultando em muitas barras, o que dificulta a determinação da forma da distribuição.
 Da mesma forma, uma largura de intervalo de 2000 é muito alta, resultando em todos os dados sendo agrupados em apenas três barras, o que também dificulta a determinação da forma da distribuição.
-Uma largura de intervalo de 200 proporciona um balanço adequado.
+Uma largura de intervalo de 200 proporciona um balanço mais adequado.
 
 ```{r}
 #| warning: false
