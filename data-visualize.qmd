@@ -129,15 +129,14 @@ Nosso objetivo final neste capítulo é recriar a seguinte visualização que ex
 ```{r}
 #| echo: false
 #| warning: false
-#| fig-alt: |
-#|   A scatterplot of body mass vs. flipper length of pinguins, with a
-#|   best fit line of the relationship between these two variables 
-#|   overlaid. The plot displays a positive, fairly linear, and relatively 
-#|   strong relationship between these two variables. especie (Adelie, 
-#|   Chinstrap, and Gentoo) are represented with different colors and 
-#|   shapes. The relationship between body mass and flipper length is 
-#|   roughly the same for these three especie, and Gentoo pinguins are 
-#|   larger than pinguins from the other two especie.
+#|   Um gráfico de dispersão da massa corporal vs. comprimento da
+#|   nadadeira dos pinguins, com uma linha de melhor ajuste da relação
+#|   entre essas duas variáveis sobreposta. O gráfico mostra uma relação 
+#|   positiva, razoavelmente linear e relativamente forte entre essas 
+#|   duas variáveis. As espécies (Pinguim-de-adélia, Pinguim-de-barbicha 
+#|   e Pinguim-gentoo) são representadas com cores e formas diferentes. A #|   relação entre a massa corporal e o comprimento da nadadeira é 
+#|   aproximadamente a mesma para essas três espécies, e os pinguins 
+#|   Gentoo são maiores do que os pinguins das outras duas espécies.
 
 ggplot(pinguins, aes(x = comprimento_nadadeira, y = massa_corporal)) +
   geom_point(aes(color = especie, shape = especie)) +
@@ -178,9 +177,9 @@ O gráfico a seguir mostra o resultado da adição desses mapeamentos.
 
 ```{r}
 #| fig-alt: |
-#|   The plot shows flipper length on the x-axis, with values that range from 
-#|   170 to 230, and body mass on the y-axis, with values that range from 3000 
-#|   to 6000.
+#|   O gráfico mostra o comprimento da nadadeira no eixo x, com valores 
+#|   que variam de 170 a 230, e a massa corporal no eixo y, com valores 
+#|   que variam de 3000 a 6000.
 
 ggplot(
   data = pinguins,
@@ -203,9 +202,9 @@ Você aprenderá várias geometrias ao longo do livro, principalmente em @sec-la
 
 ```{r}
 #| fig-alt: |
-#|   A scatterplot of body mass vs. flipper length of pinguins. The plot 
-#|   displays a positive, linear, and relatively strong relationship between 
-#|   these two variables.
+#|   Um gráfico de dispersão da massa corporal em função do comprimento 
+#|   da nadadeira dos pinguins. O gráfico mostra uma relação positiva, 
+#|   linear e relativamente forte entre essas duas variáveis.
 
 ggplot(
   data = pinguins,
@@ -242,10 +241,11 @@ Ao longo do livro, você criará muito mais visualizações com ggplot e terá m
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   A scatterplot of body mass vs. flipper length of pinguins. The plot 
-#|   displays a positive, fairly linear, and relatively strong relationship 
-#|   between these two variables. especie (Adelie, Chinstrap, and Gentoo) 
-#|   are represented with different colors.
+#|   Um gráfico de dispersão da massa corporal em função do comprimento 
+#|   da nadadeira dos pinguins. O gráfico mostra uma relação positiva, 
+#|   razoavelmente linear e relativamente forte entre essas duas 
+#|   variáveis. As espécies (Pinguim-de-adélia, Pinguim-de-barbicha e 
+#|   Pinguim-gentoo) são representadas com cores diferentes.
 
 ggplot(
   data = pinguins,
@@ -266,11 +266,12 @@ E especificaremos que queremos desenhar a linha de melhor ajuste com base em um 
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   A scatterplot of body mass vs. flipper length of pinguins. Overlaid 
-#|   on the scatterplot are three smooth curves displaying the 
-#|   relationship between these variables for each especie (Adelie, 
-#|   Chinstrap, and Gentoo). Different penguin especie are plotted in 
-#|   different colors for the points and the smooth curves.
+#|   Um gráfico de dispersão da massa corporal em função o comprimento da
+#|   nadadeira dos pinguins. Sobrepostas ao gráfico de dispersão estão 
+#|   três curvas suavizadas que mostram a relação entre essas variáveis 
+#|   para cada espécie (Pinguim-de-adélia, Pinguim-de-barbicha e 
+#|   Pinguim-gentoo). As diferentes espécies de pinguins são plotadas em 
+#|   cores diferentes para os pontos e as curvas suavizadas.
 
 ggplot(
   data = pinguins,
@@ -289,11 +290,12 @@ Como queremos que os pontos sejam coloridos com base na espécie, mas não quere
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   A scatterplot of body mass vs. flipper length of pinguins. Overlaid 
-#|   on the scatterplot is a single line of best fit displaying the 
-#|   relationship between these variables for each especie (Adelie, 
-#|   Chinstrap, and Gentoo). Different penguin especie are plotted in 
-#|   different colors for the points only.
+#|   Um gráfico de dispersão da massa corporal em função o comprimento da
+#|   nadadeira dos pinguins. Sobreposta ao gráfico de dispersão está
+#|   uma única linha de melhor ajuste que mostra a relação entre essas 
+#|   variáveis para cada espécie (Pinguim-de-adélia, Pinguim-de-barbicha 
+#|   e Pinguim-gentoo). As diferentes espécies de pinguins são plotadas 
+#|   em cores diferentes somente para os pontos.
 
 ggplot(
   data = pinguins,
@@ -313,11 +315,12 @@ Portanto, além da cor, também podemos mapear `especie` para a estética `shape
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   A scatterplot of body mass vs. flipper length of pinguins. Overlaid 
-#|   on the scatterplot is a single line of best fit displaying the 
-#|   relationship between these variables for each especie (Adelie, 
-#|   Chinstrap, and Gentoo). Different penguin especie are plotted in 
-#|   different colors and shapes for the points only.
+#|   Um gráfico de dispersão da massa corporal em função o comprimento da
+#|   nadadeira dos pinguins. Sobreposta ao gráfico de dispersão está
+#|   uma única linha de melhor ajuste que mostra a relação entre essas 
+#|   variáveis para cada espécie (Pinguim-de-adélia, Pinguim-de-barbicha 
+#|   e Pinguim-gentoo). As diferentes espécies de pinguins são plotadas 
+#|   em cores e formas diferentes somente para os pontos.
 
 ggplot(
   data = pinguins,
@@ -337,14 +340,16 @@ Além disso, podemos aprimorar a paleta de cores para que seja segura para pesso
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   A scatterplot of body mass vs. flipper length of pinguins, with a 
-#|   line of best fit displaying the relationship between these two variables 
-#|   overlaid. The plot displays a positive, fairly linear, and relatively 
-#|   strong relationship between these two variables. especie (Adelie, 
-#|   Chinstrap, and Gentoo) are represented with different colors and 
-#|   shapes. The relationship between body mass and flipper length is 
-#|   roughly the same for these three especie, and Gentoo pinguins are 
-#|   larger than pinguins from the other two especie.
+#|   Um gráfico de dispersão da massa corporal em função do comprimento 
+#|   da nadadeira dos pinguins, junto de uma linha de melhor ajuste 
+#|   sobreposta que mostra a relação entre essas duas variáveis. O 
+#|   gráfico mostra uma relação positiva, razoavelmente linear e 
+#|   relativamente forte entre essas duas variáveis. As espécies 
+#|   (Pinguim-de-adélia,  Pinguim-de-barbicha e Pinguim-gentoo) são 
+#|   representadas com cores e  formas diferentes. A relação entre a 
+#|   massa corporal e o comprimento  das nadadeiras é praticamente a 
+#|   mesma para essas três espécies, e os pinguins-gentoo são maiores do 
+#|   que os pinguins das outras duas  espécies.
 
 ggplot(pinguins, aes(x = comprimento_nadadeira, y = massa_corporal)) +
   geom_point(aes(color = especie, shape = especie)) +
@@ -401,10 +406,11 @@ ggplot(data = pinguins) +
 #| echo: false
 #| warning: false
 #| fig-alt: |
-#|   A scatterplot of body mass vs. flipper length of pinguins, colored 
-#|   by bill depth. A smooth curve of the relationship between body mass 
-#|   and flipper length is overlaid. The relationship is positive, 
-#|   fairly linear, and moderately strong.
+#|   Um gráfico de dispersão da massa corporal em função do comprimento 
+#|   da  nadadeira dos pinguins, colorido pela profundidade do bico. Uma 
+#|   curva suave da relação entre a massa corporal e o comprimento da 
+#|   nadadeira está sobreposta. A relação é positiva, razoavelmente 
+#|   linear e moderadamente forte.
 
 ggplot(
   data = pinguins,
@@ -427,29 +433,28 @@ ggplot(
   geom_smooth(se = FALSE)
 ```
 
-10. Esses dois gráficos serão diferentes?
-    Por que sim ou por que não?
+10. Esses dois gráficos serão diferentes? Por que sim ou por que não?
 
-    ```{r}
-    #| eval: false
+```{r}
+#| eval: false
 
-    ggplot(
-      data = pinguins,
-      mapping = aes(x = comprimento_nadadeira, y = massa_corporal)
-    ) +
-      geom_point() +
-      geom_smooth()
+ggplot(
+  data = pinguins,
+  mapping = aes(x = comprimento_nadadeira, y = massa_corporal)
+) +
+  geom_point() +
+  geom_smooth()
 
-    ggplot() +
-      geom_point(
-        data = pinguins,
-        mapping = aes(x = comprimento_nadadeira, y = massa_corporal)
-      ) +
-      geom_smooth(
-        data = pinguins,
-        mapping = aes(x = comprimento_nadadeira, y = massa_corporal)
-      )
-    ```
+ggplot() +
+  geom_point(
+    data = pinguins,
+    mapping = aes(x = comprimento_nadadeira, y = massa_corporal)
+  ) +
+  geom_smooth(
+    data = pinguins,
+    mapping = aes(x = comprimento_nadadeira, y = massa_corporal)
+  )
+```
 
 ## Chamadas ggplot2 {#sec-ggplot2-calls}
 
@@ -502,9 +507,8 @@ A altura das barras exibe quantas observações ocorreram com cada valor `x`.
 
 ```{r}
 #| fig-alt: |
-#|   A bar chart of frequencies of especie of pinguins: Adelie 
-#|   (approximately 150), Chinstrap (approximately 90), Gentoo 
-#|   (approximately 125).
+#|   Um gráfico de barras das frequências das espécies de pinguins: 
+#|   Pinguim-de-Adélia (aproximadamente 150), Pinguim-de-barbicha (aproximadamente 90), Pinguim-Gentoo (aproximadamente 125).
 
 ggplot(pinguins, aes(x = especie)) +
   geom_bar()
@@ -515,10 +519,11 @@ Para isso, é necessário transformar a variável em um fator (como o R lida com
 
 ```{r}
 #| fig-alt: |
-#|   A bar chart of frequencies of especie of pinguins, where the bars are 
-#|   ordered in decreasing order of their heights (frequencies): Adelie 
-#|   (approximately 150), Gentoo (approximately 125), Chinstrap 
-#|   (approximately 90).
+#|   Um gráfico de barras das frequências das espécies de pinguins, onde 
+#|   as barras estão ordenadas em ordem decrescente das alturas 
+#|   (frequências): Pinguim-de-Adélia (aproximadamente 150), 
+#|   Pinguim-Gentoo (aproximadamente 125), Pinguim-de-barbicha 
+#|   (aproximadamente 90).
 
 ggplot(pinguins, aes(x = fct_infreq(especie))) +
   geom_bar()
@@ -536,8 +541,9 @@ Uma visualização comumente usada para distribuições de variáveis contínuas
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   A histogram of body masses of pinguins. The distribution is unimodal 
-#|   and right skewed, ranging between approximately 2500 to 6500 grams.
+#|   Um histograma da massa corporal dos pinguins. A distribuição é 
+#|   unimodal e inclinada para a direita, variando entre aproximadamente 
+#|   2500 e 6500 gramas.
 
 ggplot(pinguins, aes(x = massa_corporal)) +
   geom_histogram(binwidth = 200)
@@ -557,10 +563,12 @@ Uma largura de intervalo de 200 proporciona um balanço mais adequado.
 #| layout-ncol: 2
 #| fig-width: 3
 #| fig-alt: |
-#|   Two histograms of body masses of pinguins, one with binwidth of 20 
-#|   (left) and one with binwidth of 2000 (right). The histogram with binwidth 
-#|   of 20 shows lots of ups and downs in the heights of the bins, creating a 
-#|   jagged outline. The histogram  with binwidth of 2000 shows only three bins.
+#|   Dois histogramas da massa corporal de pinguins, um com largura de 
+#|   intervalo de 20 (esquerda) e outro com largura de intervalo de 2000 
+#|   (direita). O histograma com largura de intervalo de 20 mostra muitos
+#|   altos e baixos nas alturas das barras, criando um contorno 
+#|   irregular. O histograma com largura de intervalo de 2000 mostra 
+#|   apenas três compartimentos.
 
 ggplot(pinguins, aes(x = massa_corporal)) +
   geom_histogram(binwidth = 20)
@@ -578,8 +586,9 @@ Ela mostra menos detalhes do que um histograma, mas pode facilitar a obtenção 
 
 ```{r}
 #| fig-alt: |
-#|   A density plot of body masses of pinguins. The distribution is unimodal 
-#|   and right skewed, ranging between approximately 2500 to 6500 grams.
+#|   Um gráfico de densidade da massa corporal dos pinguins. A distribuição é 
+#|   unimodal e inclinada para a direita, variando entre aproximadamente 
+#|   2500 e 6500 gramas.
 
 ggplot(pinguins, aes(x = massa_corporal)) +
   geom_density()
@@ -634,10 +643,9 @@ Conforme mostrado em @fig-eda-boxplot, cada boxplot consiste em:
 #| label: fig-eda-boxplot
 #| echo: false
 #| fig-cap: |
-#|   Diagram depicting how a boxplot is created.
+#|   Diagrama sobre como um boxplot é criado.
 #| fig-alt: |
-#|   A diagram depicting how a boxplot is created following the steps outlined 
-#|   above.
+#|   Um diagrama exibindo como um boxplot é criado seguindo os passos acima.
 
 knitr::include_graphics("images/EDA-boxplot.png")
 ```
@@ -647,12 +655,14 @@ Vamos dar uma olhada na distribuição da massa corporal por espécie usando `ge
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   Side-by-side box plots of distributions of body masses of Adelie, 
-#|   Chinstrap, and Gentoo pinguins. The distribution of Adelie and 
-#|   Chinstrap pinguins' body masses appear to be symmetric with 
-#|   medians around 3750 grams. The median body mass of Gentoo pinguins 
-#|   is much higher, around 5000 grams, and the distribution of the 
-#|   body masses of these pinguins appears to be somewhat right skewed.
+#|   Boxplots lado a lado da distribuição da massa corporal de 
+#|   Pinguim-de-adélia, Pinguim-de-barbicha e Pinguim-gentoo. A 
+#|   distribuição das massas corporais dos pinguins-de-Adélia e 
+#|   Pinguim-de-barbicha parece ser simétrica, com medianas em torno de 
+#|   3.750 gramas. A massa corporal mediana dos Pinguim-gentoo é muito 
+#|   mais alta, em torno de 5.000 gramas, e a distribuição das massas 
+#|   corporais desses pinguins parece ser um pouco inclinada para a 
+#|   direita.
 
 ggplot(pinguins, aes(x = especie, y = massa_corporal)) +
   geom_boxplot()
@@ -663,9 +673,9 @@ Como alternativa, podemos criar gráficos de densidade com `geom_density()`.
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   A density plot of body masses of pinguins by especie of pinguins. Each 
-#|   especie (Adelie, Chinstrap, and Gentoo) is represented with different 
-#|   colored outlines for the density curves.
+#|   Um gráfico de densidade da massa corporal de pinguins separado por 
+#|   espécie. Cada espécie (Pinguim-de-adélia, Pinguim-de-barbicha e 
+#|   Pinguim-gentoo) é representada por um contorno colorido diferente em #|   cada curva de densidade.
 
 ggplot(pinguins, aes(x = massa_corporal, color = especie)) +
   geom_density(linewidth = 0.75)
@@ -680,10 +690,11 @@ No gráfico a seguir, ela está *definida* como 0.5.
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   A density plot of body masses of pinguins by especie of pinguins. Each 
-#|   especie (Adelie, Chinstrap, and Gentoo) is represented in different 
-#|   colored outlines for the density curves. The density curves are also 
-#|   filled with the same colors, with some transparency added.
+#|   Um gráfico de densidade da massa corporal de pinguins separado por 
+#|   espécie. Cada espécie (Pinguim-de-adélia, Pinguim-de-barbicha e 
+#|   Pinguim-gentoo) é representada por um contorno colorido diferente em #|   cada curva de densidade. As curvas de densidade também são 
+#|   preenchidas com as mesmas cores, com alguma transparência 
+#|   adicionada.
 
 ggplot(pinguins, aes(x = massa_corporal, color = especie, fill = especie)) +
   geom_density(alpha = 0.5)
@@ -705,7 +716,7 @@ Mas não temos uma boa noção do equilíbrio percentual em cada ilha.
 
 ```{r}
 #| fig-alt: |
-#|   Bar plots of penguin especie by ilha (Biscoe, Dream, and Torgersen)
+#|   Gráfico de barras das espécies de pinguins por ilha (Biscoe, Dream, e Torgersen)
 ggplot(pinguins, aes(x = ilha, fill = especie)) +
   geom_bar()
 ```
@@ -715,9 +726,9 @@ Usando esse gráfico, podemos ver que todos os Pinguim-gentoo vivem na ilha Bisc
 
 ```{r}
 #| fig-alt: |
-#|   Bar plots of penguin especie by ilha (Biscoe, Dream, and Torgersen)
-#|   the bars are scaled to the same height, making it a relative frequencies 
-#|   plot
+#|   Gráfico de barras das espécies de pinguins por ilha (Biscoe, Dream, 
+#|   e Torgersen). As barras estão redimensionadas para terem a mesma 
+#|   altura, tornando este um gráfico de frequência relativa.
 
 ggplot(pinguins, aes(x = ilha, fill = especie)) +
   geom_bar(position = "fill")
@@ -733,9 +744,7 @@ Um gráfico de dispersão é provavelmente o gráfico mais usado para visualizar
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   A scatterplot of body mass vs. flipper length of pinguins. The plot 
-#|   displays a positive, linear, relatively strong relationship between 
-#|   these two variables.
+#|   Um gráfico de dispersão da massa corporal em função do comprimento da nadadeira dos pinguins. O gráfico mostra uma relação positiva, linear e relativamente forte entre essas duas variáveis.
 
 ggplot(pinguins, aes(x = comprimento_nadadeira, y = massa_corporal)) +
   geom_point()
@@ -749,13 +758,14 @@ Por exemplo, no gráfico de dispersão a seguir, as cores dos pontos (*color*) r
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   A scatterplot of body mass vs. flipper length of pinguins. The plot 
-#|   displays a positive, linear, relatively strong relationship between 
-#|   these two variables. The points are colored based on the especie of the 
-#|   pinguins and the shapes of the points represent ilhas (round points are 
-#|   Biscoe ilha, triangles are Dream ilha, and squared are Torgersen 
-#|   ilha). The plot is very busy and it's difficult to distinguish the shapes
-#|   of the points.
+#|   Um gráfico de dispersão da massa corporal em função do comprimento 
+#|   da nadadeira dos pinguins. O gráfico mostra uma relação positiva, 
+#|   linear e relativamente forte entre essas duas variáveis. Os pontos 
+#|   são coloridos com base na espécie dos pinguins e as formas dos 
+#|   pontos representam ilhas (os pontos redondos são a ilha Biscoe, os 
+#|   triângulos são a ilha Dream e os quadrados são a ilha Torgersen). O 
+#|   gráfico é muito carregado e é difícil distinguir as formas dos 
+#|   pontos.
 
 ggplot(pinguins, aes(x = comprimento_nadadeira, y = massa_corporal)) +
   geom_point(aes(color = especie, shape = ilha))
@@ -775,10 +785,11 @@ A variável que você passa para `facet_wrap()` deve ser categórica.
 #| fig-width: 8
 #| fig-asp: 0.33
 #| fig-alt: |
-#|   A scatterplot of body mass vs. flipper length of pinguins. The shapes and 
-#|   colors of points represent especie. pinguins from each ilha are on a 
-#|   separate facet. Within each facet, the relationship between body mass and 
-#|   flipper length is positive, linear, relatively strong. 
+#|   Um gráfico de dispersão da massa corporal em função do comprimento 
+#|   da nadadeira dos pinguins. As formas e cores dos pontos representam 
+#|   as espécies. Os pinguins de cada ilha estão em uma faceta separada. 
+#|   Em cada faceta, a relação entre a massa corporal e o comprimento da 
+#|   nadadeira é positiva, linear e relativamente forte. 
 
 ggplot(pinguins, aes(x = comprimento_nadadeira, y = massa_corporal)) +
   geom_point(aes(color = especie, shape = especie)) +
