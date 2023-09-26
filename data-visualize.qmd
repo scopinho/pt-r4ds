@@ -903,7 +903,7 @@ ggplot(data = milhas)
 + geom_point(mapping = aes(x = cilindrada, y = rodovia))
 ```
 
-Se você ainda estiver com dificuldades, tente a ajuda.
+Se você ainda estiver com dificuldades, tente a ajuda (painel *Help*).
 Você pode obter ajuda sobre qualquer função do R executando `?nome_da_função` no console ou selecionando o nome da função e pressionando F1 no RStudio.
 Não se preocupe se a ajuda não parecer muito útil - em vez disso, pule para os exemplos e procure um código que corresponda ao que você está tentando fazer.
 
