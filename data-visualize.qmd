@@ -70,7 +70,7 @@ Vamos criar visualizações que podemos usar para responder essas perguntas.
 ### O data frame `pinguins`
 
 Você pode testar suas respostas à essas questões usando o **data frame** `pinguins` encontrado no pacote `dados` (usando `dados::pinguins`).
-Um *data frame* é uma coleção retangular de variáveis (nas colunas) e observações (nas linhas).
+Um *data frame* é uma coleção tabular (formato de tabela) de variáveis (nas colunas) e observações (nas linhas).
 `pinguins` contém `r nrow(pinguins)` observações coletadas e disponibilizadas pela Dra.
 Kristen Gorman e pelo PELD Estação Palmer, Antártica[^data-visualize-2].
 
