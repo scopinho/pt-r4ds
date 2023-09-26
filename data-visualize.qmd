@@ -612,7 +612,7 @@ ggplot(pinguins, aes(x = especie)) +
 ## Visualizando relações
 
 Para visualizar uma relação, precisamos ter pelo menos duas variáveis mapeadas para os atributos estéticos de um gráfico.
-Nas seções a seguir, você aprenderá sobre os gráficos comumente usados para visualizar relações entre duas ou mais variáveis e os geoms usados para criá-los.
+Nas seções a seguir, você aprenderá sobre os gráficos comumente usados para visualizar relações entre duas ou mais variáveis e as geometrias usados para criá-los.
 
 ### Uma variável numérica e uma variável categórica
 
