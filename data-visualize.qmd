@@ -12,7 +12,7 @@ source("_common.R")
 
 O R possui diversos sistemas para construir gráficos, mas o ggplot2 é um dos mais elegantes e versáteis.
 O ggplot2 implementa a **gramática dos gráficos**, um sistema coerente para descrever e construir gráficos.
-Com o ggplot2 você pode fazer mais rápido, ao aprender um sistema e aplicá-lo em muitos lugares.
+Com o ggplot2 você pode fazer mais, e mais rápido, ao aprender um sistema e aplicá-lo em muitos lugares.
 
 Este capítulo irá te ensinar como visualizar seus dados usando o **ggplot2**.
 Nós vamos começar criando um gráfico de dispersão simples e usá-lo para introduzir o mapeamento de atributos estéticos (*aesthetic*) e geometrias -- os blocos fundamentais na construção do ggplot2.
