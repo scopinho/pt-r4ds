@@ -761,7 +761,7 @@ ggplot(pinguins, aes(x = comprimento_nadadeira, y = massa_corporal)) +
   geom_point(aes(color = especie, shape = ilha))
 ```
 
-No entanto, mapear muitos atirbutos estéticos a um gráfico faz com que ele fique desordenado e difícil de entender.
+No entanto, mapear muitos atributos estéticos a um gráfico faz com que ele fique desordenado e difícil de entender.
 Outra maneira, que é particularmente útil para variáveis categóricas, é dividir seu gráfico em **facetas**, subdivisões que exibem um subconjunto dos dados cada uma.
 
 Para separar seu gráfico em facetas por uma única variável, use `facet_wrap()`.
