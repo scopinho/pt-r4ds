@@ -7,7 +7,7 @@ source("_common.R")
 ```
 
 Ciência de dados é uma área emocionante que permite que pessoas desenvolvedoras transformem dados brutos em compreensão, insights e conhecimento.
-O objetivo do livro "R para Ciência de Dados" é ajudar você a aprender as ferramentas mais importantes em R que permitirão que pessoas desenvolvedoras realizem ciência de dados de forma eficiente e reproduzível, e se divirtam ao longo do caminho 😃.
+O objetivo do livro "R para Ciência de Dados" é ajudar você a aprender as ferramentas mais importantes em R que permitirão que pessoas desenvolvedoras realizem ciência de dados de forma eficiente e reprodutível, e se divirtam ao longo do caminho 😃.
 Após a leitura deste livro, você terá as ferramentas necessárias para enfrentar uma ampla variedade de desafios de ciência de dados usando as melhores partes do R.
 
 ## O que você aprenderá
@@ -123,7 +123,7 @@ Você deve ter uma compreensão geral de matemática e é útil se você já tiv
 Se você nunca programou antes, pode achar o livro [Hands on Programming with R](https://rstudio-education.github.io/hopr/), escrito por Garrett, um recurso valioso para complementar este livro.
 
 Você precisará de quatro coisas para executar o código deste livro: R, RStudio, um conjunto de pacotes R chamado **tidyverse** e alguns outros pacotes.
-Pacotes são as unidades fundamentais de código R reproduzível.
+Pacotes são as unidades fundamentais de código R reprodutível.
 Eles incluem funções reutilizáveis, documentação que descreve como usá-los e dados de exemplo.
 
 ### R
