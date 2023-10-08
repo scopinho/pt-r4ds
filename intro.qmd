@@ -40,7 +40,7 @@ Se você não conseguir importar seus dados para o R, não poderá fazer ciênci
 Depois de importar seus dados, é uma boa ideia **organizá-los**.
 Organizar seus dados significa armazená-los em uma forma consistente que corresponda à semântica do conjunto de dados com a forma como ele é armazenado.
 Em resumo, quando seus dados estão organizados, cada coluna é uma variável e cada linha é uma observação.
-Dados organizados (*tidy data*) são importantes porque a estrutura consistente permite que você concentre seus esforços em responder perguntas sobre os dados, em vez de lutar para colocar os dados na forma correta para diferentes funções.
+Dados organizados (*tidy data*) são importantes porque a estrutura consistente permite que você concentre seus esforços em responder perguntas sobre os dados, em vez de lutar para colocar os dados na forma correta para usar diferentes funções.
 
 Depois de ter dados organizados, um próximo passo comum é **transformá-los**.
 A transformação inclui focar em observações de interesse (como todas as pessoas em uma cidade ou todos os dados do último ano), criar novas variáveis que são funções de variáveis existentes (como calcular a velocidade a partir da distância e do tempo) e calcular um conjunto de estatísticas resumidas (como contagens ou médias).
