@@ -676,7 +676,8 @@ Como alternativa, podemos criar gráficos de densidade com `geom_density()`.
 #| fig-alt: |
 #|   Um gráfico de densidade da massa corporal de pinguins separado por 
 #|   espécie. Cada espécie (Pinguim-de-adélia, Pinguim-de-barbicha e 
-#|   Pinguim-gentoo) é representada por um contorno colorido diferente em #|   cada curva de densidade.
+#|   Pinguim-gentoo) é representada por um contorno colorido diferente em
+#|   cada curva de densidade.
 
 ggplot(pinguins, aes(x = massa_corporal, color = especie)) +
   geom_density(linewidth = 0.75)
