@@ -21,11 +21,11 @@ Nosso modelo das etapas de um projeto típico de ciência de dados se parece com
 #| echo: false
 #| fig-cap: |
 #|   Em nosso modelo do ciclo de ciência de dados, você começa com a importação
-#|   e organização dos dados. Em seguida, você compreende seus dados com um ciclo iterativo de
+#|   e organização dos dados. Em seguida, você entende seus dados por meio de um ciclo iterativo de
 #|   transformação, visualização e modelagem. Você finaliza o ciclo
 #|   comunicando seus resultados para outras pessoas.
 #| fig-alt: |
-#|   Um diagrama que exibe o ciclo de ciência de dados: Importar -> Organizar -> Compreender
+#|   Um diagrama que exibe o ciclo de ciência de dados: Importar -> Organizar (Tidy) -> Compreender
 #|   (com as fases Transformar -> Visualizar -> Modelar em um ciclo) ->
 #|   Comunicar. Em torno de todas essas etapas está a etapa de Comunicar.
 #| out.width: NULL
@@ -37,16 +37,16 @@ Primeiro, você deve **importar** seus dados para o R.
 Isso geralmente significa que você pega dados armazenados em um arquivo, um banco de dados ou uma interface de programação de aplicação (*API*) da web e importa em uma base de dados no R.
 Se você não conseguir importar seus dados para o R, não poderá fazer ciência de dados com eles!
 
-Depois de importar seus dados, é uma boa ideia **organizá-los**.
+Depois de importar seus dados, é uma boa ideia **organizá-los** (torná-los tidy).  
 Organizar seus dados significa armazená-los em uma forma consistente que corresponda à semântica do conjunto de dados com a forma como ele é armazenado.
-Em resumo, quando seus dados estão organizados, cada coluna é uma variável e cada linha é uma observação.
+Em resumo, quando seus dados estão organizados de forma *tidy*, cada coluna é uma variável e cada linha é uma observação.
 Dados organizados (*tidy data*) são importantes porque a estrutura consistente permite que você concentre seus esforços em responder perguntas sobre os dados, em vez de lutar para colocar os dados na forma correta para usar diferentes funções.
 
-Depois de ter dados organizados, um próximo passo comum é **transformá-los**.
+Depois de ter dados organizados, normalmente o próximo passo é **transformá-los**.
 A transformação inclui focar em observações de interesse (como todas as pessoas em uma cidade ou todos os dados do último ano), criar novas variáveis que são funções de variáveis existentes (como calcular a velocidade a partir da distância e do tempo) e calcular um conjunto de estatísticas resumidas (como contagens ou médias).
-Juntos, organizar e transformar são chamados de **manipulação de dados** (em inglês: *data wrangling*) porque colocar seus dados em uma forma natural de trabalhar frequentemente parece uma luta!
+Juntos, organizar e transformar são chamados de **manipulação de dados** (em inglês: *data wrangling*) porque colocar seus dados em uma forma natural de trabalhar frequentemente parece uma luta! (*wrangle*)
 
-Uma vez que você tenha dados organizados com as variáveis de que precisa, existem duas principais fontes de geração de conhecimento: visualização e modelagem.
+Uma vez que você tenha dados organizados e com as variáveis de que precisa, existem duas principais fontes de geração de conhecimento: visualização e modelagem.
 Essas têm pontos fortes e fracos complementares, portanto, qualquer análise de dados real irá iterar entre elas muitas vezes.
 
 **Visualização** é uma atividade fundamentalmente humana.
@@ -58,24 +58,24 @@ As visualizações podem surpreender você, mas não escalam particularmente bem
 Depois de tornar suas perguntas suficientemente precisas, você pode usar um modelo para respondê-las.
 Os modelos são fundamentalmente ferramentas matemáticas ou computacionais, então geralmente escalam bem.
 Mesmo quando não o fazem, geralmente é mais barato comprar mais computadores do que comprar mais cérebros!
-Mas cada modelo faz suposições, e, por sua própria natureza, um modelo não pode questionar suas próprias suposições.
-Isso significa que um modelo não pode fundamentalmente surpreendê-lo.
+No entanto, cada modelo faz suposições, e, por sua própria natureza, um modelo não pode questionar suas próprias suposições.
+Isso significa que um modelo não pode, fundamentalmente, surpreendê-lo.
 
 A última etapa da ciência de dados é a **comunicação**, uma parte absolutamente crítica de qualquer projeto de análise de dados.
 Não importa o quão bem seus modelos e visualizações tenham ajudado você a entender os dados, a menos que você também possa comunicar seus resultados para outras pessoas.
 
 Em torno de todas essas ferramentas está a programação.
 A programação é uma ferramenta abrangente que é usada em quase todas as partes de um projeto de ciência de dados.
-Não é necessário ser uma pessoa especialista em programação para ter sucesso na ciência de dados, mas aprender mais sobre programação compensa, pois se tornar uma melhor em programação permite automatizar tarefas comuns e resolver novos problemas com maior facilidade.
+Não é necessário ser uma pessoa especialista em programação para ter sucesso na ciência de dados, mas aprender mais sobre programação compensa, pois se tornar melhor em programação permite automatizar tarefas comuns e resolver novos problemas com maior facilidade.
 
-Você usará essas ferramentas em todos os projetos de ciência de dados, mas elas não são suficientes para a maioria dos projetos.
+Você usará essas ferramentas em todos os projetos de ciência de dados, mas para a maioria deles, elas não são suficientes.
 Há uma regra aproximada de 80/20 em jogo: você pode abordar cerca de 80% de cada projeto usando as ferramentas que aprenderá neste livro, mas precisará de outras ferramentas para lidar com os 20% restantes.
 Ao longo deste livro, indicaremos recursos onde você pode aprender mais.
 
 ## Como este livro está organizado
 
-A descrição anterior das ferramentas da ciência de dados está organizada aproximadamente de acordo com a ordem em que você as utiliza em uma análise (embora, é claro, você vá percorrer por elas várias vezes).
-Em nossa experiência, no entanto, aprender primeiro a importação e organização de dados não é a melhor escolha, porque, 80% do tempo, é rotineiro e entediante, e os outros 20% do tempo, é estranho e frustrante.
+A descrição anterior das ferramentas da ciência de dados está organizada aproximadamente de acordo com a ordem em que você as utiliza em uma análise (embora, é claro, você vá iterar por elas várias vezes).
+Em nossa experiência, no entanto, aprender primeiro a importação e organização de dados não é a melhor escolha, porque essas tarefas são, 80% do tempo, rotineiras e entediantes, e nos outros 20% do tempo, são estranhas e frustrantes.
 Esse não é um bom ponto de partida para aprender um novo assunto!
 Em vez disso, começaremos com a visualização e transformação de dados que já foram importados e organizados.
 Dessa forma, quando você importar e organizar seus próprios dados, sua motivação permanecerá alta, porque você sabe que o esforço vale a pena.
@@ -88,7 +88,7 @@ Embora possa ser tentador pular os exercícios, a melhor maneira de aprender é 
 
 Existem vários tópicos importantes que este livro não aborda.
 Acreditamos que é importante manter um foco rigoroso no essencial para que você possa começar o mais rápido possível.
-Isso significa que este livro não pode abordar todos os tópicos importantes.
+Isso significa que não é possível, neste livro, abordar todos os tópicos importantes.
 
 ### Modelagem
 
@@ -99,14 +99,14 @@ Este livro ensinará a você a família de pacotes tidymodels, que, como você p
 ### Big data
 
 Este livro orgulhosamente e principalmente foca em conjuntos de dados pequenos e que cabem na memória (*in-memory*).
-Este é o lugar certo para começar, porque você não pode lidar com *big data* a menos que tenha experiência com bases de dados pequenas.
-As ferramentas que você aprenderá ao longo da maior parte deste livro lidarão facilmente com centenas de megabytes de dados e, com um pouco de cuidado, você geralmente pode usá-las para trabalhar com alguns gigabytes de dados.
+Este é o lugar certo para começar, porque você não poderá lidar com *big data* a menos que já tenha experiência com bases de dados pequenas.
+As ferramentas que você aprenderá ao longo da maior parte deste livro lidarão facilmente com centenas de megabytes de dados e, com um pouco de cuidado, você geralmente poderá usá-las para trabalhar com alguns gigabytes de dados.
 Também mostraremos como obter dados de bancos de dados e arquivos parquet, ambos frequentemente usados para armazenar *big data*.
 Você não necessariamente conseguirá trabalhar com o conjunto de dados inteiro, mas isso não é um problema, pois você só precisa de um subconjunto ou uma amostra para responder à pergunta que te interessa.
 
 Se você está rotineiramente lidando com dados maiores (digamos, de 10 a 100 GB), recomendamos aprender mais sobre o pacote [data.table](https://github.com/Rdatatable/data.table).
 Não o ensinamos aqui porque ele usa uma interface diferente do tidyverse e requer que você aprenda algumas convenções diferentes.
-No entanto, ele é incrivelmente mais rápido, e o retorno de desempenho compensa o tempo investido para aprender a usá-lo, se você estiver trabalhando com *big data*.
+No entanto, ele é incrivelmente mais rápido, e o retorno no desempenho compensa o tempo investido para aprender a usá-lo, se você estiver trabalhando com *big data*.
 
 ### Python, Julia e outros
 
@@ -118,7 +118,7 @@ Mas acreditamos firmemente que é melhor dominar uma ferramenta de cada vez, e R
 
 ## Pré-requisitos
 
-Fizemos algumas suposições sobre o que você já sabe para aproveitar ao máximo este livro.
+Fizemos algumas suposições sobre o que você já deveria saber para aproveitar ao máximo este livro.
 Você deve ter uma compreensão geral de matemática e é útil se você já tiver alguma experiência básica em programação.
 Se você nunca programou antes, pode achar o livro [Hands on Programming with R](https://rstudio-education.github.io/hopr/), escrito por Garrett, um recurso valioso para complementar este livro.
 
@@ -136,7 +136,7 @@ Recomendamos o R 4.2.0 ou posterior para este livro.
 
 ### RStudio
 
-O RStudio é um ambiente de desenvolvimento integrado, ou IDE, para programação em R, que você pode baixar em <https://posit.co/download/rstudio-desktop/>.
+O RStudio é uma *IDE* (ambiente de desenvolvimento integrado), para programação em R, que você pode baixar em <https://posit.co/download/rstudio-desktop/>.
 O RStudio é atualizado algumas vezes por ano e ele o informará automaticamente quando uma nova versão estiver disponível, portanto, não é necessário verificar periodicamente.
 É uma boa ideia atualizar regularmente para aproveitar os recursos mais recentes e melhorados.
 Para este livro, certifique-se de ter pelo menos o RStudio 2022.02.0.
@@ -152,10 +152,10 @@ Você aprenderá mais à medida que avançarmos![^intro-1]
 #| echo: false
 #| out-width: ~
 #| fig-cap: |
-#|   O IDE do RStudio possui duas partes principais: digite o código em R no Console
+#|   O RStudio possui duas partes principais: digite o código em R no Console
 #|   à esquerda e procure o painel Plots dentro do painel Output à direita.
 #| fig-alt: |
-#|   O IDE do RStudio com os painéis Console e Output destacados.
+#|   O RStudio com os painéis Console e Output destacados.
 knitr::include_graphics("diagrams/rstudio/console.png", dpi = 270)
 ```
 
