@@ -34,7 +34,7 @@ knitr::include_graphics("diagrams/data-science/base.png", dpi = 270)
 ```
 
 Primeiro, você deve **importar** seus dados para o R.
-Isso geralmente significa que você pega dados armazenados em um arquivo, um banco de dados ou uma interface de programação de aplicação (*API*) da web e importa em uma base de dados no R.
+Isso geralmente significa que você pega dados armazenados em um arquivo, um banco de dados ou uma *API* (interface de programação de aplicação, ou ***A**pplication **P**rogramming **I**nterface* em inglês) da web e importa em uma base de dados no R.
 Se você não conseguir importar seus dados para o R, não poderá fazer ciência de dados com eles!
 
 Depois de importar seus dados, é uma boa ideia **organizá-los** (torná-los tidy).  
