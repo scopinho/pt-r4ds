@@ -644,7 +644,7 @@ Conforme mostrado em @fig-eda-boxplot, cada boxplot consiste em:
 #| label: fig-eda-boxplot
 #| echo: false
 #| fig-cap: |
-#|   Diagrama sobre como um boxplot é criado.
+#|   Diagrama mostrando como um boxplot é criado.
 #| fig-alt: |
 #|   Um diagrama exibindo como um boxplot é criado seguindo os passos acima.
 
