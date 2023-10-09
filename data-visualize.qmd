@@ -291,7 +291,7 @@ Como queremos que os pontos sejam coloridos com base na espécie, mas não quere
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   Um gráfico de dispersão da massa corporal em função o comprimento da
+#|   Um gráfico de dispersão da massa corporal em função do comprimento da
 #|   nadadeira dos pinguins. Sobreposta ao gráfico de dispersão está
 #|   uma única linha de melhor ajuste que mostra a relação entre essas 
 #|   variáveis para cada espécie (Pinguim-de-adélia, Pinguim-de-barbicha 
