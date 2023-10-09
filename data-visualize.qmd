@@ -316,7 +316,7 @@ Portanto, além da cor, também podemos mapear `especie` para a estética `shape
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   Um gráfico de dispersão da massa corporal em função o comprimento da
+#|   Um gráfico de dispersão da massa corporal em função do comprimento da
 #|   nadadeira dos pinguins. Sobreposta ao gráfico de dispersão está
 #|   uma única linha de melhor ajuste que mostra a relação entre essas 
 #|   variáveis para cada espécie (Pinguim-de-adélia, Pinguim-de-barbicha 
