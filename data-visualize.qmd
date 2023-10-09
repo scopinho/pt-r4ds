@@ -134,7 +134,8 @@ Nosso objetivo final neste capítulo é recriar a seguinte visualização que ex
 #|   entre essas duas variáveis sobreposta. O gráfico mostra uma relação 
 #|   positiva, razoavelmente linear e relativamente forte entre essas 
 #|   duas variáveis. As espécies (Pinguim-de-adélia, Pinguim-de-barbicha 
-#|   e Pinguim-gentoo) são representadas com cores e formas diferentes. A #|   relação entre a massa corporal e o comprimento da nadadeira é 
+#|   e Pinguim-gentoo) são representadas com cores e formas diferentes. A 
+#|   relação entre a massa corporal e o comprimento da nadadeira é 
 #|   aproximadamente a mesma para essas três espécies, e os pinguins 
 #|   Gentoo são maiores do que os pinguins das outras duas espécies.
 
