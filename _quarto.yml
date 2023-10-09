@@ -22,11 +22,11 @@ book:
     - index.qmd
 
     - preface-2e.qmd
-#     - intro.qmd
-#
-#     - part: whole-game.qmd
-#       chapters:
-#         - data-visualize.qmd
+    - intro.qmd
+
+    - part: whole-game.qmd
+      chapters:
+        - data-visualize.qmd
 #         - workflow-basics.qmd
 #         - data-transform.qmd
 #         - workflow-style.qmd

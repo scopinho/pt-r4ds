@@ -1,4 +1,4 @@
-# Data visualization {#sec-data-visualization}
+# Visualização de dados {#sec-data-visualization}
 
 ```{r}
 #| echo: false
@@ -129,6 +129,7 @@ Nosso objetivo final neste capítulo é recriar a seguinte visualização que ex
 ```{r}
 #| echo: false
 #| warning: false
+#| fig-alt: |
 #|   Um gráfico de dispersão da massa corporal vs. comprimento da
 #|   nadadeira dos pinguins, com uma linha de melhor ajuste da relação
 #|   entre essas duas variáveis sobreposta. O gráfico mostra uma relação 
