@@ -267,7 +267,7 @@ E especificaremos que queremos desenhar a linha de melhor ajuste com base em um 
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   Um gráfico de dispersão da massa corporal em função o comprimento da
+#|   Um gráfico de dispersão da massa corporal em função do comprimento da
 #|   nadadeira dos pinguins. Sobrepostas ao gráfico de dispersão estão 
 #|   três curvas suavizadas que mostram a relação entre essas variáveis 
 #|   para cada espécie (Pinguim-de-adélia, Pinguim-de-barbicha e 
