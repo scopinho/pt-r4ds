@@ -147,7 +147,7 @@ voos |>
 ```
 
 Depois da primeira etapa do encadeamento, recue cada linha (**indente**) em dois espaços.
-O RStudio colocará automaticamente os espaços para depois de quebrar uma linha logo depois de *pipe* `|>`.
+O RStudio colocará automaticamente os espaços para depois de quebrar uma linha logo depois do *pipe* `|>`.
 Se você estiver colocando cada argumento em sua própria linha, recue em mais dois espaços.
 Certifique-se de que o `)` (fechamento de parêntesis) esteja em sua própria linha e não recuada para corresponder à posição horizontal do nome da função.
 
