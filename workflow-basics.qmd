@@ -261,5 +261,5 @@ knitr::include_graphics("screenshots/rstudio-env.png")
 
 ## Sumário
 
-Nesse capítulo você aprendeu um pouco mais sobre como o código R funciona e algumas dicas para ajudá-lo a entender seu código quando você voltar a ele no futuro.
+Nesse capítulo você aprendeu um pouco mais sobre como o código R funciona e algumas dicas para te ajudar a entender seu código quando você voltar a ele no futuro.
 No próximo capítulo, continuaremos sua jornada de ciência de dados, ensinando-o sobre o dplyr, o pacote tidyverse que ajuda você a transformar dados, seja selecionando variáveis importantes, filtrando as linhas de interesse ou calculando estatísticas resumidas.
