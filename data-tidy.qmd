@@ -1,4 +1,4 @@
-# Data tidying {#sec-data-tidy}
+# Tornando os dados _tidy_ {#sec-data-tidy}
 
 ```{r}
 #| echo: false
@@ -6,21 +6,27 @@
 source("_common.R")
 ```
 
-## Introduction
+## Introdução 
 
-> "Happy families are all alike; every unhappy family is unhappy in its own way."\
+> "Todas as famílias felizes se parecem, cada família infeliz é infeliz à sua maneira."\
 > --- Leo Tolstoy
 
-> "Tidy datasets are all alike, but every messy dataset is messy in its own way."\
+> "Todos os conjuntos de dados organizados se parecem, cada conjunto de dados desorganizados são desorganizados à sua maneira."\
 > --- Hadley Wickham
 
 In this chapter, you will learn a consistent way to organize your data in R using a system called **tidy data**.
+>> Neste capítulo, você vai aprender uma forma consistente de organizar seus dados no R utilizando um sistema chamado **tidy data**.
 Getting your data into this format requires some work up front, but that work pays off in the long term.
+>> Colocar seus dados nesse formato requer alguma preparação, mas esse é um trabalho que se paga a longo prazo.
 Once you have tidy data and the tidy tools provided by packages in the tidyverse, you will spend much less time munging data from one representation to another, allowing you to spend more time on the data questions you care about.
+>> Uma vez que você tenha em mãos os dados no formato _tidy_ e as ferramentas do tidyverse, você irá gastar muito menos tempo alternando seus dados de uma reprensetação para outra, de forma que ele possa ser gasto nas perguntas que você realmente se importa.
 
 In this chapter, you'll first learn the definition of tidy data and see it applied to a simple toy dataset.
+>> Neste capítulo, você primeiro vai aprender sobre a definição do formato _tidy_ e vê-lo sendo aplicado em um conjunto de dados simulado.
 Then we'll dive into the primary tool you'll use for tidying data: pivoting.
+>> Em seguida, você vai mergulhar na principal ferramenta que utilizará para organizar os dados: a pivotagem.
 Pivoting allows you to change the form of your data without changing any of the values.
+>> Pivotar lhe permite mudar a forma de seus dados sem modificar nenhum de seus valores.
 
 ### Prerequisites
 
@@ -573,19 +579,19 @@ df |>
 
 It's then up to you to figure out what's gone wrong with your data and either repair the underlying damage or use your grouping and summarizing skills to ensure that each combination of row and column values only has a single row.
 
-## Summary
+## Resumo 
 
-In this chapter you learned about tidy data: data that has variables in columns and observations in rows.
-Tidy data makes working in the tidyverse easier, because it's a consistent structure understood by most functions, the main challenge is transforming the data from whatever structure you receive it in to a tidy format.
-To that end, you learned about `pivot_longer()` and `pivot_wider()` which allow you to tidy up many untidy datasets.
-The examples we presented here are a selection of those from `vignette("pivot", package = "tidyr")`, so if you encounter a problem that this chapter doesn't help you with, that vignette is a good place to try next.
+Nesse capítulo você aprendeu sobre dados no formato _tidy_: dados que possuem variáveis nas colunas e observações nas linhas.
+Dados nesse formato facilitam o trabalho no tidyverse, pois sua estrutura consistente é entendida pela maioria das funções. O principal desafio, então, é transformar dados provenientes de quaisquer estruturas que você receber para o formato _tidy_.
+Para esse fim, você aprendeu sobre `pivot_longer()` e `pivot_wider()` que permitem a organização de vários conjuntos de dados que ainda não estejam no formato _tidy_.
+Os exemplos apresentados aqui são uma seleção dos vários presentes em `vignette("pivot", package = "tidyr")`, então, se você encontrar algum problema com o qual esse capítulo ainda não é capaz de te ajudar, é uma boa ideia checar nessa _vignette_.
 
-Another challenge is that, for a given dataset, it can be impossible to label the longer or the wider version as the "tidy" one.
-This is partly a reflection of our definition of tidy data, where we said tidy data has one variable in each column, but we didn't actually define what a variable is (and it's surprisingly hard to do so).
-It's totally fine to be pragmatic and to say a variable is whatever makes your analysis easiest.
-So if you're stuck figuring out how to do some computation, consider switching up the organisation of your data; don't be afraid to untidy, transform, and re-tidy as needed!
+Um outro desafio é o fato de que para certos conjuntos de dados, pode ser impossível especificar se a versão _long_ ou _wide_ é a versão _tidy_.
+Isso é, em parte, um reflexo da nossa definição de dados _tidy_, em que dizemos que cada coluna deve conter uma variável, mas não definimos, de fato, **o que é** uma variável (e fazer isso é surpreendentemente difícil.)
+É totalmente aceitável dizer, de uma forma pragmática, que uma variável é qualquer coisa que facilite sua análise.
+Então, se tiver difícil descobrir como fazer algum tipo de cálculo ou análise, considere alterar a forma como seus dados estão organizados; não tenha medo de voltar para um formato _untidy_, transformá-lo e depois reorganizá-lo conforme necessário!
 
-If you enjoyed this chapter and want to learn more about the underlying theory, you can learn more about the history and theoretical underpinnings in the [Tidy Data](https://www.jstatsoft.org/article/view/v059i10) paper published in the Journal of Statistical Software.
+Se você gostou desse capítulo e quiser saber mais sobre a teoria por trás dele, você pode se aprofundar sobre a história e os fundamentos teóricos no artigo [Tidy Data](https://www.jstatsoft.org/article/view/v059i10) publicado no Journal of Statistical Software.
 
-Now that you're writing a substantial amount of R code, it's time to learn more about organizing your code into files and directories.
-In the next chapter, you'll learn all about the advantages of scripts and projects, and some of the many tools that they provide to make your life easier.
+E agora que você já está escrevendo uma quantidade considerável de código em R, é a hora de aprender um pouco mais sobre como organizar o seu código em arquivos e diretórios.
+No próximo capítulo, você irá aprender sobre todas as vantagens dos _scripts_ e projetos, e algumas das várias ferramentas que eles disponibilizam para tornar sua vida mais fácil. 
