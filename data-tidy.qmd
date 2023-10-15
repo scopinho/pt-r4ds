@@ -134,42 +134,44 @@ ggplot(table1, aes(x = year, y = cases)) +
 
     Você ainda não aprendeu todas as funções necessárias para, de fato, executar essas operações, mas ainda assim você deve ser capaz de pensar sobre as transformações que você precisaria.
 
-## Lengthening data {#sec-pivoting}
+## Alongando os dados {#sec-pivoting}
 
-The principles of tidy data might seem so obvious that you wonder if you'll ever encounter a dataset that isn't tidy.
-Unfortunately, however, most real data is untidy.
-There are two main reasons:
+Os princípios do formato _tidy_ parecem ser tão óbvios que você deve estar se perguntando se algum dia vai encontrar algum cojunto de dados que não esteja nesse formato.
+Infelizmente, porém, a maioria dos dados reais não estão nesse formato.
+Existem dois motivos principais:
 
-1.  Data is often organized to facilitate some goal other than analysis.
-    For example, it's common for data to be structured to make data entry, not analysis, easy.
+1.  Geralmente os dados estão organizados para facilitar algum outro objetivo além da análise. 
+    Por exemplo, é comum os dados estarem estruturados para facilitar a entrada de novos dados e não a análise dos mesmos.
 
-2.  Most people aren't familiar with the principles of tidy data, and it's hard to derive them yourself unless you spend a lot of time working with data.
+2.  A maioria das pessoas não está familiarizada com os princípios do formato e é difícil derivá-lo espontaneamente a menos que já se tenha trabalhado com dados por muito tempo.
 
-This means that most real analyses will require at least a little tidying.
-You'll begin by figuring out what the underlying variables and observations are.
-Sometimes this is easy; other times you'll need to consult with the people who originally generated the data.
-Next, you'll **pivot** your data into a tidy form, with variables in the columns and observations in the rows.
+Isso significa que a maioria das análises reais vai demandar pelo menos alguma adaptação para o formato _tidy_.
+Você vai começar descobrindo quas são as variáveis e observações presentes.
+Algumas vezes isso é fácil, em outras você precisará consultar as pessoas que geraram os dados. 
+Em seguida, você irá *pivotar** seus dados para o formato _tidy_, com as variáveis nas colunas e as observações nas linhas. 
 
-tidyr provides two functions for pivoting data: `pivot_longer()` and `pivot_wider()`.
-We'll first start with `pivot_longer()` because it's the most common case.
-Let's dive into some examples.
+`tidyr` disponibiliza duas funções para pivotar os dados: `pivot_longer()` e `pivot_wider()`.
+Começaremos com `pivot_longer()` pois é o caso mais comum.
+Vamos nos aprofundar em alguns exemplos.
 
-### Data in column names {#sec-billboard}
+### Dados nos nomes das colunas {#sec-billboard}
 
-The `billboard` dataset records the billboard rank of songs in the year 2000:
+O conjunto de dados `billboard` marca a posição das músicas na billboard no ano 2000:
 
 ```{r}
 billboard
 ```
 
-In this dataset, each observation is a song.
-The first three columns (`artist`, `track` and `date.entered`) are variables that describe the song.
+Nesse conjunto de dados, cada observação é uma música.
+As três primeiras colunas (`artist`, `track` e `date.entered`) são variáveis que descrevem a música.
 Then we have 76 columns (`wk1`-`wk76`) that describe the rank of the song in each week[^data-tidy-1].
+Em seguida, temos 76 colunas (`wk1`-`wk76`) que descrevem a posição da música em cada semana[^data-tidy-1].
 Here, the column names are one variable (the `week`) and the cell values are another (the `rank`).
+Aqui, o nome das colunas é uma variável (a semana - `week`) e o valor da célula é outra (a posição - `rank`).
 
-[^data-tidy-1]: The song will be included as long as it was in the top 100 at some point in 2000, and is tracked for up to 72 weeks after it appears.
+[^data-tidy-1]: A música será incluída dados desde que tenha estado no top 100 em algum momento do ano 2000, e então será monitorada por até 72 semanas após a primeira aparição.
 
-To tidy this data, we'll use `pivot_longer()`:
+Para transformar esses dados em _tidy_, vamos usar `pivot_longer()`:
 
 ```{r, R.options=list(pillar.print_min = 10)}
 billboard |> 
@@ -180,21 +182,21 @@ billboard |>
   )
 ```
 
-After the data, there are three key arguments:
+Na função, são três argumentos principais, após os dados:
 
--   `cols` specifies which columns need to be pivoted, i.e. which columns aren't variables. This argument uses the same syntax as `select()` so here we could use `!c(artist, track, date.entered)` or `starts_with("wk")`.
--   `names_to` names the variable stored in the column names, we named that variable `week`.
--   `values_to` names the variable stored in the cell values, we named that variable `rank`.
+-   `cols` especifica quais colunas precisarão ser pivotadas, ou seja, quais colunas ainda não são variáveis. Esse argumento usa a mesma sintaxe que a função `select()` então aqui poderíamos usar `!c(artist, track, date.entered)` ou `starts_with("wk")`.
+-   `names_to` nomeia a variável armazenada nos nomes das colunas, nós nomeamos aquela variável como `week`.
+-   `values_to` nomeia a variável armazenada nos valores das células, nós nomeamos aquela variável como `rank`.
 
-Note that in the code `"week"` and `"rank"` are quoted because those are new variables we're creating, they don't yet exist in the data when we run the `pivot_longer()` call.
+Note que os códigos `"week"` e `"rank"` estão entre aspas porque essas são novas variáveis que estamos criando, elas ainda não existem nos dados quando a gente faz a chamada à `pivot_longer()`.
 
-Now let's turn our attention to the resulting, longer data frame.
-What happens if a song is in the top 100 for less than 76 weeks?
-Take 2 Pac's "Baby Don't Cry", for example.
-The above output suggests that it was only in the top 100 for 7 weeks, and all the remaining weeks are filled in with missing values.
-These `NA`s don't really represent unknown observations; they were forced to exist by the structure of the dataset[^data-tidy-2], so we can ask `pivot_longer()` to get rid of them by setting `values_drop_na = TRUE`:
+Agora voltaremos nossa atenção ao data frame resultante, em um formato mais longo.
+O que acontece se uma música fica no top 100 por menos que 76 semanas? 
+Vejamos "Baby Don't Cry" do 2 Pac, por exemplo.
+A saída acima sugere que ela ficou apenas 7 semanas no top 100, e todas as demais semanas foram preenchidas por valores ausentes.
+Esses `NA`s, na verdade, não representam observações desconhecidas; eles foram forçadas a existir pela estrutura do conjunto de dados [^data-tidy-2], então podemos pedir para a `pivot_longer()` se livrar deles por meio do parâmetro `values_drop_na = TRUE`:
 
-[^data-tidy-2]: We'll come back to this idea in @sec-missing-values.
+[^data-tidy-2]: Voltaremos a essas ideias em @sec-missing-values.
 
 ```{r}
 billboard |> 
@@ -206,13 +208,14 @@ billboard |>
   )
 ```
 
-The number of rows is now much lower, indicating that many rows with `NA`s were dropped.
+O número de linhas agora é muito menor, indicando que várias linhas que continham apenas `NA`s foram removidas.
 
 You might also wonder what happens if a song is in the top 100 for more than 76 weeks?
-We can't tell from this data, but you might guess that additional columns `wk77`, `wk78`, ... would be added to the dataset.
+Você também poderia estar se perguntando: o que aconteceria caso a música ficasse no top 100 por mais que 76 semanas?
+Não é possível dizer apenas com esses dados, mas você poderia imaginar que colunas adicionais `wk77`, `wk78`, ... seriam incluídas no conjunto de dados.
 
-This data is now tidy, but we could make future computation a bit easier by converting values of `week` from character strings to numbers using `mutate()` and `readr::parse_number()`.
-`parse_number()` is a handy function that will extract the first number from a string, ignoring all other text.
+Esses dados agora estão no formato _tidy_, mas nós ainda podemos facilitar cálculos futuros ao converter os valores da coluna `week` de caracteres para números utilizando `mutate()` e `readr::parse_number()`.
+`parse_number()` é uma função bem útil que irá extrair o primeiro número de uma sequência de caracteres (_string_) e vai ignorar todo o resto.
 
 ```{r}
 billboard_longer <- billboard |> 
@@ -228,19 +231,19 @@ billboard_longer <- billboard |>
 billboard_longer
 ```
 
-Now that we have all the week numbers in one variable and all the rank values in another, we're in a good position to visualize how song ranks vary over time.
-The code is shown below and the result is in @fig-billboard-ranks.
-We can see that very few songs stay in the top 100 for more than 20 weeks.
+Agora que temos todos os números das semanas em uma única variável e todas as posições em outra, é um bom ponto para visualizar como a posição das músicas varia ao longo do tempo.
+O código é mostrado abaixo e o resultado está em @fig-billboard-ranks.
+Nós podemos ver que muito poucas músicas permanecem no top 100 por mais de 20 semanas.
 
 ```{r}
 #| label: fig-billboard-ranks
 #| fig-cap: |
-#|   A line plot showing how the rank of a song changes over time.
+#|   Um gráfico de linhas mostrando como as posições de uma música muda ao longo do tempo.
 #| fig-alt: |
-#|   A line plot with week on the x-axis and rank on the y-axis, where
-#|   each line represents a song. Most songs appear to start at a high rank,
-#|   rapidly accelerate to a low rank, and then decay again. There are
-#|   surprisingly few tracks in the region when week is >20 and rank is
+#|   Um gráfico de linhas com semana no eixo-x e posição no eixo-y, onde 
+#|   cada linha representa uma música. A maioria das músicas parece começar em uma posição alta,
+#|   acelerar rapidamente para uma posição mais baixa e depois cair novamente. Existem 
+#|   notavelmente poucas faixas na região em que a semana é >20 e a posição é
 #|   >50.
 
 billboard_longer |> 
@@ -249,14 +252,15 @@ billboard_longer |>
   scale_y_reverse()
 ```
 
-### How does pivoting work?
+### Como a pivotagem funciona?
 
-Now that you've seen how we can use pivoting to reshape our data, let's take a little time to gain some intuition about what pivoting does to the data.
-Let's start with a very simple dataset to make it easier to see what's happening.
-Suppose we have three patients with `id`s A, B, and C, and we take two blood pressure measurements on each patient.
-We'll create the data with `tribble()`, a handy function for constructing small tibbles by hand:
+Agora que você já viu como usar a pivotagem para mudar a forma de nossos dados, vamos tomar um tempinho para obter alguma intuição sobre o que a pivotagem faz com os dados.
+Vamos começar com um conjunto de dados bem simples para enxergamos com mais facilidade o que está acontecendo.
+Suponha que temos três pacientes com `id`s A, B e C, e fazemos a medição da pressão sanguínea duas vezes para cadas paciente.
+Vamos criar os dados com `tribble()`, uma função útil para construir pequenos tibbles manualmente:
 
 ```{r}
+# bp - "blood pressure" (pressão sanguínea)
 df <- tribble(
   ~id,  ~bp1, ~bp2,
    "A",  100,  120,
@@ -265,8 +269,8 @@ df <- tribble(
 )
 ```
 
-We want our new dataset to have three variables: `id` (already exists), `measurement` (the column names), and `value` (the cell values).
-To achieve this, we need to pivot `df` longer:
+Nós queremos que nosso conjunto de dados tenham três variáveis: `id` (já existe), `measurement` (medição - o nome das colunas), e `value` (valor - valor das células).
+Para obter essa forma, precisamos pivotar `df` para um formato mais longo:
 
 ```{r}
 df |> 
@@ -277,9 +281,9 @@ df |>
   )
 ```
 
-How does the reshaping work?
-It's easier to see if we think about it column by column.
-As shown in @fig-pivot-variables, the values in a column that was already a variable in the original dataset (`id`) need to be repeated, once for each column that is pivoted.
+Como funciona essa mudança de formato?
+É mais fácil de ver se pensarmos coluna por coluna.
+Como mostrado em @fig-pivot-variables, os valores de uma coluna que já eram uma variável nos dados originais (`id`) precisam ser repetidos uma vez para cada coluna que foi pivotada.
 
 ```{r}
 #| label: fig-pivot-variables
@@ -296,40 +300,40 @@ As shown in @fig-pivot-variables, the values in a column that was already a vari
 knitr::include_graphics("diagrams/tidy-data/variables.png", dpi = 270)
 ```
 
-The column names become values in a new variable, whose name is defined by `names_to`, as shown in @fig-pivot-names.
-They need to be repeated once for each row in the original dataset.
+Os nomes das colunas se tornam valores em uma nova variável, cujo nome foi definido pelo parâmetro `names_to`, conforme mostrado em @fig-pivot-names.
+Eles precisam ser repetidos uma vez para cada linha dos dados originais. 
 
 ```{r}
 #| label: fig-pivot-names
 #| echo: false
 #| fig-cap: |
-#|   The column names of pivoted columns become values in a new column. The 
-#|   values need to be repeated once for each row of the original dataset.
+#|   Os nomes das colunas pivotadas se tornam valores em uma nova coluna. Os
+#|   valores precisam ser reptidos uma vez para cada linha dos dados originais.
 #| fig-alt: | 
-#|   A diagram showing how `pivot_longer()` transforms a simple
-#|   data set, using color to highlight how column names ("bp1" and 
-#|   "bp2") become the values in a new `measurement` column. They are repeated
-#|   three times because there were three rows in the input.
+#|   Um diagrama mostrando como `pivot_longer()` transforma um simples 
+#|   conjunto de dados, utilizando cores para destacar como os nomes das colunas ("bp1" e 
+#|   "bp2") se tornam valores em uma nova coluna `measurement`. Eles são repetidos
+#|   três vezes porque havia três linhas na entrada.
 
 knitr::include_graphics("diagrams/tidy-data/column-names.png", dpi = 270)
 ```
 
-The cell values also become values in a new variable, with a name defined by `values_to`.
-They are unwound row by row.
-@fig-pivot-values illustrates the process.
+Os valores das células também se tornam valores em uma nova variável, com o nome definido por `values_to`.
+Eles são "desenrolados" linha a linha.
+@fig-pivot-values ilustra o processo. 
 
 ```{r}
 #| label: fig-pivot-values
 #| echo: false
 #| fig-cap: |
-#|   The number of values is preserved (not repeated), but unwound
-#|   row-by-row.
+#|   O número de valores é preservado (não repetidos), mas "desenrolado"
+#|   linha-a-linha.
 #| fig-alt: | 
-#|   A diagram showing how `pivot_longer()` transforms data,
-#|   using color to highlight how the cell values (blood pressure measurements)
-#|   become the values in a new `value` column. They are unwound row-by-row,
-#|   so the original rows (100,120), then (140,115), then (120,125), become 
-#|   a column running from 100 to 125.
+#|   Um diagrama mostrando como `pivot_longer()` transforma os dados,
+#|   utilizando cores para destacar como os valores das células (medidas de pressão arterial)
+#|   se tornam valores em uma nova coluna `value`. Eles são "desenrolados" linha-a-linha,
+#|   então as linhas originais (100,120), depois (140,115) e depois (120,125), se tornam 
+#|   uma coluna que vai de 100 a 125.
 
 knitr::include_graphics("diagrams/tidy-data/cell-values.png", dpi = 270)
 ```
