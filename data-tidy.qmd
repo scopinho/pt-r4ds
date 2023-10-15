@@ -76,63 +76,63 @@ Existem três regras interrelacionadas que fazem com que um conjunto de dados se
 knitr::include_graphics("images/tidy-1.png", dpi = 270)
 ```
 
-Why ensure that your data is tidy?
-There are two main advantages:
+Por que garantir que seus dados estão no formato _tidy_?
+Existem duas principais vantagens:
 
-1.  There's a general advantage to picking one consistent way of storing data.
-    If you have a consistent data structure, it's easier to learn the tools that work with it because they have an underlying uniformity.
+1.  Há uma vantagem generalizada em escolher uma forma consistente de armazenar os dados.
+    Se você tiver uma estrutura de dados consistente, é mais fácil compreender as ferramentas adequadas a ela, pois ela terá uma uniformidade subjacente. 
 
-2.  There's a specific advantage to placing variables in columns because it allows R's vectorized nature to shine.
-    As you learned in @sec-mutate and @sec-summarize, most built-in R functions work with vectors of values.
-    That makes transforming tidy data feel particularly natural.
+2.  Há uma vantagem específica em colocar as variáveis em colunas porque isso permite que a natureza vetorial do R possa brilhar. 
+    Como você aprendeu em @sec-mutate e @sec-summarize, a maioria das funções nativas do R trabalham com vetores de valores.
+    Isso torna natural as transformações sobre dados no formato _tidy_. 
 
-dplyr, ggplot2, and all the other packages in the tidyverse are designed to work with tidy data.
-Here are a few small examples showing how you might work with `table1`.
+`dplyr`, `ggplot2`, e todos os demais pacotes do tidyverse foram pensados para trabalhar com dados _tidy_.
+Aqui estão alguns pequenos exemplos mostrando como é possível trabalhar com `table1`.
 
 ```{r}
 #| fig-width: 5
 #| fig-alt: |
-#|   This figure shows the number of cases in 1999 and 2000 for 
-#|   Afghanistan, Brazil, and China, with year on the x-axis and number 
-#|   of cases on the y-axis. Each point on the plot represents the number 
-#|   of cases in a given country in a given year. The points for each
-#|   country are differentiated from others by color and shape and connected
-#|   with a line, resulting in three, non-parallel, non-intersecting lines.
-#|   The numbers of cases in China are highest for both 1999 and 2000, with
-#|   values above 200,000 for both years. The number of cases in Brazil is
-#|   approximately 40,000 in 1999 and approximately 75,000 in 2000. The
-#|   numbers of cases in Afghanistan are lowest for both 1999 and 2000, with
-#|   values that appear to be very close to 0 on this scale.
+#|   Essa figura mostra o número de casos em 1999 e 2000 para 
+#|   Afeganistão, Brasil e China, com ano no eixo-x e o número 
+#|   de casos no eixo-y. Cada ponto no gráfico representa o número
+#|   de casos em um dado país em um dado ano. Os pontos para cada
+#|   país são diferenciados dos outros por cor e forma e estão conectados
+#|   por uma linha, resultando em três linhas não paralelas e sem interseção. 
+#|   Os números de casos na China são mais altos tanto para 1999 quanto para 2000, com
+#|   valores acima de 200,000 para ambos os anos. O número de casos no Brasil é de
+#|   aproximadamente 40,000 em 1999 e aproximadamente 75,000 em 2000. O 
+#|   número de casos no Afeganistão são os mais baixos tanto para 1999 quanto para 2000, com
+#|   valores que parecem estar muito perto do 0 nessa escala.
 
-# Compute rate per 10,000
+# Calcular a taxa (rate) por 10,000
 table1 |>
   mutate(rate = cases / population * 10000)
 
-# Compute total cases per year
+# Calcular o total de casos por ano 
 table1 |> 
   group_by(year) |> 
   summarize(total_cases = sum(cases))
 
-# Visualize changes over time
+# Visualizar mudanças ao longo do tempo
 ggplot(table1, aes(x = year, y = cases)) +
   geom_line(aes(group = country), color = "grey50") +
   geom_point(aes(color = country, shape = country)) +
-  scale_x_continuous(breaks = c(1999, 2000)) # x-axis breaks at 1999 and 2000
+  scale_x_continuous(breaks = c(1999, 2000)) # quebras (breaks) no eixo-x em 1999 and 2000
 ```
 
-### Exercises
+### Exercícios
 
-1.  For each of the sample tables, describe what each observation and each column represents.
+1.  Para cada uma das tabelas do exemplo, descreva o que cada observação e cada coluna representa.
 
-2.  Sketch out the process you'd use to calculate the `rate` for `table2` and `table3`.
-    You will need to perform four operations:
+2.  Faça um esboço do processo que você usaria para calcular `rate` para a `table2` e `table3`.
+    Você precisará executar quatro operações: 
 
-    a.  Extract the number of TB cases per country per year.
-    b.  Extract the matching population per country per year.
-    c.  Divide cases by population, and multiply by 10000.
-    d.  Store back in the appropriate place.
+    a.  Extrair o número de casos de TB por país por ano.
+    b.  Extrair a população correspondente por país por ano.
+    c.  Dividir os casos pela população e multiplicar por 10000.
+    d.  Armazenar de volta no local apropriado.
 
-    You haven't yet learned all the functions you'd need to actually perform these operations, but you should still be able to think through the transformations you'd need.
+    Você ainda não aprendeu todas as funções necessárias para, de fato, executar essas operações, mas ainda assim você deve ser capaz de pensar sobre as transformações que você precisaria.
 
 ## Lengthening data {#sec-pivoting}
 
