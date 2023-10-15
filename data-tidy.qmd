@@ -11,27 +11,21 @@ source("_common.R")
 > "Todas as famílias felizes se parecem, cada família infeliz é infeliz à sua maneira."\
 > --- Leo Tolstoy
 
-> "Todos os conjuntos de dados organizados se parecem, cada conjunto de dados desorganizados são desorganizados à sua maneira."\
+> "Todos os conjuntos de dados organizados se parecem, cada conjunto de dados bagunçados são bagunçados à sua maneira."\
 > --- Hadley Wickham
 
-In this chapter, you will learn a consistent way to organize your data in R using a system called **tidy data**.
->> Neste capítulo, você vai aprender uma forma consistente de organizar seus dados no R utilizando um sistema chamado **tidy data**.
-Getting your data into this format requires some work up front, but that work pays off in the long term.
->> Colocar seus dados nesse formato requer alguma preparação, mas esse é um trabalho que se paga a longo prazo.
-Once you have tidy data and the tidy tools provided by packages in the tidyverse, you will spend much less time munging data from one representation to another, allowing you to spend more time on the data questions you care about.
->> Uma vez que você tenha em mãos os dados no formato _tidy_ e as ferramentas do tidyverse, você irá gastar muito menos tempo alternando seus dados de uma reprensetação para outra, de forma que ele possa ser gasto nas perguntas que você realmente se importa.
+Neste capítulo, você vai aprender uma forma consistente de organizar seus dados no R utilizando um sistema chamado **tidy data**.
+Colocar seus dados nesse formato requer alguma preparação, mas esse é um trabalho que se paga a longo prazo.
+Uma vez que você tenha em mãos os dados no formato _tidy_ e as ferramentas do tidyverse, você irá gastar muito menos tempo alternando seus dados entre uma representação e outra, de forma que o tempo com seus dados possa ser gasto nas questões que você realmente se importa.
 
-In this chapter, you'll first learn the definition of tidy data and see it applied to a simple toy dataset.
->> Neste capítulo, você primeiro vai aprender sobre a definição do formato _tidy_ e vê-lo sendo aplicado em um conjunto de dados simulado.
-Then we'll dive into the primary tool you'll use for tidying data: pivoting.
->> Em seguida, você vai mergulhar na principal ferramenta que utilizará para organizar os dados: a pivotagem.
-Pivoting allows you to change the form of your data without changing any of the values.
->> Pivotar lhe permite mudar a forma de seus dados sem modificar nenhum de seus valores.
+Neste capítulo, você primeiro vai aprender sobre a definição do formato _tidy_ e vê-lo sendo aplicado em um conjunto de dados simulado.
+Em seguida, você vai mergulhar na principal ferramenta que utilizará para organizar os dados: a pivotagem.
+Pivotar lhe permite mudar a forma dos dados sem modificar nenhum de seus valores.
 
-### Prerequisites
+### Pré-requisitos
 
-In this chapter, we'll focus on tidyr, a package that provides a bunch of tools to help tidy up your messy datasets.
-tidyr is a member of the core tidyverse.
+Neste capítulo, vamos focar no `tidyr`, um pacote que disponibliza uma variedade de ferramentas para te ajudar a organizar seus conjuntos de dados bagunçados.
+`tidyr` é faz parte do coração do tidyverse.
 
 ```{r}
 #| label: setup
@@ -40,13 +34,13 @@ tidyr is a member of the core tidyverse.
 library(tidyverse)
 ```
 
-From this chapter on, we'll suppress the loading message from `library(tidyverse)`.
+Deste capítulo em diante, vamos suprimir a mensagem de carregamento `library(tidyverse)`.
 
-## Tidy data {#sec-tidy-data}
+## Dados _tidy_ {#sec-tidy-data}
 
-You can represent the same underlying data in multiple ways.
-The example below shows the same data organized in three different ways.
-Each dataset shows the same values of four variables: *country*, *year*, *population*, and number of documented *cases* of TB (tuberculosis), but each dataset organizes the values in a different way.
+É possível representar os mesmos dados de diversas formas.
+O exemplo abaixo mostra os mesmos dados organizados de três formas diferentes.
+Cada conjunto de dados mostra os mesmos valores de quatro variáveis: *país*, *ano*, *população*, e o número de *casos* documentados de TB (tuberculose). No entanto, cada conjunto de dados organiza os valores de uma forma diferente.
 
 ```{r}
 table1
@@ -56,28 +50,28 @@ table2
 table3
 ```
 
-These are all representations of the same underlying data, but they are not equally easy to use.
-One of them, `table1`, will be much easier to work with inside the tidyverse because it's **tidy**.
+Todas essas são representações dos mesmos dados. Mas nem todas são igualmente fáceis de se utilizar.
+Uma delas, `table1`, será muito mais fácil de trabalhar dentro do tidyverse porque está no formato **tidy**.
 
-There are three interrelated rules that make a dataset tidy:
+Existem três regras interrelacionadas que fazem com que um conjunto de dados seja considerado _tidy_:
 
-1.  Each variable is a column; each column is a variable.
-2.  Each observation is a row; each row is an observation.
-3.  Each value is a cell; each cell is a single value.
+1.  Cada variável é uma coluna; cada coluna é uma variável.
+2.  Cada observação é uma linha; cada linha é uma observação.
+3.  Cada valor é uma célula; cada célula é um único valor.
 
-@fig-tidy-structure shows the rules visually.
+@fig-tidy-structure mostra essas regras visualmente. 
 
 ```{r}
 #| label: fig-tidy-structure
 #| echo: false
 #| fig-cap: | 
-#|   The following three rules make a dataset tidy: variables are columns,
-#|   observations are rows, and values are cells.
+#|   As seguintes três regras tornam um conjunto de dados tidy: variáveis são colunas,
+#|   observações são linhas e valores são células.
 #| fig-alt: | 
-#|   Three panels, each representing a tidy data frame. The first panel
-#|   shows that each variable is a column. The second panel shows that each
-#|   observation is a row. The third panel shows that each value is
-#|   a cell.
+#|   Três painéis, cada um representando um data frame em formato tidy. O primeiro painel
+#|   mostra que cada variável é uma coluna. O segundo painel mostra que cada
+#|   observação é uma linha. O terceiro painel mostra que cada valor é
+#|   uma célula.
 
 knitr::include_graphics("images/tidy-1.png", dpi = 270)
 ```
