@@ -338,24 +338,27 @@ Eles são "desenrolados" linha a linha.
 knitr::include_graphics("diagrams/tidy-data/cell-values.png", dpi = 270)
 ```
 
-### Many variables in column names
+### Muitas variáveis nos nomes de colunas
 
-A more challenging situation occurs when you have multiple pieces of information crammed into the column names, and you would like to store these in separate new variables.
-For example, take the `who2` dataset, the source of `table1` and friends that you saw above:
+Uma situação mais desafiadora ocorre quando tem-se muitas partes de informação aglomeradas nos nomes das colunas, e você gostaria de armazená-las em variáveis separadas.
+Por exemplo, pegue o conjunto de dados `who2`, que é a fonte da `table1` e outros amigos que você viu acima:
 
 ```{r}
 who2
 ```
 
-This dataset, collected by the World Health Organisation, records information about tuberculosis diagnoses.
-There are two columns that are already variables and are easy to interpret: `country` and `year`.
-They are followed by 56 columns like `sp_m_014`, `ep_m_4554`, and `rel_m_3544`.
-If you stare at these columns for long enough, you'll notice there's a pattern.
-Each column name is made up of three pieces separated by `_`.
-The first piece, `sp`/`rel`/`ep`, describes the method used for the diagnosis, the second piece, `m`/`f` is the `gender` (coded as a binary variable in this dataset), and the third piece, `014`/`1524`/`2534`/`3544`/`4554`/`5564`/`65` is the `age` range (`014` represents 0-14, for example).
+Esse conjunto de dados, coletado pela Organização Mundial da Saúde (OMS)[^data-tidy-3], armazena informações sobre diagnósticos de tuberculose.
+Existem duas colunas que já são variáveis e parecem fáceis de interpretar: `country` e `year`.
+Em seguida vêm outras 56 colunas tais como `sp_m_014`, `ep_m_4554` e `rel_m_3544`.
+Se você olhar com cuidado para essas colunas por tempo suficiente, verá que há um padrão.
+Cada nome de coluna é composto por três partes separadas por `_`.
+A primeira parte, `sp`/`rel`/`ep`, descreve o método utilizado para o diagnóstico, a segunda parte, `m`/`f` é o gênero - `gender` (codificado como uma variável binária nesse conjunto de dados), e a terceira parte, `014`/`1524`/`2534`/`3544`/`4554`/`5564`/`65` é o intervalo de idade - `age` (`014` representa 0-14, por examplo).
 
-So in this case we have six pieces of information recorded in `who2`: the country and the year (already columns); the method of diagnosis, the gender category, and the age range category (contained in the other column names); and the count of patients in that category (cell values).
-To organize these six pieces of information in six separate columns, we use `pivot_longer()` with a vector of column names for `names_to` and instructors for splitting the original variable names into pieces for `names_sep` as well as a column name for `values_to`:
+
+Então, nesse caso temos seis partes de informação registrados em `who2`: o país (_country_) e o ano (_year_) (já nas colunas); o método diagnóstico, a categoria do gênero, e a categoria do intervalo de idade (contido nos outros nomes de colunas); e a contagem dos pacientes em naquela categoria (valores das células).
+Para organizar essas seis partes de informação em seis colunas separadas, utilizaremos `pivot_longer()` passando um vetor de nomes de colunas para o parâmetro `names_to`, instruções para separar, nas partes, os nomes originais das variáveis para o parâmetro `names_sep` e um nome de coluna para `values_to`:
+
+[^data-tidy-3]: NT: do inglês _World Health Organisation_ - WHO que é nome do conjunto de dados.
 
 ```{r}
 who2 |> 
@@ -367,26 +370,26 @@ who2 |>
   )
 ```
 
-An alternative to `names_sep` is `names_pattern`, which you can use to extract variables from more complicated naming scenarios, once you've learned about regular expressions in @sec-regular-expressions.
+Uma alternativa a `names_sep` é `names_pattern`, que você pode usar para extrair variáveis em nomenclaturas mais complicadas, desde que você já tenha aprendido a usar expressões regulares @sec-regular-expressions.
 
-Conceptually, this is only a minor variation on the simpler case you've already seen.
-@fig-pivot-multiple-names shows the basic idea: now, instead of the column names pivoting into a single column, they pivot into multiple columns.
-You can imagine this happening in two steps (first pivoting and then separating) but under the hood it happens in a single step because that's faster.
+Conceitualmente, essa seria só uma pequena variação desse caso mais simples que você acabou de ver.
+@fig-pivot-multiple-names mostra a ideia básica: agora, em vez da coluna de nomes pivotar para uma única coluna, ela pivota para múltiplas colunas. 
+Você pode imaginar isso acontecendo em dois passos (primeiro pivotando e depois separando) mas no fundo, tudo ocorre em um único passo porque é mais rápido.
 
 ```{r}
 #| label: fig-pivot-multiple-names
 #| echo: false
 #| fig-cap: |
-#|   Pivoting columns with multiple pieces of information in the names 
-#|   means that each column name now fills in values in multiple output 
-#|   columns.
+#|   Pivotar colunas com múltiplas partes de informação nos nomes
+#|   significa que cada nome agora vai preencher valores em múltiplas
+#|   colunas como saída. 
 #| fig-alt: |
-#|   A diagram that uses color to illustrate how supplying `names_sep` 
-#|   and multiple `names_to` creates multiple variables in the output.
-#|   The input has variable names "x_1" and "y_2" which are split up
-#|   by "_" to create name and number columns in the output. This is
-#|   is similar case with a single `names_to`, but what would have been a
-#|   single output variable is now separated into multiple variables.
+#|   Um diagrama que utiliza cores para ilustrar como passar `names_sep` 
+#|   e múltiplos `names_to` cria múltiplas variáveis como saída.
+#|   A entrada tem nomes de variáveis tipo "x_1" e "y_2" que serão separadas por 
+#|   por "_" para criar as colunas de nome e número na saída. Isso é 
+#|   parecido com o caso com um único `names_to`, mas o que seria apenas uma
+#|   única variável de saída agora está separada em múltipals variáveis.
 
 knitr::include_graphics("diagrams/tidy-data/multiple-names.png", dpi = 270)
 ```
