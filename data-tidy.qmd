@@ -146,8 +146,8 @@ Existem dois motivos principais:
 2.  A maioria das pessoas não está familiarizada com os princípios do formato e é difícil derivá-lo espontaneamente a menos que já se tenha trabalhado com dados por muito tempo.
 
 Isso significa que a maioria das análises reais vai demandar pelo menos alguma adaptação para o formato _tidy_.
-Você vai começar descobrindo quas são as variáveis e observações presentes.
-Algumas vezes isso é fácil, em outras você precisará consultar as pessoas que geraram os dados. 
+Você vai começar descobrindo quais são as variáveis e observações presentes.
+Algumas vezes isso é fácil, em outras você precisará consultar as pessoas que geraram os dados originalmente. 
 Em seguida, você irá *pivotar** seus dados para o formato _tidy_, com as variáveis nas colunas e as observações nas linhas. 
 
 `tidyr` disponibiliza duas funções para pivotar os dados: `pivot_longer()` e `pivot_wider()`.
@@ -164,9 +164,7 @@ billboard
 
 Nesse conjunto de dados, cada observação é uma música.
 As três primeiras colunas (`artist`, `track` e `date.entered`) são variáveis que descrevem a música.
-Then we have 76 columns (`wk1`-`wk76`) that describe the rank of the song in each week[^data-tidy-1].
 Em seguida, temos 76 colunas (`wk1`-`wk76`) que descrevem a posição da música em cada semana[^data-tidy-1].
-Here, the column names are one variable (the `week`) and the cell values are another (the `rank`).
 Aqui, o nome das colunas é uma variável (a semana - `week`) e o valor da célula é outra (a posição - `rank`).
 
 [^data-tidy-1]: A música será incluída dados desde que tenha estado no top 100 em algum momento do ano 2000, e então será monitorada por até 72 semanas após a primeira aparição.
@@ -210,7 +208,6 @@ billboard |>
 
 O número de linhas agora é muito menor, indicando que várias linhas que continham apenas `NA`s foram removidas.
 
-You might also wonder what happens if a song is in the top 100 for more than 76 weeks?
 Você também poderia estar se perguntando: o que aconteceria caso a música ficasse no top 100 por mais que 76 semanas?
 Não é possível dizer apenas com esses dados, mas você poderia imaginar que colunas adicionais `wk77`, `wk78`, ... seriam incluídas no conjunto de dados.
 
@@ -394,19 +391,19 @@ Você pode imaginar isso acontecendo em dois passos (primeiro pivotando e depois
 knitr::include_graphics("diagrams/tidy-data/multiple-names.png", dpi = 270)
 ```
 
-### Data and variable names in the column headers
+### Dados e nomes de variáveis nos cabeçalhos das colunas
 
-The next step up in complexity is when the column names include a mix of variable values and variable names.
-For example, take the `household` dataset:
+O próximo degrau em complexidade é quando os nomes das colunas incluem uma mistura de nomes e valores das variáveis.
+Por exemplo, vamos pegar o conjunto de dados `household`: 
 
 ```{r}
 household
 ```
 
-This dataset contains data about five families, with the names and dates of birth of up to two children.
-The new challenge in this dataset is that the column names contain the names of two variables (`dob`, `name)` and the values of another (`child,` with values 1 or 2).
-To solve this problem we again need to supply a vector to `names_to` but this time we use the special `".value"` sentinel; this isn't the name of a variable but a unique value that tells `pivot_longer()` to do something different.
-This overrides the usual `values_to` argument to use the first component of the pivoted column name as a variable name in the output.
+Nesse conjunto temos dados de cinco famílias, com nomes e datas de nascimento de até duas crianças.
+O novo desafio é que nesses dados os nomes das colunas contêm os nomes de duas variáveis (data de nascimento - `dob`, nome - `name)` e os valores de outra (criança - `child,` com valores 1 ou 2).
+Para resolver esse problema, novamente precisamods passar um vetor para `names_to`, mas dessa vamos vamos passar um parâmetro especial `".value"` (chamado de _sentinel_); esse parâmetro não é o nome de uma variável, mas um valor único que diz ao `pivot_longer()` para fazer algo diferente com ele.
+Isso sobrepõe o argumento `values_to` normal em favor do primeiro componente do nome da coluna pivotada, utilizado como nome da variável na saída da função.
 
 ```{r}
 household |> 
@@ -418,21 +415,20 @@ household |>
   )
 ```
 
-We again use `values_drop_na = TRUE`, since the shape of the input forces the creation of explicit missing variables (e.g., for families with only one child).
+Novamente utilizaremos `values_drop_na = TRUE`, uma vez que a forma da entrada força a criação de variáveis ausentes explícitas (ex: para famílias com apenas um filho).
 
-@fig-pivot-names-and-values illustrates the basic idea with a simpler example.
-When you use `".value"` in `names_to`, the column names in the input contribute to both values and variable names in the output.
+@fig-pivot-names-and-values ilustra a ideia básica em um exemplo mais simples. 
+Quando você utiliza `".value"` em `names_to`, a coluna de nomes dos dados de entrada contribui tanto para os valores quanto para os nomes das variáveis na saída.
 
 ```{r}
 #| label: fig-pivot-names-and-values
 #| echo: false
 #| fig-cap: |
-#|   Pivoting with `names_to = c(".value", "num")` splits the column names
-#|   into two components: the first part determines the output column
-#|   name (`x` or `y`), and the second part determines the value of the
-#|   `num` column.
+#|   Pivotar com `names_to = c(".value", "num")` divide os nomes das colunas
+#|   em dois componentes: a primeira parte determina o nome da coluna da saída, (`x` ou `y`),
+#|   e a segunda parte determina o valore da coluna `num`.
 #| fig-alt: |
-#|   A diagram that uses color to illustrate how the special ".value"
+#|   Um diagrama que utiliza cores para ilustrar como o parâmetro ".value" e
 #|   sentinel works. The input has names "x_1", "x_2", "y_1", and "y_2",
 #|   and we want to use the first component ("x", "y") as a variable name
 #|   and the second ("1", "2") as the value for a new "num" column.
@@ -440,30 +436,30 @@ When you use `".value"` in `names_to`, the column names in the input contribute 
 knitr::include_graphics("diagrams/tidy-data/names-and-values.png", dpi = 270)
 ```
 
-## Widening data
+##  Espalhando os dados ??? (Widening data)
 
-So far we've used `pivot_longer()` to solve the common class of problems where values have ended up in column names.
-Next we'll pivot (HA HA) to `pivot_wider()`, which makes datasets **wider** by increasing columns and reducing rows and helps when one observation is spread across multiple rows.
-This seems to arise less commonly in the wild, but it does seem to crop up a lot when dealing with governmental data.
+Até então, utilizamos `pivot_longer()` para resolver um tipo comum de problemas no qual os valores foram movidos para os nomes de colunas.
+Agora vamos pivotar (HA HA) para `pivot_wider()`, que vai tornar o conjunto de dados mais **espalhado** (*wider*) ao aumentar o número de colunas e diminuir o número de linhas, auxiliando quando uma informação está espalhada em múltiplas linhas.
+Isso tende a aparecer menos na vida real, mas parece ser comum quando estamos lidando com dados governamentais. 
 
-We'll start by looking at `cms_patient_experience`, a dataset from the Centers of Medicare and Medicaid services that collects data about patient experiences:
+Começaremos dando uma olhada em `cms_patient_experience`, um conjunto de dados de serviços do Centers of Medicare and Medicaid que coleta dados sobre as experiências dos pacientes:
 
 ```{r}
 cms_patient_experience
 ```
 
-The core unit being studied is an organization, but each organization is spread across six rows, with one row for each measurement taken in the survey organization.
-We can see the complete set of values for `measure_cd` and `measure_title` by using `distinct()`:
+A unidade principal sendo estudada é a organização, mas cada organização está espalhada em seis linhas, com uma linha para cada medição feita pela pesquisa. 
+Nós podemos ver o conjunto completo dos valores de `measure_cd` e `measure_title` utilizando a função `distinct()`:
 
 ```{r}
 cms_patient_experience |> 
   distinct(measure_cd, measure_title)
 ```
 
-Neither of these columns will make particularly great variable names: `measure_cd` doesn't hint at the meaning of the variable and `measure_title` is a long sentence containing spaces.
-We'll use `measure_cd` as the source for our new column names for now, but in a real analysis you might want to create your own variable names that are both short and meaningful.
+Nenhuma dessas colunas irá gerar nomes espetaculares: `measure_cd` não dá nenhuma pista quanto ao significado da variável e `measure_title` é uma longa frase, com espaços,
+Por enquanto, nós utilizaremos `measure_cd` como a fonte de nossa nova coluna de nomes, mas em uma análise real você deveria considerar seu próprio nome de variável, que deve ser curto e informativo.
 
-`pivot_wider()` has the opposite interface to `pivot_longer()`: instead of choosing new column names, we need to provide the existing columns that define the values (`values_from`) and the column name (`names_from)`:
+`pivot_wider()` tem a interface oposta à `pivot_longer()`: em vez de escolher o novo nome das colunas, nós precisamos fornecer as colunas existentes que definem os valores de (`values_from`) e o nome da coluna (`names_from)`: 
 
 ```{r}
 cms_patient_experience |> 
@@ -473,8 +469,9 @@ cms_patient_experience |>
   )
 ```
 
-The output doesn't look quite right; we still seem to have multiple rows for each organization.
-That's because, we also need to tell `pivot_wider()` which column or columns have values that uniquely identify each row; in this case those are the variables starting with `"org"`:
+A saída ainda não parece muito correta; parece que ainda precisamos de múltiplas linhas para cada organização. 
+Isso é por que também precisamos dizer à `pivot_wider()` qual a coluna ou colunas têm valores que identificam cada linha de forma única; nesse caso são as variáveis que começam com `"org"`: 
+
 
 ```{r}
 cms_patient_experience |> 
@@ -484,13 +481,12 @@ cms_patient_experience |>
     values_from = prf_rate
   )
 ```
+Isso gera a saída que estávamos esperando.
 
-This gives us the output that we're looking for.
+### Como funciona a função `pivot_wider()`?
 
-### How does `pivot_wider()` work?
-
-To understand how `pivot_wider()` works, let's again start with a very simple dataset.
-This time we have two patients with `id`s A and B, we have three blood pressure measurements on patient A and two on patient B:
+Para entender como a função `pivot_wider()` funciona, vamos novamente começar com um conjunto de dados bem simples. 
+Agora temos dois pacientes com `id`s A e B, e temos três medições de pressão arterial para o paciente A e duas para o paciente B:
 
 ```{r}
 df <- tribble(
@@ -503,7 +499,7 @@ df <- tribble(
 )
 ```
 
-We'll take the values from the `value` column and the names from the `measurement` column:
+Vamos pegar os valores da coluna `value` e os nomes da coluna `measurement`:
 
 ```{r}
 df |> 
@@ -513,8 +509,8 @@ df |>
   )
 ```
 
-To begin the process `pivot_wider()` needs to first figure out what will go in the rows and columns.
-The new column names will be the unique values of `measurement`.
+Para iniciar o processo, a função `pivot_wider()` precisa primeiramente entender o que será distribuído para as linhas e colunas.
+Os novos nomes de coluna serão os valores únicos de `measurement`.
 
 ```{r}
 df |> 
@@ -522,9 +518,9 @@ df |>
   pull()
 ```
 
-By default, the rows in the output are determined by all the variables that aren't going into the new names or values.
-These are called the `id_cols`.
-Here there is only one column, but in general there can be any number.
+Por padrão, as linhas da saída são determinadas por todas as demais variáveis que não estão indo para os novos nomes ou valores.
+Essas são chamadas `id_cols`.
+Aqui temos apenas uma coluna, mas em geral, pode haver qualquer número delas. 
 
 ```{r}
 df |> 
@@ -532,7 +528,7 @@ df |>
   distinct()
 ```
 
-`pivot_wider()` then combines these results to generate an empty data frame:
+A função `pivot_wider()` então combina esses resultados para gerar um data frame vazio:
 
 ```{r}
 df |> 
@@ -541,12 +537,12 @@ df |>
   mutate(x = NA, y = NA, z = NA)
 ```
 
-It then fills in all the missing values using the data in the input.
-In this case, not every cell in the output has a corresponding value in the input as there's no third blood pressure measurement for patient B, so that cell remains missing.
-We'll come back to this idea that `pivot_wider()` can "make" missing values in @sec-missing-values.
+E em seguida, preenche todos os valores ausentes com os dados de entrada. 
+Nesse caso, nem todas as células da saída possuem um valor correspondente na entrada visto que não temos a terceira medição de pressão para o paciente B, então aquela célula permanecerá vazia.
+Voltaremos a essa ideia de que a `pivot_wider()` pode "produzir" valores ausentes em @sec-missing-values.
 
-You might also wonder what happens if there are multiple rows in the input that correspond to one cell in the output.
-The example below has two rows that correspond to `id` "A" and `measurement` "bp1":
+Você pode também estar se perguntando se há várias linhas na entrada que correspondem a apenas uma célula na saída.
+O exemplo abaixo, possui duas linhas que correspondem ao `id` "A" à medida (`measurement`) "bp1":
 
 ```{r}
 df <- tribble(
@@ -559,7 +555,7 @@ df <- tribble(
 )
 ```
 
-If we attempt to pivot this we get an output that contains list-columns, which you'll learn more about in @sec-rectangling:
+Se tentarmos pivotar essa tabela teremos uma saída que contém estruturas chamadas *list-columns* (colunas de listas), sobre as quais você aprenderá mais em @sec-rectangling:
 
 ```{r}
 df |>
@@ -569,7 +565,7 @@ df |>
   )
 ```
 
-Since you don't know how to work with this sort of data yet, you'll want to follow the hint in the warning to figure out where the problem is:
+Como você ainda não sabe como trabalhar com esse tipo de estrutura, você deve seguir as dicas que aparecem na mensagem de alerta (_warning_) para entender onde está o problema:
 
 ```{r}
 df |> 
@@ -578,7 +574,7 @@ df |>
   filter(n > 1)
 ```
 
-It's then up to you to figure out what's gone wrong with your data and either repair the underlying damage or use your grouping and summarizing skills to ensure that each combination of row and column values only has a single row.
+Aí então, você fica a cargo de entender o que deu de errado com os dados e ajustar os problemas já ocorridos ou utilizar suas habilidades de agrupar e resumir os dados originais para se certificar que que cada combinação dos valores de linhas e colunas estejam em apenas uma linha.
 
 ## Resumo 
 
