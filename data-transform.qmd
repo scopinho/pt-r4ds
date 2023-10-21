@@ -6,21 +6,21 @@
 source("_common.R")
 ```
 
-## Introduction
+## Introdução
 
-Visualization is an important tool for generating insight, but it's rare that you get the data in exactly the right form you need to make the graph you want.
-Often you'll need to create some new variables or summaries to answer your questions with your data, or maybe you just want to rename the variables or reorder the observations to make the data a little easier to work with.
-You'll learn how to do all that (and more!) in this chapter, which will introduce you to data transformation using the **dplyr** package and a new dataset on flights that departed from New York City in 2013.
+Visualização de dados é uma ferramenta importante para gerar insights, mas é raro que você pegue os dados exatamente na forma que você precisa para fazer o gráfico que você quer. 
+Geralmente você precisará criar algumas variáveis novas ou agregações para responder às perguntas com seus dados, ou talvez você precise apenas renomear as variáveis ou reordenar as observações para facilitar o trabalho com os dados.
+Você vai aprender a fazer tudo isso (e mais um pouco!) nesse capítulo, em que nós iremos lhe apresentar as possibilidades de transformações de dados utilizando o pacote **dplyr** e um novo conjunto de dados sobre vôos que partiram de Nova York em 2013.
 
-The goal of this chapter is to give you an overview of all the key tools for transforming a data frame.
-We'll start with functions that operate on rows and then columns of a data frame, then circle back to talk more about the pipe, an important tool that you use to combine verbs.
-We will then introduce the ability to work with groups.
-We will end the chapter with a case study that showcases these functions in action and we'll come back to the functions in more detail in later chapters, as we start to dig into specific types of data (e.g., numbers, strings, dates).
+O objetivo desse capítulo é te dar uma visão geral de todas as principais ferramentas para transformar um data frame.
+Começaremos com as funções que operam sobre as linhas e colunas de um data frame, em seguida voltaremos para falar mais um pouco sobre o *pipe*, que é uma importante ferramenta que você utilizará para combinar os verbos das transformações.
+Depois, iremos introduzir a habilidade de trabalhar com grupos.
+Finalizaremos o capítulo com um caso de estudo que demonstra todas essas funções em ação, e mais tarde, voltaremos para vê-las em detalhe nos capítulos que seguem, assim que começarmos a nos aprofundar em tipos mais específicos de dados (números, strings (de caracteres) e datas)
 
-### Prerequisites
+### Pré-requisitos
 
-In this chapter we'll focus on the dplyr package, another core member of the tidyverse.
-We'll illustrate the key ideas using data from the nycflights13 package, and use ggplot2 to help us understand the data.
+Nesse capítulo iremos focar no pacote dplyr, outro membro central do tidyverse.
+Ilustraremos as ideias principais utilizando dados do pacote nycflights13, e visualizaremos com o ggplot2 para nos ajudar a entender os dados.
 
 ```{r}
 #| label: setup
