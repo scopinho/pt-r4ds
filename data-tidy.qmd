@@ -1,4 +1,4 @@
-# Tornando os dados _tidy_ {#sec-data-tidy}
+# Tornando os dados *tidy* {#sec-data-tidy}
 
 ```{r}
 #| echo: false
@@ -16,9 +16,9 @@ source("_common.R")
 
 Neste capítulo, você vai aprender uma forma consistente de organizar seus dados no R utilizando um sistema chamado **tidy data**.
 Colocar seus dados nesse formato requer alguma preparação, mas esse é um trabalho que se paga a longo prazo.
-Uma vez que você tenha em mãos os dados no formato _tidy_ e as ferramentas do tidyverse, você irá gastar muito menos tempo alternando seus dados entre uma representação e outra, de forma que o tempo com seus dados possa ser gasto nas questões que você realmente se importa.
+Uma vez que você tenha em mãos os dados no formato *tidy* e as ferramentas do tidyverse, você irá gastar muito menos tempo alternando seus dados entre uma representação e outra, de forma que o tempo com seus dados possa ser gasto nas questões que você realmente se importa.
 
-Neste capítulo, você primeiro vai aprender sobre a definição do formato _tidy_ e vê-lo sendo aplicado em um conjunto de dados simulado.
+Neste capítulo, você primeiro vai aprender sobre a definição do formato *tidy* e vê-lo sendo aplicado em um conjunto de dados simulado.
 Em seguida, você vai mergulhar na principal ferramenta que utilizará para organizar os dados: a pivotagem.
 Pivotar lhe permite mudar a forma dos dados sem modificar nenhum de seus valores.
 
@@ -36,7 +36,7 @@ library(tidyverse)
 
 Deste capítulo em diante, vamos suprimir a mensagem de carregamento `library(tidyverse)`.
 
-## Dados _tidy_ {#sec-tidy-data}
+## Dados *tidy* {#sec-tidy-data}
 
 É possível representar os mesmos dados de diversas formas.
 O exemplo abaixo mostra os mesmos dados organizados de três formas diferentes.
@@ -53,7 +53,7 @@ table3
 Todas essas são representações dos mesmos dados. Mas nem todas são igualmente fáceis de se utilizar.
 Uma delas, `table1`, será muito mais fácil de trabalhar dentro do tidyverse porque está no formato **tidy**.
 
-Existem três regras interrelacionadas que fazem com que um conjunto de dados seja considerado _tidy_:
+Existem três regras interrelacionadas que fazem com que um conjunto de dados seja considerado *tidy*:
 
 1.  Cada variável é uma coluna; cada coluna é uma variável.
 2.  Cada observação é uma linha; cada linha é uma observação.
@@ -76,7 +76,7 @@ Existem três regras interrelacionadas que fazem com que um conjunto de dados se
 knitr::include_graphics("images/tidy-1.png", dpi = 270)
 ```
 
-Por que garantir que seus dados estão no formato _tidy_?
+Por que garantir que seus dados estão no formato *tidy*?
 Existem duas principais vantagens:
 
 1.  Há uma vantagem generalizada em escolher uma forma consistente de armazenar os dados.
@@ -84,9 +84,9 @@ Existem duas principais vantagens:
 
 2.  Há uma vantagem específica em colocar as variáveis em colunas porque isso permite que a natureza vetorial do R possa brilhar. 
     Como você aprendeu em @sec-mutate e @sec-summarize, a maioria das funções nativas do R trabalham com vetores de valores.
-    Isso torna natural as transformações sobre dados no formato _tidy_. 
+    Isso torna natural as transformações sobre dados no formato *tidy*. 
 
-`dplyr`, `ggplot2`, e todos os demais pacotes do tidyverse foram pensados para trabalhar com dados _tidy_.
+`dplyr`, `ggplot2`, e todos os demais pacotes do tidyverse foram pensados para trabalhar com dados *tidy*.
 Aqui estão alguns pequenos exemplos mostrando como é possível trabalhar com `table1`.
 
 ```{r}
@@ -136,7 +136,7 @@ ggplot(table1, aes(x = year, y = cases)) +
 
 ## Alongando os dados {#sec-pivoting}
 
-Os princípios do formato _tidy_ parecem ser tão óbvios que você deve estar se perguntando se algum dia vai encontrar algum cojunto de dados que não esteja nesse formato.
+Os princípios do formato *tidy* parecem ser tão óbvios que você deve estar se perguntando se algum dia vai encontrar algum cojunto de dados que não esteja nesse formato.
 Infelizmente, porém, a maioria dos dados reais não estão nesse formato.
 Existem dois motivos principais:
 
@@ -145,10 +145,10 @@ Existem dois motivos principais:
 
 2.  A maioria das pessoas não está familiarizada com os princípios do formato e é difícil derivá-lo espontaneamente a menos que já se tenha trabalhado com dados por muito tempo.
 
-Isso significa que a maioria das análises reais vai demandar pelo menos alguma adaptação para o formato _tidy_.
+Isso significa que a maioria das análises reais vai demandar pelo menos alguma adaptação para o formato *tidy*.
 Você vai começar descobrindo quais são as variáveis e observações presentes.
 Algumas vezes isso é fácil, em outras você precisará consultar as pessoas que geraram os dados originalmente. 
-Em seguida, você irá *pivotar** seus dados para o formato _tidy_, com as variáveis nas colunas e as observações nas linhas. 
+Em seguida, você irá *pivotar** seus dados para o formato *tidy*, com as variáveis nas colunas e as observações nas linhas. 
 
 `tidyr` disponibiliza duas funções para pivotar os dados: `pivot_longer()` e `pivot_wider()`.
 Começaremos com `pivot_longer()` pois é o caso mais comum.
@@ -169,7 +169,7 @@ Aqui, o nome das colunas é uma variável (a semana - `week`) e o valor da célu
 
 [^data-tidy-1]: A música será incluída dados desde que tenha estado no top 100 em algum momento do ano 2000, e então será monitorada por até 72 semanas após a primeira aparição.
 
-Para transformar esses dados em _tidy_, vamos usar `pivot_longer()`:
+Para transformar esses dados em *tidy*, vamos usar `pivot_longer()`:
 
 ```{r, R.options=list(pillar.print_min = 10)}
 billboard |> 
@@ -211,7 +211,7 @@ O número de linhas agora é muito menor, indicando que várias linhas que conti
 Você também poderia estar se perguntando: o que aconteceria caso a música ficasse no top 100 por mais que 76 semanas?
 Não é possível dizer apenas com esses dados, mas você poderia imaginar que colunas adicionais `wk77`, `wk78`, ... seriam incluídas no conjunto de dados.
 
-Esses dados agora estão no formato _tidy_, mas nós ainda podemos facilitar cálculos futuros ao converter os valores da coluna `week` de caracteres para números utilizando `mutate()` e `readr::parse_number()`.
+Esses dados agora estão no formato *tidy*, mas nós ainda podemos facilitar cálculos futuros ao converter os valores da coluna `week` de caracteres para números utilizando `mutate()` e `readr::parse_number()`.
 `parse_number()` é uma função bem útil que irá extrair o primeiro número de uma sequência de caracteres (_string_) e vai ignorar todo o resto.
 
 ```{r}
@@ -251,7 +251,7 @@ billboard_longer |>
 
 ### Como a pivotagem funciona?
 
-Agora que você já viu como usar a pivotagem para mudar a forma de nossos dados, vamos tomar um tempinho para obter alguma intuição sobre o que a pivotagem faz com os dados.
+Agora que você já viu como usar a pivotagem para mudar a forma de nossos dados, vamos tomar um tempinho para ganhar alguma intuição sobre o que a pivotagem faz com os dados.
 Vamos começar com um conjunto de dados bem simples para enxergamos com mais facilidade o que está acontecendo.
 Suponha que temos três pacientes com `id`s A, B e C, e fazemos a medição da pressão sanguínea duas vezes para cadas paciente.
 Vamos criar os dados com `tribble()`, uma função útil para construir pequenos tibbles manualmente:
@@ -286,13 +286,13 @@ Como mostrado em @fig-pivot-variables, os valores de uma coluna que já eram uma
 #| label: fig-pivot-variables
 #| echo: false
 #| fig-cap: | 
-#|   Columns that are already variables need to be repeated, once for
-#|   each column that is pivoted.
+#|   Colunas que já são variáveis precisam ser repetidas uma vez para
+#|   cada coluna que é pivotada.
 #| fig-alt: | 
-#|   A diagram showing how `pivot_longer()` transforms a simple
-#|   dataset, using color to highlight how the values in the `id` column
-#|   ("A", "B", "C") are each repeated twice in the output because there are
-#|   two columns being pivoted ("bp1" and "bp2").
+#|   Um diagrama mostrando como `pivot_longer()` transforma um simples
+#|   conjunto de dados, utilizando cores para destacar como cada um dos valores da coluna `id`
+#|   ("A", "B", "C") são repetidos duas vezes na saída por que há 
+#|   duas colunas sendo pivotadas ("bp1" e "bp2").
 
 knitr::include_graphics("diagrams/tidy-data/variables.png", dpi = 270)
 ```
@@ -436,7 +436,7 @@ Quando você utiliza `".value"` em `names_to`, a coluna de nomes dos dados de en
 knitr::include_graphics("diagrams/tidy-data/names-and-values.png", dpi = 270)
 ```
 
-##  Espalhando os dados ??? (Widening data)
+##  Espalhando os dados (Widening data)
 
 Até então, utilizamos `pivot_longer()` para resolver um tipo comum de problemas no qual os valores foram movidos para os nomes de colunas.
 Agora vamos pivotar (HA HA) para `pivot_wider()`, que vai tornar o conjunto de dados mais **espalhado** (*wider*) ao aumentar o número de colunas e diminuir o número de linhas, auxiliando quando uma informação está espalhada em múltiplas linhas.
@@ -578,13 +578,13 @@ Aí então, você fica a cargo de entender o que deu de errado com os dados e aj
 
 ## Resumo 
 
-Nesse capítulo você aprendeu sobre dados no formato _tidy_: dados que possuem variáveis nas colunas e observações nas linhas.
-Dados nesse formato facilitam o trabalho no tidyverse, pois sua estrutura consistente é entendida pela maioria das funções. O principal desafio, então, é transformar dados provenientes de quaisquer estruturas que você receber para o formato _tidy_.
-Para esse fim, você aprendeu sobre `pivot_longer()` e `pivot_wider()` que permitem a organização de vários conjuntos de dados que ainda não estejam no formato _tidy_.
+Nesse capítulo você aprendeu sobre dados no formato *tidy*: dados que possuem variáveis nas colunas e observações nas linhas.
+Dados nesse formato facilitam o trabalho no tidyverse, pois sua estrutura consistente é entendida pela maioria das funções. O principal desafio, então, é transformar dados provenientes de quaisquer estruturas que você receber para o formato *tidy*.
+Para esse fim, você aprendeu sobre `pivot_longer()` e `pivot_wider()` que permitem a organização de vários conjuntos de dados que ainda não estejam no formato *tidy*.
 Os exemplos apresentados aqui são uma seleção dos vários presentes em `vignette("pivot", package = "tidyr")`, então, se você encontrar algum problema com o qual esse capítulo ainda não é capaz de te ajudar, é uma boa ideia checar nessa _vignette_.
 
-Um outro desafio é o fato de que para certos conjuntos de dados, pode ser impossível especificar se a versão _long_ ou _wide_ é a versão _tidy_.
-Isso é, em parte, um reflexo da nossa definição de dados _tidy_, em que dizemos que cada coluna deve conter uma variável, mas não definimos, de fato, **o que é** uma variável (e fazer isso é surpreendentemente difícil.)
+Um outro desafio é o fato de que para certos conjuntos de dados, pode ser impossível especificar se a versão *long* ou *wide* é a versão *tidy*.
+Isso é, em parte, um reflexo da nossa definição de dados *tidy*, em que dizemos que cada coluna deve conter uma variável, mas não definimos, de fato, **o que é** uma variável (e fazer isso é surpreendentemente difícil.)
 É totalmente aceitável dizer, de uma forma pragmática, que uma variável é qualquer coisa que facilite sua análise.
 Então, se tiver difícil descobrir como fazer algum tipo de cálculo ou análise, considere alterar a forma como seus dados estão organizados; não tenha medo de voltar para um formato _untidy_, transformá-lo e depois reorganizá-lo conforme necessário!
 
