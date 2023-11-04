@@ -20,7 +20,7 @@ Nosso modelo das etapas de um projeto típico de ciência de dados se parece com
 #| label: fig-ds-diagram
 #| echo: false
 #| fig-cap: |
-#|   Em nosso modelo do ciclo de ciência de dados, você começa com a importação
+#|   Em nosso modelo do processo de ciência de dados, você começa com a importação
 #|   e organização dos dados. Em seguida, você entende seus dados por meio de um ciclo iterativo de
 #|   transformação, visualização e modelagem. Você finaliza o ciclo
 #|   comunicando seus resultados para outras pessoas.
