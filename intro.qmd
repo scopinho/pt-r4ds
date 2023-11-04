@@ -37,7 +37,7 @@ Primeiro, você deve **importar** seus dados para o R.
 Isso geralmente significa que você pega dados armazenados em um arquivo, um banco de dados ou uma *API* (interface de programação de aplicação, ou ***A**pplication **P**rogramming **I**nterface* em inglês) da web e importa em uma tabela (*data frame*) no R.
 Se você não conseguir importar seus dados para o R, não poderá fazer ciência de dados com eles!
 
-Depois de importar seus dados, é uma boa ideia **organizá-los** (torná-los tidy).  
+Depois de importar seus dados, é uma boa ideia **organizá-los** .  
 Organizar seus dados significa armazená-los em uma forma consistente que corresponda à semântica do conjunto de dados com a forma como ele é armazenado.
 Em resumo, quando seus dados estão organizados de forma *tidy*, cada coluna é uma variável e cada linha é uma observação.
 Dados organizados (*tidy data*) são importantes porque a estrutura consistente permite que você concentre seus esforços em responder perguntas sobre os dados, em vez de lutar para colocar os dados na forma correta para usar diferentes funções.
