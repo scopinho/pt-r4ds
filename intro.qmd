@@ -6,7 +6,7 @@
 source("_common.R")
 ```
 
-Ciência de dados é uma área emocionante que permite que pessoas desenvolvedoras transformem dados brutos em compreensão, *insights* e conhecimento.
+Ciência de dados é uma área emocionante que permite que você transforme dados brutos em compreensão, *insights* e conhecimento.
 O objetivo do livro "R para Ciência de Dados" é ajudar você a aprender as ferramentas mais importantes em R que permitirão que você realize ciência de dados de forma eficiente e reprodutível, e se divirta ao longo do caminho 😃.
 Após a leitura deste livro, você terá as ferramentas necessárias para enfrentar uma ampla variedade de desafios de ciência de dados usando as melhores partes do R.
 
