@@ -252,7 +252,7 @@ Ao longo do livro, usamos um conjunto consistente de convenções para se referi
 
 -   Outros objetos R (como dados ou argumentos de função) estão em uma fonte de código, sem parênteses, como `flights` ou `x`.
 
--   Às vezes, para deixar claro de qual pacote um objeto vem, usaremos o nome do pacote seguido por quatro-pontos `::`, como `dplyr::mutate()` ou `nycflights13::flights`.
+-   Às vezes, para deixar claro de qual pacote um objeto vem, usaremos o nome do pacote seguido por quatro-pontos `::`, como `dplyr::mutate()` ou `dados::voos`.
     Isso também é código em R válido.
 
 ## Agradecimentos
