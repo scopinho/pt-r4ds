@@ -122,7 +122,7 @@ Fizemos algumas suposições sobre o que você já deveria saber para aproveitar
 Você deve ter uma compreensão geral de matemática e é útil se você já tiver alguma experiência básica em programação.
 Se você nunca programou antes, pode achar o livro [Hands on Programming with R](https://rstudio-education.github.io/hopr/), escrito por Garrett, um recurso valioso para complementar este livro.
 
-Você precisará de quatro coisas para executar o código deste livro: R, RStudio, um conjunto de pacotes R chamado **tidyverse** e alguns outros pacotes.
+Você precisará de quatro coisas para executar os códigos deste livro: R, RStudio, um conjunto de pacotes R chamado **tidyverse** e alguns outros pacotes.
 Pacotes são as unidades fundamentais de código R reprodutível.
 Eles incluem funções reutilizáveis, documentação que descreve como usá-los e dados de exemplo.
 
