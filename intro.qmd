@@ -94,7 +94,7 @@ Isso significa que não é possível, neste livro, abordar todos os tópicos imp
 
 A modelagem é extremamente importante para a ciência de dados, mas é um tópico amplo e, infelizmente, não temos espaço suficiente para abordá-lo adequadamente aqui.
 Para aprender mais sobre modelagem, recomendamos fortemente o livro [Tidy Modeling with R](https://www.tmwr.org), escrito por nossos colegas Max Kuhn e Julia Silge.
-Este livro ensinará a você a família de pacotes tidymodels, que, como você pode imaginar pelo nome, compartilha muitas convenções com os pacotes do tidyverse que usamos neste livro.
+O livro [Tidy Modeling with R](https://www.tmwr.org) ensinará a você a família de pacotes tidymodels, que, como você pode imaginar pelo nome, compartilha muitas convenções com os pacotes do tidyverse que usamos neste livro.
 
 ### Big data
 
