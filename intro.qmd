@@ -46,7 +46,9 @@ Dados organizados (*tidy data*) são importantes porque a estrutura consistente 
 
 Depois de ter dados organizados, normalmente o próximo passo é **transformá-los**.
 A transformação inclui focar em observações de interesse (como todas as pessoas em uma cidade ou todos os dados do último ano), criar novas variáveis que são funções de variáveis existentes (como calcular a velocidade a partir da distância e do tempo) e calcular um conjunto de estatísticas resumidas (como contagens ou médias).
-Juntos, organizar e transformar são chamados de **manipulação de dados** (em inglês: *data wrangling*) porque colocar seus dados em uma forma natural de trabalhar frequentemente parece uma luta! (*wrangle*)
+Juntos, organizar e transformar são chamados de **manipulação de dados**[^intro-nota-traducao-2]. 
+
+[^intro-nota-traducao-2]**Nota de tradução**: Manipulação de dados é chamado em inglês de *data wrangling*, porque colocar seus dados em uma forma natural de trabalhar frequentemente parece uma luta (*wrangle*)! 
 
 Uma vez que você tenha dados organizados e com as variáveis de que precisa, existem duas principais fontes de geração de conhecimento: visualização e modelagem.
 Essas têm pontos fortes e fracos complementares, portanto, qualquer análise de dados real irá iterar entre elas muitas vezes.
