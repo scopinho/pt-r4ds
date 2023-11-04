@@ -39,7 +39,9 @@ Se você não conseguir importar seus dados para o R, não poderá fazer ciênci
 
 Depois de importar seus dados, é uma boa ideia **organizá-los** .  
 Organizar seus dados significa armazená-los em uma forma consistente que corresponda à semântica do conjunto de dados com a forma como ele é armazenado.
-Em resumo, quando seus dados estão organizados de forma *tidy*, cada coluna é uma variável e cada linha é uma observação.
+Em resumo, quando seus dados estão organizados de forma *tidy*[^intro-nota-traducao-1], cada coluna é uma variável e cada linha é uma observação.
+
+[^intro-nota-traducao-1]: **Nota de tradução**:  *tidy* é tanto um verbo em inglês que quer dizer "arrumar/organizar", quanto um paradigma de estruturação de dados. Caso queira saber mais, o artigo a seguir aprofunda este conceito: [WICKHAM, H. . Tidy Data. **Journal of Statistical Software**, [S. l.], v. 59, n. 10, p. 1–23, 2014. DOI: 10.18637/jss.v059.i10. Disponível em: https://www.jstatsoft.org/index.php/jss/article/view/v059i10. Acesso em: 4 nov. 2023.](https://www.jstatsoft.org/article/view/v059i10)
 Dados organizados (*tidy data*) são importantes porque a estrutura consistente permite que você concentre seus esforços em responder perguntas sobre os dados, em vez de lutar para colocar os dados na forma correta para usar diferentes funções.
 
 Depois de ter dados organizados, normalmente o próximo passo é **transformá-los**.
