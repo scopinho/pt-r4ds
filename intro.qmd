@@ -102,7 +102,7 @@ Este livro orgulhosamente e principalmente foca em conjuntos de dados pequenos e
 Este é o lugar certo para começar, porque você não poderá lidar com *big data* a menos que já tenha experiência com bases de dados pequenas.
 As ferramentas que você aprenderá ao longo da maior parte deste livro lidarão facilmente com centenas de megabytes de dados e, com um pouco de cuidado, você geralmente poderá usá-las para trabalhar com alguns gigabytes de dados.
 Também mostraremos como obter dados de bancos de dados e arquivos parquet, ambos frequentemente usados para armazenar *big data*.
-Você não necessariamente conseguirá trabalhar com o conjunto de dados inteiro, mas isso não é um problema, pois você só precisa de um subconjunto ou uma amostra para responder à pergunta que te interessa.
+Você não necessariamente conseguirá trabalhar com o conjunto de dados inteiro, mas isso nem sempre é um problema, pois, em muitos casos, você só precisa de um subconjunto ou uma amostra para responder à pergunta que te interessa.
 
 Se você está rotineiramente lidando com dados maiores (digamos, de 10 a 100 GB), recomendamos aprender mais sobre o pacote [data.table](https://github.com/Rdatatable/data.table).
 Não o ensinamos aqui porque ele usa uma interface diferente do tidyverse e requer que você aprenda algumas convenções diferentes.
