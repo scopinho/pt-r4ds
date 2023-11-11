@@ -21,6 +21,11 @@ Este site é e sempre será gratuito, licenciado sob a Licença [CC BY-NC-ND 3.0
 Se você gostaria de ter uma cópia física do livro, você pode comprar a versão em Inglês na [Amazon](https://www.amazon.com/dp/1492097403?&tag=hadlwick-20).
 Se você aprecia ler o livro gratuitamente e gostaria de retribuir, por favor faça uma doação para a [Kākāpō Recovery](https://www.doc.govt.nz/kakapo-donate): o [kākāpō](https://www.youtube.com/watch?v=9T1vfsHYiKY) (que aparece na capa do livro) é uma espécie de papagaio nativa da Nova Zelândia que está criticamente ameaçada de extinção; restam apenas 248 espécimes.
 
+Você pode encontrar respostas sugeridas para exercícios no livro em <https://mine-cetinkaya-rundel.github.io/r4ds-solutions>.
+
+Por favor, note que o R4DS utiliza um [Código de Conduta de Colaborador(a)](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+Ao contribuir para este livro, você concorda em seguir seus termos.
+
 Se você fala outra língua, pode se interessar pelas traduções gratuitas da primeira edição do livro:
 
 -   [Espanhol](http://es.r4ds.hadley.nz)
