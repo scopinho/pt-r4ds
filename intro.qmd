@@ -199,7 +199,9 @@ Você pode verificar se há atualizações disponíveis executando `tidyverse_up
 
 Existem muitos outros pacotes excelentes que não fazem parte do tidyverse porque resolvem problemas em um domínio diferente ou são projetados com um conjunto diferente de princípios subjacentes.
 Isso não os torna melhores ou piores; apenas os torna diferentes.
-Em outras palavras, o complemento ao tidyverse não é o messyverse, mas muitos outros universos de pacotes inter-relacionados.
+Em outras palavras, o complemento ao tidyverse não é o messyverse[^intro-nota-traducao-4], mas muitos outros universos de pacotes inter-relacionados.
+
+[^intro-nota-traducao-4] **Nota de tradução**: *tidyverse* é a união das palavras *tidy* (arrumado) e *universe* (universo), sendo então a ideia de um "universo arrumado". *messy* quer dizer desarrumado, e *messyverse* seria a ideia de um universo desarrumado. 
 Conforme você enfrenta mais projetos de ciência de dados com R, aprenderá novos pacotes e novas formas de pensar sobre dados.
 
 Usaremos muitos pacotes de fora do tidyverse neste livro.
