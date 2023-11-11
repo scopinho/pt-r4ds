@@ -39,12 +39,11 @@ Se você não conseguir importar seus dados para o R, não poderá fazer ciênci
 
 Depois de importar seus dados, é uma boa ideia **organizá-los** .  
 Organizar seus dados significa armazená-los em uma forma consistente que corresponda à semântica do conjunto de dados com a forma como ele é armazenado.
-Em resumo, quando seus dados estão organizados de forma *tidy*[^intro-nota-traducao-1], cada coluna é uma variável e cada linha é uma observação.
+Em resumo, quando seus dados estão organizados no formato *tidy*[^intro-nota-traducao-1], cada coluna é uma variável e cada linha é uma observação.
 
-[^intro-nota-traducao-1]: **Nota de tradução**:  *tidy* é tanto um verbo em inglês que quer dizer "arrumar/organizar", quanto um paradigma de estruturação de dados. O capítulo @sec-data-tidy abordará este conceito.
+[^intro-nota-traducao-1]: **Nota de tradução**:  *tidy* é um verbo em inglês que quer dizer "arrumar/organizar". *Tidy data* é uma forma de organizar os dados, que será abordado no capítulo @sec-data-tidy.
 
-Dados organizados (*tidy data*) são importantes porque a estrutura consistente permite que você concentre seus esforços em responder perguntas sobre os dados, em vez de lutar para colocar os dados na forma correta para usar diferentes funções.
-
+Dados no formato tidy (*tidy data*) são importantes porque a estrutura consistente permite que você concentre seus esforços em responder perguntas sobre os dados, em vez de lutar para colocar os dados na forma correta para usar diferentes funções.
 Depois de ter dados organizados, normalmente o próximo passo é **transformá-los**.
 A transformação inclui focar em observações de interesse (como todas as pessoas em uma cidade ou todos os dados do último ano), criar novas variáveis que são funções de variáveis existentes (como calcular a velocidade a partir da distância e do tempo) e calcular um conjunto de estatísticas resumidas (como contagens ou médias).
 Juntos, organizar e transformar são chamados de **manipulação de dados**[^intro-nota-traducao-2]. 
