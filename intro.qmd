@@ -1,4 +1,4 @@
-# Introdução {#sec-intro}
+# Introdução {#sec-intro .unnumbered}
 
 ```{r}
 #| echo: false
