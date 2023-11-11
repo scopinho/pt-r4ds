@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund">
-<title>R para Ciência de Dados (2ª edição) - 2&nbsp; Visualização de dados</title>
+<title>R para Ciência de Dados (2ª edição) - 1&nbsp; Visualização de dados</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -99,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./whole-game.html">Whole game</a></li><li class="breadcrumb-item"><a href="./data-visualize.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Visualização de dados</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./whole-game.html">Whole game</a></li><li class="breadcrumb-item"><a href="./data-visualize.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Visualização de dados</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -143,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text">Introdução</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -158,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-visualize.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Visualização de dados</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Visualização de dados</span></span></a>
   </div>
 </li>
       </ul>
@@ -172,53 +172,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#introdu%C3%A7%C3%A3o" id="toc-introdução" class="nav-link active" data-scroll-target="#introdu%C3%A7%C3%A3o"><span class="header-section-number">2.1</span> Introdução</a>
+<a href="#introdu%C3%A7%C3%A3o" id="toc-introdução" class="nav-link active" data-scroll-target="#introdu%C3%A7%C3%A3o"><span class="header-section-number">1.1</span> Introdução</a>
   <ul class="collapse">
-<li><a href="#pr%C3%A9-requisitos" id="toc-pré-requisitos" class="nav-link" data-scroll-target="#pr%C3%A9-requisitos"><span class="header-section-number">2.1.1</span> Pré-requisitos</a></li>
+<li><a href="#pr%C3%A9-requisitos" id="toc-pré-requisitos" class="nav-link" data-scroll-target="#pr%C3%A9-requisitos"><span class="header-section-number">1.1.1</span> Pré-requisitos</a></li>
   </ul>
 </li>
   <li>
-<a href="#primeiros-passos" id="toc-primeiros-passos" class="nav-link" data-scroll-target="#primeiros-passos"><span class="header-section-number">2.2</span> Primeiros passos</a>
+<a href="#primeiros-passos" id="toc-primeiros-passos" class="nav-link" data-scroll-target="#primeiros-passos"><span class="header-section-number">1.2</span> Primeiros passos</a>
   <ul class="collapse">
-<li><a href="#o-data-frame-pinguins" id="toc-o-data-frame-pinguins" class="nav-link" data-scroll-target="#o-data-frame-pinguins"><span class="header-section-number">2.2.1</span> O data frame <code>pinguins</code></a></li>
-  <li><a href="#sec-ultimate-goal" id="toc-sec-ultimate-goal" class="nav-link" data-scroll-target="#sec-ultimate-goal"><span class="header-section-number">2.2.2</span> Objetivo final</a></li>
-  <li><a href="#criando-um-gr%C3%A1fico-ggplot" id="toc-criando-um-gráfico-ggplot" class="nav-link" data-scroll-target="#criando-um-gr%C3%A1fico-ggplot"><span class="header-section-number">2.2.3</span> Criando um gráfico ggplot</a></li>
-  <li><a href="#sec-adding-aesthetics-layers" id="toc-sec-adding-aesthetics-layers" class="nav-link" data-scroll-target="#sec-adding-aesthetics-layers"><span class="header-section-number">2.2.4</span> Adicionando atributos estéticos e camadas</a></li>
-  <li><a href="#exerc%C3%ADcios" id="toc-exercícios" class="nav-link" data-scroll-target="#exerc%C3%ADcios"><span class="header-section-number">2.2.5</span> Exercícios</a></li>
+<li><a href="#o-data-frame-pinguins" id="toc-o-data-frame-pinguins" class="nav-link" data-scroll-target="#o-data-frame-pinguins"><span class="header-section-number">1.2.1</span> O data frame <code>pinguins</code></a></li>
+  <li><a href="#sec-ultimate-goal" id="toc-sec-ultimate-goal" class="nav-link" data-scroll-target="#sec-ultimate-goal"><span class="header-section-number">1.2.2</span> Objetivo final</a></li>
+  <li><a href="#criando-um-gr%C3%A1fico-ggplot" id="toc-criando-um-gráfico-ggplot" class="nav-link" data-scroll-target="#criando-um-gr%C3%A1fico-ggplot"><span class="header-section-number">1.2.3</span> Criando um gráfico ggplot</a></li>
+  <li><a href="#sec-adding-aesthetics-layers" id="toc-sec-adding-aesthetics-layers" class="nav-link" data-scroll-target="#sec-adding-aesthetics-layers"><span class="header-section-number">1.2.4</span> Adicionando atributos estéticos e camadas</a></li>
+  <li><a href="#exerc%C3%ADcios" id="toc-exercícios" class="nav-link" data-scroll-target="#exerc%C3%ADcios"><span class="header-section-number">1.2.5</span> Exercícios</a></li>
   </ul>
 </li>
-  <li><a href="#sec-ggplot2-calls" id="toc-sec-ggplot2-calls" class="nav-link" data-scroll-target="#sec-ggplot2-calls"><span class="header-section-number">2.3</span> Chamadas ggplot2</a></li>
+  <li><a href="#sec-ggplot2-calls" id="toc-sec-ggplot2-calls" class="nav-link" data-scroll-target="#sec-ggplot2-calls"><span class="header-section-number">1.3</span> Chamadas ggplot2</a></li>
   <li>
-<a href="#visualizando-distribui%C3%A7%C3%B5es" id="toc-visualizando-distribuições" class="nav-link" data-scroll-target="#visualizando-distribui%C3%A7%C3%B5es"><span class="header-section-number">2.4</span> Visualizando distribuições</a>
+<a href="#visualizando-distribui%C3%A7%C3%B5es" id="toc-visualizando-distribuições" class="nav-link" data-scroll-target="#visualizando-distribui%C3%A7%C3%B5es"><span class="header-section-number">1.4</span> Visualizando distribuições</a>
   <ul class="collapse">
-<li><a href="#uma-vari%C3%A1vel-categ%C3%B3rica" id="toc-uma-variável-categórica" class="nav-link" data-scroll-target="#uma-vari%C3%A1vel-categ%C3%B3rica"><span class="header-section-number">2.4.1</span> Uma variável categórica</a></li>
-  <li><a href="#uma-vari%C3%A1vel-num%C3%A9rica" id="toc-uma-variável-numérica" class="nav-link" data-scroll-target="#uma-vari%C3%A1vel-num%C3%A9rica"><span class="header-section-number">2.4.2</span> Uma variável numérica</a></li>
-  <li><a href="#exerc%C3%ADcios-1" id="toc-exercícios-1" class="nav-link" data-scroll-target="#exerc%C3%ADcios-1"><span class="header-section-number">2.4.3</span> Exercícios</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#visualizando-rela%C3%A7%C3%B5es" id="toc-visualizando-relações" class="nav-link" data-scroll-target="#visualizando-rela%C3%A7%C3%B5es"><span class="header-section-number">2.5</span> Visualizando relações</a>
-  <ul class="collapse">
-<li><a href="#uma-vari%C3%A1vel-num%C3%A9rica-e-uma-vari%C3%A1vel-categ%C3%B3rica" id="toc-uma-variável-numérica-e-uma-variável-categórica" class="nav-link" data-scroll-target="#uma-vari%C3%A1vel-num%C3%A9rica-e-uma-vari%C3%A1vel-categ%C3%B3rica"><span class="header-section-number">2.5.1</span> Uma variável numérica e uma variável categórica</a></li>
-  <li><a href="#duas-vari%C3%A1veis-categ%C3%B3ricas" id="toc-duas-variáveis-categóricas" class="nav-link" data-scroll-target="#duas-vari%C3%A1veis-categ%C3%B3ricas"><span class="header-section-number">2.5.2</span> Duas variáveis categóricas</a></li>
-  <li><a href="#duas-vari%C3%A1veis-num%C3%A9ricas" id="toc-duas-variáveis-numéricas" class="nav-link" data-scroll-target="#duas-vari%C3%A1veis-num%C3%A9ricas"><span class="header-section-number">2.5.3</span> Duas variáveis numéricas</a></li>
-  <li><a href="#tr%C3%AAs-ou-mais-vari%C3%A1veis" id="toc-três-ou-mais-variáveis" class="nav-link" data-scroll-target="#tr%C3%AAs-ou-mais-vari%C3%A1veis"><span class="header-section-number">2.5.4</span> Três ou mais variáveis</a></li>
-  <li><a href="#exerc%C3%ADcios-2" id="toc-exercícios-2" class="nav-link" data-scroll-target="#exerc%C3%ADcios-2"><span class="header-section-number">2.5.5</span> Exercícios</a></li>
+<li><a href="#uma-vari%C3%A1vel-categ%C3%B3rica" id="toc-uma-variável-categórica" class="nav-link" data-scroll-target="#uma-vari%C3%A1vel-categ%C3%B3rica"><span class="header-section-number">1.4.1</span> Uma variável categórica</a></li>
+  <li><a href="#uma-vari%C3%A1vel-num%C3%A9rica" id="toc-uma-variável-numérica" class="nav-link" data-scroll-target="#uma-vari%C3%A1vel-num%C3%A9rica"><span class="header-section-number">1.4.2</span> Uma variável numérica</a></li>
+  <li><a href="#exerc%C3%ADcios-1" id="toc-exercícios-1" class="nav-link" data-scroll-target="#exerc%C3%ADcios-1"><span class="header-section-number">1.4.3</span> Exercícios</a></li>
   </ul>
 </li>
   <li>
-<a href="#sec-ggsave" id="toc-sec-ggsave" class="nav-link" data-scroll-target="#sec-ggsave"><span class="header-section-number">2.6</span> Salvando seus gráficos</a>
+<a href="#visualizando-rela%C3%A7%C3%B5es" id="toc-visualizando-relações" class="nav-link" data-scroll-target="#visualizando-rela%C3%A7%C3%B5es"><span class="header-section-number">1.5</span> Visualizando relações</a>
   <ul class="collapse">
-<li><a href="#exerc%C3%ADcios-3" id="toc-exercícios-3" class="nav-link" data-scroll-target="#exerc%C3%ADcios-3"><span class="header-section-number">2.6.1</span> Exercícios</a></li>
+<li><a href="#uma-vari%C3%A1vel-num%C3%A9rica-e-uma-vari%C3%A1vel-categ%C3%B3rica" id="toc-uma-variável-numérica-e-uma-variável-categórica" class="nav-link" data-scroll-target="#uma-vari%C3%A1vel-num%C3%A9rica-e-uma-vari%C3%A1vel-categ%C3%B3rica"><span class="header-section-number">1.5.1</span> Uma variável numérica e uma variável categórica</a></li>
+  <li><a href="#duas-vari%C3%A1veis-categ%C3%B3ricas" id="toc-duas-variáveis-categóricas" class="nav-link" data-scroll-target="#duas-vari%C3%A1veis-categ%C3%B3ricas"><span class="header-section-number">1.5.2</span> Duas variáveis categóricas</a></li>
+  <li><a href="#duas-vari%C3%A1veis-num%C3%A9ricas" id="toc-duas-variáveis-numéricas" class="nav-link" data-scroll-target="#duas-vari%C3%A1veis-num%C3%A9ricas"><span class="header-section-number">1.5.3</span> Duas variáveis numéricas</a></li>
+  <li><a href="#tr%C3%AAs-ou-mais-vari%C3%A1veis" id="toc-três-ou-mais-variáveis" class="nav-link" data-scroll-target="#tr%C3%AAs-ou-mais-vari%C3%A1veis"><span class="header-section-number">1.5.4</span> Três ou mais variáveis</a></li>
+  <li><a href="#exerc%C3%ADcios-2" id="toc-exercícios-2" class="nav-link" data-scroll-target="#exerc%C3%ADcios-2"><span class="header-section-number">1.5.5</span> Exercícios</a></li>
   </ul>
 </li>
-  <li><a href="#problemas-comuns" id="toc-problemas-comuns" class="nav-link" data-scroll-target="#problemas-comuns"><span class="header-section-number">2.7</span> Problemas comuns</a></li>
-  <li><a href="#resumo" id="toc-resumo" class="nav-link" data-scroll-target="#resumo"><span class="header-section-number">2.8</span> Resumo</a></li>
+  <li>
+<a href="#sec-ggsave" id="toc-sec-ggsave" class="nav-link" data-scroll-target="#sec-ggsave"><span class="header-section-number">1.6</span> Salvando seus gráficos</a>
+  <ul class="collapse">
+<li><a href="#exerc%C3%ADcios-3" id="toc-exercícios-3" class="nav-link" data-scroll-target="#exerc%C3%ADcios-3"><span class="header-section-number">1.6.1</span> Exercícios</a></li>
+  </ul>
+</li>
+  <li><a href="#problemas-comuns" id="toc-problemas-comuns" class="nav-link" data-scroll-target="#problemas-comuns"><span class="header-section-number">1.7</span> Problemas comuns</a></li>
+  <li><a href="#resumo" id="toc-resumo" class="nav-link" data-scroll-target="#resumo"><span class="header-section-number">1.8</span> Resumo</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-git"></i></div><div class="action-links"><p><a href="https://cienciadedatos.github.io/pt-r4ds/edit/main/data-visualize.qmd" class="toc-action">Editar essa página</a></p><p><a href="https://cienciadedatos.github.io/pt-r4ds/issues/new" class="toc-action">Criar uma issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-data-visualization" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Visualização de dados</span></span></h1>
+<h1 class="title"><span id="sec-data-visualization" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Visualização de dados</span></span></h1>
 </div>
 
 
@@ -231,22 +231,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><section id="introdução" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="introdução">
-<span class="header-section-number">2.1</span> Introdução</h2>
+</header><section id="introdução" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="introdução">
+<span class="header-section-number">1.1</span> Introdução</h2>
 <blockquote class="blockquote">
 <p>“O gráfico simples trouxe mais informações à mente dos analistas de dados do que qualquer outro dispositivo.” — John Tukey</p>
 </blockquote>
 <p>O R possui diversos sistemas para construir gráficos, mas o ggplot2 é um dos mais elegantes e versáteis. O ggplot2 implementa a <strong>gramática dos gráficos</strong>, um sistema coerente para descrever e construir gráficos. Com o ggplot2 você pode fazer mais, e mais rápido, ao aprender um sistema e aplicá-lo em muitos lugares.</p>
 <p>Este capítulo irá te ensinar como visualizar seus dados usando o <strong>ggplot2</strong>. Nós vamos começar criando um gráfico de dispersão simples e usá-lo para introduzir o mapeamento de atributos estéticos (<em>aesthetic</em>) e geometrias – os blocos fundamentais na construção do ggplot2. Nós vamos então te orientar na visualização de distribuições de variáveis individuais, bem como na visualização de relações entre duas ou mais variáveis. Terminaremos salvando seus gráficos e com dicas de resolução de problemas.</p>
-<section id="pré-requisitos" class="level3" data-number="2.1.1"><h3 data-number="2.1.1" class="anchored" data-anchor-id="pré-requisitos">
-<span class="header-section-number">2.1.1</span> Pré-requisitos</h3>
+<section id="pré-requisitos" class="level3" data-number="1.1.1"><h3 data-number="1.1.1" class="anchored" data-anchor-id="pré-requisitos">
+<span class="header-section-number">1.1.1</span> Pré-requisitos</h3>
 <p>Este capítulo tem foco no ggplot2, um dos principais pacotes do tidyverse. Para acessar os bancos de dados, páginas de ajuda e funções utilizadas neste capítulo, você deve carregar o tidyverse executando o comando:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; ── Attaching core tidyverse packages ───────────────────── tidyverse 2.0.0 ──</span></span>
 <span><span class="co">#&gt; ✔ dplyr     1.1.3     ✔ readr     2.1.4</span></span>
 <span><span class="co">#&gt; ✔ forcats   1.0.0     ✔ stringr   1.5.0</span></span>
-<span><span class="co">#&gt; ✔ ggplot2   3.4.3     ✔ tibble    3.2.1</span></span>
+<span><span class="co">#&gt; ✔ ggplot2   3.4.4     ✔ tibble    3.2.1</span></span>
 <span><span class="co">#&gt; ✔ lubridate 1.9.3     ✔ tidyr     1.3.0</span></span>
 <span><span class="co">#&gt; ✔ purrr     1.0.2     </span></span>
 <span><span class="co">#&gt; ── Conflicts ─────────────────────────────────────── tidyverse_conflicts() ──</span></span>
@@ -266,11 +266,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/cienciadedatos/dados">dados</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes">ggthemes</a></span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="primeiros-passos" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="primeiros-passos">
-<span class="header-section-number">2.2</span> Primeiros passos</h2>
+</section></section><section id="primeiros-passos" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="primeiros-passos">
+<span class="header-section-number">1.2</span> Primeiros passos</h2>
 <p>Os pinguins com nadadeiras mais compridas pesam mais ou menos que pinguins com nadadeiras curtas? Você provavelmente já tem uma resposta, mas tente torná-la mais precisa. Como é a relação entre o comprimento da nadadeira e massa corporal? Ela é positiva? Negativa? Linear? Não linear? A relação varia com a espécie do pinguim? E quanto à ilha onde o pinguim vive? Vamos criar visualizações que podemos usar para responder essas perguntas.</p>
-<section id="o-data-frame-pinguins" class="level3" data-number="2.2.1"><h3 data-number="2.2.1" class="anchored" data-anchor-id="o-data-frame-pinguins">
-<span class="header-section-number">2.2.1</span> O data frame <code>pinguins</code>
+<section id="o-data-frame-pinguins" class="level3" data-number="1.2.1"><h3 data-number="1.2.1" class="anchored" data-anchor-id="o-data-frame-pinguins">
+<span class="header-section-number">1.2.1</span> O data frame <code>pinguins</code>
 </h3>
 <p>Você pode testar suas respostas à essas questões usando o <strong>data frame</strong> <code>pinguins</code> encontrado no pacote <code>dados</code> (usando <code><a href="https://rdrr.io/pkg/dados/man/pinguins.html">dados::pinguins</a></code>). Um <em>data frame</em> é uma coleção tabular (formato de tabela) de variáveis (nas colunas) e observações (nas linhas). <code>pinguins</code> contém 344 observações coletadas e disponibilizadas pela Dra. Kristen Gorman e pelo PELD Estação Palmer, Antártica<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
 <p>Para facilitar a discussão, vamos definir alguns termos:</p>
@@ -317,16 +317,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>massa_corporal</code>: massa corporal de um pinguim, em gramas.</p></li>
 </ol>
 <p>Para saber mais sobre <code>pinguins</code>, abra sua página de ajuda executando <code><a href="https://rdrr.io/pkg/dados/man/pinguins.html">?pinguins</a></code>.</p>
-</section><section id="sec-ultimate-goal" class="level3" data-number="2.2.2"><h3 data-number="2.2.2" class="anchored" data-anchor-id="sec-ultimate-goal">
-<span class="header-section-number">2.2.2</span> Objetivo final</h3>
+</section><section id="sec-ultimate-goal" class="level3" data-number="1.2.2"><h3 data-number="1.2.2" class="anchored" data-anchor-id="sec-ultimate-goal">
+<span class="header-section-number">1.2.2</span> Objetivo final</h3>
 <p>Nosso objetivo final neste capítulo é recriar a seguinte visualização que exibe a relação entre o comprimento da nadadeira e a massa corporal desses pinguins, levando em consideração a espécie do pinguim.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="data-visualize_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" alt="Um gráfico de dispersão da massa corporal vs. comprimento da nadadeira dos pinguins, com uma linha de melhor ajuste da relação entre essas duas variáveis sobreposta. O gráfico mostra uma relação positiva, razoavelmente linear e relativamente forte entre essas duas variáveis. As espécies (Pinguim-de-adélia, Pinguim-de-barbicha e Pinguim-gentoo) são representadas com cores e formas diferentes. A relação entre a massa corporal e o comprimento da nadadeira é aproximadamente a mesma para essas três espécies, e os pinguins Gentoo são maiores do que os pinguins das outras duas espécies." width="576"></p>
 </div>
 </div>
-</section><section id="criando-um-gráfico-ggplot" class="level3" data-number="2.2.3"><h3 data-number="2.2.3" class="anchored" data-anchor-id="criando-um-gráfico-ggplot">
-<span class="header-section-number">2.2.3</span> Criando um gráfico ggplot</h3>
+</section><section id="criando-um-gráfico-ggplot" class="level3" data-number="1.2.3"><h3 data-number="1.2.3" class="anchored" data-anchor-id="criando-um-gráfico-ggplot">
+<span class="header-section-number">1.2.3</span> Criando um gráfico ggplot</h3>
 <p>Vamos recriar esse gráfico passo a passo.</p>
 <p>No ggplot2, você inicia um gráfico com a função <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>, definindo um objeto de gráfico ao qual você adiciona <strong>camadas</strong>. O primeiro argumento da função <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> é o conjunto de dados a ser usado no gráfico e, portanto, <code>ggplot(data = pinguins)</code> cria um gráfico vazio que está preparado para exibir os dados dos <code>pinguins</code>, mas, como ainda não dissemos como fazer a visualização, por enquanto ele está vazio. Esse não é um gráfico muito interessante, mas você pode pensar nele como uma tela vazia na qual você pintará as camadas restantes do seu gráfico.</p>
 <div class="cell">
@@ -366,8 +366,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Removed 2 rows containing missing values (<code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>).</p>
 </blockquote>
 <p>Estamos vendo essa mensagem porque há dois pinguins em nosso conjunto de dados com valores faltantes (<em>missing values -</em> NA*) de massa corporal e/ou comprimento da nadadeira e o ggplot2 não tem como representá-los no gráfico sem esses dois valores. Assim como o R, o ggplot2 adota a filosofia de que os valores faltantes nunca devem desaparecer silenciosamente. Esse tipo de aviso é provavelmente um dos tipos mais comuns de avisos que você verá ao trabalhar com dados reais - os valores faltantes são um problema muito comum e você aprenderá mais sobre eles ao longo do livro, especialmente em <span class="quarto-unresolved-ref">?sec-missing-values</span>. Nos demais gráficos deste capítulo, vamos suprimir esse aviso para que ele não seja mostrado em cada gráfico que fizermos.</p>
-</section><section id="sec-adding-aesthetics-layers" class="level3" data-number="2.2.4"><h3 data-number="2.2.4" class="anchored" data-anchor-id="sec-adding-aesthetics-layers">
-<span class="header-section-number">2.2.4</span> Adicionando atributos estéticos e camadas</h3>
+</section><section id="sec-adding-aesthetics-layers" class="level3" data-number="1.2.4"><h3 data-number="1.2.4" class="anchored" data-anchor-id="sec-adding-aesthetics-layers">
+<span class="header-section-number">1.2.4</span> Adicionando atributos estéticos e camadas</h3>
 <p>Gráficos de dispersão são úteis para exibir a relação entre duas variáveis numéricas, mas é sempre uma boa ideia ter uma postura cética em relação a qualquer relação aparente entre duas variáveis e perguntar se pode haver outras variáveis que expliquem ou mudem a natureza dessa relação aparente. Por exemplo, a relação entre o comprimento das nadadeira e a massa corporal difere de acordo com a espécie? Vamos incluir as espécies em nosso gráfico e ver se isso revela alguma ideia adicional sobre a relação aparente entre essas variáveis. Faremos isso representando as espécies com pontos de cores diferentes.</p>
 <p>Para conseguir isso, precisaremos modificar o atributo estético ou a geometria? Se você pensou “no mapeamento estético, dentro de <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>”, você já está pegando o jeito de criar visualizações de dados com o ggplot2! Caso contrário, não se preocupe. Ao longo do livro, você criará muito mais visualizações com ggplot e terá muito mais oportunidades de verificar sua intuição.</p>
 <div class="cell">
@@ -394,7 +394,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="data-visualize_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" alt="Um gráfico de dispersão da massa corporal em função do comprimento da nadadeira dos pinguins. Sobrepostas ao gráfico de dispersão estão três curvas suavizadas que mostram a relação entre essas variáveis para cada espécie (Pinguim-de-adélia, Pinguim-de-barbicha e Pinguim-gentoo). As diferentes espécies de pinguins são plotadas em cores diferentes para os pontos e as curvas suavizadas." width="576"></p>
 </div>
 </div>
-<p>Adicionamos linhas com sucesso, mas esse gráfico não se parece com o gráfico do <a href="#sec-ultimate-goal"><span>Seção&nbsp;2.2.2</span></a>, que tem apenas uma linha para todo o conjunto de dados, em vez de linhas separadas para cada espécie de pinguim.</p>
+<p>Adicionamos linhas com sucesso, mas esse gráfico não se parece com o gráfico do <a href="#sec-ultimate-goal"><span>Seção&nbsp;1.2.2</span></a>, que tem apenas uma linha para todo o conjunto de dados, em vez de linhas separadas para cada espécie de pinguim.</p>
 <p>Quando os mapeamentos estéticos são definidos em <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>, no nível <strong>global</strong>, eles são passados para cada uma das camadas de geometria (geom) subsequentes do gráfico. Entretanto, cada função geom no ggplot2 também pode receber um argumento <code>mapping</code>, que permite mapeamentos estéticos em nível <strong>local</strong> que são adicionados àqueles herdados do nível global. Como queremos que os pontos sejam coloridos com base na espécie, mas não queremos que as linhas sejam separadas para eles, devemos especificar <code>color = especie</code> somente para <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
@@ -440,8 +440,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Finalmente temos um gráfico que corresponde perfeitamente ao nosso “objetivo final”!</p>
-</section><section id="exercícios" class="level3" data-number="2.2.5"><h3 data-number="2.2.5" class="anchored" data-anchor-id="exercícios">
-<span class="header-section-number">2.2.5</span> Exercícios</h3>
+</section><section id="exercícios" class="level3" data-number="1.2.5"><h3 data-number="1.2.5" class="anchored" data-anchor-id="exercícios">
+<span class="header-section-number">1.2.5</span> Exercícios</h3>
 <ol type="1">
 <li><p>Quantas linhas existem em <code>pinguins</code>? E quantas colunas?</p></li>
 <li><p>O que a variável <code>profundidade_bico</code> no <em>data frame</em> <code>pinguins</code> descreve? Leia a documentação da base pinguins para descobrir, utilizando o comando <code><a href="https://rdrr.io/pkg/dados/man/pinguins.html">?pinguins</a></code> .</p></li>
@@ -495,8 +495,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>    mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, y <span class="op">=</span> <span class="va">massa_corporal</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="sec-ggplot2-calls" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="sec-ggplot2-calls">
-<span class="header-section-number">2.3</span> Chamadas ggplot2</h2>
+</section></section><section id="sec-ggplot2-calls" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="sec-ggplot2-calls">
+<span class="header-section-number">1.3</span> Chamadas ggplot2</h2>
 <p>À medida que passarmos dessas seções introdutórias, faremos a transição para uma expressão mais concisa do código do ggplot2. Até agora, temos sido muito explícitos, o que é útil quando se está aprendendo:</p>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
@@ -517,11 +517,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, y <span class="op">=</span> <span class="va">massa_corporal</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="visualizando-distribuições" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="visualizando-distribuições">
-<span class="header-section-number">2.4</span> Visualizando distribuições</h2>
+</section><section id="visualizando-distribuições" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="visualizando-distribuições">
+<span class="header-section-number">1.4</span> Visualizando distribuições</h2>
 <p>A forma como você visualiza a distribuição de uma variável depende do tipo de variável: categórica ou numérica.</p>
-<section id="uma-variável-categórica" class="level3" data-number="2.4.1"><h3 data-number="2.4.1" class="anchored" data-anchor-id="uma-variável-categórica">
-<span class="header-section-number">2.4.1</span> Uma variável categórica</h3>
+<section id="uma-variável-categórica" class="level3" data-number="1.4.1"><h3 data-number="1.4.1" class="anchored" data-anchor-id="uma-variável-categórica">
+<span class="header-section-number">1.4.1</span> Uma variável categórica</h3>
 <p>Uma variável é <strong>categórica</strong> se puder assumir apenas um valor de um pequeno conjunto de valores. Para examinar a distribuição de uma variável categórica, você pode usar um gráfico de barras. A altura das barras exibe quantas observações ocorreram com cada valor <code>x</code>.</p>
 <div class="cell">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">pinguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">especie</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -539,8 +539,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Você aprenderá mais sobre fatores e funções para lidar com fatores (como <code><a href="https://forcats.tidyverse.org/reference/fct_inorder.html">fct_infreq()</a></code> mostrado acima) em <span class="quarto-unresolved-ref">?sec-factors</span>.</p>
-</section><section id="uma-variável-numérica" class="level3" data-number="2.4.2"><h3 data-number="2.4.2" class="anchored" data-anchor-id="uma-variável-numérica">
-<span class="header-section-number">2.4.2</span> Uma variável numérica</h3>
+</section><section id="uma-variável-numérica" class="level3" data-number="1.4.2"><h3 data-number="1.4.2" class="anchored" data-anchor-id="uma-variável-numérica">
+<span class="header-section-number">1.4.2</span> Uma variável numérica</h3>
 <p>Uma variável é <strong>numérica</strong> (ou quantitativa) se puder assumir uma ampla gama de valores numéricos e se for possível adicionar, subtrair ou calcular médias com esses valores. As variáveis numéricas podem ser contínuas ou discretas.</p>
 <p>Uma visualização comumente usada para distribuições de variáveis contínuas é um histograma.</p>
 <div class="cell">
@@ -577,8 +577,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="data-visualize_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" alt="Um gráfico de densidade da massa corporal dos pinguins. A distribuição é unimodal e inclinada para a direita, variando entre aproximadamente 2500 e 6500 gramas." width="576"></p>
 </div>
 </div>
-</section><section id="exercícios-1" class="level3" data-number="2.4.3"><h3 data-number="2.4.3" class="anchored" data-anchor-id="exercícios-1">
-<span class="header-section-number">2.4.3</span> Exercícios</h3>
+</section><section id="exercícios-1" class="level3" data-number="1.4.3"><h3 data-number="1.4.3" class="anchored" data-anchor-id="exercícios-1">
+<span class="header-section-number">1.4.3</span> Exercícios</h3>
 <ol type="1">
 <li><p>Faça um gráfico de barras de <code>especie</code> de <code>pinguins</code>, no qual você atribui <code>especie</code> ao atributo estético <code>y</code>. Como esse gráfico é diferente?</p></li>
 <li><p>Como os dois gráficos a seguir são diferentes? Qual atributo estético, <code>color</code> ou <code>fill</code>, é mais útil para alterar a cor das barras?</p></li>
@@ -593,12 +593,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li><p>O que o argumento <code>bins</code> em <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> faz?</p></li>
 <li><p>Faça um histograma da variável <code>quilate</code> no conjunto de dados <code>diamante</code> que está disponível quando você carrega o pacote dados. Faça experiências com diferentes larguras de intervalo (<em>binwidth</em>). Qual largura de intervalo revela os padrões mais interessantes?</p></li>
-</ol></section></section><section id="visualizando-relações" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="visualizando-relações">
-<span class="header-section-number">2.5</span> Visualizando relações</h2>
+</ol></section></section><section id="visualizando-relações" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="visualizando-relações">
+<span class="header-section-number">1.5</span> Visualizando relações</h2>
 <p>Para visualizar uma relação, precisamos ter pelo menos duas variáveis mapeadas para os atributos estéticos de um gráfico. Nas seções a seguir, você aprenderá sobre os gráficos comumente usados para visualizar relações entre duas ou mais variáveis e as geometrias usados para criá-los.</p>
-<section id="uma-variável-numérica-e-uma-variável-categórica" class="level3" data-number="2.5.1"><h3 data-number="2.5.1" class="anchored" data-anchor-id="uma-variável-numérica-e-uma-variável-categórica">
-<span class="header-section-number">2.5.1</span> Uma variável numérica e uma variável categórica</h3>
-<p>Para visualizar a relação entre uma variável numérica e uma variável categórica, podemos usar diagramas de caixa (chamados <strong><em>boxplots</em></strong>) lado a lado. Um <strong>boxplot</strong> é um tipo de abreviação visual para medidas de posição (percentis) que descrevem uma distribuição. Também é útil para identificar possíveis <em>outliers</em>. Conforme mostrado em <a href="#fig-eda-boxplot">Figura&nbsp;<span>2.1</span></a>, cada boxplot consiste em:</p>
+<section id="uma-variável-numérica-e-uma-variável-categórica" class="level3" data-number="1.5.1"><h3 data-number="1.5.1" class="anchored" data-anchor-id="uma-variável-numérica-e-uma-variável-categórica">
+<span class="header-section-number">1.5.1</span> Uma variável numérica e uma variável categórica</h3>
+<p>Para visualizar a relação entre uma variável numérica e uma variável categórica, podemos usar diagramas de caixa (chamados <strong><em>boxplots</em></strong>) lado a lado. Um <strong>boxplot</strong> é um tipo de abreviação visual para medidas de posição (percentis) que descrevem uma distribuição. Também é útil para identificar possíveis <em>outliers</em>. Conforme mostrado em <a href="#fig-eda-boxplot">Figura&nbsp;<span>1.1</span></a>, cada boxplot consiste em:</p>
 <ul>
 <li><p>Uma caixa que indica o intervalo da metade intermediária dos dados, uma distância conhecida como intervalo interquartil (IIQ), que se estende do 25º percentil da distribuição até o 75º percentil. No meio da caixa há uma linha que exibe a mediana, ou seja, o 50º percentil, da distribuição. Essas três linhas lhe dão uma noção da dispersão da distribuição e se a distribuição é ou não simétrica em relação à mediana ou inclinada para um lado.</p></li>
 <li><p>Pontos que apresentam observações com valores maiores que 1,5 vezes o IIQ de qualquer borda da caixa. Esses pontos discrepantes são incomuns e, por isso, são plotados individualmente.</p></li>
@@ -608,7 +608,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="fig-eda-boxplot" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="images/EDA-boxplot.png" class="img-fluid figure-img" alt="Um diagrama exibindo como um boxplot é criado seguindo os passos acima." width="1066"></p>
-<figcaption class="figure-caption">Figura&nbsp;2.1: Diagrama mostrando como um boxplot é criado.</figcaption></figure>
+<figcaption class="figure-caption">Figura&nbsp;1.1: Diagrama mostrando como um boxplot é criado.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -641,8 +641,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Nós <strong>mapeamos</strong> variáveis para atributos estéticos se quisermos que o atributo visual representado por esse atributo varie de acordo com os valores dessa variável.</li>
 <li>Caso contrário, nós <strong>definimos</strong> o valor de um atributo estético.</li>
-</ul></section><section id="duas-variáveis-categóricas" class="level3" data-number="2.5.2"><h3 data-number="2.5.2" class="anchored" data-anchor-id="duas-variáveis-categóricas">
-<span class="header-section-number">2.5.2</span> Duas variáveis categóricas</h3>
+</ul></section><section id="duas-variáveis-categóricas" class="level3" data-number="1.5.2"><h3 data-number="1.5.2" class="anchored" data-anchor-id="duas-variáveis-categóricas">
+<span class="header-section-number">1.5.2</span> Duas variáveis categóricas</h3>
 <p>Podemos usar gráficos de barras empilhadas para visualizar a relação entre duas variáveis categóricas. Por exemplo, os dois gráficos de barras empilhadas a seguir exibem a relação entre <code>ilha</code> e <code>espécie</code> ou, especificamente, a visualização da distribuição de <code>espécie</code> em cada ilha.</p>
 <p>O primeiro gráfico mostra as frequências de cada espécie de pinguim em cada ilha. O gráfico de frequências mostra que há um número igual de Pinguim-de-adélia em cada ilha. Mas não temos uma boa noção do equilíbrio percentual em cada ilha.</p>
 <div class="cell">
@@ -661,8 +661,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Ao criar esses gráficos de barras, mapeamos a variável que será separada em barras para o atributo estético <code>x</code> e a variável que mudará as cores dentro das barras para a estética <code>fill</code>.</p>
-</section><section id="duas-variáveis-numéricas" class="level3" data-number="2.5.3"><h3 data-number="2.5.3" class="anchored" data-anchor-id="duas-variáveis-numéricas">
-<span class="header-section-number">2.5.3</span> Duas variáveis numéricas</h3>
+</section><section id="duas-variáveis-numéricas" class="level3" data-number="1.5.3"><h3 data-number="1.5.3" class="anchored" data-anchor-id="duas-variáveis-numéricas">
+<span class="header-section-number">1.5.3</span> Duas variáveis numéricas</h3>
 <p>Até agora, você aprendeu sobre gráficos de dispersão (criados com <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code>) e curvas suaves (criadas com <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code>) para visualizar a relação entre duas variáveis numéricas. Um gráfico de dispersão é provavelmente o gráfico mais usado para visualizar a relação entre duas variáveis numéricas.</p>
 <div class="cell">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">pinguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, y <span class="op">=</span> <span class="va">massa_corporal</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -671,9 +671,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="data-visualize_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" alt="Um gráfico de dispersão da massa corporal em função do comprimento da nadadeira dos pinguins. O gráfico mostra uma relação positiva, linear e relativamente forte entre essas duas variáveis." width="576"></p>
 </div>
 </div>
-</section><section id="três-ou-mais-variáveis" class="level3" data-number="2.5.4"><h3 data-number="2.5.4" class="anchored" data-anchor-id="três-ou-mais-variáveis">
-<span class="header-section-number">2.5.4</span> Três ou mais variáveis</h3>
-<p>Como vimos em <a href="#sec-adding-aesthetics-layers"><span>Seção&nbsp;2.2.4</span></a>, podemos incorporar mais variáveis em um gráfico mapeando-as para atributos estéticos adicionais. Por exemplo, no gráfico de dispersão a seguir, as cores dos pontos (<em>color</em>) representam espécies e as formas dos pontos (<em>shape</em>) representam ilhas.</p>
+</section><section id="três-ou-mais-variáveis" class="level3" data-number="1.5.4"><h3 data-number="1.5.4" class="anchored" data-anchor-id="três-ou-mais-variáveis">
+<span class="header-section-number">1.5.4</span> Três ou mais variáveis</h3>
+<p>Como vimos em <a href="#sec-adding-aesthetics-layers"><span>Seção&nbsp;1.2.4</span></a>, podemos incorporar mais variáveis em um gráfico mapeando-as para atributos estéticos adicionais. Por exemplo, no gráfico de dispersão a seguir, as cores dos pontos (<em>color</em>) representam espécies e as formas dos pontos (<em>shape</em>) representam ilhas.</p>
 <div class="cell">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">pinguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, y <span class="op">=</span> <span class="va">massa_corporal</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">especie</span>, shape <span class="op">=</span> <span class="va">ilha</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -692,8 +692,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Você vai aprender sobre muitas outras geometrias para visualizar distribuições de variáveis e relações entre elas em <span class="quarto-unresolved-ref">?sec-layers</span>.</p>
-</section><section id="exercícios-2" class="level3" data-number="2.5.5"><h3 data-number="2.5.5" class="anchored" data-anchor-id="exercícios-2">
-<span class="header-section-number">2.5.5</span> Exercícios</h3>
+</section><section id="exercícios-2" class="level3" data-number="1.5.5"><h3 data-number="1.5.5" class="anchored" data-anchor-id="exercícios-2">
+<span class="header-section-number">1.5.5</span> Exercícios</h3>
 <ol type="1">
 <li><p>O <em>data frame</em> <code>milhas</code> que acompanha o pacote dados contém observações 234 coletadas pela Agência de Proteção Ambiental dos EUA em modelos de 38 carros. Quais variáveis em <code>milhas</code> são categóricas? Quais variáveis são numéricas? (Dica: digite <code><a href="https://rdrr.io/pkg/dados/man/milhas.html">?milhas</a></code> para ler a documentação do conjunto de dados.) Como você pode ver essas informações ao executar <code>milhas</code>?</p></li>
 <li><p>Faça um gráfico de dispersão de <code>rodovia</code> (Milhas rodoviárias por galão) em função de <code>cilindrada</code> usando o <em>data frame</em> <code>milhas</code>. Em seguida, mapeie uma terceira variável numérica para <code>color</code> (cor), depois <code>size</code> (tamanho), depois igualmente para <code>color</code> e <code>size</code> e, por fim, <code>shape</code> (forma). Como esses atributos estéticos se comportam de forma diferente para variáveis categóricas e numéricas?</p></li>
@@ -722,8 +722,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">pinguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">especie</span>, fill <span class="op">=</span> <span class="va">ilha</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"fill"</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="sec-ggsave" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="sec-ggsave">
-<span class="header-section-number">2.6</span> Salvando seus gráficos</h2>
+</section></section><section id="sec-ggsave" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="sec-ggsave">
+<span class="header-section-number">1.6</span> Salvando seus gráficos</h2>
 <p>Depois de criar um gráfico, talvez você queira tirá-lo do R salvando-o como uma imagem que possa ser usada em outro lugar. Esse é o objetivo da função <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave()</a></code>, que salvará no computador o gráfico criado mais recentemente:</p>
 <div class="cell">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">pinguins</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">comprimento_nadadeira</span>, y <span class="op">=</span> <span class="va">massa_corporal</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -733,8 +733,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Isso salvará o gráfico no seu diretório de trabalho, um conceito sobre o qual você aprenderá mais em <span class="quarto-unresolved-ref">?sec-workflow-scripts-projects</span>.</p>
 <p>Se você não especificar a largura <code>width</code> e a altura <code>height</code>, elas serão tiradas das dimensões do dispositivo de plotagem atual. Para obter um código reprodutível, você deverá especificá-los. Você pode obter mais informações sobre a função <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave()</a></code> na documentação.</p>
 <p>De modo geral, entretanto, recomendamos que você monte seus relatórios finais usando o Quarto, um sistema de escrita reprodutível que permite intercalar seu código e sua escrita e incluir automaticamente seus gráficos em seus relatórios. Você aprenderá mais sobre o Quarto em <span class="quarto-unresolved-ref">?sec-quarto</span>.</p>
-<section id="exercícios-3" class="level3" data-number="2.6.1"><h3 data-number="2.6.1" class="anchored" data-anchor-id="exercícios-3">
-<span class="header-section-number">2.6.1</span> Exercícios</h3>
+<section id="exercícios-3" class="level3" data-number="1.6.1"><h3 data-number="1.6.1" class="anchored" data-anchor-id="exercícios-3">
+<span class="header-section-number">1.6.1</span> Exercícios</h3>
 <ol type="1">
 <li>Execute as seguintes linhas de código. Qual dos dois gráficos é salvo como <code>grafico-milhas.png</code>? Por quê?</li>
 </ol>
@@ -747,8 +747,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <ol start="2" type="1">
 <li>O que você precisa alterar no código acima para salvar o gráfico como PDF em vez de PNG? Como você poderia descobrir quais tipos de arquivos de imagem funcionariam em <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave()</a></code>?</li>
-</ol></section></section><section id="problemas-comuns" class="level2" data-number="2.7"><h2 data-number="2.7" class="anchored" data-anchor-id="problemas-comuns">
-<span class="header-section-number">2.7</span> Problemas comuns</h2>
+</ol></section></section><section id="problemas-comuns" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="problemas-comuns">
+<span class="header-section-number">1.7</span> Problemas comuns</h2>
 <p>Ao começar a executar o código em R, é provável que você encontre problemas. Não se preocupe, isso acontece com todo mundo. Todos nós estamos escrevendo código em R há anos, mas todos os dias ainda escrevemos códigos que não funciona na primeira tentativa!</p>
 <p>Comece comparando cuidadosamente o código que está executando com o código do livro. O R é extremamente exigente, e um caractere mal colocado pode fazer toda a diferença. Certifique-se de que cada <code>(</code> seja combinado com um <code>)</code> e que cada <code>"</code> seja combinado com outra <code>"</code>. Às vezes, você executará o código e nada acontecerá. Verifique o lado esquerdo do console: se houver um <code>+</code>, isso significa que o R acha que você não digitou uma expressão completa e está esperando que você a termine. Nesse caso, geralmente é fácil começar do zero novamente pressionando <em>Esc</em> para interromper o processamento do comando atual.</p>
 <p>Um problema comum ao criar gráficos ggplot2 é colocar o <code>+</code> no lugar errado: ele deve vir no final da linha, não no início. Em outras palavras, certifique-se de não ter escrito acidentalmente um código como este:</p>
@@ -758,8 +758,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Se você ainda estiver com dificuldades, tente a ajuda (painel <em>Help</em>). Você pode obter ajuda sobre qualquer função do R executando <code>?nome_da_função</code> no console ou selecionando o nome da função e pressionando F1 no RStudio. Não se preocupe se a ajuda não parecer muito útil - em vez disso, pule para os exemplos e procure um código que corresponda ao que você está tentando fazer.</p>
 <p>Se isso não ajudar, leia atentamente a mensagem de erro. Às vezes, a resposta estará escondida lá! Mas quando você é iniciante no R, mesmo que a resposta esteja na mensagem de erro, talvez você ainda não saiba como entendê-la. Outra ferramenta excelente é o Google: tente pesquisar a mensagem de erro no Google, pois é provável que outra pessoa tenha tido o mesmo problema e tenha obtido ajuda on-line.</p>
-</section><section id="resumo" class="level2" data-number="2.8"><h2 data-number="2.8" class="anchored" data-anchor-id="resumo">
-<span class="header-section-number">2.8</span> Resumo</h2>
+</section><section id="resumo" class="level2" data-number="1.8"><h2 data-number="1.8" class="anchored" data-anchor-id="resumo">
+<span class="header-section-number">1.8</span> Resumo</h2>
 <p>Neste capítulo, você aprendeu os fundamentos da visualização de dados com o ggplot2. Começamos com a ideia básica que sustenta o ggplot2: uma visualização é um mapeamento de variáveis em seus dados para atributos estéticos como posição (<em>position</em>), cor (<em>color</em>), tamanho (<em>size</em>) e forma (<em>shape</em>). Em seguida, você aprendeu a aumentar a complexidade e melhorar a apresentação de seus gráficos camada por camada. Você também aprendeu sobre gráficos comumente usados para visualizar a distribuição de uma única variável, bem como para visualizar relações entre duas ou mais variáveis ao utilizar mapeamentos de atributos estéticos adicionais e/ou dividindo seu gráfico em pequenos gráficos usando facetas.</p>
 <p>Usaremos as visualizações repetidamente ao longo deste livro, introduzindo novas técnicas à medida que precisarmos delas, além de nos aprofundarmos na criação de visualizações com o ggplot2 em <span class="quarto-unresolved-ref">?sec-layers</span> por meio da <span class="quarto-unresolved-ref">?sec-communication</span>.</p>
 <p>Com as noções básicas de visualização em seu currículo, no próximo capítulo mudaremos um pouco a direção e daremos algumas orientações práticas sobre o fluxo de trabalho. Intercalamos conselhos sobre fluxo de trabalho com ferramentas de ciência de dados ao longo desta parte do livro, pois isso te ajudará a manter a organização à medida que você escreve quantidades cada vez maiores de código em R.</p>
