@@ -128,7 +128,7 @@ ggplot(table1, aes(x = year, y = cases)) +
 2.  Faça um esboço do processo que você usaria para calcular `rate` para a `table2` e `table3`.
     Você precisará executar quatro operações: 
 
-    a.  Extrair o número de casos de TB por país por ano.
+    a.  Extrair o número de casos de tuberculose por país por ano.
     b.  Extrair a população correspondente por país por ano.
     c.  Dividir os casos pela população e multiplicar por 10000.
     d.  Armazenar de volta no local apropriado.
