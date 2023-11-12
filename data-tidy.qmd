@@ -117,7 +117,7 @@ table1 |>
 # Visualizar mudanças ao longo do tempo
 ggplot(tabela1, aes(x = ano, y = casos)) +
   geom_line(aes(group = pais), color = "grey50") +
-  geom_point(aes(color = country, shape = country)) +
+  geom_point(aes(color = pais, shape = pais)) +
   scale_x_continuous(breaks = c(1999, 2000)) # quebras (breaks) no eixo-x em 1999 and 2000
 ```
 
