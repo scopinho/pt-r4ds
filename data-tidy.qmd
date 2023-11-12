@@ -115,7 +115,7 @@ table1 |>
   summarize(total_cases = sum(cases))
 
 # Visualizar mudanças ao longo do tempo
-ggplot(table1, aes(x = year, y = cases)) +
+ggplot(tabela1, aes(x = ano, y = casos)) +
   geom_line(aes(group = country), color = "grey50") +
   geom_point(aes(color = country, shape = country)) +
   scale_x_continuous(breaks = c(1999, 2000)) # quebras (breaks) no eixo-x em 1999 and 2000
