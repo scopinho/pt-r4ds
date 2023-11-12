@@ -44,7 +44,7 @@ O exemplo abaixo mostra os mesmos dados organizados de três formas diferentes.
 Cada conjunto de dados mostra os mesmos valores de quatro variáveis: *país*, *ano*, *população*, e o número de *casos* documentados de TB (tuberculose). No entanto, cada conjunto de dados organiza os valores de uma forma diferente.
 
 ```{r}
-table1
+tabela1
 
 table2
 
