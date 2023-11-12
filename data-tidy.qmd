@@ -32,6 +32,7 @@ Neste capítulo, vamos focar no `tidyr`, um pacote que disponibliza uma variedad
 #| message: false
 
 library(tidyverse)
+library(dados)
 ```
 
 Deste capítulo em diante, vamos suprimir a mensagem de carregamento `library(tidyverse)`.
