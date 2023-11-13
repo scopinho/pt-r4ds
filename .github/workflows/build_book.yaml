@@ -1,6 +1,7 @@
 on:
   push:
-    branches: traducao-pt-2ed 
+    branches: 
+      - traducao-pt-2ed 
   # pull_request:
   #   branches: main
   # to be able to trigger a manual build
