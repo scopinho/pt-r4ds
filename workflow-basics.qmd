@@ -221,8 +221,8 @@ knitr::include_graphics("screenshots/rstudio-env.png")
     ```{r}
     #| error: true
 
-    my_variable <- 10
-    minha_varıavel
+    minha_variavel <- 10
+    minha_variavel
     ```
 
     Olhe com atenção!
@@ -234,9 +234,10 @@ knitr::include_graphics("screenshots/rstudio-env.png")
     #| eval: false
 
     libary(todyverse)
+    libary(dados)
 
-    ggplot(dTA = mpg) + 
-      geom_point(maping = aes(x = displ y = hwy)) +
+    ggplot(dTA = milhas) + 
+      geom_point(maping = aes(x = cilindrada y = rodovia)) +
       geom_smooth(method = "lm)
     ```
 
@@ -252,11 +253,11 @@ knitr::include_graphics("screenshots/rstudio-env.png")
     ```{r}
     #| eval: false
 
-    my_bar_plot <- ggplot(mpg, aes(x = class)) +
+    meu_grafico_de_barras <- ggplot(milhas, aes(x = classe)) +
       geom_bar()
-    my_scatter_plot <- ggplot(mpg, aes(x = cty, y = hwy)) +
+    meu_grafico_de_dispersao <- ggplot(milhas, aes(x = cidade, y = rodovia)) +
       geom_point()
-    ggsave(filename = "mpg-plot.png", plot = my_bar_plot)
+    ggsave(filename = "milhas-plot.png", plot = meu_grafico_de_barras)
     ```
 
 ## Sumário
