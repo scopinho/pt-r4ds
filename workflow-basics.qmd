@@ -222,7 +222,7 @@ knitr::include_graphics("screenshots/rstudio-env.png")
     #| error: true
 
     minha_variavel <- 10
-    minha_variavel
+    minha_varıavel
     ```
 
     Olhe com atenção!
