@@ -7,7 +7,7 @@ source("_common.R")
 ```
 
 O nosso objetivo nesta parte do livro é oferecer uma visão geral rápida das principais ferramentas da ciência de dados: **importação**, **organização**, **transformação** e **visualização de dados**, como mostrado na @fig-ds-whole-game.
-Queremos apresentar para você a visão geral da ciência de dados, fornecendo apenas o suficiente de todos os principais elementos para que você possa lidar com conjuntos de dados reais, ainda que simples.
+Queremos apresentar para você uma visão geral da ciência de dados, fornecendo apenas o suficiente de todos os principais elementos para que você possa lidar com conjuntos de dados reais, ainda que simples.
 As partes posteriores do livro abordarão cada um desses tópicos com mais profundidade, ampliando o leque de desafios da ciência de dados que você pode enfrentar.
 
 ```{r}
