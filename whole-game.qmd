@@ -1,4 +1,4 @@
-# Whole game {#sec-whole-game-intro .unnumbered}
+# Visão geral {#sec-whole-game-intro .unnumbered}
 
 ```{r}
 #| results: "asis"
@@ -6,40 +6,41 @@
 source("_common.R")
 ```
 
-Our goal in this part of the book is to give you a rapid overview of the main tools of data science: **importing**, **tidying**, **transforming**, and **visualizing data**, as shown in @fig-ds-whole-game.
-We want to show you the "whole game" of data science giving you just enough of all the major pieces so that you can tackle real, if simple, datasets.
-The later parts of the book will hit each of these topics in more depth, increasing the range of data science challenges that you can tackle.
+O nosso objetivo nesta parte do livro é oferecer uma visão geral rápida das principais ferramentas da ciência de dados: **importação**, **organização**, **transformação** e **visualização de dados**, como mostrado na @fig-ds-whole-game.
+Queremos apresentar para você uma visão geral da ciência de dados, fornecendo apenas o suficiente de todos os principais elementos para que você possa lidar com conjuntos de dados reais, ainda que simples.
+As partes posteriores do livro abordarão cada um desses tópicos com mais profundidade, ampliando o leque de desafios da ciência de dados que você pode enfrentar.
 
 ```{r}
 #| label: fig-ds-whole-game 
 #| echo: false
 #| out.width: NULL
 #| fig-cap: |
-#|   In this section of the book, you'll learn how to import,
-#|   tidy, transform, and visualize data.
+#|   Nesta parte do livro, você aprenderá como importar,
+#|   organizar, transformar e visualizar dados.
 #| fig-alt: |
-#|   A diagram displaying the data science cycle: Import -> Tidy ->
-#|   Understand  (which has the phases Transform -> Visualize -> Model in a
-#|   cycle) -> Communicate. Surrounding all of these is Program 
-#|   Import, Tidy, Transform, and Visualize is highlighted.
+#|   Um diagrama que exibe o ciclo da ciência de dados: Importar -> Organizar ->
+#|   Compreender (que inclui as fases Transformar -> Visualizar -> Modelar em um
+#|   ciclo) -> Comunicar. Em torno de tudo isso está Programar. Importar, Organizar,
+#|   Transformar e Visualizar são destacados.
 
 knitr::include_graphics("diagrams/data-science/whole-game.png", dpi = 270)
 ```
 
-Four chapters focus on the tools of data science:
+Quatro capítulos se concentram nas ferramentas da ciência de dados:
 
--   Visualization is a great place to start with R programming, because the payoff is so clear: you get to make elegant and informative plots that help you understand data.
-    In @sec-data-visualization you'll dive into visualization, learning the basic structure of a ggplot2 plot, and powerful techniques for turning data into plots.
+-   A visualização é um ótimo ponto de partida para a programação em R, porque os resultados são claros: você pode criar gráficos elegantes e informativos que te ajudam a entender os dados.
+    Em @sec-data-visualization, você mergulhará na visualização, aprendendo a estrutura básica de um gráfico ggplot2 e técnicas poderosas para transformar dados em gráficos.
 
--   Visualization alone is typically not enough, so in @sec-data-transform, you'll learn the key verbs that allow you to select important variables, filter out key observations, create new variables, and compute summaries.
+-   Geralmente, apenas a visualização não é suficiente.
+    Portanto, em @sec-data-transform, você aprenderá os principais verbos que permitem selecionar variáveis importantes, filtrar observações essenciais, criar novas variáveis e fazer sumarizações.
 
--   In @sec-data-tidy, you'll learn about tidy data, a consistent way of storing your data that makes transformation, visualization, and modelling easier.
-    You'll learn the underlying principles, and how to get your data into a tidy form.
+-   Em @sec-data-tidy, você aprenderá sobre dados organizados (*tidy data*), uma maneira consistente de armazenar seus dados que facilita a transformação, visualização e modelagem.
+    Você aprenderá os princípios de *tidy data* e como deixar seus dados neste formato.
 
--   Before you can transform and visualize your data, you need to first get your data into R.
-    In @sec-data-import you'll learn the basics of getting `.csv` files into R.
+-   Antes de poder transformar e visualizar seus dados, você precisa primeiro importá-los para o R.
+    Em @sec-data-import, você aprenderá o básico de como importar arquivos `.csv` para o R.
 
-Nestled among these chapters are four other chapters that focus on your R workflow.
-In @sec-workflow-basics, @sec-workflow-style, and @sec-workflow-scripts-projects you'll learn good workflow practices for writing and organizing your R code.
-These will set you up for success in the long run, as they'll give you the tools to stay organized when you tackle real projects.
-Finally, @sec-workflow-getting-help will teach you how to get help and keep learning.
+Entre esses capítulos, há outros quatro capítulos que se concentram no fluxo de trabalho no R.
+Em @sec-workflow-basics, @sec-workflow-style e @sec-workflow-scripts-projects, você aprenderá boas práticas de fluxo de trabalho para escrever e organizar seu código R.
+Isso te preparará para o sucesso a longo prazo, pois fornecerá as ferramentas necessárias para manter a organização ao enfrentar projetos reais.
+Por fim, em @sec-workflow-getting-help, você aprenderá como obter ajuda e continuar aprendendo.
