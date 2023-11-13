@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund">
+<title>R para Ciência de Dados (2ª edição) - 2&nbsp; Fluxo de Trabalho: básico</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./data-visualize.html" rel="prev">
+<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script><script defer="" data-domain="r4ds.hadley.nz" src="https://plausible.io/js/plausible.js"></script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./whole-game.html">Visão geral</a></li><li class="breadcrumb-item"><a href="./workflow-basics.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fluxo de Trabalho: básico</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">R para Ciência de Dados (2ª edição)</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://cienciadedatos.github.io/pt-r4ds" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-git"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo de leitor">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Boas-vindas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface-2e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio da segunda edição</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introdução</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./whole-game.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visão geral</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-visualize.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Visualização de dados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./workflow-basics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fluxo de Trabalho: básico</span></span></a>
+  </div>
+</li>
+      </ul>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Índice</h2>
+   
+  <ul>
+<li><a href="#princ%C3%ADpios-b%C3%A1sicos-de-programa%C3%A7%C3%A3o" id="toc-princípios-básicos-de-programação" class="nav-link active" data-scroll-target="#princ%C3%ADpios-b%C3%A1sicos-de-programa%C3%A7%C3%A3o"><span class="header-section-number">2.1</span> Princípios básicos de programação</a></li>
+  <li><a href="#coment%C3%A1rios" id="toc-comentários" class="nav-link" data-scroll-target="#coment%C3%A1rios"><span class="header-section-number">2.2</span> Comentários</a></li>
+  <li><a href="#sec-whats-in-a-name" id="toc-sec-whats-in-a-name" class="nav-link" data-scroll-target="#sec-whats-in-a-name"><span class="header-section-number">2.3</span> A importância dos nomes</a></li>
+  <li><a href="#chamando-fun%C3%A7%C3%B5es" id="toc-chamando-funções" class="nav-link" data-scroll-target="#chamando-fun%C3%A7%C3%B5es"><span class="header-section-number">2.4</span> Chamando funções</a></li>
+  <li><a href="#exerc%C3%ADcios" id="toc-exercícios" class="nav-link" data-scroll-target="#exerc%C3%ADcios"><span class="header-section-number">2.5</span> Exercícios</a></li>
+  <li><a href="#sum%C3%A1rio" id="toc-sumário" class="nav-link" data-scroll-target="#sum%C3%A1rio"><span class="header-section-number">2.6</span> Sumário</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-git"></i></div><div class="action-links"><p><a href="https://cienciadedatos.github.io/pt-r4ds/edit/main/workflow-basics.qmd" class="toc-action">Editar essa página</a></p><p><a href="https://cienciadedatos.github.io/pt-r4ds/issues/new" class="toc-action">Criar uma issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-workflow-basics" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fluxo de Trabalho: básico</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><p>Você agora tem alguma experiência em executar código em R. Não lhe demos muitos detalhes, mas você obviamente descobriu o básico, ou teria se frustrado e jogado este livro fora! Frustração é natural quando você começa a programar em R porque ele é muito rigoroso com a pontuação, e mesmo um caractere fora do lugar pode fazer com que ele reclame. Mas, embora você deva esperar um pouco de frustração, tenha em mente que essa experiência é normal e temporária: acontece com todo mundo, e a única maneira de superá-la é continuar tentando.</p>
+<p>Antes de irmos mais longe, vamos garantir que você tenha uma base sólida na execução de código em R e que conheça alguns dos recursos mais úteis do RStudio.</p>
+<section id="princípios-básicos-de-programação" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="princípios-básicos-de-programação">
+<span class="header-section-number">2.1</span> Princípios básicos de programação</h2>
+<p>Vamos revisar alguns conceitos básicos que omitimos até agora, no interesse de fazer você plotar gráficos o mais rápido possível. Você pode usar o R para fazer cálculos matemáticos básicos:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">/</span> <span class="fl">200</span> <span class="op">*</span> <span class="fl">30</span></span>
+<span><span class="co">#&gt; [1] 0.15</span></span>
+<span><span class="op">(</span><span class="fl">59</span> <span class="op">+</span> <span class="fl">73</span> <span class="op">+</span> <span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="fl">3</span></span>
+<span><span class="co">#&gt; [1] 44.66667</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="va">pi</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Você pode criar novos objetos com o operador de atribuição <code>&lt;-</code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">3</span> <span class="op">*</span> <span class="fl">4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note que o valor de <code>x</code> não é impresso, ele é apenas armazenado. Se você quiser ver o valor, digite <code>x</code> no console.</p>
+<p>Você pode <strong>c</strong>ombinar vários elementos em um vetor com <code><a href="https://rdrr.io/r/base/c.html">c()</a></code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">primos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">7</span>, <span class="fl">11</span>, <span class="fl">13</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>E a aritmética básica em vetores é aplicada a cada elemento do vetor:</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">primos</span> <span class="op">*</span> <span class="fl">2</span></span>
+<span><span class="co">#&gt; [1]  4  6 10 14 22 26</span></span>
+<span><span class="va">primos</span> <span class="op">-</span> <span class="fl">1</span></span>
+<span><span class="co">#&gt; [1]  1  2  4  6 10 12</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Todos os comandos em R onde que você cria objetos, <strong>comandos de atribuição</strong>, têm a mesma forma:</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nome_objeto</span> <span class="op">&lt;-</span> <span class="va">valor</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Quando ler esse código, diga “nome do objeto recebe valor” na sua cabeça.</p>
+<p>Você fará muitas atribuições, e <code>&lt;-</code> não é simples de digitar. Você pode economizar algum tempo com o atalho do teclado do RStudio: Alt + - (o sinal de menos). Observe que o RStudio automaticamente coloca espaços em torno de <code>&lt;-</code>, o que é uma boa prática de formatação de código. Ler código pode ser desafiador até mesmo nos seus melhores dias, então dê um descanso para seus olhos e utilize espaços.</p>
+</section><section id="comentários" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="comentários">
+<span class="header-section-number">2.2</span> Comentários</h2>
+<p>O R ignorará qualquer texto após <code>#</code> em uma linha. Isso permite que você escreva <strong>comentários</strong>, que são textos que são ignorados pelo R, mas que podem ser lidos por outros humanos. Às vezes, incluiremos comentários nos exemplos explicando o que está acontecendo com o código.</p>
+<p>Comentários podem ser úteis para descrever brevemente o que o código a seguir faz.</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># cria um vetor de números primos</span></span>
+<span><span class="va">primos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">7</span>, <span class="fl">11</span>, <span class="fl">13</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># multiplica primos por 2</span></span>
+<span><span class="va">primos</span> <span class="op">*</span> <span class="fl">2</span></span>
+<span><span class="co">#&gt; [1]  4  6 10 14 22 26</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Em pequenos trechos de código como este, deixar um comentário para cada linha de código pode não ser necessário. Mas, à medida que o código que você está escrevendo fica mais complexo, os comentários podem economizar muito tempo seu (e das pessoas que colaboram com você) para descobrir o que foi feito no código.</p>
+<p>Use comentários para explicar o <em>porquê</em> do seu código, não o <em>como</em> ou o <em>o quê</em>. O <em>o quê</em> e o <em>como</em> do seu código são sempre possíveis de descobrir lendo-os cuidadosamente, mesmo que isso possa ser chato. Se você descrever cada etapa nos comentários e, em seguida alterar o código, terá que se lembrar de atualizar os comentários também, caso contrário, será confuso quando você retornar ao seu código no futuro.</p>
+<p>Descobrir <em>por que</em> algo foi feito é muito mais difícil, senão impossível. Por exemplo, <code>geom_smooth()</code> tem um argumento chamado <code>span</code>, que controla a suavidade da curva (<em>smoothness</em>), com valores maiores produzindo uma curva mais suave. Suponha que você decida alterar o valor de <code>span</code> de seu padrão de 0.75 para 0.9: é fácil para alguém que está lendo no futuro entender <em>o que</em> está acontecendo, mas a menos que você anote seu pensamento em um comentário, ninguém entenderá o <em>por que</em> de você ter alterado o padrão.</p>
+<p>Para código de análise de dados, use comentários para explicar sua abordagem estratégica e registrar informações importantes à medida que as encontrar. Não há como recuperar esse conhecimento do próprio código sem comentários.</p>
+</section><section id="sec-whats-in-a-name" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="sec-whats-in-a-name">
+<span class="header-section-number">2.3</span> A importância dos nomes</h2>
+<p>Nomes de objetos devem começar com uma letra e só podem conter letras, números, <code>_</code> e <code>.</code>. Você quer que os nomes dos seus objetos sejam descritivos, então você precisará adotar uma convenção para várias palavras. Recomendamos <strong>snake_case</strong>, onde você separa palavras minúsculas com <code>_</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eu_uso_snake_case</span></span>
+<span><span class="va">outrasPessoasUsamCamelCase</span></span>
+<span><span class="va">algumas.pessoas.usam.pontos</span></span>
+<span><span class="va">E_aLgumas.Pessoas_nAoUsamConvencao</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vamos voltar aos nomes quando discutirmos o estilo de código no <span class="quarto-unresolved-ref">?sec-workflow-style</span>.</p>
+<p>Você pode ver o conteúdo de um objeto (chamaremos isso de inspecionar) digitando seu nome:</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span></span>
+<span><span class="co">#&gt; [1] 12</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Fazendo outra atribuição:</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">esse_e_um_nome_bem_longo</span> <span class="op">&lt;-</span> <span class="fl">2.5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para inspecionar esse objeto, experimente o recurso de autocompletar (<em>autocomplete</em>) do RStudio: digite “esse”, pressione TAB, adicione caracteres até ter um prefixo único e pressione enter.</p>
+<p>Vamos supor que você cometeu um erro e que o valor de <code>esse_e_um_nome_bem_longo</code> deveria ser 3.5, não 2.5. Você pode usar outro atalho de teclado para te ajudar a corrigi-lo. Por exemplo, você pode pressionar ↑ para recuperar o último comando que você digitou e editá-lo. Ou, digite “esse” e pressione Cmd/Ctrl + ↑ para listar todos os comandos que você digitou que começam com essas letras. Use as setas para navegar e, em seguida, pressione enter para digitar novamente o comando. Altere 2.5 para 3.5 e execute novamente.</p>
+<p>Fazendo mais uma atribuição:</p>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r_rocks</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">^</span><span class="fl">3</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vamos tentar inspecioná-lo:</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r_rock</span></span>
+<span><span class="co">#&gt; Error: object 'r_rock' not found</span></span>
+<span><span class="va">R_rocks</span></span>
+<span><span class="co">#&gt; Error: object 'R_rocks' not found</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Isso ilustra o contrato implícito entre você e o R: o R fará os cálculos chatos para você, mas em troca, você deve ser escrever suas instruções de forma precisa. Se não, você provavelmente receberá um erro que diz que o objeto que você está procurando não foi encontrado. Erros de digitação importam; o R não pode ler sua mente e dizer: “ah, você provavelmente quis dizer <code>r_rocks</code> quando digitou <code>r_rock</code>”. A caixa alta (letras maiúsculas) importa; da mesma forma, o R não pode ler sua mente e dizer: “ah, você provavelmente quis dizer <code>r_rocks</code> quando digitou <code>R_rocks</code>”.</p>
+</section><section id="chamando-funções" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="chamando-funções">
+<span class="header-section-number">2.4</span> Chamando funções</h2>
+<p>O R tem uma grande coleção de funções embutidas que são chamadas assim:</p>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">nome_da_funcao</span><span class="op">(</span>argumento1 <span class="op">=</span> <span class="va">valor1</span>, argumento2 <span class="op">=</span> <span class="va">valor2</span>, <span class="va">...</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vamos tentar usar <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code>, que faz <strong>seq</strong>uências regulares de números, e enquanto fazemos nisso, vamos aprender mais sobre os recursos do RStudio. Digite <code>se</code> e pressione TAB. Uma janela pop-up mostra as possíveis formas de completar o código. Especifique <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> digitando mais (um <code>q</code>) para especificar ou usando as setas ↑/↓ para selecionar. Observe a janelinha que aparece, mostrando os argumentos e o objetivo da função. Se você quiser mais ajuda, pressione F1 para obter todos os detalhes no painel ajuda (<em>Help</em>) na parte inferior direita.</p>
+<p>Quando você selecionar a função que deseja, pressione TAB novamente. O RStudio adicionará os parênteses de abertura (<code>(</code>) e fechamento (<code>)</code>) correspondentes para você automaticamente. Digite o nome do primeiro argumento, <code>from</code>, e defina-o como <code>1</code>. Em seguida, digite o nome do segundo argumento, <code>to</code>, e defina-o como <code>10</code>. Por último, pressione enter.</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">1</span>, to <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Normalmente omitimos os nomes dos primeiros argumentos em chamadas de função, assim podemos reescrever isso da seguinte forma:</p>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Digite o código a seguir e veja que o RStudio fornece assistência semelhante com as aspas em pares:</p>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="st">"olá mundo"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As aspas e parênteses devem sempre vir em pares. O RStudio faz o melhor para te ajudar, mas ainda é possível cometer um erro e acabar com aspas não fechadas. Se isso acontecer, o console do R mostrará o caractere de continuação “+”:</p>
+<pre><code>&gt; x &lt;- "olá
++</code></pre>
+<p>O <code>+</code> indica que o R está esperando mais alguma entrada (<em>input</em>); ele acha que você ainda não terminou de digitar. Normalmente, isso significa que você esqueceu de adicionar um <code>"</code> ou um <code>)</code>. Adicione o par que está faltando ou pressione ESCAPE (ou ESC) para cancelar a expressão e tentar novamente.</p>
+<p>Observe que o painel ambiente (<em>Environment</em>) no painel superior direito exibe todos os objetos que você criou:</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="screenshots/rstudio-env.png" class="img-fluid" alt="Guia de ambiente do RStudio que mostra r_rocks, esse_e_um_nome_bem_longo, x, e y no ambiente global." width="582"></p>
+</div>
+</div>
+</section><section id="exercícios" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="exercícios">
+<span class="header-section-number">2.5</span> Exercícios</h2>
+<ol type="1">
+<li>
+<p>Por que esse código não funciona?</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">minha_variavel</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
+<span><span class="va">minha_variavel</span></span>
+<span><span class="co">#&gt; [1] 10</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Olhe com atenção! (Isso pode parecer um exercício sem sentido, mas treinar seu cérebro para notar até a menor diferença valerá a pena quando você estiver programando.)</p>
+</li>
+<li>
+<p>Altere cada um dos seguintes comandos R para que eles sejam executados corretamente:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">libary</span>(todyverse)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">libary</span>(dados)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">dTA =</span> milhas) <span class="sc">+</span> </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">maping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cilindrada <span class="at">y =</span> rodovia)) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</li>
+<li><p>Pressione Option + Shift + K / Alt + Shift + K. O que acontece? Como você pode chegar ao mesmo lugar usando os menus?</p></li>
+<li>
+<p>Vamos revisitar um exercício da <a href="data-visualize.html#sec-ggsave"><span>Seção&nbsp;1.6</span></a>. Rode as seguintes linhas de código. Qual dos dois gráficos é salvo como <code>mpg-plot.png</code>? Por quê?</p>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meu_grafico_de_barras</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">milhas</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">classe</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">meu_grafico_de_dispersao</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">milhas</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">cidade</span>, y <span class="op">=</span> <span class="va">rodovia</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"milhas-plot.png"</span>, plot <span class="op">=</span> <span class="va">meu_grafico_de_barras</span><span class="op">)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</li>
+</ol></section><section id="sumário" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="sumário">
+<span class="header-section-number">2.6</span> Sumário</h2>
+<p>Nesse capítulo você aprendeu um pouco mais sobre como o código R funciona e algumas dicas para te ajudar a entender seu código quando você voltar a ele no futuro. No próximo capítulo, continuaremos sua jornada de ciência de dados, ensinando-o sobre o dplyr, o pacote tidyverse que ajuda você a transformar dados, seja selecionando variáveis importantes, filtrando as linhas de interesse ou calculando estatísticas resumidas.</p>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./data-visualize.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Visualização de dados</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">R para Ciência de Dados (2ª edição) foi escrito por Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund.</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Este livro foi contruído com <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+</body></html>
