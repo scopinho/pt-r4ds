@@ -29,18 +29,18 @@ knitr::include_graphics("diagrams/data-science/whole-game.png", dpi = 270)
 Quatro capítulos se concentram nas ferramentas da ciência de dados:
 
 -   A visualização é um ótimo ponto de partida para a programação em R, porque os resultados são claros: você pode criar gráficos elegantes e informativos que te ajudam a entender os dados.
-    Em @sec-data-visualization, você mergulhará na visualização, aprendendo a estrutura básica de um gráfico ggplot2 e técnicas poderosas para transformar dados em gráficos.
+    No @sec-data-visualization, você mergulhará na visualização, aprendendo a estrutura básica de um gráfico ggplot2 e técnicas poderosas para transformar dados em gráficos.
 
 -   Geralmente, apenas a visualização não é suficiente.
-    Portanto, em @sec-data-transform, você aprenderá os principais verbos que permitem selecionar variáveis importantes, filtrar observações essenciais, criar novas variáveis e fazer sumarizações.
+    Portanto, no @sec-data-transform, você aprenderá os principais verbos que permitem selecionar variáveis importantes, filtrar observações essenciais, criar novas variáveis e fazer sumarizações.
 
--   Em @sec-data-tidy, você aprenderá sobre dados organizados (*tidy data*), uma maneira consistente de armazenar seus dados que facilita a transformação, visualização e modelagem.
+-   No @sec-data-tidy, você aprenderá sobre dados organizados (*tidy data*), uma maneira consistente de armazenar seus dados que facilita a transformação, visualização e modelagem.
     Você aprenderá os princípios de *tidy data* e como deixar seus dados neste formato.
 
 -   Antes de poder transformar e visualizar seus dados, você precisa primeiro importá-los para o R.
-    Em @sec-data-import, você aprenderá o básico de como importar arquivos `.csv` para o R.
+    No @sec-data-import, você aprenderá o básico de como importar arquivos `.csv` para o R.
 
 Entre esses capítulos, há outros quatro capítulos que se concentram no fluxo de trabalho no R.
 Em @sec-workflow-basics, @sec-workflow-style e @sec-workflow-scripts-projects, você aprenderá boas práticas de fluxo de trabalho para escrever e organizar seu código R.
 Isso te preparará para o sucesso a longo prazo, pois fornecerá as ferramentas necessárias para manter a organização ao enfrentar projetos reais.
-Por fim, em @sec-workflow-getting-help, você aprenderá como obter ajuda e continuar aprendendo.
+Por fim, no @sec-workflow-getting-help, você aprenderá como obter ajuda e continuar aprendendo.
