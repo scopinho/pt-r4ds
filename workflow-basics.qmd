@@ -9,7 +9,7 @@ source("_common.R")
 Você agora tem alguma experiência em executar código em R.
 Não lhe demos muitos detalhes, mas você obviamente descobriu o básico, ou teria se frustrado e jogado este livro fora!
 Frustração é natural quando você começa a programar em R porque ele é muito rigoroso com a pontuação, e mesmo um caractere fora do lugar pode fazer com que ele reclame.
-Mas, embora você deva esperar um pouco de frustração, tenha em mente que essa experiência é típica e temporária: acontece com todo mundo, e a única maneira de superá-la é continuar tentando.
+Mas, embora você deva esperar um pouco de frustração, tenha em mente que essa experiência é normal e temporária: acontece com todo mundo, e a única maneira de superá-la é continuar tentando.
 
 Antes de irmos mais longe, vamos garantir que você tenha uma base sólida na execução de código em R e que conheça alguns dos recursos mais úteis do RStudio.
 
@@ -81,7 +81,7 @@ Em pequenos trechos de código como este, deixar um comentário para cada linha 
 Mas, à medida que o código que você está escrevendo fica mais complexo, os comentários podem economizar muito tempo seu (e das pessoas que colaboram com você) para descobrir o que foi feito no código.
 
 Use comentários para explicar o *porquê* do seu código, não o *como* ou o *o quê*.
-O *o quê* e o *como* do seu código são sempre possíveis de descobrir, mesmo que possa ser chato, lendo-o cuidadosamente.
+O *o quê* e o *como* do seu código são sempre possíveis de descobrir lendo-os cuidadosamente, mesmo que isso possa ser chato.
 Se você descrever cada etapa nos comentários e, em seguida alterar o código, terá que se lembrar de atualizar os comentários também, caso contrário, será confuso quando você retornar ao seu código no futuro.
 
 Descobrir *por que* algo foi feito é muito mais difícil, senão impossível.
@@ -107,7 +107,7 @@ algumas.pessoas.usam.pontos
 E_aLgumas.Pessoas_nAoUsamConvencao
 ```
 
-Vamos voltar aos nomes quando discutirmos o estilo de código em @sec-workflow-style.
+Vamos voltar aos nomes quando discutirmos o estilo de código no @sec-workflow-style.
 
 Você pode ver o conteúdo de um objeto (chamaremos isso de inspecionar) digitando seu nome:
 
@@ -222,7 +222,7 @@ knitr::include_graphics("screenshots/rstudio-env.png")
     #| error: true
 
     my_variable <- 10
-    my_varıable
+    minha_varıavel
     ```
 
     Olhe com atenção!
