@@ -6,7 +6,7 @@
 source("_common.R")
 ```
 
-Neste parte do livro, você aprenderá como importar uma vasta variedade de dados para o R, assim como deixá-los em uma forma útil para análises.
+Nesta parte do livro, você aprenderá como importar uma vasta variedade de dados para o R, assim como deixá-los em uma forma útil para suas análises.
 Algumas vezes, isto é apenas uma questão de chamar uma função de um pacote de importação de dados apropriado.
 Mas em casos mais complexos, será necessário tanto a organização e transformação dos dados para se obter o formato retangular (*tidy*) que você gostaria de trabalhar.
 
