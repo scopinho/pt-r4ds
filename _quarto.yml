@@ -3,13 +3,13 @@ project:
   output-dir: _book
 
 book:
-  title: "R for Data Science (2e)"
+  title: "R para Ciência de Dados (2ª edição)"
   reader-mode: true
 
   page-footer:
     left: |
-      R for Data Science (2e) was written by Hadley Wickham, Mine
-      Çetinkaya-Rundel, and Garrett Grolemund.
+      R para Ciência de Dados (2ª edição) foi escrito por Hadley Wickham, Mine
+      Çetinkaya-Rundel, e Garrett Grolemund.
     right: |
       This book was built with <a href="https://quarto.org/">Quarto</a>.
   cover-image: cover.jpg
@@ -20,7 +20,6 @@ book:
   repo-actions: [edit, issue]
   chapters:
     - index.qmd
-
     - preface-2e.qmd
     - intro.qmd
 
@@ -28,48 +27,48 @@ book:
       chapters:
         - data-visualize.qmd
         - workflow-basics.qmd
-        - data-transform.qmd
-        - workflow-style.qmd
-        - data-tidy.qmd
-        - workflow-scripts.qmd
-        - data-import.qmd
-        - workflow-help.qmd
-
-    - part: visualize.qmd
-      chapters:
-        - layers.qmd
-        - EDA.qmd
-        - communication.qmd
-
-    - part: transform.qmd
-      chapters:
-        - logicals.qmd
-        - numbers.qmd
-        - strings.qmd
-        - regexps.qmd
-        - factors.qmd
-        - datetimes.qmd
-        - missing-values.qmd
-        - joins.qmd
-
-    - part: import.qmd
-      chapters:
-        - spreadsheets.qmd
-        - databases.qmd
-        - arrow.qmd
-        - rectangling.qmd
-        - webscraping.qmd
-
-    - part: program.qmd
-      chapters:
-        - functions.qmd
-        - iteration.qmd
-        - base-R.qmd
-
-    - part: communicate.qmd
-      chapters:
-        - quarto.qmd
-        - quarto-formats.qmd
+#         - data-transform.qmd
+#         - workflow-style.qmd
+#         - data-tidy.qmd
+#         - workflow-scripts.qmd
+#         - data-import.qmd
+#         - workflow-help.qmd
+#
+#     - part: visualize.qmd
+#       chapters:
+#         - layers.qmd
+#         - EDA.qmd
+#         - communication.qmd
+#
+#     - part: transform.qmd
+#       chapters:
+#         - logicals.qmd
+#         - numbers.qmd
+#         - strings.qmd
+#         - regexps.qmd
+#         - factors.qmd
+#         - datetimes.qmd
+#         - missing-values.qmd
+#         - joins.qmd
+#
+#     - part: import.qmd
+#       chapters:
+#         - spreadsheets.qmd
+#         - databases.qmd
+#         - arrow.qmd
+#         - rectangling.qmd
+#         - webscraping.qmd
+#
+#     - part: program.qmd
+#       chapters:
+#         - functions.qmd
+#         - iteration.qmd
+#         - base-R.qmd
+#
+#     - part: communicate.qmd
+#       chapters:
+#         - quarto.qmd
+#         - quarto-formats.qmd
 
 format:
   html:
