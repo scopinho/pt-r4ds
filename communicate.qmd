@@ -6,6 +6,8 @@
 source("_common.R")
 ```
 
+Até agora, você aprendeu as ferramentas para inserir seus dados no R, organizá-los em uma forma conveniente para análise para, posteriormente, entender seus dados por meio de transformação e visualização.
+
 So far, you've learned the tools to get your data into R, tidy it into a form convenient for analysis, and then understand your data through transformation, and visualization.
 However, it doesn't matter how great your analysis is unless you can explain it to others: you need to **communicate** your results.
 
