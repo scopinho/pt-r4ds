@@ -6,36 +6,36 @@
 source("_common.R")
 ```
 
-In this part of the book, you'll learn how to import a wider range of data into R, as well as how to get it into a form useful for analysis.
-Sometimes this is just a matter of calling a function from the appropriate data import package.
-But in more complex cases it might require both tidying and transformation in order to get to the tidy rectangle that you'd prefer to work with.
+Neste parte do livro, você aprenderá como importar uma vasta variedade de dados para o R, assim como deixá-los em uma forma útil para análises.
+Algumas vezes, isto é apenas uma questão de chamar uma função de um pacote de importação de dados apropriado.
+Mas em casos mais complexos, será necessário tanto a organização e transformação dos dados para se obter o formato retangular (*tidy*) que você gostaria de trabalhar.
 
 ```{r}
 #| label: fig-ds-import
 #| echo: false
 #| fig-cap: |
-#|   Data import is the beginning of the data science process; without
-#|   data you can't do data science!
+#|   Importação dos dados é o início do processo da ciência de dados; sem
+#|   dados você não pode praticar ciência de dados!
 #| fig-alt: |
-#|   Our data science model with import highlighted in blue.
+#|   Nosso modelo de ciência de dados com Importar destacado em azul.
 #| out.width: NULL
 
 knitr::include_graphics("diagrams/data-science/import.png", dpi = 270)
 ```
 
-In this part of the book you'll learn how to access data stored in the following ways:
+Nesta parte do livro você aprenderá como acessar dados armazenados das seguintes maneiras:
 
--   In @sec-import-spreadsheets, you'll learn how to import data from Excel spreadsheets and Google Sheets.
+-   No @sec-import-spreadsheets, você aprenderá como importar dados de planilhas do Excel e do Google.
 
--   In @sec-import-databases, you'll learn about getting data out of a database and into R (and you'll also learn a little about how to get data out of R and into a database).
+-   No @sec-import-databases, você aprenderá sobre obter dados de um banco de dados para o R (e você também aprenderá um pouco sobre como levar dados do R para um banco de dados).
 
--   In @sec-arrow, you'll learn about Arrow, a powerful tool for working with out-of-memory data, particularly when it's stored in the parquet format.
+-   No @sec-arrow, você aprenderá sobre o *Arrow*, uma poderosa ferramenta para trabalhar com dados maiores que a quantidade de memória, particularmente quando são armazenados em format *parquet*.
 
--   In @sec-rectangling, you'll learn how to work with hierarchical data, including the deeply nested lists produced by data stored in the JSON format.
+-   No @sec-rectangling, você aprenderá como trabalhar com dados hierárquicos, incluindo as listas profundamente aninhadas produzidas por dados em formato JSON.
 
--   In @sec-scraping, you'll learn web "scraping", the art and science of extracting data from web pages.
+-   No @sec-scraping, você aprenderá como obter dados da web (*web scraping*), a arte e a ciência de extrair dados de páginas web.
 
-There are two important tidyverse packages that we don't discuss here: haven and xml2.
-If you're working with data from SPSS, Stata, and SAS files, check out the **haven** package, <https://haven.tidyverse.org>.
-If you're working with XML data, check out the **xml2** package, <https://xml2.r-lib.org>.
-Otherwise, you'll need to do some research to figure which package you'll need to use; google is your friend here 😃.
+Existem dois pacotes tidyverse importantes que não são apresentados aqui: haven e xml2.
+Se você está trabalhando com dados de arquivos do SPSS, Stata ou SAS, veja o pacote **haven** , <https://haven.tidyverse.org>.
+Se você estpá trabalhando com dados XML, veja o pacote **xml2** , <https://xml2.r-lib.org>.
+Caso contrário, você precisará encontrar qual pacote você deverá utilizar; google será seu amigo neste caso 😃.
