@@ -30,7 +30,7 @@ Comunicação é o tema dos dois capítulos seguintes:
     Você pode usar o Quarto tanto para comunicação de analista-para-analista quanto para comunicação de analista-para-pessoas-tomadoras-de-decisão.
     Graças ao poder dos formatos do Quarto, você pode até usar o mesmo documento para ambos os propósitos.
 
--   Em @sec-quarto-formats, você irá aprender um pouco sobre as muitas outras variedades de *outputs* possíveis de serem produzidos usando o Quarto, incluindo *dashboards*, *websites* e livros.
+-   No @sec-quarto-formats, você irá aprender um pouco sobre as muitas outras variedades de *outputs* possíveis de serem produzidos usando o Quarto, incluindo *dashboards*, *websites* e livros.
 
 Esses capítulos focam principalmente na mecânica da comunicação, não nos problemas realmente difíceis de comunicar seus pensamentos para outros humanos.
 Entretanto, há vários outros ótimos livros sobre comunicação, os quais iremos indicar no final de cada capítulo.
