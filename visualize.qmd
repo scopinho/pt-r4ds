@@ -24,11 +24,11 @@ knitr::include_graphics("diagrams/data-science/visualize.png", dpi = 270)
 
 Cada capítulo aborda um ou mais aspectos da criação de uma visualização de dados.
 
--   No @sec-camadas, você irá conhecer a gramática dos gráficos.
+-   No @sec-layers, você irá conhecer a gramática dos gráficos.
 
 -   No @sec-exploratory-data-analysis, você irá combinar a visualização com a sua curiosidade e ceticismo para fazer e responder perguntas interessantes sobre os dados.
 
--   Por fim, no @sec-comunicação, aprenderá a usar seus gráficos exploratórios, melhorá-los e transformá-los em gráficos expositivos, gráficos que ajudam o recém-chegado à sua análise a entender o que está acontecendo da maneira mais rápida e fácil possível.
+-   Por fim, no @sec-communication, aprenderá a usar seus gráficos exploratórios, melhorá-los e transformá-los em gráficos expositivos, gráficos que ajudam o recém-chegado à sua análise a entender o que está acontecendo da maneira mais rápida e fácil possível.
 
 Estes três capítulos te permitem iniciar no mundo da visualização, mas há muito mais para aprender.
 O melhor lugar para aprender mais é o livro ggplot2: [*ggplot2: Elegant graphics for data analysis*](https://ggplot2-book.org/).
