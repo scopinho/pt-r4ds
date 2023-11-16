@@ -6,7 +6,7 @@
 source("_common.R")
 ```
 
-Até agora, você aprendeu as ferramentas para inserir seus dados no R, organizá-los em uma forma conveniente para análise de forma a, posteriormente, compreendê-los por meio de transformação e visualização.
+Até agora, você aprendeu as ferramentas para importar seus dados no R, organizá-los em uma forma conveniente para análise e, posteriormente, compreendê-los por meio de transformações e visualização.
 Contudo, não importa o quão boa é sua análise se você não consegue explicá-la para outras pessoas: você precisa **comunicar** seus resultados.
 
 ```{r}
