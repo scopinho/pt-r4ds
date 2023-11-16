@@ -14,7 +14,7 @@ Contudo, não importa o quão boa é sua análise se você não conseguir explic
 #| echo: false
 #| fig-cap: |
 #|   Comunicação é a parte final do processo de ciência de dados; se você não
-#|   consegue comunicar seus resultados para outros humanos, não importa o quão
+#|   conseguir comunicar seus resultados para outros humanos, não importa o quão
 #|   boa é sua análise.
 #| fig-alt: |
 #|   Um diagrama exibindo o ciclo da ciência de dados
