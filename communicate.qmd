@@ -27,7 +27,7 @@ knitr::include_graphics("diagrams/data-science/communicate.png", dpi = 270)
 Comunicação é o tema dos dois capítulos seguintes:
 
 -   No @sec-quarto, você irá aprender sobre o Quarto, uma ferramenta para integrar texto, código e resultados.
-    Você pode usar o Quarto tanto para comunicação de analista-para-analista quanto para comunicação de analista-para-pessoas-tomadoras-de-decisão.
+    Você pode usar o Quarto tanto para comunicação entre analistas, quanto para comunicação entre analistas e pessoas tomadoras de decisão.
     Graças ao poder dos formatos do Quarto, você pode até usar o mesmo documento para ambos os propósitos.
 
 -   No @sec-quarto-formats, você irá aprender um pouco sobre as muitas outras variedades de *outputs* possíveis de serem produzidos usando o Quarto, incluindo *dashboards*, *websites* e livros.
