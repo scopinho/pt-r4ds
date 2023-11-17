@@ -25,17 +25,17 @@ knitr::include_graphics("diagrams/data-science/import.png", dpi = 270)
 
 Nesta parte do livro você aprenderá como acessar dados armazenados das seguintes maneiras:
 
--   No @sec-import-spreadsheets, você aprenderá como importar dados de planilhas do Excel e do Google.
+-   No @sec-import-spreadsheets, você aprenderá como importar dados de planilhas do Excel e do Planilhas Google (*Google Sheets*).
 
--   No @sec-import-databases, você aprenderá sobre obter dados de um banco de dados para o R (e você também aprenderá um pouco sobre como levar dados do R para um banco de dados).
+-   No @sec-import-databases, você aprenderá sobre obter dados de um banco de dados para o R (e você também aprenderá um pouco sobre como exportar dados do R para um banco de dados).
 
--   No @sec-arrow, você aprenderá sobre o *Arrow*, uma poderosa ferramenta para trabalhar com dados maiores que a quantidade de memória, particularmente quando são armazenados em format *parquet*.
+-   No @sec-arrow, você aprenderá sobre o *Arrow*, uma poderosa ferramenta para trabalhar com dados maiores que a quantidade de memória, particularmente quando são armazenados em formato *parquet*.
 
 -   No @sec-rectangling, você aprenderá como trabalhar com dados hierárquicos, incluindo as listas profundamente aninhadas produzidas por dados em formato JSON.
 
--   No @sec-scraping, você aprenderá como obter dados da web (*web scraping*), a arte e a ciência de extrair dados de páginas web.
+-   No @sec-scraping, você aprenderá sobre raspagem de dados (*web scraping*), a arte e a ciência de extrair dados de páginas web.
 
 Existem dois pacotes tidyverse importantes que não são apresentados aqui: haven e xml2.
 Se você está trabalhando com dados de arquivos do SPSS, Stata ou SAS, veja o pacote **haven** , <https://haven.tidyverse.org>.
 Se você estpá trabalhando com dados XML, veja o pacote **xml2** , <https://xml2.r-lib.org>.
-Caso contrário, você precisará encontrar qual pacote você deverá utilizar; google será seu amigo neste caso 😃.
+Caso contrário, você precisará pesquisar qual pacote você deverá utilizar; google será seu amigo neste caso 😃.
