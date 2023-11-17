@@ -32,5 +32,5 @@ Comunicação é o tema dos dois capítulos seguintes:
 
 -   No @sec-quarto-formats, você irá aprender um pouco sobre as muitas outras variedades de *outputs* possíveis de serem produzidos usando o Quarto, incluindo *dashboards*, *websites* e livros.
 
-Esses capítulos focam principalmente na mecânica da comunicação, não nos problemas realmente difíceis de comunicar seus pensamentos para outros humanos.
+Esses capítulos focam principalmente na parte técnica da comunicação, não nos problemas realmente difíceis de comunicar seus pensamentos para outros humanos.
 Entretanto, há vários outros ótimos livros sobre comunicação, os quais iremos indicar no final de cada capítulo.
