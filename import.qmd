@@ -1,4 +1,4 @@
-# Import {#sec-import .unnumbered}
+# Importação de dados {#sec-import .unnumbered}
 
 ```{r}
 #| echo: false
@@ -29,7 +29,7 @@ Nesta parte do livro você aprenderá como acessar dados armazenados das seguint
 
 -   No @sec-import-databases, você aprenderá sobre obter dados de um banco de dados para o R (e você também aprenderá um pouco sobre como exportar dados do R para um banco de dados).
 
--   No @sec-arrow, você aprenderá sobre o *Arrow*, uma poderosa ferramenta para trabalhar com dados maiores que a quantidade de memória, particularmente quando são armazenados em formato *parquet*.
+-   No @sec-arrow, você aprenderá sobre o *Arrow*, uma poderosa ferramenta para trabalhar com volume de dados que não cabem na memória do seu computador, particularmente quando são armazenados em formato *parquet*.
 
 -   No @sec-rectangling, você aprenderá como trabalhar com dados hierárquicos, incluindo as listas profundamente aninhadas produzidas por dados em formato JSON.
 
