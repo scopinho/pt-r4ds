@@ -33,13 +33,13 @@ book:
 #         - data-import.qmd
 #         - workflow-help.qmd
 #
-#     - part: visualize.qmd
+    - part: visualize.qmd
 #       chapters:
 #         - layers.qmd
 #         - EDA.qmd
 #         - communication.qmd
 #
-#     - part: transform.qmd
+    - part: transform.qmd
 #       chapters:
 #         - logicals.qmd
 #         - numbers.qmd
@@ -50,7 +50,7 @@ book:
 #         - missing-values.qmd
 #         - joins.qmd
 #
-#     - part: import.qmd
+    - part: import.qmd
 #       chapters:
 #         - spreadsheets.qmd
 #         - databases.qmd
@@ -58,13 +58,13 @@ book:
 #         - rectangling.qmd
 #         - webscraping.qmd
 #
-#     - part: program.qmd
+     - part: program.qmd
 #       chapters:
 #         - functions.qmd
 #         - iteration.qmd
 #         - base-R.qmd
 #
-#     - part: communicate.qmd
+     - part: communicate.qmd
 #       chapters:
 #         - quarto.qmd
 #         - quarto-formats.qmd
