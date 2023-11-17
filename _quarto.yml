@@ -14,8 +14,8 @@ book:
       Este livro foi contruído com <a href="https://quarto.org/">Quarto</a>.
   cover-image: cover.jpg
   favicon: cover.jpg
-  site-url: https://r4ds.hadley.nz/
-  repo-url: https://cienciadedatos.github.io/pt-r4ds
+  site-url: https://cienciadedatos.github.io/pt-r4ds/
+  repo-url: https://github.com/cienciadedatos/pt-r4ds/
   repo-branch: main
   repo-actions: [edit, issue]
   chapters:
