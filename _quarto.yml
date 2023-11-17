@@ -58,13 +58,13 @@ book:
 #         - rectangling.qmd
 #         - webscraping.qmd
 #
-     - part: program.qmd
+    - part: program.qmd
 #       chapters:
 #         - functions.qmd
 #         - iteration.qmd
 #         - base-R.qmd
 #
-     - part: communicate.qmd
+    - part: communicate.qmd
 #       chapters:
 #         - quarto.qmd
 #         - quarto-formats.qmd
