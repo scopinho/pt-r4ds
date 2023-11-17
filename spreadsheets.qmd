@@ -2,8 +2,10 @@
 
 ```{r}
 #| echo: false
+#| results: asis
 
 source("_common.R")
+mensagem_capitulo_sem_traducao()
 ```
 
 ## Introduction
@@ -46,7 +48,8 @@ For the rest of the chapter we will focus on using `read_excel()`.
 
 ### Reading Excel spreadsheets {#sec-reading-spreadsheets-excel}
 
-@fig-students-excel shows what the spreadsheet we're going to read into R looks like in Excel. This spreadsheet can be downloaded an Excel file from <https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w/>.
+@fig-students-excel shows what the spreadsheet we're going to read into R looks like in Excel.
+This spreadsheet can be downloaded an Excel file from <https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w/>.
 
 ```{r}
 #| label: fig-students-excel

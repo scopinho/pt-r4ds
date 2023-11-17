@@ -2,8 +2,10 @@
 
 ```{r}
 #| echo: false
+#| results: asis
 
 source("_common.R")
+mensagem_capitulo_sem_traducao()
 ```
 
 ## Introduction
