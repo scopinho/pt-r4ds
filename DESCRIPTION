@@ -13,6 +13,7 @@ Imports:
     arrow,
     babynames,
     curl (>= 5.0.0),
+    dados,
     duckdb,
     gapminder,
     ggrepel,
