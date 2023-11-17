@@ -32,7 +32,7 @@ Cada capítulo aborda um ou mais aspectos da criação de uma visualização de 
 
 Estes três capítulos te permitem iniciar no mundo da visualização, mas há muito mais para aprender.
 O melhor lugar para aprender mais é o livro sobre o ggplot2: [*ggplot2: Elegant graphics for data analysis*](https://ggplot2-book.org/).
-Este livro aprofunda muito mais a teoria subjacente e tem muitos exemplos de como combinar as peças individuais para resolver problemas práticos.
+Este livro aprofunda muito mais a teoria subjacente e tem muitos exemplos de como combinar as diversas funções do pacote para resolver problemas práticos.
 Outro grande recurso é a galeria de extensões do ggplot2 <https://exts.ggplot2.tidyverse.org/gallery/>.
 Este site lista diversos pacotes que expandem o ggplot2 com novas geometrias e escalas.
 É um ótimo lugar para começar se estiver tentando fazer algo que parece difícil com o ggplot2.
