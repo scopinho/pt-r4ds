@@ -38,4 +38,4 @@ Nesta parte do livro você aprenderá como acessar dados armazenados das seguint
 Existem dois pacotes tidyverse importantes que não são apresentados aqui: haven e xml2.
 Se você está trabalhando com dados de arquivos do SPSS, Stata ou SAS, veja o pacote **haven** , <https://haven.tidyverse.org>.
 Se você está trabalhando com dados XML, veja o pacote **xml2** , <https://xml2.r-lib.org>.
-Caso contrário, você precisará pesquisar qual pacote você deverá utilizar; google será seu amigo neste caso 😃.
+Caso contrário, você precisará pesquisar qual pacote você deverá utilizar; o Google será seu amigo neste caso 😃.
