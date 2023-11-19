@@ -17,7 +17,7 @@ Mas em casos mais complexos, será necessário tanto a organização e transform
 #|   Importação dos dados é o início do nosso modelo de processo da ciência de dados; sem
 #|   dados você não pode praticar ciência de dados!
 #| fig-alt: |
-#|   Nosso modelo de ciência de dados com Importar destacado em azul.
+#|   Nosso modelo de processo de ciência de dados com Importar destacado em azul.
 #| out.width: NULL
 
 knitr::include_graphics("diagrams/data-science/import.png", dpi = 270)
