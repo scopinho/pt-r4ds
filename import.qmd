@@ -27,7 +27,7 @@ Nesta parte do livro você aprenderá como acessar dados armazenados das seguint
 
 -   No @sec-import-spreadsheets, você aprenderá como importar dados de planilhas do Excel e do Planilhas Google (*Google Sheets*).
 
--   No @sec-import-databases, você aprenderá sobre obter dados de um banco de dados para o R (e você também aprenderá um pouco sobre como exportar dados do R para um banco de dados).
+-   No @sec-import-databases, você aprenderá sobre obter dados de um banco de dados (*databases*) para o R (e você também aprenderá um pouco sobre como exportar dados do R para um banco de dados).
 
 -   No @sec-arrow, você aprenderá sobre o *Arrow*, uma poderosa ferramenta para trabalhar com volume de dados que não cabem na memória do seu computador, particularmente quando são armazenados em formato *parquet*.
 
