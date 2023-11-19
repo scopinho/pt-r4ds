@@ -1,4 +1,4 @@
-# Importação de dados {#sec-import .unnumbered}
+# Importar {#sec-import .unnumbered}
 
 ```{r}
 #| echo: false
