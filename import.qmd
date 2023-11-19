@@ -14,7 +14,7 @@ Mas em casos mais complexos, será necessário tanto a organização e transform
 #| label: fig-ds-import
 #| echo: false
 #| fig-cap: |
-#|   Importação dos dados é o início do processo da ciência de dados; sem
+#|   Importação dos dados é o início do nosso modelo de processo da ciência de dados; sem
 #|   dados você não pode praticar ciência de dados!
 #| fig-alt: |
 #|   Nosso modelo de ciência de dados com Importar destacado em azul.
