@@ -18,7 +18,8 @@ As partes posteriores do livro abordarão cada um desses tópicos com mais profu
 #|   Nesta parte do livro, você aprenderá como importar,
 #|   organizar, transformar e visualizar dados.
 #| fig-alt: |
-#|   Um diagrama que exibe o processo de ciência de dados: Importar -> Organizar ->
+#|   Um diagrama que exibe o nosso modelo do 
+#|   processo de ciência de dados: Importar -> Organizar ->
 #|   Compreender (que inclui as fases Transformar -> Visualizar -> Modelar em um
 #|   ciclo) -> Comunicar. Em torno de tudo isso está Programar. Importar, Organizar,
 #|   Transformar e Visualizar são destacados.
