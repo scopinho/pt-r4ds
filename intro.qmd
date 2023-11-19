@@ -37,19 +37,18 @@ Primeiro, você deve **importar** seus dados para o R.
 Isso geralmente significa que você pega dados armazenados em um arquivo, um banco de dados ou uma *API* (interface de programação de aplicação, ou ***A**pplication **P**rogramming **I**nterface* em inglês) da web e importa em uma tabela (*data frame*) no R.
 Se você não conseguir importar seus dados para o R, não poderá fazer ciência de dados com eles!
 
-Depois de importar seus dados, é uma boa ideia **organizá-los** .\
+Depois de importar seus dados, é uma boa ideia **organizá-los** .  
 Organizar seus dados significa armazená-los em uma forma consistente que corresponda à semântica do conjunto de dados com a forma como ele é armazenado.
-Em resumo, quando seus dados estão organizados no formato *tidy*[^intro-1], cada coluna é uma variável e cada linha é uma observação.
+Em resumo, quando seus dados estão organizados no formato *tidy*[^intro-nota-traducao-1], cada coluna é uma variável e cada linha é uma observação.
 
-[^intro-1]: **Nota de tradução**: *tidy* é um verbo em inglês que quer dizer "arrumar/organizar".
-    *Tidy data* é uma forma de organizar os dados, que será abordado no capítulo @sec-data-tidy.
+[^intro-nota-traducao-1]: **Nota de tradução**:  *tidy* é um verbo em inglês que quer dizer "arrumar/organizar". *Tidy data* é uma forma de organizar os dados, que será abordado no capítulo @sec-data-tidy.
 
 Dados no formato tidy (*tidy data*) são importantes porque a estrutura consistente permite que você concentre seus esforços em responder perguntas sobre os dados, em vez de lutar para colocar os dados na forma correta para usar diferentes funções.
 Depois de ter dados organizados, normalmente o próximo passo é **transformá-los**.
 A transformação inclui focar em observações de interesse (como todas as pessoas em uma cidade ou todos os dados do último ano), criar novas variáveis que são funções de variáveis existentes (como calcular a velocidade a partir da distância e do tempo) e calcular um conjunto de estatísticas resumidas (como contagens ou médias).
-Juntos, organizar e transformar são chamados de **manipulação de dados**[^intro-2].
+Juntos, organizar e transformar são chamados de **manipulação de dados**[^intro-nota-traducao-2]. 
 
-[^intro-2]: **Nota de tradução**: Manipulação de dados é chamado em inglês de *data wrangling*, porque colocar seus dados em uma forma natural de trabalhar frequentemente parece uma luta (*wrangle*)!
+[^intro-nota-traducao-2]: **Nota de tradução**: Manipulação de dados é chamado em inglês de *data wrangling*, porque colocar seus dados em uma forma natural de trabalhar frequentemente parece uma luta (*wrangle*)! 
 
 Uma vez que você tenha dados organizados e com as variáveis de que precisa, existem duas principais fontes de geração de conhecimento: visualização e modelagem.
 Essas têm pontos fortes e fracos complementares, portanto, qualquer análise de dados real irá iterar entre elas muitas vezes.
@@ -103,9 +102,9 @@ O livro [Tidy Modeling with R](https://www.tmwr.org) ensinará a você a famíli
 
 ### Big data
 
-Este livro orgulhosamente e principalmente foca em conjuntos de dados pequenos e que cabem na memória[^intro-3] (*in-memory*).
+Este livro orgulhosamente e principalmente foca em conjuntos de dados pequenos e que cabem na memória[^intro-nota-traducao-3] (*in-memory*).
 
-[^intro-3]: **Nota de tradução**: "Caber na memória" se refere à memória RAM (*random access memory*) do computador, cuja função é guardar temporariamente toda a informação que o computador precisa (por exemplo, as bases de dados importadas).
+[^intro-nota-traducao-3]: **Nota de tradução**: "Caber na memória" se refere à memória RAM (*random access memory*) do computador, cuja função é guardar temporariamente toda a informação que o computador precisa (por exemplo, as bases de dados importadas).
 
 Este é o lugar certo para começar, porque você não poderá lidar com *big data* a menos que já tenha experiência com bases de dados pequenas.
 As ferramentas que você aprenderá ao longo da maior parte deste livro lidarão facilmente com centenas de megabytes de dados e, com um pouco de cuidado, você geralmente poderá usá-las para trabalhar com alguns gigabytes de dados.
@@ -151,9 +150,9 @@ Para este livro, certifique-se de ter pelo menos o RStudio 2022.02.0.
 
 Quando você inicia o RStudio, @fig-rstudio-console, você verá duas partes principais na interface: o painel de console (*Console*) e o painel de saída (*Output*).
 Por enquanto, tudo o que você precisa saber é que você digita o código R no *Console* e pressiona Enter para executá-lo.
-Você aprenderá mais à medida que avançarmos![^intro-4]
+Você aprenderá mais à medida que avançarmos![^intro-1]
 
-[^intro-4]: Se você deseja uma visão abrangente de todos os recursos do RStudio, consulte o Guia de uso do RStudio em <https://docs.posit.co/ide/user>.
+[^intro-1]: Se você deseja uma visão abrangente de todos os recursos do RStudio, consulte o Guia de uso do RStudio em <https://docs.posit.co/ide/user>.
 
 ```{r}
 #| label: fig-rstudio-console
@@ -203,10 +202,9 @@ Você pode verificar se há atualizações disponíveis executando `tidyverse_up
 
 Existem muitos outros pacotes excelentes que não fazem parte do tidyverse porque resolvem problemas em um domínio diferente ou são projetados com um conjunto diferente de princípios subjacentes.
 Isso não os torna melhores ou piores; apenas os torna diferentes.
-Em outras palavras, o complemento ao tidyverse não é o messyverse[^intro-5], mas muitos outros universos de pacotes inter-relacionados.
+Em outras palavras, o complemento ao tidyverse não é o messyverse[^intro-nota-traducao-4], mas muitos outros universos de pacotes inter-relacionados.
 
-[^intro-5]: **Nota de tradução**: *tidyverse* é a união das palavras *tidy* (arrumado) e *universe* (universo), sendo então a ideia de um "universo arrumado".
-    *messy* quer dizer desarrumado, e *messyverse* seria a ideia de um universo desarrumado.
+[^intro-nota-traducao-4]: **Nota de tradução**: *tidyverse* é a união das palavras *tidy* (arrumado) e *universe* (universo), sendo então a ideia de um "universo arrumado". *messy* quer dizer desarrumado, e *messyverse* seria a ideia de um universo desarrumado. 
 
 Conforme você enfrenta mais projetos de ciência de dados com R, aprenderá novos pacotes e novas formas de pensar sobre dados.
 
