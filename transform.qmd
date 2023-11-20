@@ -49,4 +49,4 @@ Você pode ler esses capítulos de acordo com a sua necessidade; eles foram escr
     Ao longo do livro, abordamos esse tema algumas vezes de forma isolada, mas agora é hora de uma análise mais abrangente que ajude você a distinguir valores ausentes implícitos de valores ausentes explícitos e a compreender como e por que você pode convertê-los.
 
 -   O @sec-joins encerra esta parte do livro sobre transformação, fornecendo ferramentas para unir dois (ou mais) *data frames*.
-    Entender sobre junções fará com que você assimile o conceito de chaves de banco de dados e pense sobre como identificar cada linha em um conjunto de dados.
+    Entender sobre *joins* fará com que você assimile o conceito de chaves (*keys*) de banco de dados e pense sobre como identificar cada linha em um conjunto de dados.
