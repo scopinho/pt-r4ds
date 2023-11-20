@@ -32,7 +32,7 @@ Você pode ler esses capítulos de acordo com a sua necessidade; eles foram escr
 -   O @sec-numbers explora ferramentas para vetores numéricos, a coluna vertebral da ciência de dados.
     Neste capítulo, você aprenderá mais sobre contagem e uma variedade de funções importantes de transformação e sumarização.
 
--   O @sec-strings fornece as ferramentas necessárias para trabalhar com cadeias de caracteres (*strings*): você conseguirá extrair partes de uma *string*, separar uma *string* em vários caracteres e concatená-los para gerar a *string* novamente.
+-   O @sec-strings fornece as ferramentas necessárias para trabalhar com cadeias de caracteres (*strings*): você conseguirá extrair partes de uma *string*, separar uma *string* em vários caracteres e concatená-los para gerar uma *string* novamente.
     Este capítulo dá ênfase principalmente ao pacote stringr, mas também aborda algumas funções do tidyr voltadas para a extração de dados de *strings*.
 
 -   O @sec-regular-expressions introduz as expressões regulares, uma ferramenta poderosa para manipular cadeias de caracteres (*strings*).
