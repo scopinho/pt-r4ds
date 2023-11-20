@@ -1,4 +1,4 @@
-# Transformação {#sec-transform-intro .unnumbered}
+# Transformar {#sec-transform-intro .unnumbered}
 
 ```{r}
 #| results: "asis"
