@@ -7,13 +7,13 @@ source("_common.R")
 ```
 
 As boas práticas de convenção de estilo em programação são como as regras gramaticais: você pode até viver sem elas, mas elas certamente tornam asCoIsaSmaisfáCeiSdeler.
-Mesmo sendo iniciante em programação, é uma boa ideia desenvolver boas práticas na escrita do seu código.
+Mesmo sendo iniciante em programação, é uma boa ideia observar e implementar as boas práticas na escrita do seu código.
 Usar um estilo de escrita consistente torna mais fácil para outras pessoas (incluindo você no futuro!) ler o seu trabalho, e é particularmente importante se você precisar pedir ajuda para outra pessoa.
 Este capítulo apresentará os pontos mais importantes do [guia de estilo tidyverse](https://style.tidyverse.org), que é usado em todos os capítulos deste livro.
 
 Formatar seu código de acordo com as convenções de estilo pode parecer um pouco chato no início, mas se você praticar, isso vai se tornar natural rapidamente.
 Além disso, existem algumas ótimas ferramentas para formatar de forma rápida códigos antigos, como o pacote [**styler**](https://styler.r-lib.org) de Lorenz Walthert.
-Depois de instalar o pacote com o comando `install.packages("styler")`, uma maneira fácil de usá-lo é através da paleta de comando (**command palette**) do RStudio.
+Depois de instalar o pacote com o comando `install.packages("styler")`, uma maneira fácil de usá-lo é por meio da paleta de comando (**command palette**) do RStudio.
 A paleta de comando permite que você use qualquer comando interno do RStudio e muitas extensões (*addins*) fornecidas por pacotes.
 Abra a paleta pressionando Cmd/Ctrl + Shift + P, em seguida, digite "styler" para ver todos os atalhos oferecidos pelo styler.
 A @fig-styler mostra os resultados.
@@ -49,17 +49,17 @@ Use `_` para separar palavras dentro de um nome.
 ```{r}
 #| eval: false
 
-# Tente escrever assim
-voos_curto <- voos |> filter(tempo_voo < 60)
+# Tente escrever assim:
+voos_curtos <- voos |> filter(tempo_voo < 60)
 
-# Evite escrever assim
+# Evite escrever assim:
 VOOSCURTOS <- voos |> filter(tempo_voo < 60)
 ```
 
 Como regra geral, é melhor preferir nomes longos e descritivos que sejam fáceis de entender do que nomes curtos só pela rapidez para digitar.
-Os nomes curtos economizam relativamente pouco tempo ao escrever o código (especialmente porque o recurso de autocompletar (*autocomplete*) ajuda a terminar de digitar eles), mas isso pode te atrasar depois, quando você volta ao código antigo e precisa decifrar uma abreviação bem difícil de entender.
+Os nomes curtos economizam relativamente pouco tempo ao escrever o código (especialmente porque o recurso de autocompletar (*autocomplete*) ajuda a terminar de digitá-los), mas isso pode te atrasar depois, quando voltar ao código antigo e precisar decifrar uma abreviação bem difícil de entender.
 
-Se você tem um monte de nomes para coisas que estão relacionadas entre sí, faça o possível para ser consistente.
+Se você tem um monte de nomes para coisas que estão relacionadas entre si, faça o possível para ser consistente.
 É fácil surgirem inconsistências quando você esquece uma convenção anterior, então não se sinta mal se você tiver que voltar e renomear as coisas.
 Em geral se você tem um monte de variáveis que são uma variação de um tema específico, é melhor dar a elas um prefixo comum em vez de um sufixo comum, porque o recurso de autocompletar funciona melhor no início de uma variável.
 
@@ -70,10 +70,10 @@ Use espaços em ambos os lados dos operadores matemáticos, exceto `^` (operador
 ```{r}
 #| eval: false
 
-# Tente escrever assim
+# Tente escrever assim:
 z <- (a + b)^2 / d
 
-# Evite escrever assim
+# Evite escrever assim:
 z<-( a + b ) ^ 2/d
 ```
 
@@ -83,10 +83,10 @@ Sempre coloque um espaço depois de uma vírgula, assim como escrevemos em portu
 ```{r}
 #| eval: false
 
-# Tentar escrever assim
+# Tente escrever assim:
 mean(x, na.rm = TRUE)
 
-# Evite escrever assim
+# Evite escrever assim:
 mean (x ,na.rm=TRUE)
 ```
 
@@ -103,7 +103,7 @@ voos |>
   mutate(
     velocidade     = distancia / tempo_voo,
     hora_saida     = horario_saida %/% 100,
-    minuto_saida = horario_saida %%  100
+    minuto_saida   = horario_saida %%  100
   ) 
 ```
 
@@ -115,22 +115,22 @@ Isso torna mais fácil adicionar novas etapas, reorganizar etapas existentes, mo
 ```{r}
 #| eval: false
 
-# Tentar escrever assim
+# Tente escrever assim:
 voos |>  
   filter(!is.na(atraso_saida), !is.na(cauda)) |> 
   count(destino)
 
-# Evite escrever assim
+# Evite escrever assim:
 voos|>filter(!is.na(atraso_saida), !is.na(cauda))|>count(destino)
 ```
 
 Se a função para a qual você está encadeando tem argumentos nomeados (como `mutate()` ou `summarize()`), coloque cada argumento em uma nova linha.
-Se a função não tiver argumentos nomeados (como `select()` ou `filter()`), mantenha tudo em uma linha, a menos que não caiba, nesse caso você deve colocar cada argumento em sua própria linha.
+Se a função não tiver argumentos nomeados (como `select()` ou `filter()`), mantenha tudo em uma linha, caso caiba. Caso não caiba, você deve colocar cada argumento em sua própria linha.
 
 ```{r}
 #| eval: false
 
-# Tente escrever assim
+# Tente escrever assim:
 voos |>  
   group_by(cauda) |> 
   summarize(
@@ -138,7 +138,7 @@ voos |>
     n = n()
   )
 
-# Evite escrever assim
+# Evite escrever assim:
 voos |>
   group_by(
     cauda
@@ -147,14 +147,14 @@ voos |>
 ```
 
 Depois da primeira etapa do encadeamento, recue cada linha (**indente**) em dois espaços.
-O RStudio colocará automaticamente os espaços para depois de quebrar uma linha logo depois do *pipe* `|>`.
+O RStudio colocará automaticamente os espaços para você após a quebra de linha feita logo depois do *pipe* `|>`.
 Se você estiver colocando cada argumento em sua própria linha, recue em mais dois espaços.
 Certifique-se de que o `)` (fechamento de parêntesis) esteja em sua própria linha e não recuada para corresponder à posição horizontal do nome da função.
 
 ```{r}
 #| eval: false
 
-# Tente escrever assim 
+# Tente escrever assim:
 voos |>  
   group_by(cauda) |> 
   summarize(
@@ -162,7 +162,7 @@ voos |>
     n = n()
   )
 
-# Evite escrever assim
+# Evite escrever assim:
 voos|>
   group_by(cauda) |> 
   summarize(
@@ -170,7 +170,7 @@ voos|>
              n = n()
            )
 
-# Evite escrever assim
+# Evite escrever assim:
 voos|>
   group_by(cauda) |> 
   summarize(
@@ -179,27 +179,27 @@ voos|>
   )
 ```
 
-Tudo bem ignorar algumas dessas regras se a sua sequências de encadeamento (*pipeline*) se encaixar facilmente em uma linha.
+Tudo bem ignorar algumas dessas regras se as etapas de seu encadeamento (*pipeline*) se encaixar facilmente em uma linha.
 Mas, em nossa experiência coletiva, é comum que pequenos trechos de código cresçam, então você vai acabar economizando tempo no longo prazo começando com todo o espaço vertical de que precisa.
 
 ```{r}
 #| eval: false
 
-# Isso se encaixa bem em uma linha
+# Isso se encaixa bem em uma linha:
 df |> mutate(y = x + 1)
 
 # Enquanto isso ocupa 4x mais linhas, é facilmente estendido para
-# mais variáveis e mais etapas no futuro
+# mais variáveis e mais etapas no futuro:
 df |> 
   mutate(
     y = x + 1
   )
 ```
 
-Por último, tenha cuidado ao escrever *pipelines* muito longos, como por exemplo mais longos do que 10-15 linhas.
-Tente dividir o *pipeline* em subtarefas menores, dando a cada tarefa um nome que informe para quem está lendo o objetivo daquela etapa.
+Por último, tenha cuidado ao escrever *pipelines* muito longos, com mais de 10-15 linhas, por exemplo.
+Tente dividir o *pipeline* em subtarefas menores, dando a cada tarefa um nome que informe o objetivo daquela etapa.
 Os nomes ajudarão quem está lendo a entender o que está acontecendo e torna mais fácil de verificar se os resultados intermediários estão como o esperado.  
-Dê nomes informativos sempre que puder.  Por exemplo, quando você alterar a estrutura dos dados em seu nível básico, como após pivotar ou sumarizar.
+Dê nomes informativos sempre que puder. Por exemplo, quando você alterar a estrutura dos dados em seu nível básico, como após pivotar ou sumarizar.
 Não espere acertar na primeira tentativa!
 Isso significa que você tem que dividir os encadeamentos longos se houver estados intermediários que possam receber bons nomes.
 
@@ -220,7 +220,7 @@ voos |>
   geom_line()
 ```
 
-Lembre-se, se você não consegue colocar todos os argumentos de uma função em uma única linha, coloque cada argumento em sua própria linha:
+Lembre-se, se você não puder colocar todos os argumentos de uma função em uma única linha, coloque cada argumento em sua própria linha:
 
 ```{r}
 #| eval: false
@@ -252,9 +252,9 @@ Conforme seus scripts ficam mais longos, você pode usar comentários de **seç�
 ```{r}
 #| eval: false
 
-# Carrega os dados --------------------------------------
+# Carregar os dados --------------------------------------
 
-# Plota os dados   --------------------------------------
+# Plotar os dados   --------------------------------------
 ```
 
 O RStudio fornece um atalho de teclado para criar esses cabeçalhos (Cmd/Ctrl + Shift + R), e os exibe no menu de navegação de código na parte inferior esquerda do editor, como mostrado na @fig-rstudio-sections.
@@ -289,11 +289,11 @@ knitr::include_graphics("screenshots/rstudio-nav.png")
 ## Sumário
 
 Neste capítulo, você aprendeu os princípios mais importantes da convenção de estilo de código.
-Essa convenção pode parecer um conjunto de regras arbitrárias (porque são!), mas com o tempo, à medida que você escreve mais código e compartilha código com mais pessoas, você verá como é importante ter um código que pode ser lido facilmente.
+Essa convenção pode parecer um conjunto de regras arbitrárias (porque são!), mas com o tempo, à medida que você escreve mais código e compartilha código com mais pessoas, você verá como é importante ter um código fácil de ser lido e entendido.
 E não se esqueça do pacote styler: é uma ótima maneira de melhorar de forma rápida a qualidade do código mal formatado.
 
 No próximo capítulo, voltamos às ferramentas de ciência de dados, aprendendo sobre *tidy data* (dados organizados).
 *Tidy data* é uma maneira consistente (convenção) de organizar seus conjuntos de dados que é usada em todo o tidyverse.
 Essa consistência torna sua vida mais fácil porque, uma vez que você tem dados organizados de acordo com os conceitos de *tidy data*, eles irão funcionar com a grande maioria das funções do tidyverse.
-Claro, a vida nunca é fácil, e a maioria dos conjuntos de dados que você encontrar na vida real não serão *tidy*.
+Claro, a vida nunca é fácil, e a maioria dos conjuntos de dados que você encontrará na vida real não serão *tidy*.
 Por esse motivo, também ensinaremos como usar o pacote tidyr para organizar seus dados desorganizados.
