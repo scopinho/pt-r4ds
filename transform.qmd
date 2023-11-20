@@ -17,7 +17,7 @@ Nesta parte do livro, você aprenderá sobre os tipos mais importantes de variá
 #|   do tipo de dados envolvidos, que é o foco desta parte
 #|   do livro.
 #| fig-alt: |
-#|   Nosso modelo de ciência de dados com 'transform' destacado em azul.
+#|   Nosso modelo do processo de ciência de dados com Transformar destacado em azul.
 #| out.width: NULL
 
 knitr::include_graphics("diagrams/data-science/transform.png", dpi = 270)
