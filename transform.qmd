@@ -36,7 +36,7 @@ Você pode ler esses capítulos de acordo com a sua necessidade; eles foram escr
     Este capítulo dá ênfase principalmente ao pacote stringr, mas também aborda algumas funções do tidyr voltadas para a extração de dados de *strings*.
 
 -   O @sec-regular-expressions introduz as expressões regulares, uma ferramenta poderosa para manipular cadeias de caracteres (*strings*).
-    Este capítulo fará com que você saía da fase de pensar que um um gato caminhou sobre o seu teclado e passe a ler e escrever com facilidade padrões complexos de *strings*.
+    Este capítulo fará com que você saia da fase de pensar que um um gato caminhou sobre o seu teclado e passe a ler e escrever com facilidade padrões complexos de *strings*.
 
 -   O @sec-factors introduz os fatores: o tipo de dado que o R utiliza para armazenar dados categóricos.
     Você utiliza um fator quando uma variável possui um conjunto fixo de valores possíveis ou quando você deseja atribuir uma ordenação não alfabética a uma *string*.
