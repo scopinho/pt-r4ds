@@ -273,7 +273,7 @@ knitr::include_graphics("screenshots/rstudio-nav.png")
 
 ## Exercícios
 
-1. Refatore (mude o estilo) dos seguintes *pipelines* seguindo as diretrizes apresentadas neste capítulo.
+1. Aplique as boas normas de formatação aos seguintes *pipelines* seguindo as diretrizes apresentadas neste capítulo.
 
     ```{r}
     #| eval: false
