@@ -17,7 +17,8 @@ Contudo, não importa o quão boa é sua análise se você não conseguir explic
 #|   conseguir comunicar seus resultados para outros humanos, não importa o quão
 #|   boa é sua análise.
 #| fig-alt: |
-#|   Um diagrama exibindo o ciclo da ciência de dados
+#|   Um diagrama exibindo o nosso modelo do processo 
+#|   de ciência de dados
 #|   com comunicação destacada em azul.
 #| out.width: NULL
 
