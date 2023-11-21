@@ -56,7 +56,7 @@ voos_curtos <- voos |> filter(tempo_voo < 60)
 VOOSCURTOS <- voos |> filter(tempo_voo < 60)
 ```
 
-Como regra geral, é melhor preferir nomes longos e descritivos que sejam fáceis de entender do que nomes curtos só pela rapidez para digitar.
+Como regra geral, é melhor usar nomes longos, descritivos e que sejam fáceis de entender, do que nomes curtos só pela rapidez para digitar.
 Os nomes curtos economizam relativamente pouco tempo ao escrever o código (especialmente porque o recurso de autocompletar (*autocomplete*) ajuda a terminar de digitá-los), mas isso pode te atrasar depois, quando voltar ao código antigo e precisar decifrar uma abreviação bem difícil de entender.
 
 Se você tem um monte de nomes para coisas que estão relacionadas entre si, faça o possível para ser consistente.
