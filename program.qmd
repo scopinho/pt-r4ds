@@ -17,7 +17,7 @@ Programação é uma competência transversal para todo trabalho de ciência de 
 #|   Programação é a água na qual todos os outros componentes nadam.
 #| fig-alt: |
 #|   Nosso modelo do processo de ciência de dados com a programação (importar,
-#|   arrumar, transformar, visualizar, modelar e comunicar, ou seja, tudo)
+#|   organizar, transformar, visualizar, modelar e comunicar, ou seja, tudo)
 #|   destacada em azul.
 
 knitr::include_graphics("diagrams/data-science/program.png", dpi = 270)
@@ -35,7 +35,7 @@ Com o tempo, você quer que seu código seja não apenas mais fácil de escrever
 Nos próximos três capítulos, você irá desenvolver competências que irão aprimorar suas habilidades em programação.
 
 1.  Copiar e colar é uma ferramenta poderosa, mas você deve evitar usá-la mais que duas vezes.
-    Código repetitivo é perigoso, pois ele pode facilmente te levar a erros e inconsistências.
+    Repetir código é perigoso, pois isto pode facilmente te levar a erros e inconsistências.
     Em vez disso, no @sec-functions, você irá aprender como escrever **funções** que te permitem extrair códigos tidyverse repetidos para que possam ser facilmente reutilizados.
 
 2.  Funções extraem os códigos repetidos, mas você eventualmente precisa repetir as mesmas ações em diferentes *inputs*.
@@ -43,10 +43,10 @@ Nos próximos três capítulos, você irá desenvolver competências que irão a
     Essas ferramentas incluem *for loops* e programação funcional, que você irá aprender no @sec-iteration.
 
 3.  Quanto mais você ler códigos escritos por outras pessoas, mais você verá códigos que não utilizam tidyverse.
-    No @sec-base-r, você irá aprender algumas das funções mais importantes do R base que você vê por aí.
+    No @sec-base-r, você irá aprender algumas das funções mais importantes do R base que você encontrará por aí.
 
 O objetivo desses capítulos é te ensinar o mínimo sobre programação que você precisa para ciência de dados.
-Quando você dominar esse material, recomendamos fortemente que você continue a investir em suas habilidades de programação.
+Quando você dominar esse material, recomendamos fortemente que você continue a investir nas suas habilidades de programação.
 Nós escrevemos dois livros que você pode achar útil.
-[*Hands on Programming with R*](https://rstudio-education.github.io/hopr/), de Garrett Grolemund, é uma introdução a R como linguagem de programação e um ótimo ponto de partida se R é sua primeira linguagem de programação.
+[*Hands on Programming with R*](https://rstudio-education.github.io/hopr/), de Garrett Grolemund, é uma introdução ao R como linguagem de programação e um ótimo ponto de partida se o R for sua primeira linguagem de programação.
 [*Advanced R*](https://adv-r.hadley.nz/) de Hadley Wickham entra em detalhes na linguagem de programação R; é um ótimo ponto de partida se você já tem experiência em programação e ótimo próximo passo se você já tiver internalizado as ideias desses capítulos.
