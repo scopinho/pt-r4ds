@@ -49,4 +49,4 @@ O objetivo desses capítulos é te ensinar o mínimo sobre programação que voc
 Quando você dominar esse material, recomendamos fortemente que você continue a investir nas suas habilidades de programação.
 Nós escrevemos dois livros que você pode achar útil.
 [*Hands on Programming with R*](https://rstudio-education.github.io/hopr/), de Garrett Grolemund, é uma introdução ao R como linguagem de programação e um ótimo ponto de partida se o R for sua primeira linguagem de programação.
-[*Advanced R*](https://adv-r.hadley.nz/) de Hadley Wickham entra em detalhes na linguagem de programação R; é um ótimo ponto de partida se você já tem experiência em programação e ótimo próximo passo se você já tiver internalizado as ideias desses capítulos.
+[*Advanced R*](https://adv-r.hadley.nz/) de Hadley Wickham entra em detalhes na linguagem de programação R; é um ótimo ponto de partida se você já tem experiência em programação e ótimo próximo passo se as ideias desses capítulos forem familiares para você.
