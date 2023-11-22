@@ -1,10 +1,8 @@
 # Transformar {#sec-transform-intro .unnumbered}
 
 ```{r}
-#| results: "asis"
 #| echo: false
 source("_common.R")
-mensagem_capitulo_sem_traducao()
 ```
 
 A segunda parte do livro abordou, com profundidade, a visualização de dados.
