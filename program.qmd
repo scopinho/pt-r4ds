@@ -28,7 +28,7 @@ Obviamente o código diz ao computador o que você quer que ele faça.
 Mas ele também transmite um significado a outros humanos.
 Pensar em código como um veículo de comunicação é importante porque todo projeto que você faz é fundamentalmente colaborativo.
 Mesmo que você não esteja trabalhando com outras pessoas, você definitivamente trabalhará com o você do futuro.
-Escrever códigos claros é importante para que outras pessoas (como você do futuro) possam entender o porquê de você ter abordado uma análise da forma como fez.
+Escrever códigos claros é importante para que outras pessoas (como você no futuro) possam entender o porquê de você ter abordado uma análise da forma como fez.
 Isso significa que melhorar na programação também envolve melhorar na comunicação.
 Com o tempo, você quer que seu código seja não apenas mais fácil de escrever, mas fácil também para outras pessoas lerem.
 
