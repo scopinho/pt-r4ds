@@ -293,7 +293,7 @@ O legal da função `to_duckdb()` é que a transferência não envolve nenhuma c
 Nest capítulo, você experimentou o pacote *arrow*, que fornece um *backend* dplyr para trabalhar com grandes conjuntos de dados em disco.
 Ele pode funcionar com arquivos CSV e é muito mais rápido se você converter seus dados para *parquet*.
 Parquet é um formato de dados binários projetado especificamente para análise de dados em computadores modernos.
-Muito menos ferramentas podem funcionar com arquivos parquet em comparação com CSV, mas sua estrutura particionada, compactada e colunar torna a análise muito mais eficiente.
+Um número muito menor de ferramentas podem funcionar com arquivos parquet em comparação com CSV, mas sua estrutura particionada, compactada e colunar torna sua análise muito mais eficiente.
 
 A seguir, você aprenderá sobre sua primeira fonte de dados não retangular, que você manipulará usando ferramentas fornecidas pelo pacote tidyr.
 Vamos nos concentrar nos dados provenientes de arquivos JSON, mas os princípios gerais se aplicam a dados semelhantes a árvores (*tree-like*), independentemente de sua origem.
