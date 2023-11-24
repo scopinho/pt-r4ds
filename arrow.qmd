@@ -71,7 +71,7 @@ curl::multi_download(
 Vamos começar dando uma olhada nos dados.
 Com 9 GB, este arquivo é tão grande que provavelmente não queremos carregá-lo por inteiro na memória do computador.
 Como regra geral, dizemos que você vai querer ter no mínimo duas vezes mais memória que o tamanho dos dados e muitos *laptops* chegam até 16 GB.
-Isto significa que queremos evitar `read_csv()` e ao invés usar `arrow::open_dataset()`:
+Isto significa que queremos evitar `read_csv()` e, ao invés disso, usar `arrow::open_dataset()`:
 
 ```{r open-dataset}
 seattle_csv <- open_dataset(
