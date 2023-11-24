@@ -30,7 +30,7 @@ Geralmente, é dificil saber qual funcionará melhor, então para fases iniciais
 
 ### Pré-requisitos
 
-Neste capítulo, continuaremos a usar tydiverse, particularmente dplyr, mas iremos juntá-lo com o pacote *arrow*, que foi projetado especificamente para trabalhar com grandes volumes de dados.
+Neste capítulo, continuaremos a usar tydiverse, particularmente dplyr, mas iremos combiná-lo com o pacote *arrow*, que foi projetado especificamente para trabalhar com grandes conjuntos de dados.
 
 ```{r setup}
 #| message: false
