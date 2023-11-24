@@ -264,7 +264,7 @@ A melhora de desempenho de \~100x é atribuída a dois fatores: O particionament
 -   O particionamento melhora o desempenho pois esta consulta usa `CheckoutYear == 2021` para filtrar os dados, e *arrow* é inteligente o suficiente para reconhecer que precisa ler apenas 1 dos 18 arquivos *parquet*.
 -   O formato *parquet* melhora o desempenho por armazenar dados em formato binário que pode ser carregado mais diretamente para a memória. O formato colunar (*column-wise*) e os metadados ricos fazem com que o *arrow* precise ler apenas as quatro colunas usadas na consulta (`CheckoutYear`, `MaterialType`, `CheckoutMonth` e `Checkouts`).
 
-Esta diferença de desempenho massiva é o motivo que compensa converter grandes arquivos CSV para *parquet*!
+Esta diferença de desempenho massiva é o motivo pelo qual vale a pena converter grandes arquivos CSV para *parquet*!
 
 ### Usando duckdb com *arrow*
 
