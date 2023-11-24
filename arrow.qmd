@@ -286,7 +286,7 @@ O legal da função `to_duckdb()` é que a transferência não envolve nenhuma c
 
 1.  Encontre os livros mais populares para cada ano.
 2.  Qual autor tem mais livros no sistema de bibliotecas de *Seattle*?
-3.  Como as retiradas de livros vs livros eletrônicos (*ebooks*) mudou ao longo dos últimos 10 anos?
+3.  Como as retiradas de livros vs livros eletrônicos (*ebooks*) mudaram ao longo dos últimos 10 anos?
 
 ## Resumo
 
