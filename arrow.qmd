@@ -26,7 +26,7 @@ Em muitos casos, a escolha já foi feita para você, pois os dados já estão em
 Mas se você está começando com seus próprios dados (talvez arquivos CSV), você pode carregá-los em um banco de dados ou convertê-los para *parquet*.
 Geralmente, é dificil saber qual funcionará melhor, então para fases iniciais da tua análise, vamos te encorajar a tentar usar ambos e escolher aquele que funcione melhor para você.
 
-(Um grande agradecimento à Danielle Navarro que contruiu com a versão inicial deste capítulo.)
+(Um grande obrigado à Danielle Navarro que contribuiu com a versão inicial deste capítulo.)
 
 ### Pré-requisitos
 
