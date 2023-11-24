@@ -92,10 +92,10 @@ seattle_csv
 ```
 
 A primeira linha na saída te diz que `seattle_csv` está armazenado localmente em disco como um único arquivo CSV; ele será carregado em memória apenas quando necessário.
-O restante da saída informa o tipo que o *arrow* atribuiu para cada coluna.
+O restante da saída informa o tipo atribuído pelo *arrow* para cada coluna.
 
-Podemos ver o que realmente temos dentro com `glimpse()`.
-Isto revela que existem \~41 milhões de linhas e 12 colunas, e nos mostra alguns valores.
+Podemos ver o que realmente temos no conjunto de dados com `glimpse()`.
+Isto revela que há \~41 milhões de linhas e 12 colunas, e nos mostra alguns valores.
 
 ```{r glimpse-data}
 #| cache: true
@@ -115,12 +115,12 @@ seattle_csv |>
 ```
 
 Graças ao *arrow*, este código funcionará independente do tamanho do conjunto de dados que tivermos.
-Porém, é ainda um pouco lento: No computador do Hadley demorou \~10 segundos para concluir.
+Porém, ainda é um pouco lento: no computador do Hadley demorou \~10 segundos para concluir.
 Não é tão terrível considerando a quantidade de dados que temos, mas podemos deixá-lo mais rápido mudando para um formato melhor.
 
 ## O formato *parquet* {#sec-parquet}
 
-Para tornar estes dados mais fáceis de trabalhar, vamos trocá-lo para o formato de arquivo *parquet* e dividí-los em múltiplos arquivos.
+Para tornar este conjunto de dados mais fácil de trabalhar, vamos trocá-lo para o formato de arquivo *parquet* e dividí-lo em múltiplos arquivos.
 As seções seguintes irão primeiramente introduzir você ao *parquet* e particionamento (*partitioning*) e então aplicar o que aprendemos nos dados das bibliotecas de *Seattle*.
 
 ### Vantagens do *parquet*
@@ -129,21 +129,21 @@ Assim como CSV, *parquet* é usado para dados retangulares, mas ao invés de ser
 Isto significa que:
 
 -   Arquivos *parquet* são normalmente menores que seus arquivos equivalentes CSV.
-    *Parquet* se baseia em [codificação eficiente](https://parquet.apache.org/docs/file-format/data-pages/encodings/) para manter o tamanho do arquivo menor e suporta compressão de arquivo.
-    Isto ajuda a tornar os arquivos *parquet* rápidos, pois há menos dado para ser movido do disco para a memória.
+    *Parquet* é baseado em [codificação eficiente](https://parquet.apache.org/docs/file-format/data-pages/encodings/) para manter o tamanho do arquivo menor e suporta compressão de arquivo.
+    Isto ajuda a tornar os arquivos *parquet* rápidos, pois há menos dados para serem movidos do disco para a memória.
 
 -   Arquivos *parquet* possuem um rico sistema de tipagem.
     Como falamos na @sec-col-types, um arquivo CSV não fornece nenhuma informação sobre os tipos das colunas.
     Por exemplo, um leitor de CSV precisa adivinhar se `"08-10-2022"` deve ser lido como texto ou data.
-    Diferentemente, arquivos *parquet* armazenam dados de maneira a registrar o tipo juntamente com o dado.
+    Diferentemente, arquivos *parquet* armazenam dados de maneira a registrar o tipo juntamente com os dados.
 
 -   Arquivos *parquet* são "orientados-a-colunas" (*column-oriented*).
-    Isto significa que eles são organizados em coluna por coluna, muito parecido com os *data frames* do R.
+    Isto significa que eles são organizados coluna por coluna, muito parecido com os *data frames* do R.
     Isto geramente leva a um melhor desempenho para tarefas de análise de dados quando comparado aos arquivos CSV, que são organizados linha a linha.
 
--   Arquivos *parquet* são "fragmentados" (*chunked*), o que torna possível trabalhar ao mesmo tempo em diferentes partes do mesmo arquivo e, se você tiver sorte, pular alguns fragmentos completamente.
+-   Arquivos *parquet* são "fragmentados" (*chunked*), o que torna possível trabalhar em diferentes partes do mesmo arquivo ao mesmo tempo e, se você tiver sorte, pular alguns fragmentos completamente.
 
-Há uma desvantagem primária nos arquivos *parquet*: Eles não podem mais ser "lidos por humanos", e.x: se você olhar para um arquivo *parquet* usando `readr::read_file()`, você verá apenas um monte de caracteres sem sentido.
+Há uma desvantagem primária nos arquivos *parquet*: eles não podem mais ser "lidos por humanos", ou seja, se você olhar para um arquivo *parquet* usando `readr::read_file()`, você verá apenas um monte de caracteres sem sentido.
 
 ### Particionamento
 
@@ -151,16 +151,16 @@ Conforme os conjuntos de dados vão ficando cada vez maiores, armazenar todos os
 Quando esta estrutura é feita de forma inteligente, esta estratégia pode levar a melhoras significativas de desempenho, pois muitas análises precisam apenas de um subconjunto dos arquivos.
 
 Não existem regras absolutas sobre como particionar seu conjunto de dados: os resultados dependerão de seus dados, padrões de acesso e os sistemas que lêem os dados.
-Você provavelmente precisará fazer alguns experimentos antes de encontrar o particionamento ideal para tua situação.
+Você provavelmente precisará fazer alguns experimentos antes de encontrar o particionamento ideal para sua situação.
 Como um guia grosseiro, *arrow* sugere que você evite arquivos menores que 20MB e maiores que 2GB e evite particionamentos que produzam mais que 10.000 arquivos.
-Você deve também tentar particionar por variáveis usadas em filtros; como você verá em breve, isto permite o *arrow* evitar bastante trabalho e ler apenas os arquivos relevantes.
+Você deve também tentar particionar por variáveis usadas em filtros; como você verá em breve, isto permite que o *arrow* evite trabalho desnecessário e leia apenas os arquivos relevantes.
 
 ### Reescrevendo os dados das bibliotecas de *Seattle*
 
 Vamos aplicar estas ideias nos dados das bibliotecas de *Seattle* e ver como se saem na prática.
-Iremos particionar os dados por `CheckoutYear` (ano da retirada), já que é provável que algumas análises queiram apenas olhar para dados recentes e particionar por ano gera 18 fragmentos de um tamanho razoável.
+Vamos particionar os dados por `CheckoutYear` (ano da retirada), já que é provável que algumas análises queiram apenas olhar para dados recentes e particionar por ano gera 18 fragmentos de tamanho razoável.
 
-Para gravar os dados, definimos o particionamento usando `dplyr::group_by()` e então salvamos as partições em um diretório com `arrow::write_dataset()`.
+Para reescrever os dados, definimos o particionamento usando `dplyr::group_by()` e então salvamos as partições em um diretório com `arrow::write_dataset()`.
 `write_dataset()` tem dois argumentos importantes: um diretório onde criaremos os arquivos e o formato que usaremos.
 
 ```{r}
@@ -189,8 +189,8 @@ tibble(
 O arquivo CSV único de 9GB foi reescrito como 18 arquivos *parquet*.
 Os nomes dos arquivos usam uma convensão de "auto-descrição" usada pelo projeto [Apache Hive](https://hive.apache.org).
 Partições no estilo *Hive* nomeiam as pastas com uma convenção "chave=valor" e como você pode imaginar, o diretório `CheckoutYear=2005` contém todos os dados onde o ano da retirada (`CheckoutYear`) é 2005.
-Cada arquivo tem ente 100 e 300 MB e o tamanho total agora é aproximandamente 4 GB, um pouco mais que a metade do arquivo CSV original.
-Isto é o que esperamos já que *parquet* é um formato muito mais eficiente.
+Cada arquivo tem entre 100 e 300 MB e o tamanho total agora é aproximandamente 4 GB, um pouco mais que a metade do arquivo CSV original.
+Isto é o que esperamos, já que *parquet* é um formato muito mais eficiente.
 
 ## Usando dplyr com *arrow*
 
@@ -212,7 +212,7 @@ query <- seattle_pq |>
   arrange(CheckoutYear, CheckoutMonth)
 ```
 
-Escrever código para *arrow* é conceitualmente similar ao dbplyr, @sec-import-databases: você escreve o código dplyr, o qual é automaticamente transformado em uma consulta que a biblioteca C++ do *Apache Arrow* entende e que é depois executado quando você chama `collect()`.
+Escrever código dplyr para *arrow* é conceitualmente similar ao dbplyr, @sec-import-databases: você escreve o código dplyr, que é automaticamente transformado em uma consulta compreensível para a biblioteca C++ do *Apache Arrow* e que será executada quando você chamar `collect()`.
 Se imprimirmos o objeto `query` podemos ver algumas informações sobre o que esperamos que o *Arrow* nos retorne quando a execução ocorrer:
 
 ```{r}
