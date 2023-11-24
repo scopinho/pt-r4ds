@@ -24,7 +24,7 @@ Como benefício adicional, *arrow* é extremamente rápido: você verá alguns e
 Tanto *arrow* quanto dbplyr rodam por trás do dplyr (dplyr *backends*), assim, você deve estar se perguntando quando usar um ou outro.
 Em muitos casos, a escolha já está feita por você, com os dados já em bancos de dados ou em arquivos *parquet* e tudo que você pretende é trabalhar com eles da forma como já estão.
 Mas se você está começando com teus próprios dados (talvez arquivos CSV), você pode carregá-los em um banco de dados ou convertê-los para *parquet*.
-Geralmente, é dificil saber qual funcionará melhor, então para fases iniciais da tua análise, nós encorajamos você a tentar os dois e escolher um que melhor funcione para você.
+Geralmente, é dificil saber qual funcionará melhor, então para fases iniciais da tua análise, vamos te encorajar a tentar usar ambos e escolher aquele que funcione melhor para você.
 
 (Um grande agradecimento à Danielle Navarro que contruiu com a versão inicial deste capítulo.)
 
