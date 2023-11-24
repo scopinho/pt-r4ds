@@ -18,7 +18,7 @@ Porém, arquivos CSV não são muito eficientes: você tem muito trabalho para i
 Next capítulo, você aprenderá uma alternativa poderosa: o formato [parquet](https://parquet.apache.org/), um formato baseado em um padrão aberto amplamente utilizado em sistemas de grande volume de dados (*big data*).
 
 Nós iremos juntar arquivos *parquet* com o [Apache Arrow](https://arrow.apache.org), um conjunto de ferramentas muti-linguagens projetado para análise eficiente e transporte de grandes conjunto de dados.
-Usaremos *Apache Arrow* via o [pacote arrow](https://arrow.apache.org/docs/r/), o qual fornece um *backend* dplyr permitindo que você analise conjuntos de dados maiores que a quantidade de memória de seu computador usando a sintaxe dplyr familiar.
+Usaremos *Apache Arrow* via [pacote arrow](https://arrow.apache.org/docs/r/), o qual fornece um *backend* dplyr permitindo que você analise conjuntos de dados maiores que a quantidade de memória de seu computador usando a familiar sintaxe dplyr.
 Como benefício adicional, *arrow* é extremamente rápido: você verá alguns exemplos a seguir neste capítulo.
 
 Tanto *arrow* quanto dbplyr rodam por trás do dplyr (dplyr *backends*), assim, você deve estar se perguntando quando usar um ou outro.
