@@ -230,7 +230,7 @@ Entretanto, a lista de operações e funcções suportadas é bastante extensa e
 
 ### Desempenho {#sec-parquet-fast}
 
-Vamos dar uma rápida olhada no impacto de desempenho com a mudança de CSV para *parquet*.
+Vamos dar uma olhada rápida em como a mudança de CSV para *parquet* impactou o desempenho.
 Primeiro, vamos medir quanto tempo demora para calcular o número de livros retirados em cada mês de 2021 quando os dados estão armazenados em um único grande arquivo csv:
 
 ```{r dataset-performance-csv}
