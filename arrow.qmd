@@ -296,4 +296,4 @@ Parquet é um formato de dados binários projetado especificamente para análise
 Um número muito menor de ferramentas podem funcionar com arquivos parquet em comparação com CSV, mas sua estrutura particionada, compactada e colunar torna sua análise muito mais eficiente.
 
 A seguir, você aprenderá sobre sua primeira fonte de dados não retangular, que você manipulará usando ferramentas fornecidas pelo pacote tidyr.
-Vamos nos concentrar nos dados provenientes de arquivos JSON, mas os princípios gerais se aplicam a dados semelhantes a árvores (*tree-like*), independentemente de sua origem.
+Vamos nos concentrar nos dados provenientes de arquivos JSON, mas os princípios gerais se aplicam a dados com estrutura baseada em árvore (*tree-like*), independentemente de sua origem.
