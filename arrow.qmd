@@ -22,7 +22,7 @@ Usaremos *Apache Arrow* via [pacote arrow](https://arrow.apache.org/docs/r/), o 
 Como benefício adicional, *arrow* é extremamente rápido: você verá alguns exemplos a seguir neste capítulo.
 
 Tanto *arrow* quanto dbplyr rodam por trás do dplyr (dplyr *backends*), assim, você deve estar se perguntando quando usar um ou outro.
-Em muitos casos, a escolha já está feita por você, com os dados já em bancos de dados ou em arquivos *parquet* e tudo que você pretende é trabalhar com eles da forma como já estão.
+Em muitos casos, a escolha já foi feita para você, pois os dados já estão em bancos de dados ou em arquivos *parquet* e você trabalhará com eles da forma como já estão.
 Mas se você está começando com seus próprios dados (talvez arquivos CSV), você pode carregá-los em um banco de dados ou convertê-los para *parquet*.
 Geralmente, é dificil saber qual funcionará melhor, então para fases iniciais da tua análise, vamos te encorajar a tentar usar ambos e escolher aquele que funcione melhor para você.
 
