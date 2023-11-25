@@ -28,7 +28,6 @@ Também continuaremos a extrair exemplos do conjunto de dados `dados::voos`.
 #| message: false
 
 library(tidyverse)
-library(nycflights13)
 library (dados)
 ```
 
