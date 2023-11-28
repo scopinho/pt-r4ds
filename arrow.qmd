@@ -15,13 +15,13 @@ source("_common.R")
 Arquivos CSV são feitos para serem lidos facilmente por seres humanos.
 Eles são um bom formato de intercâmbio porque são muito simples e podem ser lidos por qualquer ferramenta existente.
 Porém, arquivos CSV não são muito eficientes: você tem muito trabalho para importar os dados para o R.
-Next capítulo, você aprenderá uma alternativa poderosa: o formato [parquet](https://parquet.apache.org/), um formato baseado em um padrão aberto amplamente utilizado em sistemas de grande volume de dados (*big data*).
+Neste capítulo, você aprenderá uma alternativa poderosa: o formato [parquet](https://parquet.apache.org/), um formato baseado em um padrão aberto amplamente utilizado em sistemas de grande volume de dados (*big data*).
 
-Nós iremos juntar arquivos *parquet* com o [Apache Arrow](https://arrow.apache.org), um conjunto de ferramentas muti-linguagens projetado para análise eficiente e transporte de grandes conjunto de dados.
-Usaremos *Apache Arrow* via [pacote arrow](https://arrow.apache.org/docs/r/), o qual fornece um *backend* dplyr permitindo que você analise conjuntos de dados maiores que a quantidade de memória de seu computador usando a familiar sintaxe dplyr.
-Como benefício adicional, *arrow* é extremamente rápido: você verá alguns exemplos a seguir neste capítulo.
+Nós iremos juntar arquivos *parquet* com o [Apache Arrow](https://arrow.apache.org), um conjunto de ferramentas multi-linguagens projetado para análise eficiente e transporte de grandes conjunto de dados.
+Usaremos *Apache Arrow* via o [pacote arrow](https://arrow.apache.org/docs/r/), o qual fornece um *backend* dplyr, permitindo que você analise conjuntos de dados maiores que a quantidade de memória de seu computador, usando a familiar sintaxe dplyr.
+Como benefício adicional, o *arrow* é extremamente rápido: você verá alguns exemplos a seguir neste capítulo.
 
-Tanto *arrow* quanto dbplyr rodam por trás do dplyr (dplyr *backends*), assim, você deve estar se perguntando quando usar um ou outro.
+Tanto o  pacote *arrow* quanto o pacote dbplyr rodam por trás do dplyr (dplyr *backends*), assim, você deve estar se perguntando quando usar um ou outro.
 Em muitos casos, a escolha já foi feita para você, pois os dados já estão em bancos de dados ou em arquivos *parquet* e você trabalhará com eles da forma como já estão.
 Mas se você está começando com seus próprios dados (talvez arquivos CSV), você pode carregá-los em um banco de dados ou convertê-los para *parquet*.
 Geralmente, é dificil saber qual funcionará melhor, então para fases iniciais da tua análise, vamos te encorajar a tentar usar ambos e escolher aquele que funcione melhor para você.
@@ -30,7 +30,7 @@ Geralmente, é dificil saber qual funcionará melhor, então para fases iniciais
 
 ### Pré-requisitos
 
-Neste capítulo, continuaremos a usar tydiverse, particularmente dplyr, mas iremos combiná-lo com o pacote *arrow*, que foi projetado especificamente para trabalhar com grandes conjuntos de dados.
+Neste capítulo, continuaremos a usar o tidyverse, particularmente o dplyr, mas iremos combiná-lo com o pacote *arrow*, que foi projetado especificamente para trabalhar com grandes conjuntos de dados.
 
 ```{r setup}
 #| message: false
@@ -39,7 +39,7 @@ library(tidyverse)
 library(arrow)
 ```
 
-Posteriormente neste capítulo, veremos também algumas conexões entre *arrow* e o duckdb, portanto também precisaremos do dbplyr e duckdb.
+Posteriormente neste capítulo, veremos também algumas conexões entre o *arrow* e o duckdb, portanto também precisaremos do dbplyr e duckdb.
 
 ```{r}
 library(dbplyr, warn.conflicts = FALSE)
@@ -51,7 +51,7 @@ library(duckdb)
 Começamos obtendo um conjunto de dados que precise destas ferramentas: um conjunto de dados de items retirados das bibliotecas públicas de *Seattle*, disponível online em [data.seattle.gov/Community/Checkouts-by-Title/tmmm-ytt6](https://data.seattle.gov/Community/Checkouts-by-Title/tmmm-ytt6).
 Este conjunto de dados possui 41.389.465 linhas que informam quantas vezes cada livro foi retirado em cada mês, desde Abril de 2005 até Outubro de 2022.
 
-O código abaixo baixa uma cópia em *cache* desses dados.
+O código abaixo faz download de uma cópia em *cache* desses dados.
 O dado é um arquivo CSV de 9 GB, portanto leva um certo tempo para baixar.
 Eu recomendo fortemente usar `curl::multi_download()` para baixar grandes arquivos já que foi projetado exatamente para este propósito: fornece uma barra de progresso e pode retomar o *download* se for interrompido.
 
@@ -70,7 +70,7 @@ curl::multi_download(
 
 Vamos começar dando uma olhada nos dados.
 Com 9 GB, este arquivo é tão grande que provavelmente não queremos carregá-lo por inteiro na memória do computador.
-Como regra geral, dizemos que você vai querer ter no mínimo duas vezes mais memória que o tamanho dos dados e muitos *laptops* chegam até 16 GB.
+Como regra geral, dizemos que você vai querer ter no mínimo duas vezes mais memória que o tamanho dos dados e muitos notebooks chegam até 16 GB.
 Isto significa que queremos evitar `read_csv()` e, ao invés disso, usar `arrow::open_dataset()`:
 
 ```{r open-dataset}
@@ -129,7 +129,7 @@ Assim como CSV, *parquet* é usado para dados retangulares, mas ao invés de ser
 Isto significa que:
 
 -   Arquivos *parquet* são normalmente menores que seus arquivos equivalentes CSV.
-    *Parquet* é baseado em [codificação eficiente](https://parquet.apache.org/docs/file-format/data-pages/encodings/) para manter o tamanho do arquivo menor e suporta compressão de arquivo.
+    *Parquet* é baseado em [codificação eficiente](https://parquet.apache.org/docs/file-format/data-pages/encodings/) para manter o tamanho do arquivo menor, e permite a compressão do arquivo.
     Isto ajuda a tornar os arquivos *parquet* rápidos, pois há menos dados para serem movidos do disco para a memória.
 
 -   Arquivos *parquet* possuem um rico sistema de tipagem.
@@ -152,7 +152,7 @@ Quando esta estrutura é feita de forma inteligente, esta estratégia pode levar
 
 Não existem regras absolutas sobre como particionar seu conjunto de dados: os resultados dependerão de seus dados, padrões de acesso e os sistemas que lêem os dados.
 Você provavelmente precisará fazer alguns experimentos antes de encontrar o particionamento ideal para sua situação.
-Como um guia grosseiro, *arrow* sugere que você evite arquivos menores que 20MB e maiores que 2GB e evite particionamentos que produzam mais que 10.000 arquivos.
+Como uma recomendação aproximada, *arrow* sugere que você evite arquivos menores que 20MB e maiores que 2GB e evite particionamentos que produzam mais que 10.000 arquivos.
 Você deve também tentar particionar por variáveis usadas em filtros; como você verá em breve, isto permite que o *arrow* evite trabalho desnecessário e leia apenas os arquivos relevantes.
 
 ### Reescrevendo os dados das bibliotecas de *Seattle*
@@ -187,7 +187,7 @@ tibble(
 ```
 
 O arquivo CSV único de 9GB foi reescrito como 18 arquivos *parquet*.
-Os nomes dos arquivos usam uma convensão de "auto-descrição" usada pelo projeto [Apache Hive](https://hive.apache.org).
+Os nomes dos arquivos usam uma convenção de "auto-descrição" usada pelo projeto [Apache Hive](https://hive.apache.org).
 Partições no estilo *Hive* nomeiam as pastas com uma convenção "chave=valor" e como você pode imaginar, o diretório `CheckoutYear=2005` contém todos os dados onde o ano da retirada (`CheckoutYear`) é 2005.
 Cada arquivo tem entre 100 e 300 MB e o tamanho total agora é aproximandamente 4 GB, um pouco mais que a metade do arquivo CSV original.
 Isto é o que esperamos, já que *parquet* é um formato muito mais eficiente.
@@ -226,7 +226,7 @@ query |> collect()
 ```
 
 Assim como dbplyr, *arrow* entende apenas algumas expressões do R, portanto você pode não conseguir escrever exatamente o mesmo código que escreveria normalmente.
-Entretanto, a lista de operações e funcções suportadas é bastante extensa e contínua aumentando, veja a lista completa de funções atualmente suportadas digitando `?acero`.
+Entretanto, a lista de operações e funções suportadas é bastante extensa e continua aumentando; veja a lista completa de funções atualmente suportadas digitando `?acero`.
 
 ### Desempenho {#sec-parquet-fast}
 
