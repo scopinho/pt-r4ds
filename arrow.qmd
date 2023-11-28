@@ -82,7 +82,7 @@ seattle_csv <- open_dataset(
 ```
 
 O que acontece quando este código é executado?
-`open_dataset()` irá varrer (*scan*) alguns milhares de linhas para entender a estrutura do conjunto de dados.
+`open_dataset()` irá inspecionar (*scan*) alguns milhares de linhas para entender a estrutura do conjunto de dados.
 A coluna `ISBN` contém valores em branco nas primeiras 80.000 linhas, portanto devemos especificar o tipo da coluna para ajudar o *arrow* a trabalhar com a estrutura de dados.
 Uma vez que os dados foram varridos pela `open_dataset()`, ele registra o que encontrou e para; ele lerá mais linhas apenas quando você explicitamente solicitar.
 Este metadado é o que vemos quando imprimimos `seattle_csv`:
