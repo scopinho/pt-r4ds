@@ -273,10 +273,10 @@ knitr::include_graphics("screenshots/rstudio-nav.png")
 
 ## Exercícios
 
-1. Aplique as boas normas de formatação aos seguintes *pipelines* seguindo as diretrizes apresentadas neste capítulo.
+1.  Aplique as boas normas de formatação aos seguintes *pipelines* seguindo as diretrizes apresentadas neste capítulo.
 
-    ```{r}
-    #| eval: false
+```{r}
+#| eval: false
 
     voos|>filter(destino=="IAH")|>group_by(ano,mes,dia)|>summarize(n=n(),
     atraso=mean(atraso_chegada,na.rm=TRUE))|>filter(n>10)
@@ -284,7 +284,7 @@ knitr::include_graphics("screenshots/rstudio-nav.png")
     voos|>filter(companhia_aerea=="UA",destino%in%c("IAH","HOU"),saida_programada>
     0900,chegada_prevista<2000)|>group_by(voo)|>summarize(atraso=mean(
     atraso_chegada,na.rm=TRUE),cancelado=sum(is.na(atraso_chegada)),n=n())|>filter(n>10)
-    ```
+```
 
 ## Sumário
 
