@@ -11,19 +11,19 @@ source("_common.R")
 ## Introdução
 
 No @sec-strings, você aprendeu diversas funções úteis para trabalhar com *strings*.
-Este capítulo se concentrará em funções que usam **expressões regulares**, uma linguagem concisa e poderosa para descrever padrões dentro de *strings*.
-O termo "expressão regular" é um pouco longo, então a maioria das pessoas o abrevia para "regex"[^regexps-1] ou "regexp".
+Este capítulo se concentrará em funções que usam **expressões regulares**, uma linguagem concisa e poderosa para descrever padrões (*patterns*) dentro de cadeia de caracteres (*strings*).
+O termo "expressão regular" é um pouco longo, então a maioria das pessoas o abrevia como "regex"[^regexps-1] ou "regexp".
 
 [^regexps-1]: Você pode pronunciá-lo com um g-seco (reg-x) ou um g-suave (rej-x).
 
 O capítulo começa com os conceitos básicos de expressões regulares e as funções do pacote stringr mais úteis para análise de dados.
 Em seguida, expandiremos seu conhecimento sobre padrões (*patterns*) e cobriremos sete novos tópicos importantes (escape, ancoragem, classes de caracteres, classes de abreviações, quantificadores, precedência de agrupamento).
-A seguir, falaremos sobre alguns dos outros tipos de padrões com os quais as funções stringr podem trabalhar e os vários "sinalizadores" que permitem ajustar a operação de expressões regulares.
+A seguir, falaremos sobre alguns dos outros tipos de padrões com os quais as funções do pacote stringr podem trabalhar e os vários "sinalizadores" (*flags*) que permitem ajustar a operação das expressões regulares.
 Terminaremos com uma pesquisa de outros lugares do tidyverse e no R base onde você pode usar expressões regulares.
 
 ### Pré-requisitos
 
-Neste capítulo, usaremos funções de expressão regular dos pacotes stringr e tidyr, ambos membros principais do tidyverse, bem como dados bebes do pacote dados.
+Neste capítulo, usaremos funções com expressão regular dos pacotes stringr e tidyr, ambos membros principais do tidyverse, bem como o conjunto de dados bebes do pacote dados.
 
 ```{r}
 #| label: setup
@@ -51,20 +51,20 @@ Os padrões mais simples consistem em letras e números que correspondem exatame
 str_view(fruit, "berry")
 ```
 
-Letras e números correspondem exatamente à seus respectivos caracteres e são chamados **caracteres literais**.
-A maioria dos caracteres de pontuação, como `.`, `+`, `*`, `[`, `]` e `?`, tem significados especiais[^regexps-2] e são chamado de  **metacaracteres**. Por exemplo, `.`
+Letras e números tem uma correspondência direta à seus respectivos caracteres e são chamados **caracteres literais**.
+A maioria dos caracteres de pontuação, como `.`, `+`, `*`, `[`, `]` e `?`, tem significados especiais[^regexps-2] e são chamados de  **metacaracteres**. Por exemplo, `.`
 corresponde a qualquer caractere[^regexps-3], portanto `"a."` irá corresponder a qualquer *string* que contenha a letra "a" seguida por qualquer outro caractere
 :
 
-[^regexps-2]: Você aprenderá como escapar destes significados especiais na @sec-regexp-escaping.
+[^regexps-2]: Você aprenderá como escapar (*escape*) destes significados especiais na @sec-regexp-escaping.
 
-[^regexps-3]: Bem, qualquer caractere exceto `\n`.
+[^regexps-3]: Bem, qualquer caractere exceto `\n` (nova linha).
 
 ```{r}
 str_view(c("a", "ab", "ae", "bd", "ea", "eab"), "a.")
 ```
 
-Ou, podemos encontrar todas as frutas que contèm um "a", seguido por três letras, seguidas por um "e":
+Ou, podemos encontrar todas as frutas que contém um "a", seguido por três letras, seguidas por um "e":
 
 ```{r}
 str_view(fruit, "a...e")
@@ -72,7 +72,7 @@ str_view(fruit, "a...e")
 
 **Quantificadores** controlam quantas vezes um padrão pode ser encontrado:
 
--   `?` torna um padrão opcional (e.x. corresponde a 0 ou 1 vezes)
+-   `?` torna um padrão opcional (e.x. corresponde a 0 ou 1 vez)
 -   `+` permite que o padrão se repita (e.x. corresponde ao menos uma vez)
 -   `*` permite que o padrão seja opcional ou se repita (e.x. corresponde a qualquer número de vezes, incluindo 0).
 
@@ -105,7 +105,7 @@ str_view(fruit, "aa|ee|ii|oo|uu")
 ```
 
 Expressões regulares são bastante compactas e usam diversos caracteres de pontuação, portanto elas podem parecer difíceis de ler e entender no início.
-Não se preocupe; você as entenderá melhor com a prática, e padrões simples se tornarão naturais.
+Não se preocupe; você as entenderá melhor com a prática, e padrões simples se tornarão mais naturais com o tempo.
 Vamos iniciar este processo praticando com algumas funções úteis do stringr.
 
 ## Funções chaves {#sec-stringr-regex-funs}
@@ -113,7 +113,7 @@ Vamos iniciar este processo praticando com algumas funções úteis do stringr.
 Agora que você tem o básico das expressões regulares em seu cinto de utilidades, vamos usá-las em algumas funções dos pacotes stringr e tidyr.
 Na seção a seguir, você aprenderá como detectar a presença ou ausência de correspondências (*matches*), como contar o número de correspondências, como trocar uma correspondência por um texto fixo e como extrair textos usando um padrão (*pattern*).
 
-### Detectando correspondência
+### Detectando correspondências
 
 `str_detect()` retorna uma vetor lógico que ém `TRUE` se o padrão corresponde a um elemento do vetor de caracteres e `FALSE` se não corresponde:
 
@@ -121,7 +121,7 @@ Na seção a seguir, você aprenderá como detectar a presença ou ausência de 
 str_detect(c("a", "b", "c"), "[aeiou]")
 ```
 
-Uma vez que `str_detect()` retorna um vetor lógico de mesmo tamanho que o vetor inicial, ele vai muito bem com a função `filter()`.
+Uma vez que `str_detect()` retorna um vetor lógico de mesmo tamanho que o vetor inicial, ele combina muito bem com a função `filter()`.
 Por exemplo, este código encontra todos os nomes mais populares contendo um "x" minúsculo:
 
 ```{r}
@@ -130,17 +130,17 @@ bebes |>
   count(nome, wt = n, sort = TRUE)
 ```
 
-Podemos também usar a`str_detect()` com `summarize()` combinando-a com `sum()` ou `mean()`: `sum(str_detect(x, padrao))` informa o numero de observações correspondentes e `mean(str_detect(x, padrao))` informa a proporção da correspondência.
+Podemos também usar a`str_detect()` com `summarize()` combinando-a com `sum()` ou `mean()`: `sum(str_detect(x, padrao))` informa o numero de observações correspondentes ao padrão e `mean(str_detect(x, padrao))` informa a proporção da correspondência.
 Por exemplo, o código a seguir, calcula e visualiza a proporção de nomes de bebês [^regexps-4] que contém "x", agrupados por ano.
 Parece que eles aumentaram em popularidade ultimamente!
 
-[^regexps-4]: Isto nos dá a proporção de **nomes** que contém um "x"; se você quiser a proporção de bebês com um nome contendo um x, você deveria usar uma média ponderada.
+[^regexps-4]: Isto nos dá a proporção de **nomes** que contém um "x"; se você quiser a proporção de bebês com um nome contendo um x, você deve usar uma média ponderada.
 
 ```{r}
 #| fig-alt: |
-#|   A time series showing the proportion of baby names that contain the letter x. 
-#|   The proportion declines gradually from 8 per 1000 in 1880 to 4 per 1000 in 
-#|   1980, then increases rapidly to 16 per 1000 in 2019.
+#|   Uma série temporal mostrando a proporção de nomes de bebês que contém a letra x. 
+#|   A proporção cai gradualmente de 8 por 1000 em 1880 para 4 por 1000 em 
+#|   1980, então aumenta rapidamente para 16 por 1000 em 2019.
 
 bebes |> 
   group_by(ano) |> 
@@ -155,7 +155,7 @@ Existem duas funções que se relacionam muito com a `str_detect()`: `str_subset
 
 ### Contando correspondências (*matches*)
 
-O próximo passo em complexidade de `str_detect()` é `str_count()`: em vez de verdadeiro (*true*) ou falso (*false*), ele informa quantas correspondências existem em cada *string*.
+O próximo passo em complexidade de `str_detect()` é `str_count()`: em vez de verdadeiro (*true*) ou falso (*false*), ele informa quantas correspondências (*matches*) existem em cada *string*.
 
 ```{r}
 x <- c("apple", "banana", "pear")
@@ -163,8 +163,8 @@ str_count(x, "p")
 ```
 
 Note que cada correspondência começa ao final da anterior, e.x. regex nunca se sobrepõem.
-Por exemplo, em `"abababa"`, quantas vezes o padrçao `"aba"` é correspondido?
-A expressão regular dizem, duas, não três vezes:
+Por exemplo, em `"abababa"`, quantas vezes o padrão (*pattern*) `"aba"` é correspondido?
+A expressão regular diz, duas e não três vezes:
 
 ```{r}
 str_count("abababa", "aba")
