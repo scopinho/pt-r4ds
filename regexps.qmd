@@ -317,9 +317,6 @@ str_view(ponto)
 str_view(c("abc", "a.c", "bef"), "a\\.c")
 ```
 
-In this book, we'll usually write regular expression without quotes, like `\.`.
-If we need to emphasize what you'll actually type, we'll surround it with quotes and add extra escapes, like `"\\."`.
-
 Neste livro, normalmente escreveremos expressões regulares sem aspas, como `\.`.
 Se precisarmos enfatizar o que você realmente digitará, colocaremos aspas e adicionaremos escapadas extras, como `"\\."`.
 Para criar essa expressão regular, você precisa usar uma string, que também precisa escapar de `\`.
@@ -331,7 +328,7 @@ str_view(x)
 str_view(x, "\\\\")
 ```
 
-Alternatively, you might find it easier to use the raw strings you learned about in @sec-raw-strings).
+Alternativamente, você pode achar mais fácil usar *strings* brutas (*raw*) que você emprendeu na @sec-raw-strings.
 That lets you avoid one layer of escaping:
 
 ```{r}
