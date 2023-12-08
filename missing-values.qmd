@@ -174,7 +174,7 @@ Se o intervalo de uma variável estiver correto, mas nem todos os valores estive
 Em alguns casos, o conjunto completo de observações não pode ser gerado por uma simples combinação de variáveis.
 Nesse caso, você pode fazer manualmente o que `complete()` faz por você: criar um quadro de dados que contenha todas as linhas que deveriam existir (usando qualquer combinação de técnicas necessárias) e, em seguida, combiná-lo com seu conjunto de dados original com `dplyr ::full_join()`.
 
-### Junções
+### Uniões 
 
 Isso nos leva a outra forma importante de revelar observações implicitamente ausentes: uniões (*joins*).
 Você aprenderá mais sobre uniçoes no @sec-joins, mas gostaríamos de mencioná-las rapidamente aqui, já que muitas vezes você só pode saber que valores estão faltando em um conjunto de dados quando você o compara com outro.
