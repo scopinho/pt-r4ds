@@ -9,7 +9,6 @@ freeze: true
 #| results: asis
 
 source("_common.R")
-mensagem_capitulo_sem_traducao()
 ```
 
 ## Introdução
