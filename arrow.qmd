@@ -183,7 +183,7 @@ Vamos ver o que acabamos de produzir:
 ```{r show-parquet-files}
 tibble(
   arquivos = list.files(pq_path, recursive = TRUE),
-  tamanho_MB = file.size(file.path(pq_path, files)) / 1024^2
+  tamanho_MB = file.size(file.path(pq_path, arquivos)) / 1024^2
 )
 ```
 
