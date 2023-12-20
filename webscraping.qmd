@@ -27,7 +27,7 @@ Depois, discutiremos algumas técnicas para descobrir qual seletor CSS você pre
 
 Neste capítulo, iremos focar nas ferramentas fornecidas pelo pacote rvest.
 rvest é um membro do tidyverse, mas não faz parte de seus componentes principais, portanto devemos carregá-lo explicitamente.
-Iremos também carregar o tidyverse completo já que é geralmente muito útil para trabalhar com os dados da raspagem.
+Iremos também carregar o tidyverse completo já que é geralmente muito útil para trabalhar com os dados obtidos da raspagem.
 
 ```{r}
 #| label: setup
