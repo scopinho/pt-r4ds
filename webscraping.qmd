@@ -20,7 +20,7 @@ Ao invés disso, ensinaremos sobre raspagem de dados, uma técnica que funciona 
 [^webscraping-1]: E muitas APIs populares já possuem um pacote no CRAN que as encapsulam, então comece sempre fazendo uma pesquisa antes!
 
 Neste capítulo, discutiremos primeiro sobre ética e legalidade da raspagem de dados antes de falar sobre o básico de HTML.
-Você aprenderá então o básicos sobre selectores CSS para localizar elementos específicos em uma página e como usar funções do rvest para obter dados de textos e atributos de um HTML para o R.
+Você aprenderá o básico sobre seletores CSS para localizar elementos específicos em uma página e como usar funções do rvest para obter dados de textos e atributos de um HTML para o R.
 Depois, discutiremos algumas técnicas para descobrir qual seletor CSS você precisa para a página que está fazendo a raspagem de dados, e terminaremos falando sobre alguns estudos de caso e uma breve discussão sobre websites dinâmicos.
 
 ### Pré-requisitos
@@ -50,8 +50,8 @@ Esses três fatores são importantes porque estão ligados aos termos e condiç�
     Mas este é o melhor resumo que podemos dar depois de ler muito sobre esse assunto.
 
 Se os dados não forem públicos, impessoais ou factuais, ou se você estiver coletando os dados especificamente para ganhar dinheiro com eles, será necessário falar com um advogado.
-Em qualquer caso, você deve respeitar os recursos do servidor que hospeda as páginas que está efetuando a raspagem de dados.
-Mais importante ainda, isso significa que se você estiver fazendo raspagem de muitas páginas, espere um pouco entre cada requisição.
+Em qualquer caso, você deve respeitar os recursos do servidor que hospeda as páginas em que está efetuando a raspagem de dados.
+Mais importante ainda, isso significa que se você estiver fazendo raspagem de muitas páginas, certifique-se de esperar um pouco entre cada requisição.
 Um jeito fácil é utilizar o pacote [**polite**](https://dmi3kno.github.io/polite/) de Dmytro Perepolkin.
 Ele fará uma pausa automatica entre as requisições e armazenará os resultados (*cache*) para que você não precise mais solicitar a mesma página duas vezes.
 
@@ -71,7 +71,7 @@ Note que a situação na Europa é diferente, onde os tribunais concluíram que 
 Mesmo que o dado seja público, você deve ter extremo cuidado em fazer raspagem de informações pessoais como nomes, endereços de *email*, números telefônicos, datas de nascimento, etc.
 A Europa, em particular, tem leis bem restritas sobre coleta e armazenamento deste tipo de dados ([GDPR](https://gdpr-info.eu/)), e independente de onde você viva, é provável que esteja entrando em um atoleiro ético.
 Por exemplo, em 2016, um grupo de pesquisadores rasparam dados públicos contendo informações pessoais (e.x., nomes de usuário, idade, genero, localização, etc.) sobre 70.000 pessoas do site de relacionamento OkCupid e eles liberaram publicamente estes dados sem qualquer tentativa de torná-los anônimos (*anonymization*).
-Enquanto os pesquisadores acharam que não havia nada de errado uma vez que os dados já eram públicos, este trabalho foi largamente condenado devido a preocupções éticas sobre a identificação dos usuários cuja informação foi liberada em um conjunto de dados.
+Enquanto os pesquisadores acharam que não havia nada de errado uma vez que os dados já eram públicos, este trabalho foi largamente condenado devido a preocupações éticas sobre a identificação dos usuários cuja informação foi liberada no conjunto de dados.
 Se seu trabalho envolve raspagem de dados de informações com identificação pessoal, nós recomendamos fortemente que você leia sobre o estudo do caso OkCupid[^webscraping-3] bem como casos similares de estudos com éticas de pesquisa questionáveis envolvendo a aquisição e liberação de informações com idenficação pessoal.
 
 [^webscraping-3]: Um artigo de exemplo sobre o estudo do OkCupid foi publicado pela Wired, <https://www.wired.com/2016/05/okcupid-study-reveals-perils-big-data-science>.
@@ -128,7 +128,7 @@ Alguns dos mais importantes são:
 
 -   Toda página HTML deve estar entre um elemento `<html>`, que deve ter dois elementos descendentes (*children*): `<head>`, que contém metadados como título da página, e `<body>`, que tem o conteúdo que você vê através do navegador (*browser*).
 
--   Marcações de **bloco** (*block*) como `<h1>` (cabeçalho 1 (*heading* 1)), `<section>` (seção (*section*)), `<p>` (parágrafo (*paragraph*)), e `<ol>` (lisgta ordenada (*ordered list*)) formam a estrutura geral da página.
+-   Marcações de **bloco** (*block*) como `<h1>` (cabeçalho 1 (*heading* 1)), `<section>` (seção (*section*)), `<p>` (parágrafo (*paragraph*)), e `<ol>` (lista ordenada (*ordered list*)) formam a estrutura geral da página.
 
 -   Marcações **em linha** (*inline*) como `<b>` (negrito (*bold*)), `<i>` (itálico (*italics*)), e `<a>` (*link*) formatam o texto dentro das marcações de bloco.
 
@@ -157,7 +157,7 @@ Atributos também são usados para gravar os destinos dos *links* (o atributo `h
 
 ## Extraindo dados
 
-Para começar com a raspagem de dados, você precisará do endereço (URL) da página que deseja fazer a raspagem, a qual normalemente pode ser copiada do seu navegador.
+Para começar com a raspagem de dados, você precisará do endereço (URL) da página que deseja fazer a raspagem, a qual normalmente pode ser copiada do seu navegador.
 Você precisará então importar o HTML daquela página para o R com `read_html()`.
 Esta função retorna um objeto `xml_document`[^webscraping-5] que você então irá manipular usando as funções do rvest:
 
@@ -220,13 +220,13 @@ html |> html_elements("#primeiro")
 ```
 
 Outra função importante é a `html_element()` que sempre retorna o mesmo número de saídas que entradas.
-Se você a usar em todo o documento, ela retornará a primeira correspondência:
+Se você a usar no documento inteiro, ela retornará a primeira correspondência:
 
 ```{r}
 html |> html_element("p")
 ```
 
-Há uma diferença importante entre `html_element()` e `html_elements()` quado você usa um seletor que não corresponde a nenhum elemento.
+Há uma diferença importante entre `html_element()` e `html_elements()` quando você usa um seletor que não corresponde a nenhum elemento.
 `html_elements()` retorna um vetor de tamanho 0, enquanto `html_element()` returno um valor faltante (*missing value*).
 Esta diferença será muito importante em breve.
 
@@ -280,7 +280,7 @@ Existem apenas três deles, então perdemos a conexão entre os nomes e os pesos
 personagens |> html_elements(".peso")
 ```
 
-Agora que você selecionou os elementos de interesse, você precisa extratir os dados, sejam do conteúdo texto quanto de alguns atributos.
+Agora que você selecionou os elementos de interesse, você precisa extrair os dados, sejam do conteúdo texto quanto de alguns atributos.
 
 ### Textos e atributos
 
@@ -298,7 +298,7 @@ personagens |>
   html_text2()
 ```
 
-Observe que qualquer caractere de fuga é automaticamente endereçado; você vera apenas estes caracteres no código fonte HTML, mas não nos dados retornados pelo rvest.
+Observe que qualquer caractere de fuga é automaticamente endereçado; você apenas verá estes caracteres no código fonte HTML, mas não nos dados retornados pelo rvest.
 
 `html_attr()` extrai dados dos atributos:
 
@@ -363,7 +363,7 @@ Todo navegador moderno vem com um *kit* de ferramentas para desenvolvedores, mas
 Clique com o botão direito em um elemento da página e clique `Inspecionar`.
 Isto abrirá uma visão expandida da página HTML completa, centralizando o elemento que você acabou de clicar.
 Você pode usar isto para explorar a página e ter uma ideia de quais seletores podem funcionar.
-Preste atenção aos atributos class e id, uma vez que geralamente são usados para formar a estrutura visual da página, e portanto, são boas ferramentas para extrair os dados que você está procurando.
+Preste atenção aos atributos class e id, uma vez que geralmente são usados para formar a estrutura visual da página, e portanto, são boas ferramentas para extrair os dados que você está procurando.
 
 Dentro do menu Elementos, você também pode clicar com o botão direito em um elemento e selecionar `Copiar como Seletor` para gerar um seletor que identificará de forma única o elemento de interesse.
 
@@ -383,7 +383,7 @@ Esta é uma página simples com o mínimo de HTML, portanto, é um bom lugar par
 Eu encorajo você a navegar até essa página agora e usar "Inspecionar Elemento" para inspecionar um dos cabeçalhos que tem o título de um filme de Guerra nas Estrelas.
 Use o teclado ou o *mouse* para explorar a hierarquia do HTML e veja se consegue ter uma noção da estrutura compartilhada de cada filme.
 
-Você deve conseguir ver que cada filme possui uma estrutura compartilha que se parece com isto:
+Você deve conseguir ver que cada filme possui uma estrutura compartilhada que se parece com isto:
 
 ``` html
 <section>
@@ -400,7 +400,7 @@ Você deve conseguir ver que cada filme possui uma estrutura compartilha que se 
 ```
 
 Nossa meta é transformar isto em um *data frame* com 7 linhas e as variáveis `titulo`, `data_lancamento`, `diretor`, e `introducao`.
-Começaremos lendo o HTML e extraindo todos elementos `<section>`:
+Começaremos lendo o HTML e extraindo todos os elementos `<section>`:
 
 ```{r}
 url <- "https://rvest.tidyverse.org/articles/starwars.html"
@@ -412,7 +412,7 @@ secao
 
 Isto retorna sete elementos que correspondem aos sete filmes encontrados na página, sugerindo que usar `section` como seletor é bom.
 Extrair cada elemento é direto, já que o dado está sempre presente no texto.
-É simplesmente uma questão do seletor correto:
+É simplesmente uma questão de encontrar o seletor correto:
 
 ```{r}
 secao |> html_element("h2") |> html_text2()
@@ -457,7 +457,7 @@ Quando este capítulo foi escrito, a página se parecia com a @fig-scraping-imdb
 #|   A imagem mostra uma tabela com as colunas "Classificação e Título",
 #|   "Nota IMDb" e "Sua Nota". 9 filmes dentre os 250 melhores
 #|   são mostrados. Os 5 melhores são "Um sonho de liberdade", "O Poderoso Chefão",
-#|   "O Cavalheiro das Trevas", "O Poderoso Chefão: Parte 2" e "Doze Homens e uma Sentença".
+#|   "O Cavaleiro das Trevas", "O Poderoso Chefão: Parte 2" e "Doze Homens e uma Sentença".
 
 knitr::include_graphics("screenshots/scraping-imdb.png", dpi = 300)
 ```
@@ -534,7 +534,7 @@ classificacao |>
 ## Sites dinâmicos
 
 Até agora nos concentramos em sites onde `html_elements()` retorna o que você vê no navegador e discutimos como processar o que ele retorna e como organizar essas informações em um *data frame*.
-Entretanto, algumas vezes você chegará a um site onde `html_elements()` e amigos não retornam nada parecido com o que você vê no navegador.
+Entretanto, algumas vezes você chegará a um site onde `html_elements()` e companhia não retornam nada parecido com o que você vê no navegador.
 Em muitos casos, isso ocorre porque você está tentando raspar dados de um site que gera dinamicamente o conteúdo da página com *javascript*.
 Atualmente, isso não funciona com o rvest, porque o rvest baixa o HTML bruto e não executa nenhum *javascript*.
 
