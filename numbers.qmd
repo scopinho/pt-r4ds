@@ -141,7 +141,7 @@ Existem algumas variações de `n()` e `count()` que você deve achar útil:
 Funções de transformação trabalham bem com `mutate()` porque suas saídas são do mesmo tamanho que suas entradas.
 A grande maioria das funções de transformação já fazem parte do R base.
 É impraticável listar todas, portanto esta seção irá mostrar as mais úteis.
-Como um exemplo, enquanto o R fornecer todas as funções trigonemétricas que você pode sonhar, não iremos listá-las aqui pois elas são raramente necessárias em ciência de dados.
+Como um exemplo, enquanto o R fornece todas as funções trigonemétricas que você pode sonhar, não iremos listá-las aqui pois elas são raramente necessárias em ciência de dados.
 
 ### Regras aritméticas e de reciclagem {#sec-recycling}
 
@@ -161,7 +161,7 @@ x / c(5, 5, 5, 5)
 ```
 
 Geralmente, você quer reciclar apenas números únicos (i.e. vetores de tamanho 1), mas o R irá reciclar qualquer vetor de menor tamanho.
-Em geral (mas nem sempre), te retorna uma mensage de aviso se o vetor maior não é um múltiplo do menor:
+Em geral (mas nem sempre), te retorna uma mensagem de aviso se o vetor maior não é um múltiplo do menor:
 
 ```{r}
 x * c(1, 2)
@@ -176,12 +176,12 @@ voos |>
   filter(mes == c(1, 2))
 ```
 
-O código é exeutado sem erros, mas não retorna o que você espera.
-Devido às regras de reciclagem, ele encontra um número par de linhas que saíram em Janeiro e número ímpar de voos que saíram em Fevereiro.
-E infelizmente, não há aviso de erro, pois `voos` possui um número ímpar de linhas.
+O código é executado sem erros, mas não retorna o que você espera.
+Devido às regras de reciclagem, ele encontra um número ímpar de linhas que saíram em Janeiro e um número par de voos que saíram em Fevereiro.
+E infelizmente, não há aviso de erro, pois `voos` possui um número par de linhas.
 
 Para te proteger desse tipo de falha silenciosa, a maioria das funções do tidyverse usa um forma restrita de reciclagem que recicla apenas valores únicos.
-Infelizmente isto não ajuda aqui, ou em vários outros casos, pois o cálculo é feito pel função `==` do R base e não pela `filter()`.
+Infelizmente isto não ajuda aqui, ou em vários outros casos, pois o cálculo é feito pela função `==` do R base e não pela `filter()`.
 
 ### Mínimo e máximo
 
@@ -224,7 +224,7 @@ No R, `%/%` faz uma divisão inteira e `%%` calcula o resto:
 1:10 %% 3
 ```
 
-Aritmética é útil para o conjunto de dados `voos`, pois podemos usá-la para quebrar a variável `saida_programada` em `hora` e `minuto`:
+Aritmética modular é útil para o conjunto de dados `voos`, pois podemos usá-la para quebrar a variável `saida_programada` em `hora` e `minuto`:
 
 ```{r}
 voos |> 
@@ -246,10 +246,10 @@ Os resultados são mostrados na @fig-prop-cancelled.
 #|   ao longo do dia até as 20:00 horas, voos noturnos parecem ter muito menos chances
 #|   de serem cancelados.
 #| fig-alt: |
-#|   Um gráfico de linha mostrando como a proporção de de voos cancelados muda 
-#|   ao longo do dia. A proporção começa baixa, de aproximandamente 0.5% às 06:00 horas 
+#|   Um gráfico de linha mostrando como a proporção de voos cancelados muda 
+#|   ao longo do dia. A proporção começa baixa, de aproximadamente 0.5% às 06:00 horas 
 #|   e então aumenta de forma uniforme ao longo do dia até um pico 
-#|   de 4% às 19:00m horas. A proporção de voos cancelados cai então rapidamente
+#|   de 4% às 19:00m horas. A proporção de voos cancelados então cai rapidamente
 #|   chegando a aproximadamente 1% à meia-noite.
 voos |> 
   group_by(hora = saida_programada %/% 100) |> 
@@ -265,10 +265,10 @@ voos |>
 Logaritmos são transformações incríveis para lidar com dados que variam em múltiplas ordens de magnitude e também para converter o crescimento exponencial em crescimento linear.
 No R, você tem escolha de três logaritmos: `log()` (o logaritmo natural, base e), `log2()` (base 2), e `log10()` (base 10).
 Recomendamos usar `log2()` ou `log10()`.
-`log2()` é fácil interpretar pois a diferença de 1 na escala logaritma corresponde ao dobro na escalada original e a diferença de -1 corresponde à metade; e o `log10()` é de fácil transformação inversa (*back-transform*) (e.x.) 3 é 10\^3 = 1000.
+`log2()` é fácil interpretar pois a diferença de 1 na escala logarítmica corresponde ao dobro na escalada original e a diferença de -1 corresponde à metade; e o `log10()` é de fácil transformação inversa (*back-transform*) (e.x.) 3 é 10\^3 = 1000.
 O inverso de `log()` é `exp()`; para calcular o inverso de `log2()` ou `log10()` você precisará usar `2^` ou `10^`.
 
-### Arrendondamento {#sec-rounding}
+### Arredondamento {#sec-rounding}
 
 Use `round(x)` para arredondar um número para o inteiro mais próximo:
 
@@ -277,11 +277,11 @@ round(123.456)
 ```
 
 Você pode controlar a precisão do arredondamento usando o segundo argumento, `digits`.
-`round(x, digits)` arredonda para o próximo `10^-n` então `digits = 2` irá arredondar para o próximo 0.01 mais próximo.
+`round(x, digits)` arredonda para o próximo `10^-n` então `digits = 2` irá arredondar para o 0.01 mais próximo.
 Esta definição é útil, pois implica que `round(x, -3)` arredondará para o milésimo mais próximo, o que de fato acontece:
 
 ```{r}
-round(123.456, 2)  # dois digitios
+round(123.456, 2)  # dois dígitos
 round(123.456, 1)  # um digito
 round(123.456, -1) # arredonda para dezena mais próxima
 round(123.456, -2) # arredonda para a centena mais próxima
@@ -342,7 +342,7 @@ As quebras (`breaks`) não precisam ser espaçadas igualmente:
 cut(x, breaks = c(0, 5, 10, 100))
 ```
 
-Você pode, opcionalmente, deinir seus próprios rótulos (`labels`).
+Você pode, opcionalmente, definir seus próprios rótulos (`labels`).
 Note que deve haver um `labels` a menos que o número de `breaks`.
 
 ```{r}
@@ -433,7 +433,7 @@ df |>
 
 Você pode chegar nos mesmos resultados selecionando o argumento `ties.method` adequado na `rank()` do R base; você provavelmente desejará definir `na.last = "keep"` para manter `NA`s como `NA`.
 
-`row_number()` também pode ser usada sem nenhu argumento dentro de um verbo dplyr.
+`row_number()` também pode ser usada sem nenhum argumento dentro de um verbo dplyr.
 Neste caso, irá te retornar o número da linha "atual".
 Quando combinado com `%%` ou `%/%` isto pode ser uma ferramenta útil para dividor os dados em grupos de tamanhos parecidos:
 
@@ -471,7 +471,7 @@ lead(x)
     x == lag(x)
     ```
 
-Você pode usar determinar o número de posições para frente (*lead*) ou para trás (*lag*) usando o segundo argumento `n`.
+Você pode determinar o número de posições para frente (*lead*) ou para trás (*lag*) usando o segundo argumento `n`.
 
 ### Identificadores consecutivos
 
@@ -486,7 +486,7 @@ eventos <- tibble(
 
 ```
 
-E você calculou o período entre cada ocorrência de eventos, e descobri se há há um intervalo grande o suficiente para se qualificar:
+E você calculou o período entre cada ocorrência de eventos, e descobriu se há um intervalo grande o suficiente para se qualificar:
 
 ```{r}
 eventos <- eventos |> 
@@ -507,7 +507,7 @@ eventos |> mutate(
 ```
 
 Outra abordagem para criar variáveis de grupo é `consecutive_id()`, que inicia um novo grupo toda vez que algum de seus argumentos muda.
-Por exemplo, inpirado [nesta pergunta do stackoverflow](https://stackoverflow.com/questions/27482712), imagine que você tenha um *data frame* com vários valores repetidos:
+Por exemplo, inspirado [nesta pergunta do stackoverflow](https://stackoverflow.com/questions/27482712), imagine que você tenha um *data frame* com vários valores repetidos:
 
 ```{r}
 df <- tibble(
@@ -530,9 +530,9 @@ df |>
     Como você quer lidar com os empates?
     Leia atentamente a documentação da `min_rank()`.
 
-2.  Qual avião (`codigo_cauda`) tem o pior histórico de pontualidade has the worst on-time record?
+2.  Qual avião (`codigo_cauda`) tem o pior histórico de pontualidade?
 
-3.  A que horas você deve voar se quiser evitar atrasos o máximo possível?
+3.  Em qual horário você deve voar se quiser evitar atrasos o máximo possível?
 
 4.  O que faz `voos |> group_by(destino) |> filter(row_number() < 4)` ?
     O que faz `voos |> group_by(destino) |> filter(row_number(atraso_saida) < 4)` ?
@@ -559,7 +559,7 @@ df |>
 
 7.  Veja cada destino.
     Você consegue encontrar voos suspeitosamente rápidos (ou seja, voos que representam um possível erro de entrada de dados)?
-    Calcule o tempo de voo de um voo em relação ao voo mais curto para esse destino.
+    Calcule o tempo de viagem de um voo em relação ao voo mais curto para esse destino.
     Quais voos tiveram mais atrasos no ar?
 
 8.  Encontre todos os destinos operados por pelo menos duas companhias aéreas.
@@ -579,17 +579,17 @@ Dependendo da forma da distribuição da variável de interesse, média ou media
 Por exemplo, para distribuições simétricas, geralmente reportamos a média, enquanto para distribuições assimétricas (*skewed*), geralmente reportamos a mediana.
 
 A @fig-mean-vs-median compara a média e a mediana dos valores de atraso na saída (em minutos) para cada destino.
-A mediana de atraso é sempre menor que a média de atraso, pois em alguns casos, os voos saem com árias horas de atraso, mas nunca saem várias horas antecipadamente.
+A mediana de atraso é sempre menor que a média de atraso, pois em alguns casos, os voos saem com várias horas de atraso, mas nunca saem várias horas antecipadamente.
 
 ```{r}
 #| label: fig-mean-vs-median
 #| fig-cap: |
-#|   Um gráfico de dispoersão mostrando a diferença entre sumarizar atraso das saídas diárias
+#|   Um gráfico de dispersão mostrando a diferença entre sumarizar atraso das saídas diárias
 #|   com mediana ao invés da média.
 #| fig-alt: |
 #|   Todos os pontos estão sob a linha de 45°, signifcando que o atraso da mediana é
-#|   sempre que o atraso médio. A maioria dos pontos estão agrupados em um
-#|   região desna da média [0, 20] e mediana [0, 5]. Conforme o atraso  médio aumenta
+#|   sempre menor que o atraso médio. A maioria dos pontos estão agrupados em um
+#|   região densa da média [0, 20] e mediana [0, 5]. Conforme o atraso  médio aumenta
 #|   , a dispersão da mediana também aumenta. Existem dois pontos discrepantes
 #|   com média ~60, mediana ~50 e média ~85, mediana ~55.
 voos |>
@@ -607,7 +607,7 @@ voos |>
 
 Você também pode estar se perguntando sobre a **moda**, ou valor mais comum.
 Esta é uma medida que funciona bem apenas para casos muito simples (que pode ser a razão que você aprendeu sobre ela na escola primária), mas não funciona bem para conjuntos de dados reais.
-Se o dados for discreto, podem existir muitos valores comuns, e se o data for contínuo, podem não existir valores comuns pois cada valor é ligeiramente diferente um do outro.
+Se o dados forem discretos, podem existir muitos valores comuns, e se os dados forem contínuos, podem não existir valores comuns pois cada valor é ligeiramente diferente um do outro.
 Por estas razões, a moda tende a não ser usada por estatísticos e não há uma função de moda no R básico[^numbers-2].
 
 [^numbers-2]: A função `mode()` faz algo um pouco diferente!
@@ -618,7 +618,7 @@ E se você estiver interessados em posições diferentes do centro?
 `min()` e `max()` te darão os menores e maiores valores.
 Uma outra poderosa ferramenta é a `quantile()` que é uma generalização da mediana: `quantile(x, 0.25)` retorna o valor de `x` que é maior que 25% dos valores, `quantile(x, 0.5)` é equivalente à mediana e `quantile(x, 0.95)` retornará o valor que é maior que 95% dos valores.
 
-Para os dados de `voos`, você pode querer olhar no quantil 95% dos voos em atraso ao invés no valor máximo, pois isto ignora os voos com maior atraso os quais podem ser muito extremos.
+Para os dados de `voos`, você pode querer olhar no quantil 95% dos voos em atraso ao invés do valor máximo, pois isto ignora os voos com maior atraso, os quais podem ser muito extremos.
 
 ```{r}
 voos |>
@@ -634,7 +634,7 @@ voos |>
 
 Algumas vezes você não tem interesse em onde a maior parte dos dados se encontra, mas sim como estão dispersos.
 Duas medidas de dispersão muito usadas são, o desvio padrão, `sd(x)`, e o intervalo interquartil (*inter-quartile range*), `IQR()`.
-Não iremos explifcar o `sd()` aqui, pois você já deve ser algo familiar a você, mas `IQR()` pode ser algo novo, --- ele é `quantile(x, 0.75) - quantile(x, 0.25)` e retornar um intervalo ue contém a metade (50%) dos dados.
+Não iremos explicar o `sd()` aqui, pois você já deve ser algo familiar a você, mas `IQR()` pode ser algo novo, --- ele é `quantile(x, 0.75) - quantile(x, 0.25)` e retornar um intervalo que contém a metade (50%) dos dados.
 
 Podemos usar isso para revelar uma pequena estranheza nos dados dos `vôos`.
 Você poderia esperar que a dispersão da distância entre a origem e o destino fosse zero, uma vez que os aeroportos estão sempre no mesmo lugar.
@@ -666,7 +666,7 @@ Isto sugere que é pouco provável que a média seja um bom resumo e que poderí
 #| label: fig-flights-dist
 #| fig-cap: |
 #|   (Esquerda) O histograma dos dados completos é extremamente distorcido, tornando-o
-#|   difícil obter detalhes. (Direita) Ampliando atrasos de menos de duas
+#|   difícil obter detalhes. (Direita) Focar nos atrasos de menos de duas
 #|   horas torna possível ver o que está acontecendo com a maior parte das
 #|   observações.
 #| fig-alt: |
@@ -694,7 +694,7 @@ atraso120 <- flights |>
 todos + atraso120
 ```
 
-Também é uma boa ideia verificar se as distribuições dos subgrupos se assemelham ao todo..
+Também é uma boa ideia verificar se as distribuições dos subgrupos se assemelham ao todo.
 No gráfico a seguir, 365 polígonos de frequência de `atraso_saida`, um para cada dia, são sobrepostos.
 As distribuições parecem seguir um padrão comum, sugerindo que não há problema em usar a mesma sumarização para cada dia.
 
@@ -716,7 +716,7 @@ Por fim, não esqueça o que você aprendeu na @sec-sample-size: sempre que cria
 
 ### Posições
 
-Há um último tipo de sumarização útil para vetores numéricos, que também funciona para outros tipos de valores: extratir um valor em uma posição específica: `first(x)`, `last(x)` e `nth(x, n)`.
+Há um último tipo de sumarização útil para vetores numéricos, que também funciona para outros tipos de valores: extrair um valor em uma posição específica: `first(x)`, `last(x)` e `nth(x, n)`.
 
 Por exemplo, podemos encontrar a primeira e última saída em cada dia:
 
@@ -763,9 +763,9 @@ Por exemplo:
     Quando a `median()` é útil?
     Quando você poderia querer usar alguma outra maneira?
     Você deveria usar atraso_chegada ou atraso_saida?
-    QUando você poderia querer usar dados de `dados::avioes`?
+    Quando você poderia querer usar dados de `dados::avioes`?
 
-2.  Quais destinos apresentam a maior variação na velocidade do ar?
+2.  Quais destinos apresentam a maior variação na velocidade aérea?
 
 3.  Crie um gráfico para explorar ainda mais as aventuras do EGE.
     Você pode encontrar alguma evidência de que o aeroporto mudou de local?
@@ -775,7 +775,7 @@ Por exemplo:
 
 Você já está familiarizado com muitas ferramentas para trabalhar com números e, depois de ler este capítulo, agora sabe como usá-las no R.
 Você também aprendeu algumas transformações gerais úteis que são comumente, mas não exclusivamente, aplicadas a vetores numéricos, como ranqueamentos e deslocamentos.
-Por fim, você trabalhou com várias sumarizações numéricos e discutiu alguns dos desafios estatísticos que deveria considerar.
+Por fim, você trabalhou com várias sumarizações numéricas e discutiu alguns dos desafios estatísticos que deveria considerar.
 
 Nos próximos dois capítulos, nos aprofundaremos em *strings* com o pacote stringr.
 *Strings* são um grande tópico, então elas têm dois capítulos, um sobre os fundamentos de *strings* e outro sobre expressões regulares (*regex*).
