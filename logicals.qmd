@@ -462,7 +462,7 @@ Nós poderíamos resolver isso adicionando um novo `if_else()`:
 if_else(x == 0, "0", if_else(x < 0, "-vo", "+vo"), "???")
 ```
 
-Isto já é um pouco difícil de ler, mas você pode imaginar como se tornaria mais difícil se você tiver mais ainda mais condições.
+Isto já é um pouco difícil de ler, mas você pode imaginar como se tornaria mais difícil se você tiver ainda mais condições.
 Ao invés disso, você deve mudar para o `dplyr::case_when()`.
 
 ### `case_when()`
