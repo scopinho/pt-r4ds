@@ -11,7 +11,7 @@ source("_common.R")
 ## Introdução
 
 Neste capítulo, você aprenderá ferramentas para trabalhar com vetores lógicos.
-Vetores lógicos são a forma mais simples de vetores, pois cada elemento pode ter apenas um dos três possíveis valores:: `TRUE`, `FALSE` e `NA`.
+Vetores lógicos são a forma mais simples de vetores, pois cada elemento pode ter apenas um dos três possíveis valores: `TRUE`, `FALSE` e `NA`.
 É relativamente raro encontrar vetores lógicos em seus dados brutos, mas você os criará e manipulará no decorrer de quase todas as análises.
 
 Começaremos discutindo a forma mais comum de criar vetores lógicos: com comparações numéricas.
