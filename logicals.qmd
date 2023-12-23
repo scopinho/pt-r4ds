@@ -14,7 +14,7 @@ Neste capítulo, você aprenderá ferramentas para trabalhar com vetores lógico
 Vetores lógicos são a forma mais simples de vetores, pois cada elemento pode ter apenas um dos três possíveis valores: `TRUE`, `FALSE` e `NA`.
 É relativamente raro encontrar vetores lógicos em seus dados brutos, mas você os criará e manipulará no decorrer de quase todas as análises.
 
-Começaremos discutindo a forma mais comum de criar vetores lógicos: com comparações numéricas.
+Começaremos discutindo a forma mais comum de criar vetores lógicos: por meio de comparações numéricas.
 Em seguida, você aprenderá como usar a álgebra booleana para combinar diferentes vetores lógicos, bem como algumas sumarizações úteis.
 Terminaremos com `if_else()` e `case_when()`, duas funções úteis para fazer alterações condicionais alimentadas por vetores lógicos.
 
