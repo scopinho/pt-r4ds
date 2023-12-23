@@ -31,7 +31,7 @@ library(tidyverse)
 library (dados)
 ```
 
-No entanto, à medida que começamos a cobrir mais ferramentas, nem sempre haverá um exemplo real perfeito.
+No entanto, à medida que começamos a estudar novas ferramentas, nem sempre haverá um exemplo real perfeito.
 Então, começaremos a criar alguns dados fictícios com `c()`:
 
 ```{r}
