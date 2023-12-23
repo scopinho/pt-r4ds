@@ -102,7 +102,7 @@ x == c(1, 2)
 ```
 
 O que está acontecendo aqui?
-Os computadores armazenam números com um número fixo de casas decimais, então não há como representar exatamente 1/49 ou `sqrt(2)` e os cálculos subsequentes serão ligeiramente errados.
+Os computadores armazenam números com um número fixo de casas decimais, então não há como representar exatamente 1/49 ou `sqrt(2)` e os cálculos subsequentes serão ligeiramente imprecisos.
 Podemos ver os valores exatos chamando `print()` com o argumento `digits`[^logicals-1]:
 
 [^logicals-1]: R normalmente chama *print* para você (e.x. `x` é um atalho para `print(x)`), mas chamando-o explicitamente é útil se você quer fornecer outros argumentos.
