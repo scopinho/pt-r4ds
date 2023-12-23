@@ -446,7 +446,7 @@ Por exemplo, isto nos permite criar uma implmentação mínima de `abs()`:
 if_else(x < 0, -x, x)
 ```
 
-Até agora, todos os argumentos usaram os mesmos vetores, mas você pode misturar e combinar isso.
+Até agora, todos os argumentos usaram os mesmos vetores, mas você pode misturar e combinar variáveis.
 Por exemplo, você pode implementar uma versão simples de `coalesce()` desta forma:
 
 ```{r}
