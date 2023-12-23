@@ -487,7 +487,7 @@ case_when(
 O código é maior, mas também é mais explícito.
 
 Para explicar com `case_when()` funciona, vamos explorar mais alguns casos mais simples.
-Se nenhum dos casos correponder, a saída será `NA`:
+Se nenhum dos casos corresponder, a saída será `NA`:
 
 ```{r}
 case_when(
