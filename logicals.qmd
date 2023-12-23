@@ -122,7 +122,7 @@ near(x, c(1, 2))
 
 ### Valores faltantes (*missing values*) {#sec-na-comparison}
 
-Os valores faltantes (*missing values) representam o desconhecido, portanto são "contagiosos": quase qualquer operações que envolva um valor desconhecido também será desconhecida:
+Os valores faltantes (*missing values) representam o desconhecido, portanto são "contagiosos": quase qualquer operação que envolva um valor desconhecido também será desconhecida:
 
 ```{r}
 NA > 5
