@@ -211,12 +211,12 @@ A @fig-bool-ops mostra o conjunto completo de operações booleanas e como elas 
 #| echo: false
 #| out-width: NULL
 #| fig-cap: | 
-#|    O conjunto completo de operações booleanas. `x` é o círuclo da esquerda
+#|    O conjunto completo de operações booleanas. `x` é o círculo da esquerda
 #|    , `y` é o círculo da direita e a região preenchida mostra 
 #|    qual parte cada operação seleciona.
 #| fig-alt: |
-#|    Seis diagramas de Venn, como um explicando um determinado operador lógico. Os
-#|    círculos (conjunto) em cada diagrama de Venn representam x e y. 1. y &
+#|    Seis diagramas de Venn, cada um explicando um determinado operador lógico. Os
+#|    círculos (conjuntos) em cada diagrama de Venn representam x e y. 1. y &
 #|    !x é y mas nada de x; x & y é a intersecção de de x e y; x & !y é
 #|    x mas nada de y; x é tudo de x mas nada de y; xor(x, y) é tudo menos
 #|    a interseccção de x e y; y é tudo de y e nada de x; e 
@@ -253,7 +253,7 @@ O mesmo se aplica com `NA & FALSE`.
 ### Order das operações
 
 Observe que a ordem das operações não funcionam como em Português.
-Veja o seguinte código que encotnra todos os voos que saíram em Novembro ou Dezembro:
+Veja o seguinte código que encontra todos os voos que saíram em novembro ou dezembro:
 
 ```{r}
 #| eval: false
@@ -294,7 +294,7 @@ Um jeito fácil de evitar o problema de colocar `==`s e `|`s na order correta é
 letters[1:10] %in% c("a", "e", "i", "o", "u")
 ```
 
-Portanto, para encontrar todos os voos de Novembro e Dezembro, poderíamos escrever:
+Portanto, para encontrar todos os voos de novembro e dezembro, poderíamos escrever:
 
 ```{r}
 #| eval: false
@@ -319,7 +319,7 @@ voos |>
 
 ### Exercícios
 
-1.  Encontre todos os voos onde `atraso_chegada` está faltando (*missing*), mas `atraso_saida` não. Encontre todos os voos onde nem `horario_chegada` ou `chegada_prevista` estão faltando, mas `atraso_chegada` está.
+1.  Encontre todos os voos em que `atraso_chegada` está faltando (*missing*), mas `atraso_saida` não. Encontre todos os voos em que nem `horario_chegada` ou `chegada_prevista` estão faltando, mas `atraso_chegada` está.
 2.  Quantos voos possuem `horario_saida` faltando? Quais outras variáveis possuem valores faltantes nestes registros? O que podem representar estas linhas?
 3.  Assumindo que um valor faltante em `horario_saida` implica em um voo cancelado, olhe o número de voos cancelados por dia. Há algum padrão? Há alguma relação entre a proporção de voos cancelados e a média de atraso dos voos não cancelados?
 
@@ -335,7 +335,7 @@ Existem dois sumarizadores lógicos: `any()` e `all()`.
 `all(x)` é o equivalente ao `&`; retornará `TRUE` somente se todos os valores de `x` forem `TRUE`.
 Assim como todas as funções de sumarização, elas retornarão `NA` se houver qualquer valor faltante (*missing value*) presente, e como de costume, você pode não considerá-los usando `na.rm = TRUE`.
 
-Por exemplo, poderíamos usar `all()` e `any()` para encontrar se todos os voos que atrasaram no máximo uma hora na saída ou se algum voo atrasou na chegada cinco horas ou mais.
+Por exemplo, poderíamos usar `all()` e `any()` para descobrir se todos os voos foram atrasados na partida por no máximo uma hora ou se algum voo atrasou na chegada por cinco horas ou mais.
 And using `group_by()` allows us to do that by day:
 
 ```{r}
@@ -349,14 +349,14 @@ voos |>
 ```
 
 Na maioria dos casos, entretanto, `any()` e `all()` são um tanto grosseiros, e seria bom poder obter mais detalhes sobre os valores `TRUE` ou `FALSE`.
-Isso nos leval aos sumarizadores numéricos.
+Isso nos leva aos sumarizadores numéricos.
 
 ### Sumarizações numéricas de vetores lógicos {#sec-numeric-summaries-of-logicals}
 
 Quando você usa um vetor lógico em um contexto numérico, `TRUE` se torna 1 e `FALSE` se torna 0.
 Isto torna `sum()` e `mean()` muito úteis com vetores lógicos, pois `sum(x)` retorna o número de `TRUE`s e `mean(x)` retorna a proporção de `TRUE`s (pois `mean()` é apenas `sum()` dividido por`length()`).
 
-Isto, por exemplo, nos permite ver a proporção de voos que tiveram atraso na saída em até uma hora e o número de voos que chegaram atrasados em cinco horas ou mais.:
+Isto, por exemplo, nos permite ver a proporção de voos que tiveram atraso na saída em até uma hora e o número de voos que chegaram atrasados em cinco horas ou mais:
 
 ```{r}
 voos |> 
@@ -388,12 +388,12 @@ voos |>
 ```
 
 Isto funciona, mas e se você quisesse calcular o atraso médio também para voos que chegaram antecipadamente?
-Precisaríamos fazer um passo extre de filtro e então combinar os dois *data frames*[^logicals-3].
+Precisaríamos fazer um passo extra de filtro e então combinar os dois *data frames*[^logicals-3].
 Ao invés disso, você poderia usar `[` para executar um filtro em linha (*inline*): `atraso_chegada[atraso_chegada > 0]` irá retornar apenas os atrasos positivos na chegada.
 
 [^logicals-3]: Iremos cobrir isto na @sec-joins.
 
-This leads to:
+Isso leva a:
 
 ```{r}
 voos |> 
@@ -410,21 +410,21 @@ Observe também a diferença no tamanho do grupo: no primeiro segmento `n()` tem
 
 ### Exercises
 
-1.  Que `sum(is.na(x))` diz a você? E `mean(is.na(x))`?
-2.  O que `prod()` returna quando aploicada a um vetor lógico? Qual função de sumarização lógica é equivalente? O que `min()` returna quando aplicada a um vetor lógico? Qual função de sumarização lógica é equivalente? Leia a documentação e efetue alguns experimentos.
+1.  O que `sum(is.na(x))` retorna? E `mean(is.na(x))`?
+2.  O que `prod()` retorna quando aplicada a um vetor lógico? Qual função de sumarização lógica é equivalente? O que `min()` retorna quando aplicada a um vetor lógico? Qual função de sumarização lógica é equivalente? Leia a documentação e efetue alguns experimentos.
 
 ## Transformações condicionais
 
-Uma das características mais poderosas de vetores lógico é seu uso em transformações condicionais, i.x. fazer alguma coisa em uma condição x, e alguma outra coisa diferente para a y.
+Uma das características mais poderosas de vetores lógico é seu uso em transformações condicionais, i.e. fazer alguma coisa em uma condição x, e alguma outra coisa diferente para a y.
 Existem duas ferramentas importantes para isso: `if_else()` e `case_when()`.
 
 ### `if_else()`
 
 Se você quiser usar um valor para quando a condição é `TRUE` e outro valor para quando a condição é `FALSE`, você pode usar `dplyr::if_else()`[^logicals-4].
-Você sempre usará os primeiros três argumentos de `if_else()`. O primeiro, `condition`, é um vetor lógico, o segundo, `true`, gera uma saída quando a condiçção é verdadeira (*true*) , e o terceiro, `false`, gera uma saída quando a condição é falsa (*false*).
+Você sempre usará os primeiros três argumentos de `if_else()`. O primeiro, `condition`, é um vetor lógico, o segundo, `true`, gera uma saída quando a condição é verdadeira (*true*), e o terceiro, `false`, gera uma saída quando a condição é falsa (*false*).
 
 [^logicals-4]: A função `if_else()` do dplyr é muito similar a `ifelse()` do R base .
-    Existem duas vantagens principais do `if_else()` sobre `ifelse()`: você pode escolhar o que acontece com valor faltantes (*minssing values*) e `if_else()` te retorna erros com mais sentido se sua variável possuir tipos incompatíveis.
+    Existem duas vantagens principais do `if_else()` sobre `ifelse()`: você pode escolher o que acontece com valor faltantes (*minssing values*) e `if_else()` te retorna erros com mais sentido se sua variável possuir tipos incompatíveis.
 
 Vamos começar com um simples exemplo rotulando um vetor numérico como "+vo" (positivo) ou "-vo" (negativo):
 
