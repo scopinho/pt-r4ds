@@ -570,7 +570,8 @@ Não esperamos que você memorize essas regras, mas elas devem se tornar naturai
 
 3.  Use `ifelse()` para calcular o valor absoluto de um vetor numérico chamado `x`.
 
-4.  Escreva uma declaração `case_when()` que usa as colunas `mes` e `dia` de `voos` para rotular um conjunto de feriados importante dos Estados Unidos (e.g., Dia de Ano Novo, 4 de Julho, Dia de Ação de Graças e Natal).
+4.  Escreva uma declaração `case_when()` que usa as colunas `mes` e `dia` de `voos` para rotular um conjunto de feriados importante dos Estados Unidos (e.g., 7 de Setembro, Tiradentes, Carnaval e Natal[^logicals-5]).
+[^logicals-5]: N.T. - Na versão original em inglês, os feriados são dos Estados Unidos.
     Primeiro crie uma coluna lógica `TRUE` ou `FALSE`, e então uma coluna texto (*character*) que tenha o nome do feriado ou `NA`.
 
 ## Resumo
