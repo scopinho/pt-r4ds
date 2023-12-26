@@ -188,7 +188,7 @@ voos |>
   arrange(desc(is.na(horario_saida)), horario_saida)
 ```
 
-Retornaremos a cobrir mais detalhes sobre valores faltantes (*missing values*) no @sec-missing-values.
+Retornaremos a abordar mais detalhes sobre valores faltantes (*missing values*) no @sec-missing-values.
 
 ### Exercício
 
