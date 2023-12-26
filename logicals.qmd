@@ -190,7 +190,7 @@ voos |>
 
 Retornaremos a cobrir mais detalhes sobre valores faltantes (*missing values*) no @sec-missing-values.
 
-### Exercócio
+### Exercício
 
 1.  Como `dplyr::near()` funciona? Digite `near` para ver o código fonte. `sqrt(2)^2` é próximo (near) a 2?
 2.  Use `mutate()`, `is.na()` e `count()` juntos para descrever como os valores faltantes (*missing values*) em `horario_saida`, `saida_programada` e `atraso_saida` estão relacionados.
