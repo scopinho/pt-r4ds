@@ -2,7 +2,7 @@
 
 ```{r}
 #| echo: false
- 
+# this is a comment that should be erased
 source("_common.R")
 ```
 
