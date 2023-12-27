@@ -14,7 +14,7 @@ options(warnPartialMatchArgs = FALSE)
 
 Este capítulo mostrará como trabalhar com datas e horários (*dates and times*) no R.
 À primeira vista, datas e horários parecem simples.
-Você os usa o tempo todo em sua vida normal e eles não parecem causar muita confusão.
+Você os utiliza o tempo todo em sua vida normal e eles não parecem causar muita confusão.
 Porém, quanto mais você aprende sobre datas e horários, mais complicados eles parecem ficar!
 
 Para aquecer os motores, pense em quantos dias tem um ano e quantas horas tem um dia.
@@ -26,7 +26,7 @@ O número de horas em um dia é um pouco menos óbvio: a maioria dos dias tem 24
     Em outras palavras, em cada conjunto de 400 anos, há 97 anos bissextos.
 
 Datas e horários são difíceis porque têm de conciliar dois fenómenos físicos (a rotação da Terra e a sua órbita em torno do Sol) com uma série de fenómenos geopolíticos, incluindo meses, fusos horários e horário de verão.
-Este capítulo não ensinará todos os detalhes sobre datas e horários, mas fornecerá uma base sólida de habilidades práticas que ajudarão com desafios comuns de análise de dados.
+Este capítulo não ensinará todos os detalhes sobre datas e horários, mas fornecerá uma base sólida de habilidades práticas que te ajudarão com desafios comuns de análise de dados.
 
 Começaremos mostrando como criar datas e horários a partir de várias entradas e, depois de obter uma data e horário, como extrair componentes como ano, mês e dia.
 Em seguida, mergulharemos no tópico complicado de trabalhar com intervalos de tempo (*time span*), que vêm em uma variedade de sabores, dependendo do que você está tentando fazer.
@@ -35,8 +35,8 @@ Concluiremos com uma breve discussão sobre os desafios adicionais colocados pel
 ### Pré-requisitos
 
 Este capítulo se concentrará no pacote **lubridate**, que facilita o trabalho com datas e horários no R.
-A partir da versão mais recente tidyverse, o lubridate é um componente principal do tidyverse.
-Também precisaremos do conjunto de dados voos do pacote dados, para casos práticos.
+Na versão mais recente do tidyverse, o lubridate passou a ser um componente principal do tidyverse.
+Para praticar, também precisaremos do conjunto de dados voos do pacote dados.
 
 ```{r}
 #| message: false
@@ -58,8 +58,8 @@ Existem três tipos de dados de data/horário que se referem a um instante no te
     Os tibbles imprimem este tipo como `<dttm>`.
     O R base chama este tipo de POSIXct, mas sem enrolar a língua.
 
-Neste capítulo iremos nos concentrar em data (*date*) e data-horário (*date-time*) já que o R não possui uma classe nativa para lidar apenas com horário (*time*).
-Se você precisar disso, você pode usar o pacote **hms**.
+Neste capítulo iremos nos concentrar em data (*date*) e data-horário (*date-time*), já que o R não possui uma classe nativa para lidar apenas com horário (*time*).
+Se você precisar de uma, pode usar o pacote **hms**.
 
 Você deve sempre usar o tipo de dados mais simples possível que atenda às suas necessidades.
 Isso significa que se você puder usar uma data (*date*) em vez de um data-horário (*date-time*), você deveria.
@@ -104,7 +104,7 @@ A tabela @tbl-date-formats lista todas as opções.
 
 | Type    | Code  | Meaning                             | Example         |
 |---------|-------|-------------------------------------|-----------------|
-| Ano     | `%Y`  | Ano de 4 digitos                    | 2021            |
+| Ano     | `%Y`  | Ano com 4 digitos                    | 2021            |
 |         | `%y`  | Ano de 2 digitos                    | 21              |
 | Mês     | `%m`  | Número                              | 2               |
 |         | `%b`  | Nome abreviado                      | Feb             |
@@ -141,7 +141,7 @@ read_csv(csv, col_types = cols(date = col_date("%d/%m/%y")))
 read_csv(csv, col_types = cols(date = col_date("%y/%m/%d")))
 ```
 
-Observe que não importa como você especifica o formato da data, ele sempre será exibido da mesma maneira quando você o inserir no R.
+Observe que não importa como você especifica o formato da data, ela sempre será exibida da mesma maneira quando você o inserir no R.
 
 Se você estiver usando `%b` ou `%B` e trabalhando com datas que não sejam em inglês, você também precisará fornecer uma localização com a função `locale()`.
 Veja a lista de idiomas disponíveis em `date_names_langs()` ou crie o seu próprio com `date_names()`
@@ -151,7 +151,7 @@ Veja a lista de idiomas disponíveis em `date_names_langs()` ou crie o seu próp
 A linguagem de especificação de data e horário é poderosa, mas requer uma análise cuidadosa do formato da data.
 Uma abordagem alternativa é usar os auxiliares do pacote lubridate que tentam determinar automaticamente o formato assim que você especifica a ordem do componente.
 Para usá-los, identifique a ordem em que ano (*year*), mês (*month*) e dia (*day*) aparecem em suas datas e organize "y", "m" e "d" na mesma ordem.
-Isso lhe dá o nome da função lubridate que analisará sua data.
+Isso lhe dá o nome da função lubridate que interpretará sua data.
 Por exemplo:
 
 ```{r}
@@ -175,8 +175,7 @@ ymd("2017-01-31", tz = "UTC")
 ```
 
 Aqui eu uso o fuso horário UTC[^datetimes-3] que você também pode conhecer como GMT, ou Greenwich Mean Time, o horário em 0° de longitude[^datetimes-4]
-. Ele não usa o horário de verão, tornando um pouco mais fácil calcular
-.
+. Ele não usa o horário de verão, o que torna os cálculos um pouco mais simples.
 
 [^datetimes-3]: Você pode estar se perguntando o que UTC significa.
     É uma mistura entre o termo em inglês "Coordinated Universal Time" e o francês "Temps Universel Coordonné".
@@ -193,7 +192,7 @@ voos |>
   select(ano, mes, dia, hora, minuto)
 ```
 
-Para criar uma data/horario a partir deste tipo de entrada, use a `make_date()` para datas, or `make_datetime()` for data-horário:
+Para criar uma data/horário a partir deste tipo de entrada, use a `make_date()` para datas, or `make_datetime()` for data-horário:
 
 ```{r}
 voos |> 
@@ -201,7 +200,7 @@ voos |>
   mutate(saida = make_datetime(ano, mes, dia, hora, minuto))
 ```
 
-Vamos fazer a mesma coisa para cada uma das quatro colunas de tempo em `flights`.
+Vamos fazer a mesma coisa para cada uma das quatro colunas de tempo em `voos`.
 Os tempos são representados em um formato ligeiramente ímpar, por isso usamos a aritmética de módulo para extrair os componentes de hora e minuto.
 Depois de criarmos as variáveis ​​de data e horario, nos concentraremos nas variáveis ​​que exploraremos no restante do capítulo.
 
@@ -231,7 +230,7 @@ Com esses dados, podemos visualizar a distribuição dos horários de saída ao 
 #|   e número de voos no eixo-y (0-1000). O polígono de frequência
 #|   é agrupado por dia para que você veja uma série temporal de voos por dia. O
 #|   o padrão é dominado por um padrão semanal; há menos voos 
-#|   nos fins de semana. São poucos os dias que se destacam por terem sido surpreendentemente
+#|   nos fins de semana. São poucos os dias que se destacam por terem tido surpreendentemente
 #|   poucos voos no início de fevereiro, início de julho, final de novembro e final de
 #|   dezembro.
 voos_dt |> 
@@ -244,8 +243,8 @@ Ou dentro de um único dia:
 ```{r}
 #| fig.alt: >
 #|   Um polígono de frequência com horário de partida (6h - meia-noite de 1º de janeiro) no
-#|   eixo-x, número de voos no eixo-y (0-17), agrupados em 10 minutos
-#|   incrementos. É difícil ver muitos padrões devido à alta variabilidade,
+#|   eixo x, número de voos no eixo y (0-17), agrupados em incrementos de 10 minutos.
+#|   É difícil ver muitos padrões devido à alta variabilidade,
 #|   mas a maioria dos grupos tem de 8 a 12 voos, e há significativamente menos voos 
 #|   antes das 6h e depois das 20h.
 voos_dt |> 
@@ -260,14 +259,14 @@ Para datas (*date*), 1 significa 1 dia.
 ### A partir de outros tipos
 
 Você pode querer alternar entre uma data e horário (*datatimes*) e uma data (*date*).
-Esse é o trabalho de `as_datetime()` e `as_date()`:
+Esse é o trabalho ds funções `as_datetime()` e `as_date()`:
 
 ```{r}
 as_datetime(today())
 as_date(now())
 ```
 
-Às vezes, você obterá datas/horários como compensações numéricas (*offsets*) da "Época Unix" (*Unix epoch*), 01/01/1970.
+Às vezes, você obterá datas/horários como deslocamentos (*offsets*) numéricos a partir da "Era Unix" (*Unix Epoch*), 01/01/1970.
 Se o deslocamento (*offset*) estiver em segundos, use `as_datetime()`; se for em dias, use `as_date()`.
 
 ```{r}
@@ -286,7 +285,7 @@ as_date(365 * 10 + 2)
     ```
 
 2.  O que o argumento `tzone` para a função `today()` faz?
-    Por que isso é importante?
+    Por que ele é importante?
 
 3.  Para cada uma das seguintes datas e horários, mostre como você as analisaria usando uma especificação de coluna readr e uma função lubridate.
 
@@ -304,7 +303,7 @@ as_date(365 * 10 + 2)
 
 Agora que você sabe como inserir dados de data e horário (*date time*) nas estruturas de dados de data e horário do R, vamos explorar o que você pode fazer com eles.
 Esta seção se concentrará nas funções que permitem obter e definir componentes individuais.
-A próxima seção verá como a aritmética funciona com data e horário.
+A próxima seção abordará como a aritmética funciona com datas e horários.
 
 ### Obtendo os componentes
 
@@ -334,8 +333,8 @@ Podemos usar `wday()` para ver que mais voos saem durante a semana do que no fim
 
 ```{r}
 #| fig-alt: |
-#|   Um gráfico de barras com os dias da semana no eixo-x e o número de 
-#|   vôos no eixo-y. Segunda a sexta-feira têm aproximadamente o mesmo número de
+#|   Um gráfico de barras com os dias da semana no eixo x e o número de 
+#|   vôos no eixo y. De segunda a sexta-feira têm aproximadamente o mesmo número de
 #|   voos, ~48.0000, diminuindo ligeiramente ao longo da semana.
 #|   Domingo é um pouco menor (~45.000) e sábado é muito menor 
 #|   (~38,000).
@@ -350,8 +349,8 @@ Há um padrão interessante: os voos que partem nos minutos 20-30 e 50-60 têm a
 
 ```{r}
 #| fig-alt: | 
-#|   Um gráfico de linhas com o minuto da saída real (0-60) no eixo-x e
-#|   atraso médio (4-20) no eixo-y. O atraso médio começa em (0, 12),
+#|   Um gráfico de linhas com o minuto da saída real (0-60) no eixo x e
+#|   atraso médio (4-20) no eixo y. O atraso médio começa em (0, 12),
 #|   aumenta constantemente para (18, 20), depois cai drasticamente, atingindo o mínimo
 #|   aproximadamente 23 minutos após a hora e 9 minutos de atraso. Então aumenta
 #|   novamente para (17, 35) e diminui acentuadamente para (55, 4). Isso acaba
@@ -367,7 +366,7 @@ voos_dt |>
   geom_line()
 ```
 
-Curiosamente, se olharmos para o horário de saída *programado*, não vemos um padrão tão forte:
+Curiosamente, se olharmos para o horário de saída *programado*, não veremos um padrão tão forte:
 
 ```{r}
 #| fig-alt: | 
