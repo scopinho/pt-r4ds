@@ -44,7 +44,7 @@ library(tidyverse)
 library(dados)
 ```
 
-## Funções vetorias
+## Funções vetoriais
 
 Começaremos com funções vetoriais: funções que recebem um ou mais vetores e retornam um resultado vetorial.
 Por exemplo, dê uma olhada neste código.
@@ -89,7 +89,7 @@ Se pegarmos o código acima e extraí-lo da função `mutate()`, será um pouco 
 (d - min(d, na.rm = TRUE)) / (max(d, na.rm = TRUE) - min(d, na.rm = TRUE))  
 ```
 
-Para deixar isso um pouco mais claro, podemos substituir o bit que varia com `█`:
+Para deixar isso um pouco mais claro, podemos substituir a parte que varia com `█`:
 
 ```{r}
 #| eval: false
@@ -142,11 +142,11 @@ df |> mutate(
 )
 ```
 
-(No @sec-iteration, ocê aprenderá como usar `across()` para reduzir ainda mais a duplicação, então tudo que você precisará é `df |> mutate(across(a:d, rescala01))`).
+(No @sec-iteration, você aprenderá como usar `across()` para reduzir ainda mais a duplicação, então tudo que você precisará é `df |> mutate(across(a:d, rescala01))`).
 
 ### Melhorando nossa função
 
-Você pode notar que a função `rescala01()` faz algum trabalho desnecessário --- em vez de calcular `min()` duas vezes e `max()` uma vez que poderíamos calcular o mínimo e o máximo em uma única etapa com `range( )`:
+Você pode notar que a função `rescala01()` faz algum trabalho desnecessário --- em vez de calcular `min()` duas vezes e `max()` uma vez, poderíamos calcular o mínimo e o máximo em uma única etapa com `range( )`:
 
 ```{r}
 rescala01 <- function(x) {
@@ -249,7 +249,7 @@ Mas não há razão para que sua função não possa receber múltiplas vetores 
 
 ### Funções de resumo
 
-Outra família importante de funções vetoriais são as funções de resumo, funções que retornam um único valor para uso em `summarize()`.
+Outra família importante de funções vetoriais são as funções de sumarização, funções que retornam um único valor para uso em `summarize()`.
 Às vezes, isso pode ser apenas uma questão de definir um ou dois argumentos padrão:
 
 ```{r}
@@ -353,7 +353,7 @@ Mas muitas vezes você também repetirá os próprios verbos, especialmente em u
 Ao perceber que você está copiando e colando vários verbos dplyr diversas vezes, você pode pensar em escrever uma função de *data frame*.
 As funções de *data frame* funcionam como verbos dplyr: elas pegam um *data frame* como primeiro argumento, alguns argumentos extras que dizem o que fazer com ele e retornam um *data frame* ou um vetor.
 
-Para permitir que você escreva uma função que use verbos dplyr, primeiro apresentaremos o desafio da indireção (*indirection challenge*) e como você pode superá-lo usando `{{ }}`.
+Para permitir que você escreva uma função que use verbos dplyr, primeiro apresentaremos o desafio da indireção (*indirection challenge*) e como você pode superá-lo usando os sinais de chaves `{{ }}`.
 Com essa teoria em mãos, mostraremos vários exemplos para ilustrar o que você pode fazer com ela.
 
 ### Indireção e avaliação organizada
@@ -400,7 +400,7 @@ A desvantagem da avaliação organizada surge quando queremos agrupar códigos r
 Aqui precisamos de alguma maneira de dizer a `group_by()` e `summarize()` para não tratar `group_var` e `mean_var` como o nome das variáveis, mas em vez disso procurar dentro delas a variável que realmente queremos usar.
 
 A avaliação organizada inclui uma solução para esse problema chamada **abraçar** (*embracing*) 🤗.
-Abraçar (*embracing*) uma variável significa envolvê-la entre colchetes para que (por exemplo) `var` se torne `{{ var }}`.
+Abraçar (*embracing*) uma variável significa envolvê-la entre chaves para que (por exemplo) `var` se torne `{{ var }}`.
 Abraçar uma variável diz ao dplyr para usar o valor armazenado dentro do argumento, não o argumento como o nome literal da variável.
 Uma maneira de lembrar o que está acontecendo é pensar em `{{ }}` como olhar para dentro de um túnel --- `{{ var }}` fará uma função dplyr olhar dentro de `var` em vez de procurar por uma variável chamada ` var`.
 
@@ -462,7 +462,7 @@ diamante |>
   sumario6(quilate)
 ```
 
-Além disso, uma vez que os argumentos da `summarize()` são usam mascamento de dados (*data-masking*), isso significa que o argumento `var` para a função `sumario6()` também é usa mascaramento de dados (*data-masking*).
+Além disso, uma vez que os argumentos da `summarize()` usam mascaramento de dados (*data-masking*), isso significa que o argumento `var` para a função `sumario6()` também usa mascaramento de dados (*data-masking*).
 Isso significa que você também pode sumarizar variáveis ​​calculadas:
 
 ```{r}
@@ -520,7 +520,7 @@ subconjunto_voos <- function(linhas, colunas) {
 ### Mascaramento de dados vs. seleção organizada
 
 Às vezes você deseja selecionar variáveis ​​dentro de uma função que usa mascaramento de dados (*data-masking*).
-Por exemplo, imagine que você deseja escrever um `conta_faltantes()` que conte o número de observações faltantes nas linhas.
+Por exemplo, imagine que você deseja escrever uma função `conta_faltantes()` que conte o número de observações faltantes nas linhas.
 Você pode tentar escrever algo como:
 
 ```{r}
@@ -578,7 +578,7 @@ Embora nossos exemplos tenham se concentrado principalmente no dplyr, a avaliaç
 
 ### Exercícios
 
-1.  Usando os conjuntos de dados voos e clima do pacote dados, escreva uma função que:
+1.  Usando os conjuntos de dados "voos" e "clima" do pacote dados, escreva uma função que:
 
     1.  Encontra todos os voos que foram cancelados (ou seja, `is.na(horario_chegada)`) ou atrasados ​​por mais de uma hora.
 
@@ -587,7 +587,7 @@ Embora nossos exemplos tenham se concentrado principalmente no dplyr, a avaliaç
         voos |> filtra_problematicos()
         ```
 
-    2.  Conta o número de voos cancelados e o número de voos atrasados ​​mais de uma hora.
+    2.  Conta o número de voos cancelados e o número de voos atrasados por um tempo maior que uma hora.
 
         ```{r}
         #| eval: false
@@ -719,13 +719,13 @@ diamante |> grafico_hex(quilate, preco, profundidade)
 
 ### Combinando com outros tidyverse
 
-Alguns das funções auxiliares mais úteis combinam uma pitada de manipulação de dados com ggplot2.
+Algumas das funções auxiliares mais úteis combinam uma pitada de manipulação de dados com ggplot2.
 Por exemplo, se você quiser fazer um gráfico de barras verticais onde você classifica automaticamente as barras em ordem de frequência usando a função `fct_infreq()`.
 Como o gráfico de barras é vertical, também precisamos inverter a ordem normal para obter os valores mais altos no topo:
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico de barras de transparência de diamantes, onde a clareza está no eixo y e conta 
+#|   Gráfico de barras de transparência de diamantes, onde a clareza está no eixo y e as contagens
 #|   estão no eixo x, e as barras são ordenadas em ordem de frequência: SI1, 
 #|   VS2, SI2, VS1, VVS2, VVS1, IF, I1.
 
@@ -768,7 +768,7 @@ Terminaremos com um caso mais complicado: rotular os gráficos que você cria.
 
 ### Rótulos
 
-Lembre-se da função de histograma que mostramos anteriormente?
+Lembra da função de histograma que mostramos anteriormente?
 
 ```{r}
 histograma <- function(df, var, binwidth = NULL) {
@@ -778,7 +778,7 @@ histograma <- function(df, var, binwidth = NULL) {
 }
 ```
 
-Não seria bom se pudéssemos rotular a saída com a variável e a largura do compartimento que foi usada?
+Não seria bom se pudéssemos rotular a saída com a variável e a largura do intervalo que foi usada?
 Para fazer isso, teremos que nos aprofundar na avaliação organizada (*tidy evaluation*) e usar uma função do pacote sobre a qual ainda não falamos: rlang.
 rlang é um pacote de baixo nível usado por quase todos os outros pacotes do tidyverse porque implementa a avaliação organizada (*tidy evaluation*) (bem como muitas outras ferramentas úteis).
 
@@ -832,7 +832,7 @@ Use seu bom senso e não tenha medo de renomear uma função se descobrir um nom
 # Muito curto
 f()
 
-# Não pe verbo, nem descritivo
+# Não é verbo, nem descritivo
 minha_funcao_maravilhosa()
 
 # Longo, mas claro
@@ -842,7 +842,7 @@ agrupar_anos()
 
 R também não se importa em como você usa o espaço em branco em suas funções, mas os futuros leitores o farão.
 Continue seguindo as regras do @sec-workflow-style.
-Além disso, `funcao()` deve sempre ser seguida por colchetes (`{}`), e o conteúdo deve ser recuado por dois espaços adicionais.
+Além disso, `funcao()` deve sempre ser seguida por chaves (`{}`), e o conteúdo deve ser recuado por dois espaços adicionais.
 Isso torna mais fácil ver a hierarquia em seu código, percorrendo a margem esquerda.
 
 ```{r}
