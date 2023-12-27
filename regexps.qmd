@@ -11,8 +11,8 @@ source("_common.R")
 ## Introdução
 
 No @sec-strings, você aprendeu diversas funções úteis para trabalhar com *strings*.
-Este capítulo se concentrará em funções que usam **expressões regulares**, uma linguagem concisa e poderosa para descrever padrões (*patterns*) dentro de cadeia de caracteres (*strings*).
-O termo "expressão regular" é um pouco longo, então a maioria das pessoas o abrevia como "regex"[^regexps-1] ou "regexp".
+Este capítulo se concentrará em funções que usam **expressões regulares**, uma linguagem concisa e poderosa para descrever padrões (*patterns*) em cadeia de caracteres (*strings*).
+O termo "expressão regular" é um pouco longo, então a maioria das pessoas o abrevia como "regex"[^regexps-1] ou "regexp" (do inglês "regular expression").
 
 [^regexps-1]: Você pode pronunciá-lo com um g-seco (reg-x) ou um g-suave (rej-x).
 
@@ -33,7 +33,7 @@ library(tidyverse)
 library(dados)
 ```
 
-Ao longo deste capítulo, usaremos uma combinação de exemplos muito simples em linha (*inline*) para você entender a ideia geral, o conjunto de dados bebes e três vetores de caracteres do pacote stringr que estão em inglês:
+Ao longo deste capítulo, usaremos uma combinação de exemplos muito simples para você entender a ideia geral, o conjunto de dados `bebes` e três vetores de caracteres do pacote stringr que estão em inglês:
 
 -   `fruit` contém nomes de 80 frutas.
 -   `words` contém 980 palavras comuns da lingua inglesa.
@@ -110,12 +110,12 @@ Vamos iniciar este processo praticando com algumas funções úteis do stringr.
 
 ## Funções chaves {#sec-stringr-regex-funs}
 
-Agora que você tem o básico das expressões regulares em seu cinto de utilidades, vamos usá-las em algumas funções dos pacotes stringr e tidyr.
+Agora que você tem o básico das expressões regulares em sua caixa de ferramentas, vamos usá-las em algumas funções dos pacotes stringr e tidyr.
 Na seção a seguir, você aprenderá como detectar a presença ou ausência de correspondências (*matches*), como contar o número de correspondências, como trocar uma correspondência por um texto fixo e como extrair textos usando um padrão (*pattern*).
 
 ### Detectando correspondências
 
-`str_detect()` retorna uma vetor lógico que ém `TRUE` se o padrão corresponde a um elemento do vetor de caracteres e `FALSE` se não corresponde:
+`str_detect()` retorna uma vetor lógico que é `TRUE` se o padrão corresponde a um elemento do vetor de caracteres e `FALSE` se não corresponde:
 
 ```{r}
 str_detect(c("a", "b", "c"), "[aeiou]")
@@ -130,8 +130,8 @@ bebes |>
   count(nome, wt = n, sort = TRUE)
 ```
 
-Podemos também usar a`str_detect()` com `summarize()` combinando-a com `sum()` ou `mean()`: `sum(str_detect(x, padrao))` informa o numero de observações correspondentes ao padrão e `mean(str_detect(x, padrao))` informa a proporção da correspondência.
-Por exemplo, o código a seguir, calcula e visualiza a proporção de nomes de bebês [^regexps-4] que contém "x", agrupados por ano.
+Podemos também usar a`str_detect()` com `summarize()` combinando-a com `sum()` ou `mean()`: `sum(str_detect(x, padrao))` informa o número de observações correspondentes ao padrão e `mean(str_detect(x, padrao))` informa a proporção da correspondência.
+Por exemplo, o código a seguir calcula e visualiza a proporção de nomes de bebês [^regexps-4] que contém "x", agrupados por ano.
 Parece que eles aumentaram em popularidade ultimamente!
 
 [^regexps-4]: Isto nos dá a proporção de **nomes** que contém um "x"; se você quiser a proporção de bebês com um nome contendo um x, você deve usar uma média ponderada.
@@ -150,7 +150,7 @@ bebes |>
 ```
 
 Existem duas funções que se relacionam muito com a `str_detect()`: `str_subset()` e `str_which()`.
-`str_subset()` retorna um vetor de caractere contendo apenas as *strings* que correspondem ao padrão.
+`str_subset()` retorna um vetor de caracteres contendo apenas as *strings* que correspondem ao padrão.
 `str_which()` retorna um vetor de inteiro informando a posição das *strings* que correspondem ao padrão.
 
 ### Contando correspondências (*matches*)
@@ -183,8 +183,8 @@ bebes |>
   )
 ```
 
-Se você observar bem, você verá que há algo estranho em nossa contagem: "Aaban" contém três "a"s, mas nosso relatório sumarizado mostra apenas 2 vogais.
-Isto é porque as expressões regulares consideram a diferença entre letras maiúsculas e minúsculas (*case sensitive*).
+Se você observar bem, verá que há algo estranho em nossa contagem: "Aaban" contém três "a"s, mas nosso relatório sumarizado mostra apenas 2 vogais.
+Isto acontece porque as expressões regulares consideram a diferença entre letras maiúsculas e minúsculas (*case sensitive*).
 Existem três formas de arrumar isto:
 
 -   Adicionar as vogais maiúsculas nas classes de caracteres: `str_count(nome, "[aeiouAEIOU]")`.
@@ -192,9 +192,9 @@ Existem três formas de arrumar isto:
 -   Usar a `str_to_lower()` para converter os nomes para letras minúsculas: `str_count(str_to_lower(nome), "[aeiou]")`.
 
 Esta variedade de abordagens é muito comum quando trabalhamos com *strings* --- em geral, há várias formas de atingir seus objetivos, seja formando padrões mais complexos ou efetuando algum pré-processamento em sua *string*.
-Se você estiver bloqueado em uma abordagem, em geral, pode ser melhor mudar a marcha e atacar seu problema sob uma perspectiva diferente.
+Se você se encontrar bloqueado com uma abordagem, em geral, pode ser melhor mudar abordagem e atacar seu problema sob uma perspectiva diferente.
 
-Nesta caso, como estamos usando duas funções na variável nome, acredito ser mais fácil transformá-la antes:
+Neste caso, como estamos usando duas funções na variável nome, acredito ser mais fácil transformá-la antes:
 
 ```{r}
 bebes |> 
@@ -209,30 +209,30 @@ bebes |>
 ### Trocando valores
 
 Assim como detectar e contar correspondências, você também pode modificá-las com `str_replace()` e `str_replace_all()`.
-`str_replace()` troca a primeira correspondência e, como o nome pode sugerir, a `str_replace_all()` troca todas as correspondências.
+`str_replace()` troca a primeira correspondência e, como o nome sugere, a `str_replace_all()` troca todas as correspondências.
 
 ```{r}
 x <- c("apple", "pear", "banana")
 str_replace_all(x, "[aeiou]", "-")
 ```
 
-`str_remove()` e `str_remove_all()` são funções atalhos para `str_replace(x, padrão, "")`:
+`str_remove()` e `str_remove_all()` são funções atalhos para `str_replace(x, padrao, "")`:
 
 ```{r}
 x <- c("apple", "pear", "banana")
 str_remove_all(x, "[aeiou]")
 ```
 
-Estas funções combinam natualmente com `mutate()` quando fazemos limpeza de dados, e você geralmente as aplicará repetidamente para remover camadas de incosistência de formatação.
+Estas funções combinam naturalmente com `mutate()` quando fazemos limpeza de dados, e você geralmente as aplicará repetidamente para remover camadas de incosistência de formatação.
 
 ### Extraindo variáveis {#sec-extract-variables}
 
-A última função que discutiremos usa expressões regulares para extrair dados de uma coluna para um ou mais nova(s) coluna(s): `separate_wider_regex()`.
+A última função que discutiremos utiliza expressões regulares para extrair dados de uma coluna e criar uma ou mais novas colunas: `separate_wider_regex()`.
 É uma função par da `separate_wider_position()` e `separate_wider_delim()` que você aprendeu na @sec-string-columns.
-Estas funções estão no pacote tidyr pois elas operam em colunas de *data frames* ou invés de vetores individuais.
+Estas funções estão no pacote tidyr porque operam em (colunas de) *data frames*, em vez de vetores individuais.
 
-Vamos criar um conjunto simples de dados para mostrar como funciona.
-Aqui temos alguns dados derivados de `dados::bebes` onde, temos nome, sexo biológico e idade de várias pessoas em um formato meio estranho[^regexps-5]:
+Vamos criar um conjunto simples de dados para mostrar como ela funciona.
+Aqui temos alguns dados derivados de `dados::bebes` onde temos nome, sexo biológico e idade de várias pessoas em um formato meio estranho[^regexps-5]:
 
 [^regexps-5]: Gostaríamos de poder garantir que você nunca veria algo tão estranho na vida real, mas infelizmente, ao longo de sua carreira, é provável que você veja coisas muito mais estranhas!
 
@@ -250,7 +250,7 @@ df <- tribble(
 ```
 
 Para extrair estes dados com `separate_wider_regex()`, precisamos apenas construir uma sequência de expressões regulares que correspondem a cada parte.
-Se quisermos que o conteído de cada parte apareção na saída, damos um nome:
+Se quisermos que o conteúdo de cada parte apareça na saída, damos um nome:
 
 ```{r}
 df |> 
@@ -272,7 +272,7 @@ Se a correpondência falhar, você pode usar `too_short = "debug"` para entender
 ### Exercícios
 
 1.  Qual nome de bebê tem a menor quantidade de vogais?
-    QUal nome tem a maior proporção de vogais?
+    Qual nome tem a maior proporção de vogais?
     (Dica: qual o denominador?)
 
 2.  Troque todas as barras em `"a/b/c/d/e"` por barras invertidas.
@@ -286,25 +286,25 @@ Se a correpondência falhar, você pode usar `too_short = "debug"` para entender
 ## Detalhes de padrões
 
 Agora que você entende o básico da linguagem dos padrões e como usá-la com algumas funções do pacote stringr e tidyr, é hora de nos aprofundarmos mais nos detalhes.
-Primeiro, começaremos com **escapadas** (*escaping*), que permite combinar metacaracteres que de outra forma seriam tratados de maneira especial.
-A seguir, você aprenderá sobre **âncoras** (*anchors*) que permitem combinar com o início ou o fim da *string*.
-Em seguida, você aprenderá mais sobre **classes de caracteres** (*character classes*) e seus atalhos que permitem combinar qualquer caractere de um conjunto.
-A seguir, você aprenderá os detalhes finais dos **quantificadores** (*quantifiers*) que controlam quantas vezes um padrão pode corresponder.
+Primeiro, começaremos com **escapadas** (*escaping*), que permitem identificar metacaracteres que de outra forma seriam tratados de maneira especial.
+A seguir, você aprenderá sobre **âncoras** (*anchors*) que permitem identificar o início ou o fim da *string*.
+Em seguida, você aprenderá mais sobre **classes de caracteres** (*character classes*) e seus atalhos que permitem identificar qualquer caractere de um conjunto.
+A seguir, você aprenderá os detalhes finais dos **quantificadores** (*quantifiers*) que controlam quantas vezes um padrão pode ser identificado.
 Então, temos que cobrir o importante (mas complexo) tópico de **precedência de operador** (*operator precedence*) e parênteses.
 E terminaremos com alguns detalhes de **agrupamento** (*grouping*) de componentes de um padrão.
 
 Os termos que usamos aqui são os nomes técnicos de cada componente.
-Eles nem sempre são os que combinam melhor ao seu propósito, mas é muito útil saber os termos corretos se você quiser procurar mais detalhes no *Google* posteriormente.
+Nem sempre são os mais sugestivos em relação ao seu propósito, mas é muito útil conhecer os termos corretos se você desejar pesquisar mais detalhes posteriormente no *Google*.
 
 ### Escapadas {#sec-regexp-escaping}
 
-Para correponder um `.` literal, você precisa **escapar**, o que informa a expressão regular para correponder ao metacaractere [^regexps-6] literalmente.
-Assim como as *strings*, regexp usa a barra invertidade para escapadas (*escaping*).
-Portanto, para corresponder a um `.`, você preacisa da regexp `\.`. Infelizmente isto cria um problema.
+Para identificar um `.` literal, você precisa **escapar**, o que informa a expressão regular para interpretar o metacaractere [^regexps-6] literalmente.
+Assim como as *strings*, regexp usa a barra invertida para escapadas (*escaping*).
+Portanto, para identificar um `.`, você precisa da regexp `\.`. Infelizmente isto cria um problema.
 Nós usamos strings para representar expressões regulares, e `\` é também usada como símbolo de escapadas nas *strings*.
 Portanto, para criar a expressão regular `\.` , precismos da *string* `"\\."`, como mostra os exemplos a seguir.
 
-[^regexps-6]: A lista completa de metacaractere é `.^$\|*+?{}[]()`
+[^regexps-6]: A lista completa de metacaracteres é `.^$\|*+?{}[]()`
 
 ```{r}
 # Para criar a expressão regular \., precisamos usar \\.
@@ -329,13 +329,13 @@ str_view(x, "\\\\")
 ```
 
 Alternativamente, você pode achar mais fácil usar *strings* brutas (*raw*) que você emprendeu na @sec-raw-strings.
-That lets you avoid one layer of escaping:
+Isso permite que você evite uma camada de escape:
 
 ```{r}
 str_view(x, r"{\\}")
 ```
 
-Se você está tentando correponder um `.`, `$`, `|`, `*`, `+`, `?`, `{`, `}`, `(`, `)` literal, há uma alternativa para não usar a escapada com barra invertida: você pode usar uma classe de caractere: `[.]`, `[$]`, `[|]`, \...
+Se você está tentando identificar um `.`, `$`, `|`, `*`, `+`, `?`, `{`, `}`, `(`, `)` literal, há uma alternativa para não usar a escapada com barra invertida: você pode usar uma classe de caractere: `[.]`, `[$]`, `[|]`, \...
 todas correspondem aos valores literais.
 
 ```{r}
@@ -346,7 +346,7 @@ str_view(c("abc", "a.c", "a*c", "a c"), ".[*]c")
 ### Âncoras
 
 Por padrão, as expressões regulares corresponderão a qualquer parte de uma string.
-Se você quiser corresponder no início ou no final, você precisa **ancorar** a expressão regular usando `^` para corresponder ao início ou `$` para corresponder ao final:
+Se você quiser identificar no início ou no final, você precisa **ancorar** a expressão regular usando `^` para encontrar no início ou `$` para encontrar no final:
 
 ```{r}
 str_view(fruit, "^a")
@@ -435,7 +435,7 @@ str_view(x, "\\W+")
 ### Quantificadores {#sec-quantifiers}
 
 **Quantificadores** (*Quantifies*) controlam quantas vezes um padrão é correspondido.
-Na @sec-reg-basics você aprendeu sobre o `?` (0 ou 1 correspondência), `+` (1 ou mais correspondência) e `*` (0 ou mais correspondências).
+Na @sec-reg-basics você aprendeu sobre o `?` (0 ou 1 correspondência), `+` (1 ou mais correspondências) e `*` (0 ou mais correspondências).
 Por exemplo, `colou?r` irá corresponder à escrita em inglês estadunidense (*color*) e britânico (*colour*), `\d+` irá corresponder a um ou mais digitos, e `\s?` irá opcionalmente corresponder a um único espaço em branco.
 Você também pode especificar o número exato de correspondências com `{}`:
 
@@ -448,20 +448,20 @@ Você também pode especificar o número exato de correspondências com `{}`:
 Ao que `ab+` corresponde?
 Corresponde a um "a" seguido por um ou mais "b"s, ou corresponde a "ab" repetidos qualquer número de vezes?
 Ao que corresponde `^a|b$`?
-Corresponde a uma *string* a completa OU um *string* b, ou a uma *string* que começa com a OU uma *string* que termina com b?
+Corresponde a uma *string*  completa começando com "a" ou uma *string* completa terminando com "b", ou a uma *string* que começa com "a" ou uma *string* que termina com "b"?
 
-As respostas para estas perguntas são determinadas pela precedência de operadores, similar a regras PEMDAS ou BEDMAS que você deve ter aprendido na escola.
+As respostas para estas perguntas são determinadas pela precedência de operadores, similar às regras de ordem de prioridade das operações aritméticas que você deve ter aprendido na escola.
 Você sabe que `a + b * c` é equivalente a `a + (b * c)` e não `(a + b) * c` pois `*` tem uma prioridade mais alta de precedência e `+` tem uma precedência mais baixa: você calcula o `*` antes do `+`.
 
-Da mesma forma, expressões regulares têm suas próprias regras de precedência: quantificadores têm precedência alta e alternância têm precedência baixa, o que significa que `ab+` é equivalente a `a(b+)`, e `^a|b$` é equivalente a `(^a )|(b$)`.
+Da mesma forma, expressões regulares têm suas próprias regras de precedência: quantificadores têm precedência alta e alternância têm precedência baixa, o que significa que `ab+` é equivalente a `a(b+)`, e `^a|b$` é equivalente a `(^a)|(b$)`.
 Assim como na álgebra, você pode usar parênteses para substituir a ordem normal.
-Mas, diferentemente da álgebra, é improvável que você se lembre das regras de precedência para expressões regulares, então sinta-se à vontade para usar parênteses livremente..
+Mas, diferentemente da álgebra, é improvável que você se lembre das regras de precedência para expressões regulares, então sinta-se à vontade para usar parênteses livremente.
 
 ### Agrupando e capturando
 
 Além de substituir a precedência do operador, os parênteses têm outro efeito importante: eles criam **grupos de captura** que permitem usar subcomponentes da correspondência.
 
-A primeira maneira de usar um grupo de captura é fazer referência a ele dentro de uma correspondência com **referência anterior**: `\1` refere-se à correspondência contida no primeiro parêntese, `\2` no segundo parêntese, e assim sobre.
+A primeira maneira de usar um grupo de captura é fazer referência a ele dentro de uma correspondência com **referência anterior**: `\1` refere-se à correspondência contida no primeiro parênteses, `\2` no segundo parênteses, e assim sucessivamente.
 Por exemplo, o padrão a seguir encontra todas as frutas que possuem um par de letras repetido:
 
 ```{r}
@@ -483,7 +483,7 @@ sentences |>
   str_view()
 ```
 
-Se você deseja extrair as correspondências de cada grupo você pode usar `str_match()`.
+Se você deseja extrair as correspondências de cada grupo, você pode usar `str_match()`.
 Mas `str_match()` retorna uma matriz, então não é particularmente fácil trabalhar com ela[^regexps-8]:
 
 [^regexps-8]: Principalmente porque nunca discutimos sobre matrizes neste livro!
@@ -517,9 +517,9 @@ str_match(x, "famint(?:o|a)")
 
 ### Exercícios
 
-1.  Como você faria para corresponder a *string* literal `"'\`? E a `"$^$"`?
+1.  Como você faria para identificar a *string* literal `"'\`? E a `"$^$"`?
 
-2.  Explique porque cada um desses padrões não correspondem a `\`: `"\"`, `"\\"`, `"\\\"`.
+2.  Explique por que cada um desses padrões não correspondem a `\`: `"\"`, `"\\"`, `"\\\"`.
 
 3.  Dado o conjunto de palavras comuns em `stringr::words`, crie expressões regulares para encontrar todas as palavras que:
 
@@ -536,7 +536,7 @@ str_match(x, "famint(?:o|a)")
     Tente e crie a menor expressão regular possível!
 
 5.  Troque a primeira e última letra em `words`.
-    Quais desses *strings* ainda são `palavras`?
+    Quais dessas *strings* ainda são `palavras`?
 
 6.  Descreva em palavras ao que correspondem as expressões abaixo: (leia com atenção para ver se cada parte corresponde a uma expressão regular ou a uma *string* que define uma expressão regular.)
 
@@ -553,12 +553,12 @@ str_match(x, "famint(?:o|a)")
 ## Controle de padrões
 
 É possível exercer controle extra sobre os detalhes da correspondência usando um objeto padrão em vez de apenas uma string.
-Isto permite que você controle os chamados sinalizadores (*flgas*) regex e combine vários tipos de strings fixas, conforme descrito abaixo.
+Isto permite que você controle os chamados sinalizadores (*flags*) regex e combine vários tipos de strings fixas, conforme descrito abaixo.
 
 ### Sinalizadores regex {#sec-flags}
 
 Existem várias configurações que podem ser usadas para controlar os detalhes do regexp.
-Essas configurações costumam ser chamadas de **sinalizadores** (*flgas*) em outras linguagens de programação.
+Essas configurações costumam ser chamadas de **sinalizadores** (*flags*) em outras linguagens de programação.
 No pacote stringr, você pode usá-los agrupando o padrão em uma chamada para `regex()`.
 O sinalizador mais útil é provavelmente `ignore_case = TRUE` porque permite que os caracteres correspondam às suas formas maiúsculas ou minúsculas:
 
@@ -578,7 +578,7 @@ Se você trabalha muito com *strings* multilinhas (ou seja, *strings* que contê
     str_view(x, regex(".Linha", dotall = TRUE))
     ```
 
--   `multiline = TRUE` faz o `^` e o `$` corresponder ao início e fim de cada linha ao invés de do início e fim de cada *string* completa:
+-   `multiline = TRUE` faz o `^` e o `$` corresponder ao início e fim de cada linha ao invés do início e fim de cada *string* completa:
 
     ```{r}
     x <- "Linha 1\nLinha 2\nLinha 3"
@@ -590,7 +590,7 @@ Finalmente, se você estiver escrevendo uma expressão regular complicada e esti
 Ele ajusta a linguagem padrão para ignorar espaços e novas linhas, bem como tudo depois de `#`.
 Isso permite que você use comentários e espaços em branco para tornar expressões regulares complexas mais compreensíveis[^regexps-9], como no exemplo a seguir:
 
-[^regexps-9]: `comments = TRUE` é particularmente eficaz em combinação com uma string bruta (*raw*), como usamos aqui.
+[^regexps-9]: `comments = TRUE` é particularmente eficaz quando usado com uma string bruta (*raw*), como usamos aqui.
 
 ```{r}
 telefone <- regex(
@@ -609,7 +609,7 @@ telefone <- regex(
 str_extract(c("514-791-8141", "(123) 456 7890", "123456"), telefone)
 ```
 
-Se você estiver usando comentários e quiser corresponder a um espaço, nova linha ou `#`, você precisará escapar usando a `\`.
+Se você estiver usando comentários e quiser identificar um espaço, nova linha ou `#`, você precisará escapar usando a `\`.
 
 ### Correspondências fixas
 
@@ -619,14 +619,14 @@ Você pode optar por cancelar as regras de expressão regular usando `fixed()`:
 str_view(c("", "a", "."), fixed("."))
 ```
 
-`fixed()` também te dá a habilidate de ignorar formas maiúsculas e minúsculas:
+`fixed()` também te dá a habilidade de ignorar formas maiúsculas e minúsculas:
 
 ```{r}
 str_view("x X", "X")
 str_view("x X", fixed("X", ignore_case = TRUE))
 ```
 
-Se você estiver trabalhando com textos que não estão em Inglês, você provavelmente irá querer usar a `coll()` ao invés da `fixed()`, uma vez que ela implementa todas as regras de capitalização (*capitalization*) usadas pela `localização` (*locale*) que você especificou.
+Se você estiver trabalhando com textos que não estão em inglês, você provavelmente irá querer usar a `coll()` ao invés da `fixed()`, uma vez que ela implementa todas as regras de capitalização (*capitalization*) usadas pela `localização` (*locale*) que você especificou.
 Veja a @sec-other-languages para maiores detalhes sobre localização.
 
 ```{r}
@@ -640,8 +640,8 @@ Para colocar essas ideias em prática, resolveremos a seguir alguns problemas se
 Discutiremos três técnicas gerais:
 
 1.  verificar seu trabalho criando controles simples positivos e negativos
-2.  combinando expressões regulares com álgebra booleana
-3.  criação de padrões complexos usando manipulação de *strings*
+2.  combinar expressões regulares com álgebra booleana
+3.  criar padrões complexos usando manipulação de *strings*
 
 ### Verifique seu trabalho
 
@@ -659,7 +659,7 @@ Precisamos ter certeza de que o “e” é a última letra da palavra, o que pod
 str_view(sentences, "^The\\b")
 ```
 
-Que tal encontrar todas as frases que começam com um pronome?
+Que tal encontrar todas as frases que começam com um pronome em inglês?
 
 ```{r}
 str_view(sentences, "^She|He|It|They\\b")
@@ -704,7 +704,7 @@ str_view(words[!str_detect(words, "[aeiou]")])
 ```
 
 Esta é uma técnica útil sempre que você estiver lidando com combinações lógicas, especialmente aquelas que envolvem “e” ou “não”.
-Por exemplo, imagine se você deseja encontrar todas as palavras que contenham “a” e “b”.
+Por exemplo, imagine que você deseja encontrar todas as palavras que contenham “a” e “b”.
 Não há nenhum operador "e" embutido nas expressões regulares, então temos que resolver isso procurando todas as palavras que contenham um "a" seguido por um "b" ou um "b" seguido por um "a":
 
 ```{r}
@@ -722,7 +722,7 @@ Se fizéssemos isso com padrões precisaríamos gerar 5!
 (120) padrões diferentes:
 
 ```{r}
-#| resultado: falso
+#| results: false
 words[str_detect(words, "a.*e.*i.*o.*u")]
 # ...
 words[str_detect(words, "u.*o.*i.*e.*a")]
@@ -740,7 +740,7 @@ words[
 ]
 ```
 
-Em geral, se você ficar preso tentando criar um único regexp que resolva seu problema, dê um passo para trás e pense se você poderia dividir o problema em partes menores, resolvendo cada desafio antes de passar para o próximo..
+Em geral, se você ficar preso tentando criar um único regexp que resolva seu problema, dê um passo para trás e pense se você poderia dividir o problema em partes menores, resolvendo cada desafio antes de passar para o próximo.
 
 ### Criando um padrão com código
 
@@ -793,13 +793,13 @@ Mas, em geral, sempre que você criar padrões a partir de strings existentes, �
 
 ### Exercícios
 
-1.  Para cada um dos desafios a seguir, tente resolvê-los usando uma única expressão regular e uma combinação de múltiplas chamadas `str_detect()`.
+1.  Para cada um dos desafios a seguir, tente resolvê-los usando uma única expressão regular e uma combinação de múltiplas chamadas à função `str_detect()`.
 
     a.  Encontre todas as palavras em `words` que começam ou terminam com `x`.
     b.  Encontre todas as palavras em `words` que começam com vogal e terminam com consoante.
     c.  Existe alguma palavra em `words` que contenha pelo menos uma de cada vogal diferente?
 
-2.  Construa padrões para encontrar evidências a favor e contra a regra "i antes de e exceto depois de c"?
+2.  Construa padrões para encontrar evidências a favor e contra a regra: "i" antes de "e" exceto depois de "c".
 
 3.  `colors()` contém vários modificadores de cores como "lightgray" (cinza claro) e "darkblue" (azul escuro).
     Como você poderia identificar automaticamente esses modificadores (light, dark) ?
@@ -822,7 +822,7 @@ Existem três outros lugares particularmente úteis onde você pode querer usar 
     É uma função "tidyselect" que você pode usar em qualquer lugar em qualquer função tidyverse que selecione variáveis ​​(por exemplo, `select()`, `rename_with()` e `across()`).
 
 -   O argumento `names_pattern` da função `pivot_longer()` recebe um vetor de expressão regular, assim como na `separate_wider_regex()`.
-    É útil ao extrair dados de nomes de variáveis ​​com uma estrutura complexa
+    É útil ao extrair dados de nomes de variáveis ​​com uma estrutura complexa.
 
 -   O argumento `delim` na `separate_longer_delim()` e na `separate_wider_delim()` geralmente corresponde a uma string fixa, mas você pode usar `regex()` para fazê-lo corresponder a um padrão.
     Isso é útil, por exemplo, se você deseja corresponder uma vírgula que é opcionalmente seguida por um espaço, ou seja, `regex(", ?")`.
@@ -846,15 +846,15 @@ head(list.files(pattern = "\\.Rmd$"))
 É importante notar que a linguagem de padrão usada pelo R base é ligeiramente diferente daquela usada pelo stringr..
 Isso ocorre porque stringr é construído sobre o [pacote stringi](https://stringi.gagolewski.com), que por sua vez é construído sobre o [mecanismo ICU](https://unicode-org.github.io /icu/userguide/strings/regexp.html), enquanto as funções base R usam o [mecanismo TRE](https://github.com/laurikari/tre) ou o [mecanismo PCRE](https://www.pcre .org), dependendo se você configurou ou não `perl = TRUE`.
 Felizmente, os princípios básicos das expressões regulares estão tão bem estabelecidos que você encontrará poucas variações ao trabalhar com os padrões que aprenderá neste livro.
-Você só precisa estar ciente da diferença quando começar a confiar em recursos avançados, como intervalos complexos de caracteres Unicode ou recursos especiais que usam a sintaxe `(?…)`.
+Você só precisa estar ciente da diferença quando começar a depender de recursos avançados, como intervalos complexos de caracteres Unicode ou recursos especiais que usam a sintaxe `(?…)`.
 
 ## Resumo
 
 Com cada caractere de pontuação potencialmente sobrecarregado de significado, as expressões regulares são uma das linguagens mais compactas que existem.
-Eles são definitivamente confusos no início, mas à medida que você treina seus olhos para lê-los e seu cérebro para entendê-los, você desbloqueia uma habilidade poderosa que pode ser usada em R e em muitos outros lugares.
+Elas são definitivamente confusas no início, mas à medida que você treina seus olhos para lê-las e seu cérebro para entendê-las, você desbloqueia uma habilidade poderosa que pode ser usada em R e em muitos outros lugares.
 
 Neste capítulo, você iniciou sua jornada para se tornar um mestre em expressões regulares aprendendo as funções stringr mais úteis e os componentes mais importantes da linguagem de expressões regulares.
-E ainda há muitos recursos para aprender mais.
+E ainda há muitos recursos para aprender ainda mais.
 
 Um bom lugar para começar é na `vignette("regular-expressions", package = "stringr")`: ela documenta o conjunto completo de sintaxe suportada pelo pacote stringr.
 Outra referência útil é [https://www.regular-expressions.info/](https://www.regular-expressions.info/tutorial.html).
