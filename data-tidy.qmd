@@ -15,7 +15,7 @@ source("_common.R")
 > --- Hadley Wickham
 
 Neste capítulo, você vai aprender uma forma consistente de organizar seus dados no R utilizando um sistema chamado **tidy data**.
-Colocar seus dados nesse formato requer alguma preparação, mas esse é um trabalho que se paga a longo prazo.
+Colocar seus dados nesse formato requer alguma preparação, mas esse é um trabalho que se paga ao longo prazo.
 Uma vez que você tenha em mãos os dados no formato *tidy* e as ferramentas do tidyverse, você irá gastar muito menos tempo alternando seus dados entre uma representação e outra, de forma que o tempo com seus dados possa ser gasto nas questões que você realmente se importa.
 
 Neste capítulo, você primeiro vai aprender sobre a definição do formato *tidy* e vê-lo sendo aplicado em um conjunto de dados de exemplo.
