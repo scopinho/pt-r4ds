@@ -443,7 +443,7 @@ Até então, utilizamos `pivot_longer()` para resolver um tipo comum de problema
 Agora vamos pivotar (HA HA) para `pivot_wider()`, que vai tornar o conjunto de dados mais **largo** (*wider*) ao aumentar o número de colunas e diminuir o número de linhas, auxiliando quando uma informação está espalhada em múltiplas linhas.
 Isso tende a aparecer menos na vida real, mas parece ser comum quando estamos lidando com dados governamentais. 
 
-Começaremos dando uma olhada em `cms_patient_experience`, um conjunto de dados de serviços do Centers of Medicare and Medicaid que coleta dados sobre as experiências dos pacientes:
+Começaremos dando uma olhada em `cms_patient_experience`, um conjunto de dados de serviços do *Centers of Medicare and Medicaid* que coleta dados sobre as experiências dos pacientes:
 
 ```{r}
 cms_patient_experience
