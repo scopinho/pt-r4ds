@@ -543,7 +543,7 @@ Nesse caso, nem todas as células da saída possuem um valor correspondente na e
 Voltaremos a essa ideia de que a `pivot_wider()` pode "produzir" valores ausentes em @sec-missing-values.
 
 Você pode também estar se perguntando se há várias linhas na entrada que correspondem a apenas uma célula na saída.
-O exemplo abaixo, possui duas linhas que correspondem ao `id` "A" à medida (`measurement`) "bp1":
+O exemplo abaixo, possui duas linhas que correspondem ao `id` "A" à medida "ps1":
 
 ```{r}
 df <- tribble(
