@@ -443,7 +443,7 @@ Até então, utilizamos `pivot_longer()` para resolver um tipo comum de problema
 Agora vamos pivotar (HA HA) para `pivot_wider()`, que vai tornar o conjunto de dados mais **largo** (*wider*) ao aumentar o número de colunas e diminuir o número de linhas, auxiliando quando uma informação está espalhada em múltiplas linhas.
 Isso tende a aparecer menos na vida real, mas parece ser comum quando estamos lidando com dados governamentais. 
 
-Começaremos dando uma olhada em `cms_patient_experience`, um conjunto de dados de serviços do *Centers of Medicare and Medicaid* que coleta dados sobre as experiências dos pacientes:
+Começaremos dando uma olhada em `cms_paciente_experiencia`, um conjunto de dados de serviços do *Centers of Medicare and Medicaid* que coleta dados sobre as experiências dos pacientes:
 
 ```{r}
 cms_paciente_experiencia
@@ -460,7 +460,7 @@ cms_paciente_experiencia |>
 Nenhuma dessas colunas irá gerar nomes espetaculares: `medida_codigo` não dá nenhuma pista quanto ao significado da variável e `medida_titulo` é uma longa frase, com espaços,
 Por enquanto, nós utilizaremos `medida_codigo` como a fonte de nossa nova coluna de nomes, mas em uma análise real você deveria considerar seu próprio nome de variável, que deve ser curto e informativo.
 
-`pivot_wider()` tem a interface oposta à `pivot_longer()`: em vez de escolher o novo nome das colunas, nós precisamos fornecer as colunas existentes que definem os valores de (`values_from`) e o nome da coluna (`names_from)`: 
+`pivot_wider()` tem a interface oposta à `pivot_longer()`: em vez de escolher o novo nome das colunas, nós precisamos fornecer as colunas existentes que definem os valores de (`values_from`) e o nome da coluna (`names_from`): 
 
 ```{r}
 cms_paciente_experiencia |> 
@@ -561,8 +561,8 @@ Se tentarmos pivotar essa tabela teremos uma saída que contém estruturas chama
 ```{r}
 df |>
   pivot_wider(
-    names_from = measurement,
-    values_from = value
+    names_from = medida,
+    values_from = valor
   )
 ```
 
