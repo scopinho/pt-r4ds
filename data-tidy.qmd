@@ -106,8 +106,8 @@ Aqui estão alguns pequenos exemplos mostrando como é possível trabalhar com `
 #|   valores que parecem estar muito perto do 0 nessa escala.
 
 # Calcular a taxa (_rate_) por 10.000
-table1 |>
-  mutate(rate = cases / population * 10000)
+tabela1 |>
+  mutate(taxa = casos / populacao * 10000)
 
 # Calcular o total de casos por ano 
 tabela1 |> 
