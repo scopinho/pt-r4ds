@@ -309,7 +309,7 @@ Eles precisam ser repetidos uma vez para cada linha dos dados originais.
 #|   valores precisam ser reptidos uma vez para cada linha dos dados originais.
 #| fig-alt: | 
 #|   Um diagrama mostrando como `pivot_longer()` transforma um simples 
-#|   conjunto de dados, utilizando cores para destacar como os nomes das colunas ("bp1" e 
+#|   conjunto de dados, utilizando cores para destacar como os nomes das colunas ("ps1" e 
 #|   "ps2") se tornam valores em uma nova coluna `medicao`. Eles são repetidos
 #|   três vezes porque havia três linhas na entrada.
 
@@ -398,11 +398,11 @@ O próximo degrau em complexidade é quando os nomes das colunas incluem uma mis
 Por exemplo, vamos pegar o conjunto de dados `nucleo_familiar`: 
 
 ```{r}
-household
+nucleo_familiar
 ```
 
 Nesse conjunto temos dados de cinco famílias, com nomes e datas de nascimento de até duas crianças.
-O novo desafio é que nesses dados os nomes das colunas contêm os nomes de duas variáveis (data de nascimento - `dob`, nome - `name)` e os valores de outra (criança - `child,` com valores 1 ou 2).
+O novo desafio é que nesses dados os nomes das colunas contêm os nomes de duas variáveis (`data_nascimento`, `nome)` e os valores de outra (criança - `crianca,` com valores 1 ou 2).
 Para resolver esse problema, novamente precisamods passar um vetor para `names_to`, mas dessa vamos vamos passar um parâmetro especial `".value"` (chamado de _sentinel_); esse parâmetro não é o nome de uma variável, mas um valor único que diz ao `pivot_longer()` para fazer algo diferente com ele.
 Isso sobrepõe o argumento `values_to` normal em favor do primeiro componente do nome da coluna pivotada, utilizado como nome da variável na saída da função.
 
@@ -429,10 +429,10 @@ Quando você utiliza `".value"` em `names_to`, a coluna de nomes dos dados de en
 #|   em dois componentes: a primeira parte determina o nome da coluna da saída, (`x` ou `y`),
 #|   e a segunda parte determina o valore da coluna `num`.
 #| fig-alt: |
-#|   Um diagrama que utiliza cores para ilustrar como o parâmetro ".value" e
-#|   sentinel works. The input has names "x_1", "x_2", "y_1", and "y_2",
-#|   and we want to use the first component ("x", "y") as a variable name
-#|   and the second ("1", "2") as the value for a new "num" column.
+#|   Um diagrama que utiliza cores para ilustrar como o parâmetro ".value" 
+#|   funciona. A entrada tem nomes "x_1", "x_2", "y_1", "y_2" 
+#|  e queremos usar o primeiro componente ("x", "y") como nome das variáveis
+#|   e o segundo ("1", "2") como valor para a nova coluna "num".
 
 knitr::include_graphics("diagrams/tidy-data/names-and-values.png", dpi = 270)
 ```
@@ -453,8 +453,8 @@ A unidade principal sendo estudada é a organização, mas cada organização es
 Nós podemos ver o conjunto completo dos valores de `medida_codigo` e `medida_titulo` utilizando a função `distinct()`:
 
 ```{r}
-cms_patient_experience |> 
-  distinct(measure_cd, measure_title)
+cms_paciente_experiencia |> 
+  distinct(medida_codigo, medida_titulo)
 ```
 
 Nenhuma dessas colunas irá gerar nomes espetaculares: `medida_codigo` não dá nenhuma pista quanto ao significado da variável e `medida_titulo` é uma longa frase, com espaços,
@@ -487,7 +487,7 @@ Isso gera a saída que estávamos esperando.
 ### Como funciona a função `pivot_wider()`?
 
 Para entender como a função `pivot_wider()` funciona, vamos novamente começar com um conjunto de dados bem simples. 
-Agora temos dois pacientes com `id`s A e B, e temos três medições de pressão arterial para o paciente A e duas para o paciente B:
+Agora temos dois pacientes com `id`s A e B, e temos três medições de pressão sanguínea para o paciente A e duas para o paciente B:
 
 ```{r}
 df <- tribble(
@@ -500,7 +500,7 @@ df <- tribble(
 )
 ```
 
-Vamos pegar os valores da coluna `value` e os nomes da coluna `measurement`:
+Vamos pegar os valores da coluna `valor` e os nomes da coluna `medida`:
 
 ```{r}
 df |> 
