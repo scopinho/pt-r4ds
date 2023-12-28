@@ -26,6 +26,7 @@ Imports:
     nycflights13,
     openxlsx,
     palmerpenguins,
+    remotes,
     repurrrsive (>= 1.1.0),
     tidymodels,
     tidyverse (>= 2.0.0),
@@ -35,7 +36,7 @@ Suggests:
     jpeg,
     knitr,
     sessioninfo
-Remotes:  
+Remotes: 
     tidyverse/dplyr,
     cienciadedatos/dados
 Encoding: UTF-8

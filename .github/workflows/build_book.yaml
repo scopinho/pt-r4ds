@@ -1,7 +1,7 @@
 on:
   push:
-    branches: 
-      - traducao-pt-2ed 
+    branches:
+      - traducao-pt-2ed
   # pull_request:
   #   branches: main
   # to be able to trigger a manual build
@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: traducao-pt-2ed 
+          ref: traducao-pt-2ed
 
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/install-quarto@v1
@@ -35,6 +35,10 @@ jobs:
           use-public-rspm: true
 
       - uses: r-lib/actions/setup-r-dependencies@v2
+
+      - name: "Instalar o pacote dados"
+        run: |
+          Rscript -e "remotes::install_github('cienciadedatos/dados')"
 
       - name: Render book to all format
         # Add any command line argument needed
