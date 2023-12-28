@@ -184,12 +184,12 @@ billboard |>
 Na função, são três argumentos principais, após os dados:
 
 -   `cols` especifica quais colunas precisarão ser pivotadas, ou seja, quais colunas ainda não são variáveis. Esse argumento usa a mesma sintaxe que a função `select()` então aqui poderíamos usar `!c(artista, musica, data.adicionada)` ou `starts_with("semana")`.
--   `names_to` nomeia a variável armazenada nos nomes das colunas, nós nomeamos aquela variável como `week`.
+-   `names_to` nomeia a variável armazenada nos nomes das colunas, nós nomeamos aquela variável como `semana`.
 -   `values_to` nomeia a variável armazenada nos valores das células, nós nomeamos aquela variável como `posicao`.
 
-Note que os códigos `"week"` e `"rank"` estão entre aspas porque essas são novas variáveis que estamos criando, elas ainda não existem nos dados quando a gente faz a chamada à `pivot_longer()`.
+Note que os códigos `"semana"` e `"posicao"` estão entre aspas porque essas são novas variáveis que estamos criando, elas ainda não existem nos dados quando a gente faz a chamada à `pivot_longer()`.
 
-Agora voltaremos nossa atenção ao data frame resultante, em um formato mais longo.
+Agora voltaremos nossa atenção ao _data frame_ resultante, em um formato mais longo.
 O que acontece se uma música fica no top 100 por menos que 76 semanas? 
 Vejamos "Baby Don't Cry" do 2 Pac, por exemplo.
 A saída acima sugere que ela ficou apenas 7 semanas no top 100, e todas as demais semanas foram preenchidas por valores ausentes.
@@ -210,9 +210,9 @@ billboard |>
 O número de linhas agora é muito menor, indicando que várias linhas que continham apenas `NA`s foram removidas.
 
 Você também poderia estar se perguntando: o que aconteceria caso a música ficasse no top 100 por mais que 76 semanas?
-Não é possível dizer apenas com esses dados, mas você poderia imaginar que colunas adicionais `wk77`, `wk78`, ... seriam incluídas no conjunto de dados.
+Não é possível dizer apenas com esses dados, mas você poderia imaginar que colunas adicionais `semana77`, `semana78`, ... seriam incluídas no conjunto de dados.
 
-Esses dados agora estão no formato *tidy*, mas nós ainda podemos facilitar cálculos futuros ao converter os valores da coluna `week` de caracteres para números utilizando `mutate()` e `readr::parse_number()`.
+Esses dados agora estão no formato *tidy*, mas nós ainda podemos facilitar cálculos futuros ao converter os valores da coluna `semana` de caracteres para números utilizando `mutate()` e `readr::parse_number()`.
 `parse_number()` é uma função bem útil que irá extrair o primeiro número de uma sequência de caracteres (_string_) e vai ignorar todo o resto.
 
 ```{r}
@@ -255,7 +255,7 @@ billboard_longer |>
 Agora que você já viu como usar a pivotagem para mudar a forma de nossos dados, vamos tomar um tempinho para ganhar alguma intuição sobre o que a pivotagem faz com os dados.
 Vamos começar com um conjunto de dados bem simples para enxergamos com mais facilidade o que está acontecendo.
 Suponha que temos três pacientes com `id`s A, B e C, e fazemos a medição da pressão sanguínea duas vezes para cadas paciente.
-Vamos criar os dados com `tribble()`, uma função útil para construir pequenos tibbles manualmente:
+Vamos criar os dados com `tribble()`, uma função útil para construir pequenos conjuntos de dados (_tibbles_) manualmente:
 
 ```{r}
 # bp - "blood pressure" (pressão sanguínea)
