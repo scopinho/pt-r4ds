@@ -25,7 +25,7 @@ Pivotar lhe permite mudar a forma dos dados sem modificar nenhum de seus valores
 ### Pré-requisitos
 
 Neste capítulo, vamos focar no `tidyr`, um pacote que disponibliza uma variedade de ferramentas para te ajudar a organizar seus conjuntos de dados bagunçados.
-`tidyr` faz parte do coração do tidyverse.
+`tidyr` faz parte do grupo de pacotes mais importantes do tidyverse (conhecidos como *core tidyverse*).
 
 ```{r}
 #| label: setup
