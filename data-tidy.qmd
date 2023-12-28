@@ -173,12 +173,13 @@ Aqui, o nome das colunas é uma variável (a `semana`) e o valor da célula é o
 Para transformar esses dados em *tidy*, vamos usar `pivot_longer()`:
 
 ```{r, R.options=list(pillar.print_min = 10)}
-billboard |> 
+top100musicas|>
   pivot_longer(
-    cols = starts_with("wk"), 
-    names_to = "week", 
-    values_to = "rank"
+    cols = starts_with("semana"), 
+    names_to = "semana", 
+    values_to = "posicao"
   )
+
 ```
 
 Na função, são três argumentos principais, após os dados:
@@ -198,11 +199,11 @@ Esses `NA`s, na verdade, não representam observações desconhecidas; eles fora
 [^data-tidy-2]: Voltaremos a essas ideias em @sec-missing-values.
 
 ```{r}
-billboard |> 
+top100musicas|> 
   pivot_longer(
-    cols = starts_with("wk"), 
-    names_to = "week", 
-    values_to = "rank",
+    cols = starts_with("semana"), 
+    names_to = "semana", 
+    values_to = "posicao",
     values_drop_na = TRUE
   )
 ```
@@ -216,17 +217,17 @@ Esses dados agora estão no formato *tidy*, mas nós ainda podemos facilitar cá
 `parse_number()` é uma função bem útil que irá extrair o primeiro número de uma sequência de caracteres (_string_) e vai ignorar todo o resto.
 
 ```{r}
-billboard_longer <- billboard |> 
+top100musicas_longo <- top100musicas |> 
   pivot_longer(
-    cols = starts_with("wk"), 
-    names_to = "week", 
-    values_to = "rank",
+    cols = starts_with("semana"), 
+    names_to = "semana", 
+    values_to = "posicao",
     values_drop_na = TRUE
   ) |> 
   mutate(
-    week = parse_number(week)
+    semana = parse_number(semana)
   )
-billboard_longer
+top100musicas_longo
 ```
 
 Agora que temos todos os números das semanas em uma única variável e todas as posições em outra, é um bom ponto para visualizar como a posição das músicas varia ao longo do tempo.
@@ -244,8 +245,8 @@ Nós podemos ver que muito poucas músicas permanecem no top 100 por mais de 20 
 #|   notavelmente poucas faixas na região em que a semana é >20 e a posição é
 #|   >50.
 
-billboard_longer |> 
-  ggplot(aes(x = week, y = rank, group = track)) + 
+top100musicas_longo|> 
+  ggplot(aes(x = semana, y = posicao, group = posicao)) + 
   geom_line(alpha = 0.25) + 
   scale_y_reverse()
 ```
@@ -273,9 +274,9 @@ Para obter essa forma, precisamos pivotar `df` para um formato mais longo:
 ```{r}
 df |> 
   pivot_longer(
-    cols = bp1:bp2,
-    names_to = "measurement",
-    values_to = "value"
+    cols = ps1:ps2,
+    names_to = "medicao",
+    values_to = "valor"
   )
 ```
 
@@ -407,13 +408,12 @@ Para resolver esse problema, novamente precisamods passar um vetor para `names_t
 Isso sobrepõe o argumento `values_to` normal em favor do primeiro componente do nome da coluna pivotada, utilizado como nome da variável na saída da função.
 
 ```{r}
-household |> 
+nucleo_familiar |>
   pivot_longer(
-    cols = !family, 
-    names_to = c(".value", "child"), 
+    cols = !familia, 
+    names_to = c(".value", "crianca"), 
     names_sep = "_", 
     values_drop_na = TRUE
-  )
 ```
 
 Novamente utilizaremos `values_drop_na = TRUE`, uma vez que a forma da entrada força a criação de variáveis ausentes explícitas (ex: para famílias com apenas um filho).
@@ -463,10 +463,10 @@ Por enquanto, nós utilizaremos `medida_codigo` como a fonte de nossa nova colun
 `pivot_wider()` tem a interface oposta à `pivot_longer()`: em vez de escolher o novo nome das colunas, nós precisamos fornecer as colunas existentes que definem os valores de (`values_from`) e o nome da coluna (`names_from)`: 
 
 ```{r}
-cms_patient_experience |> 
+cms_paciente_experiencia |> 
   pivot_wider(
-    names_from = measure_cd,
-    values_from = prf_rate
+    names_from = medida_codigo,
+    values_from = taxa_performance
   )
 ```
 
@@ -475,11 +475,11 @@ Isso é por que também precisamos dizer à `pivot_wider()` qual a coluna ou col
 
 
 ```{r}
-cms_patient_experience |> 
+cms_paciente_experiencia |> 
   pivot_wider(
-    id_cols = starts_with("org"),
-    names_from = measure_cd,
-    values_from = prf_rate
+    id_cols = starts_with("organizacao"),
+    names_from = medida_codigo,
+    values_from = taxa_performance
   )
 ```
 Isso gera a saída que estávamos esperando.
@@ -491,22 +491,22 @@ Agora temos dois pacientes com `id`s A e B, e temos três medições de pressão
 
 ```{r}
 df <- tribble(
-  ~id, ~measurement, ~value,
-  "A",        "bp1",    100,
-  "B",        "bp1",    140,
-  "B",        "bp2",    115, 
-  "A",        "bp2",    120,
-  "A",        "bp3",    105
+  ~id, ~medida, ~valor,
+  "A",        "ps1",    100,
+  "B",        "ps1",    140,
+  "B",        "ps2",    115, 
+  "A",        "ps2",    120,
+  "A",        "ps3",    105
 )
 ```
 
 Vamos pegar os valores da coluna `valor` e os nomes da coluna `medida`:
 
 ```{r}
-df |> 
+df |>
   pivot_wider(
-    names_from = measurement,
-    values_from = value
+    names_from = medida,
+    values_from = valor
   )
 ```
 
@@ -533,7 +533,7 @@ A função `pivot_wider()` então combina esses resultados para gerar um _data f
 
 ```{r}
 df |> 
-  select(-measurement, -value) |> 
+  select(-medida, -valor) |> 
   distinct() |> 
   mutate(x = NA, y = NA, z = NA)
 ```
@@ -547,12 +547,12 @@ O exemplo abaixo, possui duas linhas que correspondem ao `id` "A" à medida "ps1
 
 ```{r}
 df <- tribble(
-  ~id, ~measurement, ~value,
-  "A",        "bp1",    100,
-  "A",        "bp1",    102,
-  "A",        "bp2",    120,
-  "B",        "bp1",    140, 
-  "B",        "bp2",    115
+  ~id, ~medida, ~valor,
+  "A",        "ps1",    100,
+  "A",        "ps1",    102,
+  "A",        "ps2",    120,
+  "B",        "ps1",    140, 
+  "B",        "ps2",    115
 )
 ```
 
@@ -570,7 +570,7 @@ Como você ainda não sabe como trabalhar com esse tipo de estrutura, você deve
 
 ```{r}
 df |> 
-  group_by(id, measurement) |> 
+  group_by(id, medida) |> 
   summarize(n = n(), .groups = "drop") |> 
   filter(n > 1)
 ```
