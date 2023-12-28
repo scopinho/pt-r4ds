@@ -37,7 +37,7 @@ library(dados)
 
 Deste capítulo em diante, vamos suprimir a mensagem de carregamento `library(tidyverse)`.
 
-## Dados *tidy* {#sec-tidy-data}
+## Dados organizados (*tidy data*) {#sec-tidy-data}
 
 É possível representar os mesmos dados de diversas formas.
 O exemplo abaixo mostra os mesmos dados organizados de três formas diferentes.
