@@ -41,18 +41,18 @@ Deste capítulo em diante, vamos suprimir a mensagem de carregamento `library(ti
 
 É possível representar os mesmos dados de diversas formas.
 O exemplo abaixo mostra os mesmos dados organizados de três formas diferentes.
-Cada conjunto de dados mostra os mesmos valores de quatro variáveis: *país*, *ano*, *população*, e o número de *casos* documentados de TB (tuberculose). No entanto, cada conjunto de dados organiza os valores de uma forma diferente.
+Cada conjunto de dados mostra os mesmos valores de quatro variáveis: *país*, *ano*, *população*, e o número de *casos* documentados de tuberculose. No entanto, cada conjunto de dados organiza os valores de uma forma diferente.
 
 ```{r}
 tabela1
 
-table2
+tabela2
 
-table3
+tabela3
 ```
 
 Todas essas são representações dos mesmos dados. Mas nem todas são igualmente fáceis de se utilizar.
-Uma delas, `table1`, será muito mais fácil de trabalhar dentro do tidyverse porque está no formato **tidy**.
+Uma delas, `tabela1`, será muito mais fácil de trabalhar dentro do tidyverse porque está no formato **tidy**.
 
 Existem três regras interrelacionadas que fazem com que um conjunto de dados seja considerado *tidy*:
 
@@ -69,7 +69,7 @@ Existem três regras interrelacionadas que fazem com que um conjunto de dados se
 #|   As seguintes três regras tornam um conjunto de dados tidy: variáveis são colunas,
 #|   observações são linhas e valores são células.
 #| fig-alt: | 
-#|   Três painéis, cada um representando um data frame em formato tidy. O primeiro painel
+#|   Três painéis, cada um representando um _data frame_ em formato tidy. O primeiro painel
 #|   mostra que cada variável é uma coluna. O segundo painel mostra que cada
 #|   observação é uma linha. O terceiro painel mostra que cada valor é
 #|   uma célula.
@@ -81,14 +81,14 @@ Por que garantir que seus dados estão no formato *tidy*?
 Existem duas principais vantagens:
 
 1.  Há uma vantagem generalizada em escolher uma forma consistente de armazenar os dados.
-    Se você tiver uma estrutura de dados consistente, é mais fácil compreender as ferramentas adequadas a ela, pois ela terá uma uniformidade subjacente. 
+    Se você tiver uma estrutura de dados consistente, é mais fácil compreender as ferramentas adequadas a ela, pois ela terá uma uniformidade intrínseca. 
 
 2.  Há uma vantagem específica em colocar as variáveis em colunas porque isso permite que a natureza vetorial do R possa brilhar. 
     Como você aprendeu em @sec-mutate e @sec-summarize, a maioria das funções nativas do R trabalham com vetores de valores.
     Isso torna natural as transformações sobre dados no formato *tidy*. 
 
 `dplyr`, `ggplot2`, e todos os demais pacotes do tidyverse foram pensados para trabalhar com dados *tidy*.
-Aqui estão alguns pequenos exemplos mostrando como é possível trabalhar com `table1`.
+Aqui estão alguns pequenos exemplos mostrando como é possível trabalhar com `tabela1`.
 
 ```{r}
 #| fig-width: 5
@@ -100,8 +100,8 @@ Aqui estão alguns pequenos exemplos mostrando como é possível trabalhar com `
 #|   país são diferenciados dos outros por cor e forma e estão conectados
 #|   por uma linha, resultando em três linhas não paralelas e sem interseção. 
 #|   Os números de casos na China são mais altos tanto para 1999 quanto para 2000, com
-#|   valores acima de 200,000 para ambos os anos. O número de casos no Brasil é de
-#|   aproximadamente 40,000 em 1999 e aproximadamente 75,000 em 2000. O 
+#|   valores acima de 200.000 casos para ambos os anos. O número de casos no Brasil é de
+#|   aproximadamente 40.000 casos em 1999 e aproximadamente 75.000 casos em 2000. O 
 #|   número de casos no Afeganistão são os mais baixos tanto para 1999 quanto para 2000, com
 #|   valores que parecem estar muito perto do 0 nessa escala.
 
