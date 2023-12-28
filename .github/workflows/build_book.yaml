@@ -38,7 +38,7 @@ jobs:
 
       - name: "Instalar o pacote dados"
         run: |
-          Rscript -e "remotes::install_github('cienciadedatos/dados')"
+          Rscript -e "install.packages('remotes'); remotes::install_github('cienciadedatos/dados')"
 
       - name: Render book to all format
         # Add any command line argument needed
