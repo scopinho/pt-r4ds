@@ -1,14 +1,6 @@
 # Organizando os dados (*data tidying*) {#sec-data-tidy}
 
-```{r}
-#| echo: false
-#| results: asis
-
-source("_common.R")
-mensagem_capitulo_sem_traducao()
-```
-
-## Introdução 
+## Introdução
 
 > "Todas as famílias felizes se parecem, cada família infeliz é infeliz à sua maneira."\
 > --- Leo Tolstoy
@@ -18,7 +10,7 @@ mensagem_capitulo_sem_traducao()
 
 Neste capítulo, você vai aprender uma forma consistente de organizar seus dados no R utilizando um sistema chamado **tidy data**.
 Colocar seus dados nesse formato requer alguma preparação, mas esse é um trabalho que se paga ao longo prazo.
-Uma vez que você tenha os dados organizados (_tidy_) e as ferramentas do pacote tidyverse, você irá gastar muito menos tempo transformando-os entre uma representação e outra, permitindo que você gaste mais tempo nas questões que realmente te importam.
+Uma vez que você tenha os dados organizados (*tidy*) e as ferramentas do pacote tidyverse, você irá gastar muito menos tempo transformando-os entre uma representação e outra, permitindo que você gaste mais tempo nas questões que realmente te importam.
 
 Neste capítulo, você primeiro vai aprender sobre a definição do formato *tidy* e vê-lo sendo aplicado em um conjunto de dados de exemplo.
 Em seguida, você vai mergulhar na principal ferramenta que utilizará para organizar os dados: a pivotagem (*pivoting*).
@@ -32,6 +24,7 @@ Neste capítulo, vamos focar no `tidyr`, um pacote que disponibliza uma variedad
 ```{r}
 #| label: setup
 #| message: false
+#| warning: false
 
 library(tidyverse)
 library(dados)
@@ -43,7 +36,8 @@ Deste capítulo em diante, vamos suprimir a mensagem de carregamento `library(ti
 
 É possível representar os mesmos dados de diversas formas.
 O exemplo abaixo mostra os mesmos dados organizados de três formas diferentes.
-Cada conjunto de dados mostra os mesmos valores de quatro variáveis: *país*, *ano*, *população*, e o número de *casos* documentados de tuberculose. No entanto, cada conjunto de dados organiza os valores de uma forma diferente.
+Cada conjunto de dados mostra os mesmos valores de quatro variáveis: *país*, *ano*, *população*, e o número de *casos* documentados de tuberculose.
+No entanto, cada conjunto de dados organiza os valores de uma forma diferente.
 
 ```{r}
 tabela1
@@ -53,7 +47,8 @@ tabela2
 tabela3
 ```
 
-Todas essas são representações dos mesmos dados. Mas nem todas são igualmente fáceis de se utilizar.
+Todas essas são representações dos mesmos dados.
+Mas nem todas são igualmente fáceis de se utilizar.
 Uma delas, `tabela1`, será muito mais fácil de trabalhar dentro do tidyverse porque está no formato **tidy**.
 
 Existem três regras interrelacionadas que fazem com que um conjunto de dados seja considerado *tidy*:
@@ -62,7 +57,7 @@ Existem três regras interrelacionadas que fazem com que um conjunto de dados se
 2.  Cada observação é uma linha; cada linha é uma observação.
 3.  Cada valor é uma célula; cada célula é um único valor.
 
-@fig-tidy-structure mostra essas regras visualmente. 
+@fig-tidy-structure mostra essas regras visualmente.
 
 ```{r}
 #| label: fig-tidy-structure
@@ -83,11 +78,11 @@ Por que garantir que seus dados estão no formato *tidy*?
 Existem duas principais vantagens:
 
 1.  Há uma vantagem generalizada em escolher uma forma consistente de armazenar os dados.
-    Se você tiver uma estrutura de dados consistente, é mais fácil compreender as ferramentas adequadas a ela, pois ela terá uma uniformidade intrínseca. 
+    Se você tiver uma estrutura de dados consistente, é mais fácil compreender as ferramentas adequadas a ela, pois ela terá uma uniformidade intrínseca.
 
-2.  Há uma vantagem específica em colocar as variáveis em colunas porque isso permite que a natureza vetorial do R possa brilhar. 
+2.  Há uma vantagem específica em colocar as variáveis em colunas porque isso permite que a natureza vetorial do R possa brilhar.
     Como você aprendeu em @sec-mutate e @sec-summarize, a maioria das funções nativas do R trabalham com vetores de valores.
-    Isso torna natural as transformações sobre dados no formato *tidy*. 
+    Isso torna natural as transformações sobre dados no formato *tidy*.
 
 `dplyr`, `ggplot2`, e todos os demais pacotes do tidyverse foram pensados para trabalhar com dados *tidy*.
 Aqui estão alguns pequenos exemplos mostrando como é possível trabalhar com `tabela1`.
@@ -128,7 +123,7 @@ ggplot(tabela1, aes(x = ano, y = casos)) +
 1.  Para cada uma das tabelas do exemplo, descreva o que cada observação e cada coluna representa.
 
 2.  Faça um esboço do processo que você usaria para calcular `taxa` para a `tabela2` e `tabela3`.
-    Você precisará executar quatro operações: 
+    Você precisará executar quatro operações:
 
     a.  Extrair o número de casos de tuberculose por país por ano.
     b.  Extrair a população correspondente por país por ano.
@@ -143,15 +138,15 @@ Os princípios do formato *tidy* parecem ser tão óbvios que você deve estar s
 Infelizmente, porém, a maioria dos dados reais não estão nesse formato.
 Existem dois motivos principais:
 
-1.  Geralmente os dados estão organizados para facilitar algum outro objetivo além da análise. 
+1.  Geralmente os dados estão organizados para facilitar algum outro objetivo além da análise.
     Por exemplo, é comum os dados estarem estruturados para facilitar a entrada de novos dados e não a análise dos mesmos.
 
 2.  A maioria das pessoas não está familiarizada com os princípios do formato *tidy* e é difícil derivá-lo espontaneamente a menos que já se tenha trabalhado com dados por muito tempo.
 
 Isso significa que a maioria das análises reais vai demandar pelo menos alguma adaptação para o formato *tidy*.
 Você vai começar descobrindo quais são as variáveis e observações presentes.
-Algumas vezes isso é fácil, em outras você precisará consultar as pessoas que geraram os dados originalmente. 
-Em seguida, você irá *pivotar** seus dados para o formato *tidy*, com as variáveis nas colunas e as observações nas linhas. 
+Algumas vezes isso é fácil, em outras você precisará consultar as pessoas que geraram os dados originalmente.
+Em seguida, você irá \*pivotar\*\* seus dados para o formato *tidy*, com as variáveis nas colunas e as observações nas linhas.
 
 `tidyr` disponibiliza duas funções para pivotar os dados: `pivot_longer()` e `pivot_wider()`.
 Começaremos com `pivot_longer()` pois é o caso mais comum.
@@ -192,8 +187,8 @@ Na função, são três argumentos principais, após os dados:
 
 Note que os códigos `"semana"` e `"posicao"` estão entre aspas porque essas são novas variáveis que estamos criando, elas ainda não existem nos dados quando a gente faz a chamada à `pivot_longer()`.
 
-Agora voltaremos nossa atenção ao _data frame_ resultante, em um formato mais longo.
-O que acontece se uma música fica no top 100 por menos que 76 semanas? 
+Agora voltaremos nossa atenção ao *data frame* resultante, em um formato mais longo.
+O que acontece se uma música fica no top 100 por menos que 76 semanas?
 Vejamos "Baby Don't Cry" do 2 Pac, por exemplo.
 A saída acima sugere que ela ficou apenas 7 semanas no top 100, e todas as demais semanas foram preenchidas por valores ausentes.
 Esses `NA`s, na verdade, não representam observações desconhecidas; eles foram forçadas a existir pela estrutura do conjunto de dados [^data-tidy-2], então podemos pedir para a `pivot_longer()` se livrar deles por meio do parâmetro `values_drop_na = TRUE`:
@@ -213,10 +208,11 @@ top100musicas|>
 O número de linhas agora é muito menor, indicando que várias linhas que continham apenas `NA`s foram removidas.
 
 Você também poderia estar se perguntando: o que aconteceria caso a música ficasse no top 100 por mais que 76 semanas?
-Não é possível dizer apenas com esses dados, mas você poderia imaginar que colunas adicionais `semana77`, `semana78`, ... seriam incluídas no conjunto de dados.
+Não é possível dizer apenas com esses dados, mas você poderia imaginar que colunas adicionais `semana77`, `semana78`, ...
+seriam incluídas no conjunto de dados.
 
 Esses dados agora estão no formato *tidy*, mas nós ainda podemos facilitar cálculos futuros ao converter os valores da coluna `semana` de caracteres para números utilizando `mutate()` e `readr::parse_number()`.
-`parse_number()` é uma função bem útil que irá extrair o primeiro número de uma sequência de caracteres (_string_) e vai ignorar todo o resto.
+`parse_number()` é uma função bem útil que irá extrair o primeiro número de uma sequência de caracteres (*string*) e vai ignorar todo o resto.
 
 ```{r}
 top100musicas_longo <- top100musicas |> 
@@ -258,7 +254,7 @@ top100musicas_longo|>
 Agora que você já viu como usar a pivotagem para mudar a forma de nossos dados, vamos tomar um tempinho para ganhar alguma intuição sobre o que a pivotagem faz com os dados.
 Vamos começar com um conjunto de dados bem simples para enxergamos com mais facilidade o que está acontecendo.
 Suponha que temos três pacientes com `id`s A, B e C, e fazemos a medição da pressão sanguínea duas vezes para cadas paciente.
-Vamos criar os dados com `tribble()`, uma função útil para construir pequenos conjuntos de dados (_tibbles_) manualmente:
+Vamos criar os dados com `tribble()`, uma função útil para construir pequenos conjuntos de dados (*tibbles*) manualmente:
 
 ```{r}
 # ps - "pressão sanguínea"
@@ -302,7 +298,7 @@ knitr::include_graphics("diagrams/tidy-data/variables.png", dpi = 270)
 ```
 
 Os nomes das colunas se tornam valores em uma nova variável, cujo nome foi definido pelo parâmetro `names_to`, conforme mostrado em @fig-pivot-names.
-Eles precisam ser repetidos uma vez para cada linha dos dados originais. 
+Eles precisam ser repetidos uma vez para cada linha dos dados originais.
 
 ```{r}
 #| label: fig-pivot-names
@@ -321,7 +317,7 @@ knitr::include_graphics("diagrams/tidy-data/column-names.png", dpi = 270)
 
 Os valores das células também se tornam valores em uma nova variável, com o nome definido por `values_to`.
 Eles são "desenrolados" linha a linha.
-@fig-pivot-values ilustra o processo. 
+@fig-pivot-values ilustra o processo.
 
 ```{r}
 #| label: fig-pivot-values
@@ -349,17 +345,13 @@ who2
 ```
 
 Esse conjunto de dados, coletado pela Organização Mundial da Saúde (OMS)[^data-tidy-3], armazena informações sobre diagnósticos de tuberculose.
-Existem duas colunas que já são variáveis e parecem fáceis de interpretar: `country` e `year`.
-Em seguida vêm outras 56 colunas tais como `sp_m_014`, `ep_m_4554` e `rel_m_3544`.
-Se você olhar com cuidado para essas colunas por tempo suficiente, verá que há um padrão.
-Cada nome de coluna é composto por três partes separadas por `_`.
-A primeira parte, `sp`/`rel`/`ep`, descreve o método utilizado para o diagnóstico, a segunda parte, `m`/`f` é o gênero - `gender` (codificado como uma variável binária nesse conjunto de dados), e a terceira parte, `014`/`1524`/`2534`/`3544`/`4554`/`5564`/`65` é o intervalo de idade - `age` (`014` representa 0-14, por exemplo).
+Existem duas colunas que já são variáveis e parecem fáceis de interpretar: `country` e `year`. Em seguida vêm outras 56 colunas tais como `sp_m_014`, `ep_m_4554` e `rel_m_3544`. Se você olhar com cuidado para essas colunas por tempo suficiente, verá que há um padrão.
+Cada nome de coluna é composto por três partes separadas por `_`. A primeira parte, `sp`/`rel`/`ep`, descreve o método utilizado para o diagnóstico, a segunda parte, `m`/`f` é o gênero - `gender` (codificado como uma variável binária nesse conjunto de dados), e a terceira parte, `014`/`1524`/`2534`/`3544`/`4554`/`5564`/`65` é o intervalo de idade - `age` (`014` representa 0-14, por exemplo).
 
+[^data-tidy-3]: **Nota de tradução**: do inglês *World Health Organisation* - WHO que é nome do conjunto de dados.
 
-Então, nesse caso temos seis partes de informação registrados em `who2`: o país (_country_) e o ano (_year_) (já nas colunas); o método diagnóstico, a categoria do gênero, e a categoria do intervalo de idade (contido nos outros nomes de colunas); e a contagem dos pacientes em naquela categoria (valores das células).
+Então, nesse caso temos seis partes de informação registrados em `who2`: o país (*country*) e o ano (*year*) (já nas colunas); o método diagnóstico, a categoria do gênero, e a categoria do intervalo de idade (contido nos outros nomes de colunas); e a contagem dos pacientes em naquela categoria (valores das células).
 Para organizar essas seis partes de informação em seis colunas separadas, utilizaremos `pivot_longer()` passando um vetor de nomes de colunas para o parâmetro `names_to`, instruções para separar, nas partes, os nomes originais das variáveis para o parâmetro `names_sep` e um nome de coluna para `values_to`:
-
-[^data-tidy-3]: **Nota de tradução**: do inglês _World Health Organisation_ - WHO que é nome do conjunto de dados.
 
 ```{r}
 who2 |> 
@@ -373,8 +365,7 @@ who2 |>
 
 Uma alternativa a `names_sep` é `names_pattern`, que você pode usar para extrair variáveis em nomenclaturas mais complicadas, desde que você já tenha aprendido a usar expressões regulares @sec-regular-expressions.
 
-Conceitualmente, essa seria só uma pequena variação desse caso mais simples que você acabou de ver.
-@fig-pivot-multiple-names mostra a ideia básica: agora, em vez da coluna de nomes pivotar para uma única coluna, ela pivota para múltiplas colunas. 
+Conceitualmente, essa seria só uma pequena variação desse caso mais simples que você acabou de ver. @fig-pivot-multiple-names mostra a ideia básica: agora, em vez da coluna de nomes pivotar para uma única coluna, ela pivota para múltiplas colunas.
 Você pode imaginar isso acontecendo em dois passos (primeiro pivotando e depois separando) mas no fundo, tudo ocorre em um único passo porque é mais rápido.
 
 ```{r}
@@ -398,7 +389,7 @@ knitr::include_graphics("diagrams/tidy-data/multiple-names.png", dpi = 270)
 ### Dados e nomes de variáveis nos cabeçalhos das colunas
 
 O próximo degrau em complexidade é quando os nomes das colunas incluem uma mistura de nomes e valores das variáveis.
-Por exemplo, vamos pegar o conjunto de dados `nucleo_familiar`: 
+Por exemplo, vamos pegar o conjunto de dados `nucleo_familiar`:
 
 ```{r}
 nucleo_familiar
@@ -406,21 +397,22 @@ nucleo_familiar
 
 Nesse conjunto temos dados de cinco famílias, com nomes e datas de nascimento de até duas crianças.
 O novo desafio é que nesses dados os nomes das colunas contêm os nomes de duas variáveis (`data_nascimento`, `nome)` e os valores de outra (criança - `crianca,` com valores 1 ou 2).
-Para resolver esse problema, novamente precisamods passar um vetor para `names_to`, mas dessa vamos vamos passar um parâmetro especial `".value"` (chamado de _sentinel_); esse parâmetro não é o nome de uma variável, mas um valor único que diz ao `pivot_longer()` para fazer algo diferente com ele.
+Para resolver esse problema, novamente precisamods passar um vetor para `names_to`, mas dessa vamos vamos passar um parâmetro especial `".value"` (chamado de *sentinel*); esse parâmetro não é o nome de uma variável, mas um valor único que diz ao `pivot_longer()` para fazer algo diferente com ele.
 Isso sobrepõe o argumento `values_to` normal em favor do primeiro componente do nome da coluna pivotada, utilizado como nome da variável na saída da função.
 
 ```{r}
 nucleo_familiar |>
   pivot_longer(
-    cols = !familia, 
-    names_to = c(".value", "crianca"), 
-    names_sep = "_", 
+    cols = !familia,
+    names_to = c(".value", "crianca"),
+    names_sep = "_",
     values_drop_na = TRUE
+  )
 ```
 
 Novamente utilizaremos `values_drop_na = TRUE`, uma vez que a forma da entrada força a criação de variáveis ausentes explícitas (ex: para famílias com apenas um filho).
 
-@fig-pivot-names-and-values ilustra a ideia básica em um exemplo mais simples. 
+@fig-pivot-names-and-values ilustra a ideia básica em um exemplo mais simples.
 Quando você utiliza `".value"` em `names_to`, a coluna de nomes dos dados de entrada contribui tanto para os valores quanto para os nomes das variáveis na saída.
 
 ```{r}
@@ -428,22 +420,23 @@ Quando você utiliza `".value"` em `names_to`, a coluna de nomes dos dados de en
 #| echo: false
 #| fig-cap: |
 #|   Pivotar com `names_to = c(".value", "num")` divide os nomes das colunas
-#|   em dois componentes: a primeira parte determina o nome da coluna da saída, (`x` ou `y`),
+#|   em dois componentes: a primeira parte determina o nome da coluna da 
+#|   saída, (`x` ou `y`),
 #|   e a segunda parte determina o valore da coluna `num`.
 #| fig-alt: |
 #|   Um diagrama que utiliza cores para ilustrar como o parâmetro ".value" 
 #|   funciona. A entrada tem nomes "x_1", "x_2", "y_1", "y_2" 
-#|  e queremos usar o primeiro componente ("x", "y") como nome das variáveis
+#|   e queremos usar o primeiro componente ("x", "y") como nome das variáveis
 #|   e o segundo ("1", "2") como valor para a nova coluna "num".
 
 knitr::include_graphics("diagrams/tidy-data/names-and-values.png", dpi = 270)
 ```
 
-##  Transformando os dados para o formato largo (*Widening data*)
+## Transformando os dados para o formato largo (*Widening data*)
 
 Até então, utilizamos `pivot_longer()` para resolver um tipo comum de problemas no qual os valores foram movidos para os nomes de colunas.
 Agora vamos pivotar (HA HA) para `pivot_wider()`, que vai tornar o conjunto de dados mais **largo** (*wider*) ao aumentar o número de colunas e diminuir o número de linhas, auxiliando quando uma informação está espalhada em múltiplas linhas.
-Isso tende a aparecer menos na vida real, mas parece ser comum quando estamos lidando com dados governamentais. 
+Isso tende a aparecer menos na vida real, mas parece ser comum quando estamos lidando com dados governamentais.
 
 Começaremos dando uma olhada em `cms_paciente_experiencia`, um conjunto de dados de serviços do *Centers of Medicare and Medicaid* que coleta dados sobre as experiências dos pacientes:
 
@@ -451,7 +444,7 @@ Começaremos dando uma olhada em `cms_paciente_experiencia`, um conjunto de dado
 cms_paciente_experiencia
 ```
 
-A unidade principal sendo estudada é a organização, mas cada organização está espalhada em seis linhas, com uma linha para cada medição feita pela pesquisa. 
+A unidade principal sendo estudada é a organização, mas cada organização está espalhada em seis linhas, com uma linha para cada medição feita pela pesquisa.
 Nós podemos ver o conjunto completo dos valores de `medida_codigo` e `medida_titulo` utilizando a função `distinct()`:
 
 ```{r}
@@ -459,10 +452,9 @@ cms_paciente_experiencia |>
   distinct(medida_codigo, medida_titulo)
 ```
 
-Nenhuma dessas colunas irá gerar nomes espetaculares: `medida_codigo` não dá nenhuma pista quanto ao significado da variável e `medida_titulo` é uma longa frase, com espaços,
-Por enquanto, nós utilizaremos `medida_codigo` como a fonte de nossa nova coluna de nomes, mas em uma análise real você deveria considerar seu próprio nome de variável, que deve ser curto e informativo.
+Nenhuma dessas colunas irá gerar nomes espetaculares: `medida_codigo` não dá nenhuma pista quanto ao significado da variável e `medida_titulo` é uma longa frase, com espaços, Por enquanto, nós utilizaremos `medida_codigo` como a fonte de nossa nova coluna de nomes, mas em uma análise real você deveria considerar seu próprio nome de variável, que deve ser curto e informativo.
 
-`pivot_wider()` tem a interface oposta à `pivot_longer()`: em vez de escolher o novo nome das colunas, nós precisamos fornecer as colunas existentes que definem os valores de (`values_from`) e o nome da coluna (`names_from`): 
+`pivot_wider()` tem a interface oposta à `pivot_longer()`: em vez de escolher o novo nome das colunas, nós precisamos fornecer as colunas existentes que definem os valores de (`values_from`) e o nome da coluna (`names_from`):
 
 ```{r}
 cms_paciente_experiencia |> 
@@ -472,9 +464,8 @@ cms_paciente_experiencia |>
   )
 ```
 
-A saída ainda não parece muito correta; parece que ainda precisamos de múltiplas linhas para cada organização. 
-Isso é por que também precisamos dizer à `pivot_wider()` qual a coluna ou colunas têm valores que identificam cada linha de forma única; nesse caso são as variáveis que começam com `"org"`: 
-
+A saída ainda não parece muito correta; parece que ainda precisamos de múltiplas linhas para cada organização.
+Isso é por que também precisamos dizer à `pivot_wider()` qual a coluna ou colunas têm valores que identificam cada linha de forma única; nesse caso são as variáveis que começam com `"org"`:
 
 ```{r}
 cms_paciente_experiencia |> 
@@ -484,11 +475,12 @@ cms_paciente_experiencia |>
     values_from = taxa_performance
   )
 ```
+
 Isso gera a saída que estávamos esperando.
 
 ### Como funciona a função `pivot_wider()`?
 
-Para entender como a função `pivot_wider()` funciona, vamos novamente começar com um conjunto de dados bem simples. 
+Para entender como a função `pivot_wider()` funciona, vamos novamente começar com um conjunto de dados bem simples.
 Agora temos dois pacientes com `id`s A e B, e temos três medições de pressão sanguínea para o paciente A e duas para o paciente B:
 
 ```{r}
@@ -523,7 +515,7 @@ df |>
 
 Por padrão, as linhas da saída são determinadas por todas as demais variáveis que não estão indo para os novos nomes ou valores.
 Essas são chamadas `id_cols`.
-Aqui temos apenas uma coluna, mas em geral, pode haver qualquer número delas. 
+Aqui temos apenas uma coluna, mas em geral, pode haver qualquer número delas.
 
 ```{r}
 df |> 
@@ -531,7 +523,7 @@ df |>
   distinct()
 ```
 
-A função `pivot_wider()` então combina esses resultados para gerar um _data frame_ vazio:
+A função `pivot_wider()` então combina esses resultados para gerar um *data frame* vazio:
 
 ```{r}
 df |> 
@@ -540,7 +532,7 @@ df |>
   mutate(x = NA, y = NA, z = NA)
 ```
 
-E em seguida, preenche todos os valores ausentes com os dados de entrada. 
+E em seguida, preenche todos os valores ausentes com os dados de entrada.
 Nesse caso, nem todas as células da saída possuem um valor correspondente na entrada visto que não temos a terceira medição de pressão para o paciente B, então aquela célula permanecerá vazia.
 Voltaremos a essa ideia de que a `pivot_wider()` pode "produzir" valores ausentes em @sec-missing-values.
 
@@ -558,7 +550,7 @@ df <- tribble(
 )
 ```
 
-Se tentarmos pivotar essa tabela teremos uma saída que contém estruturas chamadas **colunas de listas** (_list-columns_), sobre as quais você aprenderá mais em @sec-rectangling:
+Se tentarmos pivotar essa tabela teremos uma saída que contém estruturas chamadas **colunas de listas** (*list-columns*), sobre as quais você aprenderá mais em @sec-rectangling:
 
 ```{r}
 df |>
@@ -568,7 +560,7 @@ df |>
   )
 ```
 
-Como você ainda não sabe como trabalhar com esse tipo de estrutura, você deve seguir as dicas que aparecem na mensagem de alerta (_warning_) para entender onde está o problema:
+Como você ainda não sabe como trabalhar com esse tipo de estrutura, você deve seguir as dicas que aparecem na mensagem de alerta (*warning*) para entender onde está o problema:
 
 ```{r}
 df |> 
@@ -579,19 +571,19 @@ df |>
 
 Aí então, você fica a cargo de entender o que deu de errado com os dados e ajustar os problemas já ocorridos ou utilizar suas habilidades de agrupar e resumir os dados originais para se certificar que que cada combinação dos valores de linhas e colunas estejam em apenas uma linha.
 
-## Resumo 
+## Resumo
 
 Nesse capítulo você aprendeu sobre dados no formato *tidy*: dados que possuem variáveis nas colunas e observações nas linhas.
-Dados nesse formato facilitam o trabalho no tidyverse, pois sua estrutura consistente é entendida pela maioria das funções. O principal desafio, então, é transformar dados provenientes de quaisquer estruturas que você receber para o formato *tidy*.
+Dados nesse formato facilitam o trabalho no tidyverse, pois sua estrutura consistente é entendida pela maioria das funções.
+O principal desafio, então, é transformar dados provenientes de quaisquer estruturas que você receber para o formato *tidy*.
 Para esse fim, você aprendeu sobre `pivot_longer()` e `pivot_wider()` que permitem a organização de vários conjuntos de dados que ainda não estejam no formato *tidy*.
-Os exemplos apresentados aqui são uma seleção dos vários presentes em `vignette("pivot", package = "tidyr")`, então, se você encontrar algum problema com o qual esse capítulo ainda não é capaz de te ajudar, é uma boa ideia checar nessa _vignette_.
+Os exemplos apresentados aqui são uma seleção dos vários presentes em `vignette("pivot", package = "tidyr")`, então, se você encontrar algum problema com o qual esse capítulo ainda não é capaz de te ajudar, é uma boa ideia checar nessa *vignette*.
 
-Um outro desafio é o fato de que para certos conjuntos de dados, pode ser impossível especificar se a versão longa (_long_) ou larga (_wide_) é a versão *tidy*.
-Isso é, em parte, um reflexo da nossa definição de dados *tidy*, em que dizemos que cada coluna deve conter uma variável, mas não definimos, de fato, **o que é** uma variável (e fazer isso é surpreendentemente difícil.)
-É totalmente aceitável dizer, de uma forma pragmática, que uma variável é qualquer coisa que facilite sua análise.
-Então, se tiver difícil descobrir como fazer algum tipo de cálculo ou análise, considere alterar a forma como seus dados estão organizados; não tenha medo de voltar para um formato _untidy_, transformá-lo e depois reorganizá-lo conforme necessário!
+Um outro desafio é o fato de que para certos conjuntos de dados, pode ser impossível especificar se a versão longa (*long*) ou larga (*wide*) é a versão *tidy*.
+Isso é, em parte, um reflexo da nossa definição de dados *tidy*, em que dizemos que cada coluna deve conter uma variável, mas não definimos, de fato, **o que é** uma variável (e fazer isso é surpreendentemente difícil.) É totalmente aceitável dizer, de uma forma pragmática, que uma variável é qualquer coisa que facilite sua análise.
+Então, se tiver difícil descobrir como fazer algum tipo de cálculo ou análise, considere alterar a forma como seus dados estão organizados; não tenha medo de voltar para um formato *untidy*, transformá-lo e depois reorganizá-lo conforme necessário!
 
 Se você gostou desse capítulo e quiser saber mais sobre a teoria por trás dele, você pode se aprofundar sobre a história e os fundamentos teóricos no artigo [Tidy Data](https://www.jstatsoft.org/article/view/v059i10) publicado no Journal of Statistical Software.
 
 E agora que você já está escrevendo uma quantidade considerável de código em R, é a hora de aprender um pouco mais sobre como organizar o seu código em arquivos e diretórios.
-No próximo capítulo, você irá aprender sobre todas as vantagens dos _scripts_ e projetos, e algumas das várias ferramentas que eles disponibilizam para tornar sua vida mais fácil. 
+No próximo capítulo, você irá aprender sobre todas as vantagens dos *scripts* e projetos, e algumas das várias ferramentas que eles disponibilizam para tornar sua vida mais fácil.
