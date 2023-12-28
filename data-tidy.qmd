@@ -511,11 +511,11 @@ df |>
 ```
 
 Para iniciar o processo, a função `pivot_wider()` precisa primeiramente entender o que será distribuído para as linhas e colunas.
-Os novos nomes de coluna serão os valores únicos de `measurement`.
+Os novos nomes de coluna serão os valores únicos de `medida`.
 
 ```{r}
 df |> 
-  distinct(measurement) |> 
+  distinct(medida) |> 
   pull()
 ```
 
@@ -525,11 +525,11 @@ Aqui temos apenas uma coluna, mas em geral, pode haver qualquer número delas.
 
 ```{r}
 df |> 
-  select(-measurement, -value) |> 
+  select(-medida, -valor) |> 
   distinct()
 ```
 
-A função `pivot_wider()` então combina esses resultados para gerar um data frame vazio:
+A função `pivot_wider()` então combina esses resultados para gerar um _data frame_ vazio:
 
 ```{r}
 df |> 
@@ -556,7 +556,7 @@ df <- tribble(
 )
 ```
 
-Se tentarmos pivotar essa tabela teremos uma saída que contém estruturas chamadas *list-columns* (colunas de listas), sobre as quais você aprenderá mais em @sec-rectangling:
+Se tentarmos pivotar essa tabela teremos uma saída que contém estruturas chamadas **colunas de listas** (_list-columns_), sobre as quais você aprenderá mais em @sec-rectangling:
 
 ```{r}
 df |>
@@ -584,7 +584,7 @@ Dados nesse formato facilitam o trabalho no tidyverse, pois sua estrutura consis
 Para esse fim, você aprendeu sobre `pivot_longer()` e `pivot_wider()` que permitem a organização de vários conjuntos de dados que ainda não estejam no formato *tidy*.
 Os exemplos apresentados aqui são uma seleção dos vários presentes em `vignette("pivot", package = "tidyr")`, então, se você encontrar algum problema com o qual esse capítulo ainda não é capaz de te ajudar, é uma boa ideia checar nessa _vignette_.
 
-Um outro desafio é o fato de que para certos conjuntos de dados, pode ser impossível especificar se a versão *long* ou *wide* é a versão *tidy*.
+Um outro desafio é o fato de que para certos conjuntos de dados, pode ser impossível especificar se a versão longa (_long_) ou larga (_wide_) é a versão *tidy*.
 Isso é, em parte, um reflexo da nossa definição de dados *tidy*, em que dizemos que cada coluna deve conter uma variável, mas não definimos, de fato, **o que é** uma variável (e fazer isso é surpreendentemente difícil.)
 É totalmente aceitável dizer, de uma forma pragmática, que uma variável é qualquer coisa que facilite sua análise.
 Então, se tiver difícil descobrir como fazer algum tipo de cálculo ou análise, considere alterar a forma como seus dados estão organizados; não tenha medo de voltar para um formato _untidy_, transformá-lo e depois reorganizá-lo conforme necessário!
