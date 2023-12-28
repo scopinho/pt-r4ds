@@ -1,4 +1,4 @@
-# Tornando os dados *tidy* {#sec-data-tidy}
+# Organizando os dados (*data tidying*) {#sec-data-tidy}
 
 ```{r}
 #| echo: false
