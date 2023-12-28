@@ -125,7 +125,7 @@ ggplot(tabela1, aes(x = ano, y = casos)) +
 
 1.  Para cada uma das tabelas do exemplo, descreva o que cada observação e cada coluna representa.
 
-2.  Faça um esboço do processo que você usaria para calcular `rate` para a `table2` e `table3`.
+2.  Faça um esboço do processo que você usaria para calcular `taxa` para a `tabela2` e `tabela3`.
     Você precisará executar quatro operações: 
 
     a.  Extrair o número de casos de tuberculose por país por ano.
