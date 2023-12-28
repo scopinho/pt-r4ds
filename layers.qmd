@@ -12,10 +12,10 @@ No @sec-data-visualization, você aprendeu muito mais do que apenas como criar g
 Você aprendeu uma base que você pode usar para criar *qualquer* tipo de gráfico com o ggplot2.
 
 Nesse capítulo, você irá expandir essa base conforme for aprendendo sobre a gramática dos gráficos baseada em camadas.
-Vamos começar explorando mais profundamente o mapeamento estético, os objetos geométricos e as facetas.
+Vamos começar explorando mais profundamente o mapeamento estético, as geometrias e as facetas.
 Então, você irá aprender sobre as transformações estatísticas que acontecem nos bastidores quando o ggplot2 cria um gráfico.
 Essas transformações são usadas para calcular novos valores a serem plotados, como as alturas das barras em um gráfico de barras, ou as medianas em um boxplot.
-Você também irá aprender sobre ajustes de posição, os quais modificam como os objetos geométricos são exibidos nos seus gráficos.
+Você também irá aprender sobre ajustes de posição, os quais modificam como as geometrias são exibidas nos seus gráficos.
 Por fim, introduziremos brevemente o sistema de coordenadas.
 
 Não iremos abordar todas as funções e opções para cada uma dessas camadas, mas guiaremos você pelas funcionalidades mais importantes e comumente utilizadas que são fornecidas pelo ggplot2.
@@ -236,7 +236,7 @@ Na próxima seção, exploraremos mais a fundo as geometrias.
 4.  O que acontece se você mapear um atributo estético para algo que não seja o nome de uma variável, como `aes(color = cilindrada < 5)`?
     Observe que você também precisará definir os atributos estéticos x e y.
 
-## Objetos geométricos {#sec-geometric-objects}
+## Geometrias {#sec-geometric-objects}
 
 Qual a semelhança entre esses dois gráficos?
 
@@ -330,9 +330,9 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia, color = tracao)) +
 
 Observe que esse gráfico contém duas geometrias no mesmo gráfico.
 
-Muitas geometrias, como o `geom_smooth()`, usam um único objeto geométrico para representar várias linhas de dados.
-Para essas geometrias, você pode mapear o atributo estético `group` (grupo) a uma variável categórica para desenhar vários objetos geométricos.
-O ggplot2 irá desenhar um objeto geométrico separado para cada valor único da variável de agrupamento.
+Muitas geometrias, como o `geom_smooth()`, usam uma única geometria para representar várias linhas de dados.
+Para essas geometrias, você pode mapear o atributo estético `group` (grupo) a uma variável categórica para desenhar várias geometrias.
+O ggplot2 irá desenhar uma geometria separada para cada valor único da variável de agrupamento.
 Na prática, o ggplot2 agrupará automaticamente os dados para essas geometrias sempre que você mapear um atributo estético a uma variável discreta (como no exemplo com `linetype`).
 É conveniente contar com esse recurso porque o atributo estético `group`, por si só, não adiciona às geoms uma legenda ou características que permitam distinguir os grupos.
 
@@ -694,7 +694,7 @@ O algoritmo usado para calcular novos valores para um gráfico recebe o nome de 
 #| fig-cap: |
 #|   Ao criarmos um gráfico de barras, começamos com os dados brutos. Então,
 #|   os agregamos para contar a quantidade de observações em cada barra.
-#|   Finalmente, essa variável calculada (a contagem) é mapeada para a estética
+#|   Finalmente, essa variável calculada (a contagem) é mapeada para o atributo estético
 #|   do gráfico.
 #| fig-alt: |
 #|   Uma figura demonstrando os três passos para a criação de um gráfico de barras.
@@ -733,7 +733,7 @@ No entanto, há três razões pelas quais você pode precisar usar uma stat expl
       geom_bar(stat = "identity")
     ```
 
-2.  Você pode querer substituir o mapeamento padrão de variáveis transformadas para estética.
+2.  Você pode querer substituir o mapeamento padrão de variáveis transformadas para o atributo estético.
     Por exemplo, você pode querer mostrar um gráfico de barras com proporções, ao invés de contagens:
 
     ```{r}
@@ -803,7 +803,7 @@ Cada stat é uma função, então você pode obter ajuda da maneira usual, por e
 ## Ajustes de posição
 
 Há mais um elemento mágico associado aos gráficos de barras.
-Você pode colorir um gráfico de barras usando a estética `color` ou, de maneira mais útil, a estética `fill`:
+Você pode colorir um gráfico de barras usando o atributo estético `color` ou, de maneira mais útil, o atributo estético `fill`:
 
 ```{r}
 #| layout-ncol: 2
@@ -823,7 +823,7 @@ ggplot(milhas, aes(x = tracao, fill = tracao)) +
   geom_bar()
 ```
 
-Observe o que acontece se você mapear a estética de preenchimento (`fill`) para outra variável, como `classe`: as barras são empilhadas automaticamente.
+Observe o que acontece se você mapear o atributo estético de preenchimento (`fill`) para outra variável, como `classe`: as barras são empilhadas automaticamente.
 Cada retângulo colorido representa uma combinação de `tracao` e `classe`.
 
 ```{r}
@@ -1065,10 +1065,10 @@ A gramática dos gráficos é baseada na ideia de que é possível descrever, de
 
 Para entender como isso funciona, considere como você poderia construir um gráfico básico do zero: você poderia começar com um conjunto de dados e, em seguida, transformá-lo nas informações que deseja mostrar (com uma transformação estatística).
 Em seguida, você poderia escolher uma geometria para representar cada observação dos dados transformados.
-Você poderia então usar as propriedades estéticas das geometrias para representar variáveis presentes nesses dados.
+Você poderia então usar os atributos estéticos das geometrias para representar variáveis presentes nesses dados.
 Você mapearia os valores de cada variável para cada mapeamento estético.
 Essas etapas estão ilustradas em @fig-visualization-grammar.
-Em seguida, você selecionaria um sistema de coordenadas para posicionar os objetos geométricos, usando a localização dos objetos (que é em si uma propriedade estética) para exibir os valores das variáveis x e y.
+Em seguida, você selecionaria um sistema de coordenadas para posicionar as geometrias, usando a localização dos objetos (que é em si um atributo estético) para exibir os valores das variáveis x e y.
 
 ```{r}
 #| label: fig-visualization-grammar
@@ -1097,7 +1097,7 @@ Caso queira aprender mais sobre os fundamentos teóricos do ggplot2, você pode 
 
 ## Resumo
 
-Neste capítulo você aprendeu sobre a gramática dos gráficos baseada em camadas, começando com atributos estéticos e geometrias para construir um gráfico simples, facetas para dividir o gráfico em subgráficos, transformações estatísticas para entender como os objetos geométricos são calculados, ajustes de posição para controlar de forma precisa essas posições quando os objetos geométricos se sobrepõem e sistemas de coordenadas que permitem modificar o que `x` e `y` significam.
+Neste capítulo você aprendeu sobre a gramática dos gráficos baseada em camadas, começando com atributos estéticos e geometrias para construir um gráfico simples, facetas para dividir o gráfico em subgráficos, transformações estatísticas para entender como as geometrias são calculadas, ajustes de posição para controlar de forma precisa essas posições quando as geometrias se sobrepõem e sistemas de coordenadas que permitem modificar o que `x` e `y` significam.
 Uma camada que ainda não abordamos é o tema (`theme`), que será introduzida em @sec-themes.
 
 Dois recursos muito úteis para ter uma visão geral do funcionamento completo do ggplot2 são: a *cheatsheet* do ggplot2 (que você encontra, em inglês, em <https://posit.co/resources/cheatsheets>) e o site do pacote ggplot2, também em inglês ([https://ggplot2.tidyverse.org](https://ggplot2.tidyverse.org/)).
