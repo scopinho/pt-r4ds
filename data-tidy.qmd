@@ -440,7 +440,7 @@ knitr::include_graphics("diagrams/tidy-data/names-and-values.png", dpi = 270)
 ##  Transformando os dados para o formato largo (*Widening data*)
 
 Até então, utilizamos `pivot_longer()` para resolver um tipo comum de problemas no qual os valores foram movidos para os nomes de colunas.
-Agora vamos pivotar (HA HA) para `pivot_wider()`, que vai tornar o conjunto de dados mais **espalhado** (*wider*) ao aumentar o número de colunas e diminuir o número de linhas, auxiliando quando uma informação está espalhada em múltiplas linhas.
+Agora vamos pivotar (HA HA) para `pivot_wider()`, que vai tornar o conjunto de dados mais **largo** (*wider*) ao aumentar o número de colunas e diminuir o número de linhas, auxiliando quando uma informação está espalhada em múltiplas linhas.
 Isso tende a aparecer menos na vida real, mas parece ser comum quando estamos lidando com dados governamentais. 
 
 Começaremos dando uma olhada em `cms_patient_experience`, um conjunto de dados de serviços do Centers of Medicare and Medicaid que coleta dados sobre as experiências dos pacientes:
