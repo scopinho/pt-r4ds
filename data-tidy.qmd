@@ -457,7 +457,7 @@ cms_patient_experience |>
   distinct(measure_cd, measure_title)
 ```
 
-Nenhuma dessas colunas irá gerar nomes espetaculares: `measure_cd` não dá nenhuma pista quanto ao significado da variável e `measure_title` é uma longa frase, com espaços,
+Nenhuma dessas colunas irá gerar nomes espetaculares: `medida_codigo` não dá nenhuma pista quanto ao significado da variável e `medida_titulo` é uma longa frase, com espaços,
 Por enquanto, nós utilizaremos `medida_codigo` como a fonte de nossa nova coluna de nomes, mas em uma análise real você deveria considerar seu próprio nome de variável, que deve ser curto e informativo.
 
 `pivot_wider()` tem a interface oposta à `pivot_longer()`: em vez de escolher o novo nome das colunas, nós precisamos fornecer as colunas existentes que definem os valores de (`values_from`) e o nome da coluna (`names_from)`: 
