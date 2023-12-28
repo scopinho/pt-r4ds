@@ -35,6 +35,8 @@ Suggests:
     jpeg,
     knitr,
     sessioninfo
-Remotes: tidyverse/dplyr
+Remotes:  
+    tidyverse/dplyr,
+    cienciadedatos/dados
 Encoding: UTF-8
 License: CC NC ND 3.0
