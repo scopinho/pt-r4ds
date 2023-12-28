@@ -1,5 +1,5 @@
 ---
-freeze: auto
+freeze: true
 ---
 
 # Arrow {#sec-arrow}
