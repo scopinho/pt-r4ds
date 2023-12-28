@@ -450,7 +450,7 @@ cms_paciente_experiencia
 ```
 
 A unidade principal sendo estudada é a organização, mas cada organização está espalhada em seis linhas, com uma linha para cada medição feita pela pesquisa. 
-Nós podemos ver o conjunto completo dos valores de `measure_cd` e `measure_title` utilizando a função `distinct()`:
+Nós podemos ver o conjunto completo dos valores de `medida_codigo` e `medida_titulo` utilizando a função `distinct()`:
 
 ```{r}
 cms_patient_experience |> 
