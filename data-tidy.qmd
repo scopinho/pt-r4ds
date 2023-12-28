@@ -144,7 +144,7 @@ Existem dois motivos principais:
 1.  Geralmente os dados estão organizados para facilitar algum outro objetivo além da análise. 
     Por exemplo, é comum os dados estarem estruturados para facilitar a entrada de novos dados e não a análise dos mesmos.
 
-2.  A maioria das pessoas não está familiarizada com os princípios do formato e é difícil derivá-lo espontaneamente a menos que já se tenha trabalhado com dados por muito tempo.
+2.  A maioria das pessoas não está familiarizada com os princípios do formato *tidy* e é difícil derivá-lo espontaneamente a menos que já se tenha trabalhado com dados por muito tempo.
 
 Isso significa que a maioria das análises reais vai demandar pelo menos alguma adaptação para o formato *tidy*.
 Você vai começar descobrindo quais são as variáveis e observações presentes.
