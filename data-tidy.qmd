@@ -157,7 +157,7 @@ Vamos nos aprofundar em alguns exemplos.
 
 ### Dados nos nomes das colunas {#sec-billboard}
 
-O conjunto de dados `billboard` marca a posição das músicas na billboard no ano 2000:
+O conjunto de dados `top100musicas` marca a posição das músicas na billboard no ano 2000:
 
 ```{r}
 billboard
