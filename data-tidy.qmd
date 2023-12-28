@@ -164,7 +164,7 @@ top100musicas
 ```
 
 Nesse conjunto de dados, cada observação é uma música.
-As três primeiras colunas (`artist`, `track` e `date.entered`) são variáveis que descrevem a música.
+As três primeiras colunas (`artista`, `musica` e `data.adicionada`) são variáveis que descrevem a música.
 Em seguida, temos 76 colunas (`semana1`-`semana76`) que descrevem a posição da música em cada semana[^data-tidy-1].
 Aqui, o nome das colunas é uma variável (a semana - `week`) e o valor da célula é outra (a posição - `rank`).
 
@@ -258,16 +258,16 @@ Suponha que temos três pacientes com `id`s A, B e C, e fazemos a medição da p
 Vamos criar os dados com `tribble()`, uma função útil para construir pequenos conjuntos de dados (_tibbles_) manualmente:
 
 ```{r}
-# bp - "blood pressure" (pressão sanguínea)
+# ps - "pressão sanguínea"
 df <- tribble(
-  ~id,  ~bp1, ~bp2,
+  ~id,  ~ps1, ~ps2,
    "A",  100,  120,
    "B",  140,  115,
    "C",  120,  125
 )
 ```
 
-Nós queremos que nosso conjunto de dados tenham três variáveis: `id` (já existe), `measurement` (medição - o nome das colunas), e `value` (valor - valor das células).
+Nós queremos que nosso conjunto de dados tenham três variáveis: `id` (já existe), `medicao` (o nome das colunas), e `valor` (valor das células).
 Para obter essa forma, precisamos pivotar `df` para um formato mais longo:
 
 ```{r}
@@ -293,7 +293,7 @@ Como mostrado em @fig-pivot-variables, os valores de uma coluna que já eram uma
 #|   Um diagrama mostrando como `pivot_longer()` transforma um simples
 #|   conjunto de dados, utilizando cores para destacar como cada um dos valores da coluna `id`
 #|   ("A", "B", "C") são repetidos duas vezes na saída por que há 
-#|   duas colunas sendo pivotadas ("bp1" e "bp2").
+#|   duas colunas sendo pivotadas ("ps1" e "ps2").
 
 knitr::include_graphics("diagrams/tidy-data/variables.png", dpi = 270)
 ```
@@ -310,7 +310,7 @@ Eles precisam ser repetidos uma vez para cada linha dos dados originais.
 #| fig-alt: | 
 #|   Um diagrama mostrando como `pivot_longer()` transforma um simples 
 #|   conjunto de dados, utilizando cores para destacar como os nomes das colunas ("bp1" e 
-#|   "bp2") se tornam valores em uma nova coluna `measurement`. Eles são repetidos
+#|   "ps2") se tornam valores em uma nova coluna `medicao`. Eles são repetidos
 #|   três vezes porque havia três linhas na entrada.
 
 knitr::include_graphics("diagrams/tidy-data/column-names.png", dpi = 270)
@@ -328,8 +328,8 @@ Eles são "desenrolados" linha a linha.
 #|   linha-a-linha.
 #| fig-alt: | 
 #|   Um diagrama mostrando como `pivot_longer()` transforma os dados,
-#|   utilizando cores para destacar como os valores das células (medidas de pressão arterial)
-#|   se tornam valores em uma nova coluna `value`. Eles são "desenrolados" linha-a-linha,
+#|   utilizando cores para destacar como os valores das células (medidas de pressão sanguínea)
+#|   se tornam valores em uma nova coluna `valor`. Eles são "desenrolados" linha-a-linha,
 #|   então as linhas originais (100,120), depois (140,115) e depois (120,125), se tornam 
 #|   uma coluna que vai de 100 a 125.
 
@@ -339,7 +339,7 @@ knitr::include_graphics("diagrams/tidy-data/cell-values.png", dpi = 270)
 ### Muitas variáveis nos nomes de colunas
 
 Uma situação mais desafiadora ocorre quando tem-se muitas partes de informação aglomeradas nos nomes das colunas, e você gostaria de armazená-las em variáveis separadas.
-Por exemplo, pegue o conjunto de dados `who2`, que é a fonte da `table1` e outros amigos que você viu acima:
+Por exemplo, pegue o conjunto de dados `who2`, que é a fonte da `tabela1` e outros amigos que você viu acima:
 
 ```{r}
 who2
@@ -350,13 +350,13 @@ Existem duas colunas que já são variáveis e parecem fáceis de interpretar: `
 Em seguida vêm outras 56 colunas tais como `sp_m_014`, `ep_m_4554` e `rel_m_3544`.
 Se você olhar com cuidado para essas colunas por tempo suficiente, verá que há um padrão.
 Cada nome de coluna é composto por três partes separadas por `_`.
-A primeira parte, `sp`/`rel`/`ep`, descreve o método utilizado para o diagnóstico, a segunda parte, `m`/`f` é o gênero - `gender` (codificado como uma variável binária nesse conjunto de dados), e a terceira parte, `014`/`1524`/`2534`/`3544`/`4554`/`5564`/`65` é o intervalo de idade - `age` (`014` representa 0-14, por examplo).
+A primeira parte, `sp`/`rel`/`ep`, descreve o método utilizado para o diagnóstico, a segunda parte, `m`/`f` é o gênero - `gender` (codificado como uma variável binária nesse conjunto de dados), e a terceira parte, `014`/`1524`/`2534`/`3544`/`4554`/`5564`/`65` é o intervalo de idade - `age` (`014` representa 0-14, por exemplo).
 
 
 Então, nesse caso temos seis partes de informação registrados em `who2`: o país (_country_) e o ano (_year_) (já nas colunas); o método diagnóstico, a categoria do gênero, e a categoria do intervalo de idade (contido nos outros nomes de colunas); e a contagem dos pacientes em naquela categoria (valores das células).
 Para organizar essas seis partes de informação em seis colunas separadas, utilizaremos `pivot_longer()` passando um vetor de nomes de colunas para o parâmetro `names_to`, instruções para separar, nas partes, os nomes originais das variáveis para o parâmetro `names_sep` e um nome de coluna para `values_to`:
 
-[^data-tidy-3]: NT: do inglês _World Health Organisation_ - WHO que é nome do conjunto de dados.
+[^data-tidy-3]: **Nota de tradução**: do inglês _World Health Organisation_ - WHO que é nome do conjunto de dados.
 
 ```{r}
 who2 |> 
@@ -395,7 +395,7 @@ knitr::include_graphics("diagrams/tidy-data/multiple-names.png", dpi = 270)
 ### Dados e nomes de variáveis nos cabeçalhos das colunas
 
 O próximo degrau em complexidade é quando os nomes das colunas incluem uma mistura de nomes e valores das variáveis.
-Por exemplo, vamos pegar o conjunto de dados `household`: 
+Por exemplo, vamos pegar o conjunto de dados `nucleo_familiar`: 
 
 ```{r}
 household
