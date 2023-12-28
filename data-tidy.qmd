@@ -160,7 +160,7 @@ Vamos nos aprofundar em alguns exemplos.
 O conjunto de dados `top100musicas` marca a posição das músicas na billboard no ano 2000:
 
 ```{r}
-billboard
+top100musicas
 ```
 
 Nesse conjunto de dados, cada observação é uma música.
