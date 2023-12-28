@@ -446,7 +446,7 @@ Isso tende a aparecer menos na vida real, mas parece ser comum quando estamos li
 Começaremos dando uma olhada em `cms_patient_experience`, um conjunto de dados de serviços do *Centers of Medicare and Medicaid* que coleta dados sobre as experiências dos pacientes:
 
 ```{r}
-cms_patient_experience
+cms_paciente_experiencia
 ```
 
 A unidade principal sendo estudada é a organização, mas cada organização está espalhada em seis linhas, com uma linha para cada medição feita pela pesquisa. 
