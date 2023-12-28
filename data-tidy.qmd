@@ -110,9 +110,9 @@ table1 |>
   mutate(rate = cases / population * 10000)
 
 # Calcular o total de casos por ano 
-table1 |> 
-  group_by(year) |> 
-  summarize(total_cases = sum(cases))
+tabela1 |> 
+  group_by(ano) |> 
+  summarize(total_casos = sum(casos))
 
 # Visualizar mudanças ao longo do tempo
 ggplot(tabela1, aes(x = ano, y = casos)) +
