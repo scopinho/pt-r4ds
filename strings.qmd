@@ -37,12 +37,10 @@ Essa característica é particularmente útil se você estiver utilizando o RStu
 ```{r}
 #| echo: false
 #| fig-alt: |
-#| A função str_c digitada no console do RStudio com a 
-#|  ferramenta de preenchimento automático sendo exibida ao
-#|  topo, que lista funções que começam com str_c. O nome da
-#|  função e o início da página de manual da função, destacada
-#|  na lista de preenchimento automático, são exibidos em um
-#|  painel à sua direita.
+#|   Função str_c  digitada no console do RStudio com a ferramenta de preenchimento automático sendo exibida
+#|   ao topo, que lista funções que começam com str_c. O nome 
+#|   e o início da página de manual da função, destacados na lista do preenchimento automático, 
+#|   são exibidos em um painel à sua direita.
 
 knitr::include_graphics("screenshots/stringr-autocomplete.png")
 ```
