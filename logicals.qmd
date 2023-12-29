@@ -28,7 +28,7 @@ Também continuaremos a extrair exemplos do conjunto de dados `dados::voos`.
 #| message: false
 
 library(tidyverse)
-library (dados)
+library(dados)
 ```
 
 No entanto, à medida que começamos a estudar novas ferramentas, nem sempre haverá um exemplo real perfeito.
@@ -40,7 +40,7 @@ x * 2
 ```
 
 Isso facilita a explicação de funções individuais, ao custo de dificultar a visualização de como elas podem se aplicar aos seus problemas de dados.
-Apenas lembre-se de que qualquer manipulação que fizermos em um vetor simples (*free-floating*), você poderá fazer em uma variável dentro de *data frame* com `mutate()` e demais funções amigas.
+Apenas lembre-se de que qualquer manipulação que fizermos em um vetor simples, você poderá fazer em uma variável dentro de *data frame* com `mutate()` e demais funções amigas.
 
 ```{r}
 df <- tibble(x)
@@ -51,7 +51,7 @@ df |>
 ## Comparações
 
 Uma forma muito comum de criar um vetor lógico é através de uma comparação numérica usando `<`, `<=`, `>`, `>=`, `!=` e `==`.
-Até agora, criamos principalmente variáveis ​​lógicas transitoriamente dentro de `filter()` --- elas são calculadas, usadas e depois jogadas fora.
+Até agora, criamos principalmente variáveis ​​lógicas temporariamente dentro do `filter()` --- elas são calculadas, usadas e depois jogadas fora.
 Por exemplo, o filtro abaixo encontra todo os voos que sairam durante o dia e chegaram aproximadamente no horário:
 
 ```{r}
@@ -70,7 +70,7 @@ voos |>
   )
 ```
 
-Isto é particularmente útil para lógicas mais complicadas, pois nomeando os passos intermediarios, se torna mais fácil tanto ler o código quanto verificar se cada passo está sendo calculado corretamente.
+Isto é particularmente útil para lógicas mais complicadas, pois nomeando os passos intermediários, se torna mais fácil tanto ler o código quanto verificar se cada passo está sendo calculado corretamente.
 
 Com isto, o filtro inicial é equivalente a:
 
@@ -122,7 +122,7 @@ near(x, c(1, 2))
 
 ### Valores faltantes (*missing values*) {#sec-na-comparison}
 
-Os valores faltantes (*missing values) representam o desconhecido, portanto são "contagiosos": quase qualquer operação que envolva um valor desconhecido também será desconhecida:
+Os valores faltantes (*missing values*) representam o desconhecido, portanto são "contagiosos": quase qualquer operação que envolva um valor desconhecido também será desconhecida:
 
 ```{r}
 NA > 5
@@ -188,16 +188,16 @@ voos |>
   arrange(desc(is.na(horario_saida)), horario_saida)
 ```
 
-Retornaremos a abordar mais detalhes sobre valores faltantes (*missing values*) no @sec-missing-values.
+Voltaremos a abordar mais detalhes sobre valores faltantes (*missing values*) no @sec-missing-values.
 
 ### Exercício
 
 1.  Como `dplyr::near()` funciona? Digite `near` para ver o código fonte. `sqrt(2)^2` é próximo (near) a 2?
 2.  Use `mutate()`, `is.na()` e `count()` juntos para descrever como os valores faltantes (*missing values*) em `horario_saida`, `saida_programada` e `atraso_saida` estão relacionados.
 
-## Algebra booleana
+## Álgebra booleana
 
-Quando você tem múltiplos vetores lógicos, você pode combiná-los usando algebra booleana.
+Quando você tem múltiplos vetores lógicos, você pode combiná-los usando álgebra booleana.
 No R, `&` é "e", `|` é "ou", `!` é "não" e `xor()` é ou exclusivo[^logicals-2].
 Por exemplo, `df |> filter(!is.na(x))` encontra todas as linhas onde `x` está faltando e `df |> filter(x < -10 | x > 0)` encontra todas as linhas onde `x` é menor que -10 ou maior que 0.
 A @fig-bool-ops mostra o conjunto completo de operações booleanas e como elas funcionam.
@@ -229,9 +229,9 @@ Não os use em funções dplyr!
 Eles são chamados de operadores de curto-circuito e retornam sempre apenas um único `TRUE` ou `FALSE`.
 Eles são importantes na programação, não em ciência de dados.
 
-### Valore faltantes (*missing values*) {#sec-na-boolean}
+### Valores faltantes (*missing values*) {#sec-na-boolean}
 
-As regras para valores ausentes na álgebra booleana são um pouco complicadas de explicar porque parecem inconsistentes à primeira vista:
+As regras para valores faltantes na álgebra booleana são um pouco complicadas de explicar porque parecem inconsistentes à primeira vista:
 
 ```{r}
 df <- tibble(x = c(TRUE, FALSE, NA))
@@ -245,12 +245,12 @@ df |>
 
 Para entender o que está acontecendo aqui, pense em `NA | TRUE` (`NA` ou `TRUE`).
 Um valor faltante (*missing value*) em um vetor lógico significa que o valor poderia ser `TRUE` ou `FALSE`.
-`TRUE | TRUE` e `FALSE | TRUE` são ambos `TRUE` pois ao menos um dors termos é `TRUE`.
+`TRUE | TRUE` e `FALSE | TRUE` são ambos `TRUE` pois ao menos um dos termos é `TRUE`.
 `NA | TRUE` também deve ser `TRUE` pois `NA` pode ser `TRUE` ou `FALSE`.
-Ententando, `NA | FALSE` é `NA` pois não sabemos se `NA` é `TRUE` ou `FALSE`.
+Entretanto, `NA | FALSE` é `NA` pois não sabemos se `NA` é `TRUE` ou `FALSE`.
 O mesmo se aplica com `NA & FALSE`.
 
-### Order das operações
+### Ordem das operações
 
 Observe que a ordem das operações não funcionam como em Português.
 Veja o seguinte código que encontra todos os voos que saíram em novembro ou dezembro:
@@ -286,7 +286,7 @@ voos |>
 
 ### `%in%`
 
-Um jeito fácil de evitar o problema de colocar `==`s e `|`s na order correta é usar `%in%`.
+Um jeito fácil de evitar o problema de colocar `==`s e `|`s na ordem correta é usar `%in%`.
 `x %in% y` retorna um vetor lógico de mesmo tamanho que `x` que é `TRUE` sempre que um valor em `x` está em qualquer lugar em `y` .
 
 ```{r}
@@ -336,7 +336,7 @@ Existem dois sumarizadores lógicos: `any()` e `all()`.
 Assim como todas as funções de sumarização, elas retornarão `NA` se houver qualquer valor faltante (*missing value*) presente, e como de costume, você pode não considerá-los usando `na.rm = TRUE`.
 
 Por exemplo, poderíamos usar `all()` e `any()` para descobrir se todos os voos foram atrasados na partida por no máximo uma hora ou se algum voo atrasou na chegada por cinco horas ou mais.
-And using `group_by()` allows us to do that by day:
+E usando `group_by()` podemos fazer isso para cada dia:
 
 ```{r}
 voos |> 
@@ -354,7 +354,7 @@ Isso nos leva aos sumarizadores numéricos.
 ### Sumarizações numéricas de vetores lógicos {#sec-numeric-summaries-of-logicals}
 
 Quando você usa um vetor lógico em um contexto numérico, `TRUE` se torna 1 e `FALSE` se torna 0.
-Isto torna `sum()` e `mean()` muito úteis com vetores lógicos, pois `sum(x)` retorna o número de `TRUE`s e `mean(x)` retorna a proporção de `TRUE`s (pois `mean()` é apenas `sum()` dividido por`length()`).
+Isto torna `sum()` e `mean()` muito úteis com vetores lógicos, pois `sum(x)` retorna o número de `TRUE`s e `mean(x)` retorna a proporção de `TRUE`s (pois `mean()` é `sum()` dividido por `length()`).
 
 Isto, por exemplo, nos permite ver a proporção de voos que tiveram atraso na saída em até uma hora e o número de voos que chegaram atrasados em cinco horas ou mais:
 
@@ -408,7 +408,7 @@ voos |>
 
 Observe também a diferença no tamanho do grupo: no primeiro segmento `n()` tem o número de voos em atraso por dia, no segundo, `n()` retorna o número total de voos.
 
-### Exercises
+### Exercícios
 
 1.  O que `sum(is.na(x))` retorna? E `mean(is.na(x))`?
 2.  O que `prod()` retorna quando aplicada a um vetor lógico? Qual função de sumarização lógica é equivalente? O que `min()` retorna quando aplicada a um vetor lógico? Qual função de sumarização lógica é equivalente? Leia a documentação e efetue alguns experimentos.
@@ -416,15 +416,15 @@ Observe também a diferença no tamanho do grupo: no primeiro segmento `n()` tem
 ## Transformações condicionais
 
 Uma das características mais poderosas de vetores lógico é seu uso em transformações condicionais, i.e. fazer alguma coisa em uma condição x, e alguma outra coisa diferente para a y.
-Existem duas ferramentas importantes para isso: `if_else()` e `case_when()`.
+Existem duas funções importantes para isso: `if_else()` e `case_when()`.
 
 ### `if_else()`
 
 Se você quiser usar um valor para quando a condição é `TRUE` e outro valor para quando a condição é `FALSE`, você pode usar `dplyr::if_else()`[^logicals-4].
-Você sempre usará os primeiros três argumentos de `if_else()`. O primeiro, `condition`, é um vetor lógico, o segundo, `true`, gera uma saída quando a condição é verdadeira (*true*), e o terceiro, `false`, gera uma saída quando a condição é falsa (*false*).
+Você sempre usará os primeiros três argumentos de `if_else()`. O primeiro, `condition`, é um vetor lógico, o segundo, `true`, gera uma saída quando a condição é verdadeira, e o terceiro, `false`, gera uma saída quando a condição é falsa.
 
 [^logicals-4]: A função `if_else()` do dplyr é muito similar a `ifelse()` do R base .
-    Existem duas vantagens principais do `if_else()` sobre `ifelse()`: você pode escolher o que acontece com valor faltantes (*minssing values*) e `if_else()` te retorna erros com mais sentido se sua variável possuir tipos incompatíveis.
+    Existem duas vantagens principais do `if_else()` sobre `ifelse()`: você pode escolher o que acontece com valor faltantes (*missing values*) e `if_else()` te retorna erros com mais sentido se sua variável possuir tipos incompatíveis.
 
 Vamos começar com um simples exemplo rotulando um vetor numérico como "+vo" (positivo) ou "-vo" (negativo):
 
@@ -440,7 +440,7 @@ if_else(x > 0, "+vo", "-vo", "???")
 ```
 
 Você também usar vetores para os argumentos `true` e `false`.
-Por exemplo, isto nos permite criar uma implmentação mínima de `abs()`:
+Por exemplo, isto nos permite criar uma implementação mínima de `abs()`:
 
 ```{r}
 if_else(x < 0, -x, x)
@@ -455,7 +455,7 @@ y1 <- c(3, NA, 4, 6)
 if_else(is.na(x1), y1, x1)
 ```
 
-Você pode notar uma pequena infelicidade em nosso exemplo de rótulo acima: zero não é nem positivo nem negativo.
+Você pode notar uma pequena infelicidade no nosso exemplo de rótulo acima: zero não é nem positivo nem negativo.
 Nós poderíamos resolver isso adicionando um novo `if_else()`:
 
 ```{r}
@@ -467,12 +467,12 @@ Ao invés disso, você deve mudar para o `dplyr::case_when()`.
 
 ### `case_when()`
 
-O `case_when()` do pacote dplyr é inspirado pela declaração `CASE` do SQL e oferece uma forma flexível de efetuar diferentes cálculos para diferentes condições.
+O `case_when()` do pacote dplyr é inspirado na declaração `CASE` do SQL e oferece uma forma flexível de efetuar diferentes cálculos para diferentes condições.
 Infelizmente, ele tem uma sintaxe que não se parece com nada que você usará no pacote tidyverse.
 Ele recebe pares que se parecem com `condição ~ saída`.
 `condição` deve ser um vetor lógico; quando for `TRUE`, `saída` será usada.
 
-Isto significa que poderíamos recriar nos `if_else()` aninhado dest forma:
+Isto significa que poderíamos recriar nos `if_else()` aninhado desta forma:
 
 ```{r}
 x <- c(-3:3, NA)
@@ -496,7 +496,7 @@ case_when(
 )
 ```
 
-Use `.default` se você quiser gerar um "padrão"/pega todos valores:
+Use  o argumento`.default` se você quiser gerar um "padrão"/pegar todos os valores:
 
 ```{r}
 case_when(
@@ -556,7 +556,7 @@ Aqui estão os casos mais importantes que são compatíveis:
 
 -   Vetores numéricos e lógicos são compatíveis, conforme discutimos na @sec-numeric-summaries-of-logicals.
 -   Strings e fatores (@sec-factors) são compatíveis, porque você pode pensar em um fator como uma string com um conjunto restrito de valores.
--   Datas e datas e horas, que discutiremos no @sec-dates-and-times, são compatíveis porque você pode pensar em uma data (*date*) como um caso especial de data_hora (*datetime*).
+-   Data e data-hora, que discutiremos no @sec-dates-and-times, são compatíveis porque você pode pensar em uma data (*date*) como um caso especial de data-hora (*datetime*).
 -   `NA`, que é tecnicamente um vetor lógico, é compatível com tudo porque todo vetor tem alguma forma de representar um valor faltante (*missing value*).
 
 Não esperamos que você memorize essas regras, mas elas devem se tornar naturais com o tempo, porque são aplicadas de forma consistente em todo o tidyverse.
@@ -570,7 +570,7 @@ Não esperamos que você memorize essas regras, mas elas devem se tornar naturai
 
 3.  Use `ifelse()` para calcular o valor absoluto de um vetor numérico chamado `x`.
 
-4.  Escreva uma declaração `case_when()` que usa as colunas `mes` e `dia` de `voos` para rotular um conjunto de feriados importante dos Estados Unidos (e.g., 7 de Setembro, Tiradentes, Carnaval e Natal[^logicals-5]).
+4.  Escreva uma declaração `case_when()` que usa as colunas `mes` e `dia` de `voos` para rotular um conjunto de feriados importante dos Brasil (e.g., 7 de Setembro, Tiradentes, Carnaval e Natal[^logicals-5]).
 [^logicals-5]: N.T. - Na versão original em inglês, os feriados são dos Estados Unidos.
     Primeiro crie uma coluna lógica `TRUE` ou `FALSE`, e então uma coluna texto (*character*) que tenha o nome do feriado ou `NA`.
 
