@@ -10,7 +10,7 @@ source("_common.R")
 
 ## Introdução
 
-Para finalizar a seção de programação, faremos um rápido tour pelas funções do R base (*base R*) mais importantes que não discutiremos no livro.
+Para finalizar a seção de programação, faremos um rápido tour pelas funções mais importantes do R base que não discutimos de outra forma no livro.
 Essas ferramentas são particularmente úteis à medida que você programa mais e o ajudarão a ler código R que encontrará por aí.
 
 Este é um bom lugar para lembrar que o tidyverse não é a única maneira de resolver problemas de ciência de dados.
@@ -19,15 +19,15 @@ Não é possível usar o tidyverse sem usar o R base, então na verdade já ensi
 O que não focamos até agora são os fluxos de trabalho do R base, por isso destacaremos alguns deles neste capítulo.
 
 Depois de ler este livro, você aprenderá outras abordagens para os mesmos problemas usando o R base, data.table e outros pacotes.
-Sem dúvida, você encontrará essas outras abordagens quando começar a ler o código R escrito por outras pessoas, principalmente se estiver usando o site *StackOverflow*.
-É 100% correto escrever código que use uma combinação de abordagens e não deixe ninguém lhe dizer o contrário!
+Sem dúvida, você encontrará essas outras abordagens quando começar a ler o código R escrito por outras pessoas, principalmente se estiver usando o *StackOverflow*.
+É 100% correto escrever código que use uma combinação de abordagens. Não deixe ninguém lhe dizer o contrário!
 
-Neste capítulo, vamos nos concentrar em quatro grandes tópicos: subconjuntos (*subsetting*) com `[`, subconjuntos com `[[` e `$`, a família de funções apply e loops `for`.
-Para finalizar, discutiremos brevemente duas funções essenciais de plotagem.
+Neste capítulo, vamos nos concentrar em quatro grandes tópicos: subconjuntos com `[`, subconjuntos com `[[` e `$`, a família de funções apply e loops `for`.
+Para finalizar, discutiremos brevemente duas funções essenciais para criação de gráficos.
 
 ### Pré-requisitos
 
-Este capítulo se concentra no R base (*base R*), portanto não possui nenhum pré-requisito real, mas carregaremos o tidyverse para explicar algumas das diferenças e o pacote dados para o conjunto de dados diamante.
+Este capítulo se concentra no R base, portanto não possui nenhum pré-requisito real, mas carregaremos o tidyverse para explicar algumas das diferenças e o pacote dados para o conjunto de dados diamante.
 
 ```{r}
 #| label: setup
@@ -39,7 +39,7 @@ library(dados)
 
 ## Selecionando múltiplos elementos com `[` {#sec-subset-many}
 
-`[` é usado para extrair subcomponentes de vetores e *data frames* e é chamado como `x[i]` ou `x[i, j]`.
+`[` é usado para extrair subcomponentes de vetores e *data frames* e é usado como `x[i]` ou `x[i, j]`.
 Nesta seção, apresentaremos o poder de `[`, primeiro mostrando como você pode usá-lo com vetores e, em seguida, como os mesmos princípios se estendem de maneira direta a estruturas bidimensionais (2d), como *data frames*.
 Em seguida, ajudaremos você a consolidar esse conhecimento, mostrando como vários verbos do pacote dplyr são casos especiais de `[`.
 
@@ -48,7 +48,7 @@ Em seguida, ajudaremos você a consolidar esse conhecimento, mostrando como vár
 Existem cinco tipos principais de coisas com as quais você pode criar subconjuntos de um vetor, ou seja, que podem ser o `i` em `x[i]`:
 
 1.  **Um vetor de inteiros positivos**.
-    Extrair um subconjunto com inteiros positivos obtem os elementos dessas posições:
+    Extrair um subconjunto com inteiros positivos obtém os elementos dessas posições:
 
     ```{r}
     x <- c("um", "dois", "tres", "quatro", "cinco")
@@ -70,12 +70,12 @@ Existem cinco tipos principais de coisas com as quais você pode criar subconjun
 
 3.  **Um vetor lógico**.
     Extrair usando um vetor lógico obtém todos os valores correspondentes a um valor verdadeiro `TRUE`.
-    Isto é mais frequentemente útil em conjunto com a função de comparação.
+    Isto é mais útil em conjunto com função de comparação.
 
     ```{r}
     x <- c(10, 3, NA, 5, 8, 1, NA)
 
-    # Todos os valores não faltantes (*non-missing values*) de x
+    # Todos os valores não faltantes de x
     x[!is.na(x)]
 
     # Todos os valores pares (ou ausentes!) de x
@@ -85,7 +85,7 @@ Existem cinco tipos principais de coisas com as quais você pode criar subconjun
     Ao contrário de `filter()`, os índices `NA` serão incluídos na saída como `NA`s.
 
 4.  **Um vetor de caracteres**.
-    Se você tiver um vetor nomeado (*named vector*), poderá extrair um subconjunto com um vetor de caracteres:
+    Se você tiver um vetor nomeado, poderá extrair um subconjunto com um vetor de caracteres:
 
     ```{r}
     x <- c(abc = 1, def = 2, xyz = 5)
@@ -100,7 +100,7 @@ Existem cinco tipos principais de coisas com as quais você pode criar subconjun
 
 ### Subconjuntos de *data frames*
 
-Existem algumas maneiras diferentes[^base-r-1] de usar `[` com um quadro de dados, mas a maneira mais importante é selecionar linhas e colunas independentemente com `df[linhas, colunas]`. Aqui `linhas` e `colunas` são vetores conforme descrito acima.
+Existem algumas maneiras diferentes[^base-r-1] de usar `[` com uma tabela de dados, mas a maneira mais importante é selecionar linhas e colunas independentemente com `df[linhas, colunas]`. Aqui `linhas` e `colunas` são vetores conforme descrito acima.
 Por exemplo, `df[linhas, ]` e `df[, colunas]` selecionam apenas linhas ou apenas colunas, usando o subconjunto vazio para preservar a outra dimensão.
 
 Leia <https://adv-r.hadley.nz/subsetting.html#subset-multiple> para ver como você também pode criar subconjuntos de um *data frame* como se fosse um objeto 1d e como você pode subdefini-lo com uma matriz
@@ -120,15 +120,15 @@ df[1, 2]
 # Selecione todas as linhas e colunas x e y
 df[, c("x" , "y")]
 
-# Selecione linhas onde `x` é maior que 1 e todas as colunas
+# Selecione linhas em que `x` é maior que 1 e todas as colunas
 df[df$x > 1, ]
 ```
 
 Voltaremos a `$` em breve, mas você deve ser capaz de adivinhar o que `df$x` faz a partir do contexto: ele extrai a variável `x` de `df`.
-Precisamos usá-lo aqui porque `[` não usa avaliação organizada (*tidy evaluation*), então você precisa ser explícito sobre a origem da variável `x`.
+Precisamos usá-lo aqui porque `[` não usa avaliação *tidy*, então você precisa ser explícito sobre a origem da variável `x`.
 
 Há uma diferença importante entre tibbles e *data frames* quando se trata de `[`.
-Neste livro, usamos principalmente tibbles, que *são* quadros de dados, mas eles ajustam alguns comportamentos para tornar sua vida um pouco mais fácil.
+Neste livro, usamos principalmente tibbles, que *são* tabelas de dados, mas eles ajustam alguns comportamentos para tornar sua vida um pouco mais fácil.
 Na maioria dos lugares, você pode usar "tibble" e "*data frame*" de forma intercambiável, então quando quisermos chamar atenção especial para o *data frame* integrado do R base, escreveremos `data.frame`.
 Se `df` for um `data.frame`, então `df[, colunas]` retornará um vetor se `colunas` selecionar uma única coluna e um *data frame* se selecionar mais de uma coluna.
 Se `df` for um tibble, então `[` sempre retornará um tibble.
@@ -141,17 +141,17 @@ df2 <- tibble(x = 1:3)
 df2[, "x"]
 ```
 
-Uma maneira de evitar essa ambigüidade com `data.frame`s é especificar explicitamente `drop = FALSE`:
+Uma maneira de evitar essa ambiguidade com `data.frame`s é especificar explicitamente `drop = FALSE`:
 
 ```{r}
 df1[, "x" , drop = FALSE]
 ```
 
-### Equivalentes dplyr
+### Equivalências do dplyr
 
 Vários verbos dplyr são casos especiais de `[`:
 
--   `filter()` é equivalente a subconjunto das linhas com um vetor lógico, tomando cuidado para excluir valores ausentes:
+-   `filter()` é equivalente a fazer um subconjunto das linhas com um vetor lógico, tomando cuidado para excluir valores ausentes:
 
     ```{r}
     #| results: false
@@ -169,7 +169,7 @@ Vários verbos dplyr são casos especiais de `[`:
 
     Outra técnica comum é usar `what()` por seu efeito colateral de eliminar valores ausentes: `df[what(df$x > 1), ]`.
 
--   `arrange()` é equivalente a subconjunto das linhas com um vetor inteiro, geralmente criado com `order()`:
+-   `arrange()` é equivalente a fazer um subconjunto das linhas com um vetor inteiro, geralmente criado com `order()`:
 
     ```{r}
     #| results: false
@@ -182,7 +182,7 @@ Vários verbos dplyr são casos especiais de `[`:
 
     Você pode usar `order(decreasing = TRUE)` para classificar todas as colunas em ordem decrescente ou `-rank(col)` para classificar colunas em ordem decrescente individualmente.
 
--   Ambos `select()` e `relocate()` são semelhantes a subconjuntos das colunas com um vetor de caracteres:
+-   Ambos `select()` e `relocate()` são semelhantes a fazer subconjuntos das colunas com um vetor de caracteres:
 
     ```{r}
     #| results: false
@@ -193,7 +193,7 @@ Vários verbos dplyr são casos especiais de `[`:
     df[, c("x", "z")]
     ```
 
-O R base também fornece uma função que combina os recursos de `filter()` e `select()`[^base-r-2] chamada `subset()`:
+O R base também fornece uma função que combina as características de `filter()` e `select()`[^base-r-2] chamada `subset()`:
 
 [^base-r-2]: Mas ele não lida com *data frames* agrupados (*grouped*) de maneira diferenciada e não suporta funções auxiliares de seleção como `starts_with()`.
 
@@ -226,7 +226,7 @@ Esta função foi a inspiração para grande parte da sintaxe do dplyr.
 ## Selecionando um único elemento com `$` e `[[` {#sec-subset-one}
 
 `[`, que seleciona muitos elementos, é emparelhado com `[[` e `$`, que extraem um único elemento.
-Nesta seção, mostraremos como usar `[[` e `$` para extrair colunas de *data frames*, discutiremos mais algumas diferenças entre `data.frames` e tibbles e enfatizaremos algumas diferenças importantes entre `[ ` e `[[` quando usado com listass.
+Nesta seção, mostraremos como usar `[[` e `$` para extrair colunas de *data frames*, discutiremos mais algumas diferenças entre `data.frames` e tibbles e enfatizaremos algumas diferenças importantes entre `[ ` e `[[` quando usado com listas.
 
 ### Data frames
 
@@ -242,7 +242,7 @@ tb <- tibble(
 # por posição
 tb[[1]]
 
-# bpor nome
+# por nome
 tb[["x"]]
 tb$x
 ```
@@ -254,7 +254,7 @@ tb$z <- tb$x + tb$y
 tb
 ```
 
-Existem várias outras abordagens de base R para criar novas colunas, incluindo `transform()`, `with()` e `within()`.
+Existem várias outras abordagens do R base para criar novas colunas, incluindo `transform()`, `with()` e `within()`.
 Hadley coletou alguns exemplos em <https://gist.github.com/hadley/1986a273e384fb2d4d752c18ed71bedf>.
 
 Usar `$` diretamente é conveniente ao realizar resumos rápidos.
@@ -267,7 +267,7 @@ levels(diamante$corte)
 ```
 
 dplyr também fornece um equivalente a `[[`/`$` que não mencionamos no @sec-data-transform: `pull()`.
-`pull()` pegam um nome de variável ou uma posição de variável e retornam apenas aquela coluna.
+`pull()` pega um nome de variável ou uma posição de variável e retorna apenas a coluna correspondente.
 Isso significa que poderíamos reescrever o código acima para usar o pipe:
 
 ```{r}
@@ -278,8 +278,8 @@ diamante |> pull(corte) |> levels()
 
 ### Tibbles
 
-Existem algumas diferenças importantes entre tibbles e `data.frame`s básicos quando se trata de `$`.
-Os *data frames** correspondem ao prefixo de qualquer nome de variável (chamado de **correspondência parcial** (*partial matching*) ) e não reclamam se uma coluna não existir:
+Existem algumas diferenças importantes entre tibbles e `data.frame`s quando se trata de `$`.
+Os *data frames** acessam o prefixo de qualquer nome de variável (chamado de **correspondência parcial**) e reclamam se uma coluna não existir:
 
 ```{r}
 df <- data.frame(x1 = 1)
@@ -287,7 +287,7 @@ df$x
 df$z
 ```
 
-Tibbles são mais rigorosos: eles apenas correspondem exatamente aos nomes das variáveis ​​e irão gerar um aviso se a coluna que você está tentando acessar não existir:
+Tibbles são mais rigorosos: eles apenas retornam os nomes das variáveis exatos ​​e irão gerar um aviso se a coluna que você está tentando acessar não existir:
 
 ```{r}
 tb <- tibble(x1 = 1)
@@ -306,7 +306,7 @@ Vamos ilustrar as diferenças com uma lista chamada `l`:
 ```{r}
 l <- list(
   a = 1:3, 
-  b = "uma sgring", 
+  b = "uma string", 
   c = pi, 
   d = list(-1, -5)
 )
@@ -336,8 +336,8 @@ l <- list(
     str(l$a)
     ```
 
-A diferença entre `[` e `[[` é particularmente importante para listas porque `[[` detalha a lista enquanto `[` retorna uma lista nova e menor.
-Para ajudá-lo a lembrar a diferença, dê uma olhada no pimenteiro incomum mostrado na @fig-pepper.
+A diferença entre `[` e `[[` é particularmente importante para listas porque `[[` acessa um elemento da lista enquanto `[` retorna uma lista nova e menor.
+Para te ajudar a lembrar a diferença, dê uma olhada no pimenteiro incomum mostrado na @fig-pepper.
 Se este pimenteiro for sua lista `pimenteiro`, então `pimenteiro[1]` é um pimenteiro contendo um único pacote de pimenta.
 `pimenteiro[2]`  teria a mesma aparência, mas conteria o segundo pacote.
 `pimenteiro[1:2]` seria um pimenteiro contendo dois pacotes de pimenta.
@@ -353,7 +353,7 @@ Se este pimenteiro for sua lista `pimenteiro`, então `pimenteiro[1]` é um pime
 #|   (Direita) `pimenteiro[[1]]`
 #| fig-alt: |
 #|   Três fotos. À esquerda está a foto de um pimenteiro de vidro. Em vez de 
-#|   conter pimenta, contém vários pacotes de pimenta
+#|   conter pimenta, contém vários pacotes de pimenta.
 #|   No meio está a foto de um único pacote de pimenta dentro do pimenteiro. À direita esta a 
 #|   foto do conteúdo de um pacote de pimenta.
 
@@ -372,7 +372,7 @@ Este mesmo princípio se aplica quando você usa 1d `[` com um *data frame*: `df
 
 ## A família Apply
 
-No @sec-iteration, você aprendeu técnicas tidyverse para iteração como `dplyr::across()` e a família de funções map.
+No @sec-iteration, você aprendeu técnicas do tidyverse para iteração como `dplyr::across()` e a família de funções map.
 Nesta seção, você aprenderá sobre seus equivalentes básicos, a **família apply**.
 Neste contexto, *apply* (aplicar) e *map* (mapear) são sinônimos porque outra maneira de dizer "mapear uma função sobre cada elemento de um vetor" é "aplicar uma função sobre cada elemento de um vetor".
 Aqui lhe daremos uma rápida visão geral desta família de funções para que você possa reconhecê-la por aí.
@@ -422,12 +422,12 @@ diamante |>
 tapply(diamante$preco, diamante$corte, mean)
 ```
 
-Infelizmente `tapply()` retorna seus resultados em um vetor nomeado (*named vector*) que requer alguma ginástica se você quiser coletar múltiplos resumos e agrupar variáveis ​​em um *data frame* (é certamente possível não fazer isso e apenas trabalhar com vetores flutuantes livres (*free floating vectors*), mas em nossa experiência isso apenas atrasa o trabalho).
+Infelizmente `tapply()` retorna seus resultados em um vetor nomeado que requer alguma ginástica se você quiser coletar múltiplos resumos e agrupar variáveis ​​em um *data frame* (é certamente possível não fazer isso e apenas trabalhar com vetores livres, mas em nossa experiência isso apenas atrasa o trabalho).
 Se você quiser ver como pode usar `tapply()` ou outras técnicas básicas para realizar outros resumos agrupados, Hadley reuniu algumas técnicas [neste resumo](https://gist.github.com/hadley/c430501804349d382ce90754936ab8ec).
 
 O membro final da família apply é o titular `apply()`, que trabalha com matrizes e arrays.
 Em particular, tome cuidado com `apply(df, 2, alguma_coisa)`, que é uma forma lenta e potencialmente perigosa de fazer `lapply(df, alguma_coisa)`.
-Isso raramente aparece na ciência de dados porque geralmente trabalhamos com quadros de dados e não com matrizes.
+Isso raramente aparece na ciência de dados porque geralmente trabalhamos com tabelas de dados e não com matrizes.
 
 ## Loops `for`
 
@@ -468,7 +468,6 @@ As coisas ficam um pouco mais complicadas se você quiser salvar a saída do loo
 caminhos <- dir("data/gapminder", pattern = "\\.xlsx$", full.names = TRUE)
 arquivos <- map(caminhos, readxl::read_excel)
 ```
-
 
 Existem algumas técnicas diferentes que você pode usar, mas recomendamos ser explícito sobre como será o resultado desde o início.
 Neste caso, vamos querer uma lista do mesmo comprimento que `caminhos`, que podemos criar com `vector()`:
@@ -511,8 +510,8 @@ Esta é a fonte do boato persistente de que os loops `for` são lentos: eles nã
 
 ## Gráficos
 
-Muitos usuários de R que não usam o tidyverse preferem ggplot2 para plotagem devido a recursos úteis como padrões sensatos, legendas automáticas e uma aparência moderna.
-No entanto, as funções de plotagem do R base ainda podem ser úteis porque são muito concisas – é preciso muito pouca digitação para fazer um gráfico exploratório básico.
+Muitos usuários de R que não usam o tidyverse preferem ggplot2 para criação de gráficos devido a recursos úteis como padrões sensatos, legendas automáticas e uma aparência moderna.
+No entanto, as funções gráficas do R base ainda podem ser úteis porque são muito concisas – é preciso muito pouca digitação para fazer um gráfico exploratório básico.
 
 Existem dois tipos principais de gráficos básicos que você verá: gráficos de dispersão e histogramas, produzidos com `plot()` e `hist()` respectivamente.
 Aqui está um exemplo rápido do conjunto de dados diamante do pacote dados:
@@ -537,14 +536,14 @@ hist(diamente$quilate)
 plot(diamonds$quilate, diamonds$preco)
 ```
 
-Observe que as funções de plotagem básica funcionam com vetores, então você precisa extrair colunas do *data frame* usando `$` ou alguma outra técnica.
+Observe que as funções gráficas básicas funcionam com vetores, então você precisa extrair colunas do *data frame* usando `$` ou alguma outra técnica.
 
 ## Resumo
 
-Neste capítulo, mostramos uma seleção de funções do R base úteis para subconjuntos (*subsetting*)e iterações.
-Em comparação com as abordagens discutidas em outras partes do livro, essas funções tendem a ter mais um sabor de "vetor" do que de "data frames", porque as funções do R base (*base R)* tendem a usar vetores individuais, em vez de um *data frame* e alguma especificação de coluna.
+Neste capítulo, mostramos uma seleção de funções do R base úteis para subconjuntos e iterações.
+Em comparação com as abordagens discutidas em outras partes do livro, essas funções tendem a ter mais um sabor de "vetor" do que de "data frames", porque as funções do R base tendem a usar vetores individuais, em vez de um *data frame* e alguma especificação de coluna.
 Isso geralmente facilita a vida da programação e se torna mais importante à medida que você escreve mais funções e começa a escrever seus próprios pacotes.
 
 Este capítulo conclui a seção de programação do livro.
 Você teve um início sólido em sua jornada para se tornar não apenas um cientista de dados que usa R, mas um cientista de dados que pode *programar* em R.
-Esperamos que esses capítulos tenham despertado seu interesse em programação e que você esteja ansioso para aprender mais fora deste livro.
+Esperamos que esses capítulos tenham despertado seu interesse em programação e que você esteja com bastante de empolgação para aprender mais fora deste livro.
