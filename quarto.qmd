@@ -8,29 +8,30 @@ source("_common.R")
 
 ## Introduction
 
-Quarto provides a unified authoring framework for data science, combining your code, its results, and your prose.
-Quarto documents are fully reproducible and support dozens of output formats, like PDFs, Word files, presentations, and more.
+Quarto fornece uma estrutura (*framework*) unificada para autoria em ciência de dados, combinando seu código, seus resultados e sua prosa.
+Documentos Quarto são plenamente reproduzíveis e suportam muitos formatos de saída como PDF, arquivos Word, apresentações e mais.
 
-Quarto files are designed to be used in three ways:
+Arquivos Quarto foram projetados para serem usados de três maneiras:
 
-1.  For communicating to decision-makers, who want to focus on the conclusions, not the code behind the analysis.
+1.  Para se comunicar com pessoas tomadoras de decisões, que querem focar nas conclusões e não no código por trás da análise.
 
-2.  For collaborating with other data scientists (including future you!), who are interested in both your conclusions, and how you reached them (i.e. the code).
+2.  Para colaborar com outros cientistas de dados (incluindo futuramente você!) que estejam interessados tanto em suas conclusões quanto em como você as alcançou (isto é, o código).
 
-3.  As an environment in which to *do* data science, as a modern-day lab notebook where you can capture not only what you did, but also what you were thinking.
+3.  Como um ambiente em que se *faz* ciência de dados, como um caderno de laboratório moderno em que se pode capturar não apenas o que você fez, como também o que você estava pensando.
 
-Quarto is a command line interface tool, not an R package.
-This means that help is, by-and-large, not available through `?`.
-Instead, as you work through this chapter, and use Quarto in the future, you should refer to the [Quarto documentation](https://quarto.org).
+Quarto é uma feerramenta de linha de comando, não é um pacote do R.
+Isso significa que ajuda, via de regra, não está disponível via `?`.
+Em vez disso, enquanto você trabalhar neste capítulo e usa Quarto no futuro, você deve procurar a [documentação para Quarto](https://quarto.org).
 
-If you're an R Markdown user, you might be thinking "Quarto sounds a lot like R Markdown".
-You're not wrong!
-Quarto unifies the functionality of many packages from the R Markdown ecosystem (rmarkdown, bookdown, distill, xaringan, etc.) into a single consistent system as well as extends it with native support for multiple programming languages like Python and Julia in addition to R.
-In a way, Quarto reflects everything that was learned from expanding and supporting the R Markdown ecosystem over a decade.
+Se você for uma pessoa que usa R Markdown, você deve estar pensando "Quarto parece muito com R Markdown".
+Isso não está errado!
+Quarto une a funcionalidade de muitos pacotes do ecosistema do R Markdown (rmarkdown, bookdown, distill, xaringan, etc.) em um sistema único e consistente, mas também extende o ecosistema com apoio nativo para múltiplas linguagens de programação como Python e Julia, além do próprio R.
+De certa forma, Quarto reflete tudo que foi aprendido na expansão e suporte ao ecosistema do R Markdown em uma década.
 
-### Prerequisites
+### Pré-requisitos
 
-You need the Quarto command line interface (Quarto CLI), but you don't need to explicitly install it or load it, as RStudio automatically does both when needed.
+Você precisa da interface de linha de comando Quarto (Quarto CLI -- *command line interface*), mas não é necessário explicitamente instalar ou carregá-la.
+Seu RStudio o fará automaticamente quando for necessário.
 
 ```{r}
 #| label: setup
@@ -41,23 +42,23 @@ inline <- function(x = "") paste0("`` `r ", x, "` ``")
 library(tidyverse)
 ```
 
-## Quarto basics
+## Básico de Quarto
 
-This is a Quarto file -- a plain text file that has the extension `.qmd`:
+Isso é um arquivo Quarto -- This is a Quarto file -- um arquivo de texto simples que possui a extensão `.qmd`:
 
 ```{r echo = FALSE, comment = ""}
 cat(readr::read_file("quarto/diamond-sizes.qmd"))
 ```
 
-It contains three important types of content:
+O arquivo contém três tipos importantes de conteúdo:
 
-1.  An (optional) **YAML header** surrounded by `---`s.
-2.  **Chunks** of R code surrounded by ```` ``` ````.
-3.  Text mixed with simple text formatting like `# heading` and `_italics_`.
+1.  Um **cabeçalho YAML** (opcional) envolto por `---`.
+2.  **Blocos** (ou *chunks*) de código R envoltos por ```` ``` ````.
+3.  Texto misturado com formatação simples de texto como `# heading` and `_italics_` (respectivamente, para denotar um título ou marcar texto como itálico).
 
-@fig-diamond-sizes-notebook shows a `.qmd` document in RStudio with notebook interface where code and output are interleaved.
-You can run each code chunk by clicking the Run icon (it looks like a play button at the top of the chunk), or by pressing Cmd/Ctrl + Shift + Enter.
-RStudio executes the code and displays the results inline with the code.
+@fig-diamond-sizes-notebook mostra um documento `.qmd` no RStudio com interface de caderno, no qual código e saída são intercalados.
+Você pode executar cada bloco de código clicando no ícone Executar -- *Run* (triângulo verde que parece com o botão de play no canto superior direito do bloco), ou pressionando Cmd/Ctrl + Shift + Enter.
+O RStudio executará o código e mostrará os resultados junto com o código.
 
 ```{r}
 #| label: fig-diamond-sizes-notebook
@@ -76,7 +77,7 @@ RStudio executes the code and displays the results inline with the code.
 knitr::include_graphics("quarto/diamond-sizes-notebook.png")
 ```
 
-If you don't like seeing your plots and output in your document and would rather make use of RStudio's Console and Plot panes, you can click on the gear icon next to "Render" and switch to "Chunk Output in Console", as shown in @fig-diamond-sizes-console-output.
+Se você não gosta de ver seus gráficos e saída dos códigos no documento e prefere usar os painéis de console e gráfico (aba *plot*), é possível clicar no ícone de roda dentada próximo ao botão "*Render*" e selecionar "*Chunk Output in Console*" (ou seja, resultados do chunk no console), conforme mostrado em @fig-diamond-sizes-console-output.
 
 ```{r}
 #| label: fig-diamond-sizes-console-output
@@ -96,9 +97,9 @@ If you don't like seeing your plots and output in your document and would rather
 knitr::include_graphics("quarto/diamond-sizes-console-output.png")
 ```
 
-To produce a complete report containing all text, code, and results, click "Render" or press Cmd/Ctrl + Shift + K.
-You can also do this programmatically with `quarto::quarto_render("diamond-sizes.qmd")`.
-This will display the report in the viewer pane as shown in @fig-diamond-sizes-report and create an HTML file.
+Para produzir um relatório completo contendo todo o texto, código e resultados, clique em "Render" or pressione Cmd/Ctrl + Shift + K.
+Você também pode fazer isso de programaticamente, em linha de código, com `quarto::quarto_render("diamond-sizes.qmd")`.
+Isso exibirá o relatório no painel de visualização, como exibido em @fig-diamond-sizes-report, e cria um arquivo HTML.
 
 ```{r}
 #| label: fig-diamond-sizes-report
@@ -116,10 +117,10 @@ This will display the report in the viewer pane as shown in @fig-diamond-sizes-r
 knitr::include_graphics("quarto/diamond-sizes-report.png")
 ```
 
-When you render the document, Quarto sends the `.qmd` file to **knitr**, <https://yihui.org/knitr/>, which executes all of the code chunks and creates a new markdown (`.md`) document which includes the code and its output.
-The markdown file generated by knitr is then processed by **pandoc**, [https://pandoc.org](https://pandoc.org/){.uri}, which is responsible for creating the finished file.
-This process is shown in @fig-quarto-flow.
-The advantage of this two step workflow is that you can create a very wide range of output formats, as you'll learn about in @sec-quarto-formats.
+Quando se gera ou renderiza o documento, Quarto envia o arquivo `.qmd` para o **knitr**, <https://yihui.org/knitr/>, que executa todos os blocos de código e cria um novo arquivo markdown (`.md`) que inclui o código e seus resultados.
+O arquivo markgodn gerado pelo knitr é então processado pelo **pandoc**, [https://pandoc.org](https://pandoc.org/){.uri}, que é responsável por criar a versão final do arquivo.
+Esse processo é ilustrado em @fig-quarto-flow.
+A vantagem desse fluxo de trabalho em duas etapas é que é possível criar uma ampla variedade de formatos de arquivo, como você verá em @sec-quarto-formats.
 
 ```{r}
 #| label: fig-quarto-flow
@@ -135,35 +136,35 @@ The advantage of this two step workflow is that you can create a very wide range
 knitr::include_graphics("images/quarto-flow.png")
 ```
 
-To get started with your own `.qmd` file, select *File \> New File \> Quarto Document...* in the menu bar.
-RStudio will launch a wizard that you can use to pre-populate your file with useful content that reminds you how the key features of Quarto work.
+Para iniciar seu próprio arquivo `.qmd`, selecione *File \> New File \> Quarto Document...* na barra de menu.
+O RStudio abrirá uma janela em que você poderá preencher informações para pré-povoar seu arquivo com conteúdos úteis que lembra como os principais recursos do Quarto funcionam.
 
-The following sections dive into the three components of a Quarto document in more details: the markdown text, the code chunks, and the YAML header.
+As seções a seguir aprofundam os três componentes de um documento Quarto em mais detalhes: o texto em markdown, os blocos de código e o cabeçalho YAML.
 
-### Exercises
+### Exercícios
 
-1.  Create a new Quarto document using *File \> New File \> Quarto Document*.
-    Read the instructions.
-    Practice running the chunks individually.
-    Then render the document by clicking the appropriate button and then by using the appropriate keyboard short cut.
-    Verify that you can modify the code, re-run it, and see modified output.
+1.  Crie um novo documento Quarto usando *File \> New File \> Quarto Document*.
+    Leia as instruções.
+    Pratique a execução dos blocos de código individualmente.
+    Depois, renderize o documento clicando no botão designado e depois usando o atalho do teclado.
+    Verifique se consegue alterar o código, rodá-lo novamente e ver o novo documento modificado.
 
-2.  Create one new Quarto document for each of the three built-in formats: HTML, PDF and Word.
-    Render each of the three documents.
-    How do the outputs differ?
-    How do the inputs differ?
-    (You may need to install LaTeX in order to build the PDF output --- RStudio will prompt you if this is necessary.)
+2.  Crie um novo documento Quarto para cada um dos três formatos disponibilizados: HTML, PDF e Word.
+    Renderize cada um dos três documentos.
+    Qual é a diferença entre os resultados?
+    Qual é a diferença entre os insumos?
+    (É possível que seja necessário instalar o LaTeX para construir o arquivo PDF --- O RStudio avisará se isso for necessário.)
 
-## Visual editor
+## Editor Visual
 
-The Visual editor in RStudio provides a [WYSIWYM](https://en.wikipedia.org/wiki/WYSIWYM) interface for authoring Quarto documents.
-Under the hood, prose in Quarto documents (`.qmd` files) is written in Markdown, a lightweight set of conventions for formatting plain text files.
-In fact, Quarto uses Pandoc markdown (a slightly extended version of Markdown that Quarto understands), including tables, citations, cross-references, footnotes, divs/spans, definition lists, attributes, raw HTML/TeX, and more as well as support for executing code cells and viewing their output inline.
-While Markdown is designed to be easy to read and write, as you will see in @sec-source-editor, it still requires learning new syntax.
-Therefore, if you're new to computational documents like `.qmd` files but have experience using tools like Google Docs or MS Word, the easiest way to get started with Quarto in RStudio is the visual editor.
+O editor Visual no RSTUDIO utiliza uma interface [WYSIWYM](https://en.wikipedia.org/wiki/WYSIWYM) para autoria de documentos Quarto.
+Dembaixo do capô, prosa em documentos Quarto (arquivos `.qmd`) são escritos em Markdown, um conjunto leve de convenções para formatação de arquivos de texto simples.
+De fato, Quarto usa markdown Pandoc (uma versão um pouco extendida de Markdown que é interpretável pelo Quarto), incluindo tabelas, citações, referências cruzadas, notas de rodapé, divs/spans, definiçòes de listas, atributos, HTML/TeX crús, entre outros, assim como suporta execução de células de código e a visualização de seus resultados em linha.
+Enquanto Markdown é desenhado para ser simples de ler e escrever, como você verá em @sec-source-editor, ainda é necessário aprender uma nova sintaxe.
+Assim, se documentos computacionais como arquivos `.qmd` são novos para você, mas você tem experiência com Google Docs ou MS Word, o jeito mais fácil de começar a usar Quarto no RStudio é pelo editor visual.
 
-In the visual editor you can either use the buttons on the menu bar to insert images, tables, cross-references, etc. or you can use the catch-all <kbd>⌘ /</kbd> shortcut to insert just about anything.
-If you are at the beginning of a line (as shown in @fig-visual-editor), you can also enter just <kbd>/</kbd> to invoke the shortcut.
+No editor visual, você pode tanto usar botões na barra de menu para inserir imagens, tabelas, referências cruzadas, etc. quanto usar o atalho geral <kbd>⌘ /</kbd> para inserir qualquer coisa.
+Se você estiver no começo de uma linha (como ilustrado em @fig-visual-editor), você pode apenas digitar para <kbd>/</kbd> invocar o atalho.
 
 ```{r}
 #| label: fig-visual-editor
@@ -347,15 +348,15 @@ Each of these chunk options get added to the header of the chunk, following `#|`
 
 The following table summarizes which types of output each option suppresses:
 
-| Option           | Run code | Show code | Output | Plots | Messages | Warnings |
-|------------------|:--------:|:---------:|:------:|:-----:|:--------:|:--------:|
-| `eval: false`    |    X     |           |   X    |   X   |    X     |    X     |
-| `include: false` |          |     X     |   X    |   X   |    X     |    X     |
-| `echo: false`    |          |     X     |        |       |          |          |
-| `results: hide`  |          |           |   X    |       |          |          |
-| `fig-show: hide` |          |           |        |   X   |          |          |
-| `message: false` |          |           |        |       |    X     |          |
-| `warning: false` |          |           |        |       |          |    X     |
+| Opção            | Executa código | Mostra código | Output | Gráficos | Mensagens | Avisos |
+|------------------|:--------------:|:-------------:|:------:|:--------:|:---------:|:------:|
+| `eval: false`    |       X        |               |   X    |    X     |     X     |   X    |
+| `include: false` |                |       X       |   X    |    X     |     X     |   X    |
+| `echo: false`    |                |       X       |        |          |           |        |
+| `results: hide`  |                |               |   X    |          |           |        |
+| `fig-show: hide` |                |               |        |    X     |           |        |
+| `message: false` |                |               |        |          |     X     |        |
+| `warning: false` |                |               |        |          |           |   X    |
 
 ### Global options
 
