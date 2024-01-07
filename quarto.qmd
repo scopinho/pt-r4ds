@@ -188,31 +188,31 @@ Se você estiver no começo de uma linha (como ilustrado em @fig-visual-editor),
 knitr::include_graphics("quarto/quarto-visual-editor.png")
 ```
 
-Inserting images and customizing how they are displayed is also facilitated with the visual editor.
-You can either paste an image from your clipboard directly into the visual editor (and RStudio will place a copy of that image in the project directory and link to it) or you can use the visual editor's Insert \> Figure / Image menu to browse to the image you want to insert or paste it's URL.
-In addition, using the same menu you can resize the image as well as add a caption, alternative text, and a link.
+Inserir e personalizar como são exibidos também é facilitado com o uso do editor visual.
+Você pode colar uma pasta diretamente da sua área de transferência no editor visual (e o RStudio colocará uma cópia daquela imagem no diretório do projeto e montarará um link para ela) ou usar o menu Insert \> Figure / Image do editor visual para navegar até a imagem desejada para inserir ou colar sua URL.
+Além disso, usando o mesmo menu você pode redimensionar a imagem e aditionar uma legenda, texto alternativo e um link.
 
-The visual editor has many more features that we haven't enumerated here that you might find useful as you gain experience authoring with it.
+O editor visual tem muito mais recursos que não enumeramos aqui que podem ser úteis a você na medida em que você ganha experiência em escrever com a ferramenta.
 
-Most importantly, while the visual editor displays your content with formatting, under the hood, it saves your content in plain Markdown and you can switch back and forth between the visual and source editors to view and edit your content using either tool.
+Mais importante, enquanto o editor visual exibe o conteúdo do documento com formatação, por trás ele salva o conteúdo em Markdown, permitindo transitar entre o editor visual e de código (*source*) para visualizar e editar o documento usando qualquer uma das ferramentas.
 
-### Exercises
+### Exercícios
 
-1.  Re-create the document in @fig-visual-editor using the visual editor.
-2.  Using the visual editor, insert a code chunk using the Insert menu and then the insert anything tool.
-3.  Using the visual editor, figure out how to:
-    a.  Add a footnote.
-    b.  Add a horizontal rule.
-    c.  Add a block quote.
-4.  In the visual editor, go to Insert \> Citation and insert a citation to the paper titled [Welcome to the Tidyverse](https://joss.theoj.org/papers/10.21105/joss.01686) using its DOI (digital object identifier), which is [10.21105/joss.01686](https://doi.org/10.21105/joss.01686). Render the document and observe how the reference shows up in the document. What change do you observe in the YAML of your document?
+1.  Crie novamente o documento em @fig-visual-editor usando o editor visual.
+2.  Usando o editor visual, insira um bloco de código usando o menu Insert e depois faça o mesmo usando qualquer ferramenta.
+3.  Usando o editor visual, descubra como:
+    a.  Adicionar uma nota de rodapé.
+    b.  Adicionar uma linha horizontal.
+    c.  Adicionar um bloco de citação.
+4.  Usando o editor visual, vá em Insert \> Citation e insira a citação para o artigo cujo título é [Welcome to the Tidyverse](https://joss.theoj.org/papers/10.21105/joss.01686) usando o DOI (*digital object identifier*), que é [10.21105/joss.01686](https://doi.org/10.21105/joss.01686). Renderize o documento e observe como a referencia aparece no documento. Que alteração você consegue identificar no YAML do seu documento?
 
-## Source editor {#sec-source-editor}
+## Editor Source {#sec-source-editor}
 
-You can also edit Quarto documents using the Source editor in RStudio, without the assist of the Visual editor.
-While the Visual editor will feel familiar to those with experience writing in tools like Google docs, the Source editor will feel familiar to those with experience writing R scripts or R Markdown documents.
-The Source editor can also be useful for debugging any Quarto syntax errors since it's often easier to catch these in plain text.
+Também é possível editar documentos Quarto usando o editor Source no RStudio, sem a assistência do editor visual.
+Enquanto o editor Visual será familiar para aqueles com experiência em escrita com ferramentas como Google docs, o editor Source será familia para aqueles com experiência escrevendo scripts R ou documentos R Markdown.
+O editor Source também pode ser útil para correções (*debugging*) qualquer erro de sintaxe Quarto, já que muitas vezes é mais fácil achar esses erros em texto simples.
 
-The guide below shows how to use Pandoc's Markdown for authoring Quarto documents in the source editor.
+O guia abaixo mostra como usar o Markdown do Pandoc para escrever documentos Quarto em seu editor fonte.
 
 ```{r}
 #| echo: false
@@ -221,54 +221,54 @@ The guide below shows how to use Pandoc's Markdown for authoring Quarto document
 cat(readr::read_file("quarto/markdown.qmd"))
 ```
 
-The best way to learn these is simply to try them out.
-It will take a few days, but soon they will become second nature, and you won't need to think about them.
-If you forget, you can get to a handy reference sheet with *Help \> Markdown Quick Reference*.
+A melhor forma de aprender essas coisas é simplesmente tentar.
+Isso levará alguns dias, mas em pouco tempo se tornam algo automático e não será necessário pensar tanto sobre elas.
+Se você se esquecer, pode buscar uma boa folha de referência em *Help \> Markdown Quick Reference*.
 
-### Exercises
+### Exercícios
 
-1.  Practice what you've learned by creating a brief CV.
-    The title should be your name, and you should include headings for (at least) education or employment.
-    Each of the sections should include a bulleted list of jobs/degrees.
-    Highlight the year in bold.
+1.  Pratique o que você aprendeu criando um CV breve.
+    O título deve ser o seu nome e você deve incluir cabeçalhos para pelo menos sua educação e trabalho.
+    Cada uma das seções deve incluir uma lista em tópicos de trabalhos/títulos.
+    Destaque o ano em negrito.
 
-2.  Using the source editor and the Markdown quick reference, figure out how to:
+2.  Usando o editor fonte e a referência rápida para Markdown, descubra como:
 
-    a.  Add a footnote.
-    b.  Add a horizontal rule.
-    c.  Add a block quote.
+    a.  Adicionar uma nota de rodapé.
+    b.  ADicionar uma linha horizontal.
+    c.  Adicionar um bloco de citação.
 
-3.  Copy and paste the contents of `diamond-sizes.qmd` from <https://github.com/hadley/r4ds/tree/main/quarto> in to a local R Quarto document.
-    Check that you can run it, then add text after the frequency polygon that describes its most striking features.
+3.  Copie e cole o conteúdo de `diamond-sizes.qmd` a partir de <https://github.com/hadley/r4ds/tree/main/quarto> para um arquivo R Quarto local.
+    Verifique se você consegue executá-lo, depois adicione texto depois do polígono de frequências que descreve suas características mais chamativas.
 
-4.  Create a document in a Google doc or MS Word (or locate a document you have created previously) with some content in it such as headings, hyperlinks, formatted text, etc.
-    Copy the contents of this document and paste it into a Quarto document in the visual editor.
-    Then, switch over to the source editor and inspect the source code.
+4.  Crie um documento em Google doc ou MS Word (ou localize um documento que você tenha criado previamente) que contenha títulos, hiperlinks, texto formatado, etc.
+    Copie os conteúdos desse documento e cole-os em um documento quarto no editor visual.
+    Em seguida, troque para o editor source e inspecion o código fonte.
 
-## Code chunks
+## Blocos de Código
 
-To run code inside a Quarto document, you need to insert a chunk.
-There are three ways to do so:
+Para executar código em um documento Quarto, é necessário incluir um bloco de código.
+Há três maneiras de fazer isso:
 
-1.  The keyboard shortcut Cmd + Option + I / Ctrl + Alt + I.
+1.  O atalho de teclado Cmd + Option + I / Ctrl + Alt + I.
 
-2.  The "Insert" button icon in the editor toolbar.
+2.  O botão "Insert" na barra de ferramentas do editor.
 
-3.  By manually typing the chunk delimiters ```` ```{r} ```` and ```` ``` ````.
+3.  Escrevendo manualmente os limitadores de bloco ```` ```{r} ```` e ```` ``` ````.
 
-We'd recommend you learn the keyboard shortcut.
-It will save you a lot of time in the long run!
+Recomandamos que você aprenda o atalho de teclado.
+Isso economizará muito tempo no longo prazo!
 
-You can continue to run the code using the keyboard shortcut that by now (we hope!) you know and love: Cmd/Ctrl + Enter.
-However, chunks get a new keyboard shortcut: Cmd/Ctrl + Shift + Enter, which runs all the code in the chunk.
-Think of a chunk like a function.
-A chunk should be relatively self-contained, and focused around a single task.
+É possível prosseguir para a execução do código usando o atalho que agora (temos fé!) que você conhece e ama:Cmd/Ctrl + Enter.
+No entanto, blocos recebem um novo atalho: Cmd/Ctrl + Shift + Enter, que executa todo o código no bloco.
+Pense no bloco de código como uma função.
+Um bloco deve ser relativamente autocontido, objetivando uma única tarefa.
 
-The following sections describe the chunk header which consists of ```` ```{r} ````, followed by an optional chunk label and various other chunk options, each on their own line, marked by `#|`.
+As seções a seguir descrevem o cabeçalho do bloco, que consiste em ```` ```{r} ````, seguido de um rótulo opcional e diversas outras opções de bloco, cada uma em sua própria linha, marcada por `#|`.
 
-### Chunk label
+### Rótulo de bloco
 
-Chunks can be given an optional label, e.g.
+Blocos podem receber um rótulo opciona, por exemplo
 
 ```{r}
 #| echo: fenced
@@ -277,9 +277,9 @@ Chunks can be given an optional label, e.g.
 1 + 1
 ```
 
-This has three advantages:
+Há três vantagens nisso:
 
-1.  You can more easily navigate to specific chunks using the drop-down code navigator in the bottom-left of the script editor:
+1.  É possível navegar mais facilmente para blocos específicos usando o navegador em lista no canto inferior esquerdo do editor do script:
 
     ```{r}
     #| echo: false
@@ -293,50 +293,50 @@ This has three advantages:
     knitr::include_graphics("screenshots/quarto-chunk-nav.png")
     ```
 
-2.  Graphics produced by the chunks will have useful names that make them easier to use elsewhere.
-    More on that in @sec-figures.
+2.  Gráficos produzidos pelos blocos terão nomes úteis para reutilizá-los em outros lugares.
+    Mais sobre isso em @sec-figures.
 
-3.  You can set up networks of cached chunks to avoid re-performing expensive computations on every run.
-    More on that in @sec-caching.
+3.  É possível organizar redes de bloco em cache para evitar múltiplas execuções de computações caras em toda execução.
+    Mais sobre isso em @sec-caching.
 
-Your chunk labels should be short but evocative and should not contain spaces.
-We recommend using dashes (`-`) to separate words (instead of underscores, `_`) and avoiding other special characters in chunk labels.
+Os rótulos dos seus blocos devem ser curtos, mas evocativos e não devem conter espaços.
+Recomendamos o uso de traços (`-`) para separar palavras (em vez de sublinhados, `_`) e evitar o uso de outros caracteres especiais nos rótulos de código.
 
-You are generally free to label your chunk however you like, but there is one chunk name that imbues special behavior: `setup`.
-When you're in a notebook mode, the chunk named setup will be run automatically once, before any other code is run.
+Em geral você é livre para rotular o bloco de código como quiser, mas há um bloco cujo nome indica um coportamento especial: `setup`.
+Quando você está no modo caderno, o bloco com nome *setup* será executado automaticamente uma vez antes que todo o seu código seja executado.
 
-Additionally, chunk labels cannot be duplicated.
-Each chunk label must be unique.
+Além disso,rótulos não podem ser duplicados.
+Cada rótulo de bloco deve ser único.
 
-### Chunk options
+### Opções de bloco
 
-Chunk output can be customized with **options**, fields supplied to chunk header.
-Knitr provides almost 60 options that you can use to customize your code chunks.
-Here we'll cover the most important chunk options that you'll use frequently.
-You can see the full list at [https://yihui.org/knitr/options](https://yihui.org/knitr/options/){.uri}.
+Saídas de bloco podem ser personalizadas com campos de opções (**options**) fornecidos para o cabeçalho do bloco.
+Quase 60 opções para personalização dos seus blocos de código são fornecidas pelo Knitr.
+Aqui cobriremos as opções mais importantes, que você utilizará com frequência.
+É possível verificar a lista completa em [https://yihui.org/knitr/options](https://yihui.org/knitr/options/){.uri}.
 
-The most important set of options controls if your code block is executed and what results are inserted in the finished report:
+O conjunto mais importante de opçòes controla se seu código será executado e que resultados serão exibidos no relatório final:
 
--   `eval: false` prevents code from being evaluated.
-    (And obviously if the code is not run, no results will be generated).
-    This is useful for displaying example code, or for disabling a large block of code without commenting each line.
+-   `eval: false` previne o código de ser avaliado.
+    (E obviamente, se o código não é executado, nenhum resultado será gerado).
+    Isso é útil para exibir um código de exemplo ou para desabilitar um grande bloco de código sem comentar cada uma de suas linhas.
 
--   `include: false` runs the code, but doesn't show the code or results in the final document.
-    Use this for setup code that you don't want cluttering your report.
+-   `include: false` executa o código, mas não o mostra nem inclui seus resultados no documento final.
+    Use isso para códigos de configurações cujos resultados você não quer que dêem uma aparência de desordem no seu relatório.
 
--   `echo: false` prevents code, but not the results from appearing in the finished file.
-    Use this when writing reports aimed at people who don't want to see the underlying R code.
+-   `echo: false` evita o código mas permite a exibição dos resultados no arquivo finalizado.
+    Use isso quando estiver escrevendo relatórios direcionados a pessoas que não querem ver o código por trás dos resultados.
 
--   `message: false` or `warning: false` prevents messages or warnings from appearing in the finished file.
+-   `message: false` ou `warning: false` previne o aparecimento de mensagens ou avisos no arquivo final.
 
--   `results: hide` hides printed output; `fig-show: hide` hides plots.
+-   `results: hide` esconde output; `fig-show: hide` esconde gráficos.
 
--   `error: true` causes the render to continue even if code returns an error.
-    This is rarely something you'll want to include in the final version of your report, but can be very useful if you need to debug exactly what is going on inside your `.qmd`.
-    It's also useful if you're teaching R and want to deliberately include an error.
-    The default, `error: false` causes rendering to fail if there is a single error in the document.
+-   `error: true` permite a renderização contínua do seu documento mesmo que ocorra um erro.
+    Você raramente precisará incluir isso na versão final do seu relatório, mas pode ser útil se você precisa corrigir um erro específico dentro do seu `.qmd`.
+    Também é útil se você está ensinando R e quer incluir um erro deliberadamente.
+    O padrão, `error: false` impede a renderização caso exista qualquer erro no documento.
 
-Each of these chunk options get added to the header of the chunk, following `#|`, e.g., in the following chunk the result is not printed since `eval` is set to false.
+Cada uma dessas opções de bloco é adicionada ao cabeçalho do bloco, seguindo `#|`, por exemplo, no bloco a seguir o resultado não é impresso, já que `eval` está marcado como *false*.
 
 ```{r}
 #| echo: fenced
@@ -346,7 +346,7 @@ Each of these chunk options get added to the header of the chunk, following `#|`
 2 * 2
 ```
 
-The following table summarizes which types of output each option suppresses:
+A tabela a seguir resume que tipos de output cada opção suprime:
 
 | Opção            | Executa código | Mostra código | Output | Gráficos | Mensagens | Avisos |
 |------------------|:--------------:|:-------------:|:------:|:--------:|:---------:|:------:|
