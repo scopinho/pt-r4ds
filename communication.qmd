@@ -52,11 +52,11 @@ Você adiciona rótulos com a função `labs()`.
 ```{r}
 #| message: false
 #| fig-alt: |
-#|   Gráfico de dispersão da eficiência de combustível nas rodovias versus tamanho do motor dos carros, onde
+#|   Gráfico de dispersão de consumo em rodovias versus cilindrada dos carros, onde
 #|   os pontos são coloridos de acordo com a classe do carro. Uma curva suave seguindo
 #|   a trajetória da relação entre eficiência de combustível nas rodovias versus 
 #|   o tamanho do motor dos carros é sobreposto. O eixo x é rotulado como "Cilindrada  
-#|   do Motor (L)" e o eixo y é rotulado como "Economia de combustível na rodovia (mpg)". 
+#|   do Motor (L)" e o eixo y é rotulado como "Consumo de combustível na rodovia (mpg)". 
 #|   A legenda é rotulada como "Tipo de veículo". O gráfico é intitulado "Eficiência de combustível 
 #|   geralmente diminui com o tamanho do motor". O subtítulo é "Dois lugares
 #|   (carros esportivos) são uma exceção devido ao seu peso leve" e o 
@@ -67,7 +67,7 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
   geom_smooth(se = FALSE) +
   labs(
     x = "Cilindrada do Motor (L)",
-    y = "Economia de combustível na rodovia (mpg)",
+    y = "Consumo de combustível na rodovia (mpg)",
     color = "Tipo de veículo",
     title = "Eficiência de combustível geralmente diminui com o tamanho do motor",
     subtitle = "Dois lugares (carros esportivos) são uma exceção devido ao seu peso leve",
@@ -116,8 +116,8 @@ ggplot(df, aes(x, y)) +
     ```{r}
     #| echo: false
     #| fig-alt: |
-    #|   Gráfico de dispersão da eficiência de combustível em rodovias versus cidades. Formas e
-    #|   as cores dos pontos são determinadas pelo tipo de trem de força.
+    #|   Gráfico de dispersão de consumo de combustível em rodovias versus em cidades. Formas e
+    #|   as cores dos pontos são determinadas pelo tipo de tração.
 
     ggplot(milhas, aes(x = cidade, y = rodovia, color = tracao, shape = tracao)) +
       geom_point() +
@@ -166,8 +166,8 @@ Eles são maiores que o restante do texto do gráfico e estão em negrito.
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico de dispersão da eficiência na rodovia versus tamanho do motor onde os pontos são coloridos
-#|   por tipo de unidade. Curvas suaves para cada tipo de unidade são sobrepostas. 
+#|   Gráfico de dispersão de consumo na rodovia versus cilindrada onde os pontos são coloridos
+#|   por tração. Curvas suaves para cada tipo de tração são sobrepostas. 
 #|   Os rótulos de texto identificam as curvas como tração dianteira, tração traseira e 4x4.
 
 ggplot(milhas, aes(x = cilindrada, y = rodovia, color = tracao)) +
@@ -189,7 +189,7 @@ Este pacote útil ajustará automaticamente os rótulos para que não se sobrepo
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico de dispersão da eficiência de combustível nas rodovias versus cilindradas, onde 
+#|   Gráfico de dispersão do consumo nas rodovias versus cilindradas, onde 
 #|   os pontos são coloridos de acordo com a classe de tração do carro. Alguns pontos são rotulados 
 #|   com o nome do carro. As etiquetas são caixas com fundo branco e transparente 
 #|   e posicionado para não se sobrepor.
@@ -210,7 +210,7 @@ Observe outra técnica útil usada aqui: adicionamos uma segunda camada de ponto
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico de dispersão da eficiência de combustível nas rodovias versus as cilindradas dos carros. Pontos
+#|   Gráfico de dispersão do consumo nas rodovias versus as cilindradas dos carros. Pontos
 #|   onde a quilometragem da rodovia está acima de 40 e também acima de 20 com tamanho do motor 
 #|   acima de 5 são vermelhos, com um círculo vermelho vazio e rotulados com o nome do modelo 
 #|   do carro.
@@ -260,7 +260,7 @@ Observe também que o segmento é denominado como uma seta.
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico de dispersão da eficiência de combustível nas rodovias versus cilindradas dos carros. Uma seta
+#|   Gráfico de dispersão do consumo nas rodovias versus cilindradas dos carros. Uma seta
 #|   vermelha apontando para baixo segue a tendência dos pontos e da anotação 
 #|   colocada ao lado da seta diz "Motores maiores tendem a ter menor 
 #|   economia de combustível". A seta e o texto da anotação são vermelhos.
@@ -372,7 +372,7 @@ For discrete scales for categorical variables, `labels` can be a named list of t
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico de dispersão da eficiência de combustível nas rodovias versus tamanho do motor dos carros, colorido
+#|   Gráfico de dispersão de consumo nas rodovias versus cilindradas dos carros, colorido
 #|   por tração. Os eixos x e y não possuem rótulos nas marcações dos eixos.
 #|   A legenda possui rótulos personalizadas: 4x4, dianteira, traseira.
 
@@ -392,7 +392,7 @@ Observe que `breaks` está na escala original dos dados.
 #| layout-ncol: 2
 #| fig-width: 4
 #| fig-alt: |
-#|   Dois gráficos boxplot lado a lado de preço versus corte de diamantes. Os valores discrepantes 
+#|   Dois gráficos boxplot de preço versus corte de diamantes. Os valores discrepantes 
 #|   são transparentes. Em ambos os gráficos, os rótulos do eixo x são formatados como dólares.
 #|   Os rótulos do eixo x no gráfico começam em US$ 0 e vão até US$ 15.000, aumentando 
 #|   a cada US$ 5.000. Os rótulos do eixo x no gráfico à direita começam em US$ 1K e vão até
@@ -489,7 +489,7 @@ Isto é particularmente útil se você usou um `alfa` baixo para exibir muitos p
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico de dispersão da eficiência de combustível nas rodovias versus cilindrada dos carros
+#|   Gráfico de dispersão de consumo nas rodovias versus cilindrada dos carros
 #|   onde os pontos são coloridos com base na classe do carro. Sobreposto no gráfico está uma 
 #|   curva suave. A legenda está na parte inferior e as classes estão listadas 
 #|   horizontalmente em duas linhas. Os pontos na legenda são maiores que os pontos 
@@ -1038,7 +1038,7 @@ p5 <- ggplot(milhas, aes(x = cidade, y = rodovia, color = tracao)) +
   theme(legend.position = "top")
 ```
 
-Se você quiser saber mais sobre como combinar e fazer o layout de vários gráficos com patchwork, recomendamos consultar os guias no site do pacote: <https://patchwork.data-imaginist.com>.
+Se você quiser saber mais sobre como combinar e fazer o layout de vários gráficos com o pacote patchwork, recomendamos consultar os guias no site do pacote: <https://patchwork.data-imaginist.com>.
 
 ### Exercícios
 
