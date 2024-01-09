@@ -582,7 +582,7 @@ read_csv(x2, locale = locale(encoding = "Shift-JIS"))$text
 Como encontrar a codificação correta?
 Se tiver sorte, ela estará incluída em algum lugar na documentação dos dados.
 Infelizmente, isso raramente é o caso, então o pacote readr fornece a função `guess_encoding()` para ajudar você a descobrir.
-Não é infalível e tem melhor desempenho quando o texto é mais extenso (diferente do caso atual), porém é um bom ponto de partida.
+Ela não é infalível e tem melhor desempenho quando o texto é mais extenso (diferente do caso atual), porém é um bom ponto de partida.
 É provável que você precise experimentar várias codificações diferentes antes de encontrar a correta.
 
 As codificações são um tema rico e complexo; apenas começamos a explorá-la aqui.
