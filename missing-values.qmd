@@ -14,8 +14,8 @@ Você já aprendeu o básico sobre valores faltantes (*missing values*) no iníc
 Você os viu pela primeira vez no @sec-data-visualization, onde resultaram em um aviso ao criar um gráfico, bem como na @sec-summarize, onde interferiram no cálculo de estatísticas sumarizadas, e aprendeu sobre sua natureza de propagação e como verificar sua presença na @sec-na-comparison.
 Agora voltaremos a eles com mais profundidade, para que você possa aprender mais detalhes.
 
-Começaremos discutindo algumas ferramentas gerais para trabalhar com valores faltantes (*missing values*) registrados como `NA`s.
-Em seguida, exploraremos a ideia de valores faltantes implícitos, ou seja, valores que estão simplesmente ausentes dos seus dados, e mostraremos algumas ferramentas que você pode usar para torná-los explícitos.
+Começaremos discutindo algumas ferramentas gerais para trabalhar com valores faltantes registrados como `NA`s.
+Em seguida, exploraremos a ideia de valores faltantes implícitos, ou seja, valores que estão simplesmente ausentes em seus dados, e mostraremos algumas ferramentas que você pode usar para torná-los explícitos.
 Terminaremos com uma discussão relacionada sobre grupos vazios, causados ​​por níveis de fatores que não aparecem nos dados.
 
 ### Pré-requisitos
@@ -49,7 +49,7 @@ tratamento <- tribble(
 ```
 
 Você pode preencher esses valores ausentes com a função `tidyr::fill()`.
-Funciona como a `select()`, pegando um conjunto de colunas:
+Funciona como a `select()`, pegando um conjunto de colunas como argumento:
 
 ```{r}
 tratamento |>
@@ -83,7 +83,7 @@ na_if(x, -99)
 ### NaN
 
 Antes de continuarmos, há um tipo especial de valor ausente que você encontrará de tempos em tempos: um `NaN` (pronuncia-se "nan") ou em inglês, **n**ot **a** **n**umber .
-Não é tão importante saber porque geralmente se comporta como `NA:
+Não é tão importante saber sobre ele, já que geralmente se comporta como `NA:
 
 ```{r}
 x <- c(NA, NaN)
@@ -117,26 +117,26 @@ acoes <- tibble(
 )
 ```
 
-This dataset has two missing observations:
+Este conjunto de dados tem duas observações faltantes:
 
 -   O `preco` no quarto trimestre de 2020 está explicitamente ausente, porque o seu valor é `NA`.
 
 -   O `preço` para o primeiro trimestre de 2021 está implicitamente ausente, porque simplesmente não aparece no conjunto de dados.
 
-Uma maneira de pensar sobre a diferença é como este diálogo meio Zen:
+Uma maneira de pensar sobre a diferença é como este diálogo meio filosófico:
 
 > Um valor ausente explícito é a presença de uma ausência.\
 >
 > Um valor ausente implícito é a ausência de presença.
 
-Às vezes, você deseja tornar explícitas os valores ausentes implícitos para ter algo físico com o qual trabalhar.
-Em outros casos, valores fatantes explícitos são impostos pela estrutura dos dados e você deseja se livrar deles.
+Às vezes, você deseja tornar explícitos os valores ausentes implícitos para ter algo físico com o qual trabalhar.
+Em outros casos, valores faltantes explícitos são impostos pela estrutura dos dados e você deseja se livrar deles.
 As seções a seguir discutem algumas ferramentas para alternar entre ausências implícitas e explícitas.
 
 ### Pivotagem
 
-Você já viu uma ferramenta que pode tornar explícitas as ausências implícitas e vice-versa: pivotagem (*pivoting*).
-Ampliar os dados pode tornar explícitos os valores ausentes implícitos porque cada combinação de linhas e novas colunas deve ter algum valor.
+Você já viu uma ferramenta que pode tornar explícitas as ausências implícitas e vice-versa: pivotagem.
+Deixar os dados mais largos (com mais colunas) pode tornar explícitos os valores ausentes implícitos porque cada combinação de linhas e novas colunas deve ter algum valor.
 Por exemplo, se pivotarmos `ações` para colocar o `trimestre` nas colunas, ambos os valores faltantes se tornarão explícitos:
 
 ```{r}
@@ -172,7 +172,7 @@ acoes |>
 Se o intervalo de uma variável estiver correto, mas nem todos os valores estiverem presentes, você pode usar a `full_seq(x, 1)` para gerar todos os valores de `min(x)` a `max(x)` espaçados por 1.
 
 Em alguns casos, o conjunto completo de observações não pode ser gerado por uma simples combinação de variáveis.
-Nesse caso, você pode fazer manualmente o que `complete()` faz por você: criar um quadro de dados que contenha todas as linhas que deveriam existir (usando qualquer combinação de técnicas necessárias) e, em seguida, combiná-lo com seu conjunto de dados original com `dplyr ::full_join()`.
+Nesse caso, você pode fazer manualmente o que `complete()` faz por você: criar um dataframe que contenha todas as linhas que deveriam existir (usando qualquer combinação de técnicas necessárias) e, em seguida, combiná-lo com seu conjunto de dados original com `dplyr ::full_join()`.
 
 ### Uniões 
 
@@ -200,7 +200,7 @@ voos |>
 
 ## Fatores e grupos vazios
 
-Um último tipo de ausência é a de grupo vazio (*empty group*), um grupo que não contém nenhuma observação, que pode surgir ao trabalhar com fatores (*factors*).
+Um último tipo de ausência é a de grupo vazio, um grupo que não contém nenhuma observação, que pode surgir ao trabalhar com fatores (*factors*).
 Por exemplo, imagine que temos um conjunto de dados que contém algumas informações de saúde sobre pessoas:
 
 ```{r}
@@ -231,9 +231,9 @@ Você pode forçá-los a serem exibidos fornecendo `drop = FALSE` ao eixo discre
 #| layout-ncol: 2
 #| fig-width: 3
 #| fig-alt: 
-#|   - Um gráfico de barras com um único valor no eixo-x, “não”.
-#|   - O mesmo gráfico de barras do último gráfico, mas agora com dois valores ativados
-#|     o eixo-x, "sim" e "não". Não há barra para a categoria “sim”.
+#|   - Um gráfico de barras com um único valor no eixo x, “não”.
+#|   - O mesmo gráfico de barras do último gráfico, mas agora com dois valores
+#|     no eixo-x, "sim" e "não". Não há barra para a categoria “sim”.
 ggplot(saude, aes(x = fumante)) +
   geom_bar() +
   scale_x_discrete()
@@ -297,9 +297,9 @@ A principal desvantagem desta abordagem é que você obtém um `NA` para a conta
 
 ## Resumo
 
-Valores faltantes (*missing values*) são estranhos!
+Valores faltantes são estranhos!
 Às vezes eles são registrados como um `NA` explícito, mas outras vezes você só os percebe pela sua ausência.
 Este capítulo forneceu algumas ferramentas para trabalhar com valores faltantes explícitos, ferramentas para descobrir valores faltantes implícitos e discutiu algumas das maneiras pelas quais os implícitos podem se tornar explícitos e vice-versa.
 
-No próximo capítulo, abordamos o capítulo final desta parte do livro: uniões (*joins*).
+No próximo capítulo, abordamos o capítulo final desta parte do livro: uniões.
 Isso é uma pequena mudança em relação aos capítulos até agora porque discutiremos ferramentas que funcionam com *data frames* como um todo, não algo que você coloca dentro de um *data frame*.
