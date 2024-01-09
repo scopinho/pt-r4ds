@@ -237,7 +237,7 @@ Algumas ideias:
 
 - Use `geom_rect()` para desenhar um retângulo ao redor dos pontos de interesse.
     Os limites do retângulo são definidos pela estética `xmin`, `xmax`, `ymin`, `ymax`.
-    Como alternativa, consulte o [pacote ggforce](https://ggforce.data-imaginist.com/index.html), especificamente [`geom_mark_hull()`](https://ggforce.data-imaginist.com/reference/ geom_mark_hull.html), que permite anotar subconjuntos de pontos.
+    Como alternativa, consulte o [pacote ggforce](https://ggforce.data-imaginist.com/index.html), especificamente [`geom_mark_hull()`](https://ggforce.data-imaginist.com/reference/geom_mark_hull.html), que permite anotar subconjuntos de pontos.
 
 - Use `geom_segment()` com o argumento `arrow` para chamar a atenção para um ponto com uma seta.
     Use a estética `x` e `y` para definir o local inicial e `xend` e `yend` para definir o local final.
