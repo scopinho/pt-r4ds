@@ -865,7 +865,7 @@ O ggplot2 inclui os oito temas mostrados na @fig-themes, com `theme_gray()` como
 Muitos outros estão incluídos em pacotes complementares como **ggthemes** (<https://jrnold.github.io/ggthemes>), de Jeffrey Arnold.
 Você também pode criar seus próprios temas, se estiver tentando combinar com um estilo corporativo ou de jornal específico.
 
-[^comunicação-2]: Muitas pessoas se perguntam por que o tema padrão tem um fundo cinza.
+[^communication-2]: Muitas pessoas se perguntam por que o tema padrão tem um fundo cinza.
     Esta foi uma escolha deliberada porque apresenta os dados e ao mesmo tempo torna as linhas da grade visíveis.
     As linhas de grade brancas são visíveis (o que é importante porque auxiliam significativamente no julgamento de posição), mas têm pouco impacto visual e podemos facilmente desligá-las.
     O fundo cinza confere ao gráfico uma cor tipográfica semelhante ao texto, garantindo que os gráficos se ajustem ao fluxo de um documento sem sobressair com um fundo branco brilhante.
