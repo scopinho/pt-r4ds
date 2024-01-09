@@ -14,7 +14,7 @@ Contudo, chegou o momento de explorar as *strings*, compreender o seu funcioname
 Vamos iniciar abordando os aspectos envolvidos na criação de *strings* e vetores de caracteres.
 Você aprenderá a gerar *strings* a partir de dados e, em seguida, o inverso: extrair *strings* dos dados.
 Em seguida, discutiremos sobre ferramentas que funcionam com letras individuais.
-Por fim, o capítulo explora funções que lidam com letras individuais e apresenta uma breve discussão sobre como suas premissas do inglês podem te induzir ao erro ao trabalhar com outros idiomas.
+Por fim, o capítulo explora funções que lidam com letras individuais e apresenta uma breve discussão sobre como as premissas do inglês podem induzir ao erro ao trabalhar com outros idiomas.
 
 No próximo capítulo, continuaremos trabalhando com *strings*, mas você aprenderá mais sobre o poder das expressões regulares.
 
