@@ -10,7 +10,7 @@ source("_common.R")
 
 ## Introdução
 
-No @sec-exploratory-data-análise, você aprendeu como usar gráficos como ferramentas para *exploração*.
+No @sec-exploratory-data-analysis, você aprendeu como usar gráficos como ferramentas para *exploração*.
 Ao fazer gráficos exploratórios, você sabe --- mesmo antes de olhar --- quais variáveis ​​o gráfico exibirá.
 Você criou cada gráfico com um propósito, pôde examiná-lo rapidamente e depois passar para o próximo gráfico.
 No decorrer da maioria das análises, você produzirá dezenas ou centenas de gráficos, a maioria dos quais será imediatamente descartada.
