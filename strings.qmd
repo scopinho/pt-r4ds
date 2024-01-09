@@ -520,7 +520,7 @@ bebes |>
 
 ## Texto em outro idioma {#sec-other-languages}
 
-Até agora, focamos em textos em inglês, os quais são particularmente fáceis de trabalhar por duas razões.
+Até agora, focamos em características de textos em inglês, os quais são particularmente fáceis de trabalhar por duas razões.
 Em primeiro lugar, o alfabeto em inglês é relativamente simples: há apenas 26 letras.
 Em segundo lugar (e talvez o mais importante), a infraestrutura computacional que usamos atualmente foi predominantemente projetada por falantes de inglês.
 Infelizmente, não conseguiremos abordar com profundidade outros idiomas que não sejam o inglês.
