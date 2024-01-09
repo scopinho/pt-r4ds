@@ -13,24 +13,24 @@ source("_common.R")
 No @sec-exploratory-data-análise, você aprendeu como usar gráficos como ferramentas para *exploração*.
 Ao fazer gráficos exploratórios, você sabe --- mesmo antes de olhar --- quais variáveis ​​o gráfico exibirá.
 Você criou cada gráfico com um propósito, pôde examiná-lo rapidamente e depois passar para o próximo gráfico.
-No decorrer da maioria das análises, você produzirá dezenas ou centenas de gráficos, a maioria dos quais será imediatamente descartado.
+No decorrer da maioria das análises, você produzirá dezenas ou centenas de gráficos, a maioria dos quais será imediatamente descartada.
 
 Agora que você entende seus dados, você precisa *comunicar* sua compreensão a outras pessoas.
 Seu público provavelmente não compartilhará seu conhecimento prévio e não conhecerá profundamente os dados.
-Para ajudar outros a construir rapidamente um bom modelo mental dos dados, você precisará investir um esforço considerável para tornar seus gráficos o mais autoexplicativos possível.
+Para ajudar outros a construirem rapidamente um bom modelo mental dos dados, você precisará investir um esforço considerável para tornar seus gráficos o mais autoexplicativos possível.
 Neste capítulo, você aprenderá algumas das ferramentas que o pacote ggplot2 fornece para fazer isso.
 
 Este capítulo se concentra nas ferramentas necessárias para criar bons gráficos.
 Presumimos que você sabe o que quer e só precisa saber como fazer.
 Por esse motivo, é altamente recomendável combinar este capítulo com um bom livro de visualização geral.
-Gostamos particularmente de [The Truthful Art](https://www.amazon.com/gp/product/0321934075/), de Albert Cairo.
+Gostamos particularmente do livro [The Truthful Art](https://www.amazon.com/gp/product/0321934075/), de Albert Cairo.
 Ele não ensina a mecânica de criação de visualizações, mas concentra-se no que você precisa pensar para criar gráficos eficazes.
 
 ### Pré-requisitos
 
 Neste capítulo, focaremos mais uma vez no ggplot2.
-Também usaremos um pouco de dplyr para manipulação de dados, **scales** para substituir quebras, rótulos, transformações e paletas padrão, e alguns pacotes de extensão ggplot2, incluindo **ggrepel** ([https://ggrepel. slowkow.com](https://ggrepel.slowkow.com/)) de Kamil Slowikowski e **patchwork** ([https://patchwork.data-imaginist.com](https://patchwork.data-imaginist .com/)) de Thomas Lin Pedersen.
-Usaremos também o pcaote *dados* e seu conjuntos de dados *milhas*, *predisentes_eua* e *diamante*.
+Também usaremos um pouco do pacote dplyr para manipulação de dados, **scales** para substituir quebras, rótulos, transformações e paletas padrão, e alguns pacotes de extensão ggplot2, incluindo **ggrepel** ([https://ggrepel. slowkow.com](https://ggrepel.slowkow.com/)) de Kamil Slowikowski e o **patchwork** ([https://patchwork.data-imaginist.com](https://patchwork.data-imaginist .com/)) de Thomas Lin Pedersen.
+Usaremos também o pcaote *dados* e seus conjuntos de dados *milhas*, *predisentes_eua* e *diamante*.
 Não se esqueça que você precisará instalar esses pacotes com `install.packages()` se ainda não os tiver.
 
 ```{r}
@@ -52,22 +52,22 @@ Você adiciona rótulos com a função `labs()`.
 ```{r}
 #| message: false
 #| fig-alt: |
-#|   Gráfico de dispersão de consumo em rodovias versus cilindrada dos carros, onde
+#|   Gráfico de dispersão de economia de combustível em rodovias versus cilindradas dos carros, onde
 #|   os pontos são coloridos de acordo com a classe do carro. Uma curva suave seguindo
 #|   a trajetória da relação entre eficiência de combustível nas rodovias versus 
-#|   o tamanho do motor dos carros é sobreposto. O eixo x é rotulado como "Cilindrada  
+#|   as cilindradas dos carros é sobreposto. O eixo x é rotulado como "Cilindrada  
 #|   do Motor (L)" e o eixo y é rotulado como "Consumo de combustível na rodovia (mpg)". 
 #|   A legenda é rotulada como "Tipo de veículo". O gráfico é intitulado "Eficiência de combustível 
 #|   geralmente diminui com o tamanho do motor". O subtítulo é "Dois lugares
-#|   (carros esportivos) são uma exceção devido ao seu peso leve" e o 
-#|    a legenda é "Dados de fueleconomy.gov".
+#|   (carros esportivos) são uma exceção devido ao seu peso leve" e  
+#|    a legenda contém "Dados de fueleconomy.gov".
 
 ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
   geom_point(aes(color = classe)) +
   geom_smooth(se = FALSE) +
   labs(
     x = "Cilindrada do Motor (L)",
-    y = "Consumo de combustível na rodovia (mpg)",
+    y = "Economia de combustível na rodovia (mpg)",
     color = "Tipo de veículo",
     title = "Eficiência de combustível geralmente diminui com o tamanho do motor",
     subtitle = "Dois lugares (carros esportivos) são uma exceção devido ao seu peso leve",
@@ -78,7 +78,7 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
 O objetivo do título (*title*) de um gráfico é resumir a descoberta principal.
 Evite títulos que apenas descrevam o gráfico, por exemplo, "Um gráfico de dispersão da cilindrada do motor versus economia de combustível".
 
-Se você precisar adicionar mais texto, existem dois outros argumentos de rótulos úteis: `subtitle` (subtítulo) adiciona detalhes adicionais em uma fonte menor abaixo do título e `caption` (legenda) adiciona texto no canto inferior direito do gráfico, geralmente usado para descrever a fonte do dados.
+Se você precisar adicionar mais texto, existem dois outros argumentos de rótulos úteis: `subtitle` (subtítulo) adiciona detalhes em uma fonte menor abaixo do título e `caption` (legenda) adiciona texto no canto inferior direito do gráfico, geralmente usado para descrever a fonte dos dados.
 Você também pode usar `labs()` para substituir os títulos dos eixos e das legendas.
 Geralmente é uma boa ideia substituir nomes curtos de variáveis ​​por descrições mais detalhadas e incluir as unidades.
 
@@ -108,7 +108,7 @@ ggplot(df, aes(x, y)) +
 
 ### Exercícios
 
-1. Crie um gráfico nos dados de economia de combustível com rótulos personalizados de `title`, `subtitle`, `caption`, `x`, `y` e `color`.
+1. Crie um gráfico com os dados de eficiência de combustível (milhas) com rótulos personalizados de `title`, `subtitle`, `caption`, `x`, `y` e `color`.
 
 2. Recrie o gráfico a seguir usando os dados de economia de combustível.
     Observe que as cores e os formatos dos pontos variam de acordo com o tipo de tração.
@@ -116,7 +116,7 @@ ggplot(df, aes(x, y)) +
     ```{r}
     #| echo: false
     #| fig-alt: |
-    #|   Gráfico de dispersão de consumo de combustível em rodovias versus em cidades. Formas e
+    #|   Gráfico de dispersão de eficiência de combustível em rodovias versus em cidades. Formas e
     #|   as cores dos pontos são determinadas pelo tipo de tração.
 
     ggplot(milhas, aes(x = cidade, y = rodovia, color = tracao, shape = tracao)) +
@@ -129,7 +129,7 @@ ggplot(df, aes(x, y)) +
       )
     ```
 
-3.  Pegue um gráfico exploratório que você criou no último mês e adicione títulos informativos para facilitar a compreensão de outras pessoas.
+3.  Pegue um gráfico exploratório que você criou no último mês e adicione rótulos informativos para facilitar a compreensão de outras pessoas.
 
 ## Anotações
 
@@ -138,9 +138,9 @@ A primeira ferramenta que você tem à sua disposição é `geom_text()`.
 `geom_text()` é semelhante a `geom_point()`, mas tem uma estética adicional: `label`.
 Isso torna possível adicionar rótulos textuais aos seus gráficos.
 
-Existem duas fontes possíveis de rótulos.
-Primeiro, você pode ter um arquivo que fornece rótulos.
-No gráfico a seguir, retiramos os carros com maior tamanho de motor em cada tipo de direção e salvamos suas informações como um novo quadro de dados chamado `label_info`.
+Existem duas fontes possíveis de rótulos para as observações.
+Primeiro, você pode ter um arquivo que fornece estes rótulos.
+No gráfico a seguir, retiramos os carros com maior cilindradas em cada tipo de tração e salvamos suas informações como um novo conjunto de dados `rotulos_info`.
 
 ```{r}
 rotulos_info <- milhas |>
@@ -162,12 +162,12 @@ rotulos_info
 Em seguida, usamos esse novo conjunto de dados para rotular diretamente os três grupos e substituir a legenda por rótulos colocados diretamente no gráfico.
 Usando os argumentos `fontface` e `size` podemos personalizar a aparência dos rótulos de texto.
 Eles são maiores que o restante do texto do gráfico e estão em negrito.
-(`theme(legend.position = "none"`) desativa todas as legendas --- falaremos sobre isso mais em breve.
+(`theme(legend.position = "none"`) desativa todas as legendas --- falaremos sobre isso mais tarde.
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico de dispersão de consumo na rodovia versus cilindrada onde os pontos são coloridos
-#|   por tração. Curvas suaves para cada tipo de tração são sobrepostas. 
+#|   Gráfico de dispersão de eficiência de combustível nas rodovias versus cilindradas onde os pontos são coloridos
+#|   por tipo de tração. Curvas suaves para cada tipo de tração são sobrepostas. 
 #|   Os rótulos de texto identificam as curvas como tração dianteira, tração traseira e 4x4.
 
 ggplot(milhas, aes(x = cilindrada, y = rodovia, color = tracao)) +
@@ -185,11 +185,11 @@ Observe o uso de `hjust` (justificação horizontal) e `vjust` (justificação v
 
 No entanto, o gráfico anotado que fizemos acima é difícil de ler porque os rótulos se sobrepõem entre si e com os pontos.
 Podemos usar a função `geom_label_repel()` do pacote ggrepel para resolver esses dois problemas.
-Este pacote útil ajustará automaticamente os rótulos para que não se sobreponham:
+Este pacote ajustará automaticamente os rótulos para que não se sobreponham:
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico de dispersão do consumo nas rodovias versus cilindradas, onde 
+#|   Gráfico de dispersão do eficiência de comsbutível nas rodovias versus cilindradas, onde 
 #|   os pontos são coloridos de acordo com a classe de tração do carro. Alguns pontos são rotulados 
 #|   com o nome do carro. As etiquetas são caixas com fundo branco e transparente 
 #|   e posicionado para não se sobrepor.
@@ -210,7 +210,7 @@ Observe outra técnica útil usada aqui: adicionamos uma segunda camada de ponto
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico de dispersão do consumo nas rodovias versus as cilindradas dos carros. Pontos
+#|   Gráfico de dispersão de eficiência de combustível nas rodovias versus as cilindradas dos carros. Pontos
 #|   onde a quilometragem da rodovia está acima de 40 e também acima de 20 com tamanho do motor 
 #|   acima de 5 são vermelhos, com um círculo vermelho vazio e rotulados com o nome do modelo 
 #|   do carro.
@@ -228,16 +228,16 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
   )
 ```
 
-Lembre-se, além de `geom_text()` e `geom_label()`, você tem muitos outras geometrias (*geoms*) no ggplot2 disponíveis para ajudar a anotar seu gráfico.
+Lembre-se, além de `geom_text()` e `geom_label()`, você tem muitas outras geometrias (*geoms*) no ggplot2 disponíveis para ajudar a anotar seu gráfico.
 Algumas ideias:
 
 - Use `geom_hline()` e `geom_vline()` para adicionar linhas de referência.
-    Freqüentemente, os tornamos grossos (`linewidth = 2`) e brancos (`color = white`) e os desenhamos abaixo da camada de dados primária.
+    Freqüentemente, as tornamos grossas (`linewidth = 2`) e brancas (`color = white`) e as desenhamos abaixo da camada de dados primária.
     Isso os torna fáceis de ver, sem desviar a atenção dos dados.
 
 - Use `geom_rect()` para desenhar um retângulo ao redor dos pontos de interesse.
     Os limites do retângulo são definidos pela estética `xmin`, `xmax`, `ymin`, `ymax`.
-    Como alternativa, consulte o [pacote ggforce](https://ggforce.data-imaginist.com/index.html), especificamente [`geom_mark_hull()`](https://ggforce.data-imaginist.com/reference/ geom_mark_hull.html), que permite anotar subconjuntos de pontos com cascas.
+    Como alternativa, consulte o [pacote ggforce](https://ggforce.data-imaginist.com/index.html), especificamente [`geom_mark_hull()`](https://ggforce.data-imaginist.com/reference/ geom_mark_hull.html), que permite anotar subconjuntos de pontos.
 
 - Use `geom_segment()` com o argumento `arrow` para chamar a atenção para um ponto com uma seta.
     Use a estética `x` e `y` para definir o local inicial e `xend` e `yend` para definir o local final.
@@ -249,7 +249,7 @@ Para demonstrar o uso de `annotate()`, vamos criar algum texto para adicionar ao
 O texto é um pouco longo, então usaremos `stringr::str_wrap()` para adicionar quebras de linha automaticamente, dado o número de caracteres que você deseja por linha:
 
 ```{r}
-tendencia_texto <- "Motores maiores tendem a ter menor economia de combustível." |>
+tendencia_texto <- "Motores com maiores cilindradas tendem a ter menor eficiência de combustível." |>
   str_wrap(width = 30)
 tendencia_texto
 ```
@@ -260,10 +260,10 @@ Observe também que o segmento é denominado como uma seta.
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico de dispersão do consumo nas rodovias versus cilindradas dos carros. Uma seta
+#|   Gráfico de dispersão de eficiência de combustível nas rodovias versus cilindradas dos carros. Uma seta
 #|   vermelha apontando para baixo segue a tendência dos pontos e da anotação 
-#|   colocada ao lado da seta diz "Motores maiores tendem a ter menor 
-#|   economia de combustível". A seta e o texto da anotação são vermelhos.
+#|   colocada ao lado da seta diz "Motores com maiores cilindradas tendem a ter menor eficiência de combustível".  
+#|   A seta e o texto da anotação é vermelha. 
 
 ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
   geom_point() +
@@ -294,7 +294,7 @@ O único limite é a sua imaginação (e a sua paciência com o posicionamento d
     Como você pode colocar um rótulo diferente em cada faceta?
     (Dica: pense no conjunto de dados que está sendo passado para `geom_text()`.)
 
-4. Quais argumentos para `geom_label()` controlam a aparência da caixa de fundo?
+4. Quais argumentos para `geom_label()` controlam a aparência do fundo da caixa?
 
 5. Quais são os quatro argumentos para `arrow()`?
     Como eles funcionam?
@@ -333,7 +333,7 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
 Observe o esquema de nomenclatura das escalas: `scale_` seguido do nome da estética, depois `_` e depois o nome da escala.
 As escalas padrão são nomeadas de acordo com o tipo de variável com a qual se alinham: contínua, discreta, datahora ou data.
 `scale_x_continuous()` coloca os valores numéricos de `cilindrada` em uma linha numérica contínua no eixo x, `scale_color_discrete()` escolhe cores para cada uma das `classes` de carro, etc.
-Existem muitas escalas não padrão que você aprenderá a seguir.
+Existem também muitas escalas fora do padrão que você aprenderá a seguir.
 
 As escalas padrão foram cuidadosamente escolhidas para fazer um bom trabalho para uma ampla gama de insumos.
 No entanto, você pode querer substituir os padrões por dois motivos:
@@ -356,24 +356,24 @@ O uso mais comum de `breaks` é substituir a escolha padrão:
 
 ```{r}
 #| fig-alt: |
-#|   Scatterplot of highway fuel efficiency versus engine size of cars,
-#|   colored by drive. The y-axis has breaks starting at 15 and ending at 40, 
-#|   increasing by 5.
+#|   Gráfico de dispersão de eficiência de combustível nas rodovias versus cilindradas,
+#|   coloridos por tipo de tração. O eixo y tem quebras começando em 15 e terminando em 40, 
+#|   aumentando a cada 5.
 
-ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+ggplot(milhas, aes(x = cilindrada, y = rodovia, color = tracao)) +
   geom_point() +
   scale_y_continuous(breaks = seq(15, 40, by = 5)) 
 ```
 
-You can use `labels` in the same way (a character vector the same length as `breaks`), but you can also set it to `NULL` to suppress the labels altogether.
-This can be useful for maps, or for publishing plots where you can't share the absolute numbers.
-You can also use `breaks` and `labels` to control the appearance of legends.
-For discrete scales for categorical variables, `labels` can be a named list of the existing levels names and the desired labels for them.
+Você pode usar `labels` da mesma maneira (um vetor de caracteres do mesmo tamanho que `breaks`), mas também pode configurá-lo como `NULL` para suprimir completamente os rótulos.
+Isto pode ser útil para mapas ou para publicar gráficos onde não é possível compartilhar os números absolutos.
+Você também pode usar `breaks` e `labels` para controlar a aparência das legendas.
+Para escalas discretas para variáveis ​​categóricas, `rótulos` podem ser uma lista nomeada de nomes de níveis existentes e os rótulos desejados para eles.
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico de dispersão de consumo nas rodovias versus cilindradas dos carros, colorido
-#|   por tração. Os eixos x e y não possuem rótulos nas marcações dos eixos.
+#|   Gráfico de dispersão de eficiência de combustível nas rodovias versus cilindradas dos carros, colorido
+#|   por tipo de tração. Os eixos x e y não possuem rótulos nas marcações dos eixos.
 #|   A legenda possui rótulos personalizadas: 4x4, dianteira, traseira.
 
 ggplot(milhas, aes(x = cilindrada, y = rodovia, color = tracao)) +
@@ -430,7 +430,7 @@ Por exemplo, veja este gráfico que mostra quando cada presidente dos EUA inicio
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico linear do número de identificação de presidentes em relação ao ano em que iniciaram seu mandato
+#|   Gráfico de linha do número de identificação de presidentes em relação ao ano em que iniciaram seu mandato
 #|   presidencial. O ano de início é marcado com um ponto e um segmento que começa 
 #|   lá e termina no final da presidência. Os rótulos do eixo x são
 #|   formatados como anos de dois dígitos começando com um apóstrofo, por exemplo, '53.
@@ -489,7 +489,7 @@ Isto é particularmente útil se você usou um `alfa` baixo para exibir muitos p
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico de dispersão de consumo nas rodovias versus cilindrada dos carros
+#|   Gráfico de dispersão de eficiência de combustível nas rodovias versus cilindrada dos carros
 #|   onde os pontos são coloridos com base na classe do carro. Sobreposto no gráfico está uma 
 #|   curva suave. A legenda está na parte inferior e as classes estão listadas 
 #|   horizontalmente em duas linhas. Os pontos na legenda são maiores que os pontos 
@@ -560,7 +560,7 @@ Os dois gráficos abaixo parecem semelhantes, mas há diferença suficiente nos 
 #| layout-ncol: 2
 #| fig-width: 3
 #| fig-alt: |
-#|   Dois gráficos de dispersão de quilometragem da rodovia versus cilindrada onde os pontos são 
+#|   Dois gráficos de dispersão de eficiência de combustível nas rodovias versus cilindrada onde os pontos são 
 #|   coloridos por tipo de tração. O gráfico à esquerda usa o padrão de
 #|   paleta de cores ggplot2 e o gráfico à direita usa uma cor diferente
 #|   de paleta.
@@ -579,7 +579,7 @@ Isso também ajudará a garantir que seu enredo seja interpretável em preto e b
 
 ```{r}
 #| fig-alt: |
-#|   Dois gráficos de dispersão de consumo em rodovias versus cilindrada dos carros, onde ambas as cores 
+#|   Dois gráficos de dispersão de eficiência de combustível nas rodovias versus cilindrada dos carros, onde ambas as cores 
 #|   e a forma dos pontos são baseadas no tipo de tração. A paleta de cores não
 #|   é a paleta padrão do ggplot2.
 
@@ -588,10 +588,10 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
   scale_color_brewer(palette = "Set1")
 ```
 
-The ColorBrewer scales are documented online at <https://colorbrewer2.org/> and made available in R via the **RColorBrewer** package, by Erich Neuwirth.
-@fig-brewer shows the complete list of all palettes.
-The sequential (top) and diverging (bottom) palettes are particularly useful if your categorical values are ordered, or have a "middle".
-This often arises if you've used `cut()` to make a continuous variable into a categorical variable.
+As escalas ColorBrewer estão documentadas online em <https://colorbrewer2.org/> e disponibilizadas no R através do pacote **RColorBrewer**, de Erich Neuwirth.
+A @fig-brewer mostra a lista completa de todas as paletas.
+As paletas sequencial (superior) e divergente (inferior) são particularmente úteis se seus valores categóricos estiverem ordenados ou tiverem um "meio".
+Isso geralmente surge se você usou `cut()` para transformar uma variável contínua em uma variável categórica.
 
 ```{r}
 #| label: fig-brewer
@@ -599,10 +599,10 @@ This often arises if you've used `cut()` to make a continuous variable into a ca
 #| fig-cap: All colorBrewer scales.
 #| fig-asp: 2.5
 #| fig-alt: |
-#|   All colorBrewer scales. One group goes from light to dark colors. 
-#|   Another group is a set of non ordinal colors. And the last group has 
-#|   diverging scales (from dark to light to dark again). Within each set 
-#|   there are a number of palettes.
+#|   Todas as escalas colorBrewer. Um grupo vai de cores claras para escuras. 
+#|   Outro grupo é definido como cores não ordinais. E o útlimo grupo tem 
+#|   escalas divergentes (de escuro para claro para escuro novamente).Em cada grupo 
+#|   existem várias paletas.
 
 par(mar = c(0, 3, 0, 0))
 RColorBrewer::display.brewer.all()
@@ -642,7 +642,7 @@ Essas escalas estão disponíveis como paletas contínuas (`c`), discretas (`d`)
 #| fig-width: 3
 #| fig-asp: 0.75
 #| fig-alt: |
-#|   Três gráficos hexadecimais onde a cor dos hexadecimais mostra o número de observações 
+#|   Três gráficos hexadecimais onde a cor dos hexagonos mostram o número de observações 
 #|   que caem naquele grupo hexagonal. O primeiro gráfico usa o padrão contínuo
 #|   de escala do ggplot2. O segundo gráfico utiliza o viridis, escala contínua, e o
 #|   o terceiro gráfico usa a escala viridis agrupada.
@@ -690,10 +690,10 @@ A divisão dos dados em subconjuntos afetou as escalas x e y, bem como a curva s
 #| fig-width: 4
 #| message: false
 #| fig-alt: |
-#|   À esquerda, gráfico de dispersão da consumo rodovia versus cilindrada 
+#|   À esquerda, gráfico de dispersão da eficiência de combustível nas rodovias versus cilindrada 
 #|   A curva suave sobreposta mostra uma diminuição e, em seguida, 
 #|   tendência crescente, como um taco de hóquei. À direita, as mesmas variáveis 
-#|   são mostradas com cilindrada variando apenas de 5 a 6 e o consumo da rodovia 
+#|   são mostradas com cilindrada variando apenas de 5 a 6 e eficiência da rodovia 
 #|   variando apenas de 10 a 25. A curva suave sobreposta mostra uma
 #|   tendência que está aumentando ligeiramente primeiro e depois diminuindo. 
 
@@ -720,8 +720,8 @@ Portanto, para ampliar uma região do gráfico, geralmente é melhor usar `coord
 #| message: false
 #| warning: false
 #| fig-alt: |
-#|   À esquerda, gráfico de dispersão de consumo em rodovias versus cilindrada, com
-#|   a cilindrada de 5 a 6 e o consumo em rodoviárias variando de
+#|   À esquerda, gráfico de dispersão de eficiência de combustível nas rodovias versus cilindrada, com
+#|   a cilindrada de 5 a 6 e o eficiência em rodoviárias variando de
 #|   10 to 25. A curva suave sobreposta mostra uma tendência ligeiramente 
 #|   aumentando primeiro e depois diminuindo. À direita, as mesmas variáveis 
 #|   são mostradas com os mesmos limites, porém a curva suave sobreposta
@@ -748,13 +748,13 @@ Por exemplo, se extrairmos duas classes de carros e plotá-las separadamente, se
 #| layout-ncol: 2
 #| fig-width: 4
 #| fig-alt: |
-#|   À esquerda, um gráfico de dispersão de consumo em rodovias versus cilindradas de SUVs.
+#|   À esquerda, um gráfico de dispersão de eficiência de combustível nas rodovias versus cilindradas de SUVs.
 #|   À direita, um gráfico de dispersão das mesmas variáveis ​​para carros compactos..
 #|   Os pontos são coloridos por tipo de tração os gráficos. Entre os SUVs mais 
 #|   os carros têm tração 4x4 e os demais têm tração traseira, enquanto 
 #|   entre os carros compactos, mais carros têm tração dianteira e os outros 
 #|   têm tração 4x4. O gráfico do SUV mostra uma clara relação negativa
-#|   entre consumo e cilindrada nas rodovias enquanto que no gráfico de carros compactos 
+#|   entre eficiência e cilindrada nas rodovias enquanto que no gráfico de carros compactos 
 #|   o relacionamento é muito mais plano.
 
 suv <- milhas |> filter(classe == "suv")
@@ -775,14 +775,14 @@ Uma forma de superar este problema é compartilhar escalas em múltiplos gráfic
 #| layout-ncol: 2
 #| fig-width: 4
 #| fig-alt: |
-#|   À esquerda, um gráfico de dispersão da consumo nas rodovias versus ciliondrada de SUVs.
+#|   À esquerda, um gráfico de dispersão da eficiência de combustível nas rodovias versus ciliondrada de SUVs.
 #|   À direita, um gráfico de dispersão das mesmas variáveis ​​para carros compactos.
 #|   Os pontos são coloridos por tipo de tração. Ambos os gráficos são plotados 
-#|   na mesma escala para consumo rodoviário, cilindrada e tipo de tração,
+#|   na mesma escala para eficiência rodoviária, cilindrada e tipo de tração,
 #|   resultando na legenda mostrando todos os três tipos (dianteiro, traseiro e nas 4 rodas 
 #|   para ambos os gráficos, embora não haja SUVs com tração dianteira e
 #|   não há carros compactos com tração traseira. Como as escalas x e y são iguais, 
-#|   e vão muito além do mínimo e máximo do consumo na rodovia e cilindradas, 
+#|   e vão muito além do mínimo e máximo da eficiência na rodovia e cilindradas, 
 #|   os pontos não ocupam toda a área do gráfico.
 
 escala_x <- scale_x_continuous(limits = range(milhas$cilindrada))
@@ -852,7 +852,7 @@ Finalmente, você pode personalizar os elementos que não são dados de seu grá
 ```{r}
 #| message: false
 #| fig-alt: |
-#|   Gráfico de dispersão do consumo em rodovias versus cilindrada dos carros, colorido por classe 
+#|   Gráfico de dispersão do eficiência de combutível nas rodovias versus cilindrada dos carros, colorido por classe 
 #|   dos carros. O fundo do gráfico é branco, com linhas de grade cinza.
 
 ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
@@ -902,16 +902,16 @@ Alguns outros componentes `theme()` úteis são usados ​​para alterar o posi
 
 ```{r}
 #| fig-alt: |
-#|   Scatterplot of highway fuel efficiency versus engine size of cars, colored 
-#|   by drive. The plot is titled 'Larger engine sizes tend to have lower fuel 
-#|   economy' with the caption pointing to the source of the data, fueleconomy.gov.
-#|   The caption and title are left justified, the legend is inside of the plot
-#|   with a black border.
+#|   Um gráfico de dispersão de eficiência de combustível nas rodovias versus cilindrada, colorido 
+#|   por tração. O gráfico é entitulado 'Maior número de cilindradas tendem a ter menor economia de combustível' 
+#|   com a legenda informando a fonte dos dados, fueleconomy.gov.
+#|   A legenda e título estão justificadas à esquerda, a legenda está dentro do gráfico
+#|   com boarda preta.
 
 ggplot(milhas, aes(x = cilindrada, y = rodovia, color = tracao)) +
   geom_point() +
   labs(
-    title = "Motores maiores tendem a ter menor economia de combustível",
+    title = "Maior número de cilindradas tendem a ter menor economia de combustível",
     caption = "Source: https://fueleconomy.gov."
   ) +
   theme(
@@ -948,8 +948,8 @@ Em seguida, você os coloca um ao lado do outro com `+`.
 #| fig-width: 6
 #| fig-asp: 0.5
 #| fig-alt: |
-#|   Dois gráficos (um gráfico de dispersão de consumo em rodovias versus cilindrada e um 
-#|   boxplots lado a lado de consumo em rodovias versus tração) colocados lado 
+#|   Dois gráficos (um gráfico de dispersão de eficiência de combustível nas rodovias versus cilindrada e um 
+#|   boxplots de eficiência nas rodovias versus tração) colocados lado 
 #|   a lado.
 
 p1 <- ggplot(milhas, aes(x = cilindrada, y = rodovia)) + 
@@ -973,9 +973,9 @@ A seguir, `|` coloca `p1` e `p3` próximos um do outro e `/` move `p2` para a pr
 #| fig-alt: |
 #|   Três gráficos dispostos de forma que o primeiro e a terceiro fiquem próximos um do outro
 #|   e o segundo gráfico fique abaixo deles. O primeiro gráfico é um
-#|   gráfico de dispersão de consumo em rodovias versus cilindrada, o terceiro gráfico é um
-#|   gráfico de dispersão da consumo em rodovias versus consumo na cidade, e o terceiro gráfico é
-#|   boxplots de consumo em rodovias versus tração) colocado abaixo 
+#|   gráfico de dispersão de eficiência em rodovias versus cilindrada, o terceiro gráfico é um
+#|   gráfico de dispersão da eficiência em rodovias versus eficiência na cidade, e o terceiro gráfico é
+#|   boxplots de eficiência em rodovias versus tração) colocado abaixo 
 #|   dos demais
 p3 <- ggplot(milhas, aes(x = cidade, y = rodovia)) + 
   geom_point() + 
@@ -998,7 +998,7 @@ Patchwork divide a área que você reservou para seu lote usando esta escala e p
 #| fig-alt: |
 #|   Cinco gráficos dispostos de forma que os dois primeiros fiquem próximos uns dos outros.
 #|   Gráficos três e quatro estão abaixo deles. E o quinto gráfico se estende abaixo deles. 
-#|   O gráfico patchwork é entitulado "Consumo em cidade e rodovia com diferentes 
+#|   O gráfico patchwork é entitulado "Eficiência nas cidades e rodovias com diferentes 
 #|   trações" e com legenda "Fonte: https://fueleconomy.gov". 
 #|   Os dois primeiros gráficos são gráficos boxplot. Os gráficos 3 e 4 são de densidade 
 #|   E o quinto gráfico é um gráfico de dispersão facetado. Cada um desses gráficos mostra
@@ -1028,7 +1028,7 @@ p5 <- ggplot(milhas, aes(x = cidade, y = rodovia, color = tracao)) +
 
 (guide_area() / (p1 + p2) / (p3 + p4) / p5) +
   plot_annotation(
-    title = "Consumo em cidade e rodovia com diferentes trações",
+    title = "Eficiência nas cidades e rodovias com diferentes trações",
     caption = "Fonte: https://fueleconomy.gov."
   ) +
   plot_layout(
@@ -1068,9 +1068,9 @@ Se você quiser saber mais sobre como combinar e fazer o layout de vários gráf
     #| fig-asp: 0.8
     #| echo: false
     #| fig-alt: |
-    #|   Três gráficos: O gráfico 1 é um gráfico de dispersão de consumo nas rodovias versus cilindrada. 
-    #|   O gráfico 2 é um gráfico boxplot do consumo em rodovias versus tração. 
-    #|   O gráfico 3 consiste em gráficos boxplot de consumo na cidade versus tração. 
+    #|   Três gráficos: O gráfico 1 é um gráfico de dispersão de eficiência nas rodovias versus cilindrada. 
+    #|   O gráfico 2 é um gráfico boxplot de eficiência em rodovias versus tração. 
+    #|   O gráfico 3 consiste em gráficos boxplot de eficiência na cidade versus tração. 
     #|   O gráfico 1 está na primeira linha. Os gráficos 2 e 3 estão na próxima linha, cada um vai até 
     #|   metade da largura do gráfico 1. O gráfico 1 é rotulado como "Fig. A", o gráfico 2 é rotulado 
     #|   "Fig. B", e o gráfico 3 é rotulado "Fig. C".
