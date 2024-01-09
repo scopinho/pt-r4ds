@@ -568,7 +568,7 @@ read_csv(x2)$text
 #> [1] "\x82\xb1\x82\xf1\x82ɂ\xbf\x82\xcd"
 ```
 
-Para ler eles corretamente, você deve especificar a codificação por meio do argumento `locale`:
+Para lê-los corretamente, você deve especificar a codificação por meio do argumento `locale`:
 
 ```{r}
 #| eval: false
