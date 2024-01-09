@@ -622,7 +622,7 @@ Por exemplo, "en" corresponde ao inglês, "en_GB" ao inglês britânico e "en_US
 Se você ainda não conhece o código para o seu idioma, o [Wikipedia](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) possui uma boa lista e você pode verificar quais são suportados pelo pacote stringr empregando a função `stringi::stri_locale_list()`.
 
 As funções de *string* do R base usam automaticamente a localidade definida pelo seu sistema operacional.
-Isso significa que as funções base de *string* do R fazem o que você espera para o seu idioma, mas seu código pode funcionar de maneira diferente se for compartilhado com alguém que vive em um país diferente.
+Isso significa que as funções de *string* do R base fazem o que você espera para o seu idioma, mas seu código pode funcionar de maneira diferente se for compartilhado com alguém que vive em um país diferente.
 Para evitar esse problema, o stringr utiliza, por padrão, as regras do inglês, usando a localidade como "en", e exige que você especifique o argumento `locale` para substituir a localidade.
 Felizmente, há dois conjuntos de funções onde a localidade realmente importa: a função para modificar a caixa das letras e a função para ordenar as letras.
 
