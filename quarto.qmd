@@ -358,14 +358,14 @@ A tabela a seguir resume que tipos de output cada opção suprime:
 | `message: false` |                |               |        |          |     X     |        |
 | `warning: false` |                |               |        |          |           |   X    |
 
-### Global options
+### Opções Globais
 
-As you work more with knitr, you will discover that some of the default chunk options don't fit your needs and you want to change them.
+Na medida em que você trabalhar mais com o knitr, você descobrirá que algumas das opções padrão dos blocos não satisfazem a sua necessidade e será preciso alterá-las.
 
-You can do this by adding the preferred options in the document YAML, under `execute`.
-For example, if you are preparing a report for an audience who does not need to see your code but only your results and narrative, you might set `echo: false` at the document level.
-That will hide the code by default, so only showing the chunks you deliberately choose to show (with `echo: true`).
-You might consider setting `message: false` and `warning: false`, but that would make it harder to debug problems because you wouldn't see any messages in the final document.
+É possível fazer isso adicionando suas opções preferidas no YAML do documento em `execute`.
+Por exemplo, se você estiver preparando um relatório para uma audiência que não precisa ver seu código, mas apenas seus resultados e narrativa, pode ser que seja desejável configurar `echo: false` no nível do documento.
+Isso esconderá o código por padrão e só exibirá blocos de código que você escolha mostrar ( com `echo: true`).
+Você pode configurar `message: false` e `warning: false`, mas isso tornará difícil a resolução de problemas de execução porque nenhuma das mensagens srão exibidas no final do documento.
 
 ``` yaml
 title: "My report"
@@ -373,9 +373,10 @@ execute:
   echo: false
 ```
 
-Since Quarto is designed to be multi-lingual (works with R as well as other languages like Python, Julia, etc.), all of the knitr options are not available at the document execution level since some of them only work with knitr and not other engines Quarto uses for running code in other languages (e.g., Jupyter).
-You can, however, still set these as global options for your document under the `knitr` field, under `opts_chunk`.
-For example, when writing books and tutorials we set:
+Como Quarto foi desenhado para ser multi-línguas (funciona com R mas também com outras linguagens como Python, Julia, etc.), nem todas as opções do knitr estão disponíveis no nível de documento.
+Algumas das opçoes funcionam com knitr mas não com outros motores (*engines*) que o Quarto usa para executar código em outras linguagens (por exemplo, Jupyter).
+No entanto é possível ajustar essas como opções globais para o seu documento dentro do campo `knitr` em `opts_chunk`.
+Por exemplo, quando escrevemos livros ou tutoriais, configuramos:
 
 ``` yaml
 title: "Tutorial"
@@ -385,7 +386,7 @@ knitr:
     collapse: true
 ```
 
-This uses our preferred comment formatting and ensures that the code and output are kept closely entwined.
+Isso faz com que nossa formatação para comentários preferida seja usada e garante que o código e seu resultado sejam exibidos próximos um do outro.
 
 ### Inline code
 
