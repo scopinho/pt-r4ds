@@ -215,7 +215,7 @@ df |> mutate(saudacao = str_glue("{{Oi {nome}!}}"))
 ### `str_flatten()`
 
 As funções `str_c()` e `str_glue()` funcionam bem com `mutate()` porque suas saídas têm o mesmo comprimento que suas entradas.
-Mas, se você quisesse uma função que funcionasse bem com `summarize()`, isto é, que sempre retornesse uma única string?
+Mas, se você quisesse uma função que funcionasse bem com `summarize()`, isto é, que sempre retornasse uma única string?
 Neste caso, `str_flatten()`[^strings-5] é a função adequada para essa tarefa: ela recebe um vetor de caracteres e combina cada elemento do vetor em uma única *string*:
 
 [^strings-5]: O equivalente no R base é a função `paste()` utilizada com o argumento `collapse`.
