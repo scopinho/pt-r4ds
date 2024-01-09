@@ -9,7 +9,7 @@ source("_common.R")
 ## Introdução
 
 Até agora, você utilizou várias cadeias de caracteres (*strings*) sem compreender os detalhes por trás delas.
-Contudo, chegou o momento de explorar as *strings*, compreender o seu funcionamento e dominar algumas das poderosas ferramentas de manipulação de *strings* que estão a sua disposição.
+Contudo, chegou o momento de explorar as *strings*, compreender o seu funcionamento e dominar algumas das poderosas ferramentas de manipulação de *strings* que estão à sua disposição.
 
 Vamos iniciar abordando os aspectos envolvidos na criação de *strings* e vetores de caracteres.
 Você aprenderá a gerar *strings* a partir de dados e, em seguida, o inverso: extrair *strings* dos dados.
