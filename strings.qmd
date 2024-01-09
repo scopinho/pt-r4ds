@@ -278,7 +278,7 @@ Nesta seção, você aprenderá a como usar quatro funções do tidyr para extra
 Se você observar atentamente, poderá perceber que há um padrão comum entre os nomes das funções: `separate_`, seguido por `longer` ou `wider`, depois `_`, e, por fim, `delim` ou `position`.
 Isso se deve ao fato de que essas quatro funções são baseadas em duas primitivas mais simples:
 
--   Assim como com `pivot_longer()` e `pivot_wider()`, as funções com terminação `_longer` tornam o *data frame* de entrada mais longo, criando novas linhas, enquanto as funções com terminação `_wider` ampliam o *data frame* de entrada, gerando novas colunas.
+-   Assim como com `pivot_longer()` e `pivot_wider()`, as funções com terminação `_longer` tornam o *data frame* de entrada mais longo, criando novas linhas, enquanto as funções com terminação `_wider` tornam o *data frame* de entrada mais largo, gerando novas colunas.
 -   `delim` divide uma *string* por um delimitador, como `", "` ou `" "`; `position` divide em larguras específicas, como `c(3, 5, 2)`.
 
 Falaremos sobre o último membro dessa família, `separate_wider_regex()`, no @sec-regular-expressions.
