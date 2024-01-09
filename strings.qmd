@@ -335,7 +335,7 @@ df3 |>
 ```
 
 A função `separate_wider_position()` funciona de forma um pouco diferente, pois normalmente você deseja especificar a largura de cada coluna.
-Então, você deve fornecer a função um vetor de inteiros nomeado, em que o nome corresponde ao nome da nova coluna e o valor é a quantidade de caracteres que constitui a *string* correspondente.
+Então, você deve fornecer à função um vetor de inteiros nomeado, em que o nome corresponde ao nome da nova coluna e o valor é a quantidade de caracteres que constitui a *string* correspondente.
 Você pode omitir valores da saída ao não nomeá-los:
 
 ```{r}
