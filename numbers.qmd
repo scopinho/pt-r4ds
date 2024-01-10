@@ -9,7 +9,7 @@ source("_common.R")
 
 ## Introdução
 
-Vetores numéricos são as espinha dorsal da ciência de dados e você já os usou muitas vezes anteriormente neste livro.
+Vetores numéricos são a espinha dorsal da ciência de dados e você já os usou muitas vezes anteriormente neste livro.
 Agora é hora de pesquisar sistematicamente o que você pode fazer com eles em R, garantindo que você esteja bem situado para resolver qualquer problema futuro envolvendo vetores numéricos.
 
 Começaremos fornecendo algumas ferramentas para criar números se você tiver textos (*strings*) e depois entraremos em mais detalhes sobre `count()`.
@@ -35,7 +35,7 @@ library(dados)
 Na maioria dos casos, você obterá números já registrados em um dos dois tipos do R: inteiro (*integer*) ou ponto-flutuante (*double*), .
 Em alguns casos, você irá encontrá-los como textos (*strings*), possivelmente porque você os criou com pivotagem (*pivoting*) de algum cabeçalho de coluna ou porque algo deu errado em seu processo de importação.
 
-readr fornece duas funções úteis para transformar *strings* em números: `parse_double()` e `parse_number()`.
+O pacote readr fornece duas funções úteis para transformar *strings* em números: `parse_double()` e `parse_number()`.
 Use `parse_double()` quando possuir números que foram escritos como *strings*:
 
 ```{r}
@@ -53,7 +53,7 @@ parse_number(x)
 
 ## Contagens {#sec-counts}
 
-É uma supresa o quanto de ciência de dados você pode fazer somente com um pouco de contagem e aritmética básica, então o pacote dplyr torna a contegam o mais fácil possível com `count()`.
+É uma supresa o quanto de ciência de dados você pode fazer somente com um pouco de contagem e aritmética básica, então o pacote dplyr torna a contagem o mais fácil possível com `count()`.
 Esta função é ótima para explorações rápidas e validações durante a análise:
 
 ```{r}
@@ -148,7 +148,7 @@ Como um exemplo, enquanto o R fornece todas as funções trigonemétricas que vo
 Introduzimos a base da aritmética (`+`, `-`, `*`, `/`, `^`) no @sec-workflow-basics e desde então a temos usado muito.
 Estas funções não precisam de muitas explicações pois elas fazem o que você aprendeu na escola primária.
 Mas temos que falar brevemente sobre **regras de reciclagem** (*recycling rules*) que determinam o que ocorre quando os lados direito e esquerdo tem tamanhos diferentes.
-Isto é importante para operações como `voos |> mutate(tempo_voo = tempo_voo / 60)` pois existem 336.776 múmeros do lado esquerdo da `/` mas apenas um no lado direito.
+Isto é importante para operações como `voos |> mutate(tempo_voo = tempo_voo / 60)` pois existem 336.776 números do lado esquerdo da `/` mas apenas um no lado direito.
 
 O R lida com tamanhos incompatíveis (*mismatched lengths*) com **reciclagem** ou repetição, do vetor menor.
 Podemos ver isso mais facilmente se criarmos vetores fora de um *data frame*:
@@ -161,7 +161,7 @@ x / c(5, 5, 5, 5)
 ```
 
 Geralmente, você quer reciclar apenas números únicos (i.e. vetores de tamanho 1), mas o R irá reciclar qualquer vetor de menor tamanho.
-Em geral (mas nem sempre), te retorna uma mensagem de aviso se o vetor maior não é um múltiplo do menor:
+Em geral (mas nem sempre), o R te retorna uma mensagem de aviso se o vetor maior não é um múltiplo do menor:
 
 ```{r}
 x * c(1, 2)
@@ -282,7 +282,7 @@ Esta definição é útil, pois implica que `round(x, -3)` arredondará para o m
 
 ```{r}
 round(123.456, 2)  # dois dígitos
-round(123.456, 1)  # um digito
+round(123.456, 1)  # um dígito
 round(123.456, -1) # arredonda para dezena mais próxima
 round(123.456, -2) # arredonda para a centena mais próxima
 ```
@@ -293,7 +293,7 @@ Há algo de estranho com `round()` que parece uma surpresa à primeira vista:
 round(c(1.5, 2.5))
 ```
 
-`round()` usa o que é conhecido como "arredondamento da metada para o par" ou arredondamento do banqueiro: se um número estiver no meio do caminho entre dois inteiros, ele será arredondado para o inteiro **par**.
+`round()` usa o que é conhecido como "arredondamento da metade para o par" ou arredondamento do banqueiro: se um número estiver no meio do caminho entre dois inteiros, ele será arredondado para o inteiro **par**.
 Esta é uma boa estratégia porque mantém o arredondamento imparcial: metade de todos os 0,5 são arredondados para cima e a outra metade para baixo.
 
 `round()` é acompanhada por `floor()` que sempre arredonda para baixo e `ceiling()` que sempre arredonda para cima:
@@ -324,7 +324,7 @@ round(x / 4) * 4
 round(x / 0.25) * 0.25
 ```
 
-### Separando (*cuttting) números em intervalos
+### Separando (*cuttting*) números em intervalos
 
 Use `cut()`[^numbers-1] para separar um vetor numérico em intervalos (também chamadas de *bin*) discretos:
 
