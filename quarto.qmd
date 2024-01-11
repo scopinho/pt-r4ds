@@ -453,14 +453,14 @@ Recomendamos três das cinco opções:
 
     Isso dá espaço para os gráficos respirarem, sem tomar espaço demais.
 
--   To put multiple plots in a single row, set the `layout-ncol` to 2 for two plots, 3 for three plots, etc.
-    This effectively sets `out-width` to "50%" for each of your plots if `layout-ncol` is 2, "33%" if `layout-ncol` is 3, etc.
-    Depending on what you're trying to illustrate (e.g., show data or show plot variations), you might also tweak `fig-width`, as discussed below.
+-   Para inserir múltiplos gráficos na mesma linha, configure `layout-ncol` em 2 para dois gráficos, 3 para três gráficos, etc.
+    Isso efetivamente ajusta `out-width` para "50%" para cada gráfico se `layout-ncol` for 2, "33%" se `layout-ncol` for 3, etc.
+    Dependendo do que você está tentando ilustrar (por exemplo, mostrar dados ou variações de gráficos), você pode experimentar ajustar também `fig-width` conforme a discussão a seguir.
 
-If you find that you're having to squint to read the text in your plot, you need to tweak `fig-width`.
-If `fig-width` is larger than the size the figure is rendered in the final doc, the text will be too small; if `fig-width` is smaller, the text will be too big.
-You'll often need to do a little experimentation to figure out the right ratio between the `fig-width` and the eventual width in your document.
-To illustrate the principle, the following three plots have `fig-width` of 4, 6, and 8 respectively:
+Se você perceber que está precisando apertar os olhos para enxergar o texto no seu gráfico, você precisa ajustar o `fig-width`.
+Se `fig-width` é maior que o tamanho da figura renderizada no documento final, o texto ficará muito pequeno; se `fig-width` for menor, o texto ficará grande demais.
+Frequentemente será necessário alguma experimentação para acertar a razão entre `fig-width` e a largura do seu documento.
+Para ilustrar, os três gráficos a seguir têm `fig-width` de 4, 6, e 8 respectivamente:
 
 ```{r}
 #| include: false
@@ -504,10 +504,10 @@ plot
 plot
 ```
 
-If you want to make sure the font size is consistent across all your figures, whenever you set `out-width`, you'll also need to adjust `fig-width` to maintain the same ratio with your default `out-width`.
-For example, if your default `fig-width` is 6 and `out-width` is "70%", when you set `out-width: "50%"` you'll need to set `fig-width` to 4.3 (6 \* 0.5 / 0.7).
+Se você quiser garantir que o tamanho da fonte é consistente em todas as suas figuras, será necessário ajustar sempre o `out-width` com o `fig-width` para manter a mesma razão com o `out-width` padrão.
+Por exemplo, se seu `fig-width` padrão é 6 e o `out-width` está em "70%", será necessário configurar `fig-width` a 4.3 (6 \* 0.5 / 0.7) quando ajustar `out-width: "50%"`.
 
-Figure sizing and scaling is an art and science and getting things right can require an iterative trial-and-error approach.
+Entender dimensionamento é uma arte e uma ciência Figure sizing and scaling is an art and science and getting things right can require an iterative trial-and-error approach.
 You can learn more about figure sizing in the [taking control of plot scaling blog post](https://www.tidyverse.org/blog/2020/08/taking-control-of-plot-scaling/).
 
 ### Other important options
