@@ -514,19 +514,19 @@ Entender dimensionamento é uma arte e uma ciência e acertar essas coisas pode 
 Quando estamos trabalhando com código e text, como neste livro, é possível ajustar `fig-show: hold` de modo que os gráficos são exibidos após o código.
 Isso rende o efeito agradável de nos forçar a quebrar blocos de código grandes em menores com suas explicações.
 
-To add a caption to the plot, use `fig-cap`.
-In Quarto this will change the figure from inline to "floating".
+Para adicionar uma legenda ao gráfico, use `fig-cap`.
+No Quarto isso mudará a figura de *inline* (no meio do texto) para "*floating*".
 
-If you're producing PDF output, the default graphics type is PDF.
-This is a good default because PDFs are high quality vector graphics.
-However, they can produce very large and slow plots if you are displaying thousands of points.
-In that case, set `fig-format: "png"` to force the use of PNGs.
-They are slightly lower quality, but will be much more compact.
+Se você está produzindo PDF, o tipo gráfico padrão é PDF.
+Isso é um bom padrão porque PDF são gráficos vetoriais de alta qualidade.
+No entanto, isso pode gerar gráficos muito grandes e lentos se você está exibindo milhares de pontos.
+Nesse caso, ajusete `fig-format: "png"` para forçar o uso de PNGs.
+Esses têm qualidade ligeiramente menor, mas são muito mais compactos.
 
-It's a good idea to name code chunks that produce figures, even if you don't routinely label other chunks.
-The chunk label is used to generate the file name of the graphic on disk, so naming your chunks makes it much easier to pick out plots and reuse in other circumstances (e.g., if you want to quickly drop a single plot into an email).
+É uma boa ideia dar rótulos a blocos de código que produzam figuras, mesmo que você rotineiramente não faça isso.
+O rótulo do bloco é usado para gerar o nome de arquivo do gráfico em disco, então nomear seus blocos facilita muito a identificação dos gráficos e reutilizá-lose em outras circunstâncias (por exemplo, quando é necessário pegar um único gráfico para enviar um email).
 
-### Exercises
+### Exercícios
 
 1.  Open `diamond-sizes.qmd` in the visual editor, find an image of a diamond, copy it, and paste it into the document. Double click on the image and add a caption. Resize the image and render your document. Observe how the image is saved in your current working directory.
 2.  Edit the label of the code chunk in `diamond-sizes.qmd` that generates a plot to start with the prefix `fig-` and add a caption to the figure with the chunk option `fig-cap`. Then, edit the text above the code chunk to add a cross-reference to the figure with Insert \> Cross Reference.
@@ -853,12 +853,12 @@ We've drawn on our own experiences and Colin Purrington's advice on lab notebook
     How are you going to organize them so you can find them again in the future?
     We recommend storing them in individual projects, and coming up with a good naming scheme.
 
-## Summary
+## Resumo
 
-In this chapter we introduced you to Quarto for authoring and publishing reproducible computational documents that include your code and your prose in one place.
-You've learned about writing Quarto documents in RStudio with the visual or the source editor, how code chunks work and how to customize options for them, how to include figures and tables in your Quarto documents, and options for caching for computations.
-Additionally, you've learned about adjusting YAML header options for creating self-contained or parametrized documents as well as including citations and bibliography.
-We have also given you some troubleshooting and workflow tips.
+Neste capítulo introduzimos Quarto para escrita e publicação reproduzível de documentos computacionais que incluem seu código e sua prosa no mesmo lugar.
+Você aprender a escrever em documentos Quarto no RStudio com o editor fonte ou visual, como blocos de código funcionam e como personalizar opções para cache de computações.
+Além disso, você aprendeu sobre ajustes no cabeçalho YAML para criar documentos autocontidos ou parametrizados, assim como sobre citações e bibliografia.
+Também demos dicas de fluxo de trabalho e resolução de problemas.
 
 While this introduction should be sufficient to get you started with Quarto, there is still a lot more to learn.
 Quarto is still relatively young, and is still growing rapidly.
