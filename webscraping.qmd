@@ -13,20 +13,20 @@ mensagem_capitulo_sem_traducao()
 Este capítulo faz a introdução do básico sobre raspagem de dados (*web scraping*) com o pacote [rvest](https://rvest.tidyverse.org).
 Raspagem de dados é uma ferramenta muito útil para extração de dados de páginas web.
 Alguns websites oferecem uma API, um conjunto de requisições HTTP estruturadas que retornam dados no formato JSON, o qual você pode lidar usando as técnicas do @sec-rectangling.
-Sempre que possível, você deve usar uma API[^webscraping-1], pois geralmente te retornarão dados mais confiáveis.
-Entretando, infelizmente programar com APIs web está fora do escopo deste livro.
-Ao invés disso, ensinaremos sobre raspagem de dados, uma técnica que funciona independente do site fornecer uma API ou não.
+Sempre que possível, você deve usar uma API[^webscraping-1], pois geralmente te retornará dados mais confiáveis.
+Entretanto, infelizmente, programar com APIs web está fora do escopo deste livro.
+Ao invés disso, ensinaremos sobre raspagem de dados, uma técnica que funciona independentemente do site fornecer uma API ou não.
 
 [^webscraping-1]: E muitas APIs populares já possuem um pacote no CRAN que as encapsulam, então comece sempre fazendo uma pesquisa antes!
 
 Neste capítulo, discutiremos primeiro sobre ética e legalidade da raspagem de dados antes de falar sobre o básico de HTML.
-Você aprenderá o básico sobre seletores CSS para localizar elementos específicos em uma página e como usar funções do rvest para obter dados de textos e atributos de um HTML para o R.
+Você aprenderá o básico sobre seletores CSS para localizar elementos específicos em uma página, e como usar funções do rvest para obter dados de textos e atributos de um HTML para o R.
 Depois, discutiremos algumas técnicas para descobrir qual seletor CSS você precisa para a página que está fazendo a raspagem de dados, e terminaremos falando sobre alguns estudos de caso e uma breve discussão sobre websites dinâmicos.
 
 ### Pré-requisitos
 
 Neste capítulo, iremos focar nas ferramentas fornecidas pelo pacote rvest.
-rvest é um membro do tidyverse, mas não faz parte de seus componentes principais, portanto devemos carregá-lo explicitamente.
+O pacote rvest é um membro do tidyverse, mas não faz parte de seus componentes principais, portanto devemos carregá-lo explicitamente.
 Iremos também carregar o tidyverse completo, já que é geralmente muito útil para trabalhar com os dados obtidos da raspagem.
 
 ```{r}
