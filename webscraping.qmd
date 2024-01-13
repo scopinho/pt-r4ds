@@ -27,7 +27,7 @@ Depois, discutiremos algumas técnicas para descobrir qual seletor CSS você pre
 
 Neste capítulo, iremos focar nas ferramentas fornecidas pelo pacote rvest.
 rvest é um membro do tidyverse, mas não faz parte de seus componentes principais, portanto devemos carregá-lo explicitamente.
-Iremos também carregar o tidyverse completo já que é geralmente muito útil para trabalhar com os dados obtidos da raspagem.
+Iremos também carregar o tidyverse completo, já que é geralmente muito útil para trabalhar com os dados obtidos da raspagem.
 
 ```{r}
 #| label: setup
@@ -39,10 +39,10 @@ library(rvest)
 
 ## Ética e legalidade da raspagem de dados
 
-Antes de começarmos a discutir o código que você precisará para efetuar a raspagem de dados, precisamos discutir se é ético e legal você fazê-la.
+Antes de começarmos a discutir o código que você precisará para efetuar a raspagem de dados, precisamos discutir se é ético e lícito realizá-la.
 No geral, a situação é complicada em relação a ambos.
 
-Legalidade depende muito de onde você vive.
+A legislação depende muito de onde você vive.
 Entretanto, como princípio geral, se um dado é público, impessoal e factual, você provavelmente não terá problemas[^webscraping-2].
 Esses três fatores são importantes porque estão ligados aos termos e condições do site, às informações de identificação pessoal e aos direitos autorais, como discutiremos a seguir.
 
@@ -50,48 +50,48 @@ Esses três fatores são importantes porque estão ligados aos termos e condiç�
     Mas este é o melhor resumo que podemos dar depois de ler muito sobre esse assunto.
 
 Se os dados não forem públicos, impessoais ou factuais, ou se você estiver coletando os dados especificamente para ganhar dinheiro com eles, será necessário falar com um advogado.
-Em qualquer caso, você deve respeitar os recursos do servidor que hospeda as páginas em que está efetuando a raspagem de dados.
+Em qualquer caso, você deve respeitar os recursos do servidor que hospeda as páginas em que você está efetuando a raspagem de dados.
 Mais importante ainda, isso significa que se você estiver fazendo raspagem de muitas páginas, certifique-se de esperar um pouco entre cada requisição.
 Um jeito fácil é utilizar o pacote [**polite**](https://dmi3kno.github.io/polite/) de Dmytro Perepolkin.
-Ele fará uma pausa automatica entre as requisições e armazenará os resultados (*cache*) para que você não precise mais solicitar a mesma página duas vezes.
+Ele fará uma pausa automatica entre as requisições e armazenará os resultados (*cache*) para que você não precise solicitar a mesma página duas vezes.
 
 ### Termos de serviço
 
-Se você olhar atentamente, descobrirá que muitos websites incluem em alguma lugar da página um *link* para "termo e condições" ou "termo de serviço", e se você ler a página atentamente, você descobrirá que em geral o site especificamente proíbe sua raspagem de dados.
-Essas páginas tendem a ser uma apropriação legal de terras, onde as empresas fazem reivindicações muito amplas.
-É educado respeitar estes termos de serviço sempre que possível, mas aceite qualquer reclamação com cautela.
+Se você olhar atentamente, descobrirá que muitos websites incluem em algum lugar da página um *link* para "termos e condições" ou "termos de serviço", e se você ler a página atentamente, você geralmente descobrirá que o site especificamente proíbe sua raspagem de dados.
+Essas páginas tendem a ser uma apropriação jurídica de terras, onde as empresas fazem reivindicações muito amplas.
+É educado respeitar estes termos de serviço sempre que possível, mas considere as reivindicações com cautela.
 
-Os tribunais dos Estados Unidos tem concluído que simplesmente colocar os termos de serviço no rodapé do website não é suficiente para que você fique vinculado a ele, e.x., [HiQ Labs v. LinkedIn](https://en.wikipedia.org/wiki/HiQ_Labs_v._LinkedIn).
-Em geral, para que você tenha este vínculo com os termos de serviços, você deve ter tido uma ação explícita, como criar uma conta ou marcar uma opção.
+Os tribunais dos Estados Unidos concluíram que simplesmente colocar os termos de serviço no rodapé do website não é suficiente para que você fique vinculado a eles, e.x., [HiQ Labs v. LinkedIn](https://en.wikipedia.org/wiki/HiQ_Labs_v._LinkedIn).
+Em geral, para que você seja submetido aos termos de serviços, você deve ter tido uma ação explícita, como criar uma conta ou marcar uma opção.
 Isto torna importante saber se um dado é **público** ou não; se você não precisa ter uma conta para acessá-lo, é improvável que você tenha qualquer vínculo com os termos de serviço.
-Note que a situação na Europa é diferente, onde os tribunais concluíram que os termos de serviços são aplicáveis mesmo que você não concorde explicitamente com eles.
+Note que a situação é diferente na Europa, onde os tribunais concluíram que os termos de serviços são aplicáveis mesmo que você não concorde explicitamente com eles.
 
 ### Informações de identificação pessoal
 
 Mesmo que o dado seja público, você deve ter extremo cuidado em fazer raspagem de informações pessoais como nomes, endereços de *email*, números telefônicos, datas de nascimento, etc.
-A Europa, em particular, tem leis bem restritas sobre coleta e armazenamento deste tipo de dados ([GDPR](https://gdpr-info.eu/)), e independente de onde você viva, é provável que esteja entrando em um atoleiro ético.
+A Europa, em particular, tem leis bem restritas sobre coleta e armazenamento destes tipos de dados ([GDPR](https://gdpr-info.eu/)), e independente de onde você viva, é provável que passe por complicações éticas.
 Por exemplo, em 2016, um grupo de pesquisadores rasparam dados públicos contendo informações pessoais (e.x., nomes de usuário, idade, genero, localização, etc.) sobre 70.000 pessoas do site de relacionamento OkCupid e eles liberaram publicamente estes dados sem qualquer tentativa de torná-los anônimos (*anonymization*).
-Enquanto os pesquisadores acharam que não havia nada de errado uma vez que os dados já eram públicos, este trabalho foi largamente condenado devido a preocupações éticas sobre a identificação dos usuários cuja informação foi liberada no conjunto de dados.
+Enquanto os pesquisadores acharam que não havia nada de errado com isso, uma vez que os dados já eram públicos, este trabalho foi largamente condenado devido a preocupações éticas sobre a identificação dos usuários cuja informação foi liberada no conjunto de dados.
 Se seu trabalho envolve raspagem de dados de informações com identificação pessoal, nós recomendamos fortemente que você leia sobre o estudo do caso OkCupid[^webscraping-3] bem como casos similares de estudos com éticas de pesquisa questionáveis envolvendo a aquisição e liberação de informações com idenficação pessoal.
 
-[^webscraping-3]: Um artigo de exemplo sobre o estudo do OkCupid foi publicado pela Wired, <https://www.wired.com/2016/05/okcupid-study-reveals-perils-big-data-science>.
+[^webscraping-3]: Um exemplo de artigo sobre o estudo do OkCupid foi publicado pela Wired, <https://www.wired.com/2016/05/okcupid-study-reveals-perils-big-data-science>.
 
 ### Direitos autorais (*copyright*)
 
 Finalmente, você também deve se preocupar com as leis de direitos autorais.
 As leis de direitos autorais são complicadas, mas vale a pena dar uma olhada na [lei estadunidense](https://www.law.cornell.edu/uscode/text/17/102) que descreve exatamente o que é protegido: "\[...\] obras originais de autoria fixadas em qualquer meio de expressão tangível, \[...\]".
-Em seguida, descreve categorias específicas que se aplicam, como obras literárias, obras musicais, filmes e muito mais.
-Notavelmente ausentes da proteção de direitos autorais estão os dados.
+Em seguida, descreve categorias específicas em que as leis se aplicam, como obras literárias, obras musicais, filmes e muito mais.
+Os dados estão notavelmente ausentes da proteção de direitos autorais.
 Isso significa que, desde que você limite sua raspagem de dados a fatos, a proteção de direitos autorais não se aplica.
 (Porém, observe que a Europa possui um direito separado "[sui generis](https://en.wikipedia.org/wiki/Database_right)" que protege bases de dados (*databases*).)
 
-Como um breve exemplo, nos Estados Unidos, listas de ingredientes e de instruções não estão sujeitas às leis de direitos autorias, portanto estas leis não podem ser usadas para proteger uma receita.
+Como um breve exemplo, nos Estados Unidos, listas de ingredientes e de instruções não estão sujeitas às leis de direitos autorais, portanto estas leis não podem ser usadas para proteger uma receita.
 Mas se esta lista de receitas estiver acompanhada de um conteúdo literário substancial, então ela poderá ser protegida.
 Por isso é que quando você procura por uma receita na Internet existe tanto conteúdo antes.
 
-Se você realmente precisa fazer raspagem de dados de conteúdo original, (como texto ou imagem), você talvez ainda pode estar protegido pela [doutrina de uso justo](https://en.wikipedia.org/wiki/Fair_use) (*doctrine of fair use*).
-O uso justo (*fair*) não é uma regra rígida e rápida, mas pesa uma série de fatores.
-É mais provável que se aplique se você estiver coletando dados para pesquisa ou para fins não comerciais e se limitar o que coleta apenas ao que precisa.
+Se você realmente precisa fazer raspagem de dados de conteúdo original, (como texto ou imagem), você ainda pode estar protegido pela [doutrina de uso justo](https://en.wikipedia.org/wiki/Fair_use) (*doctrine of fair use*).
+O uso justo (*fair use*) não é uma regra rígida e rápida, mas pesa uma série de fatores.
+É mais provável que se aplique caso você esteja coletando dados para pesquisa ou para fins não comerciais e se limite a coletar apenas o que precisa.
 
 ## O básico de HTML
 
