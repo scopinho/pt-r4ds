@@ -183,7 +183,7 @@ data.frame(
 )
 ```
 
-É mais fácil usar *list-columns* com *tibbles*, pois `tibble()` trata listas como vetores e o método de impressão foi projetado tendo listas em mente.
+É mais fácil usar *list-columns* com *tibbles*, pois a função `tibble()` trata listas como vetores e o método de impressão exibição foi projetado tendo listas em mente.
 :::
 
 ## Desaninhando (*unnesting*)
