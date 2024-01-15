@@ -8,18 +8,18 @@ source("_common.R")
 
 ## Introdução
 
-Neste capítulo, você aprenderá a arte da **representação retangular** dos dados (*rectangling*): pegar um dado que é fundamentalmente hierárquico ou baseado em árvore (*tree-like*) e convertê-lo em um *data frame* retangular, composto por linhas e colunas.
+Neste capítulo, você aprenderá a arte da **representação retangular** dos dados (*rectangling*): pegar um dado que é fundamentalmente hierárquico ou baseado em uma estrutura de árvore (*tree-like*) e convertê-lo em um *data frame* retangular, composto por linhas e colunas.
 Isto é importante porque dados hierárquicos são surpreendentemente comuns, especialmente quando se trabalha com dados vindos da web.
 
-Para aprender sobre representação retangular, você precisa aprender primeiro sobre listas, as estruturas de dados que tornam os dados hierárquicos possíveis.
+Para aprender sobre representação retangular, você precisa aprender primeiro sobre listas, que são estruturas de dados que tornam os dados hierárquicos possíveis.
 Depois, você aprenderá sobre duas funções críticas do tidyr: `tidyr::unnest_longer()` e `tidyr::unnest_wider()`.
-Iremos então mostrar alguns casos de estudo, aplicando estas simples funções diversas vezes para resolver problemas reais.
-Concluiremos falando sobre JSON, a fonte mais frequente de conjuntos de dados hierárquicos e um formato comum de intercambio de dados na web.
+Iremos então mostrar alguns estudos de caso, aplicando estas funções simples diversas vezes para resolver problemas reais.
+Concluiremos falando sobre JSON, a fonte mais frequente de conjuntos de dados hierárquicos e um formato comum para intercambio de dados na web.
 
 ### Pré-requisitos
 
 Neste capítulo, usaremos várias funções do tidyr, um componente principal do tidyverse.
-Usaremos também o pacote repurrrsive para nos fornecer alguns conjuntos de dados interessantes para praticar representação retangular e concluiremos usando o pacote jsonlite para importar arquivos JSON para listas do R.
+Usaremos também o pacote repurrrsive para nos fornecer alguns conjuntos de dados interessantes para praticar a representação retangular e concluiremos usando o pacote jsonlite para importar arquivos JSON para o R como listas.
 
 ```{r}
 #| label: setup
@@ -48,7 +48,7 @@ x2 <- list(a = 1:2, b = 1:3, c = 1:4)
 x2
 ```
 
-Até para estas listas simples, é necessário um razoável espaço para imprimí-las.
+Até para estas listas simples, é necessário um espaço razoável para exibi-las no Console.
 Uma alternativa é usar `str()`, que gera uma visualização compacta da e**str**utura, tirando o foco de seu contéudo:
 
 ```{r}
@@ -56,8 +56,8 @@ str(x1)
 str(x2)
 ```
 
-Como pode ver, `str()` mostra cada elemento da lista em sua própria linha.
-Ele mostra o nome, quando presente, depois uma abreviação do tipo e então os primeiros valores.
+Como você pode ver, `str()` mostra cada elemento da lista em uma linha própria.
+Esta função mostra o nome, quando presente, seguido de uma abreviação do tipo e então os primeiros valores.
 
 ### Hierarquia
 
@@ -86,19 +86,19 @@ str(x5)
 ```
 
 Conforme as listas aumentam ainda mais e se tornam ainda mais complexas, `str()` pode começar a deixar de ser útil e você precisará mudar para a `View()`[^rectangling-1].
-A @fig-view-collapsed mostra o resultado da chamada de `View(x5)`. o visualizador começa mostrando o nível mais alto da lista, mas você pode expandir interativamente qualquer componente para ver mais, como na @fig-view-expand-1. RStudio também te mostra o código que você precisaria para acessar aquele elemento, como na @fig-view-expand-2. Retornaremos em como este código funciona na @sec-subset-one.
+A @fig-view-collapsed mostra o resultado da chamada de `View(x5)`. O visualizador começa mostrando o nível mais alto da lista, mas você pode expandir interativamente qualquer componente para ver mais, como na @fig-view-expand-1. O RStudio também lhe mostra o código que você precisaria para acessar aquele elemento, como na @fig-view-expand-2. Retornaremos a como este código funciona na @sec-subset-one.
 
 [^rectangling-1]: Esta é uma funcionalidade do RStudio.
 
 ```{r}
 #| label: fig-view-collapsed
 #| fig.cap: >
-#|   O visualizador do RStudio permite que você explore interativamente listas complexas.  
+#|   A visualização do RStudio permite que você explore interativamente listas complexas.  
 #|   O visualizador inicia mostrando apenas os primeiros níveis da lista.
 #| fig.alt: >
-#|   Uma captura de tale do RStudio mostrando o visualizador de listas. Mostra os
+#|   Uma captura de tela do RStudio mostrando o visualizador de listas. Mostra os
 #|   dois componentes filhos de x5: o primeiro elemento é um vetor *double* e
-#|   o segundo é uma lista. Um triangulo virado para a direita indica que
+#|   o segundo é uma lista. Um triangulo apontando para a direita indica que
 #|   o segundo elemento possue em si elementos filhos mas que você não consegue ver.
 #| echo: false
 #| out-width: NULL
@@ -108,10 +108,10 @@ knitr::include_graphics("screenshots/View-1.png", dpi = 220)
 ```{r}
 #| label: fig-view-expand-1
 #| fig.cap: >
-#|   Clicando no triangulo virado para a direita, o elemento de lista se expande 
+#|   Clicando no triangulo  apontado para a direita, o elemento de lista se expande 
 #|   e então você pode ver seus elementos filhos.
 #| fig.alt: >
-#|   Outra captura de tela do visualizador de listas coms os elements do segundo elemento de
+#|   Outra captura de tela do visualizador de listas com os elements do segundo elemento de
 #|   x5. Ele também tem dois filhos, um vetor *double* e outra
 #|   lista.
 #| echo: false
@@ -123,8 +123,8 @@ knitr::include_graphics("screenshots/View-2.png", dpi = 220)
 #| label: fig-view-expand-2
 #| fig.cap: >
 #|   Você pode repetir esta operação quantas vezes quiser até 
-#|   chegar ao dados desejado. Note o canto inferior esquerdo: se você clicar
-#|   em um elemento da lista, RStudio te o código necessário para acessar tal elemento
+#|   chegar aos dados desejados. Note no canto inferior esquerdo: se você clicar
+#|   em um elemento da lista, o RStudio lhe fornece o código necessário para acessar tal elemento
 #|   neste caso `x5[[2]][[2]][[2]]`.
 #| fig.alt: >
 #|   Outra captura de tela com o elemento neto de x5 expandido
@@ -136,7 +136,7 @@ knitr::include_graphics("screenshots/View-3.png", dpi = 220)
 
 ### List-columns
 
-Listas também podem estar presentes em um *tibble*, quando isto acontece as chamamos de *list-columns* (colunas de lista).
+Listas também podem estar presentes em um *tibble*, quando isto acontece as chamamos de colunas-lista (*list-columns*).
 *List-columns* são úteis porque elas permitem que você coloque objetos em um *tibble* que normalmente não pertenceriam a ele.
 Em particular, *list-columns* são muito usadas no ecosistema [tidymodels](https://www.tidymodels.org), pois permitem que você armazene coisas como saída de modelos ou amostras (*resamples*) em um *data frame*.
 
@@ -158,12 +158,12 @@ df |>
   filter(x == 1)
 ```
 
-Trabalhar com *list-column* é difícil, mas isto é porque, trabalhar com listas é difícil em geral; voltaremos a este assunto no @sec-iteration.
-Neste capítulo, nos concetraremos em desaninhar (*unnesting*) *list-columns* em variáveis regulares para que você possa usar tuas ferramentas já existentes nelas.
+Trabalhar com *list-column* é mais difícil, mas isto se dá porque trabalhar com listas é difícil de modo geral; voltaremos a este assunto no @sec-iteration.
+Neste capítulo, nos concetraremos em desaninhar (*unnest*) as colunas-lista em variáveis regulares para que você possa usar tuas ferramentas já existentes nelas.
 
-O método de impressão padrão é um resumo grosseiro de seus conteúdos.
-A *list-column* poderia ser arbitrariamente complexa, portanto não há um jeito fácil de imprimí-la.
-Se quiser visualizá-la, você precisará extrair apenas uma *list-column* e aplicar uma das técnicas que aprendeu acima, como `df |> pull(z) |> str()` ou `df |> pull(z) |> View()`.
+O método de exibição padrão é um resumo grosseiro de seus conteúdos.
+A *list-column* poderia ser arbitrariamente complexa, portanto não há um jeito fácil de exibi-las ("printa-las").
+Se quiser visualizá-la, você precisará extrair apenas a *list-column* em questão e aplicar uma das técnicas que aprendeu acima, como `df |> pull(z) |> str()` ou `df |> pull(z) |> View()`.
 
 ::: callout-note
 ## R base
@@ -174,7 +174,7 @@ Se quiser visualizá-la, você precisará extrair apenas uma *list-column* e apl
 data.frame(x = list(1:3, 3:5))
 ```
 
-Você pode forçar `data.frame()` a tratar uma lista como uma lista de linhas envolvedo-a com a função `I()`, mas o resultado não é impresso muito bem:
+Você pode forçar `data.frame()` a tratar uma lista como uma lista de linhas envolvendo-a com a função `I()`, mas o resultado não gera uma exibição muito boa:
 
 ```{r}
 data.frame(
@@ -189,7 +189,7 @@ data.frame(
 ## Desaninhando (*unnesting*)
 
 Agora que você aprendeu o básico sobre listas e *list-columns*, vamos explorar como você pode transformá-las novamente em linhas e colunas regulares.
-Aqui usaremos um dado de exemplo muito simples para que você entenda a ideia básica; na próxima seção mudaremos para dados reais.
+Aqui usaremos uma amostra de dados simples para que você entenda a ideia básica; na próxima seção mudaremos para dados reais.
 
 *List-columns* tendem a aparecer em duas formas básicas: nomeadas (*named*) e não nomeadas (*unnamed*).
 Quando os elementos filhos são **nomeados**, eles tendem a ter o mesmo nome em todas as linhas.
@@ -232,7 +232,7 @@ df1 |>
 ```
 
 Por padrão, os nomes das novas colunas vem exclusivamente dos nomes dos elementos da lista, mas você pode usar o argumento `names_sep` para solicitar que o nome da coluna seja combinado com o nome do elemento.
-Isto é útil para remover ambiguidades com nomes repetidos.
+Isto é útil para remover ambiguidades de nomes repetidos.
 
 ```{r}
 df1 |> 
@@ -241,7 +241,7 @@ df1 |>
 
 ### `unnest_longer()`
 
-Quando cada linha conter uma lista não nomeada, é mais natural colocar cada elemento em sua própria linha com `unnest_longer()`:
+Quando cada linha contiver uma lista não nomeada, é mais natural colocar cada elemento em sua própria linha com `unnest_longer()`:
 
 ```{r}
 df2 |> 
@@ -279,7 +279,7 @@ df4 <- tribble(
 
 `unnest_longer()` sempre mantém o conjunto de colunas inmutável, enquanto muda o número de linhas.
 Então, o que acontece?
-Como `unnest_longer()` produz cinco linhas enquanto mantém tudo em `y`?
+Como que `unnest_longer()` produz cinco linhas e ao mesmo tempo mantém tudo em `y`?
 
 ```{r}
 df4 |> 
@@ -291,31 +291,31 @@ Como `unnest_longer()` não pode encontrar um tipo de vetor comum, ela mantém o
 Você pode estar se perguntando se isso viola o mandamento de que cada elemento de uma coluna deve ser do mesmo tipo.
 Não: cada elemento é uma lista, mesmo que o conteúdo seja de tipos diferentes.
 
-Lidar com tipos inconsistentes é desafiador e os detalhes dependem da natureza precisa do problema e de teus objetivos, mas você provavelmente precisará de ferramentas do @sec-iteration.
+Lidar com tipos inconsistentes é desafiador e os detalhes dependem da natureza precisa do problema e dos seus objetivos, mas você provavelmente precisará de ferramentas do @sec-iteration.
 
 ### Outras funções
 
-tidyr tem algumas outras funções de representação retangular que não iremos cobrir neste livro:
+O tidyr tem algumas outras funções de representação retangular que não iremos cobrir neste livro:
 
--   `unnest_auto()` automaticamente escolhe entre `unnest_longer()` e `unnest_wider()` baseado na estrutura da *list-column*. É ótima para exploração rápida, mas no fim das contas é uma má ideia pois não te força a entender como seus dados estão estruturado e torna teu código mais difícil de entender.
+-   `unnest_auto()` automaticamente escolhe entre `unnest_longer()` e `unnest_wider()` baseado na estrutura da *list-column*. Esta função é ótima para uma exploração rápida, mas no fim das contas é uma má ideia pois não força você a entender como seus dados estão estruturados e torna teu código mais difícil de entender.
 -   `unnest()` expande tanto linhas quanto colunas. É muito poderosa quando você tem uma *list-column* que contém uma estrutura 2d como um *data frame*, algo que você não verá neste livro, mas você deve encontrar se usar o ecosistema [tidymodels](https://www.tmwr.org/base-r.html#combining-base-r-models-and-the-tidyverse).
 
-É bom saber sobre estas funções pois você pode encontrá-las em códigos de outras pessoas or enfrentar você mesmo desafios raros de representação retangular.
+É bom conhecer estas funções pois você pode encontrá-las em códigos de outras pessoas ou enfrentar você mesmo desafios mais raros de representação retangular.
 
 ### Exercícios
 
 1.  O que acontece quando você utiliza `unnest_wider()` com *list-columns* não nomeadas como em `df2`?
-    Qual argumento agora é necessário?
+    Qual argumento é necessário agora?
     O que acontece com valores faltantes (*missing*)?
 
 2.  O que acontece quando você utiliza `unnest_longer()` com *list-columns* nomeadas como em `df1`?
     Qual informação adicional você recebe na saída?
     Como você pode suprimir estes detalhes extras?
 
-3.  De tempos em tempos você encontra *data frames* com várias *list-columns* com valores alinhados.
-    Por exemplo, no *data frame* seguinte, os valores de `y`e `z` estão alinhados (ex: `y` e `z` sempre terão o mesmo tamanho com uma linha e o primeiro valor de `y` corresponde ao primeiro valor de `z`).
-    O que acontee quando você faz duas chamadas a `unnest_longer()` neste *data frame*?
-    Como você pode preservar o relacionamento entre `x` e `y`?
+3.  De tempos em tempos, você encontra *data frames* com várias *list-columns* com valores alinhados.
+    Por exemplo, no *data frame* seguinte, os valores de `y`e `z` estão alinhados (ex: `y` e `z` sempre terão o mesmo tamanho dentro de uma linha e o primeiro valor de `y` corresponde ao primeiro valor de `z`).
+    O que acontece quando você executa a função `unnest_longer()` duas vezes neste *data frame*?
+    Como você pode preservar a relação entre `x` e `y`?
     (Dica: leia atentamente a documentação).
 
     ```{r}
@@ -326,15 +326,15 @@ tidyr tem algumas outras funções de representação retangular que não iremos
     )
     ```
 
-## Estudo de casos
+## Estudos de casos
 
-A principal diferença entre exemplos simples que usamos acima e dados reais, é que os dados reais tipicamente contém vários níveis de aninhamento (*nesting*) que requerem diversas chamadas a `unnest_longer()` e/ou `unnest_wider()`.
-Para mostra isto em ação, esta seção usa três desafios de representação retangular usando conjunto de dados do pacote repurrsive.
+A principal diferença entre os exemplos simples que usamos acima e o de dados reais, é que os dados reais tipicamente contém vários níveis de aninhamento (*nesting*) que requerem o uso consecutivo de `unnest_longer()` e/ou `unnest_wider()`.
+Para mostrar isto em ação, esta seção faz uso de três desafios de representação retangular, usando conjunto de dados do pacote repurrrsive.
 
 ### Dados bem largos (*wide data*)
 
 Começaremos com `gh_repos`.
-Esta é uma lista que contém dados uma coleção de repositórios do GitHub retornados usando a API do GitHub. É uma lista bastante aninhada (*nested*) e com vários níveis, por isso é difícil de mostrar sua estrutura neste livro; nós recomendamos que você a explore por conta própria usando `View(gh_repos)` antes de continuar.
+Esta é uma lista que contém dados de uma coleção de repositórios do GitHub obtidos usando a API do GitHub. É uma lista aninhada em vários níveis, por isso é difícil de mostrar sua estrutura neste livro; nós recomendamos que você a explore por conta própria usando `View(gh_repos)` antes de continuar.
 
 `gh_repos` é uma lista, mas nossas ferramentas trabalham com *list-columns*, então iremos começar colocando-a em um *tibble*.
 Chamaremos esta coluna de `json` por razões que veremos mais tarde.
@@ -362,7 +362,7 @@ repos |>
   unnest_wider(json) 
 ```
 
-Isto fucionou, mas o resultado ficou um pouco estranho: Existem tantas colunas que o *tibble* nem imprime todas elas!
+Isto fucionou, mas o resultado ficou um pouco estranho: Existem tantas colunas que o *tibble* nem exibe todas elas!
 Podemos ver todas as colunas com `names()`; e aqui vemos as primeiras 10:
 
 ```{r}
@@ -412,7 +412,7 @@ Isto nos dá um outro conjunto de dados largo (*wide*), mas você pode perceber 
 
 Dados aninhados (*nested*) muitas vezes são usados para representar dados que normalmente estariam espalhados por vários *data frames*.
 Por exemplo, veja `got_chars` que contém dados sobre os personagens (*characters*) que aparecem nos livros e série de TV *Game of Thrones*.
-Assim como `gh_repos` também é uma lista, então começamos transformado-a em uma *list-column* de um *tibble*:
+Assim como `gh_repos`, ela também é uma lista, então começamos transformado-a em uma *list-column* de um *tibble*:
 
 ```{r}
 chars <- tibble(json = got_chars)
@@ -466,11 +466,11 @@ titles <- chars |>
 titles
 ```
 
-Você poderia imaginar criar uma tabela como esta para cada *list-column* e então usar uniões (*joins*) para combiná-las com os dados dos personagens conforme você necessário.
+Você poderia imaginar criar uma tabela como esta para cada *list-column* e então usar uniões (*joins*) para combiná-las com os dados dos personagens conforme você achar necessário.
 
-### Profundamento aninhados (*deeply nested*)
+### Profundamente aninhados (*deeply nested*)
 
-Concluiremos estes estudos de casos com uma *list-column* que é profundamente aninhada e requer repetidas rodadas de `unnest_wider()` e `unnest_longer()` para desvendar: `gmaps_cities`.
+Concluiremos estes estudos de casos com uma *list-column* que é profundamente aninhada e requer repetidas rodadas de `unnest_wider()` e `unnest_longer()` para ser desvendada: `gmaps_cities`.
 Este é um *tibble* de duas colunas contendo cinco nomes de cidades e o resultado da [API de geolocalização](https://developers.google.com/maps/documentation/geocoding) do *Google* para determinar suas localizações:
 
 ```{r}
@@ -486,7 +486,7 @@ gmaps_cities |>
 
 Isto nos retorna `status` e `results`.
 Iremos remover a coluna status já que são todos `OK`; em uma análise real, você também iria capturar todas as linhas onde `status != "OK"` e entender o que deu errado.
-`results` é uma lista não nomeada, com um ou dois elementas (veremos porque em breve), portanto iremos desaninhá-la em linhas:
+`results` é uma lista não nomeada, com um ou dois elementos (veremos porque em breve), portanto iremos desaninhá-la em linhas:
 
 ```{r}
 gmaps_cities |> 
@@ -509,7 +509,7 @@ locations
 Agora podemos ver porque duas cidades tinham dois resultados: Washington correspondeu ao estado Washington e Washington, DC e Arlington correspondeu a Arlington, Virginia e Arlington, Texas.
 
 Há vários lugares que podemos ir a partir daqui.
-Poderíamos querer determinar a localização exata da correspondência, a qual é armazenada na *list-column* `geometry`:
+Poderíamos querer determinar a localização exata da localidade correspondente, a qual é armazenada na *list-column* `geometry`:
 
 ```{r}
 locations |> 
@@ -571,10 +571,10 @@ Se esses estudos de caso aguçaram seu apetite para mais representações retang
 
 ### Exercícios
 
-1.  Estime aproximadamente quando `gh_repos` foi criado.
+1.  Estime aproximadamente quando o `gh_repos` foi criado.
     Porque você só pode estimar aproximadamente esta data?
 
-2.  A coluna `owner` da `gh_repo` contém muitas informações duplicadas pois cada pessoa priprietária pode ter vários repositórios.
+2.  A coluna `owner` do `gh_repo` contém muitas informações duplicadas pois cada pessoa priprietária pode ter vários repositórios.
     Você consegue contruir um *data frame* `owners` que contém uma linha para cada pessoa proprietária?
     (Dica: A `distinct()` funciona com `list-cols`?)
 
@@ -615,7 +615,7 @@ JSON é um formato simples projetado para ser lido e escrito por máquinas, não
 Ele tem seis tipos de dados chaves.
 Quatro deles são escalares:
 
--   O tipo mais simples é o nulo (`null`) que tem o mesmo papél do `NA` no R. Representa ausência de dados.
+-   O tipo mais simples é o nulo (`null`) que tem o mesmo papel do `NA` no R. Representa ausência de dados.
 -   **string** é muito parecido com *string* no R, porém deve ter sempre aspas duplas.
 -   **number** é similar o *number* do R: podem ser inteiro (e.x., 123), decimal (e.x., 123.45), or notação científica (e.x., 1.23e3). JSON não suporta `Inf`, `-Inf`, ou `NaN`.
 -   **boolean** é similar a `TRUE` e `FALSE` do R, mas usa letras minúsculas `true` e `false`.
@@ -631,7 +631,7 @@ Um **object** é como uma lista nomeada e é escrito com `{}`.
 Os nomes (chaves na terminologia JSON) são *strings*, portanto devem ter aspas.
 Por exemplo, `{"x": 1, "y": 2}` é um objeto que mapeia 1 para `x` e 2 para `y`.
 
-Note que JSON não possui umjeito nativo para representar datas e data_hora (*datetime*), então estes são geralmente armazenados como *strings* e você deverá usar `readr::parse_date()` ou `readr::parse_datetime()` para transformá-los na estrutura de dados correta.
+Note que JSON não possui um jeito nativo para representar datas e data_hora (*datetime*), então estes são geralmente armazenados como *strings* e você deverá usar `readr::parse_date()` ou `readr::parse_datetime()` para transformá-los na estrutura de dados correta.
 Da mesma forma, a regras do JSON para representar número com ponto flutuante (*floating points*), são um pouco imprecisas, portanto você também encontrará algumas vezes números armazenados como *strings*.
 Aplique `readr::parse_double()` conforme necessário para obter os tipo correto.
 
@@ -640,21 +640,21 @@ Aplique `readr::parse_double()` conforme necessário para obter os tipo correto.
 Para converter JSON em estruturas de dados do R, recomendamos o pacote jsonlite, de Jeroen Ooms.
 Usaremos apenas duas funções do jsonlite: `read_json()` e `parse_json()`.
 Na vida real, você usará `read_json()` para importar arquivos JSON do disco.
-Por exemplo, o pacote repurrsive também é a fonte para `gh_user` como um arquivo JSON e você pode importá-la com `read_json()`:
+Por exemplo, o pacote repurrsive também é a fonte do `gh_user` como um arquivo JSON e você pode importá-la com `read_json()`:
 
 ```{r}
-# O caminho para o arquivo JSON dentro do pacote:
+# Um caminho para o arquivo JSON dentro do pacote:
 gh_users_json()
 
-# Importa com read_json()
+# Importe com read_json()
 gh_users2 <- read_json(gh_users_json())
 
-# Verifica se é o mesmo dado que usamos anteriormente
+# Verifique se é o mesmo dado que usamos anteriormente
 identical(gh_users, gh_users2)
 ```
 
-Nest livro, usaremos também `parse_json()`, que recebe uma *string* representando um JSON, o que a torna boa para gerar exemplos simples.
-Para começar, aqui estão três simples conjuntos de dados JSON, começando com um número, entao adicionando alguns números em *array* e então adicionando o *array* e então adicionando este *array* em um *object*:
+Neste livro, usaremos também `parse_json()`, que recebe uma *string* representando um JSON, o que a torna boa para gerar exemplos simples.
+Para começar, aqui estão três simples conjuntos de dados JSON, começando com um número, e então adicionando alguns números em *array* e em seguida adicionando esse *array* em um *object*:
 
 ```{r}
 str(parse_json('1'))
@@ -662,9 +662,9 @@ str(parse_json('[1, 2, 3]'))
 str(parse_json('{"x": [1, 2, 3]}'))
 ```
 
-jsonlite tem uma outra importante função chamada `fromJSON()`.
+jsonlite tem uma outra função importante chamada `fromJSON()`.
 Não a usamos aqui, pois efetua uma simplificação automática (`simplifyVector = TRUE`).
-Isto geralmente funciona bem, particularmente em casos simples, mas achamos que você estaria melhor fazendo você mesmo a representação retangular para que saiba exatamente o que está acontecendo e possa mais facilmente lidar com estruturas aninhadas mais complexas.
+Isto geralmente funciona bem, particularmente em casos simples, mas achamos que é mais vantajoso se fizer você mesmo a representação retangular para que saiba exatamente o que está acontecendo e possa lidar mais facilmente com estruturas aninhadas mais complexas.
 
 ### Iniciando o processo de representação retangular
 
@@ -742,6 +742,6 @@ Neste capítulo, você aprendeu o que são listas, como você pode gerá-las a p
 Surpreendentemente, precisamos de apenas duas funções: `unnest_longer()` para colocar elementos da lista em linhas e `unnest_wider()` para colocar os elementos da lista em colunas.
 Não importa quão profundamente aninhada esteja a *list-column*; tudo que você precisa fazer é chamar repetidamente essas duas funções.
 
-JSON é o formato de dados mais comuns retornados por APIs web.
+JSON é o formato de dados mais comum retornados por APIs web.
 E se o *website* não possuir uma API, mas você puder ver os dados desejados no *website*?
 Este é o tópico do próximo capítulo: Raspagem de dados (*web scraping*), extraindo dados de páginas web HTML.
