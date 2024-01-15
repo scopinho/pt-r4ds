@@ -40,9 +40,9 @@ Imagine que você tem uma variável que registra o mês:
 x1 <- c("Dez", "Abr", "Jan", "Mar")
 ```
 
-Usar uma string para registrar esta variável tem dois problemas:
+Usar uma *string* para registrar esta variável tem dois problemas:
 
-1.  Existem apenas doze meses possíveis e não há nada que o salve de erros de digitação:
+1.  Existem apenas doze meses possíveis e não há nada que proteja você contra erros de digitação:
 
     ```{r}
     x2 <- c("Dez", "Abr", "Jam", "Mar")
@@ -119,7 +119,7 @@ df <- read_csv(csv, col_types = cols(mes = col_factor(niveis_meses)))
 df$mes
 ```
 
-## Questionario
+## Questionário
 
 No restante deste capítulo, usaremos `dados::questionario`.
 É uma amostra de dados da [Pesquisa Social Geral](https://gss.norc.org), uma pesquisa de longa data nos EUA conduzida pela organização de pesquisa independente NORC da Universidade de Chicago.
@@ -131,7 +131,7 @@ questionario
 
 (Lembre-se, como este conjunto de dados é fornecido por um pacote, você pode obter mais informações sobre as variáveis ​​com `?questionario`.)
 
-Quando os fatores são armazenados em um tibble, você não consegue ver seus níveis tão facilmente.
+Quando os fatores são armazenados em um *tibble*, você não consegue ver seus níveis tão facilmente.
 Uma maneira de visualizá-los é com `count()`:
 
 ```{r}
@@ -162,7 +162,7 @@ Por exemplo, imagine que você deseja explorar o número médio de horas gastas 
 
 ```{r}
 #| fig-alt: |
-#|   Im gráfico de dispersão com horas_tv no eixo-x e religião no eixo-y.
+#|   Um gráfico de dispersão com horas_tv no eixo-x e religião no eixo-y.
 #|   O eixo-y parece estar ordenado de forma arbitrária, tornando difícil entender
 #|   qualquer padrão geral.
 sumario_religiao <- questionario |>
@@ -187,7 +187,7 @@ Podemos melhorá-lo reordenando os níveis de `religiao` usando `fct_reorder()`.
 ```{r}
 #| fig-alt: |
 #|   O mesmo gráfico de dispersão acima, mas agora a religião é exibida em
-#|   ordem crescente de horas_tv. "Outra religião oriental Leste" tem o menor número de horas de TV
+#|   ordem crescente de horas_tv. "Outra religião oriental Leste" tem o menor número de horas de TV,
 #|   menos de 2, e “Não sabe” tem o valor mais alto (acima de 5).
 ggplot(sumario_religiao, aes(x = horas_tv, y = fct_reorder(religiao, horas_tv))) +
   geom_point()
@@ -195,7 +195,7 @@ ggplot(sumario_religiao, aes(x = horas_tv, y = fct_reorder(religiao, horas_tv)))
 
 Reordenar a religião torna muito mais fácil ver que as pessoas na categoria “Não sabe” assistem muito mais TV, e o Hinduísmo e outras religiões orientais assistem muito menos.
 
-À medida que você começa a fazer transformações mais complicadas, recomendamos movê-las de `aes()` para uma etapa separada `mutate()`.
+À medida que você começa a fazer transformações mais complicadas, recomendamos movê-las de `aes()` para uma etapa separada, usando `mutate()`.
 Por exemplo, você poderia reescrever o gráfico acima como:
 
 ```{r}
@@ -213,8 +213,8 @@ E se criarmos um gráfico semelhante observando como a idade média varia de aco
 
 ```{r}
 #| fig-alt: |
-#|   Um gráfico de dispersão com idade no eixo-x e renda no eixo-y. Renda
-#|   foi reordenado em ordem de idade média, o que não faz muito
+#|   Um gráfico de dispersão com idade no eixo-x e renda no eixo-y. A renda
+#|   foi reordenada com base na idade média, o que não faz muito
 #|   sentido. Uma seção do eixo-y vai de US$ 6.000 a 6.999, depois < US$ 1.000, 
 #|   então $8000-9999.
 sumario_renda <- questionario |>
@@ -229,7 +229,7 @@ ggplot(sumario_renda, aes(x = idade, y = fct_reorder(renda, idade))) +
 ```
 
 Aqui, reordenar arbitrariamente os níveis não é uma boa ideia!
-Isso porque o `renda` já tem uma ordem de princípios com a qual não devemos mexer.
+Isso porque `renda` já tem uma ordem de princípios com a qual não devemos mexer.
 Reserve `fct_reorder()` para fatores cujos níveis são ordenados arbitrariamente.
 
 No entanto, faz sentido colocar "Não se aplica" na frente com os outros níveis especiais.
@@ -238,7 +238,7 @@ Você pode usar `fct_relevel()`.
 
 ```{r}
 #| fig-alt: |
-#|   O mesmo gráfico de dispersão, mas agora "Não se aplica", é exibido no
+#|   O mesmo gráfico de dispersão, mas agora "Não se aplica", é exibido na
 #|   parte inferior do eixo-y. Geralmente há uma associação positiva
 #|   entre renda e idade, e a faixa de renda com maior média
 #|   idade é "Não se aplica".
@@ -247,7 +247,7 @@ ggplot(sumario_renda, aes(x = idade, y = fct_relevel(renda, "Não se aplica"))) 
   geom_point()
 ```
 
-Por que você acha que a média de idade para “Não se aplica” é tão alta?
+Por que você acha que a idade média para “Não se aplica” é tão alta?
 
 Outro tipo de reordenação é útil quando você está colorindo as linhas em um gráfico.
 `fct_reorder2(f, x, y)` reordena o fator `f` pelos valores `y` associados aos maiores valores `x`.
@@ -259,12 +259,12 @@ Isso torna o gráfico mais fácil de ler porque as cores da linha na extremidade
 #| fig-alt: |
 #|     Um gráfico de linha com idade no eixo-x e proporção no eixo-y.
 #|     Há uma linha para cada categoria de estado civil: sem resposta,
-#|     nunca casou, separado(a), divorciado(a), viúvo(a) e casado(a). Isso é
-#|     um pouco difícil de ler o gráfico porque a ordem da legenda não é 
+#|     nunca casou, separado(a), divorciado(a), viúvo(a) e casado(a). O gráfico é
+#|     um pouco difícil de ler porque a ordem da legenda não é 
 #|     relacionada às linhas do gráfico. Reorganizar a legenda faz 
 #|     o gráfico ser mais fácil de ser lido porque as cores da legenda agora correspondem à 
 #|     ordem das linhas na extremidade direita do gráfico. Você pode ver alguns 
-#|     padrões não surpreendentes: a proporção de nunca casados(as) ​​diminui comh 
+#|     padrões não surpreendentes: a proporção de nunca casados(as) ​​diminui com a
 #|     idade, casado(a) forma um U de cabeça para baixo e viúvo(a) começa
 #|     baixo, mas aumenta acentuadamente após os 60 anos.
 por_idade <- questionario |>
@@ -304,7 +304,7 @@ questionario |>
 1.  Existem alguns números suspeitosamente altos em `horas_tv`.
     A média é uma boa sumarização?
 
-2.  Para cada fator em `quesitonario` identifique se a ordem dos níveis é arbitrária ou baseada em princípios.
+2.  Para cada fator em `quesitonario`, identifique se a ordem dos níveis é arbitrária ou baseada em princípios.
 
 3.  Por que mover "Não se aplica" para a frente dos níveis o moveu para a parte inferior do gráfico??
 
@@ -313,7 +313,7 @@ questionario |>
 Mais poderoso do que alterar as ordens dos níveis é alterar os seus valores.
 Isso permite esclarecer rótulos para publicação e recolher níveis para exibições de alto nível.
 A ferramenta mais geral e poderosa é `fct_recode()`.
-Ele permite recodificar ou alterar o valor de cada nível.
+Ela permite recodificar ou alterar o valor de cada nível.
 Por exemplo, pegue a variável `partido` do *data frame* `questionario`:
 
 ```{r}
@@ -402,9 +402,9 @@ Leia a documentação para aprender sobre `fct_lump_min()` e `fct_lump_prop()` q
 
 ### Exercícios
 
-1.  Como mudaram ao longo do tempo as proporções de pessoas que se identificam como Democratas, Republicanas e Independentes??
+1.  Como mudaram ao longo do tempo as proporções de pessoas que se identificam como Democratas, Republicanas e Independentes?
 
-2.  Como você poderia agrupar a “renda” em um pequeno conjunto de categorias??
+2.  Como você poderia agrupar a “renda” em um pequeno conjunto de categorias?
 
 3.  Observe que existem 9 grupos (excluindo outros) no exemplo `fct_lump` acima.
     Por que não 10?
@@ -420,7 +420,7 @@ Você pode reconhecê-los ao imprimir porque eles usam `<` entre os níveis dos 
 ordered(c("a", "b", "c"))
 ```
 
-Na prática, os fatores `ordenados()` se comportam de forma muito semelhante aos fatores regulares.
+Na prática, os fatores ordenados (`ordered()`) se comportam de forma muito semelhante aos fatores regulares.
 Existem apenas dois lugares onde você pode notar um comportamento diferente:
 
 -   Se você mapear um fator ordenado para colorir ou preencher no ggplot2, o padrão será `scale_color_viridis()`/`scale_fill_viridis()`, uma escala de cores que implica um ranqueamento.
