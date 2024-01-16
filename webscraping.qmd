@@ -87,7 +87,7 @@ Isso significa que, desde que você limite sua raspagem de dados a fatos, a prot
 
 Como um breve exemplo, nos Estados Unidos, listas de ingredientes e de instruções não estão sujeitas às leis de direitos autorais, portanto estas leis não podem ser usadas para proteger uma receita.
 Mas se esta lista de receitas estiver acompanhada de um conteúdo literário substancial, então ela poderá ser protegida.
-Por isso é que quando você procura por uma receita na Internet existe tanto conteúdo antes.
+É por isso que quando você procura por uma receita na internet, ela é acompanhada de tanto conteúdo.
 
 Se você realmente precisa fazer raspagem de dados de conteúdo original, (como texto ou imagem), você ainda pode estar protegido pela [doutrina de uso justo](https://en.wikipedia.org/wiki/Fair_use) (*doctrine of fair use*).
 O uso justo (*fair use*) não é uma regra rígida e rápida, mas pesa uma série de fatores.
@@ -112,7 +112,7 @@ HTML é abreviação **H***yper***T***ext* **M***arkup* **L***anguage* e se pare
 
 HTML tem uma estrutura hierárquica formada por **elementos** que consiste em uma marcação (*tag*) de início (e.x., `<tag>`), opcionalmente um **atributo** (*attributes*) (`id='primeiro'`), e uma marcação de fim[^webscraping-4] (como `</tag>`), e **conteúdo** (*contents*) (tudo entre a marcação de início e de fim).
 
-[^webscraping-4]: Em várias marcações (incluindo `<p>` e `<li>`) a marcção de fim não é obrigatória, mas acreditamos ser melhor incluí-la, pois torna a visualização da estrutura HTML mais fácil.
+[^webscraping-4]: Em várias marcações (incluindo `<p>` e `<li>`) a marcação de fim não é obrigatória, mas acreditamos ser melhor incluí-la, pois torna a visualização da estrutura HTML mais fácil.
 
 Como `<` e `>` são usados para início e fim das marcações, você não pode escrevê-los diretamente.
 Ao invés disso, você deve usar os caracteres de **fuga** (*escapes*) `&gt;` (maior que (*greater than*)) e `&lt;` (menor que (*less than*)) do HTML.
@@ -135,7 +135,7 @@ Alguns dos mais importantes são:
 Se você encontrar uma marcação que nunca viu antes, você pode pesquisar o que ela faz usando a pesquisa do *Google*.
 Um outro ótimo lugar para começar é o [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML) que descreve todos os aspectos da programação web.
 
-A maioria dos elementos tem conteúdo entre suas marcaçãoes de início e fim.
+A maioria dos elementos podem ter conteúdo entre suas marcações de início e fim.
 Este conteúdo pode ser um texto ou outros elementos.
 Por exemplo, o HTML a seguir contém um parágrafo de texto com uma palavra em negrito.
 
@@ -151,7 +151,7 @@ O elemento `<b>` não possui descendentes, porém ele tem conteúdo (o texto "no
 ### Atributos
 
 Marcações podem ter **atributos** (*attributes*) com nomes que se parecem com `nome1='valor1' nome2='valor2'`.
-Dois dos mais importantes atributos são `id` e `class`, que são usados juntamente com as folhas de estilo CSS (*Cascading Style Sheets*) para controlar aparência visual da página.
+Dois dos mais importantes atributos são `id` e `class`, que são usados juntamente com as folhas de estilo CSS (*Cascading Style Sheets*) para controlar a aparência visual da página.
 Eles são muito úteis quando raspamos dados de uma página.
 Atributos também são usados para gravar os destinos dos *links* (o atributo `href` do elemento `<a>`) e a origem de imagens (o atributo `src` do elemento `<img>`).
 
@@ -183,8 +183,8 @@ html
 ```
 
 Agora que você tem o HTML no R, é hora de extrair os dados de interesse.
-Você aprenderá primeiro sobre seletores CSS, os quais permitem que você identifique elementos de interesse e sobre funções rvest que permitem que você extraia dados desses elementos.
-Depois, falaremos brevemente sobre tabelas HTML, as quais possuem algumas ferramentas especiais.
+Você aprenderá primeiro sobre seletores CSS, os quais permitem que você identifique elementos de interesse e sobre as funções do rvest que permitem que você extraia dados desses elementos.
+Depois, falaremos brevemente sobre tabelas HTML, que possuem algumas ferramentas especiais.
 
 ### Encontrando elementos
 
