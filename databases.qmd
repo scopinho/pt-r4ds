@@ -10,9 +10,9 @@ source("_common.R")
 
 Um grande volume de dados são armazenados em bancos de dados (*databases*), portanto, é essencial que você saiba como acessá-los.
 Em alguns casos você pode pedir para alguém fazer uma cópia para um `.csv` para você, mas isto se torna problemático rapidamente: toda vez que você precisar fazer uma mudança, você precisará se comunicar com outra pessoa.
-Você irá querer acessar o banco de dados diretamente e obter os dados desejados quando quiser.
+Você deve ser capaz de acessar diretamente o banco de dados para obter os dados necessários quando quiser.
 
-Neste capítulo, você aprenderá primeiro o básico do pacote DBI: Como utilizá-lo para se conectar a um banco de dados e então obter dados através de uma consulta SQL[^databases-1].
+Neste capítulo, você aprenderá primeiro o básico do pacote DBI: como utilizá-lo para se conectar a um banco de dados e então obter dados através de uma consulta SQL[^databases-1].
 **SQL** é uma abreviação de **s***tructured* **q***uery* **l***anguage*, e é a lingua franca dos bancos de dados, portanto uma linguagem muito importante que todas pessoas que praticam ciência de dados devem aprender.
 Dito isto, não iremos começar com SQL, mas sim, iremos ensinar você sobre o dbplyr, um pacote capaz de traduzir código dplyr para código SQL.
 Faremos isto de maneira a ensinar algumas das características mais importantes do SQL.
@@ -22,7 +22,7 @@ Você não se tornará um especialista em SQL ao final deste capítulo, mas ser�
 
 ### Pré-requisitos
 
-Neste capítulo, faremos uma introdução do DBI e dbplyr.
+Neste capítulo, faremos uma introdução aos pacotes DBI e dbplyr.
 DBI é uma interface de baixo nível que se conecta aos bancos de dados e executa SQL; dbplyr é uma interface de alto nível que traduz seu código dplyr para um código de consultas SQL e então as executa através do DBI.
 
 ```{r}
@@ -42,10 +42,10 @@ Assim como um *data frame*, uma tabela de um banco de dados é uma coleção de 
 Existem três diferenças de alto nível entre *data frames* e as tabelas de um banco de dados:
 
 -   Tabelas são armazenadas em disco e podem ser arbitrariamente grandes.
-    *Data frames* são armazenados na memória do computador, e são fundamentalmente limitados (apesar deste limite ser suficiente grande para muitos problemas).
+    *Data frames* são armazenados na memória do computador, e são fundamentalmente limitados (apesar deste limite ser suficientemente grande para muitos problemas).
 
 -   Tabelas quase sempre possuem um índice.
-    Assim como um índice de um livro, um índice no banco de dados, torna possível encontrar rapidamente linhas do seu interesse sem ter que olhar uma a uma todas as linhas.
+    Assim como um índice de um livro, um índice no banco de dados torna possível encontrar rapidamente as linhas de interesse, sem a necessidade de examinar uma a uma todas as linhas.
     *Data frames* e *tibbles* não possuem índices, porém *data.tables* possuem, e esta é umas das razões para serem tão rápidos.
 
 -   Muitos bancos de dados clássicos são otimizados para coletar dados rapidamente, mas não para analizar dados existentes.
@@ -62,7 +62,7 @@ Bancos de dados são executados por sistemas de gerenciamento de banco de dados 
 
 Para se conectar a um banco de dados pelo R, você usa um par de pacotes:
 
--   Você sempre usuará o DBI (**d***ata***b***ase* **i***nterface*) pois este fornece um conjunto de funções genéricas que se conectam com os bancos de dados, enviam dados, executam consultas SQL, etc.
+-   Você sempre usuará o DBI (**d***ata***b***ase* **i***nterface*), pois este fornece um conjunto de funções genéricas que se conectam com os bancos de dados, enviam dados, executam consultas SQL, etc.
 
 -   Você também usará um pacote feito especificamente para o SGBD ao qual você está se conectando.
     Este pacote traduz os comandos genéricos do DBI para as necessidades específicas do um dado SGBD.
@@ -71,10 +71,10 @@ Para se conectar a um banco de dados pelo R, você usa um par de pacotes:
 
 Se você não puder encontrar um pacote específico para seu SGBD, você pode utilizar o pacote odbc.
 Este usa o protocolo ODBC suportado por muitos SGBDs.
-odbc precisa de um pouco mais de configurações, pois você deve instalar o *driver* ODBC e informar o pacote odbc onde encontrá-lo.
+odbc exige uma configuração um pouco mais elaborada, pois você deve instalar o *driver* ODBC e informar o pacote odbc onde encontrá-lo.
 
 Efetivamente, você cria uma conexão com o banco de dados usando `DBI::dbConnect()`.
-O primeiro argumento seleciona o SGBD[^databases-2], então o segundo e argumentos subsequentes descrevem como se conectar (ex: onde ele se encontra e quais credenciais você precisa para acessá-lo).
+O primeiro argumento seleciona o SGBD[^databases-2], e os argumentos seguintes descrevem como se conectar a ele (ou seja, onde está localizado e as credenciais necessárias para acessá-lo).
 O código a seguir demonstra alguns exemplos típicos:
 
 [^databases-2]: Normalmente, esta é a única função que você usará do pacote cliente, por isso recomendamos usar o `::` para referenciar esta função específica, ao invés de carregar todo o pacote usando  `library()`.
@@ -95,13 +95,13 @@ con <- DBI::dbConnect(
 Os detalhes precisos de conexão variam muito de SGBD para SGBD, portanto infelizmente não poderemos cobrir todos aqui.
 Isto significa que você deverá fazer um pouco de pesquisa por conta própria.
 Geralmente, você pode perguntar a outras pessoas cientistas de dados do time ou falar com a pessoa que administra o banco de dados (DBA) (**d**ata**b**ase **a**dministrator).
-A configuração inicial geralmente exige um pouco de ajuste (e talvez um pouco do *Google*) para ser feita corretamente, mas em geral você precisará fazer uma única vez.
+A configuração inicial geralmente exige um pouco de ajuste (e talvez um pouco de pesquisa no *Google*) para ser feita corretamente, mas em geral você precisará fazer uma única vez.
 
 ### Neste livro
 
 Configurar um SGBD cliente-servidor ou SGBD da nuvem neste livro seria bastante chato, portanto usaremos um SGBD "no-processo" que vem inteiramente em um pacote do R: duckdb.
 Graças à magia do DBI, a única diferença entre usar o duckdb e outro SGBD é como você se conectará ao banco de dados.
-Isto se torna muito bom para ensinar, pois você pode facilmente executar este código bem como pegar o que aprendeu e aplicar em outro lugar.
+Isto se torna muito bom para ensinar, pois você pode executar facilmente este código e, da mesma forma, aplicar o que aprendeu em outros lugares com facilidade.
 
 Conectar ao duckdb é particularmente simples, pois por padrão, um banco de dados temporário é criado e depois removido ao sair do R.
 Isto é muito bom para o aprendizado, pois garante que você iniciará de um estado limpo toda vez que reiniciar o R:
@@ -124,7 +124,7 @@ con <- DBI::dbConnect(duckdb::duckdb(), dbdir = "duckdb")
 
 Já que este é um banco de dados novo, precisaremos começar adicionando alguns dados.
 Aqui adicionaremos os conjuntos de dados `milhas` e `diamante` do pacote dados usando `DBI::dbWriteTable()`.
-O exemplo mais simples de `dbWriteTable()` precisa de três argumentos: uma conexão ao banco de dados, o nome da tabela a ser criada no banco de dados e um *data frame* com os dados.
+O exemplo de uso mais simples de `dbWriteTable()` precisa de três argumentos: uma conexão ao banco de dados, o nome da tabela a ser criada no banco de dados e um *data frame* com os dados.
 
 ```{r}
 dbWriteTable(con, "milhas", dados::milhas)
@@ -149,7 +149,7 @@ con |>
   as_tibble()
 ```
 
-`dbReadTable()` retorna um `data.frame` portanto usamos `as_tibble()` para converter em um *tibble* para que imprima de forma mais bonita na tela.
+`dbReadTable()` retorna um `data.frame`, portanto usamos `as_tibble()` para converter em um *tibble* para que imprima de forma mais bonita na tela.
 
 Se você já sabe SQL, você pode usar `dbGetQuery()` pata obter os resultados de uma consulta executada no banco de dados:
 
@@ -169,7 +169,7 @@ Mas se você ler atentamente, você pode adivinhar que estamos selecionando cinc
 ## O básico do dbplyr
 
 Agora que você se conectou ao banco de dados e carregou alguns dados, você pode começar a aprender sobre dbplyr.
-dbplyr roda por tráz do dplyr (*dplyr* **backend**), isso significa que você continua a escrever códigos dplyr, mas o *backend* o executa de maneira diferente.
+dbplyr roda por tráz do dplyr, isso significa que você continua a escrever códigos dplyr, mas o *backend* o executa de maneira diferente.
 Neste caso, o dbplyr traduz para SQL; existem outros *backends* incluindo [dtplyr](https://dtplyr.tidyverse.org) que traduz o código para [data.table](https://r-datatable.com) e [multidplyr](https://multidplyr.tidyverse.org) que executa o código em vários núcleos (*cores*).
 
 Para usar dbplyr, primeiro você usa `tbl()` para criar um objeto que representa a tabela do banco de dados:
@@ -181,7 +181,7 @@ diamantes_bd
 
 ::: callout-note
 Existem duas outras formas comuns de interagir com banco de dados.
-Primeira, muitas organizações possuem banco de dados muito grandes, então você precisa de alguma hierarquia para manter todas as tabelas organizadas.
+Primeiro, muitas organizações possuem banco de dados muito grandes, então você precisa de alguma hierarquia para manter todas as tabelas organizadas.
 Neste caso, você deve precisar fornecer um esquema (*schema*) ou um catálogo (*catalog*) e um esquema, de maneira a obter a tabela que você tem interesse:
 
 ```{r}
@@ -210,11 +210,11 @@ grandes_diamantes_bd
 ```
 
 Você pode dizer que este objeto representa uma consulta ao banco de dados pois imprime o nome do SGBD no topo e apesar de também dizer o número de colunas, geralmente não sabe o número de linhas.
-Isto é porque para encontrar o número total de linhas geralmente requer executar a consulta completa, algo que estamos tentando evitar.
+Isso ocorre porque encontrar o número total de linhas geralmente requer a execução da consulta completa, algo que estamos tentando evitar.
 
 Você também pode ver o código SQL gerado através da função `show_query()` do dplyr.
 Se você conhece dplyr, esta é uma boa maneira de aprender SQL!
-Escreva algum código dplyr, deixe o dbplyr traduzir para o SQL, e então tente entender como as duas linguagens se associam.
+Escreva algum código dplyr, deixe o dbplyr traduzir para o SQL, e então tente entender como as duas linguagens se relacionam.
 
 ```{r}
 grandes_diamantes_bd |>
@@ -295,8 +295,8 @@ voos |>
 
 Existem duas principais diferenças entre verbos dplyr e cláusulas SELECT:
 
--   No SQL, variações de letras (maiúscula/minúscula) não faz diferença: você pode escrever `select`, `SELECT` ou até `SeLeCt`. Neste livro ficaremos com a convenção comum de escrever as palavras-chaves SQL usando letras maiúsculas para distinguir de nomes de tabelas ou variáveis.
--   NO SQL, a ordem importa: você sempre deve escrever as declarações em ordem `SELECT`, `FROM`, `WHERE`, `GROUP BY`, `ORDER BY`. É um pouco confuso, pois esta ordem não é a mesma de como as declarações são realmente avaliadas com `FROM` em primeiro, depois `WHERE`, `GROUP BY`, `SELECT` e `ORDER BY`.
+-   No SQL,  a maiúscula e minúscula não fazem diferença: você pode escrever `select`, `SELECT` ou até `SeLeCt`. Neste livro ficaremos com a convenção comum de escrever as palavras-chaves SQL usando letras maiúsculas para distinguir de nomes de tabelas ou variáveis.
+-   No SQL, a ordem importa: você sempre deve escrever as declarações em ordem `SELECT`, `FROM`, `WHERE`, `GROUP BY`, `ORDER BY`. É um pouco confuso, pois esta ordem não é a mesma de como as declarações são realmente avaliadas com `FROM` em primeiro, depois `WHERE`, `GROUP BY`, `SELECT` e `ORDER BY`.
 
 As seções seguintes exploram com mais detalhes cada cláusula.
 
@@ -406,7 +406,7 @@ Existem alguns detalhes importantes a serem observados aqui:
 
 -   `|` se torna `OR` e `&` se torna `AND`.
 -   SQL usa `=` para comparação, e não `==`. SQL não possui atribuição (*assignment*), portanto não há potencial para confusão aqui.
--   SQL usa somente `''` pata *strings*, não usa `""`. No SQL, `""` é usado para identificar variáveis, como a ``` `` ``` do R.
+-   SQL usa somente `''` para *strings*, não usa `""`. No SQL, `""` é usado para identificar variáveis, como a ``` `` ``` do R.
 
 Outro operator SQL útil é o `IN`, o qual se parece muito com o `%in%`do R:
 
@@ -416,9 +416,9 @@ voos |>
   show_query()
 ```
 
-SQL usa `NULL` ai invés de `NA`.
+SQL usa `NULL` ao invés de `NA`.
 `NULL` se comporta de forma similar ao `NA`.
-A principal diferença é que enquanto são "considerados" nas comparações e aritmética, eles são silenciosamente ignorados quando sumarizados.
+A principal diferença é que enquanto são considerados nas comparações e aritmética, eles são silenciosamente ignorados quando sumarizados.
 dbplyr irá te lembrar disto a primeira vez que você encontrar:
 
 ```{r}
@@ -467,12 +467,12 @@ voos |>
 
 Note como `desc()` é traduzido para `DESC`: esta é uma das muitas funções dplyr cujo o nome foi diretamente inspirado pelo SQL.
 
-### Subconsultas (*subqueries*)
+### Subconsultas
 
 Algumas vezes não é possível traduzir um *pipeline* dplyr em uma única declaração `SELECT` e você precisa usar uma subconsulta.
 Uma **subconsulta** é apenas uma consulta usada como uma fonte de dados na cláusula `FROM` ao invés de uma tabela normal.
 
-dbplyr tipicamente usa subconsultas para solucionar paleativamente limitações do SQL.
+O dbplyr tipicamente usa subconsultas para solucionar paleativamente limitações do SQL.
 Por exemplo, expressões na cláusula `SELECT` não podem referenciar colunas que acabaram de ser criadas.
 Isto significa que o seguinte *pipeline* (muito simples) precisa acontecer em duas etapas: a primeira consulta (interna) computa `ano1` e então a segunda consulta (externa) pode computar `ano2`.
 
@@ -509,7 +509,7 @@ voos |>
   show_query()
 ```
 
-A principal coisa a se notar aqui é a sintaxe: As uniões SQL usam sub-cláusulas da cláusula `FROM` para associar tabelas adicionais, usando `ON` para definir como as tabelas estão relacionadas.
+A principal coisa a se notar aqui é a sintaxe: as uniões SQL usam sub-cláusulas da cláusula `FROM` para associar tabelas adicionais, usando `ON` para definir como as tabelas estão relacionadas.
 
 Os nomes das funções dplyr são tão parecidas com as do SQL que você pode facilmente adivinhar o SQL equivalente para `inner_join()`, `right_join()` e `full_join()`:
 
@@ -528,13 +528,13 @@ FULL JOIN avioes ON (voos.codigo_cauda = avioes.codigo_cauda)
 ```
 
 É muito provavel que você precise de muitas uniões (*joins*) quando trabalhar com dados de um banco de dados.
-Isto porque tabelas são frequentemente armazenadas de uma forma altamente normalizada, onde cada "fato" (*fact*) é armazenado em um único local e para manter um conjunto de dados completo para análise, você precisa navegar por uma rede complexa de tabelas conectadas por chaves primárias (*primary key*) e chaves estrangeiras (*foreign key*).
+Isto porque tabelas são frequentemente armazenadas de uma forma altamente normalizada, onde cada "fato" é armazenado em um único local e para manter um conjunto de dados completo para análise, você precisa navegar por uma rede complexa de tabelas conectadas por chaves primárias (*primary key*) e chaves estrangeiras (*foreign key*).
 Se você encontrar este cenário, o [pacote dm](https://cynkra.github.io/dm/), de Tobias Schieferdecker, Kirill Müller e Darko Bergant é um salva-vidas.
 Ele pode automaticamente determinar as conexões entre as tabelas usando restrições (*constraints*) que as pessoas que adminstram bancos de dados (DBAs) geralmente fornecem, gera visualizações para que você entenda o que está acontecendo e gera as uniões (*joins*) que você precisa para conectar uma tabela à outra.
 
 ### Outros verbos
 
-dbplyr também traduz outros verbos como `distinct()`, `slice_*()`, `intersect()`, e uma seleção crescente de funções do tidyr como `pivot_longer()` e `pivot_wider()`.
+O dbplyr também traduz outros verbos como `distinct()`, `slice_*()`, `intersect()`, e uma seleção crescente de funções do tidyr como `pivot_longer()` e `pivot_wider()`.
 O jeito mais fácil de ver a lista completa do que está disponível no momento é visitando o website dbplyr: <https://dbplyr.tidyverse.org/reference/>.
 
 ### Exercícios
@@ -587,7 +587,7 @@ voos |>
   )
 ```
 
-A tradução de funções de sumarização se tornam mais complicadas quando você as usam dentro de um `mutate()` pois elas se transformam naquilo que conhecemos como **funções de janela** (*window functions*).
+A tradução de funções de sumarização se tornam mais complicadas quando você as usa dentro de um `mutate()` pois elas se transformam naquilo que conhecemos como **funções de janela** (*window functions*).
 No SQL, você transforma uma funções normal em uma função de janela adicionando `OVER` depois dela:
 
 ```{r}
@@ -649,19 +649,19 @@ voos |>
   )
 ```
 
-dbplyr também traduz funções comuns de manipulação de *string* e data/hora (*datetime*), as quais você pode aprender sobre na `vignette("translation-function", package = "dbplyr")`.
-As traduções do dbplyr certamente não são perfeitas, e ainda existem muitas funções do R que ainda não são traduzidas, mas faz um surpreendente bom trabalho em traduzir as funções que você usará na maior parte do tempo.
+O dbplyr também traduz funções comuns de manipulação de *string* e data/hora (*datetime*), as quais você pode aprender sobre na `vignette("translation-function", package = "dbplyr")`.
+As traduções do dbplyr certamente não são perfeitas, e ainda existem muitas funções do R que ainda não são traduzidas, mas o dbplyr faz um surpreendente bom trabalho em traduzir as funções que você usará na maior parte do tempo.
 
 ## Resumo
 
 Neste capítulo você aprendeu como acessar dados de um banco de dados.
-Nós focamos no dbplyr, um "*backend*" do dplyr que permite que você escreva seu código dplyr que está familiarizado e o tenha automaticamente traduzido em SQL.
+Nós focamos no dbplyr, um "*backend*" do dplyr que permite que você escreva o código dplyr que está familiarizado e o tenha automaticamente traduzido em SQL.
 Nós utilizamos esta tradução para te ensinar um pouco de SQL; é importante aprender SQL pois é *a* linguagem mais comumente utilizada para se trabalhar com dados e conhecê-la um pouco facilitrá sua comunicação com outras pessoas de dados que não usam o R.
 Se você terminou este capítulo e gostaria de aprender mais sobre SQL.
 Nós temos duas recomendações:
 
 -   [*SQL for Data Scientists*](https://sqlfordatascientists.com) de Renée M. P. Teate é uma introdução ao SQL desenhada especificamente para as necessidades de cientistas de dados e inclui exemplos com dados altamente interconectados que você geralmente encontra em organizações reais.
--   [*Practical SQL*](https://www.practicalsql.com) de Anthony DeBarros é escrito sob a perspectiva de uma pessoa jornalista de dados (cientista de dados especialista em contar atraentes histórias) e entra em mais detalhes sobre ter seus dados em um banco de dados e rodar seu próprio SGBD.
+-   [*Practical SQL*](https://www.practicalsql.com) de Anthony DeBarros é escrito sob a perspectiva de uma pessoa jornalista de dados (cientista de dados especialista em contar histórias atraentes) e entra em mais detalhes sobre ter seus dados em um banco de dados e rodar seu próprio SGBD.
 
 No próximo capítulo, você aprenderá sobre outro *backend* dplyr para trabalhar com grandes volumes de dados: *arrow*.
 Arrow é desenhado para trabalhar com grandes arquivos em disco e é um complemento natural aos bancos de dados.
