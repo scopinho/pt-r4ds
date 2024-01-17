@@ -694,19 +694,20 @@ A seguir, tente listar todas as coisas que poderiam causar o *bug*.
 Será necessário verificar sistematicamente se essas coisas são as mesmas na sua sessão R e na sua sessão Quarto.
 A forma mais fácil de fazer isso é ajustar `error:true` no bloco causando o problema e usar `print()` e `str()` para verificar que as configurações são o que você espera.
 
-## YAML header
+## Cabeçalho YAML
 
-You can control many other "whole document" settings by tweaking the parameters of the YAML header.
-You might wonder what YAML stands for: it's "YAML Ain't Markup Language", which is designed for representing hierarchical data in a way that's easy for humans to read and write.
-Quarto uses it to control many details of the output.
-Here we'll discuss three: self-contained documents, document parameters, and bibliographies.
+É possível controlar muitas outras configurações de "documento inteiro" ajustando os parâmetros do cabeçalho YAML.
+Você pode estar pensando no que significa YAML: é "*YAML Ain't Markup Language*" ou "YAML não é linguagem Markup" -- mas não carrega a sigla em português.
+A linguagem foi projetada para representar dado hierárquico de uma forma que fosse fácil para humanos lerem e escreverem.
+Quarto usa isso para controlar muitos detalhes da saída.
+Aqui discutiremos três: documentos autocontidos, parâmetros de documentos e bibliografias.
 
-### Self-contained
+### Documentos Autocontidos
 
-HTML documents typically have a number of external dependencies (e.g., images, CSS style sheets, JavaScript, etc.) and, by default, Quarto places these dependencies in a `_files` folder in the same directory as your `.qmd` file.
-If you publish the HTML file on a hosting platform (e.g., QuartoPub, <https://quartopub.com/>), the dependencies in this directory are published with your document and hence are available in the published report.
-However, if you want to email the report to a colleague, you might prefer to have a single, self-contained, HTML document that embeds all of its dependencies.
-You can do this by specifying the `embed-resources` option:
+Documentos HTML tipicamente têm uma série de dependências externas (por exemplo imagens, guias de estilo CSS, JavaScript, etc.) e, por padrão, Quarto coloca essas dependências em uma pasta `_files` no mesmo diretório que o seu arquivo `.qmd`.
+Se você publicar o arquivo HTML em uma plataforma (por exemplo, QuartoPub, <https://quartopub.com/>), as dependências desse diretório são publicadas com o documento e então estarão disponíveis no relatório publicado.
+No entanto, se você quer enviar o relatório para um colega por email, é possível que prefira ter um único documento HTML autocontido que tem suas dependências todas embutidas.
+Você pode fazer isso especificando a opção `embed-resources`.
 
 ``` yaml
 format:
@@ -714,7 +715,7 @@ format:
     embed-resources: true
 ```
 
-The resulting file will be self-contained, such that it will need no external files and no internet access to be displayed properly by a browser.
+O arquivo resultante será autocontido, de modo que não necessitará de qualquer arquivo interno nem de acesso à internet para ser exibido corretamente por um navegador.
 
 ### Parameters
 
