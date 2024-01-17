@@ -188,8 +188,8 @@ Depois, falaremos brevemente sobre tabelas HTML, que possuem algumas ferramentas
 
 ### Encontrando elementos
 
-CSS é abreviação para "folha de estilo em cascata" (*cascading style sheets*), e é uma ferramenta para definir os estilo visual dos documentos HTML.
-CSS inclui uma pequena linguagem para seleção de elementos em uma página chamada **seletores CSS** (*CSS Selectors*).
+CSS é a abreviação para "folha de estilo em cascata" (*cascading style sheets*), que é uma ferramenta para definir os estilos visuais dos documentos HTML.
+CSS inclui uma pequena linguagem chamada **seletores CSS** (*CSS Selectors*) para seleção de elementos em uma página.
 Seletores CSS definem padrões para localizar elementos HTML e são úteis para raspagem de dados, pois definem uma forma concisa de descrever o elemento do qual você quer extrair os dados.
 
 Retornaremos aos seletores CSS em mais detalhes na @sec-css-selectors, mas felizmente você já pode percorrer um bom caminho com apenas três seletores:
@@ -227,7 +227,7 @@ html |> html_element("p")
 ```
 
 Há uma diferença importante entre `html_element()` e `html_elements()` quando você usa um seletor que não corresponde a nenhum elemento.
-`html_elements()` retorna um vetor de tamanho 0, enquanto `html_element()` returno um valor faltante (*missing value*).
+`html_elements()` retorna um vetor de tamanho 0, enquanto `html_element()` retorna um valor faltante (*missing value*).
 Esta diferença será muito importante em breve.
 
 ```{r}
