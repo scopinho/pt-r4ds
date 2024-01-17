@@ -578,14 +578,14 @@ Cada um fornece um conjunto de ferramentas para retornar tabelas formatadas a pa
 2.  Exiba a mesma tabela com `gt::gt()`.
 3.  Adicione um rótulo de bloco de código que começa com o prefixo `tbl-` e adicione a legenda para a tabela com a opção de bloco `tbl-cap`. Depois edite o texto acima do bloco de código para adicionar a referência cruzada para a tabela com Insert \> Cross Reference.
 
-## Caching {#sec-caching}
+## Salvando em cache {#sec-caching}
 
-Normally, each render of a document starts from a completely clean slate.
-This is great for reproducibility, because it ensures that you've captured every important computation in code.
-However, it can be painful if you have some computations that take a long time.
-The solution is `cache: true`.
+Normalmente, cada renderização do documento começa com uma folha em branco.
+Isso é ótimo para reproducibilidade porque garante que você capturou toda computação importante em código.
+No entanto, pode ser doloroso refazer computações que tomam um tempo longo.
+A solução para isso é `cache: true`.
 
-You can enable the Knitr cache at the document level for caching the results of all computations in a document using standard YAML options:
+É possível habilitar o cache do knitr no nível do documento para guardar em cache os resultados de todas as computações em um documento usando as opções padrão de YAML:
 
 ``` yaml
 ---
@@ -645,14 +645,14 @@ processed_data <- rawdata |>
 ```
 ````
 
-`dependson` should contain a character vector of *every* chunk that the cached chunk depends on.
-Knitr will update the results for the cached chunk whenever it detects that one of its dependencies have changed.
+`dependson` deve conter um vetor de caracteres em *todos* os blocos de que o bloco em cache depende.
+Knitr atualizará os resultados para o bloco em cache sempre que detectar que uma de suas dependências mudou.
 
-Note that the chunks won't update if `a_very_large_file.csv` changes, because knitr caching only tracks changes within the `.qmd` file.
-If you want to also track changes to that file you can use the `cache.extra` option.
-This is an arbitrary R expression that will invalidate the cache whenever it changes.
-A good function to use is `file.mtime()`: it returns when it was last modified.
-Then you can write:
+Note que os blocos não serão atualizados se `a_very_large_file.csv` mudar, já que o cache do knitr só monitora alterações no arquivo `.qmd`.
+Se você quiser também monitorar mudanças naquele arquivo, é possível usar a opção `cache.extra`.
+Essa é uma expressão de R arbitrária que invalida o cache toda vez que há alteração.
+Uma boa função neste caso é `file.mtime()`: a função retorna quando foi a última alteração.
+Você pode então escrever:
 
 ````         
 ``` {{r}}
@@ -664,35 +664,35 @@ rawdata <- readr::read_csv("a_very_large_file.csv")
 ```
 ````
 
-We've followed the advice of [David Robinson](https://twitter.com/drob/status/738786604731490304) to name these chunks: each chunk is named after the primary object that it creates.
-This makes it easier to understand the `dependson` specification.
+Seguimos o conselho de [David Robinson](https://twitter.com/drob/status/738786604731490304) para nomear esses blocos: cada um é nomeado de acordo com o objeto primário que é criado.
+Isso facilita a compreensão da especificação de `dependson`.
 
-As your caching strategies get progressively more complicated, it's a good idea to regularly clear out all your caches with `knitr::clean_cache()`.
+Na medida em que suas estratégias de cache vão complicando, é uma boa ideia limpar todo o seu cache com `knitr::clean_cache()`.
 
-### Exercises
+### Exercícios
 
-1.  Set up a network of chunks where `d` depends on `c` and `b`, and both `b` and `c` depend on `a`. Have each chunk print `lubridate::now()`, set `cache: true`, then verify your understanding of caching.
+1.  Ajuste uma rede de blocos em que `d` depende de `c` e `b` e os dois últimos dependem de `a`. Faça com que cada bloco imprima `lubridate::now()`, ajuste `cache: true` e verifique o que você entendeu sobre *caching*.
 
-## Troubleshooting
+## Resolução de problemas
 
-Troubleshooting Quarto documents can be challenging because you are no longer in an interactive R environment, and you will need to learn some new tricks.
-Additionally, the error could be due to issues with the Quarto document itself or due to the R code in the Quarto document.
+Resolver problemas em documentos Quarto pode ser desafiador porque você não está mais em um ambiente interativo de R, então você precisará aprender uns truques novos.
+Além disso, o erro pode ter ocorrido devido a problemas no documento de Quarto ou mesmo devido ao código em R no documento.
 
-One common error in documents with code chunks is duplicated chunk labels, which are especially pervasive if your workflow involves copying and pasting code chunks.
-To address this issue, all you need to do is to change one of your duplicated labels.
+Um erro comum em documentos com blocos de código é haver rótulos de blocos duplicados, o que tem certa ocorrência se o seu fluxo de trabalho envolve cópia e cola de blocos de código.
+Para abordar esse problema, tudo que você precisa fazer é mudar o nome de um dos seus rótulos duplicados.
 
-If the errors are due to the R code in the document, the first thing you should always try is to recreate the problem in an interactive session.
-Restart R, then "Run all chunks", either from the Code menu, under Run region or with the keyboard shortcut Ctrl + Alt + R.
-If you're lucky, that will recreate the problem, and you can figure out what's going on interactively.
+Se os erros ocorrem por causa do código em R no documento, a primeira coisa que você deveria fazer sempre é tentar recriar o problema em uma sessão interativa.
+Reinicie o R, depois execute todos os blocos (*Run all chunks*) via *Run region* no menu Code ou com o atalho Ctrl + Alt + R.
+Se estiver com sorte, isso recriará o problema e você descobrirá o que está acontecendo interativamente.
 
-If that doesn't help, there must be something different between your interactive environment and the Quarto environment.
-You're going to need to systematically explore the options.
-The most common difference is the working directory: the working directory of a Quarto is the directory in which it lives.
-Check the working directory is what you expect by including `getwd()` in a chunk.
+Se isso não ajudar, deve haver algo diferente entre o seu ambiente interativo e o seu ambiente Quarto.
+Será necessário explorar as opções sistematicamente.
+A diferença mais comum é o diretório de trabalho: o diretório de trabalho de um documento Quarto é aquele em que o documento vive.
+Verifique se o diretório é o que você espera usando `getwd()` em um bloco.
 
-Next, brainstorm all the things that might cause the bug.
-You'll need to systematically check that they're the same in your R session and your Quarto session.
-The easiest way to do that is to set `error: true` on the chunk causing the problem, then use `print()` and `str()` to check that settings are as you expect.
+A seguir, tente listar todas as coisas que poderiam causar o *bug*.
+Será necessário verificar sistematicamente se essas coisas são as mesmas na sua sessão R e na sua sessão Quarto.
+A forma mais fácil de fazer isso é ajustar `error:true` no bloco causando o problema e usar `print()` e `str()` para verificar que as configurações são o que você espera.
 
 ## YAML header
 
