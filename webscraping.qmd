@@ -353,7 +353,7 @@ Esta conversão automática nem sempre funciona bem, portanto, em cenários mais
 Descobrir o seletor que você precisa para seus dados é geralmente a parte mais difícil do problema.
 Você geralmente deverá fazer alguns experimentos para encontrar um seletor que seja ao mesmo tempo específico (e.x. ele não seleciona algo que não interessa) e sensível (e.x. ele seleciona tudo que interessa).
 Tentativa e erro é parte normal do processo!
-Existem duas principais ferramentas disponíveis para te ajudar com este processo: *SelectorGadget* and as Ferramentas do Desenvolvedor de seu navegador.
+Existem duas principais ferramentas disponíveis para te ajudar com este processo: *SelectorGadget* e as Ferramentas do Desenvolvedor de seu navegador.
 
 [SelectorGadget](https://rvest.tidyverse.org/articles/selectorgadget.html) é um aplicativo (*bookmarklet*) *javascript* que gera seletores automaticamente baseado em exemplos negativos e positivos fornecidos por você.
 Ele nem sempre funciona, mas quando o faz, é uma mágica!
@@ -373,7 +373,7 @@ Recomendamos começar com o engraçado tutorial [jantar CSS](https://flukeout.gi
 
 ## Juntando tudo
 
-Jamos juntar tudo isso e fazer a aspagem de dados de alguns websites.
+Vamos juntar tudo isso e fazer a raspagem de dados de alguns websites.
 Há algum risco destes exemplos não funcionarem mais quando você executá-los --- este é o desafio fundamental da raspagem de dados; se a estrutura do site muda, então você terá que mudar seu código de raspagem.
 
 ### Guerra nas Estrelas (*StarWars*)
@@ -538,8 +538,8 @@ Entretanto, algumas vezes você chegará a um site onde `html_elements()` e comp
 Em muitos casos, isso ocorre porque você está tentando raspar dados de um site que gera dinamicamente o conteúdo da página com *javascript*.
 Atualmente, isso não funciona com o rvest, porque o rvest baixa o HTML bruto e não executa nenhum *javascript*.
 
-Ainda assim é possível raspar os dados desse tipo de sites, mas o rvest precisa usar um processo mais caro: simular totalmente o navegador da web, incluindo a execução de todo *javascript*.
-Esta funcionalidade não estava disponível quando escrevemos este livro, mas é algo que estamos trabalhando ativamente e pode estar disponível quando você ler isto.
+Ainda assim é possível raspar os dados desses tipos de sites, mas o rvest precisa usar um processo mais caro: simular totalmente o navegador da web, incluindo a execução de todo *javascript*.
+Esta funcionalidade não estava disponível quando escrevemos este livro, mas é algo em que estamos trabalhando ativamente e pode estar disponível quando você ler isto.
 Ele usa o [pacote chromote](https://rstudio.github.io/chromote/index.html) que, na verdade, executa um navegador *Chrome* em segundo plano e oferece ferramentas adicionais para interação com o site, como se fosse uma pessoa digitando o texto ou clicando em botões.
 Veja maiores informações sobre isto no [website do rvest](http://rvest.tidyverse.org/).
 
