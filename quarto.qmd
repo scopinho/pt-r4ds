@@ -717,14 +717,14 @@ format:
 
 O arquivo resultante será autocontido, de modo que não necessitará de qualquer arquivo interno nem de acesso à internet para ser exibido corretamente por um navegador.
 
-### Parameters
+### Parâmetros
 
-Quarto documents can include one or more parameters whose values can be set when you render the report.
-Parameters are useful when you want to re-render the same report with distinct values for various key inputs.
-For example, you might be producing sales reports per branch, exam results by student, or demographic summaries by country.
-To declare one or more parameters, use the `params` field.
+Documentos Quarto podem incluir um ou mais parâmetros cujos valores podem ser ajustados quando se renderiza o relatório.
+Parâmetros são úteis quando se quer executar mais vezes o mesmo relatório com valores diferentes para vários inputs chave.
+Por exemplo, pode ser que seja necessário produzir relatórios de vendas por escritório, resultados de provas por aluno ou mesmo resumos demográficos por mais.
+Para declarar um ou mais parâmetros, use o campo `params`.
 
-This example uses a `my_class` parameter to determine which class of cars to display:
+Esse exemplo usa o parâmetro `my_class` para determinar que classe de carros será exibida:
 
 ```{r}
 #| echo: false
@@ -734,11 +734,11 @@ This example uses a `my_class` parameter to determine which class of cars to dis
 cat(readr::read_file("quarto/fuel-economy.qmd"))
 ```
 
-As you can see, parameters are available within the code chunks as a read-only list named `params`.
+Como se pode ver, parâmetros estão disponíveis dentro dos blocos de código como uma lista chamada `params` com permissão apenas de leitura.
 
-You can write atomic vectors directly into the YAML header.
-You can also run arbitrary R expressions by prefacing the parameter value with `!expr`.
-This is a good way to specify date/time parameters.
+É possível escrever vetores atômicos diretamente no cabeçalho YAML.
+É possível ainda executar expressões arbitrárias em R prefixando o valor do parâmetro com `!expr`.
+Essa é uma boa forma de especificar patâmetros de data/tempo.
 
 ``` yaml
 params:
@@ -746,32 +746,31 @@ params:
   snapshot: !expr lubridate::ymd_hms("2015-01-01 12:30:00")
 ```
 
-### Bibliographies and Citations
+### Bibliografias e citações
 
-Quarto can automatically generate citations and a bibliography in a number of styles.
-The most straightforward way of adding citations and bibliographies to a Quarto document is using the visual editor in RStudio.
+Bibliografia e citações podem ser automaticamente geradas pelo Quarto em uma série de estilos.
+A forma mais direta de adicionar citações e bibliografias no seu documento Quarto é usando o editor visual no RStudio.
 
-To add a citation using the visual editor, go to Insert \> Citation.
-Citations can be inserted from a variety of sources:
+Para adicionar a citação no editor visual, vá em Insert \> Citation.
+Citaçòes podem ser inseridas a partir de uma variedade de fontes:
 
-1.  [DOI](https://quarto.org/docs/visual-editor/technical.html#citations-from-dois) (Document Object Identifier) references.
+1.  Referências [DOI](https://quarto.org/docs/visual-editor/technical.html#citations-from-dois) (*Document Object Identifier*).
 
-2.  [Zotero](https://quarto.org/docs/visual-editor/technical.html#citations-from-zotero) personal or group libraries.
+2.  Bibliotecas particulares ou de grupo do [Zotero](https://quarto.org/docs/visual-editor/technical.html#citations-from-zotero) personal.
 
-3.  Searches of [Crossref](https://www.crossref.org/), [DataCite](https://datacite.org/), or [PubMed](https://pubmed.ncbi.nlm.nih.gov/).
+3.  Pesquisas na [Crossref](https://www.crossref.org/), [DataCite](https://datacite.org/), ou na [PubMed](https://pubmed.ncbi.nlm.nih.gov/).
 
-4.  Your document bibliography (a `.bib` file in the directory of your document)
+4.  Seu documento de bibliografia (um arquivo `.bib` no diretório do seu documento)
 
-Under the hood, the visual mode uses the standard Pandoc markdown representation for citations (e.g., `[@citation]`).
+Dentro do capô, o editor visual usa a representação padrão para citações do markdown Pandoc, (por exemplo, `[@citation]`).
 
-If you add a citation using one of the first three methods, the visual editor will automatically create a `bibliography.bib` file for you and add the reference to it.
-It will also add a `bibliography` field to the document YAML.
-As you add more references, this file will get populated with their citations.
-You can also directly edit this file using many common bibliography formats including BibLaTeX, BibTeX, EndNote, Medline.
+Se você inserir uma citação usando um dos primeiros três métodos, o editor visual automaticamente criará um arquivo `bibliography.bib` para você e adicionará a sua referência a ele.
+Isso também adicionará um campo `bibliography` ao YAML do documento Na medida em que você insere mais referências, esse arquivo é povoado com as citações.
+Também é possivel editar diretamente esse arquivo usando muitos formatos comuns como BibLaTeX, BibTeX, EndNote, Medline.
 
-To create a citation within your .qmd file in the source editor, use a key composed of '\@' + the citation identifier from the bibliography file.
-Then place the citation in square brackets.
-Here are some examples:
+Para criar a citação dentro do seu arquivo `.qmd` no editor fonte, use a chave composta de '\@' + identificador da citação do seu arquivo de bibliografia.
+Em seguida, coloque a citação entre colchetes.
+Seguem alguns exemplos:
 
 ``` markdown
 Separate multiple citations with a `;`: Blah blah [@smith04; @doe99].
