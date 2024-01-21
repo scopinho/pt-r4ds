@@ -65,14 +65,14 @@ O RStudio executará o código e mostrará os resultados junto com o código.
 #| echo: false
 #| out-width: "90%"
 #| fig-cap: |
-#|   A Quarto document in RStudio. Code and output interleaved in 
-#|   the document, with the plot output appearing right underneath the code.
+#|   Um documento Quarto em RStudio. Código e saída entrelaçados 
+#|   no documento, com a saída do gráfico aparecendo logo abaixo do código.
 #| fig-alt: |
-#|   RStudio window with a Quarto document titled "diamond-sizes.qmd" 
-#|   on the left and a blank Viewer window on the right. The Quarto 
-#|   document has a code chunk that creates a frequency plot of diamonds 
-#|   that weigh less than 2.5 carats. The plot shows that the frequency 
-#|   decreases as the weight increases.
+#|   Janela do RStudio com um documento Quarto intitulado "diamond-sizes.qmd" 
+#|   à esquerda e uma janela de Viwer em branco à direita. O documento 
+#|   Quarto tem um bloco de código que cria o gráfico de frequências dos diamantes 
+#|   que pesam menos que 2.5 quilates. Esse gráfico mostra que a frequência 
+#|   diminui na medida que o peso aumenta.
 
 knitr::include_graphics("quarto/diamond-sizes-notebook.png")
 ```
@@ -84,15 +84,15 @@ Se você não gosta de ver seus gráficos e saída dos códigos no documento e p
 #| echo: false
 #| out-width: "90%"
 #| fig-cap: |
-#|   A Quarto document in RStudio with the plot output in the Plots pane.
+#|   Um documento Quarto no RStudio com a saída de gráfico no painel Plots.
 #| fig-alt: |
-#|   RStudio window with a Quarto document titled "diamond-sizes.qmd" 
-#|   on the left and the Plot pane on the bottom right. The Quarto 
-#|   document has a code chunk that creates a frequency plot of diamonds 
-#|   that weigh less than 2.5 carats. The plot is displayed in the Plot 
-#|   pane and shows that the frequency decreases as the weight increases. 
-#|   The RStudio option to show Chunk Output in Console is also 
-#|   highlighted.
+#|   Janela do RStudio com um documento Quarto de nome "diamond-sizes.qmd" 
+#|   à esquerda e o painel Plot no canto inferior direito. O documento
+#|   Quarto tem um bloco de código que cria o gráfico de frequências de diamantes
+#|   que pesam menos que 2.5 quilates. O gráfico é exibido no painel Plot
+#|   e mostra que a frequência diminui quando o peso aumenta.
+#|   A opção do RStudio de mostrar o Chunk Output no Console também
+#|   é grifada.
 
 knitr::include_graphics("quarto/diamond-sizes-console-output.png")
 ```
@@ -106,13 +106,13 @@ Isso exibirá o relatório no painel de visualização, como exibido em @fig-dia
 #| echo: false
 #| out-width: "90%"
 #| fig-cap: |
-#|   A Quarto document in RStudio with the rendered document in the 
-#|   Viewer pane.
+#|   Um documento Quarto em RStudio com o documento renderizado
+#|   no painel Viewer.
 #| fig-alt: |
-#|   RStudio window with a Quarto document titled "diamond-sizes.qmd" 
-#|   on the left and the Plot pane on the bottom right. The rendered 
-#|   document does not show any of the code, but the code is visible 
-#|   in the source document.
+#|   Janela do RStudio com um documento Quarto chamado "diamond-sizes.qmd" 
+#|   à esquerda e o painel Plot no canto inferior direito. O documento 
+#|   renderizado não mostra o código, mas o código é visivel 
+#|   no documento fonte.
 
 knitr::include_graphics("quarto/diamond-sizes-report.png")
 ```
@@ -127,11 +127,11 @@ A vantagem desse fluxo de trabalho em duas etapas é que é possível criar uma 
 #| echo: false
 #| out-width: "75%"
 #| fig-alt: |
-#|   Workflow diagram starting with a qmd file, then knitr, then md, 
-#|   then pandoc, then PDF, MS Word, or HTML.
+#|   Diagrama de fluxo de trabalho começando com um arquivo qmd, depois knitr, md,
+#|   pandoc e finalmente PDF, MS Word ou HTML.
 #| fig-cap: |
-#|   Diagram of Quarto workflow from qmd, to knitr, to md, to pandoc, 
-#|   to output in PDF, MS Word, or HTML formats.
+#|   Diagrama do fluxo de trabalho Quarto de qmd a knitr, md, pandoc
+#|   para saída nos formatos PDF, MS Word ou HTML.
 
 knitr::include_graphics("images/quarto-flow.png")
 ```
@@ -171,19 +171,20 @@ Se você estiver no começo de uma linha (como ilustrado em @fig-visual-editor),
 #| echo: false
 #| out-width: "75%"
 #| fig-cap: |
-#|   Quarto visual editor.
+#|   Editor visual Quarto.
 #| fig-alt: |
-#|   A Quarto document displaying various features of the 
-#|   visual editor such as text formatting (italic, bold, 
-#|   underline, small caps, code, superscript, and subscript),
-#|   first through third level headings, bulleted and numbered
-#|   lists, links, linked phrases, and images (along with a 
-#|   pop-up window for customizing image size, adding a 
-#|   caption and alt text, etc.), tables with a header row, 
-#|   and the insert anything tool with options to insert an 
-#|   R code chunk, a Python code chunk, a div, a bullet list, 
-#|   a numbered list, or a first level heading (the top few 
-#|   choices in the tool).
+#|   Um documento Quarto exibindo diversos recursos do editor
+#|   visual como formatação de texto (italico, negrito, sublinhado,
+#|   caixa alta pequena, código, superescrito e subscrito),
+#|   primeiro em títulos de nível três, listas enumeradas e não
+#|   enumeradas links, frases com links e imagens (assim como uma
+#|   janela pop-up para personalização de tamanho de imagem,
+#|   inserção de legenda, texto alternativo, etc.), tabelas com
+#|   uma linha de cabeçalho e a ferramenta de inserir qualquer 
+#|   coisa com opções de inserir um bloco de código R, um bloco
+#|   de código Python, um div, uma lista não enumerada, uma lista
+#|   enumerada ou um título de primeira linha (são algumas das 
+#|   primeiras opções da ferramenta).
 
 knitr::include_graphics("quarto/quarto-visual-editor.png")
 ```
@@ -235,7 +236,7 @@ Se você se esquecer, pode buscar uma boa folha de referência em *Help \> Markd
 2.  Usando o editor fonte e a referência rápida para Markdown, descubra como:
 
     a.  Adicionar uma nota de rodapé.
-    b.  ADicionar uma linha horizontal.
+    b.  Adicionar uma linha horizontal.
     c.  Adicionar um bloco de citação.
 
 3.  Copie e cole o conteúdo de `diamond-sizes.qmd` a partir de <https://github.com/hadley/r4ds/tree/main/quarto> para um arquivo R Quarto local.
@@ -268,11 +269,11 @@ As seções a seguir descrevem o cabeçalho do bloco, que consiste em ```` ```{r
 
 ### Rótulo de bloco
 
-Blocos podem receber um rótulo opciona, por exemplo
+Blocos podem receber um rótulo opcional, por exemplo
 
 ```{r}
 #| echo: fenced
-#| label: simple-addition
+#| label: adicao-simples
 
 1 + 1
 ```
@@ -281,17 +282,17 @@ Há três vantagens nisso:
 
 1.  É possível navegar mais facilmente para blocos específicos usando o navegador em lista no canto inferior esquerdo do editor do script:
 
-    ```{r}
-    #| echo: false
-    #| out-width: "30%"
-    #| fig-alt: |
-    #|   Snippet of RStudio IDE showing only the drop-down code navigator 
-    #|   which shows three chunks. Chunk 1 is setup. Chunk 2 is cars and 
-    #|   it is in a section called Quarto. Chunk 3 is pressure and it is in 
-    #|   a section called Including plots.
+```{r}
+#| echo: false
+#| out-width: "30%"
+#| fig-alt: |
+#|   trecho da IDE RStudio mostrando apenas o navegador de código drop-down
+#|   que msotra três blocos. Bloco 1 é setup. Bloco 2 é cars e
+#|   nele há uma seção chamada Quarto. Bloco 3 é pressão (pressure) e 
+#|   está em uma seção chamada Including plots.
 
-    knitr::include_graphics("screenshots/quarto-chunk-nav.png")
-    ```
+knitr::include_graphics("screenshots/quarto-chunk-nav.png")
+```
 
 2.  Gráficos produzidos pelos blocos terão nomes úteis para reutilizá-los em outros lugares.
     Mais sobre isso em @sec-figures.
@@ -340,7 +341,7 @@ Cada uma dessas opções de bloco é adicionada ao cabeçalho do bloco, seguindo
 
 ```{r}
 #| echo: fenced
-#| label: simple-multiplication
+#| label: multiplicacao-simples
 #| eval: false
 
 2 * 2
@@ -395,13 +396,13 @@ Isso pode ser muito útil se você for citar propriedades dos seus dados no text
 Por exemplo, o documento modelo usado no começo do capítulo tinh:
 
 > Temos dados sobre `r inline('nrow(diamonds)')` diamantes.
-> Apenas `r inline('nrow(diamonds) - nrow(smaller)')` são maiores que 2.5 carates.
+> Apenas `r inline('nrow(diamonds) - nrow(smaller)')` são maiores que 2.5 quilates.
 > A distribuição dos restantes é exibida abaixo:
 
 Quando o relatório é renderizado, os resultados dessas computações são inseridas no texto:
 
 > Temos dados sobre 53940 diamantes.
-> Apenas 126 são maiores que 2.5 carates.
+> Apenas 126 são maiores que 2.5 quilates.
 > A distribuição dos restantes é exibida abaixo:
 
 Ao inserir números no texto, `format()` é seu amigo.
@@ -423,7 +424,7 @@ comma(.12358124331)
     Adicione uma seção que descreva os 20 maiores diamantes, incluindo uma tabela que mostre seus atributos mais importantes.
 
 3.  Modifique `diamonds-sizes.qmd` para usar `label_comma()` e produzir output bem formatado.
-    Inclua tam´bme a percentagem de diamantes que são maiores que 2.5 carates.
+    Inclua tam´bme a percentagem de diamantes que são maiores que 2.5 quilates.
 
 ## Figuras {#sec-figures}
 
@@ -473,9 +474,9 @@ plot <- ggplot(mpg, aes(x = displ, y = hwy)) + geom_point()
 #| fig-width: 4
 #| out-width: "50%"
 #| fig-alt: |
-#|   Scatterplot of highway mileage vs. displacement of cars, where the points 
-#|   are normally sized and the axis text and labels are in similar font size 
-#|   to the surrounding text.
+#|   Gráfico de dispersão de milhagem de estrada vs. deslocamento dos carros, em que os pontos
+#|   têm tamanho comum e o texto dos eixos e rótulos têm tamanho de fonte similar 
+#|   ao texto em volta.
 
 plot
 ```
@@ -485,9 +486,10 @@ plot
 #| fig-width: 6
 #| out-width: "50%"
 #| fig-alt: |
-#|   Scatterplot of highway mileage vs. displacement of cars, where the points 
-#|   are smaller than in the previous plot and the axis text and labels are 
-#|   smallter than the surrounding text.
+#|   Gráfico de dispersão de milhagem de estrada vs. deslocamento dos carros, em que os pontos
+#|   têm tamanho menor que o gráfico anterior e o texto dos eixos e rótulos têm tamanho
+#|   menor que o texto em volta.
+
 
 plot
 ```
@@ -497,9 +499,9 @@ plot
 #| fig-width: 8
 #| out-width: "50%"
 #| fig-alt: |
-#|   Scatterplot of highway mileage vs. displacement of cars, where the points 
-#|   are even smaller than in the previous plot and the axis text and labels are 
-#|   even smallter than the surrounding text.
+#|   Gráfico de dispersão de milhagem de estrada vs. deslocamento dos carros, em que os pontos
+#|   têm tamanho ainda menor que o gráfico anterior e o texto dos eixos e rótulos têm tamanho
+#|   ainda menor que o texto em volta.
 
 plot
 ```
@@ -563,7 +565,7 @@ O código abaixo gera @tbl-kable.
 
 ```{r}
 #| label: tbl-kable
-#| tbl-cap: A knitr kable.
+#| tbl-cap: Uma kable knitr.
 
 knitr::kable(mtcars[1:5, ], )
 ```
@@ -612,10 +614,10 @@ Por exemplo, aqui o bloco `processed_data` depende do bloco `raw-data`:
 
 ````         
 ``` {{r}}
-#| label: raw-data
+#| label: dados-crus
 #| cache: true
 
-rawdata <- readr::read_csv("a_very_large_file.csv")
+dadoscrus <- readr::read_csv("um_arquivo_enorme.csv")
 ```
 ````
 
@@ -624,9 +626,9 @@ rawdata <- readr::read_csv("a_very_large_file.csv")
 #| label: processed_data
 #| cache: true
 
-processed_data <- rawdata |> 
-  filter(!is.na(import_var)) |> 
-  mutate(new_variable = complicated_transformation(x, y, z))
+dados_processados <- dadoscrus |> 
+  filter(!is.na(var_importante)) |> 
+  mutate(nova_variavel = transformacao_complicada(x, y, z))
 ```
 ````
 
@@ -639,16 +641,16 @@ Esse problema pode ser evitado com a opção `dependson`:
 #| cache: true
 #| dependson: "raw-data"
 
-processed_data <- rawdata |> 
-  filter(!is.na(import_var)) |> 
-  mutate(new_variable = complicated_transformation(x, y, z))
+dados_processados <- dadoscrus |> 
+  filter(!is.na(var_importante)) |> 
+  mutate(nova_variavel = transformacao_complicada(x, y, z))
 ```
 ````
 
 `dependson` deve conter um vetor de caracteres em *todos* os blocos de que o bloco em cache depende.
 Knitr atualizará os resultados para o bloco em cache sempre que detectar que uma de suas dependências mudou.
 
-Note que os blocos não serão atualizados se `a_very_large_file.csv` mudar, já que o cache do knitr só monitora alterações no arquivo `.qmd`.
+Note que os blocos não serão atualizados se `um_arquivo_enorme.csv` mudar, já que o cache do knitr só monitora alterações no arquivo `.qmd`.
 Se você quiser também monitorar mudanças naquele arquivo, é possível usar a opção `cache.extra`.
 Essa é uma expressão de R arbitrária que invalida o cache toda vez que há alteração.
 Uma boa função neste caso é `file.mtime()`: a função retorna quando foi a última alteração.
@@ -658,9 +660,9 @@ Você pode então escrever:
 ``` {{r}}
 #| label: raw-data
 #| cache: true
-#| cache.extra: !expr file.mtime("a_very_large_file.csv")
+#| cache.extra: !expr file.mtime("um_arquivo_enorme.csv")
 
-rawdata <- readr::read_csv("a_very_large_file.csv")
+rawdata <- readr::read_csv("um_arquivo_enorme.csv")
 ```
 ````
 
@@ -773,23 +775,22 @@ Em seguida, coloque a citação entre colchetes.
 Seguem alguns exemplos:
 
 ``` markdown
-Separate multiple citations with a `;`: Blah blah [@smith04; @doe99].
+Separe múltiplas citações com `;`: Blah blah [@smith04; @doe99].
 
-You can add arbitrary comments inside the square brackets: 
-Blah blah [see @doe99, pp. 33-35; also @smith04, ch. 1].
+É possível inserir comentários arbitrários nos colchetes: 
+Blah blah [veja @doe99, pp. 33-35; também @smith04, cap. 1].
 
-Remove the square brackets to create an in-text citation: @smith04 
-says blah, or @smith04 [p. 33] says blah.
+Remova os colchetes para criar uma citação *in-text*, ou no meio do texto: @smith04 diz blah, ou @smith04 [p. 33] diz blah.
 
-Add a `-` before the citation to suppress the author's name: 
-Smith says blah [-@smith04].
+Adicione um `-` antes da citação para suprimir o nome do autor:
+Smith diz blah [-@smith04].
 ```
 
-When Quarto renders your file, it will build and append a bibliography to the end of your document.
-The bibliography will contain each of the cited references from your bibliography file, but it will not contain a section heading.
-As a result it is common practice to end your file with a section header for the bibliography, such as `# References` or `# Bibliography`.
+Quando o Quarto renderiza o seu arquivo, a bibliografia será construída e agregada ao final do seu documento.
+A bibliografia contera cada uma das citações do seu arquivo de bibliografia, mas não é criado um título no documento para ela.
+Como resultado, é uma prática comum finalizar o seu documento com um título de seção para a bibliografia como `# Referências` ou `# Bibliografia`.
 
-You can change the style of your citations and bibliography by referencing a CSL (citation style language) file in the `csl` field:
+É possível alterar o estilo das suas citações e bibliografia fazendo referência a um arquivo CSL (*citation style language* -- ou linguagem de estilo de citação) no campo `csl`:
 
 ``` yaml
 bibliography: rmarkdown.bib
@@ -800,65 +801,66 @@ As with the bibliography field, your csl file should contain a path to the file.
 Here we assume that the csl file is in the same directory as the .qmd file.
 A good place to find CSL style files for common bibliography styles is <https://github.com/citation-style-language/styles>.
 
-## Workflow
+## Fluxo de trabalho
 
-Earlier, we discussed a basic workflow for capturing your R code where you work interactively in the *console*, then capture what works in the *script editor*.
-Quarto brings together the console and the script editor, blurring the lines between interactive exploration and long-term code capture.
-You can rapidly iterate within a chunk, editing and re-executing with Cmd/Ctrl + Shift + Enter.
-When you're happy, you move on and start a new chunk.
+Anteriormente discutimos um fluxo de trabalho básico para capturar seu código R quando é trabalhado interativamente no *console*, depois capturar o que funciona no *editor de script*.
+Quarto junta o console e o editor de script, esvanecendo a lina que divide exploração interativa e captura de código para longo prazo.
+Você pode rapidamente iterar dentro de um bloco, editando e executando novamente com Cmd/Ctrl + Shift + Enter.
+Quando o trabalho estiver bom, move-se adiante e abre-se um novo bloco.
 
-Quarto is also important because it so tightly integrates prose and code.
-This makes it a great **analysis notebook** because it lets you develop code and record your thoughts.
-An analysis notebook shares many of the same goals as a classic lab notebook in the physical sciences.
-It:
+Quarto também é importante porque integra estreitamente prosa e código.
+Isso faz do Quarto um ótino **caderno de análise**, porque permite desenvolver código e registrar seus pensamentos.
+Um caderno de análise compartilha muitos dos mesmos objetivos de um caderno de laboratório clássico nas ciências exatas.
+O caderno:
 
--   Records what you did and why you did it.
-    Regardless of how great your memory is, if you don't record what you do, there will come a time when you have forgotten important details.
-    Write them down so you don't forget!
+-   Permite gravar o que você fez e por que você fez.
+    Independentemente de quão boa é a sua memória, se você não registrar o que fez, chegará um tempo em que você já esqueceu os detalhes importantes.
+    Escreva para não se esquecer!
 
--   Supports rigorous thinking.
-    You are more likely to come up with a strong analysis if you record your thoughts as you go, and continue to reflect on them.
-    This also saves you time when you eventually write up your analysis to share with others.
+-   Suporta pensamento rigoroso.
+    É mais provável que você desenvolva uma análise forte se você registrar seus pensamentos enquanto trabalha, depois pode continuar a refletir sobre eles.
+    Isso também economiza tempo quando você eventualmente organizar sua análise para compartilhar com outras pessoas.
 
--   Helps others understand your work.
-    It is rare to do data analysis by yourself, and you'll often be working as part of a team.
-    A lab notebook helps you share not only what you've done, but why you did it with your colleagues or lab mates.
+-   Ajuda outras pessoas a entenderem o seu trabalho.
+    É raro fazer análise de dados sozinho e você frequentemente fará parte de um time.
+    Um caderno de laboratório ajuda a compartilhar não apenas o que você fez como porque você fez o que fez com seus colegas.
 
-Much of the good advice about using lab notebooks effectively can also be translated to analysis notebooks.
-We've drawn on our own experiences and Colin Purrington's advice on lab notebooks (<https://colinpurrington.com/tips/lab-notebooks>) to come up with the following tips:
+Muitos dos bons conselhos sobre o uso efetivo de cadernos de laboratórios podem também ser traduzidos para cadernos de análise.
+Tiramos de nossa própria experiência e dos conselhos de Collin Purrington sobre cadenos de laboratório (<https://colinpurrington.com/tips/lab-notebooks>) para desenvolver essas dicas:
 
--   Ensure each notebook has a descriptive title, an evocative file name, and a first paragraph that briefly describes the aims of the analysis.
+-   Garanta que cada caderno tem um título descritivo, um nome evocativo e um primeiro parágrafo que descreve brevemente os objetivos de análise.
 
--   Use the YAML header date field to record the date you started working on the notebook:
+-   Use o campo de data do cabeçalho YAML para registrar a data em que você começou a trabalhar no caderno:
 
     ``` yaml
     date: 2016-08-23
     ```
 
-    Use ISO8601 YYYY-MM-DD format so that's there no ambiguity.
-    Use it even if you don't normally write dates that way!
+    Use ISO8601 YYYY-MM-DD para não haver ambiguidade.
+    Use mesmo que você não escreva datas desse jeito!
 
--   If you spend a lot of time on an analysis idea and it turns out to be a dead end, don't delete it!
-    Write up a brief note about why it failed and leave it in the notebook.
-    That will help you avoid going down the same dead end when you come back to the analysis in the future.
+-   Se você passa muito tempo em uma ideia de análise e no final parece que não vai dar em nada, não apague!
+    Faça uma breve anotação sobre o motivo de a análise ter falhado e deixe no caderno.
+    Isso ajudará você a não cair na mesma rota quando voltar à análise no futuro.
 
--   Generally, you're better off doing data entry outside of R.
-    But if you do need to record a small snippet of data, clearly lay it out using `tibble::tribble()`.
+-   Geralmente é melhor registrar dados fora do R.
+    Se você precisa registrar um pequeno trecho dos dados, faça isso de forma explícita usando `tibble::tribble()`.
 
--   If you discover an error in a data file, never modify it directly, but instead write code to correct the value.
-    Explain why you made the fix.
+-   Se você descobrir um erro no arquivo de dados, nunca o modifique diretamente.
+    Em vez disso, escreva código para corrigir o valor.
+    Escreva o motivo do reparo.
 
--   Before you finish for the day, make sure you can render the notebook.
-    If you're using caching, make sure to clear the caches.
-    That will let you fix any problems while the code is still fresh in your mind.
+-   Antes de fechar o dia, garanta que é possível renderizar o caderno.
+    Se está usando *caching*, limpe os caches.
+    Isso permitirá a correção de problemas enquanto o código ainda está fresco na memória.
 
--   If you want your code to be reproducible in the long-run (i.e. so you can come back to run it next month or next year), you'll need to track the versions of the packages that your code uses.
-    A rigorous approach is to use **renv**, <https://rstudio.github.io/renv/index.html>, which stores packages in your project directory.
-    A quick and dirty hack is to include a chunk that runs `sessionInfo()` --- that won't let you easily recreate your packages as they are today, but at least you'll know what they were.
+-   Se você quiser que seu código seja reproduzível a longo prazo (por exemplo, para voltar a trabalhar nele no mês ou ano seguinte), pode ser necessário registrar as versões dos pacotes que seu código usa.
+    Uma abordagem rigirosa é usar **renv**, <https://rstudio.github.io/renv/index.html>, que guarda os pacotes no seu diretório do projeto.
+    Um *hack* rápido e sujo é incluir um bloco que execute `sessionInfo()` --- isso não permite facilmente recriar seus pacotes em seu estado atual, mas pelo menos ajuda a saber em que estado estavam.
 
--   You are going to create many, many, many analysis notebooks over the course of your career.
-    How are you going to organize them so you can find them again in the future?
-    We recommend storing them in individual projects, and coming up with a good naming scheme.
+-   Você criará muitos, muitos cadernos de análise no decorrer da sua carreira.
+    Como você os organizará de modo que consiga achálos no futuro?
+    Recomendamos guardá-los em projetos individuais e criar um bom esquema de nomes.
 
 ## Resumo
 

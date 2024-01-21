@@ -9,6 +9,7 @@ params:
 #| include: false
 
 library(tidyverse)
+library(dados)
 
 class <- mpg |> filter(class == params$my_class)
 ```
