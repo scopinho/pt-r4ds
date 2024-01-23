@@ -1,4 +1,4 @@
-# Exploratory data analysis {#sec-exploratory-data-analysis}
+# Análise Exploratória dos Dados {#sec-exploratory-data-analysis}
 
 ```{r}
 #| echo: false
@@ -8,17 +8,17 @@ source("_common.R")
 mensagem_capitulo_sem_traducao()
 ```
 
-## Introduction
+## Introdução
 
-This chapter will show you how to use visualization and transformation to explore your data in a systematic way, a task that statisticians call exploratory data analysis, or EDA for short.
-EDA is an iterative cycle.
-You:
+Esse capítulo mostrará a você como usar visualização e transformação para explorar seus dados em uma forma sistemática, uma terfa que os estatísticos chamam de análise exploratória dos dados, ou EDA (Exploratory Data Analysis) abreviamente.
+EDA é um ciclo iterativo.
+Você:
 
-1.  Generate questions about your data.
+1.  Gera questões sobre os seus dados.
 
-2.  Search for answers by visualizing, transforming, and modelling your data.
+2.  Encontra respostas visualizando, transformando e modelando seus dados.
 
-3.  Use what you learn to refine your questions and/or generate new questions.
+3.  Usa o que aprendeu para refinar suas questões e/ou gerar novas questões.
 
 EDA is not a formal process with a strict set of rules.
 More than anything, EDA is a state of mind.
@@ -30,7 +30,7 @@ EDA is an important part of any data analysis, even if the primary research ques
 Data cleaning is just one application of EDA: you ask questions about whether your data meets your expectations or not.
 To do data cleaning, you'll need to deploy all the tools of EDA: visualization, transformation, and modelling.
 
-### Prerequisites
+### Pré-requisitos
 
 In this chapter we'll combine what you've learned about dplyr and ggplot2 to interactively ask questions, answer them with data, and then ask new questions.
 
@@ -41,7 +41,7 @@ In this chapter we'll combine what you've learned about dplyr and ggplot2 to int
 library(tidyverse)
 ```
 
-## Questions
+## Questões
 
 > "There are no routine statistical questions, only questionable statistical routines." --- Sir David Cox
 
