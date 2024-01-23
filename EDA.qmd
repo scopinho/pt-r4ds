@@ -20,11 +20,11 @@ Você:
 
 3.  Usa o que aprendeu para refinar suas questões e/ou gerar novas questões.
 
-EDA is not a formal process with a strict set of rules.
-More than anything, EDA is a state of mind.
-During the initial phases of EDA you should feel free to investigate every idea that occurs to you.
-Some of these ideas will pan out, and some will be dead ends.
-As your exploration continues, you will home in on a few particularly productive insights that you'll eventually write up and communicate to others.
+A EDA não é um processo formal com um conjunto estrito de regras.
+Mais que qualquer coisa, EDA é um estado da mente.
+Durante as fases inicias da EDA você deverá se sentir livre para investigar cada ideia que ocorre a você.
+Algumas dessas ideias darão certo e outras serão becos sem saída.
+À medida que sua exploração continua, você se concentrará em alguns insights particularmente produtivos que eventualmente escreverá e comunicará a outras pessoas.
 
 EDA is an important part of any data analysis, even if the primary research questions are handed to you on a platter, because you always need to investigate the quality of your data.
 Data cleaning is just one application of EDA: you ask questions about whether your data meets your expectations or not.
