@@ -47,39 +47,39 @@ library(tidyverse)
 
 > "É muito melhor uma resposta aproximada à pergunta certa, que muitas vezes é vaga, do que uma resposta exata à pergunta errada, que sempre pode ser precisa." --- John Tukey
 
-Your goal during EDA is to develop an understanding of your data.
-The easiest way to do this is to use questions as tools to guide your investigation.
-When you ask a question, the question focuses your attention on a specific part of your dataset and helps you decide which graphs, models, or transformations to make.
+Seu objetivo durante a EDA é desenvolver uma compreensão dos seus dados.
+A maneira mais fácil de fazer isso é usar perguntas como ferramentas para orientar sua investigação.
+Quando você faz uma pergunta, ela concentra sua atenção em uma parte específica do seu conjunto de dados e ajuda você a decidir quais gráficos, modelos ou transformações fazer.
 
-EDA is fundamentally a creative process.
-And like most creative processes, the key to asking *quality* questions is to generate a large *quantity* of questions.
-It is difficult to ask revealing questions at the start of your analysis because you do not know what insights can be gleaned from your dataset.
-On the other hand, each new question that you ask will expose you to a new aspect of your data and increase your chance of making a discovery.
-You can quickly drill down into the most interesting parts of your data---and develop a set of thought-provoking questions---if you follow up each question with a new question based on what you find.
+EDA é fundamentalmente um processo criativo.
+E como a maioria dos processos criativos, a chave para fazer perguntas de *qualidade* é gerar uma grande *quantidade* de perguntas.
+É difícil fazer perguntas reveladoras no início da sua análise porque você não sabe quais insights podem ser obtidos do seu conjunto de dados.
+Por outro lado, cada nova questão que você fizer irá expor você a um novo aspecto dos seus dados e aumentar sua chance de fazer uma descoberta.
+Você pode detalhar rapidamente as partes mais interessantes dos seus dados---e desenvolver um conjunto de perguntas instigantes---se você acompanhar cada pergunta com uma nova pergunta com base no que encontrar.
 
-There is no rule about which questions you should ask to guide your research.
-However, two types of questions will always be useful for making discoveries within your data.
-You can loosely word these questions as:
+Não há regra sobre quais perguntas você deve fazer para orientar sua pesquisa.
+No entanto, dois tipos de perguntas sempre serão úteis para fazer descobertas em seus dados.
+Você pode formular essas perguntas livremente como:
 
-1.  What type of variation occurs within my variables?
+1.  Que tipo de variação ocorre dentro das minhas variáveis?
 
-2.  What type of covariation occurs between my variables?
+2.  Que tipo de covariação ocorre entre as minhas variáveis?
 
-The rest of this chapter will look at these two questions.
-We'll explain what variation and covariation are, and we'll show you several ways to answer each question.
+O restante deste capítulo examinará essas duas questões.
+Explicaremos o que são variação e covariação e mostraremos várias maneiras de responder a cada pergunta.
 
-## Variation
+## Variação
 
-**Variation** is the tendency of the values of a variable to change from measurement to measurement.
-You can see variation easily in real life; if you measure any continuous variable twice, you will get two different results.
-This is true even if you measure quantities that are constant, like the speed of light.
-Each of your measurements will include a small amount of error that varies from measurement to measurement.
-Variables can also vary if you measure across different subjects (e.g., the eye colors of different people) or at different times (e.g., the energy levels of an electron at different moments).
-Every variable has its own pattern of variation, which can reveal interesting information about how that it varies between measurements on the same observation as well as across observations.
-The best way to understand that pattern is to visualize the distribution of the variable's values, which you've learned about in @sec-data-visualization.
+**Variação** é a tendência dos valores de uma variável mudar de medida para medida.
+Você pode ver variações facilmente na vida real; se você medir qualquer variável contínua duas vezes, você obterá dois diferentes resultados.
+Isso é verdade mesmo se você mede quantidades constantes, como a velocidade da luz.
+Cada uma de suas medidas irá incluir uma pequena quantidade de erro que varia de medida a medida.
+Variáveis também muda se você mede diferentes objetos (por exemplo, cor dos olhos de diferentes pessoas) ou diferentes tempos (por exemplo, os níveis de energia de um elétron em diferentes momentos).
+Cada variável tem seu próprio padrão de variação, que pode revelar interessantes informações sobre como isso varia entre medições na mesma observação, bem como entre observações.
+A melhor forma de entender o padrão é visualizando a distribuição dos valores da variável, que você tem aprendido sobre no @sec-data-visualization.
 
-We'll start our exploration by visualizing the distribution of weights (`carat`) of \~54,000 diamonds from the `diamonds` dataset.
-Since `carat` is a numerical variable, we can use a histogram:
+Vamos iniciar nossa exploração visualizando a variação nos pesos (`quilate`) de \~54,000 diamantes do banco de dados `dados`.
+Como `quilate` é uma variável numérica, podemos usar um histograma:
 
 ```{r}
 #| fig-alt: |
@@ -90,32 +90,34 @@ Since `carat` is a numerical variable, we can use a histogram:
 #|   at 1, and much fewer, approximately 5000 diamonds in the bin centered at 
 #|   1.5. Beyond this, there's a trailing tail.
 
-ggplot(diamonds, aes(x = carat)) +
+library(dados)
+
+ggplot(diamante, aes(x = quilate)) +
   geom_histogram(binwidth = 0.5)
 ```
 
-Now that you can visualize variation, what should you look for in your plots?
-And what type of follow-up questions should you ask?
-We've put together a list below of the most useful types of information that you will find in your graphs, along with some follow-up questions for each type of information.
-The key to asking good follow-up questions will be to rely on your curiosity (What do you want to learn more about?) as well as your skepticism (How could this be misleading?).
+Agora que você pode visualizar a variação, o que você deve observar em seus gráficos?
+E que tipo de perguntas de acompanhamento você deve fazer?
+Nós temos colocado abaixo uma lista dos tipos mais comuns de informações que você encontrará em seus gráficos, junto com algumas perguntas de acompanhamento para cada tipo de informação.
+A chave para fazer boas questões de acompanhamento irá depender da curiosidade (o que mais você quer aprender?) bem como do seu ceticismo (Como isso pode ser enganoso?).
 
-### Typical values
+### Valores típicos
 
-In both bar charts and histograms, tall bars show the common values of a variable, and shorter bars show less-common values.
-Places that do not have bars reveal values that were not seen in your data.
-To turn this information into useful questions, look for anything unexpected:
+Em ambos gráficos de barras e histogramas, barras altas mostram valores comuns de uma variável, e barras mais curtas mostram valores menos comuns.
+Locais que não tem barras revelam valores que não foram vistos nos seus dados.
+Para transformar essas informações em perguntas úteis, observe qualquer coisa não esperada:
 
--   Which values are the most common?
-    Why?
+-   Quais valores são os mais comuns?
+    Por quê?
 
--   Which values are rare?
-    Why?
-    Does that match your expectations?
+-   Quais valores são raros?
+    Por quê?
+    Isso corresponde às suas expectativas?
 
--   Can you see any unusual patterns?
-    What might explain them?
+-   Você consegue ver padrões incomuns?
+    O que pode explicar eles?
 
-Let's take a look at the distribution of `carat` for smaller diamonds.
+Vamos observar a distribuição de `quilate` para os diamantes menores.
 
 ```{r}
 #| fig-alt: |
@@ -125,41 +127,42 @@ Let's take a look at the distribution of `carat` for smaller diamonds.
 #|   is right skewed, with many peaks followed by bars in decreasing heights, 
 #|   until a sharp increase at the next peak.
 
-smaller <- diamonds |> 
-  filter(carat < 3)
+menores_diamantes <- diamante |> 
+  filter(quilate < 3)
 
-ggplot(smaller, aes(x = carat)) +
+ggplot(menores_diamantes, aes(x = quilate)) +
   geom_histogram(binwidth = 0.01)
 ```
 
-This histogram suggests several interesting questions:
+Esse histograma sugere várias questões interessantes:
 
--   Why are there more diamonds at whole carats and common fractions of carats?
+-   Por que há mais diamantes em números inteiros de quilates e frações comuns de quilates?
 
--   Why are there more diamonds slightly to the right of each peak than there are slightly to the left of each peak?
+-   Por que há mais diamantes ligeiramente à direita de cada pico do que há ligeiramente à esquerda de cada pico?
 
-Visualizations can also reveal clusters, which suggest that subgroups exist in your data.
-To understand the subgroups, ask:
+Visualizações também podem revelar agrupamentos, os quais sugerem que existem subgrupos em seus dados.
+Para entender os subgrupos, questione:
 
--   How are the observations within each subgroup similar to each other?
+-   Como são as observações dentro de cada subgrupo similares uns aos outros?
 
--   How are the observations in separate clusters different from each other?
+-   Como são as observações em grupos diferentes separados uns dos outros?
 
--   How can you explain or describe the clusters?
+-   Como você pode explicar ou descrever os grupos?
 
--   Why might the appearance of clusters be misleading?
+-   Por que a aparência de agrupamentos pode ser enganadora?
 
-Some of these questions can be answered with the data while some will require domain expertise about the data.
-Many of them will prompt you to explore a relationship *between* variables, for example, to see if the values of one variable can explain the behavior of another variable.
-We'll get to that shortly.
+Algumas dessas questões podem ser respondidas com os dados, enquanto outras irão requerer experiência de domínio sobre os dados.
+Muitas delas irão levar você a explorar a relação entre variáveis, por exemplo, para ver se os valores de uma variável podem explicar o comportamento de outra variável.
+Chegaremos a isso em breve.
 
-### Unusual values
+### Valores atípicos
 
-Outliers are observations that are unusual; data points that don't seem to fit the pattern.
-Sometimes outliers are data entry errors, sometimes they are simply values at the extremes that happened to be observed in this data collection, and other times they suggest important new discoveries.
-When you have a lot of data, outliers are sometimes difficult to see in a histogram.
-For example, take the distribution of the `y` variable from the diamonds dataset.
-The only evidence of outliers is the unusually wide limits on the x-axis.
+Outliers são observações atípicas, pontos de dados que não estão ajustados ao padrão.
+Algumas vezes outliers são erros de entrada de dados.
+Algumas vezes são apenas valores extremos que passaram a ser observados nesta coleta de dados, e outras vezes, eles sugerem importantes novas descobertas.
+Quando você tem muitos dados, outliers são algumas vezes difíceis de serem vistos em histogramas.
+Por exemplo, pegue a distribuição da variável `y` do conjunto de dados de diamante.
+A única evidência de valores discrepantes são os limites incomumente amplos no eixo x.
 
 ```{r}
 #| fig-alt: |
@@ -167,12 +170,11 @@ The only evidence of outliers is the unusually wide limits on the x-axis.
 #|   the y-axis ranges from 0 to 12000. There is a peak around 5, and the 
 #|   data appear to be completely clustered around the peak.
 
-ggplot(diamonds, aes(x = y)) + 
+ggplot(diamante, aes(x = y)) + 
   geom_histogram(binwidth = 0.5)
 ```
 
-There are so many observations in the common bins that the rare bins are very short, making it very difficult to see them (although maybe if you stare intently at 0 you'll spot something).
-To make it easy to see the unusual values, we need to zoom to small values of the y-axis with `coord_cartesian()`:
+Há muitas observações nas caixas comuns que as caixas raras são muito curtas, tornando muito difícil vê-las (embora talvez se você olhar atentamente para 0 você encontre algo).Para facilitar a visualização dos valores incomuns, precisamos ampliar para os valores pequenos do eixo y com `coord_cartesian()`:
 
 ```{r}
 #| fig-alt: |
@@ -182,16 +184,16 @@ To make it easy to see the unusual values, we need to zoom to small values of th
 #|   there is one bin at 0 with a height of about 8, one a little over 30 with 
 #|   a height of 1 and another one a little below 60 with a height of 1.
 
-ggplot(diamonds, aes(x = y)) + 
+ggplot(diamante, aes(x = y)) + 
   geom_histogram(binwidth = 0.5) +
   coord_cartesian(ylim = c(0, 50))
 ```
 
-`coord_cartesian()` also has an `xlim()` argument for when you need to zoom into the x-axis.
-ggplot2 also has `xlim()` and `ylim()` functions that work slightly differently: they throw away the data outside the limits.
+`coord_cartesian()` também possui um argumento `xlim()` para quando você precisar ampliar o eixo x.
+ggplot2 também possui as funções `xlim()` e `ylim()` que funcionam de maneira um pouco diferente: elas jogam fora os dados fora dos limites.
 
-This allows us to see that there are three unusual values: 0, \~30, and \~60.
-We pluck them out with dplyr:
+Isso nos permite ver que existem três valores incomuns: 0, \~30 e \~60.
+Nós retiramos eles com dplyr:
 
 ```{r}
 #| include: false
@@ -200,11 +202,11 @@ old <- options(tibble.print_max = 10, tibble.print_min = 10)
 ```
 
 ```{r}
-unusual <- diamonds |> 
+incomum <- diamante |> 
   filter(y < 3 | y > 20) |> 
-  select(price, x, y, z) |>
+  select(preco, x, y, z) |>
   arrange(y)
-unusual
+incomum
 ```
 
 ```{r}
@@ -213,34 +215,33 @@ unusual
 options(old)
 ```
 
-The `y` variable measures one of the three dimensions of these diamonds, in mm.
-We know that diamonds can't have a width of 0mm, so these values must be incorrect.
-By doing EDA, we have discovered missing data that was coded as 0, which we never would have found by simply searching for `NA`s.
-Going forward we might choose to re-code these values as `NA`s in order to prevent misleading calculations.
-We might also suspect that measurements of 32mm and 59mm are implausible: those diamonds are over an inch long, but don't cost hundreds of thousands of dollars!
+A variável `y` mede uma das três dimensões desses diamantes, em mm.
+Sabemos que os diamantes não podem ter largura de 0 mm, então esses valores devem estar incorretos.
+Ao fazer EDA, descobrimos dados faltantes codificados como 0, que nunca teríamos encontrado simplesmente procurando por `NA`s.do a diantes, nós podemos escolher recodificar estes valores como `NA`s, a fim de evitar cálculos enganosos.
+Também podemos suspeitar que as medidas de 32 mm e 59 mm são implausíveis: esses diamantes têm mais de uma polegada de comprimento, mas não custam centenas de milhares de dólares!
 
-It's good practice to repeat your analysis with and without the outliers.
-If they have minimal effect on the results, and you can't figure out why they're there, it's reasonable to omit them, and move on.
-However, if they have a substantial effect on your results, you shouldn't drop them without justification.
-You'll need to figure out what caused them (e.g., a data entry error) and disclose that you removed them in your write-up.
+É uma boa prática repetir suas análises com e sem valores discrepantes.
+Se eles tiverem um efeito mínimo nos resultados e você não conseguir descobrir por que estão ali, é razoável omiti-los e seguir em frente.
+No entanto, se eles tiverem um efeito substancial nos seus resultados, você não deve abandoná-los sem justificativa.
+Você precisará descobrir o que os causou (por exemplo, um erro de entrada de dados) e divulgar que os removeu em seu artigo.
 
-### Exercises
+### Exercícios
 
-1.  Explore the distribution of each of the `x`, `y`, and `z` variables in `diamonds`.
-    What do you learn?
-    Think about a diamond and how you might decide which dimension is the length, width, and depth.
+1.  Explore a distribuição das variáveis `x`, `y`, and `z` em `dados`.
+    O que você aprendeu?
+    Pense em um diamante e como você pode decidir qual dimensão é o comprimento, largura e profundidade.
 
-2.  Explore the distribution of `price`.
-    Do you discover anything unusual or surprising?
-    (Hint: Carefully think about the `binwidth` and make sure you try a wide range of values.)
+2.  Explore a distribuição de `preço`.
+    Você percebe algo incomum ou surpreendente?
+    (Dica: pense cuidadosamente sobre o `binwidth` e tenha certeza que você tentou uma ampla gama de valores.)
 
-3.  How many diamonds are 0.99 carat?
-    How many are 1 carat?
-    What do you think is the cause of the difference?
+3.  Quantos diamantes equivalem a 0,99 quilates?
+    Quantos equivalem a 1 quilate?
+    O que você acha que é a causa da diferença?
 
-4.  Compare and contrast `coord_cartesian()` vs. `xlim()` or `ylim()` when zooming in on a histogram.
-    What happens if you leave `binwidth` unset?
-    What happens if you try and zoom so only half a bar shows?
+4.  Compare e contraste `coord_cartesian()` vs. `xlim()` ou `ylim()` quando ampliar em um histograma.
+    O que acontece se você deixa o `binwidth` desativado?
+    O que acontece se você tentar ampliar de forma que apenas meia barra seja exibida?
 
 ## Unusual values {#sec-unusual-values-eda}
 
