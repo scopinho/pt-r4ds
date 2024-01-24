@@ -52,7 +52,7 @@ format:
     toc_float: true
 ```
 
-You can even render to multiple outputs by supplying a list of formats:
+É possível ainda renderizar múltiplas saídas fornecendo uma lista de formatos:
 
 ``` yaml
 format:
@@ -63,9 +63,9 @@ format:
   docx: default
 ```
 
-Note the special syntax (`pdf: default`) if you don't want to override any default options.
+Note a notação especial (`pdf: default`) caso não queira sobrescrever nenhuma das opções padrão.
 
-To render to all formats specified in the YAML of a document, you can use `output_format = "all"`.
+Para renderizar todos os formatos especificados no YAML do documento, use `output_format = "all"`.
 
 ```{r}
 #| eval: false
@@ -73,33 +73,33 @@ To render to all formats specified in the YAML of a document, you can use `outpu
 quarto::quarto_render("diamond-sizes.qmd", output_format = "all")
 ```
 
-## Documents
+## Documentos
 
-The previous chapter focused on the default `html` output.
-There are several basic variations on that theme, generating different types of documents.
-For example:
+O foco do capítulo anterior era a saída padrão `html`.
+Há bastantes variações básicas nesse tema, gerando diferentes tipos de documentos.
+Por exemplo:
 
--   `pdf` makes a PDF with LaTeX (an open-source document layout system), which you'll need to install.
-    RStudio will prompt you if you don't already have it.
+-   `pdf` produz um PDF com LaTeX (um systema de diagramação/*layout* de código aberto/*open-source*), que precisará ser instalado.
+    O RStudio emitirá um aviso se ainda não estiver instalado.
 
--   `docx` for Microsoft Word (`.docx`) documents.
+-   `docx` para um documento Microsoft Word (`.docx`).
 
--   `odt` for OpenDocument Text (`.odt`) documents.
+-   `odt` para um documento OpenDocument Text (`.odt`).
 
--   `rtf` for Rich Text Format (`.rtf`) documents.
+-   `rtf` para um documento Rich Text Format (`.rtf`).
 
--   `gfm` for a GitHub Flavored Markdown (`.md`) document.
+-   `gfm` para um documento GitHub Flavored Markdown (`.md`).
 
--   `ipynb` for Jupyter Notebooks (`.ipynb`).
+-   `ipynb` para um caderno Jupyter (`.ipynb`).
 
-Remember, when generating a document to share with decision-makers, you can turn off the default display of code by setting global options in the document YAML:
+Lembre-se que ao gerar um documento para compartilhar com tomadores de decisão é possível inativar a exibição padrão de código configurando opções globais no YAML do documento:
 
 ``` yaml
 execute:
   echo: false
 ```
 
-For `html` documents another option is to make the code chunks hidden by default, but visible with a click:
+Para documentos `html`, outra opção é fazer com que os blocos de código fiquem escondidos por padrão, mas visíveis se clicados:
 
 ``` yaml
 format:
@@ -107,7 +107,7 @@ format:
     code: true
 ```
 
-## Presentations
+## Apresentações
 
 You can also use Quarto to produce presentations.
 You get less visual control than with a tool like Keynote or PowerPoint, but automatically inserting the results of your R code into a presentation can save a huge amount of time.
