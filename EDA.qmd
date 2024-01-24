@@ -26,9 +26,9 @@ Durante as fases inicias da EDA você deverá se sentir livre para investigar ca
 Algumas dessas ideias darão certo e outras serão becos sem saída.
 À medida que sua exploração continua, você se concentrará em alguns insights particularmente produtivos que eventualmente escreverá e comunicará a outras pessoas.
 
-EDA is an important part of any data analysis, even if the primary research questions are handed to you on a platter, because you always need to investigate the quality of your data.
-Data cleaning is just one application of EDA: you ask questions about whether your data meets your expectations or not.
-To do data cleaning, you'll need to deploy all the tools of EDA: visualization, transformation, and modelling.
+A EDA é uma parte importante de qualquer análise de dados, mesmo que as principais questões de pesquisa sejam entregues a você de bandeja, porque você sempre precisa investigar a qualidade dos seus dados.
+Limpeza de dados é apenas uma das aplicações da EDA: você se questiona sobre se seus dados vão de encontro às suas expectativas ou não.
+Para fazer limpeza de dados, você irá necessitar implementar todas as ferramentas da EDA: visualização, transformação e modelagem.
 
 ### Pré-requisitos
 
