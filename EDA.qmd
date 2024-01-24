@@ -10,7 +10,7 @@ mensagem_capitulo_sem_traducao()
 
 ## Introdução
 
-Esse capítulo mostrará a você como usar visualização e transformação para explorar seus dados em uma forma sistemática, uma terfa que os estatísticos chamam de análise exploratória dos dados, ou EDA (Exploratory Data Analysis) abreviamente.
+Esse capítulo mostrará a você como usar visualização e transformação para explorar seus dados em uma forma sistemática, uma tarefa que os estatísticos chamam de análise exploratória dos dados, ou EDA (Exploratory Data Analysis) abreviamente.
 EDA é um ciclo iterativo.
 Você:
 
@@ -32,7 +32,7 @@ Para fazer limpeza de dados, você irá necessitar implementar todas as ferramen
 
 ### Pré-requisitos
 
-In this chapter we'll combine what you've learned about dplyr and ggplot2 to interactively ask questions, answer them with data, and then ask new questions.
+Nesse capítulo, nós iremos combinar o que você tem aprendido sobre dplyr e ggplot2 para fazer perguntas interativamente, responder com dados e, em seguida, fazer novas perguntas.
 
 ```{r}
 #| label: setup
@@ -43,9 +43,9 @@ library(tidyverse)
 
 ## Questões
 
-> "There are no routine statistical questions, only questionable statistical routines." --- Sir David Cox
+> "Não existem questões estatísticas rotineiras, apenas rotinas estatísticas questionáveis." --- Sir David Cox
 
-> "Far better an approximate answer to the right question, which is often vague, than an exact answer to the wrong question, which can always be made precise." --- John Tukey
+> "É muito melhor uma resposta aproximada à pergunta certa, que muitas vezes é vaga, do que uma resposta exata à pergunta errada, que sempre pode ser precisa." --- John Tukey
 
 Your goal during EDA is to develop an understanding of your data.
 The easiest way to do this is to use questions as tools to guide your investigation.
