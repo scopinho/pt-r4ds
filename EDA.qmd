@@ -243,32 +243,32 @@ Você precisará descobrir o que os causou (por exemplo, um erro de entrada de d
     O que acontece se você deixa o `binwidth` desativado?
     O que acontece se você tentar ampliar de forma que apenas meia barra seja exibida?
 
-## Unusual values {#sec-unusual-values-eda}
+## Lidando com valores atípicos {#sec-unusual-values-eda}
 
-If you've encountered unusual values in your dataset, and simply want to move on to the rest of your analysis, you have two options.
+Se você encontrou valores atípicos no seu conjunto de dados e simplesmente deseja prosseguir com o restante das suas análises, você tem duas opções:
 
-1.  Drop the entire row with the strange values:
+1.  Eliminar a linha inteira com os valores estranhos:
 
     ```{r}
     #| eval: false
 
-    diamonds2 <- diamonds |> 
+    diamante2 <- diamante |> 
       filter(between(y, 3, 20))
     ```
 
-    We don't recommend this option because one invalid value doesn't imply that all the other values for that observation are also invalid.
-    Additionally, if you have low quality data, by the time that you've applied this approach to every variable you might find that you don't have any data left!
+    Não recomendamos esta opção porque um valor inválido não implica que todos os outros valores para essa observação também sejam inválidos.
+    Além disso, se você tiver dados de baixa qualidade, ao aplicar essa abordagem a todas as variáveis, você poderá descobrir que não tem mais dados!
 
-2.  Instead, we recommend replacing the unusual values with missing values.
-    The easiest way to do this is to use `mutate()` to replace the variable with a modified copy.
-    You can use the `if_else()` function to replace unusual values with `NA`:
+2.  Ao invés, nós recomendamos substituir os valores atípicos por valores faltantes (missing values).
+    O caminho mais fácil para fazer isso, é usar a função mutate() para substituir os valores atípicos da variável.
+    Você também pode usar o if_else() para substituir os valores atípicos por NA:
 
     ```{r}
-    diamonds2 <- diamonds |> 
+    diamante2 <- diamante |> 
       mutate(y = if_else(y < 3 | y > 20, NA, y))
     ```
 
-It's not obvious where you should plot missing values, so ggplot2 doesn't include them in the plot, but it does warn that they've been removed:
+Não é óbvio onde você deve traçar os valores ausentes, então o ggplot2 não inclui os valores ausentes no gráfico, mas avisa que eles foram removidos:
 
 ```{r}
 #| dev: "png"
@@ -278,16 +278,16 @@ It's not obvious where you should plot missing values, so ggplot2 doesn't includ
 #|   has length greater than 3. The one outlier has a length of 0 and a width 
 #|   of about 6.5. 
 
-ggplot(diamonds2, aes(x = x, y = y)) + 
+ggplot(diamante2, aes(x = x, y = y)) + 
   geom_point()
 ```
 
-To suppress that warning, set `na.rm = TRUE`:
+Para suprimir esse aviso, defina `na.rm = TRUE`:
 
 ```{r}
 #| eval: false
 
-ggplot(diamonds2, aes(x = x, y = y)) + 
+ggplot(diamante2, aes(x = x, y = y)) + 
   geom_point(na.rm = TRUE)
 ```
 
@@ -298,6 +298,11 @@ You can do this by making a new variable, using `is.na()` to check if `dep_time`
 
 [^eda-1]: Remember that when we need to be explicit about where a function (or dataset) comes from, we'll use the special form `package::function()` or `package::dataset`.
 
+Outras vezes, você deseja entender o que torna as observações com valores ausentes diferentes das observações com valores registrados.
+Por exemplo, em `nycflights13::flights1`, valores ausentes na variável dep_time indicam que o voo foi cancelado.
+Então, você pode querer comparar os horários de partida programados para horários cancelados e não cancelados.
+Você pode fazer isso criando uma nova variável, usando `is.na()` para verificar se `dep_time` está faltando.
+
 ```{r}
 #| fig-alt: |
 #|   A frequency polygon of scheduled departure times of flights. Two lines 
@@ -305,31 +310,31 @@ You can do this by making a new variable, using `is.na()` to check if `dep_time`
 #|   from 0 to 25 minutes and the y-axis ranges from 0 to 10000. The number of 
 #|   flights not cancelled are much higher than those cancelled.
 
-nycflights13::flights |> 
+dados::voos |> 
   mutate(
-    cancelled = is.na(dep_time),
-    sched_hour = sched_dep_time %/% 100,
-    sched_min = sched_dep_time %% 100,
-    sched_dep_time = sched_hour + (sched_min / 60)
+    cancelado = is.na(horario_saida),
+    hora_programada = saida_programada %/% 100,
+    min_programado = saida_programada %% 100,
+    saida_programada = hora_programada + (min_programado / 60)
   ) |> 
-  ggplot(aes(x = sched_dep_time)) + 
-  geom_freqpoly(aes(color = cancelled), binwidth = 1/4)
+  ggplot(aes(x = saida_programada)) + 
+  geom_freqpoly(aes(color = cancelado), binwidth = 1/4)
 ```
 
-However this plot isn't great because there are many more non-cancelled flights than cancelled flights.
-In the next section we'll explore some techniques for improving this comparison.
+No entanto, este gráfico não é bom porque há muito mais voos não cancelados do que voos cancelados.
+Na próxima seção exploraremos algumas técnicas para melhorar essa comparação.
 
 ### Exercises
 
-1.  What happens to missing values in a histogram?
-    What happens to missing values in a bar chart?
-    Why is there a difference in how missing values are handled in histograms and bar charts?
+1.  O que acontece com valores perdidos em um histograma?
+    O que acontece com valores perdidos em um gráfico de barras?
+    Por que existe uma diferença em como valores perdidos são tratados em histogramas e gráficos de barras?
 
-2.  What does `na.rm = TRUE` do in `mean()` and `sum()`?
+2.  O que significa o `na.rm = TRUE` em `mean()` e `sum()`?
 
-3.  Recreate the frequency plot of `scheduled_dep_time` colored by whether the flight was cancelled or not.
-    Also facet by the `cancelled` variable.
-    Experiment with different values of the `scales` variable in the faceting function to mitigate the effect of more non-cancelled flights than cancelled flights.
+3.  Recrie o gráfico de frequência de `saida_programada` colorido de acordo com o cancelamento ou não do voo.
+    Também use o facetamento para a variável `cancelado` variable.
+    Experimente diferentes valores da variável `scales` na função de lapidação para mitigar o efeito de mais voos não cancelados do que voos cancelados.
 
 ## Covariation
 
