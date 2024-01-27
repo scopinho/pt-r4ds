@@ -364,7 +364,7 @@ Veja a documentação para outros argumentos úteis como `right` e `include.lowe
 ### Agregadores cumulativos e rolantes {#sec-cumulative-and-rolling-aggregates}
 
 O R base oferece `cumsum()`, `cumprod()`, `cummin()`, `cummax()` para somas, produtos, mínimos e máximos contínuos ou cumulativos.
-dplyr oferece `cummean()` para média móvel.
+dplyr oferece `cummean()` para média cumulativa (um tipo de média móvel).
 Somas acumuladas tendem a ser de maior uso na prática:
 
 ```{r}
