@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Análise Exploratória dos Dados {#sec-exploratory-data-analysis}
 
 ```{r}
