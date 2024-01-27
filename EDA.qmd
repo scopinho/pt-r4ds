@@ -78,7 +78,7 @@ Variáveis também muda se você mede diferentes objetos (por exemplo, cor dos o
 Cada variável tem seu próprio padrão de variação, que pode revelar interessantes informações sobre como isso varia entre medições na mesma observação, bem como entre observações.
 A melhor forma de entender o padrão é visualizando a distribuição dos valores da variável, que você tem aprendido sobre no @sec-data-visualization.
 
-Vamos iniciar nossa exploração visualizando a variação nos pesos (`quilate`) de \~54,000 diamantes do banco de dados `dados`.
+Vamos iniciar nossa exploração visualizando a variação nos pesos (`quilate`) de \~54,000 diamantes do `diamante`.
 Como `quilate` é uma variável numérica, podemos usar um histograma:
 
 ```{r}
@@ -174,7 +174,8 @@ ggplot(diamante, aes(x = y)) +
   geom_histogram(binwidth = 0.5)
 ```
 
-Há muitas observações nas caixas comuns que as caixas raras são muito curtas, tornando muito difícil vê-las (embora talvez se você olhar atentamente para 0 você encontre algo).Para facilitar a visualização dos valores incomuns, precisamos ampliar para os valores pequenos do eixo y com `coord_cartesian()`:
+Há muitas observações nas caixas comuns que as caixas raras são muito curtas, tornando muito difícil vê-las (embora talvez se você olhar atentamente para 0 você encontre algo).
+Para facilitar a visualização dos valores incomuns, precisamos ampliar para os valores pequenos do eixo y com `coord_cartesian()`:
 
 ```{r}
 #| fig-alt: |
@@ -190,7 +191,7 @@ ggplot(diamante, aes(x = y)) +
 ```
 
 `coord_cartesian()` também possui um argumento `xlim()` para quando você precisar ampliar o eixo x.
-ggplot2 também possui as funções `xlim()` e `ylim()` que funcionam de maneira um pouco diferente: elas jogam fora os dados fora dos limites.
+O ggplot2 também possui as funções `xlim()` e `ylim()` que funcionam de maneira um pouco diferente: elas jogam fora os dados fora dos limites.
 
 Isso nos permite ver que existem três valores incomuns: 0, \~30 e \~60.
 Nós retiramos eles com dplyr:
@@ -243,32 +244,32 @@ Você precisará descobrir o que os causou (por exemplo, um erro de entrada de d
     O que acontece se você deixa o `binwidth` desativado?
     O que acontece se você tentar ampliar de forma que apenas meia barra seja exibida?
 
-## Unusual values {#sec-unusual-values-eda}
+## Lidando com valores atípicos {#sec-unusual-values-eda}
 
-If you've encountered unusual values in your dataset, and simply want to move on to the rest of your analysis, you have two options.
+Se você encontrou valores atípicos no seu conjunto de dados e simplesmente deseja prosseguir com o restante das suas análises, você tem duas opções:
 
-1.  Drop the entire row with the strange values:
+1.  Eliminar a linha inteira com os valores estranhos:
 
     ```{r}
     #| eval: false
 
-    diamonds2 <- diamonds |> 
+    diamante2 <- diamante |> 
       filter(between(y, 3, 20))
     ```
 
-    We don't recommend this option because one invalid value doesn't imply that all the other values for that observation are also invalid.
-    Additionally, if you have low quality data, by the time that you've applied this approach to every variable you might find that you don't have any data left!
+    Não recomendamos esta opção porque um valor inválido não implica que todos os outros valores para essa observação também sejam inválidos.
+    Além disso, se você tiver dados de baixa qualidade, ao aplicar essa abordagem a todas as variáveis, você poderá descobrir que não tem mais dados!
 
-2.  Instead, we recommend replacing the unusual values with missing values.
-    The easiest way to do this is to use `mutate()` to replace the variable with a modified copy.
-    You can use the `if_else()` function to replace unusual values with `NA`:
+2.  Ao invés, nós recomendamos substituir os valores atípicos por valores faltantes (missing values).
+    O caminho mais fácil para fazer isso, é usar a função mutate() para substituir os valores atípicos da variável.
+    Você também pode usar o if_else() para substituir os valores atípicos por NA:
 
     ```{r}
-    diamonds2 <- diamonds |> 
+    diamante2 <- diamante |> 
       mutate(y = if_else(y < 3 | y > 20, NA, y))
     ```
 
-It's not obvious where you should plot missing values, so ggplot2 doesn't include them in the plot, but it does warn that they've been removed:
+Não é óbvio onde você deve traçar os valores ausentes, então o ggplot2 não inclui os valores ausentes no gráfico, mas avisa que eles foram removidos:
 
 ```{r}
 #| dev: "png"
@@ -278,16 +279,16 @@ It's not obvious where you should plot missing values, so ggplot2 doesn't includ
 #|   has length greater than 3. The one outlier has a length of 0 and a width 
 #|   of about 6.5. 
 
-ggplot(diamonds2, aes(x = x, y = y)) + 
+ggplot(diamante2, aes(x = x, y = y)) + 
   geom_point()
 ```
 
-To suppress that warning, set `na.rm = TRUE`:
+Para suprimir esse aviso, defina `na.rm = TRUE`:
 
 ```{r}
 #| eval: false
 
-ggplot(diamonds2, aes(x = x, y = y)) + 
+ggplot(diamante2, aes(x = x, y = y)) + 
   geom_point(na.rm = TRUE)
 ```
 
@@ -298,6 +299,11 @@ You can do this by making a new variable, using `is.na()` to check if `dep_time`
 
 [^eda-1]: Remember that when we need to be explicit about where a function (or dataset) comes from, we'll use the special form `package::function()` or `package::dataset`.
 
+Outras vezes, você deseja entender o que torna as observações com valores ausentes diferentes das observações com valores registrados.
+Por exemplo, em `nycflights13::flights1`, valores ausentes na variável dep_time indicam que o voo foi cancelado.
+Então, você pode querer comparar os horários de partida programados para horários cancelados e não cancelados.
+Você pode fazer isso criando uma nova variável, usando `is.na()` para verificar se `dep_time` está faltando.
+
 ```{r}
 #| fig-alt: |
 #|   A frequency polygon of scheduled departure times of flights. Two lines 
@@ -305,41 +311,41 @@ You can do this by making a new variable, using `is.na()` to check if `dep_time`
 #|   from 0 to 25 minutes and the y-axis ranges from 0 to 10000. The number of 
 #|   flights not cancelled are much higher than those cancelled.
 
-nycflights13::flights |> 
+dados::voos |> 
   mutate(
-    cancelled = is.na(dep_time),
-    sched_hour = sched_dep_time %/% 100,
-    sched_min = sched_dep_time %% 100,
-    sched_dep_time = sched_hour + (sched_min / 60)
+    cancelado = is.na(horario_saida),
+    hora_programada = saida_programada %/% 100,
+    min_programado = saida_programada %% 100,
+    saida_programada = hora_programada + (min_programado / 60)
   ) |> 
-  ggplot(aes(x = sched_dep_time)) + 
-  geom_freqpoly(aes(color = cancelled), binwidth = 1/4)
+  ggplot(aes(x = saida_programada)) + 
+  geom_freqpoly(aes(color = cancelado), binwidth = 1/4)
 ```
 
-However this plot isn't great because there are many more non-cancelled flights than cancelled flights.
-In the next section we'll explore some techniques for improving this comparison.
+No entanto, este gráfico não é bom porque há muito mais voos não cancelados do que voos cancelados.
+Na próxima seção exploraremos algumas técnicas para melhorar essa comparação.
 
 ### Exercises
 
-1.  What happens to missing values in a histogram?
-    What happens to missing values in a bar chart?
-    Why is there a difference in how missing values are handled in histograms and bar charts?
+1.  O que acontece com valores perdidos em um histograma?
+    O que acontece com valores perdidos em um gráfico de barras?
+    Por que existe uma diferença em como valores perdidos são tratados em histogramas e gráficos de barras?
 
-2.  What does `na.rm = TRUE` do in `mean()` and `sum()`?
+2.  O que significa o `na.rm = TRUE` em `mean()` e `sum()`?
 
-3.  Recreate the frequency plot of `scheduled_dep_time` colored by whether the flight was cancelled or not.
-    Also facet by the `cancelled` variable.
-    Experiment with different values of the `scales` variable in the faceting function to mitigate the effect of more non-cancelled flights than cancelled flights.
+3.  Recrie o gráfico de frequência de `saida_programada` colorido de acordo com o cancelamento ou não do voo.
+    Também use o facetamento para a variável `cancelado` variable.
+    Experimente diferentes valores da variável `scales` na função de lapidação para mitigar o efeito de mais voos não cancelados do que voos cancelados.
 
-## Covariation
+## Covariação
 
-If variation describes the behavior *within* a variable, covariation describes the behavior *between* variables.
-**Covariation** is the tendency for the values of two or more variables to vary together in a related way.
-The best way to spot covariation is to visualize the relationship between two or more variables.
+Se variação descreve o comportamento dentro de uma variável, covariação descreve o comportamento entre variáveis.
+Covariação é a tendência em que os valores de duas ou mais variáveis variam juntas de maneira relacionada.
+O melhor caminho para ver a covariação é visualizar a relação entre duas ou mais variáveis.
 
-### A categorical and a numerical variable {#sec-cat-num}
+### Uma variável categórica e uma numérica {#sec-cat-num}
 
-For example, let's explore how the price of a diamond varies with its quality (measured by `cut`) using `geom_freqpoly()`:
+Por exemplo, vamos explorar como o preço do diamante varia com a qualidade dele (medida pelo `corte`) usando `geom_frenqpoly()`:
 
 ```{r}
 #| fig-alt: |
@@ -350,17 +356,17 @@ For example, let's explore how the price of a diamond varies with its quality (m
 #|   distributions of prices of diamonds. One notable feature is that 
 #|   Ideal diamonds have the highest peak around 1500.
 
-ggplot(diamonds, aes(x = price)) + 
-  geom_freqpoly(aes(color = cut), binwidth = 500, linewidth = 0.75)
+ggplot(diamante, aes(x = preco)) + 
+  geom_freqpoly(aes(color = corte), binwidth = 500, linewidth = 0.75)
 ```
 
-Note that ggplot2 uses an ordered color scale for `cut` because it's defined as an ordered factor variable in the data.
-You'll learn more about these in @sec-ordered-factors.
+Note que o ggplot2 usa uma escala de cor ordenada para corte porque ele está definido como um fator ordenado nos dados.
+Você irá aprender mais sobre isso em @sec-ordered-factors.
 
-The default appearance of `geom_freqpoly()` is not that useful here because the height, determined by the overall count, differs so much across `cut`s, making it hard to see the differences in the shapes of their distributions.
+A aparência padrão de `geom_freqpoly()` não é tão útil aqui porque a altura, determinada pela contagem geral, difere muito entre os `corte`s, tornando difícil ver as diferenças nas formas de suas distribuições.
 
-To make the comparison easier we need to swap what is displayed on the y-axis.
-Instead of displaying count, we'll display the **density**, which is the count standardized so that the area under each frequency polygon is one.
+Para fazer a comparação mais fácil nós necessitamos trocar o que está no eixo y.
+Ao invés da contagem (frequência), nós iremos exibir a **densidade** (**density**), que é a contagem padronizada para que a área sob cada polígono de frequência seja um.
 
 ```{r}
 #| fig-alt: |
@@ -371,17 +377,16 @@ Instead of displaying count, we'll display the **density**, which is the count s
 #|   diamonds. One notable feature is that all but Fair diamonds have high peaks 
 #|   around a price of 1500 and Fair diamonds have a higher mean than others.
 
-ggplot(diamonds, aes(x = price, y = after_stat(density))) + 
-  geom_freqpoly(aes(color = cut), binwidth = 500, linewidth = 0.75)
+ggplot(diamante, aes(x = preco, y = after_stat(density))) + 
+  geom_freqpoly(aes(color = corte), binwidth = 500, linewidth = 0.75)
 ```
 
-Note that we're mapping the density to `y`, but since `density` is not a variable in the `diamonds` dataset, we need to first calculate it.
-We use the `after_stat()` function to do so.
+Note que nós estamos mapeando a densidade para o eixo `y`, mas como `density` não é uma variável do `diamante`, nós precisamos primeiro calcular ela.
+Nós usamos a função `afer_stat()` para fazer isso.
 
-There's something rather surprising about this plot - it appears that fair diamonds (the lowest quality) have the highest average price!
-But maybe that's because frequency polygons are a little hard to interpret - there's a lot going on in this plot.
-
-A visually simpler plot for exploring this relationship is using side-by-side boxplots.
+Há algo bastante surpreendente neste gráfico - parece que os diamantes razoáveis (de qualidade mais baixa) têm o preço médio mais alto!
+Mas talvez seja porque os polígonos de frequência são um pouco difíceis de interpretar -- há muita coisa acontecendo neste gráfico.
+Um gráfico visualmente mais simples para explorar essa relação são os boxplot.
 
 ```{r}
 #| fig-alt: |
@@ -390,20 +395,20 @@ A visually simpler plot for exploring this relationship is using side-by-side bo
 #|   Ideal). The medians are close to each other, with the median for Ideal 
 #|   diamonds lowest and that for Fair highest.
 
-ggplot(diamonds, aes(x = cut, y = price)) +
+ggplot(diamante, aes(x = corte, y = preco)) +
   geom_boxplot()
 ```
 
-We see much less information about the distribution, but the boxplots are much more compact so we can more easily compare them (and fit more on one plot).
-It supports the counter-intuitive finding that better quality diamonds are typically cheaper!
-In the exercises, you'll be challenged to figure out why.
+Agora nós vemos muito menos informações sobre a distribuição, mas os boxplots são muito mais compactos então nós podemos mais facilmente comparar eles (e se ajusta mais em um gráfico).
+Isto apoia a descoberta contra-intuitiva de que diamantes de melhor qualidade são normalmente mais baratos!
+Nos exercícios, você será desafiado a descobrir o porquê.
 
-`cut` is an ordered factor: fair is worse than good, which is worse than very good and so on.
-Many categorical variables don't have such an intrinsic order, so you might want to reorder them to make a more informative display.
-One way to do that is with `fct_reorder()`.
-You'll learn more about that function in @sec-modifying-factor-order, but we want to give you a quick preview here because it's so useful.
-For example, take the `class` variable in the `mpg` dataset.
-You might be interested to know how highway mileage varies across classes:
+`corte` é um fator ordenado: razoável é pior que bom, que por suas vez é pior que muito bom e assim por diante.
+Muitas variáveis categóricas não tem uma ordem intrínseca, então você pode querer reordenar elas para tornar uma exibição mais informativa.
+Um caminho para isso é usar a `fct_reorder()`.
+Você irá aprender mais sobre essa função em @sec-modifying-factor-order, mas nós queremos dar a você uma rápida pré-visualização do uso dela.
+Por exemplo, pegue a variável `classe` do banco de dados `milhas`.
+Você pode estar interessado em saber como a quilometragem da rodovia varia entre as classes:
 
 ```{r}
 #| fig-alt: |
@@ -411,11 +416,11 @@ You might be interested to know how highway mileage varies across classes:
 #|   on the x-axis (2seaters, compact, midsize, minivan, pickup, subcompact, 
 #|   and suv).
 
-ggplot(mpg, aes(x = class, y = hwy)) +
+ggplot(milhas, aes(x = classe, y = rodovia)) +
   geom_boxplot()
 ```
 
-To make the trend easier to see, we can reorder `class` based on the median value of `hwy`:
+Para tornar a tendência mais fácil de visualizar, nós podemos reordenar `classe` baseado no valor mediano de `rodovia`:
 
 ```{r}
 #| fig-alt: |
@@ -423,51 +428,51 @@ To make the trend easier to see, we can reorder `class` based on the median valu
 #|   on the x-axis and ordered by increasing median highway mileage (pickup, 
 #|   suv, minivan, 2seater, subcompact, compact, and midsize).
 
-ggplot(mpg, aes(x = fct_reorder(class, hwy, median), y = hwy)) +
+ggplot(milhas, aes(x = fct_reorder(classe, rodovia, median), y = rodovia)) +
   geom_boxplot()
 ```
 
-If you have long variable names, `geom_boxplot()` will work better if you flip it 90°.
-You can do that by exchanging the x and y aesthetic mappings.
+Se você tem nomes longos de variáveis, `geom_boxplot()` irá trabalhar melhor se você virar em 90º.
+Você pode fazer isso trocando os eixos x e y.
 
 ```{r}
 #| fig-alt: |
 #|   Side-by-side boxplots of highway mileages of cars by class. Classes are 
 #|   on the y-axis and ordered by increasing median highway mileage.
 
-ggplot(mpg, aes(x = hwy, y = fct_reorder(class, hwy, median))) +
+ggplot(milhas, aes(x = rodovia, y = fct_reorder(classe, rodovia, median))) +
   geom_boxplot()
 ```
 
-#### Exercises
+#### Exercícios
 
-1.  Use what you've learned to improve the visualization of the departure times of cancelled vs. non-cancelled flights.
+1.  Use o que você tem aprendido para melhorar a visualização dos horários de partida de voos cancelados e não cancelados.
 
-2.  Based on EDA, what variable in the diamonds dataset appears to be most important for predicting the price of a diamond?
-    How is that variable correlated with cut?
-    Why does the combination of those two relationships lead to lower quality diamonds being more expensive?
+2.  Com base na EDA, qual variável do banco de dados diamante parece ser mais importante para predizer o preço de um diamante?
+    Como essa variável está correlacionada com corte?
+    Por que a combinação dessas duas relações leva a qualidade mais baixa de diamantes ser mais caros?
 
-3.  Instead of exchanging the x and y variables, add `coord_flip()` as a new layer to the vertical boxplot to create a horizontal one.
-    How does this compare to exchanging the variables?
+3.  Ao invés de trocar as variáveis x e y, adicione `coord_flip()` como uma nova camada para transformar o boxplot de vertical para horizontal.
+    Como isso se compara à troca de variáveis?
 
-4.  One problem with boxplots is that they were developed in an era of much smaller datasets and tend to display a prohibitively large number of "outlying values".
-    One approach to remedy this problem is the letter value plot.
-    Install the lvplot package, and try using `geom_lv()` to display the distribution of price vs. cut.
-    What do you learn?
-    How do you interpret the plots?
+4.  Um problema com os boxplots é que eles foram desenvolvidos em uma era de conjuntos de dados muito menores e tendem a exibir um número proibitivamente grande de "valores periféricos".
+    Uma abordagem para remediar esse problema é o gráfico de valores de letras.
+    Instale o pacote the lvplot, e tente usar `geom_lv()` para exibir a distribuição de preço vs. corte.
+    O que você entende?
+    Como você interpreta os gráficos?
 
-5.  Create a visualization of diamond prices vs. a categorical variable from the `diamonds` dataset using `geom_violin()`, then a faceted `geom_histogram()`, then a colored `geom_freqpoly()`, and then a colored `geom_density()`.
-    Compare and contrast the four plots.
-    What are the pros and cons of each method of visualizing the distribution of a numerical variable based on the levels of a categorical variable?
+5.  Crie uma visualização dos preços dos diamantes vs. uma variável categórica do banco de dados diamante usando o `geom_violin()`, depois um facetado `geom_histogram()`, e depois um colorido `geom_freqpoly()`, e depois um colorido `geom_density()`.
+    Compare e contraste os quatro gráficos.
+    Quais são os prós e contras de cada método de visualização da distribuição de uma variável numérica baseada nos níveis de uma variável categórica?
 
-6.  If you have a small dataset, it's sometimes useful to use `geom_jitter()` to avoid overplotting to more easily see the relationship between a continuous and categorical variable.
-    The ggbeeswarm package provides a number of methods similar to `geom_jitter()`.
-    List them and briefly describe what each one does.
+6.  Se você tem um pequeno conjunto de dados, às vezes é útil usar `geom_jitter()` para evitar plotagem excessiva e ver mais facilmente a relação entre as variáveis contínuas e categóricas.
+    O pacote ggbeeswarm disponibiliza um número de métodos similares ao `geom_jitter()`.
+    Liste eles e descreva brevemente o que cada um deles faz.
 
-### Two categorical variables
+### Duas variáveis categóricas
 
-To visualize the covariation between categorical variables, you'll need to count the number of observations for each combination of levels of these categorical variables.
-One way to do that is to rely on the built-in `geom_count()`:
+Para visualizar a covariação entre variáveis categóricas, você irá necessitar contar o número de observações para cada combinação dos níveis dessas variáveis categóricas.
+Uma maneira de fazer isso é contar com o `geom_count()` integrado:
 
 ```{r}
 #| fig-alt: |
@@ -477,21 +482,21 @@ One way to do that is to rely on the built-in `geom_count()`:
 #|   the number of observations for that combination. The legend indicates 
 #|   that these sizes range between 1000 and 4000.
 
-ggplot(diamonds, aes(x = cut, y = color)) +
+ggplot(diamante, aes(x = corte, y = cor)) +
   geom_count()
 ```
 
-The size of each circle in the plot displays how many observations occurred at each combination of values.
-Covariation will appear as a strong correlation between specific x values and specific y values.
+O tamanho de cada círculo no gráfico exibe quantas observações ocorrem em cada combinação de valores.
+A covariação aparecerá como uma forte correlação entre valores específicos de x e valores específicos de y.
 
-Another approach for exploring the relationship between these variables is computing the counts with dplyr:
+Outra abordagem para explorar a relação entre essas variáveis é calcular as contagens com dplyr:
 
 ```{r}
-diamonds |> 
-  count(color, cut)
+diamante |> 
+  count(cor, corte)
 ```
 
-Then visualize with `geom_tile()` and the fill aesthetic:
+Em seguida, visualize com `geom_tile()` e a estética (aesthetic) de preechimento:
 
 ```{r}
 #| fig-alt: |
@@ -501,32 +506,32 @@ Then visualize with `geom_tile()` and the fill aesthetic:
 #|   with the highest number being Ideal diamonds with color G. Fair diamonds 
 #|   and diamonds with color I are the lowest in frequency.
 
-diamonds |> 
-  count(color, cut) |>  
-  ggplot(aes(x = color, y = cut)) +
+diamante |> 
+  count(cor, corte) |>  
+  ggplot(aes(x = cor, y = corte)) +
   geom_tile(aes(fill = n))
 ```
 
-If the categorical variables are unordered, you might want to use the seriation package to simultaneously reorder the rows and columns in order to more clearly reveal interesting patterns.
-For larger plots, you might want to try the heatmaply package, which creates interactive plots.
+Se as variáveis categóricas não estão ordenadas, você pode querer usar o pacote de seriação para reordenar simultaneamente as linhas e colunas para revelar padrões interessantes com mais clareza.
+Para gráficos maiores, você pode querer usar o pacote heatmaply, que cria gráficos interativos.
 
-#### Exercises
+#### Exercícios
 
-1.  How could you rescale the count dataset above to more clearly show the distribution of cut within color, or color within cut?
+1.  Como você poderia redimensionar o conjunto de dados de contagem acima para mostrar mais claramente a distribuição do corte dentro da cor ou da cor dentro do corte?
 
-2.  What different data insights do you get with a segmented bar chart if color is mapped to the `x` aesthetic and `cut` is mapped to the `fill` aesthetic?
-    Calculate the counts that fall into each of the segments.
+2.  Que diferentes insights de dados você obtém com um gráfico de barras segmentado se a cor for mapeada para a estética x e o corte for mapeado para a estética de preenchimento?
+    Calcule as contagens que se enquadram em cada um dos segmentos.
 
-3.  Use `geom_tile()` together with dplyr to explore how average flight departure delays vary by destination and month of year.
-    What makes the plot difficult to read?
-    How could you improve it?
+3.  Use `geom_tile()` junto com dplyr para explorar como os atrasos médios nas partidas de voos variam de acordo com o destino e o mês do ano.
+    O que torna o enredo difícil de ler?
+    Como você poderia melhorá-lo?
 
-### Two numerical variables
+### Duas variáveis numéricas
 
-You've already seen one great way to visualize the covariation between two numerical variables: draw a scatterplot with `geom_point()`.
-You can see covariation as a pattern in the points.
-For example, you can see a positive relationship between the carat size and price of a diamond: diamonds with more carats have a higher price.
-The relationship is exponential.
+Você já viu uma ótima maneira de visualizar a covariação entre duas variáveis numéricas: desenhar um gráfico de dispersão com `geom_point()`.
+Você pode ver a covariação com um padrão dos pontos.
+Por exemplo, você pode ver uma relação positiva entre quilate e preço do diamante: diamantes com mais quilates tem preços mais altos.
+A relação é exponencial.
 
 ```{r}
 #| dev: "png"
@@ -534,14 +539,17 @@ The relationship is exponential.
 #|   A scatterplot of price vs. carat. The relationship is positive, somewhat 
 #|   strong, and exponential.
 
-ggplot(smaller, aes(x = carat, y = price)) +
+menores_diamantes <- diamante |> 
+  filter(quilate < 3)
+
+ggplot(menores_diamantes, aes(x = quilate, y = preco)) +
   geom_point()
 ```
 
-(In this section we'll use the `smaller` dataset to stay focused on the bulk of the diamonds that are smaller than 3 carats)
+(Nesta seção usaremos o conjunto de dados `menores_diamantes` para manter o foco na maior parte dos diamantes menores que 3 quilates)
 
-Scatterplots become less useful as the size of your dataset grows, because points begin to overplot, and pile up into areas of uniform black, making it hard to judge differences in the density of the data across the 2-dimensional space as well as making it hard to spot the trend.
-You've already seen one way to fix the problem: using the `alpha` aesthetic to add transparency.
+Gráficos de dispersão se tornam menos usuais à medida que seu conjunto de dados cresce, porque os pontos se acumulam, e se amontoam em áreas de preto uniforme, tornando difícil julgar diferenças na densidade dos dados em torno do espaço bidimensional, bem como difícil de ver alguma tendência.
+Você já tem visto uma forma de corrigir esse problema: usando a estética (aesthetic) `alpha` para adicionar transparência.
 
 ```{r}
 #| dev: "png"
@@ -551,19 +559,18 @@ You've already seen one way to fix the problem: using the `alpha` aesthetic to a
 #|   the number of points is higher than other areas, The most obvious clusters 
 #|   are for diamonds with 1, 1.5, and 2 carats.
 
-ggplot(smaller, aes(x = carat, y = price)) + 
+ggplot(menores_diamantes, aes(x = quilate, y = preco)) + 
   geom_point(alpha = 1 / 100)
 ```
 
-But using transparency can be challenging for very large datasets.
-Another solution is to use bin.
-Previously you used `geom_histogram()` and `geom_freqpoly()` to bin in one dimension.
-Now you'll learn how to use `geom_bin2d()` and `geom_hex()` to bin in two dimensions.
+Mas usar transparência pode ser desafiador para conjunto de dados grandes.
+Outra solução é usar intervalos (bins).
+Previamente, você usou `geom_histogram()` e `geom_freqpoly()` para bin em uma dimensão.
+Agora você irá aprender como usar `geom_bin2d()` e `geom_hex()` para bins em duas dimensões.
 
-`geom_bin2d()` and `geom_hex()` divide the coordinate plane into 2d bins and then use a fill color to display how many points fall into each bin.
-`geom_bin2d()` creates rectangular bins.
-`geom_hex()` creates hexagonal bins.
-You will need to install the hexbin package to use `geom_hex()`.
+`geom_bin2d()` e `geom_hex()` divide o plano de coordenadas em bins 2D e então usa um preenchimento de cor para exibir quantos pontos caem em cada bin.
+`geom_bin2d()` cria bins retangulares e `geom_hex()` cria bins hexagonais.
+Você irá necessitar instalar o pacote hexbin para usar `geom_hex()`.
 
 ```{r}
 #| layout-ncol: 2
@@ -573,17 +580,17 @@ You will need to install the hexbin package to use `geom_hex()`.
 #|   plot of price vs. carat. Both plots show that the highest density of 
 #|   diamonds have low carats and low prices.
 
-ggplot(smaller, aes(x = carat, y = price)) +
+ggplot(menores_diamantes, aes(x = quilate, y = preco)) +
   geom_bin2d()
 
 # install.packages("hexbin")
-ggplot(smaller, aes(x = carat, y = price)) +
+ggplot(menores_diamantes, aes(x = quilate, y = preco)) +
   geom_hex()
 ```
 
-Another option is to bin one continuous variable so it acts like a categorical variable.
-Then you can use one of the techniques for visualizing the combination of a categorical and a continuous variable that you learned about.
-For example, you could bin `carat` and then for each group, display a boxplot:
+Outra opção é agrupar uma variável contínua para que ela atue como uma variável categórica.
+Então você usa uma das técnicas para visualizar a combinação de uma variável categórica e uma contínua que você aprendeu antes.
+Por exemplo, você poderia categorizar a variável `quilate`, e então para cada grupo exibir um boxplot:
 
 ```{r}
 #| fig-alt: |
@@ -595,77 +602,81 @@ For example, you could bin `carat` and then for each group, display a boxplot:
 #|   left skewed distributions. Cheaper, smaller diamonds have outliers on the 
 #|   higher end, more expensive, bigger diamonds have outliers on the lower end.
 
-ggplot(smaller, aes(x = carat, y = price)) + 
-  geom_boxplot(aes(group = cut_width(carat, 0.1)))
+ggplot(menores_diamantes, aes(x = quilate, y = preco)) + 
+  geom_boxplot(aes(group = cut_width(quilate, 0.1)))
 ```
 
 `cut_width(x, width)`, as used above, divides `x` into bins of width `width`.
 By default, boxplots look roughly the same (apart from number of outliers) regardless of how many observations there are, so it's difficult to tell that each boxplot summaries a different number of points.
 One way to show that is to make the width of the boxplot proportional to the number of points with `varwidth = TRUE`.
 
-#### Exercises
+`cut_width(x, width)`, conforme usado acima, divide `x` em compartimentos de largura (`width`).
+Por padrão, os boxplots parecem praticamente os mesmos (exceto pelo número de valores discrepantes) independentemente de quantas observações existem, então é difícil dizer que cada boxplot resume um diferente número de pontos.
+Uma maneira de mostrar isso é tornar a largura do boxplot proporcional ao número de pontos com `varwidth = TRUE`.
 
-1.  Instead of summarizing the conditional distribution with a boxplot, you could use a frequency polygon.
-    What do you need to consider when using `cut_width()` vs. `cut_number()`?
-    How does that impact a visualization of the 2d distribution of `carat` and `price`?
+#### Exercícios
 
-2.  Visualize the distribution of `carat`, partitioned by `price`.
+1.  Em vez de resumir a distribuição condicional com um boxplot, você poderia usar um polígono de frequência.
+    O que você precisa considerar ao usar `cut_width()` vs. `cut_number()`?
+    Como isso afeta a visualização da distribuição 2D de `quilate` e `preco`?
 
-3.  How does the price distribution of very large diamonds compare to small diamonds?
-    Is it as you expect, or does it surprise you?
+2.  Visualize a distribuição do `quilate`, particionado por `preco`.
 
-4.  Combine two of the techniques you've learned to visualize the combined distribution of cut, carat, and price.
+3.  Como a distribuição de preços dos diamantes muito grandes se compara à dos diamantes pequenos?
+    É como você espera ou te surpreende?
 
-5.  Two dimensional plots reveal outliers that are not visible in one dimensional plots.
-    For example, some points in the following plot have an unusual combination of `x` and `y` values, which makes the points outliers even though their `x` and `y` values appear normal when examined separately.
-    Why is a scatterplot a better display than a binned plot for this case?
+4.  Combine duas das técnicas que você aprendeu para visualizar a distribuição combinada de corte, quilate e preço.
+
+5.  Gráficos bidimensionais revelam valores discrepantes que não são visíveis em gráficos unidimensionais.
+    Por exemplo, alguns pontos no gráfico a seguir têm uma combinação incomum de valores `x` e `y`, o que torna os pontos discrepantes, embora seus valores `x` e `y` pareçam normais quando examinados separadamente.
+    Por que um gráfico de dispersão é uma exibição melhor do que um gráfico agrupado neste caso?
 
     ```{r}
     #| eval: false
-    diamonds |> 
+    diamante |> 
       filter(x >= 4) |> 
       ggplot(aes(x = x, y = y)) +
       geom_point() +
       coord_cartesian(xlim = c(4, 11), ylim = c(4, 11))
     ```
 
-6.  Instead of creating boxes of equal width with `cut_width()`, we could create boxes that contain roughly equal number of points with `cut_number()`.
-    What are the advantages and disadvantages of this approach?
+6.  Em vez de criar caixas de largura igual com `cut_width()`, poderíamos criar caixas que contenham um número aproximadamente igual de pontos com `cut_number()`.
+    Quais são as vantagens e desvantagens desta abordagem?
 
     ```{r}
     #| eval: false
-    ggplot(smaller, aes(x = carat, y = price)) + 
-      geom_boxplot(aes(group = cut_number(carat, 20)))
+    ggplot(menores_diamantes, aes(x = quilate, y = preco)) + 
+      geom_boxplot(aes(group = cut_number(quilate, 20)))
     ```
 
-## Patterns and models
+## Padrões e modelos
 
-If a systematic relationship exists between two variables it will appear as a pattern in the data.
-If you spot a pattern, ask yourself:
+Se existe uma relação sistemática entre duas variáveis ela irá aparecer como um padrão nos dados.
+Se você detectar um padrão, se questione:
 
--   Could this pattern be due to coincidence (i.e. random chance)?
+-   Poderia esse padrão ser uma coincidência (ou seja, ao acaso)?
 
--   How can you describe the relationship implied by the pattern?
+-   Como você pode descrever a relação implícita no padrão?
 
--   How strong is the relationship implied by the pattern?
+-   Quão forte é a relação implícita no padrão?
 
--   What other variables might affect the relationship?
+-   Quais outras variáveis podem afetar a relação?
 
--   Does the relationship change if you look at individual subgroups of the data?
+-   A relação muda se você observar subgrupos individuais dos dados?
 
-Patterns in your data provide clues about relationships, i.e., they reveal covariation.
-If you think of variation as a phenomenon that creates uncertainty, covariation is a phenomenon that reduces it.
-If two variables covary, you can use the values of one variable to make better predictions about the values of the second.
-If the covariation is due to a causal relationship (a special case), then you can use the value of one variable to control the value of the second.
+Os padrões nos seus dados revelam pistas sobre as relações, por exemplo, eles revelam covariação.
+Se pensarmos na variação como um fenômeno que cria incerteza, covariação é um fenômeno que reduz ela.
+Se duas variáveis covariam, você pode usar os valores de uma variável para fazer melhores previsões sobre os valores da segunda.
+Se a covariação é uma relação causal (um caso especial), então você pode usar o valor de uma variável para controlar o valor da segunda.
 
-Models are a tool for extracting patterns out of data.
-For example, consider the diamonds data.
-It's hard to understand the relationship between cut and price, because cut and carat, and carat and price are tightly related.
-It's possible to use a model to remove the very strong relationship between price and carat so we can explore the subtleties that remain.
-The following code fits a model that predicts `price` from `carat` and then computes the residuals (the difference between the predicted value and the actual value).
-The residuals give us a view of the price of the diamond, once the effect of carat has been removed.
-Note that instead of using the raw values of `price` and `carat`, we log transform them first, and fit a model to the log-transformed values.
-Then, we exponentiate the residuals to put them back in the scale of raw prices.
+Os modelos são ferramentas para extrair padrões dos dados.
+Por exemplo, considere os dados diamantes.
+É difícil entender a relação entre corte e preço, porque corte e quilate, e quilate e preço são intimamente relacionados.
+É possível usar o modelo para remover a forte relação entre preço e quilate, então nós podemos explorar as complexidades que permanecem.
+O seguinte código ajusta o modelo que prediz `preco` de `quilate` e então calcula os resíduos (a diferença entre o valor predito e o valor real).
+Os resíduos nos dão uma visão do preço do diamante, uma vez que o efeito do quilate tem sido removido.
+Note que ao invés de usar os valores das linhas de `preco` e `quilate`, nós transformamos em log primeiro, e ajustamos o modelo aos valores transformados em log.
+Depois, exponenciamos os resíduos para colocá-los de volta na escala de preços brutos.
 
 ```{r}
 #| message: false
@@ -678,23 +689,23 @@ Then, we exponentiate the residuals to put them back in the scale of raw prices.
 
 library(tidymodels)
 
-diamonds <- diamonds |>
+diamante <- diamante |>
   mutate(
-    log_price = log(price),
-    log_carat = log(carat)
+    log_preco = log(preco),
+    log_quilate = log(quilate)
   )
 
-diamonds_fit <- linear_reg() |>
-  fit(log_price ~ log_carat, data = diamonds)
+diamante_fit <- linear_reg() |>
+  fit(log_preco ~ log_quilate, data = diamante)
 
-diamonds_aug <- augment(diamonds_fit, new_data = diamonds) |>
+diamante_aug <- augment(diamante_fit, new_data = diamante) |>
   mutate(.resid = exp(.resid))
 
-ggplot(diamonds_aug, aes(x = carat, y = .resid)) + 
+ggplot(diamante_aug, aes(x = quilate, y = .resid)) + 
   geom_point()
 ```
 
-Once you've removed the strong relationship between carat and price, you can see what you expect in the relationship between cut and price: relative to their size, better quality diamonds are more expensive.
+Uma vez que você tem removido a forte relação entre quilate e preço, você pode ver o esperado da relação entre corte e preço: relativo ao tamanho deles, diamantes de melhor qualidade (corte) são mais caros.
 
 ```{r}
 #| fig-alt: |
@@ -703,16 +714,16 @@ Once you've removed the strong relationship between carat and price, you can see
 #|   quite similar, between roughly 0.75 to 1.25. Each of the distributions of 
 #|   residuals is right skewed, with many outliers on the higher end.
 
-ggplot(diamonds_aug, aes(x = cut, y = .resid)) + 
+ggplot(diamante_aug, aes(x = corte, y = .resid)) + 
   geom_boxplot()
 ```
 
-We're not discussing modelling in this book because understanding what models are and how they work is easiest once you have tools of data wrangling and programming in hand.
+Nós não discutimos modelagem nesse livro porque entender o que são os modelos e como eles trabalham é mais fácil uma vez que você tem ferramentas de organização de dados (data wrangling) e programação em mãos.
 
-## Summary
+## Resumo
 
-In this chapter you've learned a variety of tools to help you understand the variation within your data.
-You've seen techniques that work with a single variable at a time and with a pair of variables.
-This might seem painfully restrictive if you have tens or hundreds of variables in your data, but they're the foundation upon which all other techniques are built.
+Nesse capítulo você tem aprendido uma variedade de ferramentas para ajudar você a entender a variação dentro dos dados.
+Você tem visto técnicas que trabalham com uma única variável no tempo e com um par de variáveis.
+Isso pode parecer dolorosamente restritivo se você tem dezenas ou centenas de variáveis nos seus dados, mas elas são a base sobre a qual todas as outras técnicas são construídas.
 
-In the next chapter, we'll focus on the tools we can use to communicate our results.
+No próximo capítulo, nós focaremos sobre ferramentas que podemos usar para comunicar nossos resultados.
