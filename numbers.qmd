@@ -372,18 +372,18 @@ x <- 1:10
 cumsum(x)
 ```
 
-Se você precisar de agregadores cumulativos ou rolantes mais complexos, tente o pacote [slider](https://slider.r-lib.org/).
+Se você precisar de agregadores cumulativos ou rolantes mais complexos, experimente o pacote [slider](https://slider.r-lib.org/).
 
 ### Exercícios
 
 1.  Explique o que cada linha de código usada para gerar a @fig-prop-cancelled faz.
 
 2.  Quais funções de trigonometria o R oferece?
-    Chute alguns nomes e veja a documentação.
+    Adivinhe alguns nomes e veja a documentação.
     Elas usam graus ou radianos?
 
 3.  Atualmente `horario_saida` e `saida_programada` são convenientes para consultá-las, mas difícil de calculá-las pois elas não são realmente números contínuos.
-    Você pode ver o problema básico executando o código abaixo: há um espaço (*gap*) entre cada hora.
+    Você pode ver o problema básico executando o código abaixo: há um intervalo entre cada hora.
 
     ```{r}
     #| eval: false
@@ -395,7 +395,7 @@ Se você precisar de agregadores cumulativos ou rolantes mais complexos, tente o
 
     Converta estas variáveis para uma representação real de tempo (em frações de hora ou minutos a partir da meia-noite).
 
-4.  Arredonde `horario_saida` and `horario_chegada` para os próximos cinco minutos mais próximos.
+4.  Arredonde `horario_saida` e `horario_chegada` para os cinco minutos mais próximos.
 
 ## Transformações gerais
 
@@ -403,7 +403,7 @@ A seção seguinte descreve algumas transformações gerais que são frequenteme
 
 ### Ranqueamento (*rank*)
 
-dplyr oferece diversas funções de ranqueamento inspiradas no SQL, mas você deve sempre começar com `dplyr::min_rank()`.
+O dplyr oferece diversas funções de ranqueamento inspiradas no SQL, mas você deve sempre começar com `dplyr::min_rank()`.
 Ela usa o método típico para lidar com empates, e.x., 1o, 2o, 2o, 4o.
 
 ```{r}
@@ -435,7 +435,7 @@ Você pode chegar nos mesmos resultados selecionando o argumento `ties.method` a
 
 `row_number()` também pode ser usada sem nenhum argumento dentro de um verbo dplyr.
 Neste caso, irá te retornar o número da linha "atual".
-Quando combinado com `%%` ou `%/%` isto pode ser uma ferramenta útil para dividor os dados em grupos de tamanhos parecidos:
+Quando combinado com `%%` ou `%/%`, pode ser uma ferramenta útil para dividir os dados em grupos de tamanhos parecidos:
 
 ```{r}
 df <- tibble(id = 1:10)
@@ -448,7 +448,7 @@ df |>
   )
 ```
 
-### Deslacamentos (*offsets*)
+### Deslocamentos (*offsets*)
 
 `dplyr::lead()` e `dplyr::lag()` permitem que você consulte os valores imediatamente antes ou logo após o valor "atual".
 Elas retornam um vetor do mesmo comprimento da entrada, preenchido com `NA`s no início ou no final:
@@ -477,7 +477,7 @@ Você pode determinar o número de posições para frente (*lead*) ou para trás
 
 Às vezes você deseja iniciar um novo grupo sempre que algum evento ocorrer.
 Por exemplo, quando você analisa dados de um site, é comum querer dividir os eventos em sessões, onde você inicia uma nova sessão após um intervalo de mais de `x` minutos desde a última atividade.
-Por exemplo, imagine que você tenha os horários em que alguém visitou um o site:
+Por exemplo, imagine que você tenha os horários em que alguém visitou um site:
 
 ```{r}
 eventos <- tibble(
@@ -540,7 +540,7 @@ df |>
 5.  Para cada destino, calcule o total de minutos de atraso.
     Para cada voo, calcule a proporção do atraso total para o seu destino.
 
-6.  Os atrasos são normalmente correlacionados temporalmente: mesmo depois de o problema que causou o atraso inicial ter sido resolvido, os voos posteriores são atrasados ​​para permitir a saida dos voos anteriores.
+6.  Os atrasos são normalmente correlacionados temporalmente: mesmo depois de o problema que causou o atraso inicial ter sido resolvido, os voos posteriores são atrasados ​​para permitir a saída dos voos anteriores.
     Usando `lag()`, explore como o atraso médio do voo de uma hora está relacionado ao atraso médio da hora anterior..
 
     ```{r}
@@ -563,7 +563,7 @@ df |>
     Quais voos tiveram mais atrasos no ar?
 
 8.  Encontre todos os destinos operados por pelo menos duas companhias aéreas.
-    Use esses destinos para chegar a um ranqueamento relativa das transportadoras com base no seu desempenho para o mesmo destino.
+    Use esses destinos para chegar a um ranqueamento relativo das transportadoras com base no seu desempenho para o mesmo destino.
 
 ## Sumarização numérica
 
@@ -575,7 +575,7 @@ Aqui está uma seleção que você pode achar útil.
 Até agora, na maioria da vezes, usamos a média com `mean()` para sumarizar o centro de um vetor de valores.
 Como vimos na @sec-sample-size, uma vez que a média é a soma dividida pela contagem, ela é sensível até mesmo por um pequeno número de valores muito altos ou muito baixos.
 Uma alternativa é usar a mediana, com `median()`, que encontra o valor que se encontra no "meio" do vetor, e.x. 50% dos valores estão acima e 50% estão abaixo.
-Dependendo da forma da distribuição da variável de interesse, média ou mediana podem ser uma melhor medidade de posição.
+Dependendo da forma da distribuição da variável de interesse, média ou mediana podem ser uma melhor medida de posição.
 Por exemplo, para distribuições simétricas, geralmente reportamos a média, enquanto para distribuições assimétricas (*skewed*), geralmente reportamos a mediana.
 
 A @fig-mean-vs-median compara a média e a mediana dos valores de atraso na saída (em minutos) para cada destino.
@@ -589,8 +589,8 @@ A mediana de atraso é sempre menor que a média de atraso, pois em alguns casos
 #| fig-alt: |
 #|   Todos os pontos estão sob a linha de 45°, signifcando que o atraso da mediana é
 #|   sempre menor que o atraso médio. A maioria dos pontos estão agrupados em um
-#|   região densa da média [0, 20] e mediana [0, 5]. Conforme o atraso  médio aumenta
-#|   , a dispersão da mediana também aumenta. Existem dois pontos discrepantes
+#|   região densa da média [0, 20] e mediana [0, 5]. Conforme o atraso médio aumenta,
+#|   a dispersão da mediana também aumenta. Existem dois pontos discrepantes
 #|   com média ~60, mediana ~50 e média ~85, mediana ~55.
 voos |>
   group_by(ano, mes, dia) |>
@@ -605,7 +605,7 @@ voos |>
   geom_point()
 ```
 
-Você também pode estar se perguntando sobre a **moda**, ou valor mais comum.
+Você também pode estar se perguntando sobre a **moda**, ou valor mais comum (ou mais frequente).
 Esta é uma medida que funciona bem apenas para casos muito simples (que pode ser a razão que você aprendeu sobre ela na escola primária), mas não funciona bem para conjuntos de dados reais.
 Se o dados forem discretos, podem existir muitos valores comuns, e se os dados forem contínuos, podem não existir valores comuns pois cada valor é ligeiramente diferente um do outro.
 Por estas razões, a moda tende a não ser usada por estatísticos e não há uma função de moda no R básico[^numbers-2].
@@ -614,7 +614,7 @@ Por estas razões, a moda tende a não ser usada por estatísticos e não há um
 
 ### Minimos, maximos e quantis {#sec-min-max-summary}
 
-E se você estiver interessados em posições diferentes do centro?
+E se você tiver interesse em saber as posições diferentes do centro?
 `min()` e `max()` te darão os menores e maiores valores.
 Uma outra poderosa ferramenta é a `quantile()` que é uma generalização da mediana: `quantile(x, 0.25)` retorna o valor de `x` que é maior que 25% dos valores, `quantile(x, 0.5)` é equivalente à mediana e `quantile(x, 0.95)` retornará o valor que é maior que 95% dos valores.
 
@@ -636,7 +636,7 @@ Algumas vezes você não tem interesse em onde a maior parte dos dados se encont
 Duas medidas de dispersão muito usadas são, o desvio padrão, `sd(x)`, e o intervalo interquartil (*inter-quartile range*), `IQR()`.
 Não iremos explicar o `sd()` aqui, pois você já deve ser algo familiar a você, mas `IQR()` pode ser algo novo, --- ele é `quantile(x, 0.75) - quantile(x, 0.25)` e retornar um intervalo que contém a metade (50%) dos dados.
 
-Podemos usar isso para revelar uma pequena estranheza nos dados dos `vôos`.
+Podemos usar isso para revelar uma pequena estranheza nos dados dos `voos`.
 Você poderia esperar que a dispersão da distância entre a origem e o destino fosse zero, uma vez que os aeroportos estão sempre no mesmo lugar.
 Mas o código abaixo revela uma estranheza nos dados do aeroporto [EGE](https://en.wikipedia.org/wiki/Eagle_County_Regional_Airport):
 
@@ -654,7 +654,7 @@ voos |>
 ### Distribuições
 
 Vale lembrar que todas as estatísticas de sumarização descritas acima são uma forma de reduzir a distribuição a um único número.
-Isso significa que eles são fundamentalmente redutores e, se você escolher a sumarização errada, poderá facilmente perder diferenças importantes entre os grupos..
+Isso significa que eles são fundamentalmente redutores e, se você escolher a sumarização errada, poderá facilmente perder diferenças importantes entre os grupos.
 É por isso que é sempre uma boa ideia visualizar a distribuição antes de se comprometer com suas estatísticas de sumarização.
 
 A @fig-flights-dist mostra a distribuição geral dos atrasos nas saídas.
@@ -735,8 +735,8 @@ voos |>
 Se você está familiarizado com `[`, o qual retornaremos na @sec-subset-many, você pode estar se perguntando se você realmente precisa destas funções.
 Existem três razões: o argumento `default` permite que você forneça um padrão se a posição especificada não existir, o argumento `order_by` permite que você ordene localmente sobrescrevendo a ordenação das linhas, e o argumento `na_rm` permite você ignorar valores faltantes (*missing values*).
 
-Extrair valores em determninada posição é complementar a filtrar em ranqueamentos.
-Filtrar retorna todas as variáveis, com cada observações em uma linha separada:
+Extrair valores em determinada posição é complementar à filtrar em ranqueamentos.
+Filtrar retorna todas as variáveis, com cada observação em uma linha separada:
 
 ```{r}
 voos |> 
@@ -773,7 +773,7 @@ Por exemplo:
 
 ## Resumo
 
-Você já está familiarizado com muitas ferramentas para trabalhar com números e, depois de ler este capítulo, agora sabe como usá-las no R.
+Você já tem familiaridade com muitas ferramentas para trabalhar com números e, depois de ler este capítulo, agora sabe como usá-las no R.
 Você também aprendeu algumas transformações gerais úteis que são comumente, mas não exclusivamente, aplicadas a vetores numéricos, como ranqueamentos e deslocamentos.
 Por fim, você trabalhou com várias sumarizações numéricas e discutiu alguns dos desafios estatísticos que deveria considerar.
 
