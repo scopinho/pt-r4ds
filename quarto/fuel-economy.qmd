@@ -1,7 +1,7 @@
 ---
 format: html
 params:
-  my_class: "suv"
+  minha_classe: "suv"
 ---
 
 ```{r}
@@ -11,15 +11,15 @@ params:
 library(tidyverse)
 library(dados)
 
-class <- mpg |> filter(class == params$my_class)
+classe <- milhas |> filter(classe == params$minha_classe)
 ```
 
-# Fuel economy for `r params$my_class`s
+# Economia de combustível para `r params$minha_classe`
 
 ```{r}
 #| message: false
 
-ggplot(class, aes(x = displ, y = hwy)) + 
+ggplot(classe, aes(x = cilindrada, y = rodovia)) + 
   geom_point() + 
   geom_smooth(se = FALSE)
 ```
