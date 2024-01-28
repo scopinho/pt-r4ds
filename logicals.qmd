@@ -40,7 +40,7 @@ x * 2
 ```
 
 Isso facilita a explicação de funções individuais, ao custo de dificultar a visualização de como elas podem se aplicar aos seus problemas de dados.
-Apenas lembre-se de que qualquer manipulação que fizermos em um vetor simples, você poderá fazer em uma variável dentro de *data frame* com `mutate()` e demais funções amigas.
+Apenas lembre-se de que qualquer transformação que fizermos em um vetor simples, você poderá fazer em uma variável dentro de *data frame* com `mutate()` e demais funções amigas.
 
 ```{r}
 df <- tibble(x)
@@ -59,7 +59,7 @@ voos |>
   filter(horario_saida > 600 & horario_saida < 2000 & abs(atraso_chegada) < 20)
 ```
 
-É útil saber que isto é apenas um atalho e você pode explicitamente criar a variável lógica intrínseca com  `mutate()`:
+É útil saber que isto é apenas um atalho e você pode explicitamente criar a variável lógica intrínseca com `mutate()`:
 
 ```{r}
 voos |> 
@@ -496,7 +496,7 @@ case_when(
 )
 ```
 
-Use  o argumento`.default` se você quiser gerar um "padrão"/pegar todos os valores:
+Use o argumento `.default` se você quiser gerar um "padrão"/pegar todos os valores:
 
 ```{r}
 case_when(
@@ -571,8 +571,9 @@ Não esperamos que você memorize essas regras, mas elas devem se tornar naturai
 3.  Use `ifelse()` para calcular o valor absoluto de um vetor numérico chamado `x`.
 
 4.  Escreva uma declaração `case_when()` que usa as colunas `mes` e `dia` de `voos` para rotular um conjunto de feriados importante dos Brasil (e.g., 7 de Setembro, Tiradentes, Carnaval e Natal[^logicals-5]).
-[^logicals-5]: N.T. - Na versão original em inglês, os feriados são dos Estados Unidos.
     Primeiro crie uma coluna lógica `TRUE` ou `FALSE`, e então uma coluna texto (*character*) que tenha o nome do feriado ou `NA`.
+
+[^logicals-5]: **Nota de tradução:** Na versão original em inglês, os feriados são dos Estados Unidos.
 
 ## Resumo
 
