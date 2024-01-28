@@ -686,7 +686,7 @@ todos <- voos |>
   ggplot(aes(x = atraso_saida)) + 
   geom_histogram(binwidth = 15, na.rm = TRUE)
 
-atraso120 <- flights |>
+atraso120 <- voos |>
   filter(atraso_saida < 120) |> 
   ggplot(aes(x = atraso_saida)) + 
   geom_histogram(binwidth = 5)
