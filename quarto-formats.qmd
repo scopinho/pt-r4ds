@@ -9,7 +9,7 @@ source("_common.R")
 ## Introdução
 
 Até agora você viu o Quarto sendo usado para produzir documentos HTML.
-Este capítulo dá uma visão geral de alguns dos muitos outros tipos de saída que você pode produzir com Quarto.
+Este capítulo dá uma visão geral de alguns dos muitos outros tipos de saída (*output*) que você pode produzir com Quarto.
 
 Há duas formas de configurar a saída do documento:
 
