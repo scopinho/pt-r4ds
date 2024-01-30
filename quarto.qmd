@@ -65,7 +65,7 @@ O RStudio executará o código e mostrará os resultados junto com o código.
 #| echo: false
 #| out-width: "90%"
 #| fig-cap: |
-#|   Um documento Quarto em RStudio. Código e saída entrelaçados 
+#|   Um documento Quarto no RStudio. Código e saída intercalados 
 #|   no documento, com a saída do gráfico aparecendo logo abaixo do código.
 #| fig-alt: |
 #|   Janela do RStudio com um documento Quarto intitulado "diamond-sizes.qmd" 
