@@ -158,7 +158,7 @@ As seções a seguir aprofundam os três componentes de um documento Quarto em m
 ## Editor Visual
 
 O editor Visual no RStudio utiliza uma interface [WYSIWYM](https://en.wikipedia.org/wiki/WYSIWYM) para autoria de documentos Quarto.
-Dembaixo do capô, prosa em documentos Quarto (arquivos `.qmd`) são escritos em Markdown, um conjunto leve de convenções para formatação de arquivos de texto simples.
+Por trás das cortinas, os textos em documentos Quarto (arquivos `.qmd`) são escritos em Markdown, um conjunto leve de convenções para formatação de arquivos de texto simples.
 De fato, Quarto usa markdown Pandoc (uma versão um pouco extendida de Markdown que é interpretável pelo Quarto), incluindo tabelas, citações, referências cruzadas, notas de rodapé, divs/spans, definiçòes de listas, atributos, HTML/TeX crús, entre outros, assim como suporta execução de células de código e a visualização de seus resultados em linha.
 Enquanto Markdown é desenhado para ser simples de ler e escrever, como você verá em @sec-source-editor, ainda é necessário aprender uma nova sintaxe.
 Assim, se documentos computacionais como arquivos `.qmd` são novos para você, mas você tem experiência com Google Docs ou MS Word, o jeito mais fácil de começar a usar Quarto no RStudio é pelo editor visual.
