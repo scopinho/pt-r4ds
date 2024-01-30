@@ -99,7 +99,7 @@ knitr::include_graphics("quarto/diamond-sizes-console-output.png")
 
 Para produzir um relatório completo contendo todo o texto, código e resultados, clique em "Render" or pressione Cmd/Ctrl + Shift + K.
 Você também pode fazer isso programaticamente, em linha de código, com `quarto::quarto_render("diamond-sizes.qmd")`.
-Isso exibirá o relatório no painel de visualização, como exibido em @fig-diamond-sizes-report, e cria um arquivo HTML.
+Isso exibirá o relatório no painel de visualização, como exibido em @fig-diamond-sizes-report, e criará um arquivo HTML.
 
 ```{r}
 #| label: fig-diamond-sizes-report
