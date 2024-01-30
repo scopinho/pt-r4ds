@@ -349,7 +349,7 @@ Cada uma dessas opções de bloco é adicionada ao cabeçalho do bloco, seguindo
 
 A tabela a seguir resume que tipos de output cada opção suprime:
 
-| Opção            | Executa código | Mostra código | Output | Gráficos | Mensagens | Avisos |
+| Opção            | Executa código | Mostra código | Resultados | Gráficos | Mensagens | Avisos |
 |------------------|:--------------:|:-------------:|:------:|:--------:|:---------:|:------:|
 | `eval: false`    |       X        |               |   X    |    X     |     X     |   X    |
 | `include: false` |                |       X       |   X    |    X     |     X     |   X    |
