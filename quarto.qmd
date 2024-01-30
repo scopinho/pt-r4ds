@@ -244,7 +244,7 @@ Se você se esquecer, pode buscar uma boa folha de referência em *Help \> Markd
 
 4.  Crie um documento em Google doc ou MS Word (ou use um documento que você tenha criado previamente) que contenha títulos, hiperlinks, texto formatado, etc.
     Copie os conteúdos desse documento e cole-os em um documento quarto no editor visual.
-    Em seguida, troque para o editor source e inspecion o código fonte.
+    Em seguida, troque para o editor source e inspecione o código fonte.
 
 ## Blocos de Código
 
