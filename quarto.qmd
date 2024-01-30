@@ -269,7 +269,7 @@ As seções a seguir descrevem o cabeçalho do bloco de código, que consiste em
 
 ### Rótulo do bloco de código
 
-Blocos podem receber um rótulo opcional, por exemplo
+Blocos de código podem receber um rótulo opcional, por exemplo
 
 ```{r}
 #| echo: fenced
