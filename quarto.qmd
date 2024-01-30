@@ -8,7 +8,7 @@ source("_common.R")
 
 ## Introdução
 
-Quarto fornece uma estrutura (*framework*) unificada para autoria em ciência de dados, combinando seu código, seus resultados e sua prosa.
+O Quarto fornece uma estrutura (*framework*) unificada para autoria em ciência de dados, combinando seu código, seus resultados e seu texto.
 Documentos Quarto são plenamente reproduzíveis e suportam muitos formatos de saída como PDF, arquivos Word, apresentações e mais.
 
 Arquivos Quarto foram projetados para serem usados de três maneiras:
