@@ -189,7 +189,7 @@ Se você estiver no começo de uma linha (como ilustrado em @fig-visual-editor),
 knitr::include_graphics("quarto/quarto-visual-editor.png")
 ```
 
-Inserir e personalizar como são exibidos também é facilitado com o uso do editor visual.
+Inserir e personalizar como os conteúdos são exibidos também é mais fácil com o uso do editor visual.
 Você pode colar uma imagem diretamente da sua área de transferência no editor visual (e o RStudio colocará uma cópia daquela imagem no diretório do projeto e montarará um link para ela) ou usar o menu Insert \> Figure / Image do editor visual para navegar até a imagem desejada para inserir ou colar sua URL.
 Além disso, usando o mesmo menu você pode redimensionar a imagem e aditionar uma legenda, texto alternativo e um link.
 
