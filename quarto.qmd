@@ -118,7 +118,7 @@ knitr::include_graphics("quarto/diamond-sizes-report.png")
 ```
 
 Quando se gera ou renderiza o documento, Quarto envia o arquivo `.qmd` para o **knitr**, <https://yihui.org/knitr/>, que executa todos os blocos de código e cria um novo arquivo markdown (`.md`) que inclui o código e seus resultados.
-O arquivo markgodn gerado pelo knitr é então processado pelo **pandoc**, [https://pandoc.org](https://pandoc.org/){.uri}, que é responsável por criar a versão final do arquivo.
+O arquivo markdown gerado pelo knitr é então processado pelo **pandoc**, [https://pandoc.org](https://pandoc.org/){.uri}, que é responsável por criar a versão final do arquivo.
 Esse processo é ilustrado em @fig-quarto-flow.
 A vantagem desse fluxo de trabalho em duas etapas é que é possível criar uma ampla variedade de formatos de arquivo, como você verá em @sec-quarto-formats.
 
