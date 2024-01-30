@@ -205,7 +205,7 @@ Mais importante, enquanto o editor visual exibe o conteúdo do documento com for
     a.  Adicionar uma nota de rodapé.
     b.  Adicionar uma linha horizontal.
     c.  Adicionar um bloco de citação.
-4.  Usando o editor visual, vá em Insert \> Citation e insira a citação para o artigo cujo título é [Welcome to the Tidyverse](https://joss.theoj.org/papers/10.21105/joss.01686) usando o DOI (*digital object identifier*), que é [10.21105/joss.01686](https://doi.org/10.21105/joss.01686). Renderize o documento e observe como a referencia aparece no documento. Que alteração você consegue identificar no YAML do seu documento?
+4.  Usando o editor visual, vá em Insert \> Citation e insira a citação para o artigo cujo título é [Welcome to the Tidyverse](https://joss.theoj.org/papers/10.21105/joss.01686) usando o DOI (*digital object identifier*), que é [10.21105/joss.01686](https://doi.org/10.21105/joss.01686). Renderize o documento e observe como a referência aparece no documento. Que alteração você consegue identificar no YAML do seu documento?
 
 ## Editor Source {#sec-source-editor}
 
