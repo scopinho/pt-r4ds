@@ -225,7 +225,7 @@ Com um pouco de infraestrutura adicional é possível usar o Quarto para gerar u
       type: book
     ```
 
-Por exemplo, o arquivo `_quarto.yml` a seguir cria um site a partir de três arquivos: `index.qmd` (a home page), `viridis-colors.qmd`, e `terrain-colors.qmd`.
+Por exemplo, o arquivo `_quarto.yml` a seguir cria um site a partir de três arquivos: `index.qmd` (a página inicial), `viridis-colors.qmd`, e `terrain-colors.qmd`.
 
 ```{r}
 #| echo: false
