@@ -300,7 +300,7 @@ knitr::include_graphics("screenshots/quarto-chunk-nav.png")
 3.  É possível organizar redes de bloco de código em cache para evitar múltiplas execuções de computações caras em toda execução.
     Mais sobre isso em @sec-caching.
 
-Os rótulos dos seus blocos devem ser curtos, mas evocativos e não devem conter espaços.
+Os rótulos dos seus blocos de código devem ser curtos, mas evocativos e não devem conter espaços.
 Recomendamos o uso de traços (`-`) para separar palavras (em vez de sublinhados, `_`) e evitar o uso de outros caracteres especiais nos rótulos de código.
 
 Em geral, você é livre para rotular o bloco de código como quiser, mas há um bloco cujo nome indica um coportamento especial: `setup`.
