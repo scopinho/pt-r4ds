@@ -303,7 +303,7 @@ knitr::include_graphics("screenshots/quarto-chunk-nav.png")
 Os rótulos dos seus blocos devem ser curtos, mas evocativos e não devem conter espaços.
 Recomendamos o uso de traços (`-`) para separar palavras (em vez de sublinhados, `_`) e evitar o uso de outros caracteres especiais nos rótulos de código.
 
-Em geral você é livre para rotular o bloco de código como quiser, mas há um bloco cujo nome indica um coportamento especial: `setup`.
+Em geral, você é livre para rotular o bloco de código como quiser, mas há um bloco cujo nome indica um coportamento especial: `setup`.
 Quando você está no modo caderno, o bloco com nome *setup* será executado automaticamente uma vez antes que todo o seu código seja executado.
 
 Além disso,rótulos não podem ser duplicados.
