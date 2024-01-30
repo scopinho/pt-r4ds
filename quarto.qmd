@@ -263,7 +263,7 @@ Isso economizará muito tempo no longo prazo!
 É possível prosseguir para a execução do código usando o atalho que agora (temos fé!) que você conhece e ama:Cmd/Ctrl + Enter.
 No entanto, blocos de código recebem um novo atalho: Cmd/Ctrl + Shift + Enter, que executa todo o código no bloco.
 Pense no bloco de código como uma função.
-Um bloco deve ser relativamente autocontido, objetivando uma única tarefa.
+Um bloco de código deve ser relativamente autocontido, focado em realizar uma única tarefa.
 
 As seções a seguir descrevem o cabeçalho do bloco de código, que consiste em ```` ```{r} ````, seguido de um rótulo opcional e diversas outras opções de bloco, cada uma em sua própria linha, marcada por `#|`.
 
