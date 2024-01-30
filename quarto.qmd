@@ -267,7 +267,7 @@ Um bloco deve ser relativamente autocontido, objetivando uma única tarefa.
 
 As seções a seguir descrevem o cabeçalho do bloco de código, que consiste em ```` ```{r} ````, seguido de um rótulo opcional e diversas outras opções de bloco, cada uma em sua própria linha, marcada por `#|`.
 
-### Rótulo de bloco
+### Rótulo do bloco de código
 
 Blocos podem receber um rótulo opcional, por exemplo
 
