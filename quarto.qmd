@@ -21,7 +21,7 @@ Arquivos Quarto foram projetados para serem usados de três maneiras:
 
 Quarto é uma feerramenta de linha de comando, não é um pacote do R.
 Isso significa que ajuda, via de regra, não está disponível via `?`.
-Em vez disso, enquanto você trabalhar neste capítulo e usa Quarto no futuro, você deve procurar a [documentação para Quarto](https://quarto.org).
+Em vez disso, enquanto você trabalhar neste capítulo e usar o Quarto no futuro, você deve procurar a [documentação para Quarto](https://quarto.org).
 
 Se você for uma pessoa que usa R Markdown, você deve estar pensando "Quarto parece muito com R Markdown".
 Isso não está errado!
