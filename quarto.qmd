@@ -44,7 +44,7 @@ library(tidyverse)
 
 ## Básico de Quarto
 
-Isso é um arquivo Quarto -- This is a Quarto file -- um arquivo de texto simples que possui a extensão `.qmd`:
+Isso é um arquivo Quarto -- um arquivo de texto simples que possui a extensão `.qmd`:
 
 ```{r echo = FALSE, comment = ""}
 cat(readr::read_file("quarto/diamond-sizes.qmd"))
