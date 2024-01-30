@@ -211,7 +211,7 @@ Mais importante, enquanto o editor visual exibe o conteúdo do documento com for
 
 Também é possível editar documentos Quarto usando o editor Source no RStudio, sem a assistência do editor visual.
 Enquanto o editor Visual será familiar para aqueles com experiência em escrita com ferramentas como Google docs, o editor Source será familia para aqueles com experiência escrevendo scripts R ou documentos R Markdown.
-O editor Source também pode ser útil para correções (*debugging*) qualquer erro de sintaxe Quarto, já que muitas vezes é mais fácil achar esses erros em texto simples.
+O editor Source também pode ser útil para procurar erros (*debugging*) de sintaxe Quarto, já que muitas vezes é mais fácil achar esses erros em texto simples.
 
 O guia abaixo mostra como usar o Markdown do Pandoc para escrever documentos Quarto em seu editor fonte.
 
