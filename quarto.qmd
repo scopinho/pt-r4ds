@@ -307,7 +307,7 @@ Em geral, você é livre para rotular o bloco de código como quiser, mas há um
 Quando você está no modo *notebook*, o bloco de código com nome *setup* será executado automaticamente uma vez antes que todo o seu código seja executado.
 
 Além disso, rótulos não podem ser duplicados.
-Cada rótulo de bloco deve ser único.
+Cada rótulo de bloco de código deve ser único.
 
 ### Opções de bloco de código (*chunk options*)
 
