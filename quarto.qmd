@@ -311,7 +311,7 @@ Cada rótulo de bloco deve ser único.
 
 ### Opções de bloco de código (*chunk options*)
 
-Saídas de bloco podem ser personalizadas com campos de opções (**options**) fornecidos para o cabeçalho do bloco.
+Saídas de blocos de código podem ser personalizadas com campos de opções (**options**) fornecidos para o cabeçalho do bloco.
 Quase 60 opções para personalização dos seus blocos de código são fornecidas pelo Knitr.
 Aqui cobriremos as opções mais importantes, que você utilizará com frequência.
 É possível verificar a lista completa em [https://yihui.org/knitr/options](https://yihui.org/knitr/options/){.uri}.
