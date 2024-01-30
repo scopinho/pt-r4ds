@@ -259,7 +259,7 @@ Quarto oferece ainda mais formatos de output:
 
 -   Você pode gerar transportar documentos Quarto para Jupyter Notebooks com `format: ipynb`: <https://quarto.org/docs/reference/formats/ipynb.html>.
 
-Veja <https://quarto.org/docs/output-formats/all-formats.html> para uma lista de ainda mais formatos.
+Veja <https://quarto.org/docs/output-formats/all-formats.html> para uma lista com ainda mais formatos.
 
 ## Resumo
 
