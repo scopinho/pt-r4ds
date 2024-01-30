@@ -106,7 +106,7 @@ Isso exibirá o relatório no painel de visualização, como exibido em @fig-dia
 #| echo: false
 #| out-width: "90%"
 #| fig-cap: |
-#|   Um documento Quarto em RStudio com o documento renderizado
+#|   Um documento Quarto no RStudio com o documento renderizado
 #|   no painel Viewer.
 #| fig-alt: |
 #|   Janela do RStudio com um documento Quarto chamado "diamond-sizes.qmd" 
