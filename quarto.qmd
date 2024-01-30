@@ -257,7 +257,7 @@ Há três maneiras de fazer isso:
 
 3.  Escrevendo manualmente os limitadores de bloco ```` ```{r} ```` e ```` ``` ````.
 
-Recomandamos que você aprenda o atalho de teclado.
+Recomendamos que você aprenda o atalho de teclado.
 Isso economizará muito tempo no longo prazo!
 
 É possível prosseguir para a execução do código usando o atalho que agora (temos fé!) que você conhece e ama:Cmd/Ctrl + Enter.
