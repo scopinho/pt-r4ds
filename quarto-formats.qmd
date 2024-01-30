@@ -168,7 +168,7 @@ Por outro lado, isso é ótimo porque é possível distribuir o arquivo HTML sem
 No entanto, isso limita fundamentalmente o que se pode fazer ao que foi implementado em HTML e JavaScript.
 Uma abordagem alternativa é usar **shiny**, um pacote que permite criar interativamente usando R em vez de JavaScript.
 
-PAra fazer chamadas de código Shiny em um documento Quarto, inclua `server: shiny` no cabeçalho YAML:
+Para fazer chamadas de código Shiny em um documento Quarto, inclua `server: shiny` no cabeçalho YAML:
 
 ``` yaml
 title: "Shiny Web App"
