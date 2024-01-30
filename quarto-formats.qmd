@@ -257,7 +257,7 @@ Quarto oferece ainda mais formatos de output:
 
 -   Você pode escrever artigos usando Quarto Journal Templates: <https://quarto.org/docs/journals/templates.html>.
 
--   Você pode gerar transportar documentos Quarto para Jupyter Notebooks com `format: ipynb`: <https://quarto.org/docs/reference/formats/ipynb.html>.
+-   Você pode transformar documentos Quarto em formato de notebooks do Jupyter com `format: ipynb`: <https://quarto.org/docs/reference/formats/ipynb.html>.
 
 Veja <https://quarto.org/docs/output-formats/all-formats.html> para uma lista com ainda mais formatos.
 
