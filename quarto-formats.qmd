@@ -245,7 +245,7 @@ Mais uma vez os arquivos fonte são arquivos `.qmd`.
 cat(readr::read_file("quarto/example-book.yml"))
 ```
 
-Recomendamos que se use um Rstudio project para seus sites e livros.
+Recomendamos que você use um projeto do RStudio para seus sites e livros.
 Baseado no arquivo `_quarto.yml` o RStudio reconhecerá o tipo de projeto em que está trabalhado, adicionará uma aba Build à IDE que você pode usar para renderizar e visualizar prévias de seus sites e livros.
 Tanto sites como livros também podem ser renderizados usando `quarto::render()`.
 
