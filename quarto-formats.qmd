@@ -63,7 +63,7 @@ format:
   docx: default
 ```
 
-Note a notação especial (`pdf: default`) caso não queira sobrescrever nenhuma das opções padrão.
+Note a sintaxe especial (`pdf: default`) caso não queira sobrescrever nenhuma das opções padrão.
 
 Para renderizar todos os formatos especificados no YAML do documento, use `output_format = "all"`.
 
