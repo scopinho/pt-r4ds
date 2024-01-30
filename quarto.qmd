@@ -164,7 +164,7 @@ Enquanto Markdown é desenhado para ser simples de ler e escrever, como você ve
 Assim, se documentos computacionais como arquivos `.qmd` são novos para você, mas você tem experiência com Google Docs ou MS Word, o jeito mais fácil de começar a usar Quarto no RStudio é pelo editor visual.
 
 No editor visual, você pode tanto usar botões na barra de menu para inserir imagens, tabelas, referências cruzadas, etc. quanto usar o atalho geral <kbd>⌘ /</kbd> para inserir qualquer coisa.
-Se você estiver no começo de uma linha (como ilustrado em @fig-visual-editor), você pode apenas digitar para <kbd>/</kbd> invocar o atalho.
+Se você estiver no começo de uma linha (como ilustrado em @fig-visual-editor), você pode apenas digitar para <kbd>/</kbd> usar o atalho.
 
 ```{r}
 #| label: fig-visual-editor
