@@ -20,7 +20,7 @@ Há duas formas de configurar a saída do documento:
     format: html
     ```
 
-2.  Transientemente, chamando `quarto::quarto_render()` manualmente:
+2.  Pontualmente, executando `quarto::quarto_render()` manualmente:
 
     ```{r}
     #| eval: false
