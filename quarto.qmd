@@ -174,7 +174,7 @@ Se você estiver no começo de uma linha (como ilustrado em @fig-visual-editor),
 #|   Editor visual Quarto.
 #| fig-alt: |
 #|   Um documento Quarto exibindo diversos recursos do editor
-#|   visual como formatação de texto (italico, negrito, sublinhado,
+#|   visual como formatação de texto (itálico, negrito, sublinhado,
 #|   caixa alta pequena, código, superescrito e subscrito),
 #|   primeiro em títulos de nível três, listas enumeradas e não
 #|   enumeradas links, frases com links e imagens (assim como uma
