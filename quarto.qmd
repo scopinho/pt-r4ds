@@ -239,7 +239,7 @@ Se você se esquecer, pode buscar uma boa folha de referência em *Help \> Markd
     b.  Adicionar uma linha horizontal.
     c.  Adicionar um bloco de citação.
 
-3.  Copie e cole o conteúdo de `diamond-sizes.qmd` a partir de <https://github.com/hadley/r4ds/tree/main/quarto> para um arquivo R Quarto local.
+3.  Copie e cole o conteúdo de `diamond-sizes.qmd` a partir de <https://github.com/cienciadedatos/pt-r4ds/tree/main/quarto> para um arquivo R Quarto local.
     Verifique se você consegue executá-lo, depois adicione texto depois do polígono de frequências que descreve suas características mais chamativas.
 
 4.  Crie um documento em Google doc ou MS Word (ou localize um documento que você tenha criado previamente) que contenha títulos, hiperlinks, texto formatado, etc.
