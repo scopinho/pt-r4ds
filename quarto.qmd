@@ -228,7 +228,7 @@ Se você se esquecer, pode buscar uma boa folha de referência em *Help \> Markd
 
 ### Exercícios
 
-1.  Pratique o que você aprendeu criando um CV breve.
+1.  Pratique o que você aprendeu criando um currículo (CV) breve.
     O título deve ser o seu nome e você deve incluir cabeçalhos para pelo menos sua educação e trabalho.
     Cada uma das seções deve incluir uma lista em tópicos de trabalhos/títulos.
     Destaque o ano em negrito.
