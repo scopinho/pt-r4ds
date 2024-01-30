@@ -294,7 +294,7 @@ Há três vantagens nisso:
 knitr::include_graphics("screenshots/quarto-chunk-nav.png")
 ```
 
-2.  Gráficos produzidos pelos blocos terão nomes úteis para reutilizá-los em outros lugares.
+2.  Gráficos produzidos pelos blocos de código terão nomes úteis para reutilizá-los em outros lugares.
     Mais sobre isso em @sec-figures.
 
 3.  É possível organizar redes de bloco em cache para evitar múltiplas execuções de computações caras em toda execução.
