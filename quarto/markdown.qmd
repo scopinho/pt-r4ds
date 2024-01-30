@@ -35,7 +35,7 @@ sobrescrito^2^ subscrito~2~
 
 [frase com link](http://example.com)
 
-![texto de legenda opcional](quarto.png){fig-alt="Logomarca Quarto com a palavra quarto soletrada em letras minúsculas"}
+![texto de legenda opcional](quarto.png){fig-alt="Logomarca Quarto com a palavra quarto escrita em letras minúsculas"}
 
 ## Tabelas
 
