@@ -316,7 +316,7 @@ Quase 60 opções para personalização dos seus blocos de código são fornecid
 Aqui cobriremos as opções mais importantes, que você utilizará com frequência.
 É possível verificar a lista completa em [https://yihui.org/knitr/options](https://yihui.org/knitr/options/){.uri}.
 
-O conjunto mais importante de opçòes controla se seu código será executado e que resultados serão exibidos no relatório final:
+O conjunto mais importante de opções controla se seu código será executado e que resultados serão exibidos no relatório final:
 
 -   `eval: false` previne o código de ser avaliado.
     (E obviamente, se o código não é executado, nenhum resultado será gerado).
