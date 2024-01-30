@@ -205,7 +205,7 @@ Você pode fazer referência aos valores com `input$name` e `input$age`, fazendo
 Não podemos mostrar um app shiny sendo executado porque as interações ocorrem no ***server-side*** (do lado do servidor).
 Isso significa que é possível escrever apps interativos sem saber JavaScript, mas é necessário um servidor para hospedá-los.
 Isso introduz um problema logístico: aplicativos Shiny precisam de um servidor Shiny para serem executados online.
-Quando se executa aplicativos Shiny em seu próprio computador, um servidor Shiny é automaticamente configurado para você, mas é nevessário um servidor de acesso público se quiser publicar esse tipo de interatividade online.
+Quando se executa aplicativos Shiny em seu próprio computador, um servidor Shiny é automaticamente configurado para você, mas é necessário um servidor de acesso público se quiser publicar esse tipo de interatividade online.
 Essa é a troca fundamental de shiny: qualquer coisa que você faria em R você pode fazer em um documento shiny, mas isso requer alguém executando R.
 
 Para aprender mais sobre Shiny, recomendamos a leitura do livro *Mastering Shiny* por Hadley Wickham, [https://mastering-shiny.org](https://mastering-shiny.org/).
