@@ -287,7 +287,7 @@ Há três vantagens nisso:
 #| out-width: "30%"
 #| fig-alt: |
 #|   Trecho da IDE RStudio mostrando apenas o navegador de código drop-down
-#|   que msotra três blocos. Bloco 1 é setup. Bloco 2 é cars e
+#|   que mostra três blocos de código. Bloco 1 é setup. Bloco 2 é cars e
 #|   nele há uma seção chamada Quarto. Bloco 3 é pressão (pressure) e 
 #|   está em uma seção chamada Including plots.
 
