@@ -40,7 +40,7 @@ Há duas formas de configurar a saída do documento:
 
 O Quarto oferece uma ampla variedade de formatos de saída.
 É possível achar a lista completa em <https://quarto.org/docs/output-formats/all-formats.html>.
-Muitos formatos compartilham configurações de seu resultado (por exemplo, `toc: true` para incluir um índice), mas outros têm configurações que são específicas do formato (por exemplo, `code-fold: true` colapsa os blocos de código em um tag HTML `<details>` de modo que o usuário possa exibí-lo sob demanda, não é aplicável a um documento PDF ou Word).
+Muitos formatos compartilham configurações de seu resultado (por exemplo, `toc: true` para incluir um índice), mas outros têm configurações que são específicas do formato (por exemplo, `code-fold: true` colapsa os blocos de código em um tag HTML `<details>` de modo que o usuário possa exibí-lo quando quiser, e não é aplicável a um documento PDF ou Word).
 
 Para sobrescrever as opções padrão, é necessário usar um campo `format` extendido.
 Por exemplo, se quiser renderizar um `html` com um índice flutuante, é necessário usar:
