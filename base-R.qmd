@@ -10,19 +10,19 @@ source("_common.R")
 
 ## Introdução
 
-Para finalizar a seção de programação, faremos um rápido tour pelas funções mais importantes do R base que não discutimos de outra forma no livro.
-Essas ferramentas são particularmente úteis à medida que você programa mais e o ajudarão a ler código R que encontrará por aí.
+Para finalizar a seção de programação, faremos uma passagem rápida pelas funções mais importantes do R base que não discutimos de outra forma no livro.
+Essas ferramentas são particularmente úteis à medida que você programa mais e ajudarão a ler código R que encontrará por aí.
 
 Este é um bom lugar para lembrar que o tidyverse não é a única maneira de resolver problemas de ciência de dados.
 Ensinamos o tidyverse neste livro porque os pacotes tidyverse compartilham uma filosofia de design comum, aumentando a consistência entre funções e tornando cada nova função ou pacote um pouco mais fácil de aprender e usar.
-Não é possível usar o tidyverse sem usar o R base, então na verdade já ensinamos a você **muitas** funções do R base: de `library()` para carregar pacotes, até `sum()` e `mean ()` para sumarizações numéricas, para os tipos de dados fatores, data e POSIXct e, claro, todos os operadores básicos como `+`, `-`, `/`, `*`, `|`, `&`, e `!`.
+Não é possível usar o tidyverse sem usar o R base, então na verdade já ensinamos a você **muitas** funções do R base: de `library()` para carregar pacotes, até `sum()` e `mean ()` para sumarizações numéricas, e até fatores, data e POSIXct e, claro, todos os operadores básicos como `+`, `-`, `/`, `*`, `|`, `&`, e `!`.
 O que não focamos até agora são os fluxos de trabalho do R base, por isso destacaremos alguns deles neste capítulo.
 
 Depois de ler este livro, você aprenderá outras abordagens para os mesmos problemas usando o R base, data.table e outros pacotes.
 Sem dúvida, você encontrará essas outras abordagens quando começar a ler o código R escrito por outras pessoas, principalmente se estiver usando o *StackOverflow*.
 É 100% correto escrever código que use uma combinação de abordagens. Não deixe ninguém lhe dizer o contrário!
 
-Neste capítulo, vamos nos concentrar em quatro grandes tópicos: subconjuntos com `[`, subconjuntos com `[[` e `$`, a família de funções apply e loops `for`.
+Neste capítulo, vamos nos concentrar em quatro grandes tópicos: subconjuntos com `[`, subconjuntos com `[[` e `$`, a família de funções apply e laços (*loops*) `for`.
 Para finalizar, discutiremos brevemente duas funções essenciais para criação de gráficos.
 
 ### Pré-requisitos
@@ -70,7 +70,7 @@ Existem cinco tipos principais de coisas com as quais você pode criar subconjun
 
 3.  **Um vetor lógico**.
     Extrair usando um vetor lógico obtém todos os valores correspondentes a um valor verdadeiro `TRUE`.
-    Isto é mais útil em conjunto com função de comparação.
+    Isto é mais útil em conjunto com funções de comparação.
 
     ```{r}
     x <- c(10, 3, NA, 5, 8, 1, NA)
@@ -117,7 +117,7 @@ df <- tibble(
 # Seleciona a primeira linha e a segunda coluna
 df[1, 2]
 
-# Selecione todas as linhas e colunas x e y
+# Selecione todas as linhas das colunas x e y
 df[, c("x" , "y")]
 
 # Selecione linhas em que `x` é maior que 1 e todas as colunas
@@ -167,7 +167,7 @@ Vários verbos dplyr são casos especiais de `[`:
     df[!is.na(df$x) & df$x > 1, ]
     ```
 
-    Outra técnica comum é usar `what()` por seu efeito colateral de eliminar valores ausentes: `df[what(df$x > 1), ]`.
+    Outra técnica comum é usar `which()` por seu efeito colateral de eliminar valores ausentes: `df[which(df$x > 1), ]`.
 
 -   `arrange()` é equivalente a fazer um subconjunto das linhas com um vetor inteiro, geralmente criado com `order()`:
 
@@ -225,7 +225,7 @@ Esta função foi a inspiração para grande parte da sintaxe do dplyr.
 
 ## Selecionando um único elemento com `$` e `[[` {#sec-subset-one}
 
-`[`, que seleciona muitos elementos, é emparelhado com `[[` e `$`, que extraem um único elemento.
+`[`, que seleciona muitos elementos, é similar a  `[[` e `$`, que extraem um único elemento.
 Nesta seção, mostraremos como usar `[[` e `$` para extrair colunas de *data frames*, discutiremos mais algumas diferenças entre `data.frames` e tibbles e enfatizaremos algumas diferenças importantes entre `[ ` e `[[` quando usado com listas.
 
 ### Data frames
@@ -247,7 +247,7 @@ tb[["x"]]
 tb$x
 ```
 
-Eles também podem ser usados ​​para criar novas colunas, no R base é o equivalente a `mutate()`:
+Eles também podem ser usados ​​para criar novas colunas, o equivalente em R base  a `mutate()`:
 
 ```{r}
 tb$z <- tb$x + tb$y
@@ -279,7 +279,7 @@ diamante |> pull(corte) |> levels()
 ### Tibbles
 
 Existem algumas diferenças importantes entre tibbles e `data.frame`s quando se trata de `$`.
-Os *data frames** acessam o prefixo de qualquer nome de variável (chamado de **correspondência parcial**) e reclamam se uma coluna não existir:
+Os *data frames** acessam o prefixo de qualquer nome de variável (chamado de **correspondência parcial** ou *partial matching*) e reclamam se uma coluna não existir:
 
 ```{r}
 df <- data.frame(x1 = 1)
@@ -287,7 +287,7 @@ df$x
 df$z
 ```
 
-Tibbles são mais rigorosos: eles apenas retornam os nomes das variáveis exatos ​​e irão gerar um aviso se a coluna que você está tentando acessar não existir:
+Tibbles são mais rigorosos: eles apenas retornam os nomes das variáveis exatos ​​e gerarão um aviso se a coluna que você está tentando acessar não existir:
 
 ```{r}
 tb <- tibble(x1 = 1)
@@ -354,7 +354,7 @@ Se este pimenteiro for sua lista `pimenteiro`, então `pimenteiro[1]` é um pime
 #| fig-alt: |
 #|   Três fotos. À esquerda está a foto de um pimenteiro de vidro. Em vez de 
 #|   conter pimenta, contém vários pacotes de pimenta.
-#|   No meio está a foto de um único pacote de pimenta dentro do pimenteiro. À direita esta a 
+#|   No meio está a foto de um único pacote de pimenta dentro do pimenteiro. À direita está a 
 #|   foto do conteúdo de um pacote de pimenta.
 
 knitr::include_graphics("diagrams/pepper.png")
@@ -540,7 +540,7 @@ Observe que as funções gráficas básicas funcionam com vetores, então você 
 
 ## Resumo
 
-Neste capítulo, mostramos uma seleção de funções do R base úteis para subconjuntos e iterações.
+Neste capítulo mostramos uma seleção de funções do R base úteis para subconjuntos e iterações.
 Em comparação com as abordagens discutidas em outras partes do livro, essas funções tendem a ter mais um sabor de "vetor" do que de "data frames", porque as funções do R base tendem a usar vetores individuais, em vez de um *data frame* e alguma especificação de coluna.
 Isso geralmente facilita a vida da programação e se torna mais importante à medida que você escreve mais funções e começa a escrever seus próprios pacotes.
 
