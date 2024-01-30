@@ -337,7 +337,7 @@ O conjunto mais importante de opções controla se seu código será executado e
     Também é útil se você está ensinando R e quer incluir um erro deliberadamente.
     O padrão, `error: false` impede a renderização caso exista qualquer erro no documento.
 
-Cada uma dessas opções de bloco é adicionada ao cabeçalho do bloco, seguindo `#|`, por exemplo, no bloco a seguir o resultado não é impresso, já que `eval` está marcado como *false*.
+Cada uma dessas opções de bloco de código é adicionada ao cabeçalho do bloco, seguindo `#|`, por exemplo, no bloco a seguir o resultado não é impresso, já que `eval` está marcado como *false*.
 
 ```{r}
 #| echo: fenced
