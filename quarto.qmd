@@ -280,7 +280,7 @@ Blocos de código podem receber um rótulo opcional, por exemplo
 
 Há três vantagens nisso:
 
-1.  É possível navegar mais facilmente para blocos específicos usando o navegador em lista no canto inferior esquerdo do editor do script:
+1.  É possível navegar mais facilmente para blocos de código específicos usando o navegador em lista no canto inferior esquerdo do editor do script:
 
 ```{r}
 #| echo: false
