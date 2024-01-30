@@ -309,7 +309,7 @@ Quando você está no modo *notebook*, o bloco de código com nome *setup* será
 Além disso, rótulos não podem ser duplicados.
 Cada rótulo de bloco deve ser único.
 
-### Opções de bloco
+### Opções de bloco de código (*chunk options*)
 
 Saídas de bloco podem ser personalizadas com campos de opções (**options**) fornecidos para o cabeçalho do bloco.
 Quase 60 opções para personalização dos seus blocos de código são fornecidas pelo Knitr.
