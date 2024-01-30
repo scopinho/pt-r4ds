@@ -265,7 +265,7 @@ No entanto, blocos de código recebem um novo atalho: Cmd/Ctrl + Shift + Enter, 
 Pense no bloco de código como uma função.
 Um bloco deve ser relativamente autocontido, objetivando uma única tarefa.
 
-As seções a seguir descrevem o cabeçalho do bloco, que consiste em ```` ```{r} ````, seguido de um rótulo opcional e diversas outras opções de bloco, cada uma em sua própria linha, marcada por `#|`.
+As seções a seguir descrevem o cabeçalho do bloco de código, que consiste em ```` ```{r} ````, seguido de um rótulo opcional e diversas outras opções de bloco, cada uma em sua própria linha, marcada por `#|`.
 
 ### Rótulo de bloco
 
