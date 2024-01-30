@@ -17,7 +17,7 @@ Arquivos Quarto foram projetados para serem usados de três maneiras:
 
 2.  Para colaborar com outras pessoas cientistas de dados (incluindo você no futuro!) que estejam interessadas tanto em suas conclusões quanto em como você as alcançou (isto é, o código).
 
-3.  Como um ambiente em que se *faz* ciência de dados, como um caderno de laboratório moderno em que se pode capturar não apenas o que você fez, como também o que você estava pensando.
+3.  Como um ambiente em que se *faz* ciência de dados, como um caderno (*notebook*) de laboratório moderno em que se pode capturar não apenas o que você fez, como também o que você estava pensando.
 
 Quarto é uma feerramenta de linha de comando, não é um pacote do R.
 Isso significa que ajuda, via de regra, não está disponível via `?`.
