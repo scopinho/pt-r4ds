@@ -137,7 +137,7 @@ knitr::include_graphics("images/quarto-flow.png")
 ```
 
 Para iniciar seu próprio arquivo `.qmd`, selecione *File \> New File \> Quarto Document...* na barra de menu.
-O RStudio abrirá uma janela em que você poderá preencher informações para pré-povoar seu arquivo com conteúdos úteis que lembra como os principais recursos do Quarto funcionam.
+O RStudio abrirá uma janela em que você poderá preencher informações para preencher seu arquivo com conteúdos úteis que lembra como os principais recursos do Quarto funcionam.
 
 As seções a seguir aprofundam os três componentes de um documento Quarto em mais detalhes: o texto em markdown, os blocos de código e o cabeçalho YAML.
 
