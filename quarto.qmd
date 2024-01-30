@@ -297,7 +297,7 @@ knitr::include_graphics("screenshots/quarto-chunk-nav.png")
 2.  Gráficos produzidos pelos blocos de código terão nomes úteis para reutilizá-los em outros lugares.
     Mais sobre isso em @sec-figures.
 
-3.  É possível organizar redes de bloco em cache para evitar múltiplas execuções de computações caras em toda execução.
+3.  É possível organizar redes de bloco de código em cache para evitar múltiplas execuções de computações caras em toda execução.
     Mais sobre isso em @sec-caching.
 
 Os rótulos dos seus blocos devem ser curtos, mas evocativos e não devem conter espaços.
