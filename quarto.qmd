@@ -15,7 +15,7 @@ Arquivos Quarto foram projetados para serem usados de três maneiras:
 
 1.  Para se comunicar com pessoas tomadoras de decisões, que querem focar nas conclusões e não no código por trás da análise.
 
-2.  Para colaborar com outros cientistas de dados (incluindo futuramente você!) que estejam interessados tanto em suas conclusões quanto em como você as alcançou (isto é, o código).
+2.  Para colaborar com outras pessoas cientistas de dados (incluindo você no futuro!) que estejam interessadas tanto em suas conclusões quanto em como você as alcançou (isto é, o código).
 
 3.  Como um ambiente em que se *faz* ciência de dados, como um caderno de laboratório moderno em que se pode capturar não apenas o que você fez, como também o que você estava pensando.
 
