@@ -332,7 +332,7 @@ O conjunto mais importante de opções controla se seu código será executado e
 
 -   `results: hide` esconde os resultados; `fig-show: hide` esconde gráficos.
 
--   `error: true` permite a renderização contínua do seu documento mesmo que ocorra um erro.
+-   `error: true` permite que a renderização do seu documento continue mesmo que ocorra um erro.
     Você raramente precisará incluir isso na versão final do seu relatório, mas pode ser útil se você precisa corrigir um erro específico dentro do seu `.qmd`.
     Também é útil se você está ensinando R e quer incluir um erro deliberadamente.
     O padrão, `error: false` impede a renderização caso exista qualquer erro no documento.
