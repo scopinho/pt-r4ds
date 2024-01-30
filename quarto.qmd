@@ -330,7 +330,7 @@ O conjunto mais importante de opções controla se seu código será executado e
 
 -   `message: false` ou `warning: false` previne o aparecimento de mensagens ou avisos no arquivo final.
 
--   `results: hide` esconde output; `fig-show: hide` esconde gráficos.
+-   `results: hide` esconde os resultados; `fig-show: hide` esconde gráficos.
 
 -   `error: true` permite a renderização contínua do seu documento mesmo que ocorra um erro.
     Você raramente precisará incluir isso na versão final do seu relatório, mas pode ser útil se você precisa corrigir um erro específico dentro do seu `.qmd`.
