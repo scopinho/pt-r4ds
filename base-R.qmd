@@ -500,7 +500,7 @@ Em vez de fazer uma lista e salvar os resultados à medida que avançamos, uma a
 
 ```{r}
 saida <- NULL
-for (caminho in camimhos) {
+for (caminho in caminhos) {
   saida <- rbind(saida, readxl::read_excel(caminho))
 }
 ```
@@ -530,10 +530,10 @@ Aqui está um exemplo rápido do conjunto de dados diamante do pacote dados:
 #|   0 a 3 quilates.
 
 # Esquerda
-hist(diamente$quilate)
+hist(diamante$quilate)
 
 # Direita
-plot(diamonds$quilate, diamonds$preco)
+plot(diamante$quilate, diamante$preco)
 ```
 
 Observe que as funções gráficas básicas funcionam com vetores, então você precisa extrair colunas do *data frame* usando `$` ou alguma outra técnica.
