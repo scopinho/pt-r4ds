@@ -879,7 +879,7 @@ Recomendamos o livro "Happy Git with R", uma introdução amigável a Git e GitH
 O livro está disponível online com acesso livre: <https://happygitwithr.com>.
 
 Também não comentamos sobre o que você deveria realmente escrever para comunicar seus resultados da sua análise com clareza.
-Para melhorar sua escrita, recomendamos muito a leitura de [*Style: Lessons in Clarity and Grace*](https://www.amazon.com/Style-Lessons-Clarity-Grace-12th/dp/0134080416) por Joseph M. Williams & Joseph Bizup, ou [*The Sense of Structure: Writing from the Reader's Perspective*](https://www.amazon.com/Sense-Structure-Writing-Readers-Perspective/dp/0205296327) by George Gopen.
+Para melhorar sua escrita, recomendamos muito a leitura de [*Style: Lessons in Clarity and Grace*](https://www.amazon.com/Style-Lessons-Clarity-Grace-12th/dp/0134080416) por Joseph M. Williams & Joseph Bizup, ou [*The Sense of Structure: Writing from the Reader's Perspective*](https://www.amazon.com/Sense-Structure-Writing-Readers-Perspective/dp/0205296327) por George Gopen.
 Ambos os livros ajudarão a entender a estrutura de frases e parágrafos e darão gerramentas para tornar sua escrita mais clara.
 (esses livros são um tanto caros, mas são muito usados em cursos de inglês, então há muitas cópias baratas de segunda mão).
 George Gopen também tem uma série de artigos curtos sobre escrita em <https://www.georgegopen.com/the-litigation-articles.html>.
