@@ -680,7 +680,7 @@ Na medida em que suas estratégias de cache vão complicando, é uma boa ideia l
 Resolver problemas em documentos Quarto pode ser desafiador porque você não está mais em um ambiente interativo de R, então você precisará aprender uns truques novos.
 Além disso, o erro pode ter ocorrido devido a problemas no documento de Quarto ou mesmo devido ao código em R no documento.
 
-Um erro comum em documentos com blocos de código é haver rótulos de blocos duplicados, o que tem certa ocorrência se o seu fluxo de trabalho envolve cópia e cola de blocos de código.
+Um erro comum em documentos com blocos de código é haver rótulos de blocos duplicados, o que tem certa ocorrência se o seu fluxo de trabalho envolve copiar e colar de blocos de código.
 Para abordar esse problema, tudo que você precisa fazer é mudar o nome de um dos seus rótulos duplicados.
 
 Se os erros ocorrem por causa do código em R no documento, a primeira coisa que você deveria fazer sempre é tentar recriar o problema em uma sessão interativa.
