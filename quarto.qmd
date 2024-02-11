@@ -662,7 +662,7 @@ Você pode então escrever:
 #| cache: true
 #| cache.extra: !expr file.mtime("um_arquivo_enorme.csv")
 
-rawdata <- readr::read_csv("um_arquivo_enorme.csv")
+dadoscrus <- readr::read_csv("um_arquivo_enorme.csv")
 ```
 ````
 
