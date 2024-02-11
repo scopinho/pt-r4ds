@@ -762,7 +762,7 @@ Citações podem ser inseridas a partir de uma variedade de fontes:
 
 3.  Pesquisas na [Crossref](https://www.crossref.org/), [DataCite](https://datacite.org/), ou na [PubMed](https://pubmed.ncbi.nlm.nih.gov/).
 
-4.  Seu documento de bibliografia (um arquivo `.bib` no diretório do seu documento)
+4.  Seu documento de bibliografia (um arquivo `.bib` no diretório do seu documento).
 
 Dentro do capô, o editor visual usa a representação padrão para citações do markdown Pandoc, (por exemplo, `[@citation]`).
 
