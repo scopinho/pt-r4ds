@@ -560,7 +560,7 @@ Por padrão, Quarto imprime *data frames* e matrizes como você as veria no cons
 mtcars[1:5, ]
 ```
 
-Se voce pre preferir que os dados sejam expostos com formatação adicional, você pode usar a função `knitr::kable()`.
+Se voce preferir que os dados sejam expostos com formatação adicional, você pode usar a função `knitr::kable()`.
 O código abaixo gera @tbl-kable.
 
 ```{r}
