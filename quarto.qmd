@@ -623,7 +623,7 @@ dadoscrus <- readr::read_csv("um_arquivo_enorme.csv")
 
 ````         
 ``` {{r}}
-#| label: processed_data
+#| label: dados_processados
 #| cache: true
 
 dados_processados <- dadoscrus |> 
