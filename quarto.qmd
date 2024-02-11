@@ -639,7 +639,7 @@ Esse problema pode ser evitado com a opção `dependson`:
 ``` {{r}}
 #| label: dados-processados
 #| cache: true
-#| dependson: "raw-data"
+#| dependson: "dados-brutos"
 
 dados_processados <- dadoscrus |> 
   filter(!is.na(var_importante)) |> 
