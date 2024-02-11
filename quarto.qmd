@@ -740,7 +740,7 @@ Como se pode ver, parâmetros estão disponíveis dentro dos blocos de código c
 
 É possível escrever vetores atômicos diretamente no cabeçalho YAML.
 É possível ainda executar expressões arbitrárias em R prefixando o valor do parâmetro com `!expr`.
-Essa é uma boa forma de especificar patâmetros de data/tempo.
+Essa é uma boa forma de especificar parâmetros de data/tempo.
 
 ``` yaml
 params:
