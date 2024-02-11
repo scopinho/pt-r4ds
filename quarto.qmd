@@ -583,7 +583,7 @@ Cada um fornece um conjunto de ferramentas para retornar tabelas formatadas a pa
 ## Salvando em cache {#sec-caching}
 
 Normalmente, cada renderização do documento começa com uma folha em branco.
-Isso é ótimo para reproducibilidade porque garante que você capturou toda computação importante em código.
+Isso é ótimo para reprodutibilidade porque garante que você capturou toda computação importante em código.
 No entanto, pode ser doloroso refazer computações que tomam um tempo longo.
 A solução para isso é `cache: true`.
 
