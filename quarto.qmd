@@ -446,7 +446,7 @@ Ajustar o tamanho é desafiador porque há dois tamanhos (aquele da figura criad
 Recomendamos três das cinco opções:
 
 -   Gráficos tendem a ser esteticamente mais agradáveis se têm largura consistente.
-    Para garantir isso, configure `fig-width: 6` (6 polegadas) and `fig-asp: 0.618` (a razão áurea) nas definições padrão.
+    Para garantir isso, configure `fig-width: 6` (6 polegadas) e `fig-asp: 0.618` (a razão áurea) nas definições padrão.
     Nos blocos individuais, ajuste apenas `fig-asp`.
 
 -   Controle o tamanho da saída com `out-width` e configure como uma percentagem da largura do corpo do documento.
