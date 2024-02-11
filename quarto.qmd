@@ -424,7 +424,7 @@ comma(.12358124331)
     Adicione uma seção que descreva os 20 maiores diamantes, incluindo uma tabela que mostre seus atributos mais importantes.
 
 3.  Modifique `diamonds-sizes.qmd` para usar `label_comma()` e produzir output bem formatado.
-    Inclua tam´bme a percentagem de diamantes que são maiores que 2.5 quilates.
+    Inclua também a percentagem de diamantes que são maiores que 2.5 quilates.
 
 ## Figuras {#sec-figures}
 
