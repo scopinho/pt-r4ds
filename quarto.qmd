@@ -805,7 +805,7 @@ A good place to find CSL style files for common bibliography styles is <https://
 
 Anteriormente discutimos um fluxo de trabalho básico para capturar seu código R quando é trabalhado interativamente no *console*, depois capturar o que funciona no *editor de script*.
 Quarto junta o console e o editor de script, esvanecendo a lina que divide exploração interativa e captura de código para longo prazo.
-Você pode rapidamente iterar dentro de um bloco, editando e executando novamente com Cmd/Ctrl + Shift + Enter.
+Você pode trabalhar interativamente dentro de um bloco, editando e executando novamente com Cmd/Ctrl + Shift + Enter.
 Quando o trabalho estiver bom, move-se adiante e abre-se um novo bloco.
 
 Quarto também é importante porque integra estreitamente prosa e código.
