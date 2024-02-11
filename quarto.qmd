@@ -865,7 +865,7 @@ Tiramos de nossa própria experiência e dos conselhos de Collin Purrington sobr
 ## Resumo
 
 Neste capítulo introduzimos Quarto para escrita e publicação reproduzível de documentos computacionais que incluem seu código e sua prosa no mesmo lugar.
-Você aprender a escrever em documentos Quarto no RStudio com o editor fonte ou visual, como blocos de código funcionam e como personalizar opções para cache de computações.
+Você aprendeu a escrever em documentos Quarto no RStudio com o editor fonte ou visual, como blocos de código funcionam e como personalizar opções para cache de computações.
 Além disso, você aprendeu sobre ajustes no cabeçalho YAML para criar documentos autocontidos ou parametrizados, assim como sobre citações e bibliografia.
 Também demos dicas de fluxo de trabalho e resolução de problemas.
 
