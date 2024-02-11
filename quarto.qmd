@@ -673,7 +673,7 @@ Na medida em que suas estratégias de cache vão complicando, é uma boa ideia l
 
 ### Exercícios
 
-1.  Ajuste uma rede de blocos em que `d` depende de `c` e `b` e os dois últimos dependem de `a`. Faça com que cada bloco imprima `lubridate::now()`, ajuste `cache: true` e verifique o que você entendeu sobre *caching*.
+1.  Ajuste uma sequência de blocos em que `d` depende de `c` e `b` e os dois últimos dependem de `a`. Faça com que cada bloco imprima `lubridate::now()`, ajuste `cache: true` e verifique o que você entendeu sobre *caching*.
 
 ## Resolução de problemas
 
