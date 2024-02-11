@@ -818,7 +818,7 @@ O caderno:
     Escreva para não se esquecer!
 
 -   Suporta pensamento rigoroso.
-    É mais provável que você desenvolva uma análise forte se você registrar seus pensamentos enquanto trabalha, depois pode continuar a refletir sobre eles.
+    É mais provável que você desenvolva uma análise robusta se você registrar seus pensamentos enquanto trabalha, depois pode continuar a refletir sobre eles.
     Isso também economiza tempo quando você eventualmente organizar sua análise para compartilhar com outras pessoas.
 
 -   Ajuda outras pessoas a entenderem o seu trabalho.
