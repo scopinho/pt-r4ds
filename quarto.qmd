@@ -423,7 +423,7 @@ comma(.12358124331)
 2.  Faça o download de `diamond-sizes.qmd` de <https://github.com/hadley/r4ds/tree/main/quarto>.
     Adicione uma seção que descreva os 20 maiores diamantes, incluindo uma tabela que mostre seus atributos mais importantes.
 
-3.  Modifique `diamonds-sizes.qmd` para usar `label_comma()` e produzir output bem formatado.
+3.  Modifique `diamonds-sizes.qmd` para usar `label_comma()` e produzir um resultado bem formatado.
     Inclua também a percentagem de diamantes que são maiores que 2.5 quilates.
 
 ## Figuras {#sec-figures}
