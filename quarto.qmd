@@ -859,7 +859,7 @@ Tiramos de nossa própria experiência e dos conselhos de Collin Purrington sobr
     Um *hack* rápido e sujo é incluir um bloco que execute `sessionInfo()` --- isso não permite facilmente recriar seus pacotes em seu estado atual, mas pelo menos ajuda a saber em que estado estavam.
 
 -   Você criará muitos, muitos cadernos de análise no decorrer da sua carreira.
-    Como você os organizará de modo que consiga achálos no futuro?
+    Como você os organizará de modo que consiga achá-los no futuro?
     Recomendamos guardá-los em projetos individuais e criar um bom esquema de nomes.
 
 ## Resumo
