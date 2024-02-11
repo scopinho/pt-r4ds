@@ -700,7 +700,7 @@ A forma mais fácil de fazer isso é ajustar `error: true` no bloco causando o p
 
 É possível controlar muitas outras configurações de "documento inteiro" ajustando os parâmetros do cabeçalho YAML.
 Você pode estar pensando no que significa YAML: é "*YAML Ain't Markup Language*" ou "YAML não é linguagem Markup" -- mas não carrega a sigla em português.
-A linguagem foi projetada para representar dado hierárquico de uma forma que fosse fácil para humanos lerem e escreverem.
+A linguagem foi projetada para representar dados hierárquicos de uma forma que seja fácil para humanos lerem e escreverem.
 Quarto usa isso para controlar muitos detalhes da saída.
 Aqui discutiremos três: documentos autocontidos, parâmetros de documentos e bibliografias.
 
