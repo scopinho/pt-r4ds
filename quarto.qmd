@@ -803,7 +803,7 @@ A good place to find CSL style files for common bibliography styles is <https://
 
 ## Fluxo de trabalho
 
-Anteriormente discutimos um fluxo de trabalho básico para capturar seu código R quando é trabalhado interativamente no *console*, depois capturar o que funciona no *editor de script*.
+Anteriormente discutimos um fluxo de trabalho básico para executar seu código R, trabalhando interativamente no *console*, e depois salvar o que funciona no *editor de script*.
 Quarto junta o console e o editor de script, esvanecendo a lina que divide exploração interativa e captura de código para longo prazo.
 Você pode trabalhar interativamente dentro de um bloco, editando e executando novamente com Cmd/Ctrl + Shift + Enter.
 Quando o trabalho estiver bom, move-se adiante e abre-se um novo bloco.
