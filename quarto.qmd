@@ -550,7 +550,7 @@ O rótulo do bloco é usado para gerar o nome de arquivo do gráfico salvo em di
 
 ## Tabelas
 
-Similar a figuras, é possível incluir dois tipos de tabelas em um documento Quarto.
+Semelhante ao apresentado para figuras, é possível incluir dois tipos de tabelas em um documento Quarto.
 Elas podem ser tabelas markdown que você pode criar diretamente em seu documento Quarto (usando o menu Insert Table) ou podem ser geradas como resultado de um bloco de código.
 Nesta seção focaremos na segunda, tabelas geradas via computação.
 
