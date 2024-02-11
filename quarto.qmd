@@ -814,7 +814,7 @@ Um caderno de análise compartilha muitos dos mesmos objetivos de um caderno de 
 O caderno:
 
 -   Permite gravar o que você fez e por que você fez.
-    Independentemente de quão boa é a sua memória, se você não registrar o que fez, chegará um tempo em que você já esqueceu os detalhes importantes.
+    Independentemente de quão boa é a sua memória, se você não registrar o que fez, chegará um momento em que você esquecerá os detalhes importantes.
     Escreva para não se esquecer!
 
 -   Suporta pensamento rigoroso.
