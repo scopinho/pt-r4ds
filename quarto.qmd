@@ -648,7 +648,7 @@ dados_processados <- dadoscrus |>
 ````
 
 `dependson` deve conter um vetor de caracteres em *todos* os blocos de que o bloco em cache depende.
-Knitr atualizará os resultados para o bloco em cache sempre que detectar que uma de suas dependências mudou.
+O knitr atualizará os resultados para o bloco em cache sempre que detectar que uma de suas dependências mudou.
 
 Note que os blocos não serão atualizados se `um_arquivo_enorme.csv` mudar, já que o cache do knitr só monitora alterações no arquivo `.qmd`.
 Se você quiser também monitorar mudanças naquele arquivo, é possível usar a opção `cache.extra`.
