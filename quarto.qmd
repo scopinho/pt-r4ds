@@ -809,7 +809,7 @@ Você pode trabalhar interativamente dentro de um bloco, editando e executando n
 Quando o trabalho estiver bom, você pode continuar e criar um novo bloco de código.
 
 O Quarto também é importante porque integra estreitamente texto e código.
-Isso faz do Quarto um ótino **caderno de análise**, porque permite desenvolver código e registrar seus pensamentos.
+Isso faz do Quarto um ótimo **caderno de análise** (*analysis notebook*), porque permite desenvolver código e registrar seus pensamentos.
 Um caderno de análise compartilha muitos dos mesmos objetivos de um caderno de laboratório clássico nas ciências exatas.
 O caderno:
 
