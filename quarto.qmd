@@ -823,7 +823,7 @@ O caderno:
 
 -   Ajuda outras pessoas a entenderem o seu trabalho.
     É raro fazer análise de dados sozinho e você frequentemente fará parte de um time.
-    Um caderno de laboratório ajuda a compartilhar não apenas o que você fez como porque você fez o que fez com seus colegas.
+    Um caderno de laboratório ajuda a compartilhar com seus colegas não apenas o que você fez, mas também porque você fez o que fez.
 
 Muitos dos bons conselhos sobre o uso efetivo de cadernos de laboratórios podem também ser traduzidos para cadernos de análise.
 Tiramos de nossa própria experiência e dos conselhos de Collin Purrington sobre cadenos de laboratório (<https://colinpurrington.com/tips/lab-notebooks>) para desenvolver essas dicas:
