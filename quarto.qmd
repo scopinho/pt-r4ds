@@ -565,7 +565,7 @@ O código abaixo gera @tbl-kable.
 
 ```{r}
 #| label: tbl-kable
-#| tbl-cap: Uma kable knitr.
+#| tbl-cap: Uma tabela feita com knitr (*kable*).
 
 knitr::kable(mtcars[1:5, ], )
 ```
