@@ -854,7 +854,7 @@ Tiramos de nossa própria experiência e dos conselhos de Collin Purrington sobr
     Se está usando *caching*, limpe os caches.
     Isso permitirá a correção de problemas enquanto o código ainda está fresco na memória.
 
--   Se você quiser que seu código seja reproduzível a longo prazo (por exemplo, para voltar a trabalhar nele no mês ou ano seguinte), pode ser necessário registrar as versões dos pacotes que seu código usa.
+-   Se você quiser que seu código seja reprodutível a longo prazo (por exemplo, para voltar a trabalhar nele no mês ou ano seguinte), pode ser necessário registrar as versões dos pacotes que seu código usa.
     Uma abordagem rigorosa é usar **renv**, <https://rstudio.github.io/renv/index.html>, que guarda os pacotes no seu diretório do projeto.
     Um *hack* rápido e sujo é incluir um bloco que execute `sessionInfo()` --- isso não permite facilmente recriar seus pacotes em seu estado atual, mas pelo menos ajuda a saber em que estado estavam.
 
