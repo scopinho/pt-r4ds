@@ -764,7 +764,7 @@ Citações podem ser inseridas a partir de uma variedade de fontes:
 
 4.  Seu documento de bibliografia (um arquivo `.bib` no diretório do seu documento).
 
-Dentro do capô, o editor visual usa a representação padrão para citações do markdown Pandoc, (por exemplo, `[@citation]`).
+Internamente, o editor visual usa a representação padrão para citações do markdown Pandoc (por exemplo, `[@citation]`).
 
 Se você inserir uma citação usando um dos primeiros três métodos, o editor visual automaticamente criará um arquivo `bibliography.bib` para você e adicionará a sua referência a ele.
 Isso também adicionará um campo `bibliography` ao YAML do documento Na medida em que você insere mais referências, esse arquivo é povoado com as citações.
