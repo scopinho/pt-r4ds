@@ -780,7 +780,7 @@ Separe múltiplas citações com `;`: Blah blah [@smith04; @doe99].
 É possível inserir comentários arbitrários nos colchetes: 
 Blah blah [veja @doe99, pp. 33-35; também @smith04, cap. 1].
 
-Remova os colchetes para criar uma citação *in-text*, ou no meio do texto: @smith04 diz blah, ou @smith04 [p. 33] diz blah.
+Remova os colchetes para criar uma citação direta: @smith04 diz blah, ou @smith04 [p. 33] diz blah.
 
 Adicione um `-` antes da citação para suprimir o nome do autor:
 Smith diz blah [-@smith04].
