@@ -806,7 +806,7 @@ Um bom lugar para encontrar arquivos de estilo CSL para sua bibligrafia é em: <
 Anteriormente discutimos um fluxo de trabalho básico para executar seu código R, trabalhando interativamente no *console*, e depois salvar o que funciona no *editor de script*.
 O Quarto junta o console e o editor de script, deixando menos clara a linha que separa a exploração interativa e captura de código para longo prazo.
 Você pode trabalhar interativamente dentro de um bloco, editando e executando novamente com Cmd/Ctrl + Shift + Enter.
-Quando o trabalho estiver bom, move-se adiante e abre-se um novo bloco.
+Quando o trabalho estiver bom, você pode continuar e criar um novo bloco de código.
 
 Quarto também é importante porque integra estreitamente prosa e código.
 Isso faz do Quarto um ótino **caderno de análise**, porque permite desenvolver código e registrar seus pensamentos.
