@@ -694,7 +694,7 @@ Verifique se o diretório é o que você espera usando `getwd()` em um bloco.
 
 A seguir, tente listar todas as coisas que poderiam causar o *bug*.
 Será necessário verificar sistematicamente se essas coisas são as mesmas na sua sessão R e na sua sessão Quarto.
-A forma mais fácil de fazer isso é ajustar `error:true` no bloco causando o problema e usar `print()` e `str()` para verificar que as configurações são o que você espera.
+A forma mais fácil de fazer isso é ajustar `error: true` no bloco causando o problema e usar `print()` e `str()` para verificar que as configurações são o que você espera.
 
 ## Cabeçalho YAML
 
