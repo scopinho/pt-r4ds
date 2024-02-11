@@ -850,7 +850,7 @@ Tiramos de nossa própria experiência e dos conselhos de Collin Purrington sobr
     Em vez disso, escreva código para corrigir o valor.
     Escreva o motivo do reparo.
 
--   Antes de fechar o dia, garanta que é possível renderizar o caderno.
+-   Antes de finalizar os trabalhos do dia, garanta que é possível renderizar o caderno.
     Se está usando *caching*, limpe os caches.
     Isso permitirá a correção de problemas enquanto o código ainda está fresco na memória.
 
