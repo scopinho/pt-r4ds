@@ -723,7 +723,7 @@ O arquivo resultante será autocontido, de modo que não necessitará de qualque
 
 Documentos Quarto podem incluir um ou mais parâmetros cujos valores podem ser ajustados quando se renderiza o relatório.
 Parâmetros são úteis quando se quer executar mais vezes o mesmo relatório com valores diferentes para vários inputs chave.
-Por exemplo, pode ser que seja necessário produzir relatórios de vendas por escritório, resultados de provas por aluno ou mesmo resumos demográficos por mais.
+Por exemplo, pode ser que seja necessário produzir relatórios de vendas por escritório, resultados de provas por aluno ou mesmo resumos demográficos por país.
 Para declarar um ou mais parâmetros, use o campo `params`.
 
 Esse exemplo usa o parâmetro `my_class` para determinar que classe de carros será exibida:
