@@ -610,7 +610,7 @@ Quando configurado, isso salvará os resultados do bloco para um arquivo de nome
 Em execuções subsequentes, o knitr verificará se houve alguma alteração no código e caso isso não tenha acontecido os resultados em cache serão reutilizados.
 
 O sistema de cache deve ser usado com cuidado porque, por padrão, é usado apenas no código, e não em suas dependências.
-Por exemplo, aqui o bloco `processed_data` depende do bloco `raw-data`:
+Por exemplo, aqui o bloco `dados_processados` depende do bloco `dados-crus`:
 
 ````         
 ``` {{r}}
