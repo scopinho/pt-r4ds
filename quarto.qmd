@@ -374,7 +374,7 @@ execute:
   echo: false
 ```
 
-Como Quarto foi desenhado para ser multi-línguas (funciona com R mas também com outras linguagens como Python, Julia, etc.), nem todas as opções do knitr estão disponíveis no nível de documento.
+Como o Quarto foi desenhado para ser multi-línguas (funciona com R mas também com outras linguagens como Python, Julia, etc.), nem todas as opções do knitr estão disponíveis no nível de documento.
 Algumas das opçoes funcionam com knitr mas não com outros motores (*engines*) que o Quarto usa para executar código em outras linguagens (por exemplo, Jupyter).
 No entanto é possível ajustar essas como opções globais para o seu documento dentro do campo `knitr` em `opts_chunk`.
 Por exemplo, quando escrevemos livros ou tutoriais, configuramos:
