@@ -513,7 +513,7 @@ Entender dimensionamento é uma arte e uma ciência e acertar essas coisas pode 
 
 ### Outras opções importantes
 
-Quando estamos trabalhando com código e text, como neste livro, é possível ajustar `fig-show: hold` de modo que os gráficos são exibidos após o código.
+Quando estamos trabalhando com código e texto, como neste livro, é possível ajustar `fig-show: hold` de modo que os gráficos são exibidos após o código.
 Isso rende o efeito agradável de nos forçar a quebrar blocos de código grandes em menores com suas explicações.
 
 Para adicionar uma legenda ao gráfico, use `fig-cap`.
