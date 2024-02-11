@@ -538,7 +538,7 @@ O rótulo do bloco é usado para gerar o nome de arquivo do gráfico salvo em di
 2.  Edite o rótulo do bloco de código em `diamond-sizes.qmd` que gera um gráfico para que comece com o prefixo `fig-` e adicione uma legenda à figura com a opção de bloco `fig-cap`.
     Em seguida, edite o texto acima do bloco de código e adicione uma referência cruzada para a figura com Insert \> Cross Reference.
 
-3.  Mude o tamanho da figura com as seguintes opçòes de bloco, uma por vez, renderize o documento e descreva como a figura muda.
+3.  Mude o tamanho da figura com as seguintes opções de bloco, uma por vez, renderize o documento e descreva como a figura muda.
 
     a.  `fig-width: 10`
 
