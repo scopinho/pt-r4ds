@@ -754,7 +754,7 @@ Bibliografia e citações podem ser automaticamente geradas pelo Quarto em uma s
 A forma mais direta de adicionar citações e bibliografias no seu documento Quarto é usando o editor visual no RStudio.
 
 Para adicionar a citação no editor visual, vá em Insert \> Citation.
-Citaçòes podem ser inseridas a partir de uma variedade de fontes:
+Citações podem ser inseridas a partir de uma variedade de fontes:
 
 1.  Referências [DOI](https://quarto.org/docs/visual-editor/technical.html#citations-from-dois) (*Document Object Identifier*).
 
