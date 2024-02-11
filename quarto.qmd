@@ -706,7 +706,7 @@ Aqui discutiremos três: documentos autocontidos, parâmetros de documentos e bi
 
 ### Documentos Autocontidos
 
-Documentos HTML tipicamente têm uma série de dependências externas (por exemplo imagens, guias de estilo CSS, JavaScript, etc.) e, por padrão, Quarto coloca essas dependências em uma pasta `_files` no mesmo diretório que o seu arquivo `.qmd`.
+Documentos HTML tipicamente têm uma série de dependências externas (por exemplo imagens, guias de estilo CSS, JavaScript, etc.) e, por padrão, o Quarto coloca essas dependências em uma pasta `_files` no mesmo diretório que o seu arquivo `.qmd`.
 Se você publicar o arquivo HTML em uma plataforma (por exemplo, QuartoPub, <https://quartopub.com/>), as dependências desse diretório são publicadas com o documento e então estarão disponíveis no relatório publicado.
 No entanto, se você quer enviar o relatório para um colega por email, é possível que prefira ter um único documento HTML autocontido que tem suas dependências todas embutidas.
 Você pode fazer isso especificando a opção `embed-resources`.
