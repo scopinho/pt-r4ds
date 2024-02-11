@@ -798,7 +798,7 @@ csl: apa.csl
 ```
 
 As with the bibliography field, your csl file should contain a path to the file.
-Here we assume that the csl file is in the same directory as the .qmd file.
+Aqui assumimos que o arquivo CSL está no mesmo diretório que o arquivo `.qmd`.
 Um bom lugar para encontrar arquivos de estilo CSL para sua bibligrafia é em: <https://github.com/citation-style-language/styles>.
 
 ## Fluxo de trabalho
