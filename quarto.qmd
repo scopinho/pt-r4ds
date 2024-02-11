@@ -509,7 +509,7 @@ plot
 Se você quiser garantir que o tamanho da fonte é consistente em todas as suas figuras, será necessário ajustar sempre o `out-width` com o `fig-width` para manter a mesma razão com o `out-width` padrão.
 Por exemplo, se seu `fig-width` padrão é 6 e o `out-width` está em "70%", será necessário configurar `fig-width` a 4.3 (6 \* 0.5 / 0.7) quando ajustar `out-width: "50%"`.
 
-Entender dimensionamento é uma arte e uma ciência e acertar essas coisas pode requerer uma abordagem de tentativa e erro Você pode aprender mais sobre isso no [post de blog tomando controle de dimensionamento de gráficos](https://www.tidyverse.org/blog/2020/08/taking-control-of-plot-scaling/).
+Entender dimensionamento é uma arte e uma ciência e acertar essas coisas pode requerer uma abordagem de tentativa e erro. Você pode aprender mais sobre isso no [post de blog tomando controle de dimensionamento de gráficos](https://www.tidyverse.org/blog/2020/08/taking-control-of-plot-scaling/).
 
 ### Outras opções importantes
 
