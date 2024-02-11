@@ -366,7 +366,7 @@ Na medida em que você trabalhar mais com o knitr, você descobrirá que algumas
 É possível fazer isso adicionando suas opções preferidas no YAML do documento em `execute`.
 Por exemplo, se você estiver preparando um relatório para uma audiência que não precisa ver seu código, mas apenas seus resultados e narrativa, pode ser que seja desejável configurar `echo: false` no nível do documento.
 Isso esconderá o código por padrão e só exibirá blocos de código que você escolha mostrar ( com `echo: true`).
-Você pode configurar `message: false` e `warning: false`, mas isso tornará difícil a resolução de problemas de execução porque nenhuma das mensagens srão exibidas no final do documento.
+Você pode configurar `message: false` e `warning: false`, mas isso tornará difícil a resolução de problemas de execução porque nenhuma das mensagens serão exibidas no final do documento.
 
 ``` yaml
 title: "My report"
