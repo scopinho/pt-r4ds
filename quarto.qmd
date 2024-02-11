@@ -637,7 +637,7 @@ Esse problema pode ser evitado com a opção `dependson`:
 
 ````         
 ``` {{r}}
-#| label: processed-data
+#| label: dados-processados
 #| cache: true
 #| dependson: "raw-data"
 
