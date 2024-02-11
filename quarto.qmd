@@ -393,7 +393,7 @@ Isso faz com que nossa formatação para comentários preferida seja usada e gar
 
 Existe outra maneira de inserir código R em um documento Quarto: diretamente no texto com `r inline()`.
 Isso pode ser muito útil se você for citar propriedades dos seus dados no texto.
-Por exemplo, o documento modelo usado no começo do capítulo tinh:
+Por exemplo, o documento modelo usado no começo do capítulo tinha:
 
 > Temos dados sobre `r inline('nrow(diamonds)')` diamantes.
 > Apenas `r inline('nrow(diamonds) - nrow(smaller)')` são maiores que 2.5 quilates.
