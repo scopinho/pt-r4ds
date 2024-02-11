@@ -787,7 +787,7 @@ Smith diz blah [-@smith04].
 ```
 
 Quando o Quarto renderiza o seu arquivo, a bibliografia será construída e adicionada ao final do seu documento.
-A bibliografia contera cada uma das citações do seu arquivo de bibliografia, mas não é criado um título no documento para ela.
+A bibliografia conterá cada uma das citações do seu arquivo de bibliografia, mas não é criado um título no documento para ela.
 Como resultado, é uma prática comum finalizar o seu documento com um título de seção para a bibliografia como `# Referências` ou `# Bibliografia`.
 
 É possível alterar o estilo das suas citações e bibliografia fazendo referência a um arquivo CSL (*citation style language* -- ou linguagem de estilo de citação) no campo `csl`:
