@@ -756,7 +756,7 @@ A forma mais direta de adicionar citações e bibliografias no seu documento Qua
 Para adicionar a citação no editor visual, vá em Insert \> Citation.
 Citações podem ser inseridas a partir de uma variedade de fontes:
 
-1.  Referências [DOI](https://quarto.org/docs/visual-editor/technical.html#citations-from-dois) (*Document Object Identifier*).
+1.  Referências [DOI](https://quarto.org/docs/visual-editor/technical.html#citations-from-dois) (*Digital Object Identifier*).
 
 2.  Bibliotecas particulares ou de grupo do [Zotero](https://quarto.org/docs/visual-editor/technical.html#citations-from-zotero) personal.
 
