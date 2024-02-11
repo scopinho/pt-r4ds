@@ -758,7 +758,7 @@ Citações podem ser inseridas a partir de uma variedade de fontes:
 
 1.  Referências [DOI](https://quarto.org/docs/visual-editor/technical.html#citations-from-dois) (*Digital Object Identifier*).
 
-2.  Bibliotecas particulares ou de grupo do [Zotero](https://quarto.org/docs/visual-editor/technical.html#citations-from-zotero) personal.
+2.  Bibliotecas particulares ou de grupo do [Zotero](https://quarto.org/docs/visual-editor/technical.html#citations-from-zotero).
 
 3.  Pesquisas na [Crossref](https://www.crossref.org/), [DataCite](https://datacite.org/), ou na [PubMed](https://pubmed.ncbi.nlm.nih.gov/).
 
