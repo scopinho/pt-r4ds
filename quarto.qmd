@@ -609,7 +609,7 @@ Também é possível permitir *caching* no nível de bloco para guardar os resul
 Quando configurado, isso salvará os resultados do bloco para um arquivo de nome especial em seu disco de armazenamento.
 Em execuções subsequentes, o knitr verificará se houve alguma alteração no código e caso isso não tenha acontecido os resultados em cache serão reutilizados.
 
-O sistema de cache deve ser usado com cuidado porque, por padrão, é usado apenas no código em não em suas dependências.
+O sistema de cache deve ser usado com cuidado porque, por padrão, é usado apenas no código, e não em suas dependências.
 Por exemplo, aqui o bloco `processed_data` depende do bloco `raw-data`:
 
 ````         
