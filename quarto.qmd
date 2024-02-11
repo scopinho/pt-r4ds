@@ -526,7 +526,7 @@ Nesse caso, ajusete `fig-format: "png"` para forçar o uso de PNGs.
 Esses têm qualidade ligeiramente menor, mas são muito mais compactos.
 
 É uma boa ideia dar rótulos a blocos de código que produzam figuras, mesmo que você rotineiramente não faça isso.
-O rótulo do bloco é usado para gerar o nome de arquivo do gráfico em disco, então nomear seus blocos facilita muito a identificação dos gráficos e reutilizá-lose em outras circunstâncias (por exemplo, quando é necessário pegar um único gráfico para enviar um email).
+O rótulo do bloco é usado para gerar o nome de arquivo do gráfico salvo em disco, então nomear seus blocos facilita muito a identificação dos gráficos e reutilizá-los em outras circunstâncias (por exemplo, quando é necessário pegar um único gráfico para enviar um email).
 
 ### Exercícios
 
