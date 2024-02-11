@@ -606,7 +606,7 @@ Também é possível permitir *caching* no nível de bloco para guardar os resul
 # código para uma computação longa...
 ```
 
-Quando configurado, isso salvará os resultados do bloc para um arquivo de nome especial em seu disco de armazenamento.
+Quando configurado, isso salvará os resultados do bloco para um arquivo de nome especial em seu disco de armazenamento.
 Em execuções subsequentes, knitr verificará se houve alguma alteração no código e caso isso não tenha acontecido os resultados em cache serão reutilizados.
 
 O sistema de cache deve ser usado com cuidado porque, por padrão, é usado apenas no código em não em suas dependências.
