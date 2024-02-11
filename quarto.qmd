@@ -799,7 +799,7 @@ csl: apa.csl
 
 As with the bibliography field, your csl file should contain a path to the file.
 Here we assume that the csl file is in the same directory as the .qmd file.
-A good place to find CSL style files for common bibliography styles is <https://github.com/citation-style-language/styles>.
+Um bom lugar para encontrar arquivos de estilo CSL para sua bibligrafia é em: <https://github.com/citation-style-language/styles>.
 
 ## Fluxo de trabalho
 
