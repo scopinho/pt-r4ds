@@ -874,7 +874,7 @@ Quarto ainda é relativamente jovem e ainda está crescendo rapidamente.
 O melhor lugar para se atualizar das últimas inovações é o site oficial: [https://quarto.org](https://quarto.org/){.uri}.
 
 Há dois tópicos importantes que não cobrimos aqui: colaboração e detalhes para comunicar sua ideia com precisão para outros humanos.
-Colaboração é parte vital da ciência de dados moderna e você pode facilitar muito a vida usando ferramentas de controle de versão, como Git e Github.
+Colaboração é parte vital da ciência de dados moderna e você pode facilitar muito a vida usando ferramentas de controle de versão, como Git e GitHub.
 Recomendamos "Happy Git with R", uma introdução amigável a Git e Github de usuários de R, por Jenny Bryan.
 O livro está disponível online com acesso livre: <https://happygitwithr.com>.
 
