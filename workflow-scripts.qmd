@@ -32,11 +32,6 @@ knitr::include_graphics("diagrams/rstudio/script.png", dpi = 270)
 
 ### Rodando código
 
-The script editor is an excellent place for building complex ggplot2 plots or long sequences of dplyr manipulations.
-The key to using the script editor effectively is to memorize one of the most important keyboard shortcuts: Cmd/Ctrl + Enter.
-This executes the current R expression in the console.
-For example, take the code below.
-
 O editor de scripts é um excelente lugar para construir gráficos complexos com ggplot2 ou sequências longas de manipulações com dplyr.
 A chave para usar o editor de scripts de forma eficaz é memorizar um dos atalhos de teclado mais importantes: Cmd/Ctrl + Enter.
 Isso executa o trecho de código atual no console.
