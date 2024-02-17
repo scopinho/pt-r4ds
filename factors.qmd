@@ -13,7 +13,7 @@ source("_common.R")
 Fatores (*factors*) são usados ​​para variáveis ​​categóricas, variáveis ​​que possuem um conjunto fixo e conhecido de valores possíveis.
 Eles também são úteis quando você deseja exibir vetores de caracteres em ordem não alfabética.
 
-Começaremos motivando porque os fatores são necessários para a análise de dados[^factors-1] e como você pode criá-los com a fnução `factor()`. Em seguida, apresentaremos o conjunto de dados `questionario` do pacote dados, que contém um monte de variáveis ​​​​categóricas para experimentarmos.
+Começaremos motivando a necessidade de fatores para a análise de dados[^factors-1] e como você pode criá-los com a função `factor()`. Em seguida, apresentaremos o conjunto de dados `questionario` do pacote dados, que contém um monte de variáveis ​​​​categóricas para experimentarmos.
 Em seguida, você usará esse conjunto de dados para praticar a modificação da ordem e dos valores dos fatores, antes de terminarmos com uma discussão sobre fatores ordenados.
 
 [^factors-1]: Eles também são muito importantes para modelagem.
@@ -165,14 +165,14 @@ Por exemplo, imagine que você deseja explorar o número médio de horas gastas 
 #|   Um gráfico de dispersão com horas_tv no eixo-x e religião no eixo-y.
 #|   O eixo-y parece estar ordenado de forma arbitrária, tornando difícil entender
 #|   qualquer padrão geral.
-sumario_religiao <- questionario |>
+resumo_religiao <- questionario |>
   group_by(religiao) |>
   summarize(
     horas_tv = mean(horas_tv, na.rm = TRUE),
     n = n()
   )
 
-ggplot(sumario_religiao, aes(x = horas_tv, y = religiao)) + 
+ggplot(resumo_religiao, aes(x = horas_tv, y = religiao)) + 
   geom_point()
 ```
 
@@ -189,7 +189,7 @@ Podemos melhorá-lo reordenando os níveis de `religiao` usando `fct_reorder()`.
 #|   O mesmo gráfico de dispersão acima, mas agora a religião é exibida em
 #|   ordem crescente de horas_tv. "Outra religião oriental Leste" tem o menor número de horas de TV,
 #|   menos de 2, e “Não sabe” tem o valor mais alto (acima de 5).
-ggplot(sumario_religiao, aes(x = horas_tv, y = fct_reorder(religiao, horas_tv))) +
+ggplot(resumo_religiao, aes(x = horas_tv, y = fct_reorder(religiao, horas_tv))) +
   geom_point()
 ```
 
@@ -201,7 +201,7 @@ Por exemplo, você poderia reescrever o gráfico acima como:
 ```{r}
 #| eval: false
 
-sumario_religiao |>
+resumo_religiao |>
   mutate(
     religiao = fct_reorder(religiao, horas_tv)
   ) |>
@@ -215,21 +215,21 @@ E se criarmos um gráfico semelhante observando como a idade média varia de aco
 #| fig-alt: |
 #|   Um gráfico de dispersão com idade no eixo-x e renda no eixo-y. A renda
 #|   foi reordenada com base na idade média, o que não faz muito
-#|   sentido. Uma seção do eixo-y vai de US$ 6.000 a 6.999, depois < US$ 1.000, 
+#|   sentido. Uma seção do eixo-y vai de US$6.000 a 6.999, depois < US$ 1.000, 
 #|   então $8000-9999.
-sumario_renda <- questionario |>
+resumo_renda <- questionario |>
   group_by(renda) |>
   summarize(
     idade = mean(idade, na.rm = TRUE),
     n = n()
   )
 
-ggplot(sumario_renda, aes(x = idade, y = fct_reorder(renda, idade))) + 
+ggplot(resumo_renda, aes(x = idade, y = fct_reorder(renda, idade))) + 
   geom_point()
 ```
 
 Aqui, reordenar arbitrariamente os níveis não é uma boa ideia!
-Isso porque `renda` já tem uma ordem de princípios com a qual não devemos mexer.
+Isso porque `renda` já tem uma ordem fundamentada com a qual não devemos mexer.
 Reserve `fct_reorder()` para fatores cujos níveis são ordenados arbitrariamente.
 
 No entanto, faz sentido colocar "Não se aplica" na frente com os outros níveis especiais.
@@ -243,7 +243,7 @@ Você pode usar `fct_relevel()`.
 #|   entre renda e idade, e a faixa de renda com maior média
 #|   idade é "Não se aplica".
 
-ggplot(sumario_renda, aes(x = idade, y = fct_relevel(renda, "Não se aplica"))) +
+ggplot(resumo_renda, aes(x = idade, y = fct_relevel(renda, "Não se aplica"))) +
   geom_point()
 ```
 
@@ -290,7 +290,7 @@ Combine-a com a `fct_rev()` se desejar que eles aumentem a frequência, de modo 
 
 ```{r}
 #| fig-alt: |
-#|   Um gráfico de barras de estado cicil ordenado do menos para mais comum:
+#|   Um gráfico de barras de estado civil ordenado do menos para mais comum:
 #|   sem resposta (~0), separado(a) (~1,000), viúvo(a) (~2,000), divorciado(a) 
 #|   (~3,000), nuca casou (~5,000), casado(a) (~10,000).
 questionario |>
@@ -302,18 +302,18 @@ questionario |>
 ### Exercícios
 
 1.  Existem alguns números suspeitosamente altos em `horas_tv`.
-    A média é uma boa sumarização?
+    A média é um bom resumo?
 
-2.  Para cada fator em `quesitonario`, identifique se a ordem dos níveis é arbitrária ou baseada em princípios.
+2.  Para cada fator em `questionario`, identifique se a ordem dos níveis é arbitrária ou fundamentada.
 
-3.  Por que mover "Não se aplica" para a frente dos níveis o moveu para a parte inferior do gráfico??
+3.  Por que mover "Não se aplica" para a frente dos níveis o moveu para a parte inferior do gráfico?
 
 ## Modificando os níveis do fator
 
 Mais poderoso do que alterar as ordens dos níveis é alterar os seus valores.
 Isso permite esclarecer rótulos para publicação e recolher níveis para exibições de alto nível.
 A ferramenta mais geral e poderosa é `fct_recode()`.
-Ela permite recodificar ou alterar o valor de cada nível.
+Ela permite recodificar, ou alterar, o valor de cada nível.
 Por exemplo, pegue a variável `partido` do *data frame* `questionario`:
 
 ```{r}
@@ -329,7 +329,7 @@ questionario |>
   mutate(
     partido = fct_recode(partido,
       "Indivíduo fortemente republicano"    = "Fortemente republicano",
-      "Indivíduo não fortemente republicano"      = "Não fortemente repubicano",
+      "Indivíduo não fortemente republicano"      = "Não fortemente republicano",
       "Indivíduo independente com inclinação republicana" = "Independente, inclinação republicana",
       "Indivíduo independente com inclinação democrata" = "Independente, inclinação democrata",
       "Indivíduo não fortemente democrata"        = "Não fortemente democrata",
@@ -349,7 +349,7 @@ questionario |>
   mutate(
     partido = fct_recode(partido,
       "Indivíduo fortemente republicano"    = "Fortemente republicano",
-      "Indivíduo não fortemente republicano"      = "Não fortemente repubicano",
+      "Indivíduo não fortemente republicano"      = "Não fortemente republicano",
       "Indivíduo independente com inclinação republicana" = "Independente, inclinação republicana",
       "Indivíduo independente com inclinação democrata" = "Independente, inclinação democrata",
       "Indivíduo não fortemente democrata"        = "Não fortemente democrata",
@@ -371,7 +371,7 @@ questionario |>
   mutate(
     partido = fct_collapse(partido,
       "other" = c("Sem resposta", "Não sabe", "Outro partido"),
-      "rep" = c("Fortemente republicano", "Não fortemente repubicano"),
+      "rep" = c("Fortemente republicano", "Não fortemente republicano"),
       "ind" = c("Independente, inclinação republicana", "Independente", "Independente, inclinação democrata"),
       "dem" = c("Não fortemente democrata", "Fortemente democrata")
     )
@@ -408,7 +408,7 @@ Leia a documentação para aprender sobre `fct_lump_min()` e `fct_lump_prop()` q
 
 3.  Observe que existem 9 grupos (excluindo outros) no exemplo `fct_lump` acima.
     Por que não 10?
-    (Dica: digite `?fct_lump` e encontre o padrão para o argumento `other_level` é "Other".)
+    (Dica: digite `?fct_lump` e note que o padrão para o argumento `other_level` é "Other".)
 
 ## Fatores ordenados {#sec-ordered-factors}
 
@@ -431,7 +431,7 @@ Dada a utilidade discutível dessas diferenças, geralmente não recomendamos o 
 ## Resumo
 
 Este capítulo apresentou o prático pacote forcats para trabalhar com fatores, apresentando as funções mais comumente usadas.
-O pacote forcats contém uma ampla gama de outras funções auxiliares que não tivemos espaço para discutir aqui, portanto, sempre que você estiver enfrentando um desafio de análise com fatores que não encontrou antes, recomendo fortemente dar uma olhada no [índice de referência](https://forcats.tidyverse.org/reference/index.html) para ver se existe uma função pronta que pode ajudar a resolver seu problema.
+O pacote forcats contém uma ampla gama de outras funções auxiliares que não tivemos espaço para discutir aqui, portanto, sempre que você estiver enfrentando um desafio de análise com fatores que não encontrou antes, recomendo fortemente dar uma olhada no [índice remissivo](https://forcats.tidyverse.org/reference/index.html) para ver se existe uma função pronta que pode ajudar a resolver seu problema.
 
 Se você quiser aprender mais sobre fatores depois de ler este capítulo, recomendamos a leitura do artigo de Amelia McNamara e Nicholas Horton, [*Wrangling categorical data in R*](https://peerj.com/preprints/3163/).
 Este artigo apresenta um pouco da história discutida em [*stringsAsFactors: Uma biografia não autorizada*](https://simplystatistics.org/posts/2015-07-24-stringsasfactors-an-unauthorized-biography/) e [*stringsAsFactors = \<sigh\>*](https://notstatschat.tumblr.com/post/124987394001/stringsasfactors-sigh) e compara as abordagens organizadas (*tidy approach*) para dados categóricos descritos neste livro com métodos do R base.
