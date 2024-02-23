@@ -134,7 +134,7 @@ Ou seja:
 Mapear uma variável discreta não ordenada (categórica), `classe`, em um atributo estético ordenado (`size` ou `alpha`) em geral não é uma boa ideia, porque implica em uma ordenação que não existe de fato.
 
 Uma vez que você seleciona o atributo estético do mapeamento, o ggplot2 cuida do resto.
-Ele seleciona uma escala adequada para ser utilizada com esse atributo e constroi uma legenda que explica a relação entre as categorias e os valores.
+Ele seleciona uma escala adequada para ser utilizada com esse atributo e constrói uma legenda que explica a relação entre as categorias e os valores.
 Para os atributos estéticos x e y, o ggplot2 não cria uma legenda, mas cria uma linha de eixo com marcas de escala e rótulos.
 Essa linha de eixo fornece a mesma informação que uma legenda: explica a correspondência entre as posições e os valores.
 
