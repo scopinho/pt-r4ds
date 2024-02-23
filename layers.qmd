@@ -619,7 +619,7 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
     ```
 
     Quais são as vantagens de usar facetas ao invés do atributo estético `color`?
-    Quais as desvantagens?
+    Quais são as desvantagens?
     Como essas vantagens e desvantagens mudariam se você tivesse uma base de dados maior?
 
 5.  Leia `?facet_wrap`.
