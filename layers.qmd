@@ -260,7 +260,7 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
 ```
 
 Os dois gráficos contém a mesma variável x, a mesma variável y e descrevem os mesmos dados.
-Mas, os gráficos não são idênticos.
+Mas os gráficos não são idênticos.
 Cada um desses gráficos usa uma `geom` diferente para representar esses dados.
 O gráfico à esquerda usa a geometria de ponto (`point`), enquanto o gráfico à direita usa a geometria de suavização (`smooth`) e inclui uma linha suavizada ajustada aos dados.
 
