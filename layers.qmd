@@ -393,7 +393,7 @@ O argumento `data`, definido localmente na camada `geom_point()`, substitui - ap
 #|   Gráfico de dispersão da eficiência de combustível na rodovia versus o
 #|   tamanho do motor dos carros, no qual os pontos são coloridos de acordo com 
 #|   a classe do carro. Uma curva suavizada acompanha a trajetória da relação
-#|   entre a eficiência de combustível na estrada e o tamanho do motor dos carros
+#|   entre a eficiência de combustível na rodovia e o tamanho do motor dos carros
 #|   compactos está sobreposta juntamente com um intervalo de confiança ao seu redor.
 
 ggplot(milhas, aes(x = cilindrada, y = rodovia)) + 
