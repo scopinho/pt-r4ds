@@ -8,7 +8,7 @@ source("_common.R")
 
 ## Introdução
 
-No @sec-data-visualization, você aprendeu muito mais do que apenas como criar gráficos de dispersão, gráficos de barras e boxplots.
+No @sec-data-visualization, você aprendeu muito mais do que apenas criar gráficos de dispersão, gráficos de barras e boxplots.
 Você aprendeu uma base que você pode usar para criar *qualquer* tipo de gráfico com o ggplot2.
 
 Nesse capítulo, você irá expandir essa base conforme for aprendendo sobre a gramática dos gráficos baseada em camadas.
