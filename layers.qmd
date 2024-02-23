@@ -618,7 +618,7 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
       facet_wrap(~ classe, nrow = 2)
     ```
 
-    Quais as vantagens de usar facetas ao invés do atributo estético `color`?
+    Quais são as vantagens de usar facetas ao invés do atributo estético `color`?
     Quais as desvantagens?
     Como essas vantagens e desvantagens mudariam se você tivesse uma base de dados maior?
 
