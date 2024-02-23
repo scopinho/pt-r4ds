@@ -1085,7 +1085,7 @@ Em seguida, você selecionaria um sistema de coordenadas para posicionar as geom
 knitr::include_graphics("images/visualization-grammar.png")
 ```
 
-A essa altura, você teria um gráfico completo.
+A essa altura, você teria um gráfico completo, mas poderia ir além e ajustar as posições das geoms no sistema de coordenadas (com ajustes de posição) ou dividir o gráfico em subgráficos (criando facetas).
 Mas, você poderia ir além e ajustar as posições das geoms no sistema de coordenadas (com ajustes de posição) ou dividir o gráfico em subgráficos (criando facetas).
 Você também poderia adicionar informações ao gráfico ao adicionar uma ou mais camadas.
 Cada camada adicional usará uma base de dados, uma geometria, um conjunto de mapeamentos estéticos, uma transformação estatística e um ajuste de posição.
