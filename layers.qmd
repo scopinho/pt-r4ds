@@ -13,7 +13,7 @@ Você aprendeu uma base que você pode usar para criar *qualquer* tipo de gráfi
 
 Nesse capítulo, você irá expandir essa base conforme for aprendendo sobre a gramática dos gráficos baseada em camadas.
 Vamos começar explorando mais profundamente o mapeamento estético, as geometrias e as facetas.
-Então, você irá aprender sobre as transformações estatísticas que acontecem nos bastidores quando o ggplot2 cria um gráfico.
+Em seguida, você aprenderá sobre as transformações estatísticas que acontecem nos bastidores quando o ggplot2 cria um gráfico.
 Essas transformações são usadas para calcular novos valores a serem plotados, como as alturas das barras em um gráfico de barras, ou as medianas em um boxplot.
 Você também irá aprender sobre ajustes de posição, os quais modificam como as geometrias são exibidas nos seus gráficos.
 Por fim, introduziremos brevemente o sistema de coordenadas.
