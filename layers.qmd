@@ -309,7 +309,7 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia, linetype = tracao)) +
 ```
 
 Aqui, o `geom_smooth()` separa os carros em três linhas com base na categoria de `tracao` à qual pertencem.
-Uma linha escreve todos os pontos pertencentes à categoria `4`, outra linha descreve os pontos pertencentes à categoria `d`, e uma terceira linha descreve todos os pontos pertencentes à categoria `t`.
+Uma linha descreve todos os pontos pertencentes à categoria `4`, outra linha descreve os pontos pertencentes à categoria `d`, e uma terceira linha descreve todos os pontos pertencentes à categoria `t`.
 Aqui, `4` corresponde a tração nas quatro rodas, `d` corresponde a tração nas rodas dianteiras e `t` corresponde a tração nas rodas traseiras.
 
 Se isso não fez muito sentido, podemos tornar essa relação mais óbvia ao sobrepor as linhas aos dados brutos e então colorir tudo de acordo com a `tracao`.
