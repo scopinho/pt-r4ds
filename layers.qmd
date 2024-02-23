@@ -435,7 +435,7 @@ ggplot(milhas, aes(x = rodovia)) +
 O ggplot2 oferece mais de 40 geoms, mas essas não cobrem todas as possibilidades de criação de gráficos.
 Se você precisar de uma geometria diferente, recomendamos procurá-la em pacotes de extensão, para ver se outra pessoa já a implementou (veja uma amostra em <https://exts.ggplot2.tidyverse.org/gallery/>).
 Por exemplo, o pacote **ggridges** ([https://wilkelab.org/ggridges](https://wilkelab.org/ggridges/){.uri}) é útil para construir *ridgeline plots* (gráficos de densidade sobrepostos), os quais podem ser úteis para visualizar as curvas de densidade de uma variável numérica para diferentes categorias de uma variável categórica.
-No gráfico a seguir, não apenas nós utilizamos uma nova geometria (`geom_density_ridges()`), mas também mapeamos a mesma variável a múltiplos atributos estéticos (`tracao` foi mapeada em `y`, `fill` e `color`), além de definirmos um atributo estético (`alpha = 0.5`) para tornar as curvas de densidade transparentes.
+No gráfico a seguir, nós não apenas utilizamos uma nova geometria (`geom_density_ridges()`), mas também mapeamos a mesma variável a múltiplos atributos estéticos (`tracao` foi mapeada em `y`, `fill` e `color`), além de definirmos um atributo estético (`alpha = 0.5`) para tornar as curvas de densidade transparentes.
 
 ```{r}
 #| fig-asp: 0.33
