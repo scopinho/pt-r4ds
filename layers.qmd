@@ -680,7 +680,7 @@ Outros gráficos, como os gráficos de barras, calculam novos valores para serem
 
 -   Gráficos de barras, histogramas e polígonos de frequência agrupam seus dados em intervalos e então representam no gráfico a contagem do intervalo, ou seja, a quantidade de observações contida em cada intervalo.
 
--   *Smoothers* ajustam um modelo aos seus dados e, em seguida, representam as predições deste modelo.
+-   *Smoothers* (suavizadores) ajustam um modelo aos seus dados e, em seguida, representam as predições deste modelo.
 
 -   Gráficos boxplot calculam cinco medidas resumo da distribuição e então mostram esses valores como uma caixa com um formato específico.
 
