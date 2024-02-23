@@ -501,7 +501,7 @@ Por que você acha que o utilizamos anteriomente?
     #|   para cada tipo de tração, mas há uma única curva suavizada sobreposta
     #|   ajustada a todos os dados. No quinto gráfico, os pontos estão
     #|   representados em cores diferentes para cada tipo de tração, e curvas
-    #|   suavizadas separadas, com diferentes tipos de linhas foram ajustadas a
+    #|   suavizadas separadas, com diferentes tipos de linhas, foram ajustadas a
     #|   cada tipo de tração. E, finalmente, no sexto gráfico os pontos estão
     #|   representados em cores diferentes para cada tipo de tração e eles
     #|   apresentam uma borda branca espessa.
