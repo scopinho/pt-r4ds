@@ -99,7 +99,7 @@ Ou seja:
 Uma vez que o ggplot2, por padrão, usa apenas seis formas por vez, grupos que ultrapassem essa quantidade não serão plotados quando você usar o atributo estético `shape` (forma).
 O segundo aviso está relacionado a esse primeiro: há 62 SUVs na base de dados e elas não foram plotadas.
 
-De forma semelhante, podemos também mapear a variável `classe` nos atributos estéticos `size` (tamanho) ou `alpha`, as quais controlarão o tamanho e a transparência dos pontos, respectivamente.
+De forma semelhante, podemos também mapear a variável `classe` nos atributos estéticos `size` (tamanho) ou `alpha` (transparência), as quais controlarão o tamanho e a transparência dos pontos, respectivamente.
 
 ```{r}
 #| layout-ncol: 2
