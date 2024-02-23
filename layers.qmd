@@ -1089,7 +1089,7 @@ A essa altura, você teria um gráfico completo, mas poderia ir além e ajustar 
 Você também poderia adicionar informações ao gráfico ao adicionar uma ou mais camadas.
 Cada camada adicional usará uma base de dados, uma geometria, um conjunto de mapeamentos estéticos, uma transformação estatística e um ajuste de posição.
 
-Você pode usar esse método para construit *qualquer* gráfico que imaginar.
+Você pode usar esse método para construir *qualquer* gráfico que imaginar.
 Em outras palavras, você pode usar o template de código que aprendeu neste capítulo para construir centenas de milhares de gráficos distintos.
 
 Caso queira aprender mais sobre os fundamentos teóricos do ggplot2, você pode ler "[The Layered Grammar of Graphics](https://vita.had.co.nz/papers/layered-grammar.pdf)", o artigo científico que descreve detalhadamente a teoria do ggplot2.
