@@ -73,11 +73,11 @@ Podemos fazer isso com um gráfico de dispersão no qual as variáveis numérica
 #|   gráfico vem com uma legenda que mostra a relação entre a cor ou a forma e
 #|   as categorias da variável de classe.
 
-# Left
+# Esquerda
 ggplot(milhas, aes(x = cilindrada, y = rodovia, color = classe)) +
   geom_point()
 
-# Right
+# Direita
 ggplot(milhas, aes(x = cilindrada, y = rodovia, shape = classe)) +
   geom_point()
 ```
@@ -114,11 +114,11 @@ De forma semelhante, podemos também mapear a variável `classe` nos atributos e
 #|   legenda que mostra a relação entre o tamanho ou a transparência e as
 #|   categorias da variável de classe.
 
-# Left
+# Esquerda
 ggplot(milhas, aes(x = cilindrada, y = rodovia, size = classe)) +
   geom_point()
 
-# Right
+# Direita
 ggplot(milhas, aes(x = cilindrada, y = rodovia, alpha = classe)) +
   geom_point()
 ```
@@ -270,11 +270,11 @@ Por exemplo, para criar os gráficos acima você pode usar o seguinte código:
 ```{r}
 #| fig-show: hide
 
-# Left
+# Esquerda
 ggplot(milhas, aes(x = cilindrada, y = rodovia)) + 
   geom_point()
 
-# Right
+# Direita
 ggplot(milhas, aes(x = cilindrada, y = rodovia)) + 
   geom_smooth()
 ```
@@ -299,11 +299,11 @@ A função `geom_smooth()` irá desenhar uma linha diferente, com um tipo difere
 #|   para cada tipo de tração. Em ambos os gráficos, são exibidos também
 #|   os intervalos de confiança ao redor das curvas.
 
-# Left
+# Esquerda
 ggplot(milhas, aes(x = cilindrada, y = rodovia, shape = tracao)) + 
   geom_smooth()
 
-# Right
+# Direita
 ggplot(milhas, aes(x = cilindrada, y = rodovia, linetype = tracao)) + 
   geom_smooth()
 ```
@@ -351,7 +351,7 @@ Na prática, o ggplot2 agrupará automaticamente os dados para essas geometrias 
 #|   cor diferente, com uma legenda relacionando a cor à categoria de tração. Todos
 #|   os gráficos exibem também intervalos de confiança ao redor das curvas.
 
-# Left
+# Esquerda
 ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
   geom_smooth()
 
@@ -359,7 +359,7 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
 ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
   geom_smooth(aes(group = tracao))
 
-# Right
+# Direita
 ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
   geom_smooth(aes(color = tracao), show.legend = FALSE)
 ```
@@ -419,7 +419,7 @@ Por exemplo, o histograma e o gráfico de densidade abaixo mostram que a distrib
 #|   Três gráficos: histograma, gráfico de densidade e boxplot da eficiência
 #|   de combustível na rodovia.
  
-# Left
+# Esquerda
 ggplot(milhas, aes(x = rodovia)) +
   geom_histogram(binwidth = 2)
 
@@ -427,7 +427,7 @@ ggplot(milhas, aes(x = rodovia)) +
 ggplot(milhas, aes(x = rodovia)) +
   geom_density()
 
-# Right
+# Direita
 ggplot(milhas, aes(x = rodovia)) +
   geom_boxplot()
 ```
@@ -814,11 +814,11 @@ Você pode colorir um gráfico de barras usando o atributo estético `color` ou,
 #|   com cores. As alturas das barras correspondem à quantidade de carros em cada
 #|   categoria de tração.
 
-# Left
+# Esquerda
 ggplot(milhas, aes(x = tracao, color = tracao)) + 
   geom_bar()
 
-# Right
+# Direita
 ggplot(milhas, aes(x = tracao, fill = tracao)) + 
   geom_bar()
 ```
@@ -859,11 +859,11 @@ Se você não quer um gráfico de barras empilhadas, você pode usar uma das out
     #|   gráfico, as barras são preenchidas com cores transparentes e no segundo
     #|   gráfico, elas são apenas contornadas com cor.
 
-    # Left
+    # Esquerda
     ggplot(milhas, aes(x = tracao, fill = classe)) + 
       geom_bar(alpha = 1/5, position = "identity")
 
-    # Right
+    # Direita
     ggplot(milhas, aes(x = tracao, color = classe)) + 
       geom_bar(fill = NA, position = "identity")
     ```
@@ -892,11 +892,11 @@ Se você não quer um gráfico de barras empilhadas, você pode usar uma das out
     #|   desigual de barras dentro de cada grupo. As alturas dessas barras representam
     #|   a quantidade de carros com um determinado tipo de tração e classe.
 
-    # Left
+    # Esquerda
     ggplot(milhas, aes(x = tracao, fill = classe)) + 
       geom_bar(position = "fill")
 
-    # Right
+    # Direita
     ggplot(milhas, aes(x = tracao, fill = classe)) + 
       geom_bar(position = "dodge")
     ```
