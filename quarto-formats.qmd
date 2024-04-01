@@ -76,7 +76,7 @@ quarto::quarto_render("diamond-sizes.qmd", output_format = "all")
 ## Documentos
 
 O foco do capítulo anterior era a saída padrão `html`.
-Há bastantes variações básicas nesse tema, gerando diferentes tipos de documentos.
+Existem diversas variações básicas nesse tema, gerando diferentes tipos de documentos.
 Por exemplo:
 
 -   `pdf` produz um PDF com LaTeX (um systema de diagramação/*layout* de código aberto/*open-source*), que precisará ser instalado.
