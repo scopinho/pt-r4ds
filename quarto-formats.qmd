@@ -43,7 +43,7 @@ O Quarto oferece uma ampla variedade de formatos de saída.
 Muitos formatos compartilham configurações de seu resultado (por exemplo, `toc: true` para incluir um sumário), mas outros têm configurações que são específicas do formato (por exemplo, `code-fold: true` colapsa os blocos de código em uma *tag* HTML `<details>` de modo que o usuário possa exibí-lo quando quiser, e não é aplicável a um documento PDF ou Word).
 
 Para sobrescrever as opções padrão, é necessário usar um campo `format` extendido.
-Por exemplo, se quiser renderizar um `html` com um índice flutuante, é necessário usar:
+Por exemplo, se quiser renderizar um `html` com um sumário flutuante, é necessário usar:
 
 ``` yaml
 format:
