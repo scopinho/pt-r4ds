@@ -6,7 +6,7 @@
 source("_common.R")
 ```
 
-Este capítulo irá apresentá-lo a duas ferramentas essenciais para organizar seu código: scripts e projetos.
+Este capítulo irá te apresentar duas ferramentas essenciais para organizar seu código: scripts e projetos.
 
 ## Scripts
 
