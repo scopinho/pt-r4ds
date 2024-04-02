@@ -49,7 +49,7 @@ tratamento <- tribble(
 ```
 
 Você pode preencher esses valores ausentes com a função `tidyr::fill()`.
-Funciona como a `select()`, pegando um conjunto de colunas como argumento:
+Funciona como a função `select()`, pegando um conjunto de colunas como argumento:
 
 ```{r}
 tratamento |>
@@ -137,7 +137,7 @@ As seções a seguir discutem algumas ferramentas para alternar entre ausências
 
 Você já viu uma ferramenta que pode tornar explícitas as ausências implícitas e vice-versa: pivotagem.
 Deixar os dados mais largos (com mais colunas) pode tornar explícitos os valores ausentes implícitos porque cada combinação de linhas e novas colunas deve ter algum valor.
-Por exemplo, se pivotarmos `ações` para colocar o `trimestre` nas colunas, ambos os valores faltantes se tornarão explícitos:
+Por exemplo, se pivotarmos `acoes` para colocar o `trimestre` nas colunas, ambos os valores faltantes se tornarão explícitos:
 
 ```{r}
 acoes |>
@@ -148,7 +148,7 @@ acoes |>
 ```
 
 Por padrão, tornar os dados mais longos preserva os valores ausentes explícitos, mas se eles forem valores estruturalmente ausentes que só existem porque os dados não estão organizados, você pode eliminá-los (torná-los implícitos) definindo `values_drop_na = TRUE`.
-Veja os exemplos no @sec-tidy-data para mais detalhes.
+Veja os exemplos na @sec-tidy-data para mais detalhes.
 
 ### Completar
 
@@ -172,12 +172,12 @@ acoes |>
 Se o intervalo de uma variável estiver correto, mas nem todos os valores estiverem presentes, você pode usar a `full_seq(x, 1)` para gerar todos os valores de `min(x)` a `max(x)` espaçados por 1.
 
 Em alguns casos, o conjunto completo de observações não pode ser gerado por uma simples combinação de variáveis.
-Nesse caso, você pode fazer manualmente o que `complete()` faz por você: criar um dataframe que contenha todas as linhas que deveriam existir (usando qualquer combinação de técnicas necessárias) e, em seguida, combiná-lo com seu conjunto de dados original com `dplyr ::full_join()`.
+Nesse caso, você pode fazer manualmente o que `complete()` faz por você: criar um dataframe que contenha todas as linhas que deveriam existir (usando qualquer combinação de técnicas necessárias) e, em seguida, combiná-lo com seu conjunto de dados original com `dplyr::full_join()`.
 
 ### Uniões 
 
 Isso nos leva a outra forma importante de revelar observações implicitamente ausentes: uniões (*joins*).
-Você aprenderá mais sobre uniçoes no @sec-joins, mas gostaríamos de mencioná-las rapidamente aqui, já que muitas vezes você só pode saber que valores estão faltando em um conjunto de dados quando você o compara com outro.
+Você aprenderá mais sobre uniões no @sec-joins, mas gostaríamos de mencioná-las rapidamente aqui, já que muitas vezes você só pode saber que valores estão faltando em um conjunto de dados quando você o compara com outro.
 
 `dplyr::anti_join(x, y)` é uma função particularmente útil aqui porque seleciona apenas as linhas em `x` que não têm correspondência em `y`.
 Por exemplo, podemos usar dois `anti_join()` para revelar que faltam informações de quatro aeroportos e 722 aviões mencionados em `voos`:
