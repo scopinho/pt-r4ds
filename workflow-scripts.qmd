@@ -268,7 +268,7 @@ Clique em Arquivo \> Novo Projeto, e então siga os passos mostrados em @fig-new
 #| fig-cap: | 
 #|   Para criar um novo projeto: (topo) primeiro clique em Novo Diretório, depois (meio)
 #|   clique em Novo Projeto, então (abaixo) preencha o nome do diretório (projeto),
-#|   escolha um bom subdiretório para sua casa e clique em Criar Projeto.
+#|   escolha um bom subdiretório para ser o "lar" do seu projeto, e clique em Criar Projeto.
 #| fig-alt: |
 #|   Três capturas de tela do menu Novo Projeto. Na primeira captura de tela, 
 #|   a janela Criar Projeto é mostrada e Novo Diretório é selecionado. 
@@ -285,7 +285,7 @@ Nomeie seu projeto como `r4ds` e pense cuidadosamente sobre qual subdiretório v
 Se você não armazená-lo em algum lugar que faça sentido, será difícil encontrá-lo no futuro!
 
 Uma vez que esse processo esteja completo, você terá um novo projeto RStudio apenas para este livro.
-Verifique se a "casa" do seu projeto é o diretório de trabalho atual:
+Verifique se o "lar" do seu projeto é o diretório de trabalho atual:
 
 ```{r}
 #| eval: false
