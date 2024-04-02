@@ -836,7 +836,7 @@ ggplot(
   )
 ) +
   geom_point() +
-  labs(color = "especie")
+  labs(color = "Especies")
 ```
 
 7.  Crie os dois gráficos de barras empilhadas a seguir. Que pergunta você pode responder com o primeiro? Que pergunta você pode responder com o segundo?
