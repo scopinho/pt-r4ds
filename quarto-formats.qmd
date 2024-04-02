@@ -111,8 +111,8 @@ format:
 
 Também é possível usar o Quarto para produzir apresentações.
 O controle visual é menor do que se teria usando uma ferramenta como Keynote ou Powerpoint, mas inserir automaticamente resultados do seu código em R nas apresentações pode economizar muito tempo.
-Em apresentações o conteúdo do trabalho é dividido em slides, com um novo slide começando em cada marcador de título de nível dois (`##`).
-Além disso, títulos de primeiro nível (`#`) indicam o começo de uma nova seção com um slide de título de seção que, por padrão, fica centralizado no meio do slide.
+Em apresentações o conteúdo do trabalho é dividido em slides, com um novo slide começando em cada marcador de título de nível 2 (`##`).
+Além disso, títulos de nível 1 (`#`) indicam o começo de uma nova seção com um slide de título de seção que, por padrão, fica centralizado no meio do slide.
 
 Uma variedade de formatos de apresentação têm suporte em Quarto, incluindo:
 
