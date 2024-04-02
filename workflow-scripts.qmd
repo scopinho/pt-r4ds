@@ -190,7 +190,7 @@ Não há nada pior do que descobrir três meses depois que você só armazenou o
 #|   sessão do RStudio com um ambiente  (*Environment*) limpo.
 #| fig-alt: |
 #|   Janela de Opções Globais do RStudio onde a opção Restaurar .RData no ambiente 
-#|   na inicialização não está marcada. Além disso, a opção Salvar ambiente para .RData 
+#|   na inicialização não está marcada. Além disso, a opção Salvar espaço de trabalho (*workspace*) no arquivo .RData 
 #|   na saída está configurada para Nunca.
 #| out-width: ~
 
