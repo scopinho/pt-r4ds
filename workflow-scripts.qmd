@@ -164,9 +164,9 @@ Um dia, você precisará trazer dados do mundo externo para o R e enviar resulta
 Para lidar com essas situações da vida real, você precisa tomar duas decisões:
 
 1.  Qual é a fonte da verdade?
-  O que você vai salvar como seu registro final do que aconteceu?
+    O que você vai salvar como seu registro final do que aconteceu?
 
-1.  Onde a sua análise vive?
+2.  Onde é o lar da sua análise?
 
 ### Qual é a fonte da verdade?
 
@@ -215,7 +215,7 @@ Na próxima vez que você retornar, você estará exatamente no mesmo lugar que 
 Isso torna ainda mais importante reiniciar regularmente o R para que você esteja começando com um ambiente limpo.
 :::
 
-### Onde a sua análise vive?
+### Onde é o "lar" da sua análise?
 
 O R tem um poderoso conceito de **diretório de trabalho**.
 Este é o local onde o R procura por arquivos que você pede para carregar, e onde ele colocará quaisquer arquivos que você pedir para salvar.
