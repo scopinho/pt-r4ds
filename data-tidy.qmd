@@ -1,4 +1,4 @@
-# Organizando os dados (*data tidying*) {#sec-data-tidy}
+# ✅ Organizando os dados (*data tidying*) {#sec-data-tidy}
 
 ## Introdução
 
