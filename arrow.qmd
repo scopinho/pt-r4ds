@@ -2,7 +2,7 @@
 freeze: auto
 ---
 
-# Arrow {#sec-arrow}
+# ✅ Arrow {#sec-arrow}
 
 ```{r}
 #| echo: false

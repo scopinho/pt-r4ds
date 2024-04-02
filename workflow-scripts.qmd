@@ -1,4 +1,4 @@
-# Fluxo de trabalho: scripts e projetos {#sec-workflow-scripts-projects}
+# ✅ Fluxo de trabalho: scripts e projetos {#sec-workflow-scripts-projects}
 
 ```{r}
 #| echo: false

@@ -1,4 +1,4 @@
-# Números {#sec-numbers}
+# ✅ Números {#sec-numbers}
 
 ```{r}
 #| echo: false

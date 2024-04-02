@@ -1,4 +1,4 @@
-# Programar {#sec-program-intro .unnumbered}
+# ✅ Programar {#sec-program-intro .unnumbered}
 
 ```{r}
 #| results: "asis"

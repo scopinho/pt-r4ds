@@ -1,4 +1,4 @@
-# Visualização de dados {#sec-data-visualization}
+# ✅ Visualização de dados {#sec-data-visualization}
 
 ```{r}
 #| echo: false

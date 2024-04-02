@@ -1,4 +1,4 @@
-# Prefácio da segunda edição {.unnumbered}
+# ✅ Prefácio da segunda edição {.unnumbered}
 
 Boas vindas à segunda edição do livro "R para Ciência de Dados"!
 Esta é uma revisão importante da primeira edição, removendo material que não consideramos mais útil, adicionando material que gostaríamos de ter incluído na primeira edição e atualizando o texto e o código de acordo com as melhores práticas.

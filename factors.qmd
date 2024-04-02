@@ -1,4 +1,4 @@
-# Fatores {#sec-factors}
+# ✅ Fatores {#sec-factors}
 
 ```{r}
 #| echo: false
