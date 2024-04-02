@@ -1,4 +1,4 @@
-# Formatos para Quarto {#sec-quarto-formats}
+# ✅ Formatos para Quarto {#sec-quarto-formats}
 
 ```{r}
 #| echo: false
