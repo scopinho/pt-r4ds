@@ -157,14 +157,14 @@ Há muitos pacotes que fornecem htmlwidgets, incluindo:
 
 -   [**threejs**](https://bwlewis.github.io/rthreejs) para gráficos 3D interativos.
 
--   [**DiagrammeR**](https://rich-iannone.github.io/DiagrammeR) para diagramas (como diagramas de fluxo ou diagramas simples de nodo e aresta -- grafos).
+-   [**DiagrammeR**](https://rich-iannone.github.io/DiagrammeR) para diagramas (como diagramas de fluxo ou diagramas simples de nó e aresta -- grafos).
 
 Para aprender mais sobre htmlwidgets e ver uma lista completa de pacotes que os fornecem, visite <https://www.htmlwidgets.org>.
 
 ### Shiny
 
 htmlwidgets fornecem interatividade ***client-side*** (do lado do cliente ou, em liguagem comum, do usuário) --- toda a interatividade ocorre no navegador, independente do R.
-Por outro lado, isso é ótimo porque é possível distribuir o arquivo HTML sem qualquer conexão com R.
+Por um lado, isso é ótimo porque é possível distribuir o arquivo HTML sem qualquer conexão com R.
 No entanto, isso limita fundamentalmente o que se pode fazer ao que foi implementado em HTML e JavaScript.
 Uma abordagem alternativa é usar **shiny**, um pacote que permite criar interativamente usando R em vez de JavaScript.
 
@@ -205,7 +205,7 @@ Você pode fazer referência aos valores com `input$name` e `input$age`, fazendo
 Não podemos mostrar um app shiny sendo executado porque as interações ocorrem no ***server-side*** (do lado do servidor).
 Isso significa que é possível escrever apps interativos sem saber JavaScript, mas é necessário um servidor para hospedá-los.
 Isso introduz um problema logístico: aplicativos Shiny precisam de um servidor Shiny para serem executados online.
-Quando se executa aplicativos Shiny em seu próprio computador, um servidor Shiny é automaticamente configurado para você, mas é necessário um servidor de acesso público se quiser publicar esse tipo de interatividade online.
+Quando se executa aplicativos Shiny em seu próprio computador, um servidor Shiny é automaticamente configurado para você, mas é necessário um servidor de acesso público se quiser publicar esse tipo de interatividade on-line.
 Essa é a troca fundamental de shiny: qualquer coisa que você faria em R você pode fazer em um documento shiny, mas isso requer alguém executando R.
 
 Para aprender mais sobre Shiny, recomendamos a leitura do livro *Mastering Shiny* por Hadley Wickham, [https://mastering-shiny.org](https://mastering-shiny.org/).
