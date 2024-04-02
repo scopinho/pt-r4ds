@@ -899,7 +899,7 @@ ggsave("grafico-milhas.png")
 
 Ao começar a executar o código em R, é provável que você encontre problemas.
 Não se preocupe, isso acontece com todo mundo.
-Todos nós estamos escrevendo código em R há anos, mas todos os dias ainda escrevemos códigos que não funciona na primeira tentativa!
+Todos nós estamos escrevendo código em R há anos, mas todos os dias ainda escrevemos códigos que não funcionam na primeira tentativa!
 
 Comece comparando cuidadosamente o código que está executando com o código do livro.
 O R é extremamente exigente, e um caractere mal colocado pode fazer toda a diferença.
