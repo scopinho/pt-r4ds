@@ -1,4 +1,4 @@
-# Workflow: scripts and projects {#sec-workflow-scripts-projects}
+# Fluxo de trabalho: scripts e projetos {#sec-workflow-scripts-projects}
 
 ```{r}
 #| echo: false
@@ -6,233 +6,232 @@
 source("_common.R")
 ```
 
-This chapter will introduce you to two essential tools for organizing your code: scripts and projects.
+Este capítulo irá te apresentar duas ferramentas essenciais para organizar seu código: scripts e projetos.
 
 ## Scripts
 
-So far, you have used the console to run code.
-That's a great place to start, but you'll find it gets cramped pretty quickly as you create more complex ggplot2 graphics and longer dplyr pipelines.
-To give yourself more room to work, use the script editor.
-Open it up by clicking the File menu, selecting New File, then R script, or using the keyboard shortcut Cmd/Ctrl + Shift + N.
-Now you'll see four panes, as in @fig-rstudio-script.
-The script editor is a great place to experiment with your code.
-When you want to change something, you don't have to re-type the whole thing, you can just edit the script and re-run it.
-And once you have written code that works and does what you want, you can save it as a script file to easily return to later.
+Até agora você usou o console para executar códigos.
+O console é um ótimo lugar para começar, mas com o tempo você perceberá que ele vai ficando apertado à medida que criamos gráficos mais complexos com ggplot2 e pipelines mais longas com dplyr.
+Para ter mais espaço para trabalhar, use o editor de scripts.
+Abra-o clicando no menu Arquivo, selecionando Novo Arquivo e depois R script, ou usando o atalho de teclado Cmd/Ctrl + Shift + N.
+Agora você verá quatro painéis, como na @fig-rstudio-script.
+O editor de scripts é um ótimo lugar para experimentar com seu código.
+Quando você quiser mudar algo, não precisa reescrever tudo, pode apenas editar o script e executá-lo novamente.
+E uma vez que você tenha escrito um código que funcione e faça o que você quer, pode salvá-lo como um arquivo de script para retornar a ele facilmente mais tarde.
 
 ```{r}
 #| label: fig-rstudio-script
 #| echo: false
 #| out-width: ~
 #| fig-cap: |
-#|   Opening the script editor adds a new pane at the top-left of the
-#|   IDE.
+#|   Abrir o editor de script adiciona um novo painel no canto superior esquerdo da interface de usuário do RStudio.
 #| fig-alt: |
-#|   RStudio IDE with Editor, Console, and Output highlighted.
+#|   RStudio IDE com o Editor, Console e Output destacados.
 knitr::include_graphics("diagrams/rstudio/script.png", dpi = 270)
 ```
 
-### Running code
+### Rodando código
 
-The script editor is an excellent place for building complex ggplot2 plots or long sequences of dplyr manipulations.
-The key to using the script editor effectively is to memorize one of the most important keyboard shortcuts: Cmd/Ctrl + Enter.
-This executes the current R expression in the console.
-For example, take the code below.
+O editor de scripts é um excelente lugar para construir gráficos complexos com ggplot2 ou sequências longas de manipulações com dplyr.
+O segredo para usar o editor de scripts de forma eficaz é memorizar um dos atalhos de teclado mais importantes: Cmd/Ctrl + Enter.
+Isso executa o trecho de código atual no console.
+Por exemplo, veja o código abaixo.
 
 ```{r}
 #| eval: false
 
 library(dplyr)
-library(nycflights13)
+library(dados)
 
-not_cancelled <- flights |> 
-  filter(!is.na(dep_delay)█, !is.na(arr_delay))
+nao_cancelado <- voos %>% 
+  filter(!is.na(atraso_saida)█, !is.na(atraso_chegada))
 
-not_cancelled |> 
-  group_by(year, month, day) |> 
-  summarize(mean = mean(dep_delay))
+nao_cancelado %>% 
+  group_by(ano, mes, dia) %>% 
+  summarize(media = mean(atraso_saida))
 ```
 
-If your cursor is at █, pressing Cmd/Ctrl + Enter will run the complete command that generates `not_cancelled`.
-It will also move the cursor to the following statement (beginning with `not_cancelled |>`).
-That makes it easy to step through your complete script by repeatedly pressing Cmd/Ctrl + Enter.
+Se o seu cursor estiver em █, pressionar Cmd/Ctrl + Enter executará o comando completo que gera `nao_cancelado`.
+Também moverá o cursor para a declaração seguinte (começando com `nao_cancelado |>`).
+Isso torna fácil percorrer o script completo pressionando repetidamente Cmd/Ctrl + Enter.
 
-Instead of running your code expression-by-expression, you can also execute the complete script in one step with Cmd/Ctrl + Shift + S.
-Doing this regularly is a great way to ensure that you've captured all the important parts of your code in the script.
+Em vez de executar seu código expressão por expressão, você também pode executar o script completo em um único passo com Cmd/Ctrl + Shift + S.
+Fazer isso regularmente é uma ótima maneira de garantir que você capturou todas as partes importantes do seu código no script.
 
-We recommend you always start your script with the packages you need.
-That way, if you share your code with others, they can easily see which packages they need to install.
-Note, however, that you should never include `install.packages()` in a script you share.
-It's inconsiderate to hand off a script that will change something on their computer if they're not being careful!
+Recomendamos que você sempre comece seu script carregando os pacotes de que precisa.
+Dessa forma, se você compartilhar seu código com outras pessoas, elas poderão ver facilmente quais pacotes precisam instalar.
+Observe, no entanto, que você nunca deve incluir `install.packages()` em um script que compartilha.
+É imprudente passar adiante um script que fará alterações no computador de alguém considerando que a pessoa pode não estar atenta ao que está fazendo!
 
-When working through future chapters, we highly recommend starting in the script editor and practicing your keyboard shortcuts.
-Over time, sending code to the console in this way will become so natural that you won't even think about it.
+Ao trabalhar nos próximos capítulos, recomendamos fortemente que você comece no editor de scripts e pratique seus atalhos de teclado.
+Com o tempo, enviar código para o console dessa maneira se tornará tão natural que você nem pensará sobre isso.
 
-### RStudio diagnostics
+### Diagnosticando problemas no código
 
-In the script editor, RStudio will highlight syntax errors with a red squiggly line and a cross in the sidebar:
+No editor de scripts, o RStudio destacará erros de sintaxe com uma linha ondulada vermelha e um X na barra lateral:
 
 ```{r}
 #| echo: false
 #| out-width: ~
 #| fig-alt: |
-#|   Script editor with the script x y <- 10. A red X indicates that there is 
-#|   syntax error. The syntax error is also highlighted with a red squiggly line.
+#|    Editor de script com o script x y <- 10. Um X vermelho indica que há um erro
+#|    de sintaxe. O erro de sintaxe também é destacado com uma linha ondulada vermelha.
 
 knitr::include_graphics("screenshots/rstudio-diagnostic.png")
 ```
 
-Hover over the cross to see what the problem is:
+Para saber mais sobre o problema, passe o mouse sobre o X:
 
 ```{r}
 #| echo: false
 #| out-width: ~
 #| fig-alt: |
-#|   Script editor with the script x y <- 10. A red X indicates that there is 
-#|   syntax error. The syntax error is also highlighted with a red squiggly line.
-#|   Hovering over the X shows a text box with the text unexpected token y and 
-#|   unexpected token <-.
+#|   Editor de script com o script x y <- 10. Um X vermelho indica que há 
+#|   um erro de sintaxe. O erro de sintaxe também é destacado com uma linha 
+#|   ondulada vermelha. Passar o mouse sobre o X mostra uma caixa de texto 
+#|   com o texto "unexpected token y" e "unexpected token <-".
 
 knitr::include_graphics("screenshots/rstudio-diagnostic-tip.png")
 ```
 
-RStudio will also let you know about potential problems:
+O RStudio também informará sobre problemas em potencial:
 
 ```{r}
 #| echo: false
 #| out-width: ~
 #| fig-alt: |
-#|   Script editor with the script 3 == NA. A yellow exclamation mark 
-#|   indicates that there may be a potential problem. Hovering over the 
-#|   exclamation mark shows a text box with the text use is.na to check 
-#|   whether expression evaluates to NA.
+#|   Editor de script com o script 3 == NA. Um ponto de exclamação amarelo 
+#|   indica que pode haver um problema em potencial. Ao passar o mouse sobre o 
+#|   ponto de exclamação, é exibida uma caixa de texto com o texto "use is.na to check 
+#|   whether expression evaluates to NA".
 
 knitr::include_graphics("screenshots/rstudio-diagnostic-warn.png")
 ```
 
-### Saving and naming
+### Salvando e nomeando
 
-RStudio automatically saves the contents of the script editor when you quit, and automatically reloads it when you re-open.
-Nevertheless, it's a good idea to avoid Untitled1, Untitled2, Untitled3, and so on and instead save your scripts and to give them informative names.
+O RStudio salva automaticamente o conteúdo do editor de scripts quando você sai e recarrega automaticamente quando você reabre.
+Contudo, é altamente recomendável evitar os nomes como Untitled1, Untitled2, Untitled3, etc, que são o padrão para arquivos não nomeados. Salve seus scripts e atribua a eles nomes que façam sentido.
 
-It might be tempting to name your files `code.R` or `myscript.R`, but you should think a bit harder before choosing a name for your file.
-Three important principles for file naming are as follows:
+Pode ser tentador nomear seus arquivos `codigo.R` ou `meuscript.R`, mas você deve pensar um pouco mais antes de escolher um nome para seu arquivo.
+Três princípios importantes para nomear arquivos são os seguintes:
 
-1.  File names should be **machine** readable: avoid spaces, symbols, and special characters. Don't rely on case sensitivity to distinguish files.
-2.  File names should be **human** readable: use file names to describe what's in the file.
-3.  File names should play well with default ordering: start file names with numbers so that alphabetical sorting puts them in the order they get used.
+1.  Os nomes dos arquivos devem ser **legíveis por máquina**: evite espaços, símbolos e caracteres especiais. Não confie na sensibilidade a maiúsculas e minúsculas para distinguir arquivos.
+2.  Os nomes dos arquivos devem ser **legíveis por humanos**: use nomes de arquivos para descrever o que está no arquivo.
+3.  Os nomes dos arquivos devem se dar bem com a ordenação padrão: comece os nomes dos arquivos com números para que a ordenação alfabética os coloque na ordem em que são usados.
 
-For example, suppose you have the following files in a project folder.
+Por exemplo, suponha que você tenha os seguintes arquivos em uma pasta de projeto.
 
 ```         
-alternative model.R
-code for exploratory analysis.r
-finalreport.qmd
-FinalReport.qmd
+modelo alternativo.R
+codigo para analise exploratoria.r
+relatoriofinal.qmd
+RelatorioFinal.qmd
 fig 1.png
-Figure_02.png
-model_first_try.R
-run-first.r
-temp.txt
+Figura_02.png
+primeira_tentativa_modelo.R
+executar-primeiro.r
+temporario.txt
 ```
+Existem vários problemas aqui: é difícil encontrar qual arquivo executar primeiro, os nomes dos arquivos contêm espaços, existem dois arquivos com o mesmo nome, um com caixa alta na primeira letra e outro sem (`relatoriofinal` vs. `RelatorioFinal`[^workflow-scripts-1]), e alguns nomes não descrevem seu conteúdo (`executar-primeiro` e `temporario`).
 
-There are a variety of problems here: it's hard to find which file to run first, file names contain spaces, there are two files with the same name but different capitalization (`finalreport` vs. `FinalReport`[^workflow-scripts-1]), and some names don't describe their contents (`run-first` and `temp`).
+[^workflow-scripts-1]: Sem mencionar que você está flertando com o azar ao usar "final" no nome 😆 A tirinha Piled Higher and Deeper tem uma [divertida historinha sobre isso](https://phdcomics.com/comics/archive.php?comicid=1531).
 
-[^workflow-scripts-1]: Not to mention that you're tempting fate by using "final" in the name 😆 The comic Piled Higher and Deeper has a [fun strip on this](https://phdcomics.com/comics/archive.php?comicid=1531).
-
-Here's a better way of naming and organizing the same set of files:
+Aqui está uma maneira melhor de nomear e organizar o mesmo conjunto de arquivos:
 
 ```         
-01-load-data.R
-02-exploratory-analysis.R
-03-model-approach-1.R
-04-model-approach-2.R
+01-carregar-dados.R
+02-analise-exploratoria.R
+03-modelo-abordagem-1.R
+04-modelo-abordagem-2.R
 fig-01.png
 fig-02.png
-report-2022-03-20.qmd
-report-2022-04-02.qmd
-report-draft-notes.txt
+relatorio-2022-03-20.qmd
+relatorio-2022-04-02.qmd
+notas-rascunho-relatorio.txt
 ```
 
-Numbering the key scripts make it obvious in which order to run them and a consistent naming scheme makes it easier to see what varies.
-Additionally, the figures are labelled similarly, the reports are distinguished by dates included in the file names, and `temp` is renamed to `report-draft-notes` to better describe its contents.
-If you have a lot of files in a directory, taking organization one step further and placing different types of files (scripts, figures, etc.) in different directories is recommended.
+Numerar os scripts principais torna óbvio a ordem em que devem ser executados e um esquema de nomenclatura consistente facilita a visualização do que varia.
+Além disso, as figuras são rotuladas de maneira semelhante, os relatórios são distinguidos por datas incluídas nos nomes dos arquivos, e `temporario` é renomeado para `notas-rascunho-relatorio` para descrever melhor seu conteúdo.
+Se você tem muitos arquivos em um diretório, é recomendado levar a organização um passo adiante e colocar diferentes tipos de arquivos (scripts, figuras, etc.) em diretórios diferentes.
 
-## Projects
+## Projetos
 
-One day, you will need to quit R, go do something else, and return to your analysis later.
-One day, you will be working on multiple analyses simultaneously and you want to keep them separate.
-One day, you will need to bring data from the outside world into R and send numerical results and figures from R back out into the world.
+Um dia, você precisará sair do R, fazer outra coisa e voltar para a sua análise mais tarde.
+Um dia, você estará trabalhando em várias análises simultaneamente e vai querer mantê-las separadas.
+Um dia, você precisará trazer dados do mundo externo para o R e enviar resultados numéricos e figuras do R para o mundo externo.
 
-To handle these real life situations, you need to make two decisions:
+Para lidar com essas situações da vida real, você precisa tomar duas decisões:
 
-1.  What is the source of truth?
-    What will you save as your lasting record of what happened?
+1.  Qual é a fonte da verdade?
+  O que você vai salvar como seu registro final do que aconteceu?
 
-2.  Where does your analysis live?
+1.  Onde a sua análise vive?
 
-### What is the source of truth?
+### Qual é a fonte da verdade?
 
-As a beginner, it's okay to rely on your current Environment to contain all the objects you have created throughout your analysis.
-However, to make it easier to work on larger projects or collaborate with others, your source of truth should be the R scripts.
-With your R scripts (and your data files), you can recreate the environment.
-With only your environment, it's much harder to recreate your R scripts: you'll either have to retype a lot of code from memory (inevitably making mistakes along the way) or you'll have to carefully mine your R history.
+Como iniciante, é aceitável confiar no seu Ambiente (*Environment*) atual para guardar todos os objetos que você criou durante sua análise.
+No entanto, para facilitar o trabalho em projetos maiores ou colaborar com outros, sua fonte da verdade deveriam ser os scripts R.
+Com seus scripts R (e seus arquivos de dados), você pode recriar o ambiente (*Environment*).
+Com apenas o seu ambiente, é muito mais difícil recriar seus scripts R: você terá que digitar novamente muito código de memória (inevitavelmente cometendo erros ao longo do caminho) ou terá que cuidadosamente extrair seu histórico R.
 
-To help keep your R scripts as the source of truth for your analysis, we highly recommend that you instruct RStudio not to preserve your workspace between sessions.
-You can do this either by running `usethis::use_blank_slate()`[^workflow-scripts-2] or by mimicking the options shown in @fig-blank-slate. This will cause you some short-term pain, because now when you restart RStudio, it will no longer remember the code that you ran last time nor will the objects you created or the datasets you read be available to use.
-But this short-term pain saves you long-term agony because it forces you to capture all important procedures in your code.
-There's nothing worse than discovering three months after the fact that you've only stored the results of an important calculation in your environment, not the calculation itself in your code.
+Para ajudar a manter seus scripts R como a fonte da verdade para sua análise, recomendamos fortemente que você instrua o RStudio a não preservar seu espaço de trabalho (`workspace`) entre as sessões.
+Você pode fazer isso executando `usethis::use_blank_slate()`[^workflow-scripts-2] ou imitando as opções mostradas na @fig-blank-slate. Isso causará alguma dor a curto prazo, porque agora, quando você reiniciar o RStudio, ele não se lembrará do código que você executou na última vez, nem os objetos que você criou ou os conjuntos de dados que você leu estarão disponíveis para uso.
+Mas essa dor a curto prazo poupa-lhe agonia a longo prazo, pois força você a capturar todos os procedimentos importantes em seu código.
+Não há nada pior do que descobrir três meses depois que você só armazenou os resultados de um cálculo importante em seu ambiente, não o próprio cálculo em seu código.
 
-[^workflow-scripts-2]: If you don't have usethis installed, you can install it with `install.packages("usethis")`.
+[^workflow-scripts-2]: Se você não tem o pacote usethis instalado, você pode instalá-lo com `install.packages("usethis")`.
 
 ```{r}
 #| label: fig-blank-slate
 #| echo: false
 #| fig-cap: |
-#|   Copy these options in your RStudio options to always start your 
-#|   RStudio session with a clean slate.
+#|   Copie estas opções nas suas opções do RStudio para sempre iniciar sua 
+#|   sessão do RStudio com um ambiente  (*Environment*) limpo.
 #| fig-alt: |
-#|   RStudio Global Options window where the option Restore .RData into workspace 
-#|   at startup is not checked. Also, the option Save workspace to .RData 
-#|   on exit is set to Never.
+#|   Janela de Opções Globais do RStudio onde a opção Restaurar .RData no espaço de trabalho (*workspace*)
+#|   na inicialização não está marcada. Além disso, a opção Salvar espaço de trabalho (*workspace*) no arquivo .RData 
+#|   na saída está configurada para Nunca.
 #| out-width: ~
 
 knitr::include_graphics("diagrams/rstudio/clean-slate.png", dpi = 270)
 ```
 
-There is a great pair of keyboard shortcuts that will work together to make sure you've captured the important parts of your code in the editor:
+Existe um ótimo par de atalhos de teclado que trabalham juntos para garantir que você tenha capturado as partes importantes do seu código no editor:
 
-1.  Press Cmd/Ctrl + Shift + 0/F10 to restart R.
-2.  Press Cmd/Ctrl + Shift + S to re-run the current script.
+1.  Pressione Cmd/Ctrl + Shift + 0/F10 para reiniciar o R.
+2.  Pressione Cmd/Ctrl + Shift + S para executar novamente o script atual.
 
-We collectively use this pattern hundreds of times a week.
+Nós usamos coletivamente este padrão centenas de vezes por semana.
 
-Alternatively, if you don't use keyboard shortcuts, you can go to Session \> Restart R and then highlight and re-run your current script.
+Alternativamente, se você não usa atalhos de teclado, você pode ir para Sessão \> Reiniciar R e então destacar e executar novamente o seu script atual.
 
 ::: callout-note
 ## RStudio server
 
-If you're using RStudio server, your R session is never restarted by default.
-When you close your RStudio server tab, it might feel like you're closing R, but the server actually keeps it running in the background.
-The next time you return, you'll be in exactly the same place you left.
-This makes it even more important to regularly restart R so that you're starting with a clean slate.
+Se você está usando o RStudio server, sua sessão R nunca é reiniciada por padrão.
+Quando você fecha a aba do seu RStudio server, pode parecer que você está fechando o R, mas o servidor na verdade continua rodando em segundo plano.
+Na próxima vez que você retornar, você estará exatamente no mesmo lugar que deixou.
+Isso torna ainda mais importante reiniciar regularmente o R para que você esteja começando com um ambiente limpo.
 :::
 
-### Where does your analysis live?
+### Onde a sua análise vive?
 
-R has a powerful notion of the **working directory**.
-This is where R looks for files that you ask it to load, and where it will put any files that you ask it to save.
-RStudio shows your current working directory at the top of the console:
+O R tem um poderoso conceito de **diretório de trabalho**.
+Este é o local onde o R procura por arquivos que você pede para carregar, e onde ele colocará quaisquer arquivos que você pedir para salvar.
+O RStudio mostra o seu diretório de trabalho atual no topo do console:
 
 ```{r}
 #| echo: false
 #| fig-alt: |
-#|   The Console tab shows the current working directory as 
+#|   A aba Console mostra o diretório de trabalho atual como 
 #|   ~/Documents/r4ds.
 #| out-width: ~
 knitr::include_graphics("screenshots/rstudio-wd.png")
 ```
 
-And you can print this out in R code by running `getwd()`:
+
+E você pode imprimir isso em código R executando `getwd()`:
 
 ```{r}
 #| eval: false
@@ -240,53 +239,53 @@ getwd()
 #> [1] "/Users/hadley/Documents/r4ds"
 ```
 
-In this R session, the current working directory (think of it as "home") is in hadley's Documents folder, in a subfolder called r4ds.
-This code will return a different result when you run it, because your computer has a different directory structure than Hadley's!
+Nesta sessão R, o diretório de trabalho atual (pense nele como "casa") está na pasta Documentos do Hadley, em uma subpasta chamada r4ds.
+Este código retornará um resultado diferente quando você executá-lo, porque a estrutura de diretórios do seu computador é diferente da do Hadley!
 
-As a beginning R user, it's OK to let your working directory be your home directory, documents directory, or any other weird directory on your computer.
-But you're seven chapters into this book, and you're no longer a beginner.
-Very soon now you should evolve to organizing your projects into directories and, when working on a project, set R's working directory to the associated directory.
+Como um usuário iniciante de R, está tudo bem em deixar o seu diretório de trabalho ser o seu diretório inicial, diretório de documentos, ou qualquer outro diretório estranho no seu computador.
+Mas você já leu sete capítulos deste livro, e você não é mais um iniciante.
+Muito em breve, você deve evoluir para organizar seus projetos em diretórios e, ao trabalhar em um projeto, definir o diretório de trabalho do R para o diretório associado.
 
-You can set the working directory from within R but **we** **do not recommend it**:
+Você pode definir o diretório de trabalho a partir do próprio R, mas **nós não recomendamos isso**:
 
 ```{r}
 #| eval: false
-setwd("/path/to/my/CoolProject")
+setwd("/caminho/para/meu/ProjetoLegal")
 ```
 
-There's a better way; a way that also puts you on the path to managing your R work like an expert.
-That way is the **RStudio** **project**.
+Existe uma maneira melhor; uma maneira que também te coloca no caminho para gerenciar seu trabalho em R como um especialista.
+Essa maneira é o **projeto** do **RStudio**.
 
-### RStudio projects
+### Projetos do RStudio
 
-Keeping all the files associated with a given project (input data, R scripts, analytical results, and figures) together in one directory is such a wise and common practice that RStudio has built-in support for this via **projects**.
-Let's make a project for you to use while you're working through the rest of this book.
-Click File \> New Project, then follow the steps shown in @fig-new-project.
+Manter todos os arquivos associados a um determinado projeto (dados de entrada, scripts R, resultados analíticos e figuras) juntos em um diretório é uma prática tão sábia e comum que o RStudio tem suporte integrado para isso através de **projetos**.
+Vamos criar um projeto para você usar enquanto trabalha no restante deste livro.
+Clique em Arquivo \> Novo Projeto, e então siga os passos mostrados em @fig-new-project.
 
 ```{r}
 #| label: fig-new-project
 #| echo: false
 #| fig-cap: | 
-#|   To create new project: (top) first click New Directory, then (middle)
-#|   click New Project, then (bottom) fill in the directory (project) name,
-#|   choose a good subdirectory for its home and click Create Project.
+#|   Para criar um novo projeto: (topo) primeiro clique em Novo Diretório, depois (meio)
+#|   clique em Novo Projeto, então (abaixo) preencha o nome do diretório (projeto),
+#|   escolha um bom subdiretório para ser o "lar" do seu projeto, e clique em Criar Projeto.
 #| fig-alt: |
-#|   Three screenshots of the New Project menu. In the first screenshot, 
-#|   the Create Project window is shown and New Directory is selected. 
-#|   In the second screenshot, the Project Type window is shown and 
-#|   Empty Project is selected. In the third screenshot, the Create New
-#|   Project  window is shown and the directory name is given as r4ds and
-#|   the project is being created as subdirectory of the Desktop.
+#|   Três capturas de tela do menu Novo Projeto. Na primeira captura de tela, 
+#|   a janela Criar Projeto é mostrada e Novo Diretório é selecionado. 
+#|   Na segunda captura de tela, a janela Tipo de Projeto é mostrada e 
+#|   Projeto Vazio é selecionado. Na terceira captura de tela, a janela Criar Novo
+#|   Projeto é mostrada e o nome do diretório é dado como r4ds e
+#|   o projeto está sendo criado como subdiretório da Área de Trabalho.
 #| out-width: ~
 
 knitr::include_graphics("diagrams/new-project.png")
 ```
 
-Call your project `r4ds` and think carefully about which subdirectory you put the project in.
-If you don't store it somewhere sensible, it will be hard to find it in the future!
+Nomeie seu projeto como `r4ds` e pense cuidadosamente sobre qual subdiretório você colocará o projeto.
+Se você não armazená-lo em algum lugar que faça sentido, será difícil encontrá-lo no futuro!
 
-Once this process is complete, you'll get a new RStudio project just for this book.
-Check that the "home" of your project is the current working directory:
+Uma vez que esse processo esteja completo, você terá um novo projeto RStudio apenas para este livro.
+Verifique se o "lar" do seu projeto é o diretório de trabalho atual:
 
 ```{r}
 #| eval: false
@@ -294,77 +293,78 @@ getwd()
 #> [1] /Users/hadley/Documents/r4ds
 ```
 
-Now enter the following commands in the script editor, and save the file, calling it "diamonds.R".
-Then, create a new folder called "data".
-You can do this by clicking on the "New Folder" button in the Files pane in RStudio.
-Finally, run the complete script which will save a PNG and CSV file into your project directory.
-Don't worry about the details, you'll learn them later in the book.
+Agora insira os seguintes comandos no editor de scripts e salve o arquivo, chamando-o de "diamantes.R".
+Em seguida, crie uma nova pasta chamada "dados".
+Você pode fazer isso clicando no botão "Nova Pasta" no painel de Arquivos no RStudio.
+Finalmente, execute o script completo, que salvará um arquivo PNG e CSV no diretório do seu projeto.
+Não se preocupe com os detalhes, você aprenderá mais tarde no livro.
 
 ```{r}
 #| label: toy-line
 #| eval: false
 
-library(tidyverse)
+library(dados)
 
-ggplot(diamonds, aes(x = carat, y = price)) + 
+ggplot(diamante, aes(x = quilate, y = preco)) + 
   geom_hex()
-ggsave("diamonds.png")
+ggsave("diamantes.png")
 
-write_csv(diamonds, "data/diamonds.csv")
+write_csv(diamante, "dados/diamantes.csv")
+
 ```
 
-Quit RStudio.
-Inspect the folder associated with your project --- notice the `.Rproj` file.
-Double-click that file to re-open the project.
-Notice you get back to where you left off: it's the same working directory and command history, and all the files you were working on are still open.
-Because you followed our instructions above, you will, however, have a completely fresh environment, guaranteeing that you're starting with a clean slate.
+Feche o RStudio.
+Inspecione a pasta associada ao seu projeto - observe o arquivo `.Rproj`.
+Dê um duplo clique nesse arquivo para reabrir o projeto.
+Observe que você volta para onde parou: é o mesmo diretório de trabalho e histórico de comandos, e todos os arquivos em que você estava trabalhando ainda estão abertos.
+Porque você seguiu nossas instruções acima, você terá, no entanto, um ambiente completamente novo, garantindo que você está começando com uma folha em branco.
 
-In your favorite OS-specific way, search your computer for `diamonds.png` and you will find the PNG (no surprise) but *also the script that created it* (`diamonds.R`).
-This is a huge win!
-One day, you will want to remake a figure or just understand where it came from.
-If you rigorously save figures to files **with R code** and never with the mouse or the clipboard, you will be able to reproduce old work with ease!
+Da maneira que preferir no seu sistema operacional, pesquise no seu computador por `diamantes.png` e você encontrará o PNG (sem surpresa) mas *também o script que o criou* (`diamantes.R`).
+Isso é ótimo!
+Um dia, você vai querer refazer uma figura ou apenas entender de onde ela veio.
+Se você rigorosamente salvar figuras em arquivos **com código R** e nunca com o mouse ou a área de transferência, você será capaz de reproduzir trabalhos antigos com facilidade!
 
-### Relative and absolute paths
+### Caminhos relativos e absolutos
 
-Once you're inside a project, you should only ever use relative paths not absolute paths.
-What's the difference?
-A relative path is relative to the working directory, i.e. the project's home.
-When Hadley wrote `data/diamonds.csv` above it was a shortcut for `/Users/hadley/Documents/r4ds/data/diamonds.csv`.
-But importantly, if Mine ran this code on her computer, it would point to `/Users/Mine/Documents/r4ds/data/diamonds.csv`.
-This is why relative paths are important: they'll work regardless of where the R project folder ends up.
+Uma vez que você está dentro de um projeto, você deve usar apenas caminhos relativos, não caminhos absolutos.
+Qual é a diferença?
+Um caminho relativo é relativo ao diretório de trabalho, ou seja, a "casa" do projeto.
+Quando Hadley escreveu `dados/diamantes.csv` acima, era um atalho para `/Users/hadley/Documents/r4ds/data/diamantes.csv`.
+Mas, importante, se a Mine executasse este código em seu computador, apontaria para `/Users/Mine/Documents/r4ds/data/diamantes.csv`.
+É por isso que os caminhos relativos são importantes: eles funcionarão independentemente de onde a pasta do projeto R terminar.
 
-Absolute paths point to the same place regardless of your working directory.
-They look a little different depending on your operating system.
-On Windows they start with a drive letter (e.g., `C:`) or two backslashes (e.g., `\\servername`) and on Mac/Linux they start with a slash "/" (e.g., `/users/hadley`).
-You should **never** use absolute paths in your scripts, because they hinder sharing: no one else will have exactly the same directory configuration as you.
+Os caminhos absolutos apontam para o mesmo lugar, independentemente do seu diretório de trabalho.
+Eles parecem um pouco diferentes dependendo do seu sistema operacional.
+No Windows, eles começam com uma letra de unidade (por exemplo, `C:`) ou duas barras invertidas (por exemplo, `\\servername`) e no Mac/Linux eles começam com uma barra "/" (por exemplo, `/users/hadley`).
+Você **nunca** deve usar caminhos absolutos em seus scripts, porque eles dificultam o compartilhamento: ninguém mais terá exatamente a mesma configuração de diretório que você.
 
-There's another important difference between operating systems: how you separate the components of the path.
-Mac and Linux uses slashes (e.g., `data/diamonds.csv`) and Windows uses backslashes (e.g., `data\diamonds.csv`).
-R can work with either type (no matter what platform you're currently using), but unfortunately, backslashes mean something special to R, and to get a single backslash in the path, you need to type two backslashes!
-That makes life frustrating, so we recommend always using the Linux/Mac style with forward slashes.
+Há outra diferença importante entre os sistemas operacionais: como você separa os componentes do caminho.
+Mac e Linux usam barras (por exemplo, `dados/diamantes.csv`) e o Windows usa barras invertidas (por exemplo, `dados\diamantes.csv`).
+O R pode trabalhar com qualquer tipo (não importa a plataforma que você está usando atualmente), mas infelizmente, barras invertidas significam algo especial para o R, e para obter uma única barra invertida no caminho, você precisa digitar duas barras invertidas!
+Isso pode te frustrar, então recomendamos sempre usar o estilo do Linux/Mac com barras normais.
 
-## Exercises
+## Exercícios
 
-1.  Go to the RStudio Tips Twitter account, <https://twitter.com/rstudiotips> and find one tip that looks interesting.
-    Practice using it!
+1.  Acesse a conta do Twitter RStudio Tips (em inglês), <https://twitter.com/rstudiotips> e encontre uma dica que pareça interessante.
+  Pratique usá-la!
 
-2.  What other common mistakes will RStudio diagnostics report?
-    Read <https://support.posit.co/hc/en-us/articles/205753617-Code-Diagnostics> to find out.
+2.  Quais outros erros comuns o diagnóstico do RStudio irá reportar?
+  Leia (em inglês) <https://support.posit.co/hc/en-us/articles/205753617-Code-Diagnostics> para descobrir.
 
-## Summary
+## Sumário
 
-In this chapter, you've learned how to organize your R code in scripts (files) and projects (directories).
-Much like code style, this may feel like busywork at first.
-But as you accumulate more code across multiple projects, you'll learn to appreciate how a little up front organisation can save you a bunch of time down the road.
+Neste capítulo, você aprendeu como organizar seu código R em scripts (arquivos) e projetos (diretórios).
+Assim como o estilo de código, isso pode parecer trabalho desnecessário no início.
+Mas à medida que você acumula mais código em vários projetos, você aprenderá a apreciar como uma pequena organização inicial pode economizar muito tempo no futuro.
 
-In summary, scripts and projects give you a solid workflow that will serve you well in the future:
+Em resumo, scripts e projetos fornecem um fluxo de trabalho sólido que te servirá bem no futuro:
 
--   Create one RStudio project for each data analysis project.
--   Save your scripts (with informative names) in the project, edit them, run them in bits or as a whole. Restart R frequently to make sure you've captured everything in your scripts.
--   Only ever use relative paths, not absolute paths.
+-   Crie um projeto RStudio para cada projeto de análise de dados.
+-   Salve seus scripts (com nomes informativos) no projeto, edite-os, execute-os em partes ou como um todo. Reinicie o R frequentemente para garantir que você capturou tudo em seus scripts.
+-   Use apenas caminhos relativos, nunca caminhos absolutos.
 
-Then everything you need is in one place and cleanly separated from all the other projects that you are working on.
+Então tudo que você precisa está em um lugar e claramente separado de todos os outros projetos em que você está trabalhando.
 
-So far, we've worked with datasets bundled inside of R packages.
-This makes it easier to get some practice on pre-prepared data, but obviously your data won't be available in this way.
-So in the next chapter, you're going to learn how load data from disk into your R session using the readr package.
+Até agora, trabalhamos com conjuntos de dados incluídos em pacotes R.
+Isso facilita a prática em dados pré-preparados, mas obviamente seus dados não estarão disponíveis desta forma.
+Então, no próximo capítulo, você vai aprender como carregar dados do computador para a sua sessão R usando o pacote readr.
