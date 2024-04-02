@@ -174,10 +174,10 @@ Se o intervalo de uma variável estiver correto, mas nem todos os valores estive
 Em alguns casos, o conjunto completo de observações não pode ser gerado por uma simples combinação de variáveis.
 Nesse caso, você pode fazer manualmente o que `complete()` faz por você: criar um dataframe que contenha todas as linhas que deveriam existir (usando qualquer combinação de técnicas necessárias) e, em seguida, combiná-lo com seu conjunto de dados original com `dplyr::full_join()`.
 
-### Uniões 
+### Uniões (*joins*)
 
 Isso nos leva a outra forma importante de revelar observações implicitamente ausentes: uniões (*joins*).
-Você aprenderá mais sobre uniões no @sec-joins, mas gostaríamos de mencioná-las rapidamente aqui, já que muitas vezes você só pode saber que valores estão faltando em um conjunto de dados quando você o compara com outro.
+Você aprenderá mais sobre uniões na @sec-joins, mas gostaríamos de mencioná-las rapidamente aqui, já que muitas vezes você só pode saber que valores estão faltando em um conjunto de dados quando você o compara com outro.
 
 `dplyr::anti_join(x, y)` é uma função particularmente útil aqui porque seleciona apenas as linhas em `x` que não têm correspondência em `y`.
 Por exemplo, podemos usar dois `anti_join()` para revelar que faltam informações de quatro aeroportos e 722 aviões mencionados em `voos`:
