@@ -357,7 +357,7 @@ Neste capítulo, você aprendeu como organizar seu código R em scripts (arquivo
 Assim como o estilo de código, isso pode parecer trabalho desnecessário no início.
 Mas à medida que você acumula mais código em vários projetos, você aprenderá a apreciar como uma pequena organização inicial pode economizar muito tempo no futuro.
 
-Em resumo, scripts e projetos fornecem um fluxo de trabalho sólido que servirá bem no futuro:
+Em resumo, scripts e projetos fornecem um fluxo de trabalho sólido que te servirá bem no futuro:
 
 -   Crie um projeto RStudio para cada projeto de análise de dados.
 -   Salve seus scripts (com nomes informativos) no projeto, edite-os, execute-os em partes ou como um todo. Reinicie o R frequentemente para garantir que você capturou tudo em seus scripts.
