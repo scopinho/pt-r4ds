@@ -1,8 +1,10 @@
 ---
-freeze: true
+freeze: auto
 ---
 
+
 # ✅ Arrow {#sec-arrow}
+
 
 ```{r}
 #| echo: false
@@ -10,6 +12,7 @@ freeze: true
 
 source("_common.R")
 ```
+
 
 ## Introdução
 
@@ -33,6 +36,7 @@ Geralmente, é dificil saber qual funcionará melhor, então para fases iniciais
 
 Neste capítulo, continuaremos a usar o tidyverse, particularmente o dplyr, mas iremos combiná-lo com o pacote *arrow*, que foi projetado especificamente para trabalhar com grandes conjuntos de dados.
 
+
 ```{r setup}
 #| message: false
 #| warning: false
@@ -40,12 +44,15 @@ library(tidyverse)
 library(arrow)
 ```
 
+
 Posteriormente neste capítulo, veremos também algumas conexões entre o *arrow* e o duckdb, portanto também precisaremos do dbplyr e duckdb.
+
 
 ```{r}
 library(dbplyr, warn.conflicts = FALSE)
 library(duckdb)
 ```
+
 
 ## Obtendo os dados
 
@@ -55,6 +62,7 @@ Este conjunto de dados possui 41.389.465 linhas que informam quantas vezes cada 
 O código abaixo faz download de uma cópia em *cache* desses dados.
 O dado é um arquivo CSV de 9 GB, portanto leva um certo tempo para baixar.
 Eu recomendo fortemente usar `curl::multi_download()` para baixar grandes arquivos já que foi projetado exatamente para este propósito: fornece uma barra de progresso e pode retomar o *download* se for interrompido.
+
 
 ```{r}
 #| eval: !expr "!file.exists('data/seattle-library-checkouts.csv')"
@@ -67,12 +75,14 @@ curl::multi_download(
 )
 ```
 
+
 ## Abrindo o conjunto de dados
 
 Vamos começar dando uma olhada nos dados.
 Com 9 GB, este arquivo é tão grande que provavelmente não queremos carregá-lo por inteiro na memória do computador.
 Como regra geral, dizemos que você vai querer ter no mínimo duas vezes mais memória que o tamanho dos dados e muitos notebooks chegam até 16 GB.
 Isto significa que queremos evitar `read_csv()` e, ao invés disso, usar `arrow::open_dataset()`:
+
 
 ```{r open-dataset}
 seattle_csv <- open_dataset(
@@ -82,15 +92,18 @@ seattle_csv <- open_dataset(
 )
 ```
 
+
 O que acontece quando este código é executado?
 `open_dataset()` irá inspecionar (*scan*) alguns milhares de linhas para entender a estrutura do conjunto de dados.
 A coluna `ISBN` contém valores em branco nas primeiras 80.000 linhas, portanto devemos especificar o tipo da coluna para ajudar o *arrow* a trabalhar com a estrutura de dados.
 Uma vez que os dados foram varridos pela `open_dataset()`, ele registra o que encontrou e para; ele lerá mais linhas apenas quando você explicitamente solicitar.
 Este metadado é o que vemos quando imprimimos `seattle_csv`:
 
+
 ```{r}
 seattle_csv
 ```
+
 
 A primeira linha na saída te diz que `seattle_csv` está armazenado localmente em disco como um único arquivo CSV; ele será carregado em memória apenas quando necessário.
 O restante da saída informa o tipo atribuído pelo *arrow* para cada coluna.
@@ -98,13 +111,16 @@ O restante da saída informa o tipo atribuído pelo *arrow* para cada coluna.
 Podemos ver o que realmente temos no conjunto de dados com `glimpse()`.
 Isto revela que há \~41 milhões de linhas e 12 colunas, e nos mostra alguns valores.
 
+
 ```{r glimpse-data}
 #| cache: true
 seattle_csv |> glimpse()
 ```
 
+
 Podemos começar a usar este conjunto de dados com verbos dplyr usando `collect()` para forçar o *arrow* a executar a computação e retornar algum dado.
 Por exemplo, este código nos mostra o número total de retiradas (*checkouts*) por ano (*year*):
+
 
 ```{r}
 #| cache: true
@@ -114,6 +130,7 @@ seattle_csv |>
   arrange(CheckoutYear) |> 
   collect()
 ```
+
 
 Graças ao *arrow*, este código funcionará independente do tamanho do conjunto de dados que tivermos.
 Porém, ainda é um pouco lento: no computador do Hadley demorou \~10 segundos para concluir.
@@ -164,6 +181,7 @@ Vamos particionar os dados por `CheckoutYear` (ano da retirada), já que é prov
 Para reescrever os dados, definimos o particionamento usando `dplyr::group_by()` e então salvamos as partições em um diretório com `arrow::write_dataset()`.
 `write_dataset()` tem dois argumentos importantes: um diretório onde criaremos os arquivos e o formato que usaremos.
 
+
 ```{r}
 pq_path <- "data/seattle-library-checkouts"
 ```
@@ -176,9 +194,11 @@ seattle_csv |>
   write_dataset(path = pq_path, format = "parquet")
 ```
 
+
 Isto leva aproximadamente um minuto para executar; como veremos em breve, este investimento de tempo inicial será compensado, pois tornará as operações futuras muito mais rápidas.
 
 Vamos ver o que acabamos de produzir:
+
 
 ```{r show-parquet-files}
 tibble(
@@ -186,6 +206,7 @@ tibble(
   tamanho_MB = file.size(file.path(pq_path, arquivos)) / 1024^2
 )
 ```
+
 
 O arquivo CSV único de 9GB foi reescrito como 18 arquivos *parquet*.
 Os nomes dos arquivos usam uma convenção de "auto-descrição" usada pelo projeto [Apache Hive](https://hive.apache.org).
@@ -198,12 +219,15 @@ Isto é o que esperamos, já que *parquet* é um formato muito mais eficiente.
 Agora que criamos estes arquivos *parquet*, precisamos lê-los novamente.
 Nós usamos `open_dataset()` novamente, mas dessa vez informando um diretório:
 
+
 ```{r}
 seattle_pq <- open_dataset(pq_path)
 ```
 
+
 Agora podemos escrever nosso *pipeline* dplyr.
 Por exemplo, poderíamos contar o número total de livros retirados em cada mês dos últimos cinco anos:
+
 
 ```{r books-by-year-query}
 query <- seattle_pq |> 
@@ -213,18 +237,23 @@ query <- seattle_pq |>
   arrange(CheckoutYear, CheckoutMonth)
 ```
 
+
 Escrever código dplyr para *arrow* é conceitualmente similar ao dbplyr, @sec-import-databases: você escreve o código dplyr, que é automaticamente transformado em uma consulta compreensível para a biblioteca C++ do *Apache Arrow* e que será executada quando você chamar `collect()`.
 Se imprimirmos o objeto `query` podemos ver algumas informações sobre o que esperamos que o *Arrow* nos retorne quando a execução ocorrer:
+
 
 ```{r}
 query
 ```
 
+
 E podemos obter os resultados chamando `collect()`:
+
 
 ```{r books-by-year}
 query |> collect()
 ```
+
 
 Assim como dbplyr, *arrow* entende apenas algumas expressões do R, portanto você pode não conseguir escrever exatamente o mesmo código que escreveria normalmente.
 Entretanto, a lista de operações e funções suportadas é bastante extensa e continua aumentando; veja a lista completa de funções atualmente suportadas digitando `?acero`.
@@ -233,6 +262,7 @@ Entretanto, a lista de operações e funções suportadas é bastante extensa e 
 
 Vamos dar uma olhada rápida em como a mudança de CSV para *parquet* impactou o desempenho.
 Primeiro, vamos medir quanto tempo demora para calcular o número de livros retirados em cada mês de 2021 quando os dados estão armazenados em um único grande arquivo csv:
+
 
 ```{r dataset-performance-csv}
 #| cache: true
@@ -246,7 +276,9 @@ seattle_csv |>
   system.time()
 ```
 
+
 Agora, vamos usar nossa nova versão do conjunto de dados na qual os dados de retiradas das bibliotecas de *Seattle* foram particionadas em 18 arquivos *parquet* menores:
+
 
 ```{r dataset-performance-multiple-parquet}
 #| cache: true
@@ -260,6 +292,7 @@ seattle_pq |>
   system.time()
 ```
 
+
 A melhora de desempenho de \~100x é atribuída a dois fatores: O particionamento de vários arquivos e o formato de cada arquivo:
 
 -   O particionamento melhora o desempenho pois esta consulta usa `CheckoutYear == 2021` para filtrar os dados, e *arrow* é inteligente o suficiente para reconhecer que precisa ler apenas 1 dos 18 arquivos *parquet*.
@@ -271,6 +304,7 @@ Esta diferença de desempenho massiva é o motivo pelo qual vale a pena converte
 
 Tem uma última vantagem de usar *parquet* e *arrow* --- é muito fácil transformar um conjunto de dados *arrow* em um banco de dados DuckDB (@sec-import-databases) chamando `arrow::to_duckdb()`:
 
+
 ```{r use-duckdb}
 seattle_pq |> 
   to_duckdb() |>
@@ -280,6 +314,7 @@ seattle_pq |>
   arrange(desc(CheckoutYear)) |>
   collect()
 ```
+
 
 O legal da função `to_duckdb()` é que a transferência não envolve nenhuma cópia de memória e atende aos objetivos do ecossistema *arrow*: permitir transições transparentes de um ambiente computacional para outro.
 
@@ -298,3 +333,4 @@ Um número muito menor de ferramentas podem funcionar com arquivos parquet em co
 
 A seguir, você aprenderá sobre sua primeira fonte de dados não retangular, que você manipulará usando ferramentas fornecidas pelo pacote tidyr.
 Vamos nos concentrar nos dados provenientes de arquivos JSON, mas os princípios gerais se aplicam a dados com estrutura baseada em árvore (*tree-like*), independentemente de sua origem.
+
