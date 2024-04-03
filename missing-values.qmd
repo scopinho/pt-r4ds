@@ -14,7 +14,7 @@ Você já aprendeu o básico sobre valores faltantes (*missing values*) no iníc
 Você os viu pela primeira vez no @sec-data-visualization, onde resultaram em um aviso ao criar um gráfico, bem como na @sec-summarize, onde interferiram no cálculo de estatísticas sumarizadas, e aprendeu sobre sua natureza de propagação e como verificar sua presença na @sec-na-comparison.
 Agora voltaremos a eles com mais profundidade, para que você possa aprender mais detalhes.
 
-Começaremos discutindo algumas ferramentas gerais para trabalhar com valores faltantes registrados como `NA`s.
+Começaremos discutindo algumas ferramentas gerais para trabalhar com valores faltantes registrados como `NA` (do inglês `Not Available` - "não disponível").
 Em seguida, exploraremos a ideia de valores faltantes implícitos, ou seja, valores que estão simplesmente ausentes em seus dados, e mostraremos algumas ferramentas que você pode usar para torná-los explícitos.
 Terminaremos com uma discussão relacionada sobre grupos vazios, causados ​​por níveis de fatores que não aparecem nos dados.
 
@@ -82,7 +82,7 @@ na_if(x, -99)
 
 ### NaN
 
-Antes de continuarmos, há um tipo especial de valor ausente que você encontrará de tempos em tempos: um `NaN` (pronuncia-se "nan") ou em inglês, **n**ot **a** **n**umber .
+Antes de continuarmos, há um tipo especial de valor ausente que você encontrará de tempos em tempos: um `NaN` (pronuncia-se "nan") ou em inglês, **n**ot **a** **n**umber (em português, seria como "não é um número").
 Não é tão importante saber sobre ele, já que geralmente se comporta como `NA:
 
 ```{r}
