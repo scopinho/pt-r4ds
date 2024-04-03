@@ -36,7 +36,7 @@ Para começar, vamos explorar algumas ferramentas úteis para criar ou eliminar 
 ### Última observação levada adiante
 
 Um uso comum de valores faltantes (*missing values*) é como conveniência na entrada de dados.
-Quando os dados são inseridos manualmente, os valores ausentes às vezes indicam que o valor da linha anterior foi repetido (levado adiante)::
+Quando os dados são inseridos manualmente, os valores ausentes às vezes indicam que o valor da linha anterior foi repetido (levado adiante):
 
 ```{r}
 tratamento <- tribble(
