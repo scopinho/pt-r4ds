@@ -1,4 +1,4 @@
-# Valores faltantes {#sec-missing-values}
+# ✅ Valores faltantes {#sec-missing-values}
 
 ```{r}
 #| echo: false
