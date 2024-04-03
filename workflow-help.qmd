@@ -1,4 +1,4 @@
-# Workflow: getting help {#sec-workflow-getting-help}
+# Fluxo de trabalho: obtendo ajuda {#sec-workflow-getting-help}
 
 ```{r}
 #| echo: false
@@ -6,45 +6,45 @@
 source("_common.R")
 ```
 
-This book is not an island; there is no single resource that will allow you to master R.
-As you begin to apply the techniques described in this book to your own data, you will soon find questions that we do not answer.
-This section describes a few tips on how to get help and to help you keep learning.
+Este livro não é uma ilha; não existe nenhuma fonte específica que fará você se tornar um expert em R.
+Assim que você começar a aplicar aos seus dados as técnicas descritas neste livro, você logo terá questionamentos que nós não respondemos.
+Esta seção elenca algumas dicas em como obter ajuda e também lhe ajudar a continuar aprendendo.
 
-## Google is your friend
+## Google é seu amigo
 
-If you get stuck, start with Google.
-Typically adding "R" to a query is enough to restrict it to relevant results: if the search isn't useful, it often means that there aren't any R-specific results available.
-Additionally, adding package names like "tidyverse" or "ggplot2" will help narrow down the results to code that will feel more familiar to you as well, e.g., "how to make a boxplot in R" vs. "how to make a boxplot in R with ggplot2".
-Google is particularly useful for error messages.
-If you get an error message and you have no idea what it means, try googling it!
-Chances are that someone else has been confused by it in the past, and there will be help somewhere on the web.
-(If the error message isn't in English, run `Sys.setenv(LANGUAGE = "en")` and re-run the code; you're more likely to find help for English error messages.)
+Se você travar, começe com o Google.
+Tipicamente colocando "R" em uma busca é o suficiente para restringi-la para resultados relevantes: se a busca não for útil, geralmente significa que não existem muitos resultados específicos.
+Além do mais, adicionando na busca nomes de pacotes como "tidyverse" ou "ggplot2" irá ajudar a direcionar os resultados ao seu código de maneira mais familiar a você, e.g., "como fazer um boxplot no R com ggplot2" ao invés de "como fazer um boxplot no R".
+Particularmente, Google é muito bom com mensagens de erro.
+Se você tiver uma mensagem de erro e não tem ideia do que ela significa, dê um Google com a mensagem!
+Há chances de que outros também tenham ficado confusos com o erro anteriormente e em algum lugar da web você terá ajuda.
+(Se a mensagem de erro não estiver em Inglês, rode `Sys.setenv(LANGUAGE = "en")` e rode novamente o código; provavelmente encontrará ajuda com mensagens de erro em inglês.)
 
-If Google doesn't help, try [Stack Overflow](https://stackoverflow.com).
-Start by spending a little time searching for an existing answer, including `[R]`, to restrict your search to questions and answers that use R.
+Se o Google não ajudar tente Stack Overflow (https//stackoverflow.com).
+Comece reservando tempo para buscar uma resposta já existente, incluindo '\[R\]' para restringir sua busca por perguntas e respostas que contenham R
 
-## Making a reprex
+## Executando um reprex
 
-If your googling doesn't find anything useful, it's a really good idea to prepare a **reprex,** short for minimal **repr**oducible **ex**ample.
-A good reprex makes it easier for other people to help you, and often you'll figure out the problem yourself in the course of making it.
-There are two parts to creating a reprex:
+ISe a sua busca no Google não retornar nenhuma resposta satisfatória, é uma boa ideia preparar um **reprex,** termo para **repr**oducible **ex**ample.
+Um bom reprex facilita para que outras pessoas possam lhe ajudar, e geralmente você poderá resolver o problema durante a criação dele.
+Existem duas partes na criação do reprex:
 
--   First, you need to make your code reproducible.
-    This means that you need to capture everything, i.e. include any `library()` calls and create all necessary objects.
-    The easiest way to make sure you've done this is using the reprex package.
+-   Primeiro, você precisa permitir a reprodução do seu código.
+    Isto é, significa que você precisa copiar tudo, i.e. incluindo qualquer comando `library()` e criar todas os objetos necessários.
+    A maneira mais fácil de fazer isto é usando o pacote reprex.
 
--   Second, you need to make it minimal.
-    Strip away everything that is not directly related to your problem.
-    This usually involves creating a much smaller and simpler R object than the one you're facing in real life or even using built-in data.
+-   Segundo, você precisa ser minimalista.
+    Exclua tudo que não for relacionado ao seu código.
+    Usualmente isto envolve a criação de um objeto R menor e mais simples do que aquele que você está criando de verdade ou até mesmo usar dados internos.
 
-That sounds like a lot of work!
-And it can be, but it has a great payoff:
+Isto parece muito trabalhoso!
+E pode ser, mas tem um grande retorno:
 
--   80% of the time, creating an excellent reprex reveals the source of your problem.
-    It's amazing how often the process of writing up a self-contained and minimal example allows you to answer your own question.
+-   Em 80% dos casos criando um excelente reprex pode revelar a raiz do seu problema.
+    É incrível como o processo de escrever um exemplo pequeno e auto-sufciente ajuda você a responder sua própria dúvida..
 
--   The other 20% of the time, you will have captured the essence of your problem in a way that is easy for others to play with.
-    This substantially improves your chances of getting help!
+-   Nos 20% restantes você terá entendido a essência do seu problema de uma maneira que é fácil para os outros entenderem.
+    Isto aumenta consideravelmente suas chances de obter ajuda!
 
 When creating a reprex by hand, it's easy to accidentally miss something, meaning your code can't be run on someone else's computer.
 Avoid this problem by using the reprex package, which is installed as part of the tidyverse.
