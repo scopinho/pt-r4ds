@@ -65,7 +65,7 @@ Para se conectar a um banco de dados pelo R, você usa um par de pacotes:
 -   Você sempre usuará o DBI (**d***ata***b***ase* **i***nterface*), pois este fornece um conjunto de funções genéricas que se conectam com os bancos de dados, enviam dados, executam consultas SQL, etc.
 
 -   Você também usará um pacote feito especificamente para o SGBD ao qual você está se conectando.
-    Este pacote traduz os comandos genéricos do DBI para as necessidades específicas do um dado SGBD.
+    Este pacote traduz os comandos genéricos do DBI para as necessidades específicas de um determinado SGBD.
     Existe geralmente um pacote para cada SGBD, ex:
     RPostgres para *PostgreSQL* e RMariaDB para *MySQL*.
 
