@@ -334,7 +334,7 @@ Na terminologia SQL, renomear é chamado de **aliasing** e é feito com `AS`.
 Note que diferente de `mutate()`, o nome antigo vai ao lado esquerdo e o novo nome ao lado direito.
 
 ::: callout-note
-Nos exemplos acima, se tivessemos os nomes de `"ano"` e `"tipo"` em inglês (*year* e *type*), elas apareceriam entre aspas duplas.
+Nos exemplos acima, se tivéssemos os nomes de `"ano"` e `"tipo"`, elas apareceriam entre aspas duplas.
 Isto é devido a *year* e *type* serem palavras reservadas (**reserved words**) no duckdb, então dbplyr coloca aspas para evitar potencial confusão entre nome de colunas/tabelas e os operadores SQL.
 
 Quando estiver trabalhando com outros bancos de dados é provavel que você veja todas as variáveis com aspas, pois apenas alguns poucos pacotes clientes, como o duckdb, sabem quais são todas as palavras reservadas, então eles colocam aspas em todas para evitar problemas.
