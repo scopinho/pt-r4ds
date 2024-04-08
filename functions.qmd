@@ -16,7 +16,7 @@ Escrever uma função tem quatro grandes vantagens em relação ao copiar e cola
 
 1.  Você pode dar a uma função um nome evocativo que torne seu código mais fácil de entender.
 
-2.  À medida que os requisitos mudam, você só precisa atualizar o código em um local, em vez de vários.
+2.  À medida que os requisitos mudam, você só precisa atualizar o código em um local em vez de vários.
 
 3.  Você elimina a chance de cometer erros acidentais ao copiar e colar (ou seja, atualizar o nome de uma variável em um lugar, mas não em outro).
 
