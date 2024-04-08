@@ -353,7 +353,7 @@ Mas muitas vezes você também repetirá os próprios verbos, especialmente em u
 Ao perceber que você está copiando e colando vários verbos dplyr diversas vezes, você pode pensar em escrever uma função de *data frame*.
 As funções de *data frame* funcionam como verbos dplyr: elas pegam um *data frame* como primeiro argumento, alguns argumentos extras que dizem o que fazer com ele e retornam um *data frame* ou um vetor.
 
-Para permitir que você escreva uma função que use verbos dplyr, primeiro apresentaremos o desafio da indireção (*indirection challenge*) e como você pode superá-lo usando os sinais de chaves `{{ }}`.
+Para permitir que você escreva uma função que use verbos dplyr, primeiro apresentaremos o desafio da indireção (*indirection challenge*) e como você pode superá-lo usando os sinais de chaves (*embracing*) `{{ }}`.
 Com essa teoria em mãos, mostraremos vários exemplos para ilustrar o que você pode fazer com ela.
 
 ### Indireção e avaliação organizada
