@@ -30,13 +30,13 @@ Neste capítulo, você aprenderá sobre três tipos úteis de funções:
 -   Funções de plotagem que recebem um *data frame* como entrada e retornam um gráfico como saída.
 
 Cada uma dessas seções inclui muitos exemplos para ajudá-lo a generalizar esses padrões que você vê.
-Esses exemplos não seriam possíveis sem a ajuda do pessoal do Twitter, e encorajamos você seguir os links nos comentários para ver as inspirações originais.
+Esses exemplos não seriam possíveis sem a ajuda do pessoal do Twitter, e encorajamos você a seguir os links nos comentários para ver as inspirações originais.
 Você também pode querer ler os tweets motivacionais originais para [funções gerais](https://twitter.com/hadleywickham/status/1571603361350164486) e [funções de plotagem](https://twitter.com/hadleywickham/status/1574373127349575680) para ver ainda mais funções.
 
 ### Pré-requisitos
 
 Resumiremos uma variedade de funções do pacote tidyverse.
-Também usaremos o pacote dados como fonte de dados familiares para usar em nossas funções.
+Também usaremos o pacote `dados` como fonte de dados familiares para usar em nossas funções.
 
 ```{r}
 #| message: false
@@ -70,7 +70,7 @@ df |> mutate(
 )
 ```
 
-Você pode advinhar que isso redimensiona cada coluna para ter um intervalo de 0 a 1.
+Você pode adivinhar que isso redimensiona cada coluna para pertencer a um intervalo de 0 a 1.
 Mas você percebeu o erro?
 Quando Hadley escreveu este código, ele cometeu um erro ao copiar e colar e esqueceu de alterar um `a` para um `b`.
 Prevenir esse tipo de erro é um bom motivo para aprender a escrever funções.
@@ -78,7 +78,7 @@ Prevenir esse tipo de erro é um bom motivo para aprender a escrever funções.
 ### Escrevendo funções
 
 Para escrever uma função você precisa primeiro analisar seu código repetido para descobrir quais partes são constantes e quais partes variam.
-Se pegarmos o código acima e extraí-lo da função `mutate()`, será um pouco mais fácil ver o padrão porque cada repetição agora é uma linha:
+Se pegarmos o código acima e o extraimos da função `mutate()`, será um pouco mais fácil ver o padrão porque cada repetição agora é uma linha:
 
 ```{r}
 #| eval: false
@@ -173,7 +173,7 @@ rescala01 <- function(x) {
 rescala01(x)
 ```
 
-Essas mudanças ilustram um benefício importante das funções: como movemos o código repetido para uma função, só precisamos fazer a mudança em um só lugar.
+Essas mudanças ilustram um benefício importante das funções: como movemos o código repetido para uma função, precisamos fazer a mudança em um só lugar.
 
 ### Funções de *mutate*
 
@@ -615,7 +615,7 @@ Embora nossos exemplos tenham se concentrado principalmente no dplyr, a avaliaç
         voos |> horario_padronizado(saida_programada)
         ```
 
-2.  Para cada uma das funções a seguir, liste todos os argumentos que usam avaliação organizada (*tidy-evaluation) e descreva se eles usam mascaramento de dados (*data-masking*) ou seleção organizada (tidy-selection): `distinct()`, `count()`, `group_by()`, `rename_with()`, `slice_min()`, `slice_amostra()`.
+2.  Para cada uma das funções a seguir, liste todos os argumentos que usam avaliação organizada (*tidy-evaluation) e descreva se eles usam mascaramento de dados (*data-masking*) ou seleção organizada (tidy-selection): `distinct()`, `count()`, `group_by()`, `rename_with()`, `slice_min()`, `slice_sample()`.
 
 3.  Generalize a função a seguir para que você possa fornecer qualquer número de variáveis ​​para a função contar.
 
