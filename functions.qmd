@@ -402,7 +402,7 @@ Aqui precisamos de alguma maneira de dizer a `group_by()` e `summarize()` para n
 A avaliação organizada inclui uma solução para esse problema chamada **abraçar** (*embracing*) 🤗.
 Abraçar (*embracing*) uma variável significa envolvê-la entre chaves para que (por exemplo) `var` se torne `{{ var }}`.
 Abraçar uma variável diz ao dplyr para usar o valor armazenado dentro do argumento, não o argumento como o nome literal da variável.
-Uma maneira de lembrar o que está acontecendo é pensar em `{{ }}` como olhar para dentro de um túnel --- `{{ var }}` fará uma função dplyr olhar dentro de `var` em vez de procurar por uma variável chamada ` var`.
+Uma maneira de lembrar o que está acontecendo é pensar em `{{ }}` como olhar para dentro de um túnel --- `{{ var }}` fará uma função dplyr olhar dentro de `var` em vez de procurar por uma variável chamada `var`.
 
 Então, para `media_agrupada()` funcionar, precisamos abraçar `var_grupo` e `var_media` com `{{ }}`:
 
