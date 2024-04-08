@@ -181,7 +181,7 @@ Agora que você tem a ideia básica de funções, vamos dar uma olhada em vário
 Começaremos examinando as funções de "*mutate*", ou seja, funções que funcionam bem dentro de `mutate()` e `filter()` porque retornam uma saída do mesmo comprimento que a entrada.
 
 Vamos começar com uma variação simples de `rescala01()`.
-Talvez você queira calcular o *z-score*, redimensionando um vetor para ter uma média de zero e um desvio padrão de um:
+Talvez você queira calcular o *z-score*, redimensionando um vetor para ter uma média de zero e um desvio-padrão de um:
 
 ```{r}
 z_score <- function(x) {
