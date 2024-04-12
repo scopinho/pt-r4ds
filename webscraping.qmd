@@ -58,7 +58,7 @@ Ele fará uma pausa automatica entre as requisições e armazenará os resultado
 ### Termos de serviço
 
 Se você olhar atentamente, descobrirá que muitos websites incluem em algum lugar da página um *link* para "termos e condições" ou "termos de serviço", e se você ler a página atentamente, você geralmente descobrirá que o site especificamente proíbe sua raspagem de dados.
-Essas páginas tendem a ser uma apropriação jurídica de terras, onde as empresas fazem reivindicações muito amplas.
+Essas páginas tendem a ser uma terra sem lei, onde as empresas fazem reivindicações muito amplas.
 É educado respeitar estes termos de serviço sempre que possível, mas considere as reivindicações com cautela.
 
 Os tribunais dos Estados Unidos concluíram que simplesmente colocar os termos de serviço no rodapé do website não é suficiente para que você fique vinculado a eles, e.x., [HiQ Labs v. LinkedIn](https://en.wikipedia.org/wiki/HiQ_Labs_v._LinkedIn).
