@@ -382,12 +382,12 @@ Observe que este pacote não faz parte do tidyverse, portanto as funções e flu
 Por exemplo, os nomes das funções usam *camelCase*, várias funções não podem compor um *pipeline*, e os argumentos tendem a seguir ordens diferentes daquelas do tidyverse.
 Entretanto, tudo bem.
 Conforme seu aprendizado e uso do R expandem para além deste livro, você encontrará vários outros estilos em diversos pacotes disponíveis para atingir seus objetivos específicos no R.
-Uma boa forma de se famliarizar com o estilo de código em um novo pacote é executar alguns exemplos fornecidos na documentação das funções, sentir a sintaxe e formatos de saída, assim como ler qualquer *vignette* que acompanha o pacote.
+Uma boa forma de se familiarizar com o estilo de código em um novo pacote é executar alguns exemplos fornecidos na documentação das funções, sentir a sintaxe e formatos de saída, assim como ler qualquer *vignette* que acompanha o pacote.
 
 ### Exercícios
 
-1.  Em um arquivo Excel, crie o seguinte conjunto de dados e salve como `pesquisa.xlsx`.
-    Alternativamente, você pode baixar [aqui](https://docs.google.com/spreadsheets/d/1yc5gL-a2OOBr8M7B3IsDNX5uR17vBHOyWZq6xSTG2G8) como arquivo Excel.
+1.  Em um arquivo do Excel, crie o seguinte conjunto de dados e salve como `pesquisa.xlsx`.
+    Alternativamente, você pode baixar [aqui](https://docs.google.com/spreadsheets/d/1yc5gL-a2OOBr8M7B3IsDNX5uR17vBHOyWZq6xSTG2G8) como arquivo do Excel.
 
     ```{r}
     #| echo: false
@@ -396,7 +396,7 @@ Uma boa forma de se famliarizar com o estilo de código em um novo pacote é exe
     #|   Uma planilha com 2 colunas (pesquisa_id e n_animais_estimacao) e 7 linhas. 
     #|   A primeira linha possui os nomes das colunas. 
     #|   A coluna pesquisa_id possui números de 1 até 6.
-    #|   A coluna n_animais_estimacao, possui valores entre 0 e 2, contento dois valores em texto (N/A e two).
+    #|   A coluna n_animais_estimacao, possui valores entre 0 e 2, contendo dois valores em texto (N/A e two).
 
     knitr::include_graphics("screenshots/import-spreadsheets-survey.png")
     ```
@@ -417,8 +417,8 @@ Uma boa forma de se famliarizar com o estilo de código em um novo pacote é exe
       )
     ```
 
-2.  Em outro arquivo Excel, crie o seguinte conjunto de dados e salve como `lista.xlsx`.
-    Alternativamente, você pode baixar [aqui](https://docs.google.com/spreadsheets/d/1LgZ0Bkg9d_NK8uTdP2uHXm07kAlwx8-Ictf8NocebIE) como arquivo Excel.
+2.  Em outro arquivo do Excel, crie o seguinte conjunto de dados e salve como `lista.xlsx`.
+    Alternativamente, você pode baixar [aqui](https://docs.google.com/spreadsheets/d/1LgZ0Bkg9d_NK8uTdP2uHXm07kAlwx8-Ictf8NocebIE) como arquivo do Excel.
 
     ```{r}
     #| echo: false
@@ -427,7 +427,7 @@ Uma boa forma de se famliarizar com o estilo de código em um novo pacote é exe
     #|   Uma planilha com 3 colunas (grupo, subgrupo, e id) e 12 linhas. 
     #|   A coluna grupo contém dois valores: 1 (combinando 7 linhas juntas) e 2 
     #|   (combinando 5 linhas juntas). A coluna subgrupo tem quatro valores: A 
-    #|   (combinando 3 linhas juntas), B (combinando 4 linhas juntass), A (combinando 2 
+    #|   (combinando 3 linhas juntas), B (combinando 4 linhas juntas), A (combinando 2 
     #|   linhas juntas), e B (combinando 3 linhas juntas). A coluna id tem doze 
     #|   valores, números de 1 até 12.
 
@@ -435,7 +435,7 @@ Uma boa forma de se famliarizar com o estilo de código em um novo pacote é exe
     ```
 
     Depois, importe-o para o R.
-    O conjunto de dados resultante deve ser nomeado como `lista` e deve parecer como a seguir.
+    O conjunto de dados resultante deve ser nomeado como `lista` e deve se parecer como a seguir.
 
     ```{r}
     #| echo: false
@@ -446,15 +446,15 @@ Uma boa forma de se famliarizar com o estilo de código em um novo pacote é exe
       print(n = 12)
     ```
 
-3.  Em um novo arquivo Excel, crie o seguinte conjunto de dados e salve como `vendas.xlsx`.
-    Alternativamente, você pode baixar [aqui](https://docs.google.com/spreadsheets/d/1oCqdXUNO8JR3Pca8fHfiz_WXWxMuZAp3YiYFaKze5V0) como arquivo Excel.
+3.  Em um novo arquivo do Excel, crie o seguinte conjunto de dados e salve como `vendas.xlsx`.
+    Alternativamente, você pode baixar [aqui](https://docs.google.com/spreadsheets/d/1oCqdXUNO8JR3Pca8fHfiz_WXWxMuZAp3YiYFaKze5V0) como arquivo do Excel.
 
     ```{r}
     #| echo: false
     #| fig-alt: |
     #|   Uma planilha com 2 colunas e 13 linhas. As primeiras duas linhas tem um texto 
     #|   contendo informações sobre a planilha. A linha 1 diz "Este arquivo contém informações
-    #|   de vendas". Linha 2 diz "Dados estão organizados por nome da marca e 
+    #|   de vendas". A linha 2 diz "Dados estão organizados por nome da marca e 
     #|   para cada marca, temos um número ID para cada item vendido e quantos foram  
     #|   vendidos.". Depois existem duas linhas em branco seguidas por 9 linhas de dados.
 
@@ -463,7 +463,7 @@ Uma boa forma de se famliarizar com o estilo de código em um novo pacote é exe
 
     a\.
     Importar `vendas.xlsx` e salvar como `vendas`.
-    O conjunto de dados deve ser parecer como o a seguir, com `id` e `n` como nomes das colunas e com 9 linhas.
+    O conjunto de dados deve se parecer como a seguir, com `id` e `n` como nomes das colunas e com 9 linhas.
 
     ```{r}
     #| echo: false
@@ -474,7 +474,7 @@ Uma boa forma de se famliarizar com o estilo de código em um novo pacote é exe
     ```
 
     b\.
-    Modifique `vendas` de forma a ficar organizado (*tidy*) com três colunas (`marca`, `id`, and `n`) e 7 linhas de dados.
+    Modifique `vendas` de forma a ficar organizado (*tidy*) com três colunas (`marca`, `id`, e `n`) e 7 linhas de dados.
     Note que `id` e `n` são numéricas, `marca` é uma variável texto (ou caractere).
 
     ```{r}
@@ -493,9 +493,9 @@ Uma boa forma de se famliarizar com o estilo de código em um novo pacote é exe
       print(n = 7)
     ```
 
-4.  Recrie o conjunto de dados `doces_vendas`, exporte para um arquivo Excel usando a função `write.xlsx()` do pacote openxlsx.
+4.  Recrie o conjunto de dados `doces_vendas`, exporte para um arquivo do Excel usando a função `write.xlsx()` do pacote openxlsx.
 
-5.  No @sec-data-import voê aprendeu sobre a função `janitor::clean_names()` para transformar os nomes das colunas em *snake case*.
+5.  No @sec-data-import você aprendeu sobre a função `janitor::clean_names()` para transformar os nomes das colunas em *snake case*.
     Importe o arquivo `estudantes.xlsx` que foi introduzido anteriormente nesta seção e use a função para "limpar" os nomes das colunas.
 
 6.  O que acontece se você tentar importar um arquivo com a extensão `.xlsx` com `read_xls()`?
@@ -523,7 +523,7 @@ Uma breve nota sobre o nome do pacote: googlesheets4 usa a [versão 4 da API do 
 A principal função do pacote googlesheets4 é a `read_sheet()`, a qual importa uma planilha do Google a partir de uma URL ou id do arquivo.
 Esta função também pode ser chamada pelo nome de `range_read()`.
 
-Você também pode criar uma nova planilha com a `gs4_create()` ou escrever em uma planilha já existente com a `sheet_write()` e suas amigas.
+Você também pode criar uma nova planilha com a `gs4_create()` ou escrever em uma planilha já existente com a `sheet_write()` e semelhantes.
 
 Nesta seção trabalharemos com os mesmos conjuntos de dados utilizados na seção sobre arquivos do Excel para destacar semelhanças e diferenças entre o fluxo de trabalho de importação de dados do Excel e do Planilhas Google.
 Os pacotes readxl e googlesheets4 foram desenhados para terem funcionalidades semelhantes ao pacote readr, o qual fornece a função `read_csv()` que você viu no @sec-data-import.
@@ -542,7 +542,7 @@ Este é o mesmo conjunto de dados da @fig-students-excel, exceto que está armaz
 #|   Planilha do Google chamada estudantes em uma janela do navegador.
 #| fig-alt: |
 #|   Uma visão da planilha estudantes no Planilhas Google. A planilha contém 
-#|   informações de 6 estudantes, seus IDs, nomes completos, comida favorita, plano de refeição e  
+#|   informações de 6 estudantes, seus IDs, nomes completos, comida favorita, plano alimentar e  
 #|   idade.
 
 knitr::include_graphics("screenshots/import-googlesheets-students.png")
@@ -625,7 +625,7 @@ write_sheet(doces_vendas, ss = "doces-vendas", sheet = "Vendas")
 
 Apesar de você poder importar uma planilha pública com sua conta do Google e a função `gs4_deauth()`, importar uma planilha privada ou exportar para uma requer autenticação para que o pacote googlesheets4 possa acessar e gerenciar *suas* Planilhas Google.
 
-Quando você tenta acessar uma planilha que requer autenticação, o googlesheets4 irá te redirecionar para um navegador web e pedir sua conta do Google para obter a permissão de operar em seu lugar as planilhas.Entretanto, se você quiser definir uma conta específica, escopo de autenticação, etc, você pode fazer através da `gs4_auth()`, ex: `gs4_auth(email = "meu@exemplo.com")`, o qual irá forçar o uso de um *token* associado a este email específico.
+Quando você tenta acessar uma planilha que requer autenticação, o googlesheets4 irá te redirecionar para um navegador web e pedir sua conta do Google para obter a permissão de operar as planilhas em seu lugar. Entretanto, se você quiser definir uma conta específica, escopo de autenticação, etc, você pode fazer através da `gs4_auth()`, ex: `gs4_auth(email = "meu@exemplo.com")`, o qual irá forçar o uso de um *token* associado a este email específico.
 Para mais informações sobre autenticação, recomendamos ler a documentação do googlesheets4 (*auth vignette*) em <https://googlesheets4.tidyverse.org/articles/auth.html>.
 
 ### Exercícios
