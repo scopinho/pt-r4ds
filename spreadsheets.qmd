@@ -381,7 +381,7 @@ Não entraremos entrar nos detalhes deste pacote aqui, mas recomendamos ler <htt
 Observe que este pacote não faz parte do tidyverse, portanto as funções e fluxos de trabalho podem não ser familiares.
 Por exemplo, os nomes das funções usam *camelCase*, várias funções não podem compor um *pipeline*, e os argumentos tendem a seguir ordens diferentes daquelas do tidyverse.
 Entretanto, tudo bem.
-Conforme seu aprendizado e uso do R expandem para além deste livro, você encontrará vários outros estilos em diversos pacotes que usará para atingir seus objetivos específicos no R.
+Conforme seu aprendizado e uso do R expandem para além deste livro, você encontrará vários outros estilos em diversos pacotes disponíveis para atingir seus objetivos específicos no R.
 Uma boa forma de se famliarizar com o estilo de código em um novo pacote é executar alguns exemplos fornecidos na documentação das funções, sentir a sintaxe e formatos de saída, assim como ler qualquer *vignette* que acompanha o pacote.
 
 ### Exercícios
