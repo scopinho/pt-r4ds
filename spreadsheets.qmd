@@ -309,7 +309,7 @@ Uma célula pode conter uma dessas quatro coisas:
 Quando trabalhamos com dados de planilhas, é importante ter em mente que os dados intrínsecos podem ser muito diferentes daquilo que vemos em uma célula.
 Por exemplo, o Excel não tem a noção de 'inteiro' (*integer*).
 Todos os números são armazenados como ponto flutuante (*floating points*), mas você pode optar em mostrar os dados de uma forma personalizada de casas decimais.
-Da mesma maneira, datas são na verdade armazenadas como números, especificamente número de segundos desde 1o de Janeiro de 1970.
+Da mesma maneira, datas são na verdade armazenadas como números, especificamente número de segundos desde 1º de Janeiro de 1970.
 Você pode personalizar como você quer mostrar as datas no Excel aplicando formatações.
 Para confundir ainda mais, também é possível ter algo que se parece com um número, mas é na verdade uma *string* (ex: , digite `'10` em uma célula no Excel).
 
