@@ -12,12 +12,12 @@ No @sec-data-import você aprendeu sobre importação de dados de arquivos texto
 Agora chegou a hora de aprender a extrair dados de planilhas, tanto do Excel quanto do Planilhas Google (*Google Sheets*).
 Para isto, usaremos muito do que você aprendeu no @sec-data-import, mas discutiremos também considerações adicionais e complexidades presentes quando trabalhamos com dados vindos de planilhas.
 
-Se você ou seus colaboradores estão usando planilha para orgnizar dados, nós recomendamos fortemente que leia o artigo "Organização de Dados em Planilhas (*Data Organization in Spreadsheets*) do Karl Broman e Kara Woo: <https://doi.org/10.1080/00031305.2017.1375989>.
-As boas práticas presentes neste artigo evitarão dores de cabeça quando importar dados de planilhas para o R para analisá-los e visualizá-los.
+Se você ou seus colaboradores estão usando planilhas para organizar dados, nós recomendamos fortemente a leitura do artigo "Organização de Dados em Planilhas (*Data Organization in Spreadsheets*) de Karl Broman e Kara Woo: <https://doi.org/10.1080/00031305.2017.1375989>.
+As boas práticas presentes neste artigo evitarão dores de cabeça ao importar dados de planilhas para análise e visualização com o R.
 
 ## Excel
 
-Microsoft Excel é um software de planilha muito utilizado onde os dados são organizados em planilhas (*worksheets*) dentro de arquivos Excel (*spreadsheet*).
+O Microsoft Excel é um software muito utilizado onde os dados são organizados em planilhas (*worksheets*) dentro de arquivos Excel (*spreadsheet*).
 
 ### Pré-requisitos
 
@@ -37,11 +37,11 @@ library(writexl)
 
 Muitas funções do readxl te permitem importar arquivos do Excel para o R:
 
--   `read_xls()` importa arquivos Excel no format `xls`.
--   `read_xlsx()` importa arquivos Excel no formato `xlsx`.
--   `read_excel()` pode importar arquivos do Excel nos formatos `xls` e `xlsx`. Ela identifica o formato baseado no tipo de arquivo de entrada.
+-   `read_xls()` importa arquivos Excel que estejam no formato `xls`.
+-   `read_xlsx()` importa arquivos Excel que estejam no formato `xlsx`.
+-   `read_excel()` pode importar arquivos em ambos os formatos `xls` e `xlsx`. Ela identifica o formato baseado no tipo de arquivo de entrada.
 
-Estas funções possuem uma sintaxe similar à outras funções introduzidas anteriormente para importar outros tipos de arquivos, ex: `read_csv()`, `read_table()`, etc.
+Estas funções possuem uma sintaxe similar às outras funções introduzidas anteriormente para importar outros tipos de arquivos, ex: `read_csv()`, `read_table()`, etc.
 No restante deste capítulo focaremos no uso da `read_excel()`.
 
 ### Importando arquivos do Excel {#sec-reading-spreadsheets-excel}
@@ -56,7 +56,7 @@ A @fig-students-excel mostra como é a planilha do Excel que iremos importar par
 #|   Planilha do Excel chamada estudantes.xlsx.
 #| fig-alt: |
 #|   Uma visão da planilha de estudantes no Excel. A planilha possui 
-#|   informações de 6 estudantes, seus IDs, nomes completos, comida favorita, plano de refeição 
+#|   informações de 6 estudantes, seus IDs, nomes completos, comida favorita, plano alimentar
 #|   e idade.
 
 knitr::include_graphics("screenshots/import-spreadsheets-students.png")
@@ -75,7 +75,7 @@ estudantes
 ```
 
 Temos seis estudantes nos dados e cinco variáveis para cada estudante.
-Entretanto, existem algumas coisas que devemos endereçar neste conjunto de dados:
+Entretanto, existem algumas coisas que devemos abordar neste conjunto de dados:
 
 1.  Os nomes das colunas estão bem bangunçados.
     Você pode fornecer nomes que seguem um formato consistente; nós recomendamos o `snake_case` usando o argumento `col_names`.
@@ -105,8 +105,8 @@ Entretanto, existem algumas coisas que devemos endereçar neste conjunto de dado
     )
     ```
 
-    Infelizmente, apenas isto não faz o serviço completo.
-    Temos agora o nome das variáveis como gostaríamos, mas o que era anteriormente a linha de cabeçalho aparece nos dados como a primeira linha das observações.
+    Infelizmente, apenas isto não é o suficiente.
+    Temos agora o nome das variáveis como gostaríamos, mas o que era anteriormente a linha de cabeçalho passou a aparecer nos dados como a primeira linha das observações.
     Você pode pular explicitamente esta linha usando o argumento `skip`.
 
     ```{r}
@@ -117,8 +117,8 @@ Entretanto, existem algumas coisas que devemos endereçar neste conjunto de dado
     )
     ```
 
-2.  Na coluna `comida_favorita`, uma das observações está como `N/A`, que significa "não disponível" (*not available*) mas não é reconhecida um valor não disponível (`NA`) do R (veja a diferença entre este `N/A` e o presente na `idade` do quarto estudante da lista).
-    Você pode definir quais cadeias de caracteres (*strings*) devem ser reconhecidas como `NA` com o argumento `na`.
+2.  Na coluna `comida_favorita`, uma das observações está como `N/A`, que significa "não disponível" (*not available*) mas essa forma não é reconhecida como um valor não disponível (`NA`) do R (veja a diferença entre este `N/A` e o presente na `idade` do quarto estudante da lista).
+    Você pode definir quais cadeias de caracteres (*strings*) devem ser reconhecidas pelo R como `NA` utilizando o argumento `na`.
     Por padrão, apenas `""` (*string* vazia, ou, no caso quando lemos uma planilha, uma célula vazia ou com a fórmula `=NA()`) é reconhecida como um `NA`.
 
     ```{r}
@@ -168,7 +168,7 @@ Entretanto, existem algumas coisas que devemos endereçar neste conjunto de dado
     ```
 
 Foram necessários vários passos com tentativas e erros para importar os dados da maneira que precisávamos, e isto não é algo inesperado.
-Ciência de dados é um processo iterativo, e este processo de iteração pode ser ainda mais entediante quando importamos dados de planilhas se comparado a quando importamos dados de arquivos textos (dados retangulares) pois os humanos tendem a inserir dados nas planilhas e usá-las não apenas para armazenar os dados, mas também para compartilhamento e communicação.
+A ciência de dados é um processo iterativo, e este processo de iteração pode ser ainda mais entediante quando importamos dados de planilhas se comparado a quando importamos dados de arquivos textos (dados retangulares) pois os humanos tendem a inserir dados nas planilhas e usá-las não apenas para armazenar os dados, mas também para compartilhamento e communicação.
 
 Não há como saber exatamente como os dados serão importados até você carregá-los e dar uma olhada.
 Bem, na verdade há um jeito.
@@ -211,7 +211,7 @@ pinguins_torgersen <- read_excel("data/penguins.xlsx", sheet = "Ilha Torgersen",
 pinguins_torgersen
 ```
 
-Alternativamente, você pode usar `excel_sheets()` para obter informações de todas as planilhas presentes em um arquivo Excel, e então importar aquela(s) que você está interesado.
+Alternativamente, você pode usar `excel_sheets()` para obter informações de todas as planilhas presentes em um arquivo Excel, e então importar aquela(s) em que você está interessado.
 
 ```{r}
 excel_sheets("data/pinguins.xlsx")
@@ -225,7 +225,7 @@ pinguins_dream  <- read_excel("data/pinguins.xlsx", sheet = "Ilha Dream", na = "
 ```
 
 Neste caso, o conjunto de dados completo está espalhado entre três planilhas distintas no arquivo.
-Cada planilha tem o mesmo número de colunas, mas diferente número de linhas.
+Cada planilha tem o mesmo número de colunas, mas diferentes números de linhas.
 
 ```{r}
 dim(pinguins_torgersen)
@@ -245,7 +245,7 @@ No @sec-iteration falaremos sobre outras maneiras de fazer este tipo de coisa se
 ### Importando parte de uma planilha
 
 Uma vez que muitas pessoas usam arquivos do Excel tanto pra apresentação quanto para armazenamento dos dados, é muito comum encontrarmos células em uma planilha que não fazem parte dos dados que você quer importar para o R.
-A @fig-deaths-excel mostra uma planilha: no centro da planilha temos algo que se parece com um *data frame*, mas existem estranhos textos extras acima e abaixo dos dados.
+A @fig-deaths-excel mostra um exemplo: no centro da planilha temos algo que se parece com um *data frame*, mas existem estranhos textos acima e abaixo dos dados.
 
 ```{r}
 #| label: fig-deaths-excel
@@ -257,11 +257,11 @@ A @fig-deaths-excel mostra uma planilha: no centro da planilha temos algo que se
 #|   no topo contém informações extras aos dados; o texto 'Por razôes de  
 #|   consistência no *layout* dos dados, algo que é realmente belo, continuarei 
 #|   a fazer notas por aqui.' está espalhado pelas quatro linhas. 
-#|   Então, há um *data frame* que inclue informações de 10  
+#|   Então, há um *data frame* que inclui informações de 10  
 #|   pessoas famosas, incluindo seus nomes, profissões, idades, se tinham filhos 
-#|   ou não, data de nascimento e óbito. Na parte debaixo, existem outras 4 linhas 
+#|   ou não, data de nascimento e óbito. Na parte de baixo, existem outras 4 linhas 
 #|   extras aos dados; no texto 'Isto é realmente engraçado, mas 
-#|   estamos nos descontando agora!' está espalhado por estas quatro linhas finais.
+#|   estamos nos desconectando agora!' está espalhado por estas quatro linhas finais.
 
 knitr::include_graphics("screenshots/import-spreadsheets-deaths.png")
 ```
@@ -276,14 +276,14 @@ obitos
 ```
 
 As primeiras três linhas e as quatro linhas no final, não fazem parte do *data frame*.
-É possível elminar estas linhas extras usando os argumentos `skip` e `n_max`, mas recomendamos utilizar intervalo (*range*) de células.
+É possível eliminar estas linhas extras usando os argumentos `skip` e `n_max`, mas recomendamos utilizar intervalos (*range*) de células.
 No Excel, a célula superior esquerda é a `A1`.
 Conforme você se move pelas colunas para a direita, o título da célula segue a sequência do alfabeto, ex: 
 `B1`, `C1`, etc.
 E conforme você se move para baixo na coluna, o número da célula aumenta, ex:
 `A2`, `A3`, etc.
 
-Aqui, os dados que desejamos importar começa na célula `A5` e termina na célula `F15`.
+Aqui, os dados que desejamos importar começam na célula `A5` e terminam na célula `F15`.
 Na notação da planilha, temos `A5:F15`, que fornecemos para o argumento `range`:
 
 ```{r}
@@ -307,24 +307,24 @@ Uma célula pode conter uma dessas quatro coisas:
 -   Um texto (*string*), como "dez".
 
 Quando trabalhamos com dados de planilhas, é importante ter em mente que os dados intrínsecos podem ser muito diferentes daquilo que vemos em uma célula.
-Por exemplo, o Excel não tem a nocão de 'inteiro' (*integer*).
+Por exemplo, o Excel não tem a noção de 'inteiro' (*integer*).
 Todos os números são armazenados como ponto flutuante (*floating points*), mas você pode optar em mostrar os dados de uma forma personalizada de casas decimais.
 Da mesma maneira, datas são na verdade armazenadas como números, especificamente número de segundos desde 1o de Janeiro de 1970.
 Você pode personalizar como você quer mostrar as datas no Excel aplicando formatações.
 Para confundir ainda mais, também é possível ter algo que se parece com um número, mas é na verdade uma *string* (ex: , digite `'10` em uma célula no Excel).
 
-Estas diferenças em como os dados intrínsecos são armazenados vs. como eles são mostrados na tela podem causar surpresas quando os dados são importados para o R..
+Estas diferenças em como os dados intrínsecos são armazenados vs. como eles são mostrados na tela podem causar surpresas quando os dados são importados para o R.
 Por padrão, readxl tentará adivinhar o tipo de dado de uma determinada coluna.
 Um fluxo de trabalho recomendado é deixar o readxl adivinhar os tipos das colunas, confirmar se você está contente com os tipos sugeridos, e caso não estiver, importar novamente especificando o argumento `col_types` como mostrado na @sec-reading-spreadsheets-excel.
 
-Outro desafio é quando você tem uma coluna na planilha Excel que tem uma mistura de diferentes tipos, ex: algumas células são numéricas, outras texto, outras datas.
+Outro desafio é quando você tem uma coluna na planilha do Excel que tem uma mistura de diferentes tipos, ex: algumas células são numéricas, outras contém texto, outras contém datas.
 Quando importamos esses dados para o R, o readxl deve tomar algumas decisões.
-Nestes casos, você pode definir o tipo para esta coluna como `"list"`, o qual importará a coluna como uma lista de vetor de tamanho 1, onde o tipo de cada elemento do vetor é sugerido.
+Nestes casos, você pode definir o tipo para esta coluna como `"list"`, o qual importará a coluna como uma lista de vetores de tamanho 1, onde o tipo de cada elemento do vetor é sugerido.
 
 ::: callout-note
 Algumas vezes os dados são armazenados de forma mais exótica, como cores de fundo da célula, ou com texto em negrito ou não.
 Nestes casos, você pode achar útil o pacote [tidyxl](https://nacnudus.github.io/tidyxl/).
-Veja <https://nacnudus.github.io/spreadsheet-munging-strategies/> para mais sobre estratégias para trabalhar com dados não tabulares vindos do Excel.
+Veja <https://nacnudus.github.io/spreadsheet-munging-strategies/> para mais ideias sobre estratégias para trabalhar com dados não tabulares vindos do Excel.
 :::
 
 ### Exportando para Excel {#sec-writing-to-excel}
@@ -341,7 +341,7 @@ doces_vendas <- tibble(
 doces_vendas
 ```
 
-Você pode gravar este dados em disco como um arquivo do Excel usando a função `write_xlsx()` do pacote [writexl package](https://docs.ropensci.org/writexl/):
+Você pode gravar estes dados em disco como um arquivo do Excel usando a função `write_xlsx()` do pacote [writexl package](https://docs.ropensci.org/writexl/):
 
 ```{r}
 #| eval: false
@@ -350,7 +350,7 @@ write_xlsx(doces_vendas, path = "data/doces-vendas.xlsx")
 ```
 
 A @fig-bake-sale-excel mostra como os dados aparecem no Excel.
-Note que os nomes das columnas também aparecem e em negrito.
+Note que os nomes das colunas também aparecem em negrito.
 Isto pode ser modificado definindo como `FALSE` os argumentos `col_names` e `format_headers`.
 
 ```{r}
@@ -365,8 +365,8 @@ Isto pode ser modificado definindo como `FALSE` os argumentos `col_names` e `for
 knitr::include_graphics("screenshots/import-spreadsheets-bake-sale.png")
 ```
 
-Assim como acontence quando importamos dados de um CSV, as informações sobre os tipos de dados são perdidas quando importamos os dados novamente.
-Isto também tornam os arquivos do Excel uma fonte não confiável para armazenar resultados parciais.
+Assim como acontece quando importamos dados de um CSV, as informações sobre os tipos de dados são perdidas quando importamos os dados novamente.
+Isto torna os arquivos do Excel uma fonte não confiável para armazenar resultados parciais.
 Para alternativas, veja @sec-writing-to-a-file.
 
 ```{r}
@@ -375,11 +375,11 @@ read_excel("data/doces-vendas.xlsx")
 
 ### Saídas formatadas
 
-O pacote writexl é uma solução simples para criar uma simples planilha Excel, mas se você estiver interessado em características adicionais como escrever em uma planilha dentro de um arquivo e estilizá-la, você pode querer utilizar o pacote [openxlsx](https://ycphs.github.io/openxlsx).
+O pacote writexl é uma solução simplificada para criar uma simples planilha do Excel, mas se você estiver interessado em características adicionais como escrever em uma planilha dentro de um arquivo e estilizá-la, você pode querer utilizar o pacote [openxlsx](https://ycphs.github.io/openxlsx).
 Não entraremos entrar nos detalhes deste pacote aqui, mas recomendamos ler <https://ycphs.github.io/openxlsx/articles/Formatting.html> para uma extensa discussão sobre mais funcionalidades de formatação de dados do R para o Excel usando o openxlsx.
 
-Observe que este pacote não faz parte do tidyverse, portanto as funções e fluxo de trabalho podem não ser familiares.
-Por exemplo, os nomes das funções usam *camelCase*, várias funções não podem compor um *pipeline*, e os argumentos tendem a seguir ordens diferentes daquela do tidyverse.
+Observe que este pacote não faz parte do tidyverse, portanto as funções e fluxos de trabalho podem não ser familiares.
+Por exemplo, os nomes das funções usam *camelCase*, várias funções não podem compor um *pipeline*, e os argumentos tendem a seguir ordens diferentes daquelas do tidyverse.
 Entretanto, tudo bem.
 Conforme seu aprendizado e uso do R expandem para além deste livro, você encontrará vários outros estilos em diversos pacotes que usará para atingir seus objetivos específicos no R.
 Uma boa forma de se famliarizar com o estilo de código em um novo pacote é executar alguns exemplos fornecidos na documentação das funções, sentir a sintaxe e formatos de saída, assim como ler qualquer *vignette* que acompanha o pacote.
