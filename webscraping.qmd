@@ -12,16 +12,16 @@ mensagem_capitulo_sem_traducao()
 
 Este capítulo faz a introdução do básico sobre raspagem de dados (*web scraping*) com o pacote [rvest](https://rvest.tidyverse.org).
 Raspagem de dados é uma ferramenta muito útil para extração de dados de páginas web.
-Alguns websites oferecem uma API, um conjunto de requisições HTTP estruturadas que retornam dados no formato JSON, o qual você pode lidar usando as técnicas do @sec-rectangling.
+Alguns websites oferecem uma API, um conjunto de requisições HTTP estruturadas que retornam dados no formato JSON, com o qual você pode lidar usando as técnicas do @sec-rectangling.
 Sempre que possível, você deve usar uma API[^webscraping-1], pois geralmente te retornará dados mais confiáveis.
 Entretanto, infelizmente, programar com APIs web está fora do escopo deste livro.
-Ao invés disso, ensinaremos sobre raspagem de dados, uma técnica que funciona independentemente do site fornecer uma API ou não.
+Ao invés disso, ensinaremos sobre raspagem de dados, uma técnica que funciona independentemente de o site fornecer uma API ou não.
 
-[^webscraping-1]: E muitas APIs populares já possuem um pacote no CRAN que as encapsulam, então comece sempre fazendo uma pesquisa antes!
+[^webscraping-1]: Muitas APIs populares já possuem um pacote no CRAN que as encapsulam, então comece sempre fazendo uma pesquisa antes!
 
 Neste capítulo, discutiremos primeiro sobre ética e legalidade da raspagem de dados antes de falar sobre o básico de HTML.
 Você aprenderá o básico sobre seletores CSS para localizar elementos específicos em uma página, e como usar funções do rvest para obter dados de textos e atributos de um HTML para o R.
-Depois, discutiremos algumas técnicas para descobrir qual seletor CSS você precisa para a página que está fazendo a raspagem de dados, e terminaremos falando sobre alguns estudos de caso e uma breve discussão sobre websites dinâmicos.
+Depois, discutiremos algumas técnicas para descobrir qual seletor CSS você precisa para a página que está fazendo a raspagem de dados e terminaremos falando sobre alguns estudos de caso e uma breve discussão sobre websites dinâmicos.
 
 ### Pré-requisitos
 
@@ -115,8 +115,8 @@ HTML tem uma estrutura hierárquica formada por **elementos** que consiste em um
 [^webscraping-4]: Em várias marcações (incluindo `<p>` e `<li>`) a marcação de fim não é obrigatória, mas acreditamos ser melhor incluí-la, pois torna a visualização da estrutura HTML mais fácil.
 
 Como `<` e `>` são usados para início e fim das marcações, você não pode escrevê-los diretamente.
-Ao invés disso, você deve usar os caracteres de **fuga** (*escapes*) `&gt;` (maior que (*greater than*)) e `&lt;` (menor que (*less than*)) do HTML.
-E como estas fugas usam `&`, se você quiser escrever o "&" (E comercial) deve usar a fuga `&amp;`.
+Ao invés disso, você deve usar os caracteres de **fuga** (*escapes*) `&gt;` (maior que ou *greater than*) e `&lt;` (menor que ou *less than*) do HTML.
+E como estas fugas usam `&`, se você quiser escrever o "&" (E comercial ou *ampersand*) deve usar a fuga `&amp;`.
 Há uma grande variedade de caracteres de fuga no HTML, mas você não precisa se preocupar muito com isto, pois o rvest lida automaticamente com elas para você.
 
 A raspagem de dados é possível porque a maioria das páginas que contém o dado que você quer extrair geralmente possuem uma estrutura consistente.
@@ -128,9 +128,9 @@ Alguns dos mais importantes são:
 
 -   Toda página HTML deve estar entre um elemento `<html>`, que deve ter dois elementos descendentes (*children*): `<head>`, que contém metadados como título da página, e `<body>`, que tem o conteúdo que você vê através do navegador (*browser*).
 
--   Marcações de **bloco** (*block*) como `<h1>` (cabeçalho 1 (*heading* 1)), `<section>` (seção (*section*)), `<p>` (parágrafo (*paragraph*)), e `<ol>` (lista ordenada (*ordered list*)) formam a estrutura geral da página.
+-   Marcações de **bloco** (*block*) como `<h1>` (cabeçalho 1 ou *heading* 1), `<section>` (seção ou *section*), `<p>` (parágrafo ou *paragraph*), e `<ol>` (lista ordenada ou *ordered list*) formam a estrutura geral da página.
 
--   Marcações **em linha** (*inline*) como `<b>` (negrito (*bold*)), `<i>` (itálico (*italics*)), e `<a>` (*link*) formatam o texto dentro das marcações de bloco.
+-   Marcações **em linha** (*inline*) como `<b>` (negrito ou *bold*), `<i>` (itálico ou *italics*), e `<a>` (*link*) formatam o texto dentro das marcações de bloco.
 
 Se você encontrar uma marcação que nunca viu antes, você pode pesquisar o que ela faz usando a pesquisa do *Google*.
 Um outro ótimo lugar para começar é o [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML) que descreve todos os aspectos da programação web.
@@ -314,7 +314,7 @@ html |>
   html_attr("href")
 ```
 
-`html_attr()` sempre retorna uma *string*, portanto, se você está extraindo números ou datas, você precisará fazer algum processamento posteriormente.
+`html_attr()` sempre retorna uma *string*, portanto, se você está extraindo números ou datas, você precisará fazer algum processamento posterior.
 
 ### Tabelas
 
@@ -462,7 +462,7 @@ Quando este capítulo foi escrito, a página se parecia com a @fig-scraping-imdb
 knitr::include_graphics("screenshots/scraping-imdb.png", dpi = 300)
 ```
 
-Este dados tem uma clara estrutura tabular, então vale a pena começar com `html_table()`:
+Este dados têm uma clara estrutura tabular, então vale a pena começar com `html_table()`:
 
 ```{r}
 url <- "https://web.archive.org/web/20220201012049/https://www.imdb.com/chart/top/"
@@ -500,7 +500,7 @@ classificacao <- tabela |>
 classificacao
 ```
 
-Mesmo neste caso, em que a maioria dos dados vem de células de tabela, ainda vale a pena dar uma olhada no HTML bruto.
+Mesmo neste caso, em que a maioria dos dados vêm de células de tabela, ainda vale a pena dar uma olhada no HTML bruto.
 Se você fizer isso, descobrirá que podemos adicionar alguns dados extras usando um dos atributos.
 Esse é um dos motivos pelos quais vale a pena gastar um pouco de tempo explorando o código fonte da página; você pode encontrar dados extras ou uma rota de análise um pouco mais fácil.
 
@@ -545,7 +545,7 @@ Veja maiores informações sobre isto no [website do rvest](http://rvest.tidyver
 
 ## Resumo
 
-Neste capítulo, você aprendeu sobre o porquê, o porquê não e como fazer raspagem de dados em páginas da web.
+Neste capítulo, você aprendeu sobre o porquê, o porque não e como fazer raspagem de dados em páginas da web.
 Primeiro, você aprendeu sobre o básico de HTML e como usar seletores CSS para se referir a elementos específicos, depois aprendeu como usar o pacote rvest para transferir dados do HTML para o R.
 Em seguida, demonstramos a raspagem de dados em dois estudos de caso: um cenário mais simples de raspagem de dados do site do pacote rvest com filmes de "Guerra nas Estrelas" e um cenário mais complexo de extração de dados dos 250 melhores filmes do IMDB.
 
