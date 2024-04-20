@@ -30,7 +30,7 @@ De certa forma, o Quarto reflete tudo que foi aprendido na expansão e no suport
 
 ### Pré-requisitos
 
-Você precisa da interface de linha de comando Quarto (Quarto CLI -- *command line interface*), mas não é necessário explicitamente instalar ou carregá-la.
+Você precisa da interface de linha de comando do Quarto (Quarto CLI -- *command line interface*), mas não é necessário instalá-la ou carregá-la explicitamente.
 Seu RStudio o fará automaticamente quando for necessário.
 
 ```{r}
