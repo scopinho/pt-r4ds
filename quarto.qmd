@@ -58,7 +58,7 @@ O arquivo contém três tipos importantes de conteúdo:
 
 @fig-diamond-sizes-notebook mostra um documento `.qmd` no RStudio com interface de *notebook*, no qual código e saída são intercalados.
 Você pode executar cada bloco de código clicando no ícone Executar -- *Run* (triângulo verde que parece com o botão de play no canto superior direito do bloco de código), ou pressionando Cmd/Ctrl + Shift + Enter.
-O RStudio executará o código e mostrará os resultados junto com o código.
+O RStudio executará o código e mostrará os resultados juntamente com o código.
 
 ```{r}
 #| label: fig-diamond-sizes-notebook
