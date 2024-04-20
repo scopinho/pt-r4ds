@@ -152,7 +152,7 @@ As seções a seguir aprofundam os três componentes de um documento Quarto em m
 2.  Crie um novo documento Quarto para cada um dos três formatos disponibilizados: HTML, PDF e Word.
     Renderize cada um dos três documentos.
     Qual é a diferença entre os resultados?
-    Qual é a diferença entre os insumos?
+    Qual é a diferença entre as entradas (*inputs*)?
     (É possível que seja necessário instalar o LaTeX para construir o arquivo PDF --- O RStudio avisará se isso for necessário.)
 
 ## Editor Visual
