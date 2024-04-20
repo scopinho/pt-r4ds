@@ -54,7 +54,7 @@ O arquivo contém três tipos importantes de conteúdo:
 
 1.  Um **cabeçalho YAML** (opcional) envolto por `---`.
 2.  **Blocos** (ou *chunks*) de código R envoltos por ```` ``` ````.
-3.  Texto misturado com formatação simples de texto como `# cabeçalho` e `_itálico_` (respectivamente, para denotar um título ou marcar texto como itálico).
+3.  Texto misturado com formatação simples de texto como `# título/subtítulo` e `_itálico_`.
 
 @fig-diamond-sizes-notebook mostra um documento `.qmd` no RStudio com interface de *notebook*, no qual código e saída são intercalados.
 Você pode executar cada bloco de código clicando no ícone Executar -- *Run* (triângulo verde que parece com o botão de play no canto superior direito do bloco de código), ou pressionando Cmd/Ctrl + Shift + Enter.
