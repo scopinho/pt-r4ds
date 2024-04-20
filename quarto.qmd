@@ -26,7 +26,7 @@ Em vez disso, enquanto você trabalhar neste capítulo e usar o Quarto no futuro
 Se você for uma pessoa que usa R Markdown, você deve estar pensando "Quarto parece muito com R Markdown".
 Isso não está errado!
 Quarto une a funcionalidade de muitos pacotes do ecosistema do R Markdown (rmarkdown, bookdown, distill, xaringan, etc.) em um sistema único e consistente, mas também extende o ecosistema com apoio nativo para múltiplas linguagens de programação como Python e Julia, além do próprio R.
-De certa forma, Quarto reflete tudo que foi aprendido na expansão e suporte ao ecosistema do R Markdown em uma década.
+De certa forma, o Quarto reflete tudo que foi aprendido na expansão e no suporte ao ecossistema do R Markdown em uma década.
 
 ### Pré-requisitos
 
