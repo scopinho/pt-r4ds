@@ -13,7 +13,7 @@ Documentos Quarto são plenamente reproduzíveis e suportam muitos formatos de s
 
 Arquivos Quarto foram projetados para serem usados de três maneiras:
 
-1.  Para se comunicar com pessoas tomadoras de decisões, que querem focar nas conclusões e não no código por trás da análise.
+1.  Para se comunicar com pessoas tomadoras de decisão, que querem focar nas conclusões e não no código por trás da análise.
 
 2.  Para colaborar com outras pessoas cientistas de dados (incluindo você no futuro!) que estejam interessadas tanto em suas conclusões quanto em como você as alcançou (isto é, o código).
 
