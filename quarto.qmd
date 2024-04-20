@@ -88,7 +88,7 @@ Se você não gosta de ver seus gráficos e saída dos códigos no documento e p
 #| fig-alt: |
 #|   Janela do RStudio com um documento Quarto de nome "diamond-sizes.qmd" 
 #|   à esquerda e o painel Plot no canto inferior direito. O documento
-#|   Quarto tem um bloco de código que cria o gráfico de frequências de diamantes
+#|   Quarto tem um bloco de código que cria um gráfico de frequências de diamantes
 #|   que pesam menos que 2.5 quilates. O gráfico é exibido no painel Plot
 #|   e mostra que a frequência diminui quando o peso aumenta.
 #|   A opção do RStudio de mostrar o Chunk Output no Console também
