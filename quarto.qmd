@@ -70,7 +70,7 @@ O RStudio executará o código e mostrará os resultados juntamente com o códig
 #| fig-alt: |
 #|   Janela do RStudio com um documento Quarto intitulado "diamond-sizes.qmd" 
 #|   à esquerda e um painel de Viewer em branco à direita. O documento 
-#|   Quarto tem um bloco de código que cria o gráfico de frequências dos diamantes 
+#|   Quarto tem um bloco de código que cria um gráfico de frequências dos diamantes 
 #|   que pesam menos que 2.5 quilates. Esse gráfico mostra que a frequência 
 #|   diminui na medida que o peso aumenta.
 
