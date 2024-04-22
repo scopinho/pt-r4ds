@@ -6,48 +6,50 @@
 source("_common.R")
 ```
 
-Este livro não é uma ilha; não existe nenhuma fonte específica que fará você se tornar um expert em R.
-Assim que você começar a aplicar aos seus dados as técnicas descritas neste livro, você logo terá questionamentos que nós não respondemos.
-Esta seção elenca algumas dicas em como obter ajuda e também lhe ajudar a continuar aprendendo.
+Este livro não é uma ilha; não existe nenhuma fonte específica que fará você se tornar uma pessoa expert em R.
+Assim que você começar a aplicar as técnicas descritas neste livro nos seus dados, você logo terá questionamentos que nós não respondemos aqui.
+Esta seção elenca algumas dicas sobre como obter ajuda e também te ajudar a continuar aprendendo.
 
 ## Google é seu amigo
 
 Se você travar, começe com o Google.
 Tipicamente colocando "R" em uma busca é o suficiente para restringi-la para resultados relevantes: se a busca não for útil, geralmente significa que não existem muitos resultados específicos.
-Além do mais, adicionando na busca nomes de pacotes como "tidyverse" ou "ggplot2" irá ajudar a direcionar os resultados ao seu código de maneira mais familiar a você, e.g., "como fazer um boxplot no R com ggplot2" ao invés de "como fazer um boxplot no R".
-Particularmente, Google é muito bom com mensagens de erro.
+Além do mais, adicionando na busca nomes de pacotes como "tidyverse" ou "ggplot2" irá ajudar a direcionar os resultados ao seu código de maneira mais familiar a você, por exemplo: "como fazer um boxplot no R com ggplot2" ao invés de "como fazer um boxplot no R".
+Particularmente, o Google é muito bom com mensagens de erro.
 Se você tiver uma mensagem de erro e não tem ideia do que ela significa, dê um Google com a mensagem!
-Há chances de que outros também tenham ficado confusos com o erro anteriormente e em algum lugar da web você terá ajuda.
-(Se a mensagem de erro não estiver em Inglês, rode `Sys.setenv(LANGUAGE = "en")` e rode novamente o código; provavelmente encontrará ajuda com mensagens de erro em inglês.)
+Há chances de que outras pessoas também tenham ficado confusas com o erro anteriormente e em algum lugar da web você terá ajuda.
+(Se a mensagem de erro não estiver em inglês, execute `Sys.setenv(LANGUAGE = "en")` e execute novamente o código; provavelmente encontrará ajuda com mensagens de erro em inglês.)
 
-Se o Google não ajudar tente Stack Overflow (https//stackoverflow.com).
-Comece reservando tempo para buscar uma resposta já existente, incluindo '\[R\]' para restringir sua busca por perguntas e respostas que contenham R
+Se o Google não ajudar tente o Stack Overflow (https//stackoverflow.com).
+Comece reservando tempo para buscar uma resposta já existente, incluindo '[R]' para restringir sua busca por perguntas e respostas que usem R.
 
-## Executando um reprex
+## Criando um exemplo reprodutível (*reprex*)
 
-ISe a sua busca no Google não retornar nenhuma resposta satisfatória, é uma boa ideia preparar um **reprex,** termo para **repr**oducible **ex**ample.
-Um bom reprex facilita para que outras pessoas possam lhe ajudar, e geralmente você poderá resolver o problema durante a criação dele.
-Existem duas partes na criação do reprex:
+Se a sua busca no Google não retornar nenhuma resposta satisfatória, é uma boa ideia preparar um **reprex**, termo para  **ex**emplo **repr**odutível (do inglês: **repr**oducible **ex**ample).
+Um bom *reprex* facilita para que outras pessoas possam te ajudar, e geralmente você poderá resolver o problema durante a criação dele.
+Existem duas partes na criação de um *reprex*:
 
 -   Primeiro, você precisa permitir a reprodução do seu código.
-    Isto é, significa que você precisa copiar tudo, i.e. incluindo qualquer comando `library()` e criar todas os objetos necessários.
+    Isto é, significa que você precisa copiar tudo, isto é, incluir qualquer comando `library()` e criar todos os objetos necessários.
     A maneira mais fácil de fazer isto é usando o pacote reprex.
 
 -   Segundo, você precisa ser minimalista.
     Exclua tudo que não for relacionado ao seu código.
-    Usualmente isto envolve a criação de um objeto R menor e mais simples do que aquele que você está criando de verdade ou até mesmo usar dados internos.
+    Usualmente isto envolve a criação de um objeto R menor e mais simples do que aquele que você está criando de verdade ou até mesmo usar dados internos[^workflow-help-nt-1].
+    
+[^workflow-help-nt-1]: **Nota de tradução**: São dados que estão sempre disponíveis no R (ex. mtcars), e são bastante utilizados em exemplos, aulas, tutoriais, entre outros. Outra opção interessante é utilizar dados do pacote `{dados}` para criar exemplos reprodutíveis.
 
 Isto parece muito trabalhoso!
 E pode ser, mas tem um grande retorno:
 
--   Em 80% dos casos criando um excelente reprex pode revelar a raiz do seu problema.
-    É incrível como o processo de escrever um exemplo pequeno e auto-sufciente ajuda você a responder sua própria dúvida..
+-   Em 80% dos casos, criando um excelente reprex pode encontrar a raiz do seu problema.
+    É incrível como o processo de escrever um exemplo pequeno e auto-suficiente ajuda você a responder sua própria dúvida.
 
--   Nos 20% restantes você terá entendido a essência do seu problema de uma maneira que é fácil para os outros entenderem.
+-   Nos 20% restantes, você terá entendido a essência do seu problema de uma maneira que é fácil para os outros entenderem.
     Isto aumenta consideravelmente suas chances de obter ajuda!
 
-When creating a reprex by hand, it's easy to accidentally miss something, meaning your code can't be run on someone else's computer.
-Avoid this problem by using the reprex package, which is installed as part of the tidyverse.
+Ao criar um reprex manualmente, é fácil esquecer de algo por acidente, o que significa que seu código pode não ser executado no computador de outra pessoa.
+Evite esse problema utilizando o pacote reprex, que é instalado como parte do tidyverse.
 Let's say you copy this code onto your clipboard (or, on RStudio Server or Cloud, select it):
 
 ```{r}
