@@ -67,8 +67,7 @@ Para se conectar a um banco de dados pelo R, você usa um par de pacotes:
 
 -   Você também usará um pacote feito especificamente para o SGBD ao qual você está se conectando.
     Este pacote traduz os comandos genéricos do DBI para as necessidades específicas de um determinado SGBD.
-    Existe geralmente um pacote para cada SGBD, ex:
-    RPostgres para *PostgreSQL* e RMariaDB para *MySQL*.
+    Existe geralmente um pacote para cada SGBD, ex: RPostgres para *PostgreSQL* e RMariaDB para *MySQL*.
 
 Se você não puder encontrar um pacote específico para seu SGBD, você pode utilizar o pacote odbc.
 Este usa o protocolo ODBC suportado por muitos SGBDs.
@@ -78,7 +77,7 @@ Efetivamente, você cria uma conexão com o banco de dados usando `DBI::dbConnec
 O primeiro argumento seleciona o SGBD[^databases-2], e os argumentos seguintes descrevem como se conectar a ele (ou seja, onde está localizado e as credenciais necessárias para acessá-lo).
 O código a seguir demonstra alguns exemplos típicos:
 
-[^databases-2]: Normalmente, esta é a única função que você usará do pacote cliente, por isso recomendamos usar o `::` para referenciar esta função específica, ao invés de carregar todo o pacote usando  `library()`.
+[^databases-2]: Normalmente, esta é a única função que você usará do pacote cliente, por isso recomendamos usar o `::` para referenciar esta função específica, ao invés de carregar todo o pacote usando `library()`.
 
 ```{r}
 #| eval: false
@@ -262,7 +261,8 @@ Iremos focar em declarações `SELECT`, também chamadas de **consultas** (*quer
 
 Um consulta é formada por **cláusulas** (*clauses*).
 Existem cinco cláusulas importantes: `SELECT`, `FROM`, `WHERE`, `ORDER BY` e `GROUP BY`. Toda consulta precisa ter cláusulas `SELECT`[^databases-4] e `FROM`[^databases-5] e a consulta mais simples é `SELECT * FROM tabela`, que seleciona todas colunas de determinada tabela
-. Isto é o que dbplyr gera de uma tablea sem mudanças.
+. Isto é o que dbplyr gera de uma tablea sem mudanças
+.
 :
 
 [^databases-4]: É estranho, mas dependendo do contexto, `SELECT` pode ser tanto uma declaração quanto uma cláusula.
@@ -296,7 +296,7 @@ voos |>
 
 Existem duas principais diferenças entre verbos dplyr e cláusulas SELECT:
 
--   No SQL,  a maiúscula e minúscula não fazem diferença: você pode escrever `select`, `SELECT` ou até `SeLeCt`. Neste livro ficaremos com a convenção comum de escrever as palavras-chaves SQL usando letras maiúsculas para distinguir de nomes de tabelas ou variáveis.
+-   No SQL, a maiúscula e minúscula não fazem diferença: você pode escrever `select`, `SELECT` ou até `SeLeCt`. Neste livro ficaremos com a convenção comum de escrever as palavras-chaves SQL usando letras maiúsculas para distinguir de nomes de tabelas ou variáveis.
 -   No SQL, a ordem importa: você sempre deve escrever as declarações em ordem `SELECT`, `FROM`, `WHERE`, `GROUP BY`, `ORDER BY`. É um pouco confuso, pois esta ordem não é a mesma de como as declarações são realmente avaliadas com `FROM` em primeiro, depois `WHERE`, `GROUP BY`, `SELECT` e `ORDER BY`.
 
 As seções seguintes exploram com mais detalhes cada cláusula.
@@ -617,7 +617,8 @@ Aqui é importante ordenar com `arrange()` os dados, pois tabelas SQL não possu
 Na verdade, se você não usar `arrange()` você pode obter resultados em ordens diferentes toda vez!
 Note que nas funções de janela, a ordenação da informação se repete: a cláusula `ORDER BY` da consulta principal não se aplica automaticamente às funções de janela.
 
-Outra função SQL importante é a `CASE WHEN`. É usada para traduzir as funções `if_else()` e `case_when()` que dplyr se inspirou diretamente.
+Outra função SQL importante é a `CASE WHEN`.
+É usada para traduzir as funções `if_else()` e `case_when()` que dplyr se inspirou diretamente.
 Aqui estão alguns exemplos simples:
 
 ```{r}
