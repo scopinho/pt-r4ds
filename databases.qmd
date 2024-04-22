@@ -33,7 +33,7 @@ DBI é uma interface de baixo nível que se conecta aos bancos de dados e execut
 library(DBI)
 library(dbplyr)
 library(tidyverse)
-library (dados)
+library(dados)
 ```
 
 ## O básico sobre bancos de dados
@@ -240,10 +240,26 @@ O resto do capítulo irá te ensinar um pouco de SQL pelas lentes do dbplyr.
 Felizmente, se você conhece dplyr você está em um bom lugar para rapidamente aprender SQL, pois muitos conceitos são iguais.
 
 Nós iremos explorar o relacionamento entre dplyr e SQL usando alguns velhos amigos do pacote dados: `voos` e `avioes`.
-Estes conjuntos de dados são fáceis para usar no aprendizado sobre bancos de dados, pois o dbplyr vem com uma função que copia as tabelas para o banco de dados:
+Estes conjuntos de dados são fáceis para usar no aprendizado sobre bancos de dados, e podemos copiá-las [^databases-4]:
+
+[^databases-4]: **Nota de tradução**: O pacote `{dbplyr}` vem com a função `dbplyr::copy_nycflights13()` que copia as tabelas originais, em inglês, para o banco de dados.
+    Como estamos utilizando os dados traduzidos, disponíveis no pacote `{dados}`, vamos copiar as tabelas traduzidas para o banco de dados utilizando a função `dbWriteTable()` do pacote `{DBI}`.
 
 ```{r}
-dbplyr::copy_nycflights13(con)
+#| include: false
+# Depois de resolver https://github.com/cienciadedatos/dados/issues/107, 
+# Podemos usar a função criada.
+# dbplyr::copy_nycflights13(con)
+
+# Eu removi a frase ", pois o dbplyr vem com uma função que copia as tabelas para o banco de dados" pois ela não faz sentido nesse caso.
+```
+
+```{r}
+# Copiando as tabelas para o banco de dados
+dbWriteTable(con, name = "voos", value = voos)
+dbWriteTable(con, name = "avioes", value = avioes)
+
+# Lendo as tabelas do banco de dados
 voos <- tbl(con, "voos")
 avioes <- tbl(con, "avioes")
 ```
@@ -260,15 +276,14 @@ Declarações comuns incluem `CREATE` para definir novas tableas, `INSERT` para 
 Iremos focar em declarações `SELECT`, também chamadas de **consultas** (*queries*), pois são quase que exclusivamente o que você precisa para atuar em ciência de dados.
 
 Um consulta é formada por **cláusulas** (*clauses*).
-Existem cinco cláusulas importantes: `SELECT`, `FROM`, `WHERE`, `ORDER BY` e `GROUP BY`. Toda consulta precisa ter cláusulas `SELECT`[^databases-4] e `FROM`[^databases-5] e a consulta mais simples é `SELECT * FROM tabela`, que seleciona todas colunas de determinada tabela
-. Isto é o que dbplyr gera de uma tablea sem mudanças
-.
+Existem cinco cláusulas importantes: `SELECT`, `FROM`, `WHERE`, `ORDER BY` e `GROUP BY`. Toda consulta precisa ter cláusulas `SELECT`[^databases-5] e `FROM`[^databases-6] e a consulta mais simples é `SELECT * FROM tabela`, que seleciona todas colunas de determinada tabela
+. Isto é o que dbplyr gera de uma tabela sem mudanças
 :
 
-[^databases-4]: É estranho, mas dependendo do contexto, `SELECT` pode ser tanto uma declaração quanto uma cláusula.
+[^databases-5]: É estranho, mas dependendo do contexto, `SELECT` pode ser tanto uma declaração quanto uma cláusula.
     Para evitar esta confusão, iremos usar uma **consulta** `SELECT` ao invés de um declaração `SELECT`.
 
-[^databases-5]: Ok, tecnicamente, somente o `SELECT` é necessário, já que você pode escrever consultas como `SELECT 1+1` para executar cálculos básicos.
+[^databases-6]: Ok, tecnicamente, somente o `SELECT` é necessário, já que você pode escrever consultas como `SELECT 1+1` para executar cálculos básicos.
     Mas se você quer trabalhar com dados (como você faz sempre!) você precisará da cláusula `FROM`.
 
 ```{r}
@@ -373,9 +388,9 @@ Você verá exemplos mais complexos quando chegarmos nas funções de união (*j
 
 ### GROUP BY
 
-`group_by()` é traduzido como a clásula `GROUP BY`[^databases-6] e `summarize()` é traduzido como a cláusula `SELECT`:
+`group_by()` é traduzido como a clásula `GROUP BY`[^databases-7] e `summarize()` é traduzido como a cláusula `SELECT`:
 
-[^databases-6]: Isto não é uma coincidência: A função dplyr foi inspirada na cláusula SQL.
+[^databases-7]: Isto não é uma coincidência: A função dplyr foi inspirada na cláusula SQL.
 
 ```{r}
 diamantes_bd |> 
@@ -491,7 +506,7 @@ Lembre-se que, apesar de `WHERE` ser escrita depois de `SELECT`, ela é avaliada
 
 ```{r}
 voos |> 
-  mutate(ano1 = year + 1) |> 
+  mutate(ano1 = ano + 1) |> 
   filter(ano1 == 2014) |> 
   show_query()
 ```
@@ -563,6 +578,8 @@ Para ajudar a entender o que acontece, usaremos algumas funções de ajuda que c
 Isto tornará um pouco mais fácil explorar algumas variações e ver como sumarizações e transformações podem ser diferentes.
 
 ```{r}
+#| eval: true
+#| echo: true
 consulta_summarize <- function(df, ...) {
   df |> 
     summarize(...) |> 
@@ -626,13 +643,14 @@ voos |>
   consulta_mutate(
     descricao = if_else(atraso_chegada > 0, "atrasado", "no horario")
   )
+
 voos |> 
   consulta_mutate(
     descricao = 
       case_when(
-        arr_delay < -5 ~ "adiantado", 
-        arr_delay < 5 ~ "no horario",
-        arr_delay >= 5 ~ "atrasado"
+        atraso_chegada < -5 ~ "adiantado", 
+        atraso_chegada < 5 ~ "no horario",
+        atraso_chegada >= 5 ~ "atrasado"
       )
   )
 ```
