@@ -112,7 +112,7 @@ con <- DBI::dbConnect(duckdb::duckdb())
 
 duckdb é um banco de dados de alto desempenho desenhado muito para as necessidades da pessoa cientista de dados.
 O usaremos aqui pois é muito fácil de se iniciar, mas também porque é capaz de lidar com *gigabytes* de dados com grande velocidade.
-Se você quiser usar o duckdb em um projeto de análise de dados real, você também precisará fornecer o argumento `dbdir` para persistir o banco de dados e dizer ao duckdb onde salvá-lo.
+Se você quiser usar o duckdb em um projeto de análise de dados real, será necessário incluir o argumento `dbdir` para um banco de dados permanente e dizer ao duckdb onde salvar.
 Assumindo que você está usando um projeto (@sec-workflow-scripts-projects), é razoável armazená-lo no diretório `duckdb` do projeto atual:
 
 ```{r}
