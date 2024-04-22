@@ -10,7 +10,7 @@ Este livro não é uma ilha; não existe nenhuma fonte específica que fará voc
 Assim que você começar a aplicar as técnicas descritas neste livro nos seus dados, você logo terá questionamentos que nós não respondemos aqui.
 Esta seção elenca algumas dicas sobre como obter ajuda e também te ajudar a continuar aprendendo.
 
-## Google é seu amigo
+## O Google é seu amigo
 
 Se você travar, começe com o Google.
 Tipicamente colocando "R" em uma busca é o suficiente para restringi-la para resultados relevantes: se a busca não for útil, geralmente significa que não existem muitos resultados específicos.
@@ -20,8 +20,8 @@ Se você tiver uma mensagem de erro e não tem ideia do que ela significa, dê u
 Há chances de que outras pessoas também tenham ficado confusas com o erro anteriormente e em algum lugar da web você terá ajuda.
 (Se a mensagem de erro não estiver em inglês, execute `Sys.setenv(LANGUAGE = "en")` e execute novamente o código; provavelmente encontrará ajuda com mensagens de erro em inglês.)
 
-Se o Google não ajudar tente o Stack Overflow (https//stackoverflow.com).
-Comece reservando tempo para buscar uma resposta já existente, incluindo '[R]' para restringir sua busca por perguntas e respostas que usem R.
+Se o Google não ajudar tente o [Stack Overflow](https://stackoverflow.com).
+Comece reservando tempo para buscar uma resposta já existente, incluindo `[R]` para restringir sua busca por perguntas e respostas que usem R.
 
 ## Criando um exemplo reprodutível (*reprex*)
 
@@ -42,7 +42,7 @@ Existem duas partes na criação de um *reprex*:
 Isto parece muito trabalhoso!
 E pode ser, mas tem um grande retorno:
 
--   Em 80% dos casos, criando um excelente reprex pode encontrar a raiz do seu problema.
+-   Em 80% dos casos, a criação de um excelente reprex mostrará a raiz do seu problema.
     É incrível como o processo de escrever um exemplo pequeno e auto-suficiente ajuda você a responder sua própria dúvida.
 
 -   Nos 20% restantes, você terá entendido a essência do seu problema de uma maneira que é fácil para os outros entenderem.
