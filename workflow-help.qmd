@@ -89,33 +89,33 @@ mean(y)
 
 Qualquer pessoa poderá copiar, colar e rodar isto imediatamente.
 
-Existem três coisass que você precisa incluir para tornar seu exemplo reproduzível: pacotes necessários, dados e código.
+Existem três coisas que você precisa incluir para tornar seu exemplo reprodutível: pacotes necessários, dados e código.
 
-1. **Packages** devem ser carregados no início do script para facilitar a visualização de quais são necessários.
+1. **Pacotes** devem ser carregados no início do script para facilitar a visualização de quais são necessários.
    Este é um bom momento para você verificar que está usando a última versão dos pacotes; você poder ter encontado um bug que foi resolvido desde a sua última atualização dos pacotes.
    Para pacotes do tidyverse, a maneira mais fácil de atualizar é com o comando `tidyverse_update()`.
 
-2. A maneira mais fácil para incluir os dados é usar 'dput()' para gerar o código em R necessário para recriar os dados.
-   Por exemplo, para recriar o dataset 'mtcars' no R rode os seguintes comandos:
+2. A maneira mais fácil para incluir os dados é usar `dput()` para gerar o código em R necessário para recriar os dados.
+   Por exemplo, para recriar o dataset `mtcars` no R execute os seguintes comandos:
 
-   1. Rode 'dput(mtcars)' no R
-   2. Copie a saída
-   3. No reprex, digite 'mtcars <-' e então cole.
+   1. Execute `dput(mtcars)` no R
+   2. Copie o resultado
+   3. No reprex, digite `mtcars <-` e então cole o resultado copiado no passo anterior.
 
-   Tente usar a menor parte dos seus dados que ainda contém o erro.
+   Tente usar a menor parte dos seus dados que ainda gera o erro.
 
 3. Dedique um pouco de tempo para se certificar de que seu código é de fácil leitura por todos:
 
    - Esteja certo de que usou espaços e suas variáveis são concisas, porém objetivas;
-   - Use comentários para indicar aonde está o problema;
+   - Use comentários para indicar onde está o problema;
    - Faça seu melhor para excluir tudo que não é relacionado com o problema.
 
    Quanto mais sucinto o código, mais fácil é para entender e mais fácil ainda para arrumar.
 
 Termine verificando que você fez um exemplo possível de ser reproduzido por meio de uma nova sessão do R, copiando e colando seu script.
 
-A criação de reprexes não é trivial e exige alguma prática para aprender a criar bons e de fato mínimos reprexes.
-Contudo, aprender a fazer perguntas que incluem o código e dedicando algum tempo para fazer ele reproduzível será um aprendizado de longo prazo enquanto você aprender a dominar o R.
+A criação de exemplos reprodutíveis (*reprex*) não é trivial e exige alguma prática para aprender a criar exemplos reprodutíveis bons e que contenham o mínimo de código e dados possível.
+Contudo, aprender a fazer perguntas que incluem o código e dedicando algum tempo para fazer ele ser reprodutível será um aprendizado de longo prazo enquanto você aprender e aprimorar suas habilidades com o R.
 
 ## Invista em você
 
@@ -126,8 +126,8 @@ Para se manter conenctado de maneira geral com a comunidade do R, recomendamos a
 
 ## Sumário
 
-Este capítulo encerra a parte  Whole Game deste livro.
-Você viu até agora as partes mais importantes do processo em ciência de dados: visualização, transformação, classificação e importação.
-Agora você tem uma visão abrangente do processo como um todo e começamos a entrar nos detalhes pormenorizados.
+Este capítulo encerra a parte "Visão geral" deste livro.
+Você viu até agora as partes mais importantes do processo em ciência de dados: visualização, transformação, organização e importação.
+Agora você tem uma visão abrangente do processo como um todo e começamos a entrar nos detalhes.
 
-A próxima parte do livro, Visualização, é um aprofundamento na estrutura dos gráficos e criação de visualização de dados com o ggplot2, exemplos de como usar as ferramentas que aprendeu até agora para construir uma análise exploratória de dados e também introduzir boas práticas na criação de desenhos para comunicação.
+A próxima parte do livro, Visualização, é um aprofundamento na estrutura dos gráficos e criação de visualização de dados com o ggplot2, exemplos de como usar as ferramentas que aprendeu até agora para construir uma análise exploratória de dados e também introduzir boas práticas na criação de gráficos para comunicação.
