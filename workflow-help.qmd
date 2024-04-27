@@ -93,7 +93,7 @@ Existem três coisass que você precisa incluir para tornar seu exemplo reproduz
 
 1. **Packages** devem ser carregados no início do script para facilitar a visualização de quais são necessários.
    Este é um bom momento para você verificar que está usando a última versão dos pacotes; você poder ter encontado um bug que foi resolvido desde a sua última atualização dos pacotes.
-   Para pacotes do tidyverse, a maneira mais fácil de atualizar é com o comando 'tidyverse_update()'.
+   Para pacotes do tidyverse, a maneira mais fácil de atualizar é com o comando `tidyverse_update()`.
 
 2. A maneira mais fácil para incluir os dados é usar 'dput()' para gerar o código em R necessário para recriar os dados.
    Por exemplo, para recriar o dataset 'mtcars' no R rode os seguintes comandos:
