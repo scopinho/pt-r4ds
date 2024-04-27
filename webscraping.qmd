@@ -1,4 +1,4 @@
-# Raspagem de dados (*Web scraping*) {#sec-scraping}
+# ✅ Raspagem de dados (*Web scraping*) {#sec-scraping}
 
 ```{r}
 #| echo: false
