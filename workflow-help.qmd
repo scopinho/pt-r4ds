@@ -59,7 +59,7 @@ y <- 1:4
 mean(y)
 ```
 
-Então execute 'reprex()', aonde a saída padrão está formatada para o Github:
+Então execute `reprex()`, onde a saída padrão está formatada para o GitHub:
 
 ``` r
 reprex::reprex()
