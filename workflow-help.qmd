@@ -122,7 +122,7 @@ Contudo, aprender a fazer perguntas que incluem o código e dedicando algum temp
 Você também deve dedicar algum tempo se preparando para resolver problemas antes que eles ocorram.
 Investir um pouco de tempo para aprender R a cada dia terá sua recompensa no longo prazo.
 Uma maneira é seguir o que a equipe do tidyverse está fazendo no blog do tidyverse (https://www.tidyverse.org/blog/).
-Para se manter conenctado de maneira geral com a comunidade do R, recomendamos a leitura do R weekly (https://rweekly.org): é um esforça da comunidade em agregar as notícias mais interessantes sobre o R a cada semana.
+Para acompanhar de forma mais ampla a comunidade do R, recomendamos a leitura do R weekly (https://rweekly.org): é um esforço da comunidade em agregar as notícias mais interessantes sobre o R a cada semana.
 
 ## Sumário
 
