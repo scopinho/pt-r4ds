@@ -34,7 +34,7 @@ Elas te indicam que o dplyr sobrescreve algumas funções do R base.
 Se você quiser utilizar a versão R base dessas funções depois de carregar o dplyr, você deverá usar seus nomes completos: `stats::filter()` e `stats::lag()`.
 Até agora nós basicamente ignoramos o pacote ao qual uma função pertence, pois na maioria das vezes isso não importava. 
 
-No entanto, conhecer o pacote pode te auxiliar na obtenção de ajuda e na busca por funções relacionadas, então quando for necessároi ser precisos a respeito de qual pacote uma função pertence, nós utilizaremos a mesma sintaxe que o R: `nomedopacote::nomedafuncao()`.
+No entanto, conhecer o pacote pode te auxiliar na obtenção de ajuda e na busca por funções relacionadas, então quando for necessário sermos precisos a respeito de qual pacote uma função pertence, nós utilizaremos a mesma sintaxe que o R: `nomedopacote::nomedafuncao()`.
 
 ### nycflights13
 
