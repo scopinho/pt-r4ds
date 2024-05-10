@@ -323,7 +323,7 @@ Normalmente, a resposta correta é utilizar um novo objeto, que será nomeado de
 
 Não é incomum obter conjuntos de dados com centenas ou até mesmo milhares de variáveis.
 Nessa situação, o primeiro desafio tende as ser focar apenas nas variáveis que você está interessado.
-`select()` permite que você rapidamente dê um zoom em um subconjunto adequado utilizando operações baseadas no nome das variáveis: 
+`select()` permite que você rapidamente dê um _zoom_ (foque) em um subconjunto adequado utilizando operações baseadas no nome das variáveis: 
 
 -   Seleciona colunas por nome:
 
