@@ -300,7 +300,6 @@ flights |>
 
 Ou então, você pode controlar quais variáveis são mantidas com o argumento `.keep`. 
 Um argumento particularmente útil é `"used"` que especifica que nós queremos manter apenas as colunas que estiveram envolvidas ou foram criadas pela etapa de `mutate()`.
-For example, the following output will contain only the variables `dep_delay`, `arr_delay`, `air_time`, `gain`, `hours`, and `gain_per_hour`.
 Por exemplo, a saída a seguir irá conter apenas as variáveis `dep_delay`, `arr_delay`, `air_time`, `gain`, `hours` e `gain_per_hour`.
 
 ```{r}
@@ -374,7 +373,6 @@ Confira `?select` para mais detalhes.
 Uma vez que você saiba expressões regulares (o tópico de @sec-regular-expressions) você também poderá utilizar `matches()` para selecionar variáveis que dão match em um dado padrão.
 
 Você pode renomear variáveis à media que seleciona elas com `select()` utilizando `=`.
-The new name appears on the left hand side of the `=`, and the old variable appears on the right hand side:
 O novo nome aparece à esquerda do `=` e o nome antigo à direita: 
 
 ```{r}
@@ -579,7 +577,7 @@ Isso significa que todas as operações subsequentes irão operar "por mês".
 
 ### `summarize()` {#sec-summarize}
 
-A operação agrupada mais importante é a síntese (_"summary"_), que caso esteja sendo utilizada para calcular uma única síntese estatística, reduz o data frame para ter apenas uma única linha para cada grupo.
+A operação agrupada mais importante é a sumarização (_"summary"_), que caso esteja sendo utilizada para calcular uma única sumarização estatística, reduz o data frame para ter apenas uma única linha para cada grupo.
 
 No dplyr, essa operação é feita pela função `summarize()`[^data-transform-3], como mostrado pelo exemplo a seguir, que calcula o atraso médio das decolagens por mês:
 
@@ -607,7 +605,7 @@ flights |>
 ```
 
 Você pode criar quantas sínteses quiser em uma única chamada à `summarize()`.
-Você irá aprender várias sínteses úteis nos próximos capítulos, mas uma que é muito útil é `n()`, que retorna o número de linhas de cada grupo.
+Você irá aprender várias sumarizações úteis nos próximos capítulos, mas uma que é muito útil é `n()`, que retorna o número de linhas de cada grupo.
 
 ```{r}
 flights |> 
@@ -631,7 +629,6 @@ Existem cinco funções úteis que lhe permite extrair linhas específicas de de
 -   `df |> slice_sample(n = 1)` pega uma linha aleatória. 
 
 Você pode variar `n` para selecionar mais do que uma linha, ou, em vez de usar `n =`, você pode usar `prop = 0.1` para selecionar (por exemplo) 10% das linhas de cada grupo.
-For example, the following code finds the flights that are most delayed upon arrival at each destination:
 Por exemplo, o código a seguir acha os vôos que estão mais atrasados na chegada em cada destino.
 
 ```{r}
@@ -659,7 +656,7 @@ daily <- flights |>
 daily
 ```
 
-Quando você cria uma síntese de um tibble agrupado por mais de uma variávei, cada síntese remove a camada do último grupo.
+Quando você cria um sumário de um tibble agrupado por mais de uma variável, cada sumário remove a camada do último grupo.
 Na verdade, essa não era uma boa forma de fazer essa função funcionar, mas é difícil mudar agora sem quebrar códigos que já existem.
 Para tornar óbvio o que está acontecendo, o dplyr exibe uma mensagem que te diz como modificar esse comportamento: 
 
@@ -852,7 +849,7 @@ batters
 Quando plotamos a habilidade dos rebatedores (medidas pela média de acerto, `performance`) contra o número de oportunidades de acertar a bola (medidas pela númer de vezes ao bastão, `n`), é possível ver dois padrões:
 
 1.  A variação em `performance` é maior entre os jogadores que foram menos vezes ao bastão. 
-    A forma do gráfico é muito característica: sempre que você plotar uma média (ou alguma outra síntese estatística)  vs. tamanho do grupo, você verá que a variação diminui à medida que o tamanho da amostra aumenta[^data-transform-4].
+    A forma do gráfico é muito característica: sempre que você plotar uma média (ou alguma outra sumarização estatística)  vs. tamanho do grupo, você verá que a variação diminui à medida que o tamanho da amostra aumenta[^data-transform-4].
 
 2.  Existe uma correlação positiva entre a habilidade (`performance`) e as oportunidades de acertar a bola (`n`), pois os times querem dar aos melhores jogadores o maior número de oportunidades de acertar a bola.
 
