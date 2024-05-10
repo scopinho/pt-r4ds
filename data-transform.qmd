@@ -29,7 +29,7 @@ library(nycflights13)
 library(tidyverse)
 ```
 
-Preste bastante atenção às mensages de conflito exibidas quando você carregar o tidyverse. 
+Preste bastante atenção às mensagens de conflito exibidas quando você carregar o tidyverse. 
 Elas te indicam que o dplyr sobrescreve algumas funções do R base.
 Se você quiser utilizar a versão R base dessas funções depois de carregar o dplyr, você deverá usar seus nomes completos: `stats::filter()` e `stats::lag()`.
 Até agora nós basicamente ignoramos o pacote ao qual uma função pertence, pois na maioria das vezes isso não importava. 
