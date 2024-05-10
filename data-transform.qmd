@@ -553,7 +553,7 @@ mtcars %>%
 
 Para casos simples, `|>` e `%>%` se comportam de forma idêntica. 
 Então por que recomendamos o pipe do R base?
-Primeiramente, porque o fato de ser parte do R base, signnifica que ele está sempre diponível para uso, mesmo que você não esteja utilizando o tidyverse.
+Primeiramente, porque o fato de ser parte do R base, significa que ele está sempre disponível para uso, mesmo que você não esteja utilizando o tidyverse.
 Em segundo, `|>` é bem mais simples que `%>%`: nesse meio tempo entre a invenção do `%>%` em 2014 e a inclusão do `|>` no R 4.1.0 em 2021, aprendemos muita coisa sobre o pipe. 
 Isso permitiu que a implementação no R base se livrasse de usos pouco frequentes e funcionalidades menos importantes.
 :::
