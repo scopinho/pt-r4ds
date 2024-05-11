@@ -159,12 +159,12 @@ As seções a seguir aprofundam os três componentes de um documento Quarto em m
 
 O editor Visual no RStudio utiliza uma interface [WYSIWYM](https://en.wikipedia.org/wiki/WYSIWYM) para autoria de documentos Quarto.
 Por trás das cortinas, os textos em documentos Quarto (arquivos `.qmd`) são escritos em Markdown, um conjunto leve de convenções para formatação de arquivos de texto simples.
-Na verdade, o Quarto usa o markdown do Pandoc (uma versão um pouco extendida de Markdown que é interpretável pelo Quarto), incluindo tabelas, citações, referências cruzadas, notas de rodapé, divs/spans, definiçòes de listas, atributos, HTML/TeX crús, entre outros, assim como suporta execução de células de código e a visualização de seus resultados em linha.
-Enquanto Markdown é desenhado para ser simples de ler e escrever, como você verá em @sec-source-editor, ainda é necessário aprender uma nova sintaxe.
+Na verdade, o Quarto usa o markdown do Pandoc (uma versão um pouco extendida de Markdown que é interpretável pelo Quarto), incluindo tabelas, citações, referências cruzadas, notas de rodapé, divs/spans, listas de definição, atributos, HTML/TeX crus, entre outros, assim como suporta execução de células de código e a visualização de seus resultados em linha.
+Enquanto Markdown é desenhado para ser simples de ler e de escrever, como você verá em @sec-source-editor, ainda é necessário aprender uma nova sintaxe.
 Assim, se documentos computacionais como arquivos `.qmd` são novos para você, mas você tem experiência com Google Docs ou MS Word, o jeito mais fácil de começar a usar Quarto no RStudio é pelo editor visual.
 
 No editor visual, você pode tanto usar botões na barra de menu para inserir imagens, tabelas, referências cruzadas, etc. quanto usar o atalho geral <kbd>⌘ /</kbd> para inserir qualquer coisa.
-Se você estiver no começo de uma linha (como ilustrado em @fig-visual-editor), você pode apenas digitar para <kbd>/</kbd> usar o atalho.
+Se você estiver no começo de uma linha (como ilustrado em @fig-visual-editor), você pode apenas digitar <kbd>/</kbd> para usar o atalho.
 
 ```{r}
 #| label: fig-visual-editor
@@ -176,14 +176,14 @@ Se você estiver no começo de uma linha (como ilustrado em @fig-visual-editor),
 #|   Um documento Quarto exibindo diversos recursos do editor
 #|   visual como formatação de texto (itálico, negrito, sublinhado,
 #|   caixa alta pequena, código, superescrito e subscrito),
-#|   primeiro em títulos de nível três, listas enumeradas e não
+#|   títulos de nível um a três, listas enumeradas e não
 #|   enumeradas, links, frases com links e imagens (assim como uma
 #|   janela pop-up para personalização de tamanho de imagem,
 #|   inserção de legenda, texto alternativo, etc.), tabelas com
 #|   uma linha de cabeçalho e a ferramenta de inserir qualquer 
 #|   coisa com opções de inserir um bloco de código R, um bloco
 #|   de código Python, um div, uma lista não enumerada, uma lista
-#|   enumerada ou um título de primeira linha (são algumas das 
+#|   enumerada ou um título de primeiro nível (são algumas das 
 #|   primeiras opções da ferramenta).
 
 knitr::include_graphics("quarto/quarto-visual-editor.png")
@@ -229,18 +229,18 @@ Se você se esquecer, pode buscar uma boa folha de referência em *Help \> Markd
 ### Exercícios
 
 1.  Pratique o que você aprendeu criando um currículo (CV) breve.
-    O título deve ser o seu nome e você deve incluir cabeçalhos para pelo menos sua educação e trabalho.
+    O título deve ser o seu nome e você deve incluir cabeçalhos para pelo menos sua educação ou trabalho.
     Cada uma das seções deve incluir uma lista em tópicos de trabalhos/títulos.
     Destaque o ano em negrito.
 
-2.  Usando o editor fonte e a referência rápida para Markdown, descubra como:
+2.  Usando o editor source e a referência rápida para Markdown, descubra como:
 
     a.  Adicionar uma nota de rodapé.
     b.  Adicionar uma linha horizontal.
     c.  Adicionar um bloco de citação.
 
 3.  Copie e cole o conteúdo de `diamond-sizes.qmd` a partir de <https://github.com/cienciadedatos/pt-r4ds/tree/main/quarto> para um arquivo R Quarto local.
-    Verifique se você consegue executá-lo, depois adicione texto depois do polígono de frequências que descreve suas características mais chamativas.
+    Verifique se você consegue executá-lo, então adicione texto depois do polígono de frequências que descreve suas características mais chamativas.
 
 4.  Crie um documento em Google doc ou MS Word (ou use um documento que você tenha criado previamente) que contenha títulos, hiperlinks, texto formatado, etc.
     Copie os conteúdos desse documento e cole-os em um documento quarto no editor visual.
@@ -347,7 +347,7 @@ Cada uma dessas opções de bloco de código é adicionada ao cabeçalho do bloc
 2 * 2
 ```
 
-A tabela a seguir resume que tipos de output cada opção suprime:
+A tabela a seguir resume que tipos de saída cada opção suprime:
 
 | Opção            | Executa código | Mostra código | Resultados | Gráficos | Mensagens | Avisos |
 |------------------|:--------------:|:-------------:|:------:|:--------:|:---------:|:------:|
@@ -406,7 +406,7 @@ Quando o relatório é renderizado, os resultados dessas computações são inse
 > A distribuição dos restantes é exibida abaixo:
 
 Ao inserir números no texto, `format()` é seu amigo.
-A função permite configurar o número de `digits` (casas decimais) para que você não imprima o número com uma precisão ridícula e `big.mark` para facilitar a leitura dos números.
+A função permite configurar o número de `digits` (casas decimais) para que você não imprima o número com um grau de precisão que chega a ser ridículo e `big.mark` para facilitar a leitura dos números.
 Você pode combiná-las em uma função auxiliar:
 
 ```{r}
@@ -441,7 +441,7 @@ Se você incluir um bloco de código que gera uma figura (como uma chamada a `gg
 
 O maior desafio ao trabalhar com imagens no Quarto é fazer com que elas fiquem do tamanho e no formato corretos.
 Há cinco opções principais que controlam o tamanho da figura: `fig-width`, `fig-height`, `fig-asp`, `out-width` e `out-height`.
-Ajustar o tamanho é desafiador porque há dois tamanhos (aquele da figura criada pelo R e aquele que é inserido no documento final) e múltiplas formas de especificar tamanho (isto é, altura, largura e proporcional ou *aspect ratio*: escolha dois dos três).
+Ajustar o tamanho é desafiador porque há dois tamanhos (aquele da figura criada pelo R e aquele que é inserido no documento final) e múltiplas formas de especificar tamanho (isto é, altura, largura e *aspect ratio* - proporcional: escolha dois dos três).
 
 Recomendamos três das cinco opções:
 
@@ -474,7 +474,7 @@ plot <- ggplot(mpg, aes(x = displ, y = hwy)) + geom_point()
 #| fig-width: 4
 #| out-width: "50%"
 #| fig-alt: |
-#|   Gráfico de dispersão de milhagem de estrada vs. deslocamento dos carros, em que os pontos
+#|   Gráfico de dispersão de milhagem em rodovia vs. deslocamento dos carros, em que os pontos
 #|   têm tamanho comum e o texto dos eixos e rótulos têm tamanho de fonte similar 
 #|   ao texto em volta.
 
@@ -486,8 +486,8 @@ plot
 #| fig-width: 6
 #| out-width: "50%"
 #| fig-alt: |
-#|   Gráfico de dispersão de milhagem de estrada vs. deslocamento dos carros, em que os pontos
-#|   têm tamanho menor que o gráfico anterior e o texto dos eixos e rótulos têm tamanho
+#|   Gráfico de dispersão de milhagem em rodovia vs. deslocamento dos carros, em que os pontos
+#|   têm tamanho menor que os do gráfico anterior e o texto dos eixos e rótulos têm tamanho
 #|   menor que o texto em volta.
 
 
@@ -499,30 +499,30 @@ plot
 #| fig-width: 8
 #| out-width: "50%"
 #| fig-alt: |
-#|   Gráfico de dispersão de milhagem de estrada vs. deslocamento dos carros, em que os pontos
-#|   têm tamanho ainda menor que o gráfico anterior e o texto dos eixos e rótulos têm tamanho
+#|   Gráfico de dispersão de milhagem em rodovia vs. deslocamento dos carros, em que os pontos
+#|   têm tamanho ainda menor que os do gráfico anterior e o texto dos eixos e rótulos têm tamanho
 #|   ainda menor que o texto em volta.
 
 plot
 ```
 
-Se você quiser garantir que o tamanho da fonte é consistente em todas as suas figuras, será necessário ajustar sempre o `out-width` com o `fig-width` para manter a mesma razão com o `out-width` padrão.
+Se você quiser garantir que o tamanho da fonte seja consistente em todas as suas figuras, será necessário ajustar sempre o `out-width` com o `fig-width` para manter a mesma razão com o `out-width` padrão.
 Por exemplo, se seu `fig-width` padrão é 6 e o `out-width` está em "70%", será necessário configurar `fig-width` a 4.3 (6 \* 0.5 / 0.7) quando ajustar `out-width: "50%"`.
 
 Entender dimensionamento é uma arte e uma ciência e acertar essas coisas pode requerer uma abordagem de tentativa e erro. Você pode aprender mais sobre isso no [post de blog tomando controle de dimensionamento de gráficos](https://www.tidyverse.org/blog/2020/08/taking-control-of-plot-scaling/).
 
 ### Outras opções importantes
 
-Quando estamos trabalhando com código e texto, como neste livro, é possível ajustar `fig-show: hold` de modo que os gráficos são exibidos após o código.
+Quando estamos trabalhando com código e texto, como neste livro, é possível ajustar `fig-show: hold` de modo que os gráficos sejam exibidos após o código.
 Isso rende o efeito agradável de nos forçar a quebrar blocos de código grandes em menores com suas explicações.
 
 Para adicionar uma legenda ao gráfico, use `fig-cap`.
 No Quarto isso mudará a figura de *inline* (no meio do texto) para "*floating*".
 
-Se você está produzindo PDF, o tipo gráfico padrão é PDF.
+Se você está produzindo PDF, o tipo de gráfico padrão é PDF.
 Isso é um bom padrão porque PDF são gráficos vetoriais de alta qualidade.
 No entanto, isso pode gerar gráficos muito grandes e lentos se você está exibindo milhares de pontos.
-Nesse caso, ajusete `fig-format: "png"` para forçar o uso de PNGs.
+Nesse caso, ajuste `fig-format: "png"` para forçar o uso de PNGs.
 Esses têm qualidade ligeiramente menor, mas são muito mais compactos.
 
 É uma boa ideia dar rótulos a blocos de código que produzam figuras, mesmo que você rotineiramente não faça isso.
@@ -578,11 +578,11 @@ Cada um fornece um conjunto de ferramentas para retornar tabelas formatadas a pa
 
 1.  Abra `diamond-sizes.qmd` no editor visual, insira um bloco de código e adicione uma tabela com `knitr::kable()` que mostre as 5 primeiras linhas do *data frame* `diamonds`.
 2.  Exiba a mesma tabela com `gt::gt()`.
-3.  Adicione um rótulo de bloco de código que começa com o prefixo `tbl-` e adicione a legenda para a tabela com a opção de bloco `tbl-cap`. Depois edite o texto acima do bloco de código para adicionar a referência cruzada para a tabela com Insert \> Cross Reference.
+3.  Adicione um rótulo de bloco de código que comece com o prefixo `tbl-` e adicione a legenda para a tabela com a opção de bloco `tbl-cap`. Depois edite o texto acima do bloco de código para adicionar a referência cruzada para a tabela com Insert \> Cross Reference.
 
 ## Salvando em cache {#sec-caching}
 
-Normalmente, cada renderização do documento começa com uma folha em branco.
+Normalmente, cada renderização do documento começa de uma folha em branco.
 Isso é ótimo para reprodutibilidade porque garante que você capturou toda computação importante em código.
 No entanto, pode ser doloroso refazer computações que tomam um tempo longo.
 A solução para isso é `cache: true`.
@@ -723,7 +723,7 @@ O arquivo resultante será autocontido, de modo que não necessitará de qualque
 
 Documentos Quarto podem incluir um ou mais parâmetros cujos valores podem ser ajustados quando se renderiza o relatório.
 Parâmetros são úteis quando se quer executar mais vezes o mesmo relatório com valores diferentes para vários inputs chave.
-Por exemplo, pode ser que seja necessário produzir relatórios de vendas por escritório, resultados de provas por aluno ou mesmo resumos demográficos por país.
+Por exemplo, pode ser que seja necessário produzir relatórios de vendas por filial, resultados de provas por aluno ou mesmo resumos demográficos por país.
 Para declarar um ou mais parâmetros, use o campo `params`.
 
 Esse exemplo usa o parâmetro `my_class` para determinar que classe de carros será exibida:
@@ -767,10 +767,11 @@ Citações podem ser inseridas a partir de uma variedade de fontes:
 Internamente, o editor visual usa a representação padrão para citações do markdown Pandoc (por exemplo, `[@citation]`).
 
 Se você inserir uma citação usando um dos primeiros três métodos, o editor visual automaticamente criará um arquivo `bibliography.bib` para você e adicionará a sua referência a ele.
-Isso também adicionará um campo `bibliography` ao YAML do documento Na medida em que você insere mais referências, esse arquivo é povoado com as citações.
+Isso também adicionará um campo `bibliography` ao YAML do documento.
+À medida em que você insere mais referências, esse arquivo é povoado com as citações.
 Também é possivel editar diretamente esse arquivo usando muitos formatos comuns como BibLaTeX, BibTeX, EndNote, Medline.
 
-Para criar a citação dentro do seu arquivo `.qmd` no editor fonte, use a chave composta de '\@' + identificador da citação do seu arquivo de bibliografia.
+Para criar a citação dentro do seu arquivo `.qmd` no editor source, use a chave composta de '\@' + identificador da citação do seu arquivo de bibliografia.
 Em seguida, coloque a citação entre colchetes.
 Seguem alguns exemplos:
 
@@ -797,7 +798,7 @@ bibliography: rmarkdown.bib
 csl: apa.csl
 ```
 
-As with the bibliography field, your csl file should contain a path to the file.
+Assim como no campo de bibliografia, seu arquivo csl deve conter um caminho para o arquivo.
 Aqui assumimos que o arquivo CSL está no mesmo diretório que o arquivo `.qmd`.
 Um bom lugar para encontrar arquivos de estilo CSL para sua bibligrafia é em: <https://github.com/citation-style-language/styles>.
 
@@ -822,7 +823,7 @@ O caderno:
     Isso também economiza tempo quando você eventualmente organizar sua análise para compartilhar com outras pessoas.
 
 -   Ajuda outras pessoas a entenderem o seu trabalho.
-    É raro fazer análise de dados sozinho e você frequentemente fará parte de um time.
+    É raro fazer análise de dados sozinho e você frequentemente fará parte de uma equipe.
     Um caderno de laboratório ajuda a compartilhar com seus colegas não apenas o que você fez, mas também porque você fez o que fez.
 
 Muitos dos bons conselhos sobre o uso efetivo de cadernos de laboratórios podem também ser traduzidos para cadernos de análise.
@@ -864,18 +865,18 @@ Tiramos de nossa própria experiência e dos conselhos de Collin Purrington sobr
 
 ## Resumo
 
-Neste capítulo apresentamos o Quarto para escrita e publicação reprodutível de documentos computacionais que incluem seu código e seu texto no mesmo lugar.
-Você aprendeu a escrever em documentos Quarto no RStudio com o editor fonte ou visual, como blocos de código funcionam e como personalizar opções para cache de computações.
-Além disso, você aprendeu sobre ajustes no cabeçalho YAML para criar documentos autocontidos ou parametrizados, assim como sobre citações e bibliografia.
-Também demos dicas de fluxo de trabalho e resolução de problemas.
+Neste capítulo apresentamos o Quarto para escrita e publicação reprodutível de documentos computacionais que incluam seu código e seu texto no mesmo lugar.
+Você aprendeu sobre escrever em documentos Quarto no RStudio com o editor fonte ou visual, como blocos de código funcionam e como personalizar opções para cache de computações.
+Além disso, você aprendeu sobre ajustes no cabeçalho YAML para criar documentos autocontidos ou parametrizados, assim como incluir citações e bibliografia.
+Também demos dicas de fluxo de trabalho e de resolução de problemas.
 
 Enquanto essa introdução deve ser suficiente para iniciar seu trabalho com Quarto, ainda há muito a aprender.
 Quarto ainda é relativamente jovem e ainda está crescendo rapidamente.
 O melhor lugar para se atualizar das últimas inovações é o site oficial: [https://quarto.org](https://quarto.org/){.uri}.
 
 Há dois tópicos importantes que não cobrimos aqui: colaboração e detalhes para comunicar sua ideia com precisão para outros humanos.
-Colaboração é parte vital da ciência de dados moderna e você pode facilitar muito a vida usando ferramentas de controle de versão, como Git e GitHub.
-Recomendamos o livro "Happy Git with R", uma introdução amigável a Git e GitHub para quem programa em R, escrito pela Jenny Bryan.
+Colaboração é uma parte vital da ciência de dados moderna e você pode facilitar muito a sua vida usando ferramentas de controle de versão, como Git e GitHub.
+Recomendamos o livro "Happy Git with R", uma introdução amigável ao Git e ao GitHub para quem programa em R, escrito pela Jenny Bryan.
 O livro está disponível online com acesso livre: <https://happygitwithr.com>.
 
 Também não comentamos sobre o que você deveria realmente escrever para comunicar seus resultados da sua análise com clareza.

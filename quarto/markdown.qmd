@@ -27,7 +27,7 @@ sobrescrito^2^ subscrito~2~
 1.  Item de lista enumerada 1
 
 2.  Item 2.
-    Os números são incrementados automaticamente no output.
+    Os números são incrementados automaticamente na saída.
 
 ## Links e imagens
 
