@@ -417,7 +417,7 @@ comma(.12358124331)
 
 ### Exercícios
 
-1.  Adicione uma seção que explore como o tamanho de diamantes varia de acordo com corte, cor e claridade.
+1.  Adicione uma seção que explore como o tamanho de diamantes varia de acordo com corte, cor e transparência.
     Considere que você está escrevendo um relatório para alguém que não sabe R e em vez de usar `echo: false` em cada bloco, configure como uma opção global.
 
 2.  Faça o download de `diamond-sizes.qmd` de <https://github.com/hadley/r4ds/tree/main/quarto>.
