@@ -520,7 +520,7 @@ Para adicionar uma legenda ao gráfico, use `fig-cap`.
 No Quarto isso mudará a figura de *inline* (no meio do texto) para "*floating*".
 
 Se você está produzindo PDF, o tipo de gráfico padrão é PDF.
-Isso é um bom padrão porque PDF são gráficos vetoriais de alta qualidade.
+Isso é um bom padrão porque PDFs são gráficos vetoriais de alta qualidade.
 No entanto, isso pode gerar gráficos muito grandes e lentos se você está exibindo milhares de pontos.
 Nesse caso, ajuste `fig-format: "png"` para forçar o uso de PNGs.
 Esses têm qualidade ligeiramente menor, mas são muito mais compactos.
