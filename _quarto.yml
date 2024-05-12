@@ -3,27 +3,25 @@ project:
   output-dir: _book
 
 book:
-  title: "R for Data Science (2e)"
+  title: "R para Ciência de Dados (2ª edição)"
   reader-mode: true
 
   page-footer:
     left: |
-      R for Data Science (2e) was written by Hadley Wickham, Mine
-      Çetinkaya-Rundel, and Garrett Grolemund.
+      R para Ciência de Dados (2ª edição) foi escrito por Hadley Wickham, Mine
+      Çetinkaya-Rundel, e Garrett Grolemund.
     right: |
-      This book was built with <a href="https://quarto.org/">Quarto</a>.
+      Este livro foi contruído com <a href="https://quarto.org/">Quarto</a>.
   cover-image: cover.jpg
   favicon: cover.jpg
-  site-url: https://r4ds.hadley.nz/
-  repo-url: https://github.com/hadley/r4ds/
+  site-url: https://cienciadedatos.github.io/pt-r4ds/
+  repo-url: https://github.com/cienciadedatos/pt-r4ds/
   repo-branch: main
   repo-actions: [edit, issue]
   chapters:
     - index.qmd
-
     - preface-2e.qmd
     - intro.qmd
-
     - part: whole-game.qmd
       chapters:
         - data-visualize.qmd
@@ -78,9 +76,9 @@ format:
       - r4ds.scss
     code-link: true
 
-    author-meta: "Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund"
+    author-meta: "Hadley Wickham, Mine Çetinkaya-Rundel, e Garrett Grolemund"
     include-in-header: "plausible.html"
     callout-appearance: simple
 
 editor: visual
-
+lang: pt

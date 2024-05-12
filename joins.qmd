@@ -2,8 +2,10 @@
 
 ```{r}
 #| echo: false
+#| results: asis
 
 source("_common.R")
+mensagem_capitulo_sem_traducao()
 ```
 
 ## Introduction
@@ -42,7 +44,7 @@ You'll also learn how to check that your keys are valid, and what to do if your 
 
 Every join involves a pair of keys: a primary key and a foreign key.
 A **primary key** is a variable or set of variables that uniquely identifies each observation.
-When more than one variable is needed, the key is called a **compound key.** For example, in nycfights13:
+When more than one variable is needed, the key is called a **compound key.** For example, in nycflights13:
 
 -   `airlines` records two pieces of data about each airline: its carrier code and its full name.
     You can identify an airline with its two letter carrier code, making `carrier` the primary key.
@@ -220,7 +222,7 @@ flights2
 ```
 
 There are four types of mutating join, but there's one that you'll use almost all of the time: `left_join()`.
-It's special because the output will always have the same rows as `x`[^joins-2].
+It's special because the output will always have the same rows as `x`, the data frame you're joining to[^joins-2].
 The primary use of `left_join()` is to add in additional metadata.
 For example, we can use `left_join()` to add the full airline name to the `flights2` data:
 
@@ -401,7 +403,7 @@ flights2 |>
       group_by(dest) |>
       summarize(delay = mean(arr_delay), n = n()) |>
       filter(n > 5) |>
-      inner_join(airports, by = c("dest" = "faa")) |>
+      inner_join(airports, join_by(dest == faa)) |>
       ggplot(aes(x = lon, y = lat)) +
         borders("state") +
         geom_point(aes(size = n, color = delay)) +
@@ -673,7 +675,7 @@ In equi joins the `x` keys and `y` are always equal, so we only need to show one
 We can request that dplyr keep both keys with `keep = TRUE`, leading to the code below and the re-drawn `inner_join()` in @fig-inner-both.
 
 ```{r}
-x |> left_join(y, by = "key", keep = TRUE)
+x |> inner_join(y, join_by(key == key), keep = TRUE)
 ```
 
 ```{r}
@@ -771,7 +773,7 @@ One small useful technique is to use them to restrict the cross join so that ins
 ```{r}
 df <- tibble(id = 1:4, name = c("John", "Simon", "Tracy", "Max"))
 
-df |> left_join(df, join_by(id < id))
+df |> inner_join(df, join_by(id < id))
 ```
 
 ### Rolling joins
@@ -811,6 +813,7 @@ parties <- tibble(
 Now imagine that you have a table of employee birthdays:
 
 ```{r}
+set.seed(123)
 employees <- tibble(
   name = sample(babynames::babynames$name, 100),
   birthday = ymd("2022-01-01") + (sample(365, 100, replace = TRUE) - 1)
@@ -891,9 +894,9 @@ employees |>
     Why are they different?
 
     ```{r}
-    x |> full_join(y, by = "key")
+    x |> full_join(y, join_by(key == key))
 
-    x |> full_join(y, by = "key", keep = TRUE)
+    x |> full_join(y, join_by(key == key), keep = TRUE)
     ```
 
 2.  When finding if any party period overlapped with another party period we used `q < q` in the `join_by()`?

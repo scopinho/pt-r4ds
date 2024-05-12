@@ -1,4 +1,4 @@
-# Workflow: code style {#sec-workflow-style}
+# ✅ Fluxo de trabalho: estilo de código {#sec-workflow-style}
 
 ```{r}
 #| echo: false
@@ -6,234 +6,232 @@
 source("_common.R")
 ```
 
-Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread.
-Even as a very new programmer, it's a good idea to work on your code style.
-Using a consistent style makes it easier for others (including future-you!) to read your work and is particularly important if you need to get help from someone else.
-This chapter will introduce the most important points of the [tidyverse style guide](https://style.tidyverse.org), which is used throughout this book.
+As boas práticas de formatação em programação são como as regras gramaticais: você pode até viver sem elas, mas elas certamente tornam asCoIsaSmaisfáCeiSdeler.
+Mesmo sendo iniciante em programação, é uma boa ideia observar e implementar as boas práticas na escrita do seu código.
+Usar um estilo de escrita consistente torna mais fácil para outras pessoas (incluindo você no futuro!) ler o seu trabalho, e é particularmente importante se você precisar pedir ajuda para outra pessoa.
+Este capítulo apresentará os pontos mais importantes do [guia de estilo tidyverse](https://style.tidyverse.org), que é usado em todos os capítulos deste livro.
 
-Styling your code will feel a bit tedious to start with, but if you practice it, it will soon become second nature.
-Additionally, there are some great tools to quickly restyle existing code, like the [**styler**](https://styler.r-lib.org) package by Lorenz Walthert.
-Once you've installed it with `install.packages("styler")`, an easy way to use it is via RStudio's **command palette**.
-The command palette lets you use any built-in RStudio command and many addins provided by packages.
-Open the palette by pressing Cmd/Ctrl + Shift + P, then type "styler" to see all the shortcuts offered by styler.
-@fig-styler shows the results.
+Formatar seu código de acordo com as convenções de estilo pode parecer um pouco chato no início, mas se você praticar, isso vai se tornar natural rapidamente.
+Além disso, existem algumas ótimas ferramentas para formatar de forma rápida códigos antigos, como o pacote [**styler**](https://styler.r-lib.org) de Lorenz Walthert.
+Depois de instalar o pacote com o comando `install.packages("styler")`, uma maneira fácil de usá-lo é por meio da paleta de comando (**command palette**) do RStudio.
+A paleta de comando permite que você use qualquer comando interno do RStudio e muitas extensões (*addins*) fornecidas por pacotes.
+Abra a paleta pressionando Cmd/Ctrl + Shift + P, em seguida, digite "styler" para ver todos os atalhos oferecidos pelo styler.
+A @fig-styler mostra os resultados.
 
 ```{r}
 #| label: fig-styler
 #| echo: false
 #| out-width: null
 #| fig-cap: | 
-#|   RStudio's command palette makes it easy to access every RStudio command
-#|   using only the keyboard.
-#| fig-alt: |
-#|   A screenshot showing the command palette after typing "styler", showing
-#|   the four styling tool provided by the package.
+#|   A paleta de comando do RStudio torna fácil acessar todos os comandos do RStudio usando apenas o teclado.
+#| fig-alt: | 
+#|   Uma captura de tela mostrando a paleta de comando depois de digitar "styler", mostrando as quatro ferramentas de formatação fornecidas pelo pacote.
 
 knitr::include_graphics("screenshots/rstudio-palette.png")
 ```
 
-We'll use the tidyverse and nycflights13 packages for code examples in this chapter.
+Neste capítulo, usaremos os pacotes tidyverse e dados para os exemplos com código.
 
 ```{r}
 #| label: setup
 #| message: false
 
 library(tidyverse)
-library(nycflights13)
+library(dados)
 ```
 
-## Names
+## Nomes
 
-We talked briefly about names in @sec-whats-in-a-name.
-Remember that variable names (those created by `<-` and those created by `mutate()`) should use only lowercase letters, numbers, and `_`.
-Use `_` to separate words within a name.
+Falamos um pouco sobre nomes em @sec-whats-in-a-name.
+Lembre-se de que os nomes de variáveis (aqueles criados por `<-` e aqueles criados por `mutate()`) devem usar apenas letras minúsculas, números e `_`.
+Use `_` para separar palavras dentro de um nome.
 
 ```{r}
 #| eval: false
 
-# Strive for:
-short_flights <- flights |> filter(air_time < 60)
+# Tente escrever assim:
+voos_curtos <- voos |> filter(tempo_voo < 60)
 
-# Avoid:
-SHORTFLIGHTS <- flights |> filter(air_time < 60)
+# Evite escrever assim:
+VOOSCURTOS <- voos |> filter(tempo_voo < 60)
 ```
 
-As a general rule of thumb, it's better to prefer long, descriptive names that are easy to understand rather than concise names that are fast to type.
-Short names save relatively little time when writing code (especially since autocomplete will help you finish typing them), but it can be time-consuming when you come back to old code and are forced to puzzle out a cryptic abbreviation.
+Como regra geral, é melhor usar nomes longos, descritivos e que sejam fáceis de entender, do que nomes curtos só pela rapidez para digitar.
+Os nomes curtos economizam relativamente pouco tempo ao escrever o código (especialmente porque o recurso de autocompletar (*autocomplete*) ajuda a terminar de digitá-los), mas isso pode te atrasar depois, quando voltar ao código antigo e precisar decifrar uma abreviação bem difícil de entender.
 
-If you have a bunch of names for related things, do your best to be consistent.
-It's easy for inconsistencies to arise when you forget a previous convention, so don't feel bad if you have to go back and rename things.
-In general, if you have a bunch of variables that are a variation on a theme, you're better off giving them a common prefix rather than a common suffix because autocomplete works best on the start of a variable.
+Se você tem um monte de nomes para coisas que estão relacionadas entre si, faça o possível para ser consistente.
+É fácil surgirem inconsistências quando você esquece uma convenção anterior, então não se sinta mal se você tiver que voltar e renomear as coisas.
+Em geral se você tem um monte de variáveis que são uma variação de um tema específico, é melhor dar a elas um prefixo comum em vez de um sufixo comum, porque o recurso de autocompletar funciona melhor no início de uma variável.
 
-## Spaces
+## Espaços
 
-Put spaces on either side of mathematical operators apart from `^` (i.e. `+`, `-`, `==`, `<`, ...), and around the assignment operator (`<-`).
+Use espaços em ambos os lados dos operadores matemáticos, exceto `^` (operadores: `+`, `-`, `==`, `<`, ...), e em torno do operador de atribuição (`<-`).
 
 ```{r}
 #| eval: false
 
-# Strive for
+# Tente escrever assim:
 z <- (a + b)^2 / d
 
-# Avoid
+# Evite escrever assim:
 z<-( a + b ) ^ 2/d
 ```
 
-Don't put spaces inside or outside parentheses for regular function calls.
-Always put a space after a comma, just like in standard English.
+Não coloque espaços dentro ou fora de parênteses para chamadas de funções normais.
+Sempre coloque um espaço depois de uma vírgula, assim como escrevemos em português.
 
 ```{r}
 #| eval: false
 
-# Strive for
+# Tente escrever assim:
 mean(x, na.rm = TRUE)
 
-# Avoid
+# Evite escrever assim:
 mean (x ,na.rm=TRUE)
 ```
 
-It's OK to add extra spaces if it improves alignment.
-For example, if you're creating multiple variables in `mutate()`, you might want to add spaces so that all the `=` line up.[^workflow-style-1]
-This makes it easier to skim the code.
+Tudo bem adicionar espaços extras se isso melhorar o alinhamento.
+Por exemplo, se você estiver criando várias variáveis com um `mutate()`, você pode querer adicionar espaços para que todos os sinais de `=` fiquem alinhados.[^workflow-style-1]
+Isso facilita a leitura do código.
 
-[^workflow-style-1]: Since `dep_time` is in `HMM` or `HHMM` format, we use integer division (`%/%`) to get hour and remainder (also known as modulo, `%%`) to get minute.
+[^workflow-style-1]: Como `horario_saida` está no formato `HMM` ou `HHMM`, fazemos uma divisão do número inteiro (`%/%`) para obter a hora e o resto (também conhecido como módulo, `%%`) para obter o minuto.
 
 ```{r}
 #| eval: false
 
-flights |> 
+voos |> 
   mutate(
-    speed      = distance / air_time,
-    dep_hour   = dep_time %/% 100,
-    dep_minute = dep_time %%  100
-  )
+    velocidade     = distancia / tempo_voo,
+    hora_saida     = horario_saida %/% 100,
+    minuto_saida   = horario_saida %%  100
+  ) 
 ```
 
-## Pipes {#sec-pipes}
+## Pipes (Encadeamento) {#sec-pipes}
 
-`|>` should always have a space before it and should typically be the last thing on a line.
-This makes it easier to add new steps, rearrange existing steps, modify elements within a step, and get a 10,000 ft view by skimming the verbs on the left-hand side.
+O `|>` (chamado de *pipe*) deve sempre ter um espaço antes dele e deve ser sempre a última coisa em uma linha.
+Isso torna mais fácil adicionar novas etapas, reorganizar etapas existentes, modificar elementos dentro de uma etapa e obter uma visão geral do código ao passar os olhos sobre os verbos no lado esquerdo.
 
 ```{r}
 #| eval: false
 
-# Strive for 
-flights |>  
-  filter(!is.na(arr_delay), !is.na(tailnum)) |> 
-  count(dest)
+# Tente escrever assim:
+voos |>  
+  filter(!is.na(atraso_saida), !is.na(cauda)) |> 
+  count(destino)
 
-# Avoid
-flights|>filter(!is.na(arr_delay), !is.na(tailnum))|>count(dest)
+# Evite escrever assim:
+voos|>filter(!is.na(atraso_saida), !is.na(cauda))|>count(destino)
 ```
 
-If the function you're piping into has named arguments (like `mutate()` or `summarize()`), put each argument on a new line.
-If the function doesn't have named arguments (like `select()` or `filter()`), keep everything on one line unless it doesn't fit, in which case you should put each argument on its own line.
+Se a função para a qual você está encadeando tem argumentos nomeados (como `mutate()` ou `summarize()`), coloque cada argumento em uma nova linha.
+Se a função não tiver argumentos nomeados (como `select()` ou `filter()`), mantenha tudo em uma linha, caso caiba. Caso não caiba, você deve colocar cada argumento em sua própria linha.
 
 ```{r}
 #| eval: false
 
-# Strive for
-flights |>  
-  group_by(tailnum) |> 
+# Tente escrever assim:
+voos |>  
+  group_by(cauda) |> 
   summarize(
-    delay = mean(arr_delay, na.rm = TRUE),
+    atraso = mean(atraso_chegada, na.rm = TRUE),
     n = n()
   )
 
-# Avoid
-flights |>
+# Evite escrever assim:
+voos |>
   group_by(
-    tailnum
+    cauda
   ) |> 
-  summarize(delay = mean(arr_delay, na.rm = TRUE), n = n())
+  summarize(atraso = mean(atraso_chegada, na.rm = TRUE), n = n())
 ```
 
-After the first step of the pipeline, indent each line by two spaces.
-RStudio will automatically put the spaces in for you after a line break following a `|>` .
-If you're putting each argument on its own line, indent by an extra two spaces.
-Make sure `)` is on its own line, and un-indented to match the horizontal position of the function name.
+Depois da primeira etapa do encadeamento, recue cada linha (**indente**) em dois espaços.
+O RStudio colocará automaticamente os espaços para você após a quebra de linha feita logo depois do *pipe* `|>`.
+Se você estiver colocando cada argumento em sua própria linha, recue em mais dois espaços.
+Certifique-se de que o `)` (fechamento de parêntesis) esteja em sua própria linha e não recuada para corresponder à posição horizontal do nome da função.
 
 ```{r}
 #| eval: false
 
-# Strive for 
-flights |>  
-  group_by(tailnum) |> 
+# Tente escrever assim:
+voos |>  
+  group_by(cauda) |> 
   summarize(
-    delay = mean(arr_delay, na.rm = TRUE),
+    atraso = mean(atraso_chegada, na.rm = TRUE),
     n = n()
   )
 
-# Avoid
-flights|>
-  group_by(tailnum) |> 
+# Evite escrever assim:
+voos|>
+  group_by(cauda) |> 
   summarize(
-             delay = mean(arr_delay, na.rm = TRUE), 
+             atraso = mean(atraso_chegada, na.rm = TRUE), 
              n = n()
            )
 
-# Avoid
-flights|>
-  group_by(tailnum) |> 
+# Evite escrever assim:
+voos|>
+  group_by(cauda) |> 
   summarize(
-  delay = mean(arr_delay, na.rm = TRUE), 
+  atraso = mean(atraso_chegada, na.rm = TRUE), 
   n = n()
   )
 ```
 
-It's OK to shirk some of these rules if your pipeline fits easily on one line.
-But in our collective experience, it's common for short snippets to grow longer, so you'll usually save time in the long run by starting with all the vertical space you need.
+Tudo bem ignorar algumas dessas regras se as etapas de seu encadeamento (*pipeline*) se encaixar facilmente em uma linha.
+Mas, em nossa experiência coletiva, é comum que pequenos trechos de código cresçam, então você vai acabar economizando tempo no longo prazo começando com todo o espaço vertical de que precisa.
 
 ```{r}
 #| eval: false
 
-# This fits compactly on one line
+# Isso se encaixa bem em uma linha:
 df |> mutate(y = x + 1)
 
-# While this takes up 4x as many lines, it's easily extended to 
-# more variables and more steps in the future
+# Enquanto isso ocupa 4x mais linhas, é facilmente estendido para
+# mais variáveis e mais etapas no futuro:
 df |> 
   mutate(
     y = x + 1
   )
 ```
 
-Finally, be wary of writing very long pipes, say longer than 10-15 lines.
-Try to break them up into smaller sub-tasks, giving each task an informative name.
-The names will help cue the reader into what's happening and makes it easier to check that intermediate results are as expected.
-Whenever you can give something an informative name, you should give it an informative name, for example when you fundamentally change the structure of the data, e.g., after pivoting or summarizing.
-Don't expect to get it right the first time!
-This means breaking up long pipelines if there are intermediate states that can get good names.
+Por último, tenha cuidado ao escrever *pipelines* muito longos, com mais de 10-15 linhas, por exemplo.
+Tente dividir o *pipeline* em subtarefas menores, dando a cada tarefa um nome que informe o objetivo daquela etapa.
+Os nomes ajudarão quem está lendo a entender o que está acontecendo e torna mais fácil de verificar se os resultados intermediários estão como o esperado.  
+Dê nomes informativos sempre que puder. Por exemplo, quando você alterar a estrutura dos dados em seu nível básico, como após pivotar ou sumarizar.
+Não espere acertar na primeira tentativa!
+Isso significa que você tem que dividir os encadeamentos longos se houver estados intermediários que possam receber bons nomes.
 
 ## ggplot2
 
-The same basic rules that apply to the pipe also apply to ggplot2; just treat `+` the same way as `|>`.
+As mesmas regras básicas que se aplicam ao *pipe* também se aplicam ao ggplot2; você deve tratar o `+` da mesma forma que o `|>`.
 
 ```{r}
 #| eval: false
 
-flights |> 
-  group_by(month) |> 
+voos |> 
+  group_by(mes) |> 
   summarize(
-    delay = mean(arr_delay, na.rm = TRUE)
+    atraso = mean(atraso_chegada, na.rm = TRUE)
   ) |> 
-  ggplot(aes(x = month, y = delay)) +
+  ggplot(aes(x = mes, y = atraso)) +
   geom_point() + 
   geom_line()
 ```
 
-Again, if you can't fit all of the arguments to a function on to a single line, put each argument on its own line:
+Lembre-se, se você não puder colocar todos os argumentos de uma função em uma única linha, coloque cada argumento em sua própria linha:
 
 ```{r}
 #| eval: false
 
-flights |> 
-  group_by(dest) |> 
+voos |> 
+  group_by(destino) |> 
   summarize(
-    distance = mean(distance),
-    speed = mean(distance / air_time, na.rm = TRUE)
+    distancia = mean(distancia),
+    velocidade = mean(distancia / tempo_voo, na.rm = TRUE)
   ) |> 
-  ggplot(aes(x = distance, y = speed)) +
+  ggplot(aes(x = distancia, y = velocidade)) +
   geom_smooth(
     method = "loess",
     span = 0.5,
@@ -244,58 +242,58 @@ flights |>
   geom_point()
 ```
 
-Watch for the transition from `|>` to `+`.
-We wish this transition wasn't necessary, but unfortunately, ggplot2 was written before the pipe was discovered.
+Preste atenção quando mudar do `|>` para o `+` no encademanto do código.
+Gostaríamos que essa transição não fosse necessária, mas infelizmente, o ggplot2 foi escrito antes do *pipe* ser descoberto.
 
-## Sectioning comments
+## Comentários de seção
 
-As your scripts get longer, you can use **sectioning** comments to break up your file into manageable pieces:
+Conforme seus scripts ficam mais longos, você pode usar comentários de **seção** para dividir seu arquivo em partes gerenciáveis:
 
 ```{r}
 #| eval: false
 
-# Load data --------------------------------------
+# Carregar os dados --------------------------------------
 
-# Plot data --------------------------------------
+# Plotar os dados   --------------------------------------
 ```
 
-RStudio provides a keyboard shortcut to create these headers (Cmd/Ctrl + Shift + R), and will display them in the code navigation drop-down at the bottom-left of the editor, as shown in @fig-rstudio-sections.
+O RStudio fornece um atalho de teclado para criar esses cabeçalhos (Cmd/Ctrl + Shift + R), e os exibe no menu de navegação de código na parte inferior esquerda do editor, como mostrado na @fig-rstudio-sections.
 
 ```{r}
 #| label: fig-rstudio-sections
 #| echo: false
 #| out-width: null
 #| fig-cap: | 
-#|   After adding sectioning comments to your script, you can
-#|   easily navigate to them using the code navigation tool in the
-#|   bottom-left of the script editor.
+#|   Depois de adicionar comentários de seção ao seu script, você pode
+#|   navegar facilmente por eles usando a ferramenta de navegação de código na
+#|   parte inferior esquerda do editor de scripts.
 
 knitr::include_graphics("screenshots/rstudio-nav.png")
 ```
 
-## Exercises
+## Exercícios
 
-1.  Restyle the following pipelines following the guidelines above.
+1.  Aplique as boas normas de formatação aos seguintes *pipelines* seguindo as diretrizes apresentadas neste capítulo.
 
-    ```{r}
-    #| eval: false
+```{r}
+#| eval: false
 
-    flights|>filter(dest=="IAH")|>group_by(year,month,day)|>summarize(n=n(),
-    delay=mean(arr_delay,na.rm=TRUE))|>filter(n>10)
+    voos|>filter(destino=="IAH")|>group_by(ano,mes,dia)|>summarize(n=n(),
+    atraso=mean(atraso_chegada,na.rm=TRUE))|>filter(n>10)
 
-    flights|>filter(carrier=="UA",dest%in%c("IAH","HOU"),sched_dep_time>
-    0900,sched_arr_time<2000)|>group_by(flight)|>summarize(delay=mean(
-    arr_delay,na.rm=TRUE),cancelled=sum(is.na(arr_delay)),n=n())|>filter(n>10)
-    ```
+    voos|>filter(companhia_aerea=="UA",destino%in%c("IAH","HOU"),saida_programada>
+    0900,chegada_prevista<2000)|>group_by(voo)|>summarize(atraso=mean(
+    atraso_chegada,na.rm=TRUE),cancelado=sum(is.na(atraso_chegada)),n=n())|>filter(n>10)
+```
 
-## Summary
+## Sumário
 
-In this chapter, you've learned the most important principles of code style.
-These may feel like a set of arbitrary rules to start with (because they are!) but over time, as you write more code, and share code with more people, you'll see how important a consistent style is.
-And don't forget about the styler package: it's a great way to quickly improve the quality of poorly styled code.
+Neste capítulo, você aprendeu os princípios mais importantes da convenção de estilo de código.
+Essa convenção pode parecer um conjunto de regras arbitrárias (porque são!), mas com o tempo, à medida que você escreve mais código e compartilha código com mais pessoas, você verá como é importante ter um código fácil de ser lido e entendido.
+E não se esqueça do pacote styler: é uma ótima maneira de melhorar de forma rápida a qualidade do código mal formatado.
 
-In the next chapter, we switch back to data science tools, learning about tidy data.
-Tidy data is a consistent way of organizing your data frames that is used throughout the tidyverse.
-This consistency makes your life easier because once you have tidy data, it just works with the vast majority of tidyverse functions.
-Of course, life is never easy, and most datasets you encounter in the wild will not already be tidy.
-So we'll also teach you how to use the tidyr package to tidy your untidy data.
+No próximo capítulo, voltamos às ferramentas de ciência de dados, aprendendo sobre *tidy data* (dados organizados).
+*Tidy data* é uma maneira consistente (convenção) de organizar seus conjuntos de dados que é usada em todo o tidyverse.
+Essa consistência torna sua vida mais fácil porque, uma vez que você tem dados organizados de acordo com os conceitos de *tidy data*, eles irão funcionar com a grande maioria das funções do tidyverse.
+Claro, a vida nunca é fácil, e a maioria dos conjuntos de dados que você encontrará na vida real não serão *tidy*.
+Por esse motivo, também ensinaremos como usar o pacote tidyr para organizar seus dados desorganizados.

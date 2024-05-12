@@ -1,27 +1,38 @@
-# Welcome {.unnumbered}
+# ✅ Boas-vindas {.unnumbered}
 
-This is the website for the 2nd edition of **"R for Data Science"**.
-This book will teach you how to do data science with R: You'll learn how to get your data into R, get it into the most useful structure, transform it and visualize.
+::: callout-important
+Este website contém a tradução **em andamento** para Português da [2ª edição do livro **"R for Data Science"**](https://r4ds.hadley.nz/).
 
-In this book, you will find a practicum of skills for data science.
-Just as a chemist learns how to clean test tubes and stock a lab, you'll learn how to clean data and draw plots---and many other things besides.
-These are the skills that allow data science to happen, and here you will find the best practices for doing each of these things with R.
-You'll learn how to use the grammar of graphics, literate programming, and reproducible research to save time.
-You'll also learn how to manage cognitive resources to facilitate discoveries when wrangling, visualizing, and exploring data.
+Caso queira contribuir com a tradução deste livro, leia o [Guia de contribuição com a tradução do livro](https://github.com/cienciadedatos/pt-r4ds/wiki).
+:::
 
-This website is and will always be free, licensed under the [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/us/) License.
-If you'd like a physical copy of the book, you can order it on [Amazon](https://www.amazon.com/dp/1492097403?&tag=hadlwick-20).
-If you appreciate reading the book for free and would like to give back, please make a donation to [Kākāpō Recovery](https://www.doc.govt.nz/kakapo-donate): the [kākāpō](https://www.youtube.com/watch?v=9T1vfsHYiKY) (which appears on the cover of R4DS) is a critically endangered parrot native to New Zealand; there are only 248 left.
+Este é o website para a tradução em Português da [2ª edição do livro **"R for Data Science"**](https://r4ds.hadley.nz/).
+Este livro vai te ensinar como fazer ciência de dados com R: você irá aprender como importar os seus dados para o R, arrumá-los em uma estrutura mais útil, transformá-los e visualizá-los.
 
-If you speak another language, you might be interested in the freely available translations of the 1st edition:
+Neste livro, você vai encontrar um conjunto de habilidades para a ciência de dados.
+Assim como estudantes de química aprendem a limpar tubos de ensaio e montar um laboratório, você vai aprender a limpar dados e fazer gráficos -- além de muitas outras coisas.
+Essas são as habilidades que fazem a ciência de dados acontecer, e aqui você vai encontrar as melhores práticas para fazer cada uma dessas coisas com o R.
+Você vai aprender a usar a gramática dos gráficos, programação letrada (*literate programming*) e pesquisa reprodutível para economizar tempo.
+Você também vai aprender a gerenciar recursos cognitivos para facilitar descobertas ao lidar com, visualizar e explorar dados.
 
--   [Spanish](http://es.r4ds.hadley.nz)
--   [Italian](https://it.r4ds.hadley.nz)
--   [Turkish](https://tr.r4ds.hadley.nz)
+Este site é e sempre será gratuito, licenciado sob a Licença [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/us/).
+Se você gostaria de ter uma cópia física do livro, você pode comprar a versão em Inglês na [Amazon](https://www.amazon.com/dp/1492097403?&tag=hadlwick-20).
+Se você aprecia ler o livro gratuitamente e gostaria de retribuir, por favor faça uma doação para a [Kākāpō Recovery](https://www.doc.govt.nz/kakapo-donate): o [kākāpō](https://www.youtube.com/watch?v=9T1vfsHYiKY) (que aparece na capa do livro) é uma espécie de papagaio nativa da Nova Zelândia que está criticamente ameaçada de extinção; restam apenas 248 espécimes.
 
-Please note that R4DS uses a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
-By contributing to this book, you agree to abide by its terms.
+Você pode encontrar respostas sugeridas para exercícios no livro em <https://mine-cetinkaya-rundel.github.io/r4ds-solutions>.
 
-## Acknowledgements {.unnumbered}
+Por favor, note que o R4DS utiliza um [Código de Conduta de Contribuidores](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+Ao contribuir para este livro, você concorda em seguir seus termos.
 
-R4DS is hosted by <https://www.netlify.com> as part of their support of open source software and communities.
+Se você fala outra língua, pode se interessar pelas traduções gratuitas da primeira edição do livro:
+
+-   [Espanhol](http://es.r4ds.hadley.nz)
+-   [Italiano](https://it.r4ds.hadley.nz)
+-   [Turco](https://tr.r4ds.hadley.nz)
+
+Por favor, note que o R4DS usa um [Código de Conduta para Contribuidores](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+Ao contribuir para este livro, você concorda em seguir estes termos.
+
+## Agradecimentos {.unnumbered}
+
+A versão original do livro (em Inglês) é hospedada pela <https://www.netlify.com> como parte de seu apoio ao software e às comunidades *open source*.

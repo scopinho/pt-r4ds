@@ -11,19 +11,19 @@ format: html
 library(tidyverse)
 library(dados)
 
-smaller <- diamante |> 
+menores <- diamante |> 
   filter(quilate <= 2.5)
 ```
 
-Temos dados sobre `r nrow(diamonds)` diamantes.
-Apenas `r nrow(diamonds) - nrow(smaller)` são maiores que 2.5 quilates.
+Temos dados sobre `r nrow(diamante)` diamantes. 
+Apenas `r nrow(diamante) - nrow(menores)` são maiores que 2.5 quilates. 
 A distribuição dos demais é exibida a seguir:
 
 ```{r}
-#| label: plot-smaller-diamonds
+#| label: grafico-diamantes-menores
 #| echo: false
 
-smaller |> 
+menores |> 
   ggplot(aes(x = quilate)) + 
   geom_freqpoly(binwidth = 0.01)
 ```
