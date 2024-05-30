@@ -13,7 +13,7 @@ source("_common.R")
 No @sec-exploratory-data-analysis, você aprendeu como usar gráficos como ferramentas para *exploração*.
 Ao fazer gráficos exploratórios, você sabe --- mesmo antes de olhar --- quais variáveis ​​o gráfico exibirá.
 Você criou cada gráfico com um propósito, pôde examiná-lo rapidamente e depois passar para o próximo gráfico.
-No decorrer da maioria das análises, você produzirá dezenas ou centenas de gráficos, a maioria dos quais será imediatamente descartada.
+No decorrer da maior parte das análises, você produzirá dezenas ou centenas de gráficos, a maioria dos quais será imediatamente descartada.
 
 Agora que você entende seus dados, você precisa *comunicar* sua compreensão a outras pessoas.
 Seu público provavelmente não compartilhará seu conhecimento prévio e não conhecerá profundamente os dados.
@@ -29,8 +29,8 @@ Ele não ensina a mecânica de criação de visualizações, mas concentra-se no
 ### Pré-requisitos
 
 Neste capítulo, focaremos mais uma vez no ggplot2.
-Também usaremos um pouco do pacote dplyr para manipulação de dados, **scales** para substituir quebras, rótulos, transformações e paletas padrão, e alguns pacotes de extensão ggplot2, incluindo **ggrepel** ([https://ggrepel. slowkow.com](https://ggrepel.slowkow.com/)) de Kamil Slowikowski e o **patchwork** ([https://patchwork.data-imaginist.com](https://patchwork.data-imaginist .com/)) de Thomas Lin Pedersen.
-Usaremos também o pcaote *dados* e seus conjuntos de dados *milhas*, *predisentes_eua* e *diamante*.
+Também usaremos um pouco do pacote dplyr para transformação de dados, **scales** para substituir quebras, rótulos, transformações e paletas padrão, e alguns pacotes de extensão ggplot2, incluindo **ggrepel** ([https://ggrepel. slowkow.com](https://ggrepel.slowkow.com/)) de Kamil Slowikowski e o **patchwork** ([https://patchwork.data-imaginist.com](https://patchwork.data-imaginist .com/)) de Thomas Lin Pedersen.
+Usaremos também o pacote *dados* e seus conjuntos de dados *milhas*, *predisentes_eua* e *diamante*.
 Não se esqueça que você precisará instalar esses pacotes com `install.packages()` se ainda não os tiver.
 
 ```{r}
@@ -52,13 +52,13 @@ Você adiciona rótulos com a função `labs()`.
 ```{r}
 #| message: false
 #| fig-alt: |
-#|   Gráfico de dispersão de economia de combustível em rodovias versus cilindradas dos carros, onde
+#|   Gráfico de dispersão de uso de combustível em rodovias versus cilindradas dos carros, onde
 #|   os pontos são coloridos de acordo com a classe do carro. Uma curva suave seguindo
 #|   a trajetória da relação entre eficiência de combustível nas rodovias versus 
-#|   as cilindradas dos carros é sobreposto. O eixo x é rotulado como "Cilindrada  
+#|   as cilindradas dos carros está sobreposto. O eixo x é rotulado como "Cilindrada  
 #|   do Motor (L)" e o eixo y é rotulado como "Consumo de combustível na rodovia (mpg)". 
 #|   A legenda é rotulada como "Tipo de veículo". O gráfico é intitulado "Eficiência de combustível 
-#|   geralmente diminui com o tamanho do motor". O subtítulo é "Dois lugares
+#|   geralmente diminui com o tamanho do motor". O subtítulo é "Carros de dois lugares
 #|   (carros esportivos) são uma exceção devido ao seu peso leve" e  
 #|    a legenda contém "Dados de fueleconomy.gov".
 
@@ -108,7 +108,7 @@ ggplot(df, aes(x, y)) +
 
 ### Exercícios
 
-1. Crie um gráfico com os dados de eficiência de combustível (milhas) com rótulos personalizados de `title`, `subtitle`, `caption`, `x`, `y` e `color`.
+1. Crie um gráfico com os dados de economia de combustível (milhas) com rótulos personalizados de `title`, `subtitle`, `caption`, `x`, `y` e `color`.
 
 2. Recrie o gráfico a seguir usando os dados de economia de combustível.
     Observe que as cores e os formatos dos pontos variam de acordo com o tipo de tração.
@@ -189,10 +189,10 @@ Este pacote ajustará automaticamente os rótulos para que não se sobreponham:
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico de dispersão do eficiência de comsbutível nas rodovias versus cilindradas, onde 
+#|   Gráfico de dispersão da eficiência de comsbutível nas rodovias versus cilindradas, onde 
 #|   os pontos são coloridos de acordo com a classe de tração do carro. Alguns pontos são rotulados 
-#|   com o nome do carro. As etiquetas são caixas com fundo branco e transparente 
-#|   e posicionado para não se sobrepor.
+#|   com o nome do carro. Os rótulos são caixas com fundo branco e transparente 
+#|   e posicionados de modo que não se sobreponham.
 
 ggplot(milhas, aes(x = cilindrada, y = rodovia, color = tracao)) +
   geom_point(alpha = 0.3) +
@@ -211,7 +211,7 @@ Observe outra técnica útil usada aqui: adicionamos uma segunda camada de ponto
 ```{r}
 #| fig-alt: |
 #|   Gráfico de dispersão de eficiência de combustível nas rodovias versus as cilindradas dos carros. Pontos
-#|   onde a quilometragem da rodovia está acima de 40 e também acima de 20 com tamanho do motor 
+#|   onde a eficiência do uso de combustível da rodovia está acima de 40 e também acima de 20 com tamanho do motor 
 #|   acima de 5 são vermelhos, com um círculo vermelho vazio e rotulados com o nome do modelo 
 #|   do carro.
 
@@ -261,7 +261,7 @@ Observe também que o segmento é denominado como uma seta.
 ```{r}
 #| fig-alt: |
 #|   Gráfico de dispersão de eficiência de combustível nas rodovias versus cilindradas dos carros. Uma seta
-#|   vermelha apontando para baixo segue a tendência dos pontos e da anotação 
+#|   vermelha apontando para baixo segue a tendência dos pontos e a anotação 
 #|   colocada ao lado da seta diz "Motores com maiores cilindradas tendem a ter menor eficiência de combustível".  
 #|   A seta e o texto da anotação é vermelha. 
 
@@ -351,7 +351,7 @@ Os eixos são usados ​​para estética x e y; legendas são usadas para todo 
 
 Existem dois argumentos principais que afetam a aparência dos marcadores nos eixos e das chaves na legenda: `breaks` (quebras) e `labels` (rótulos).
 As quebras (*breaks*) controlam a posição dos marcadores ou os valores associados às chaves.
-Os rótulos (*labels*) controlam o o texto associado a cada marcador/chave.
+Os rótulos (*labels*) controlam o texto associado a cada marcador/chave.
 O uso mais comum de `breaks` é substituir a escolha padrão:
 
 ```{r}
@@ -416,7 +416,7 @@ Outra função de rótulo interessante é a `label_percent()`:
 
 ```{r}
 #| fig-alt: |
-#|   Gráficos de barras segmentadas de corte, preenchidos com níveis de clareza. No eixo y 
+#|   Gráficos de barras segmentadas de corte, preenchidos segundo níveis de clareza. No eixo y 
 #|   os rótulos começam em 0% e vão até 100%, aumentando em 25%. O rótulo do eixo y
 #|   o nome é "Porcentagem".
 
@@ -491,7 +491,7 @@ Isto é particularmente útil se você usou um `alfa` baixo para exibir muitos p
 #| fig-alt: |
 #|   Gráfico de dispersão de eficiência de combustível nas rodovias versus cilindrada dos carros
 #|   onde os pontos são coloridos com base na classe do carro. Sobreposto no gráfico está uma 
-#|   curva suave. A legenda está na parte inferior e as classes estão listadas 
+#|   curva de suavização. A legenda está na parte inferior e as classes estão listadas 
 #|   horizontalmente em duas linhas. Os pontos na legenda são maiores que os pontos 
 #|   no gráfico.
 
@@ -511,16 +511,16 @@ Existem dois tipos de escalas que você provavelmente desejará trocar: escalas 
 Felizmente, os mesmos princípios se aplicam a todas as outras estéticas; portanto, depois de dominar a posição e a cor, você poderá escolher rapidamente outras substituições de escala.
 
 É muito útil traçar transformações de sua variável.
-Por exemplo, é mais fácil ver a relação precisa entre `quilate` e `preço` se os transformarmos em log:
+Por exemplo, é mais fácil ver a relação precisa entre `quilate` e `preço` se aplicarmos o logaritimo:
 
 ```{r}
 #| fig-align: default
 #| layout-ncol: 2
 #| fig-width: 3
 #| fig-alt: |
-#|   Dois gráficos de preço versus quilate de diamantes. Dados agrupados e a cor dos 
-#|   retângulos que representam cada grupo com base no número de pontos que
-#|   cair naquele grupo. No gráfico à direita, valores de preço e quilates
+#|   Dois gráficos de preço versus quilate de diamantes. Dados discretizados em classes e a cor dos 
+#|   retângulos que representam cada classe com base no número de pontos que
+#|   caem naquela classe. No gráfico à direita, valores de preço e quilates
 #|   são registrados como *log* e os rótulos dos eixos mostram os valores representados pelo *log*.
 
 # Esquerda
@@ -538,9 +538,9 @@ Isto é visualmente idêntico, exceto que os eixos são rotulados na escala de d
 
 ```{r}
 #| fig-alt: |
-#|   Gráfico de preço versus quilate de diamantes. Dados agrupados e a cor dos 
-#|   retângulos que representam cada grupo com base no número de pontos que
-#|   cair naquele grupo. Os rótulos dos eixos estão na escala de dados original.
+#|   Gráfico de preço versus quilate de diamantes. Dados discretizados em classes e a cor dos 
+#|   retângulos que representam cada classe com base no número de pontos que
+#|   caem naquela classe. Os rótulos dos eixos estão na escala de dados original.
 
 ggplot(diamante, aes(x = quilate, y = preco)) +
   geom_bin2d() + 
@@ -561,9 +561,9 @@ Os dois gráficos abaixo parecem semelhantes, mas há diferença suficiente nos 
 #| fig-width: 3
 #| fig-alt: |
 #|   Dois gráficos de dispersão de eficiência de combustível nas rodovias versus cilindrada onde os pontos são 
-#|   coloridos por tipo de tração. O gráfico à esquerda usa o padrão de
-#|   paleta de cores ggplot2 e o gráfico à direita usa uma cor diferente
-#|   de paleta.
+#|   coloridos por tipo de tração. O gráfico à esquerda usa  a paleta de cores padrão do
+#| ggplot2 e o gráfico à direita usa uma paleta de cores diferente
+#| 
 
 ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
   geom_point(aes(color = tracao))
@@ -575,7 +575,7 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
 
 Não se esqueça de técnicas mais simples para melhorar a acessibilidade.
 Se houver apenas algumas cores, você poderá adicionar um mapeamento de forma redundante.
-Isso também ajudará a garantir que seu enredo seja interpretável em preto e branco.
+Isso também ajudará a garantir que seu gráfico seja interpretável em preto e branco.
 
 ```{r}
 #| fig-alt: |
@@ -588,9 +588,9 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
   scale_color_brewer(palette = "Set1")
 ```
 
-As escalas ColorBrewer estão documentadas online em <https://colorbrewer2.org/> e disponibilizadas no R através do pacote **RColorBrewer**, de Erich Neuwirth.
+As escalas ColorBrewer estão documentadas online em <https://colorbrewer2.org/> e disponibilizadas no R por meio do pacote **RColorBrewer**, de Erich Neuwirth.
 A @fig-brewer mostra a lista completa de todas as paletas.
-As paletas sequencial (superior) e divergente (inferior) são particularmente úteis se seus valores categóricos estiverem ordenados ou tiverem um "meio".
+As paletas sequenciais (superior) e divergente (inferior) são particularmente úteis se seus valores categóricos estiverem ordenados ou tiverem um "meio".
 Isso geralmente surge se você usou `cut()` para transformar uma variável contínua em uma variável categórica.
 
 ```{r}
@@ -601,7 +601,7 @@ Isso geralmente surge se você usou `cut()` para transformar uma variável cont�
 #| fig-alt: |
 #|   Todas as escalas colorBrewer. Um grupo vai de cores claras para escuras. 
 #|   Outro grupo é definido como cores não ordinais. E o útlimo grupo tem 
-#|   escalas divergentes (de escuro para claro para escuro novamente).Em cada grupo 
+#|   escalas divergentes (de escuro para claro para escuro novamente). Em cada grupo 
 #|   existem várias paletas.
 
 par(mar = c(0, 3, 0, 0))
@@ -642,10 +642,10 @@ Essas escalas estão disponíveis como paletas contínuas (`c`), discretas (`d`)
 #| fig-width: 3
 #| fig-asp: 0.75
 #| fig-alt: |
-#|   Três gráficos hexadecimais onde a cor dos hexagonos mostram o número de observações 
-#|   que caem naquele grupo hexagonal. O primeiro gráfico usa o padrão contínuo
+#|   Três gráficos hexagonais onde a cor dos hexagonos mostram o número de observações 
+#|   que caem naquela classe hexagonal. O primeiro gráfico usa o padrão contínuo
 #|   de escala do ggplot2. O segundo gráfico utiliza o viridis, escala contínua, e o
-#|   o terceiro gráfico usa a escala viridis agrupada.
+#|   o terceiro gráfico usa a escala viridis discretizada.
 
 df <- tibble(
   x = rnorm(10000),
@@ -693,7 +693,7 @@ A divisão dos dados em subconjuntos afetou as escalas x e y, bem como a curva s
 #|   À esquerda, gráfico de dispersão da eficiência de combustível nas rodovias versus cilindrada 
 #|   A curva suave sobreposta mostra uma diminuição e, em seguida, 
 #|   tendência crescente, como um taco de hóquei. À direita, as mesmas variáveis 
-#|   são mostradas com cilindrada variando apenas de 5 a 6 e eficiência da rodovia 
+#|   são mostradas com cilindrada variando apenas de 5 a 6 e eficiência na rodovia 
 #|   variando apenas de 10 a 25. A curva suave sobreposta mostra uma
 #|   tendência que está aumentando ligeiramente primeiro e depois diminuindo. 
 
@@ -721,7 +721,7 @@ Portanto, para ampliar uma região do gráfico, geralmente é melhor usar `coord
 #| warning: false
 #| fig-alt: |
 #|   À esquerda, gráfico de dispersão de eficiência de combustível nas rodovias versus cilindrada, com
-#|   a cilindrada de 5 a 6 e o eficiência em rodoviárias variando de
+#|   a cilindrada de 5 a 6 e o eficiência em rodovias variando de
 #|   10 to 25. A curva suave sobreposta mostra uma tendência ligeiramente 
 #|   aumentando primeiro e depois diminuindo. À direita, as mesmas variáveis 
 #|   são mostradas com os mesmos limites, porém a curva suave sobreposta
@@ -751,11 +751,11 @@ Por exemplo, se extrairmos duas classes de carros e plotá-las separadamente, se
 #|   À esquerda, um gráfico de dispersão de eficiência de combustível nas rodovias versus cilindradas de SUVs.
 #|   À direita, um gráfico de dispersão das mesmas variáveis ​​para carros compactos..
 #|   Os pontos são coloridos por tipo de tração os gráficos. Entre os SUVs mais 
-#|   os carros têm tração 4x4 e os demais têm tração traseira, enquanto 
+#|  carros têm tração 4x4 e os demais têm tração traseira, enquanto 
 #|   entre os carros compactos, mais carros têm tração dianteira e os outros 
 #|   têm tração 4x4. O gráfico do SUV mostra uma clara relação negativa
 #|   entre eficiência e cilindrada nas rodovias enquanto que no gráfico de carros compactos 
-#|   o relacionamento é muito mais plano.
+#|   o relacionamento é muito mais achatado.
 
 suv <- milhas |> filter(classe == "suv")
 compacto <- milhas |> filter(classe == "compacto")
@@ -775,13 +775,13 @@ Uma forma de superar este problema é compartilhar escalas em múltiplos gráfic
 #| layout-ncol: 2
 #| fig-width: 4
 #| fig-alt: |
-#|   À esquerda, um gráfico de dispersão da eficiência de combustível nas rodovias versus ciliondrada de SUVs.
+#|   À esquerda, um gráfico de dispersão da eficiência de combustível nas rodovias versus cilindrada de SUVs.
 #|   À direita, um gráfico de dispersão das mesmas variáveis ​​para carros compactos.
 #|   Os pontos são coloridos por tipo de tração. Ambos os gráficos são plotados 
-#|   na mesma escala para eficiência rodoviária, cilindrada e tipo de tração,
-#|   resultando na legenda mostrando todos os três tipos (dianteiro, traseiro e nas 4 rodas 
+#|   na mesma escala para eficiência de combustível em rodovias, cilindrada e tipo de tração,
+#|   resultando na legenda mostrando todos os três tipos (dianteiro, traseiro e nas 4 rodas)
 #|   para ambos os gráficos, embora não haja SUVs com tração dianteira e
-#|   não há carros compactos com tração traseira. Como as escalas x e y são iguais, 
+#|   não haja carros compactos com tração traseira. Como as escalas x e y são iguais, 
 #|   e vão muito além do mínimo e máximo da eficiência na rodovia e cilindradas, 
 #|   os pontos não ocupam toda a área do gráfico.
 
@@ -832,8 +832,8 @@ Neste caso específico, você poderia simplesmente ter usado o facetamento, mas 
     a.  Combinando as duas variantes que personalizam cores e quebras do eixo x.
     b.  Melhorando a exibição do eixo y.
     c.  Rotulando cada mandato com o nome do presidente.
-    d.  Adicionando rótulos de plotagem informativos.
-    e.  Fazendo pausas a cada 4 anos (isto é mais complicado do que parece!).
+    d.  Adicionando rótulos informativos ao gráfico.
+    e.  Acrescentando quebras a cada 4 anos (isto é mais complicado do que parece!).
 
 4.  Primeiro, crie o seguinte gráfico.
     Em seguida, modifique o código usando `override.aes` para facilitar a visualização da legenda.
@@ -863,7 +863,7 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
 
 O ggplot2 inclui os oito temas mostrados na @fig-themes, com `theme_gray()` como padrão.[^communication-2]
 Muitos outros estão incluídos em pacotes complementares como **ggthemes** (<https://jrnold.github.io/ggthemes>), de Jeffrey Arnold.
-Você também pode criar seus próprios temas, se estiver tentando combinar com um estilo corporativo ou de jornal específico.
+Você também pode criar seus próprios temas, se estiver tentando combinar com um estilo corporativo ou de periódico específico.
 
 [^communication-2]: Muitas pessoas se perguntam por que o tema padrão tem um fundo cinza.
     Esta foi uma escolha deliberada porque apresenta os dados e ao mesmo tempo torna as linhas da grade visíveis.
@@ -930,17 +930,17 @@ O [livro ggplot2](https://ggplot2-book.org/) também é um ótimo lugar para obt
 
 ### Exercícios
 
-1.  Escolha um tema oferecido pelo pacote ggthemes e aplique-o na último gráfico que você fez.
+1.  Escolha um tema oferecido pelo pacote ggthemes e aplique-o no último gráfico que você fez.
 2.  Deixe os rótulos dos eixos do seu gráfico em azul e em negrito.
 
 ## Layout
 
 Até agora falamos sobre como criar e modificar um único gráfico.
 E se você tiver vários gráficos que deseja organizar de uma determinada maneira?
-O pacote patchwork permite combinar plotagens separadas no mesmo gráfico.
+O pacote patchwork permite combinar gráficos separados no mesmo gráfico.
 Carregamos este pacote no início do capítulo.
 
-Para colocar dois gráficos próximos um do outro, você pode simplesmente adicioná-los.
+Para colocar dois gráficos próximos um do outro, você pode simplesmente adicioná-los um ao outro.
 Observe que primeiro você precisa criar os gráficos e salvá-los como objetos (no exemplo a seguir eles são chamados de `p1` e `p2`).
 Em seguida, você os coloca um ao lado do outro com `+`.
 
@@ -964,7 +964,7 @@ p1 + p2
 É importante notar que no trecho de código acima não usamos uma nova função do pacote patchwork.
 Em vez disso, o pacote adicionou uma nova funcionalidade ao operador `+`.
 
-Você também pode criar layouts de plotagem complexos com patchwork.
+Você também pode criar layouts de gráficos complexos com patchwork.
 A seguir, `|` coloca `p1` e `p3` próximos um do outro e `/` move `p2` para a próxima linha.
 
 ```{r}
@@ -987,21 +987,21 @@ Além disso, patchwork permite coletar legendas de vários gráficos em uma lege
 Abaixo criamos 5 gráficos.
 Desativamos as legendas nos gráficos boxplot e no gráfico de dispersão e coletamos as legendas para os gráficos de densidade na parte superior do gráfico com `& theme(legend.position = "top")`.
 Observe o uso do operador `&` aqui em vez do usual `+`.
-Isso ocorre porque estamos modificando o tema do gráfico de retalhos em oposição aos ggplots individuais.
+Isso ocorre porque estamos modificando o tema do gráfico do *patchwork* em oposição aos ggplots individuais.
 A legenda é colocada no topo, dentro de `guide_area()`.
-Por fim, também personalizamos as alturas dos vários componentes do nosso patchwork - o guia tem altura 1, os gráficos de caixa 3, os gráficos de densidade 2 e o gráfico de dispersão facetado 4.
-Patchwork divide a área que você reservou para seu lote usando esta escala e posiciona os componentes de acordo.
+Por fim, também personalizamos as alturas dos vários componentes do nosso patchwork - o guia tem altura 1, os gráficos de caixa 3, os gráficos de densidade 2 e o gráfico de dispersão facetado tem 4.
+Patchwork divide a área que você reservou para seu gráfico usando esta escala e posiciona os componentes de acordo.
 
 ```{r}
 #| fig-width: 8
 #| fig-asp: 1
 #| fig-alt: |
 #|   Cinco gráficos dispostos de forma que os dois primeiros fiquem próximos uns dos outros.
-#|   Gráficos três e quatro estão abaixo deles. E o quinto gráfico se estende abaixo deles. 
+#|   Os gráficos três e quatro estão abaixo deles. E o quinto gráfico se estende abaixo deles. 
 #|   O gráfico patchwork é entitulado "Eficiência nas cidades e rodovias com diferentes 
 #|   trações" e com legenda "Fonte: https://fueleconomy.gov". 
-#|   Os dois primeiros gráficos são gráficos boxplot. Os gráficos 3 e 4 são de densidade 
-#|   E o quinto gráfico é um gráfico de dispersão facetado. Cada um desses gráficos mostra
+#|   Os dois primeiros gráficos são gráficos boxplot. Os gráficos 3 e 4 são de densidade.
+#|   O quinto gráfico é um gráfico de dispersão facetado. Cada um desses gráficos mostra
 #|   geoms coloridos pelo tração, mas o gráfico patchwork tem apenas uma legenda que se
 #|   aplica a todos eles, acima dos gráficos e abaixo do título.
 
@@ -1071,7 +1071,7 @@ Se você quiser saber mais sobre como combinar e fazer o layout de vários gráf
     #|   Três gráficos: O gráfico 1 é um gráfico de dispersão de eficiência nas rodovias versus cilindrada. 
     #|   O gráfico 2 é um gráfico boxplot de eficiência em rodovias versus tração. 
     #|   O gráfico 3 consiste em gráficos boxplot de eficiência na cidade versus tração. 
-    #|   O gráfico 1 está na primeira linha. Os gráficos 2 e 3 estão na próxima linha, cada um vai até 
+    #|   O gráfico 1 está na primeira linha. Os gráficos 2 e 3 estão na  linha seguinte, cada um vai até 
     #|   metade da largura do gráfico 1. O gráfico 1 é rotulado como "Fig. A", o gráfico 2 é rotulado 
     #|   "Fig. B", e o gráfico 3 é rotulado "Fig. C".
 
@@ -1085,8 +1085,8 @@ Se você quiser saber mais sobre como combinar e fazer o layout de vários gráf
 
 ## Resumo
 
-Neste capítulo você aprendeu como adicionar rótulos de plotagem, como título, subtítulo, legenda, bem como modificar rótulos de eixo padrão, usar anotações para adicionar texto informativo ao seu gráfico ou para destacar pontos de dados específicos, personalizar as escalas dos eixos e alterar o tema do seu enredo.
-Você também aprendeu como combinar vários gráficos em um único gráfico usando layouts de gráficos simples e complexos.
+Neste capítulo você aprendeu como adicionar rótulos aos gráficos, como título, subtítulo, legenda, bem como modificar rótulos de eixo padrão, usar anotações para adicionar texto informativo ao seu gráfico ou para destacar pontos de dados específicos, personalizar as escalas dos eixos e alterar o tema do seu enredo.
+Você também aprendeu como combinar vários gráficos em um único gráfico usando tanto layouts simples e complexos de gráficos.
 
 Embora você tenha aprendido até agora como criar muitos tipos diferentes de gráficos e como personalizá-los usando uma variedade de técnicas, mal arranhamos a superfície do que você pode criar com o ggplot2.
 Se você deseja obter uma compreensão abrangente do ggplot2, recomendamos a leitura do livro [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org).
