@@ -242,7 +242,7 @@ flights |>
 3.  Ordene `flights` para achar os vôos mais rápidos.
     (Dica: tente incluir algum cálculo matemático dentro da sua função.)
 
-4.  Teve pelo menos um vôo em cada dia de 2013?
+4.  Houve pelo menos um vôo em cada dia de 2013?
 
 5.  Quais vôos percorream as maiores distâncias? 
     Quais percorreram as menores?
