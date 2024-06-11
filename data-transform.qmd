@@ -97,7 +97,7 @@ Vamos nessa!
 ## Linhas (rows)
 
 Os verbos mais importantes que operam nas linhas de um conjunto de dados são `filter()`, que modifica quais linhas estão presentes sem mudar a sua ordem, e `arrange()`, que modifica a ordem das linhas sem modificar quais estão presentes.
-Ambas as funções afetam apenas as linhas, e as colunas permanecem intocadas.
+Ambas as funções afetam apenas as linhas e as colunas permanecem intocadas.
 Também vamos falar sobre `distinct()`, que acha as linhas com valores únicos, mas diferentemente de `arrange()` e `filter()` também pode, opcionalmente, modificar as colunas.
 
 ### `filter()`
