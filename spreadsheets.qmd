@@ -22,7 +22,7 @@ O Microsoft Excel é um software muito utilizado onde os dados são organizados 
 ### Pré-requisitos
 
 Nesta seção, você aprenderá como carregar dados de arquivos do Excel para o R com o pacote **readxl**.
-Este pacote faz parte dos componentes não-principais (*non-core*) do tidyverse, portanto devemos carregá-lo explicitamente, apesar dele já ser instalado automaticamente quando você instala o tidyverse.
+Este pacote faz parte dos componentes secundários (*non-core*) do tidyverse, portanto devemos carregá-lo explicitamente, apesar dele já ser instalado automaticamente quando você instala o tidyverse.
 Posteriormente, usaremos também o pacote writexl, que nos permite criar planilhas do Excel.
 
 ```{r}
@@ -509,7 +509,7 @@ Assim como o Excel, no Planilhas Google, os dados são armazenados em planilhas 
 ### Pré-requisitos
 
 Esta seção também será focada em planilhas, mas desta vez você irá carregar os dados do Planilhas Google com o pacote **googlesheets4**.
-Este pacote também faz parte dos componentes não-principais (*non-core*) do tidyverse, portanto devemos carregá-lo explicitamente.
+Este pacote também faz parte dos componentes secundários (*non-core*) do tidyverse, portanto devemos carregá-lo explicitamente.
 
 ```{r}
 library(googlesheets4)
