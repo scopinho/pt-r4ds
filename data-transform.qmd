@@ -300,7 +300,7 @@ flights |>
 
 Ou então, você pode controlar quais variáveis são mantidas com o argumento `.keep`. 
 Um argumento particularmente útil é `"used"` que especifica que nós queremos manter apenas as colunas que estiveram envolvidas ou foram criadas pela etapa de `mutate()`.
-Por exemplo, a saída a seguir irá conter apenas as variáveis `dep_delay`, `arr_delay`, `air_time`, `gain`, `hours` e `gain_per_hour`.
+Por exemplo, a saída a seguir conterá apenas as variáveis `dep_delay`, `arr_delay`, `air_time`, `gain`, `hours` e `gain_per_hour`.
 
 ```{r}
 #| results: false
