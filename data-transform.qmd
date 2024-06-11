@@ -19,7 +19,7 @@ Finalizaremos o capítulo com um caso de estudo que demonstra todas essas funç�
 
 ### Pré-requisitos
 
-Nesse capítulo iremos focar no pacote dplyr, outro membro central do tidyverse.
+Nesse capítulo focaremos no pacote dplyr, outro membro central do tidyverse.
 Ilustraremos as ideias principais utilizando dados do pacote nycflights13, e visualizaremos com o ggplot2 para nos ajudar a entender os dados.
 
 ```{r}
