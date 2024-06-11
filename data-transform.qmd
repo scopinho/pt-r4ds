@@ -114,7 +114,7 @@ flights |>
   filter(dep_delay > 120)
 ```
 
-Assim como `>` (maior que), você também pode usar `>=` (maior ou igual que), `<` (menor que), `<=` (menor ou igual que), `==` (igual), e `!=` (diferente que).
+Assim como `>` (maior que), você também pode usar `>=` (maior ou igual a), `<` (menor que), `<=` (menor ou igual a), `==` (igual a), e `!=` (diferente de).
 Você também pode combinar condições com `&` ou `,` para indicar "e" (avalia ambas as condições) ou com `|` para indicar "ou" (avalia ao menos uma condição):
 
 ```{r}
