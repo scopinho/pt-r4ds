@@ -237,7 +237,7 @@ flights |>
     -   Atrasou pelo menos uma hora, mas recuperou mais de 30 minutos em vôo. 
 
 2.  Ordene `flights` para achar os vôos com os maiores atrasos na decolagem. 
-    Ache os vôos que saíram o mais cedo na manhã. 
+    Ache os vôos que saíram o mais cedo pela manhã. 
 
 3.  Ordene `flights` para achar os vôos mais rápidos.
     (Dica: tente incluir algum cálculo matemático dentro da sua função.)
