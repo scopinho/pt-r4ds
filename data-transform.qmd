@@ -167,7 +167,7 @@ flights |>
   filter(month == 1 | 2)
 ```
 
-Isso até "funciona", no sentido de que não dará um erro, mas ele não vai fazer o que você esperaria, pois `|` primeiro vai avaliar a condição `month == 1` e depois a condição `2`, que não é uma condição adequada para se avaliar nesse caso.
+Isso até "funciona", no sentido de que não retornará um erro, mas ele não vai fazer o que você esperaria, pois `|` primeiro vai avaliar a condição `month == 1` e depois a condição `2`, que não é uma condição adequada para se avaliar nesse caso.
 Iremos aprender mais sobre o que está acontecendo aqui em @sec-boolean-operations.
 
 ### `arrange()`
