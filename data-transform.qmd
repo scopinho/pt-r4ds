@@ -370,7 +370,7 @@ Existe uma variedade de funções auxiliares que você pode utilizar junto com `
 -   `num_range("x", 1:3)`: buscará `x1`, `x2` e `x3`.
 
 Confira `?select` para mais detalhes. 
-Uma vez que você saiba expressões regulares (o tópico de @sec-regular-expressions) você também poderá utilizar `matches()` para selecionar variáveis que dão match em um dado padrão.
+Uma vez que você saiba expressões regulares (o tópico de @sec-regular-expressions) você também poderá utilizar `matches()` para selecionar variáveis que são identificáveis por um dado padrão.
 
 Você pode renomear variáveis à media que seleciona elas com `select()` utilizando `=`.
 O novo nome aparece à esquerda do `=` e o nome antigo à direita: 
