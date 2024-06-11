@@ -849,7 +849,7 @@ batters
 Quando montamos um gráfico da habilidade dos rebatedores (medidas pela média de acerto, `performance`) contra o número de oportunidades de acertar a bola (medidas pela númer de vezes ao bastão, `n`), é possível ver dois padrões:
 
 1.  A variação em `performance` é maior entre os jogadores que foram menos vezes ao bastão. 
-    A forma do gráfico é muito característica: sempre que você plotar uma média (ou alguma outra sumarização estatística)  vs. tamanho do grupo, você verá que a variação diminui à medida que o tamanho da amostra aumenta[^data-transform-4].
+    A forma do gráfico é muito característica: sempre que você projetar no gráfico uma média (ou alguma outra sumarização estatística)  vs. tamanho do grupo, você verá que a variação diminui à medida que o tamanho da amostra aumenta[^data-transform-4].
 
 2.  Existe uma correlação positiva entre a habilidade (`performance`) e as oportunidades de acertar a bola (`n`), pois os times querem dar aos melhores jogadores o maior número de oportunidades de acertar a bola.
 
