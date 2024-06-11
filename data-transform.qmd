@@ -858,7 +858,7 @@ Quando montamos um gráfico da habilidade dos rebatedores (medidas pela média d
 ```{r}
 #| warning: false
 #| fig-alt: |
-#|   Um gráfico de dispersão do número de performance de rebatidas vs. oportunidades de rebatidas 
+#|   Um gráfico de dispersão do performance de rebatidas vs. oportunidades de rebatidas 
 #|   sobrepostas por uma linha suavizada. Performance média cresce agudamente 
 #|   a partir de 0.2 quando n é 1 até 0.25 quando n é ~1000. Performance média 
 #|   continua crescendo linearmente em uma inclinação muito mais suave atingindo 
