@@ -8,7 +8,7 @@ source("_common.R")
 
 ## Introdução
 
-No @sec-data-import você aprendeu sobre importação de dados de arquivos textos como `.csv` e `.tsv`.
+No @sec-data-import você aprendeu sobre importação de dados de arquivos de texto como `.csv` e `.tsv`.
 Agora chegou a hora de aprender a extrair dados de planilhas, tanto do Excel quanto do Planilhas Google (*Google Sheets*).
 Para isto, usaremos muito do que você aprendeu no @sec-data-import, mas discutiremos também considerações adicionais e complexidades presentes quando trabalhamos com dados vindos de planilhas.
 
@@ -23,7 +23,7 @@ O Microsoft Excel é um software muito utilizado onde os dados são organizados 
 
 Nesta seção, você aprenderá como carregar dados de arquivos do Excel para o R com o pacote **readxl**.
 Este pacote faz parte dos componentes não-principais (*non-core*) do tidyverse, portanto devemos carregá-lo explicitamente, apesar dele já ser instalado automaticamente quando você instala o tidyverse.
-Posteriormente, usaremos também o pacote writexl, que nos permite criar arquivos do Excel.
+Posteriormente, usaremos também o pacote writexl, que nos permite criar planilhas do Excel.
 
 ```{r}
 #| message: false
@@ -41,8 +41,8 @@ Muitas funções do readxl te permitem importar arquivos do Excel para o R:
 -   `read_xlsx()` importa arquivos Excel que estejam no formato `xlsx`.
 -   `read_excel()` pode importar arquivos em ambos os formatos `xls` e `xlsx`. Ela identifica o formato baseado no tipo de arquivo de entrada.
 
-Estas funções possuem uma sintaxe similar às outras funções introduzidas anteriormente para importar outros tipos de arquivos, ex: `read_csv()`, `read_table()`, etc.
-No restante deste capítulo focaremos no uso da `read_excel()`.
+Estas funções possuem uma sintaxe similar às outras funções introduzidas anteriormente para importar outros tipos de arquivos, por exemplo: `read_csv()`, `read_table()`, etc.
+No restante deste capítulo focaremos no uso da função `read_excel()`.
 
 ### Importando arquivos do Excel {#sec-reading-spreadsheets-excel}
 
@@ -77,7 +77,7 @@ estudantes
 Temos seis estudantes nos dados e cinco variáveis para cada estudante.
 Entretanto, existem algumas coisas que devemos abordar neste conjunto de dados:
 
-1.  Os nomes das colunas estão bem bangunçados.
+1.  Os nomes das colunas estão com formato inconsistente.
     Você pode fornecer nomes que seguem um formato consistente; nós recomendamos o `snake_case` usando o argumento `col_names`.
 
     ```{r}
@@ -119,7 +119,7 @@ Entretanto, existem algumas coisas que devemos abordar neste conjunto de dados:
 
 2.  Na coluna `comida_favorita`, uma das observações está como `N/A`, que significa "não disponível" (*not available*) mas essa forma não é reconhecida como um valor não disponível (`NA`) do R (veja a diferença entre este `N/A` e o presente na `idade` do quarto estudante da lista).
     Você pode definir quais cadeias de caracteres (*strings*) devem ser reconhecidas pelo R como `NA` utilizando o argumento `na`.
-    Por padrão, apenas `""` (*string* vazia, ou, no caso quando lemos uma planilha, uma célula vazia ou com a fórmula `=NA()`) é reconhecida como um `NA`.
+    Por padrão, apenas `""` (*string* vazia, ou, quando trabalhando com uma planilha, uma célula vazia ou com a fórmula `=NA()`) é reconhecida como um `NA`.
 
     ```{r}
     read_excel(
@@ -180,7 +180,7 @@ Você também não precisa ter medo de fazer o que fizemos aqui: Carregar o arqu
 ### Importando planilhas
 
 Uma característica importante que distingue arquivos do Excel de arquivos texto, é a noção de várias planilhas (ou abas) dentro do mesmo arquivo.
-A @fig-penguins-islands mostra uma arquivo Excel com várias planilhas.
+A @fig-penguins-islands mostra um arquivo Excel com várias planilhas.
 Os dados são do pacote **palmerpenguins**, e você pode fazer o download como um arquivo Excel em <https://docs.google.com/spreadsheets/d/1aFu8lnD_g0yjF5O-K6SFgSEWiHPpgvFCF0NY9D6LXnY/>.
 Cada planilha (ou aba) contém informações de pinguins de diferentes ilhas onde os dados foram coletados.
 
@@ -257,17 +257,17 @@ A @fig-deaths-excel mostra um exemplo: no centro da planilha temos algo que se p
 #|   no topo contém informações extras aos dados; o texto 'Por razôes de  
 #|   consistência no *layout* dos dados, algo que é realmente belo, continuarei 
 #|   a fazer notas por aqui.' está espalhado pelas quatro linhas. 
-#|   Então, há um *data frame* que inclui informações de 10  
+#|   Então, há um *data frame* que inclui informações sobre os óbitos de 10  
 #|   pessoas famosas, incluindo seus nomes, profissões, idades, se tinham filhos 
 #|   ou não, data de nascimento e óbito. Na parte de baixo, existem outras 4 linhas 
-#|   extras aos dados; no texto 'Isto é realmente engraçado, mas 
+#|   extras aos dados; no texto 'Isto tem sido realmente divertido, mas 
 #|   estamos nos desconectando agora!' está espalhado por estas quatro linhas finais.
 
 knitr::include_graphics("screenshots/import-spreadsheets-deaths.png")
 ```
 
 Esta planilha é um dos exemplos fornecidos com o pacote readxl.
-Você pode usar a função `readxl_example()` para localizar esta planilha no diretório de instalação do pacote em seu computador.
+Você pode usar a função `readxl_example()` para localizar esta planilha no diretório em que o pacote foi instalado em seu computador.
 Esta função retorna o caminho para o arquivo do Excel, que você pode importar usando a `read_excel()` como de costume.
 
 obitos_caminho <- readxl_example("obitos.xlsx")
@@ -278,7 +278,7 @@ obitos
 As primeiras três linhas e as quatro linhas no final, não fazem parte do *data frame*.
 É possível eliminar estas linhas extras usando os argumentos `skip` e `n_max`, mas recomendamos utilizar intervalos (*range*) de células.
 No Excel, a célula superior esquerda é a `A1`.
-Conforme você se move pelas colunas para a direita, o título da célula segue a sequência do alfabeto, ex: 
+Conforme você se move pelas colunas para a direita, o título da célula segue a sequência do alfabeto, ou seja: 
 `B1`, `C1`, etc.
 E conforme você se move para baixo na coluna, o número da célula aumenta, ex:
 `A2`, `A3`, etc.
@@ -311,25 +311,25 @@ Por exemplo, o Excel não tem a noção de 'inteiro' (*integer*).
 Todos os números são armazenados como ponto flutuante (*floating points*), mas você pode optar em mostrar os dados de uma forma personalizada de casas decimais.
 Da mesma maneira, datas são na verdade armazenadas como números, especificamente número de segundos desde 1º de Janeiro de 1970.
 Você pode personalizar como você quer mostrar as datas no Excel aplicando formatações.
-Para confundir ainda mais, também é possível ter algo que se parece com um número, mas é na verdade uma *string* (ex: , digite `'10` em uma célula no Excel).
+Para confundir ainda mais, também é possível ter algo que se parece com um número, mas é na verdade uma *string* (por exemplo: , digite `'10` em uma célula no Excel).
 
 Estas diferenças em como os dados intrínsecos são armazenados vs. como eles são mostrados na tela podem causar surpresas quando os dados são importados para o R.
 Por padrão, readxl tentará adivinhar o tipo de dado de uma determinada coluna.
 Um fluxo de trabalho recomendado é deixar o readxl adivinhar os tipos das colunas, confirmar se você está contente com os tipos sugeridos, e caso não estiver, importar novamente especificando o argumento `col_types` como mostrado na @sec-reading-spreadsheets-excel.
 
-Outro desafio é quando você tem uma coluna na planilha do Excel que tem uma mistura de diferentes tipos, ex: algumas células são numéricas, outras contém texto, outras contém datas.
+Outro desafio é quando você tem uma coluna na planilha do Excel que tem uma mistura de diferentes tipos: algumas células são numéricas, outras contém texto, outras contém datas.
 Quando importamos esses dados para o R, o readxl deve tomar algumas decisões.
 Nestes casos, você pode definir o tipo para esta coluna como `"list"`, o qual importará a coluna como uma lista de vetores de tamanho 1, onde o tipo de cada elemento do vetor é sugerido.
 
 ::: callout-note
 Algumas vezes os dados são armazenados de forma mais exótica, como cores de fundo da célula, ou com texto em negrito ou não.
 Nestes casos, você pode achar útil o pacote [tidyxl](https://nacnudus.github.io/tidyxl/).
-Veja <https://nacnudus.github.io/spreadsheet-munging-strategies/> para mais ideias sobre estratégias para trabalhar com dados não tabulares vindos do Excel.
+Veja <https://nacnudus.github.io/spreadsheet-munging-strategies/> para mais estratégias de trabalho com dados não tabulares vindos do Excel.
 :::
 
 ### Exportando para Excel {#sec-writing-to-excel}
 
-Vamos criar um pequeno conjunsto de dados (*tibble*) que iremos exportar.
+Vamos criar um pequeno conjunto de dados (*tibble*) que iremos exportar.
 Note que `item` é um fator (*factor*) e `quantidade` é um inteiro (*integer*).
 
 ```{r}
@@ -376,7 +376,7 @@ read_excel("data/doces-vendas.xlsx")
 ### Saídas formatadas
 
 O pacote writexl é uma solução simplificada para criar uma simples planilha do Excel, mas se você estiver interessado em características adicionais como escrever em uma planilha dentro de um arquivo e estilizá-la, você pode querer utilizar o pacote [openxlsx](https://ycphs.github.io/openxlsx).
-Não entraremos entrar nos detalhes deste pacote aqui, mas recomendamos ler <https://ycphs.github.io/openxlsx/articles/Formatting.html> para uma extensa discussão sobre mais funcionalidades de formatação de dados do R para o Excel usando o openxlsx.
+Não entraremos nos detalhes deste pacote aqui, mas recomendamos ler <https://ycphs.github.io/openxlsx/articles/Formatting.html> para uma extensa discussão sobre outras funcionalidades de formatação de dados do R para o Excel usando o openxlsx.
 
 Observe que este pacote não faz parte do tidyverse, portanto as funções e fluxos de trabalho podem não ser familiares.
 Por exemplo, os nomes das funções usam *camelCase*, várias funções não podem compor um *pipeline*, e os argumentos tendem a seguir ordens diferentes daquelas do tidyverse.
@@ -435,7 +435,7 @@ Uma boa forma de se familiarizar com o estilo de código em um novo pacote é ex
     ```
 
     Depois, importe-o para o R.
-    O conjunto de dados resultante deve ser nomeado como `lista` e deve se parecer como a seguir.
+    O conjunto de dados resultante deve ser nomeado como `lista` e deve se parecer com o que é mostrado a seguir.
 
     ```{r}
     #| echo: false
@@ -463,7 +463,7 @@ Uma boa forma de se familiarizar com o estilo de código em um novo pacote é ex
 
     a\.
     Importar `vendas.xlsx` e salvar como `vendas`.
-    O conjunto de dados deve se parecer como a seguir, com `id` e `n` como nomes das colunas e com 9 linhas.
+    O conjunto de dados deve se parecer com o que é mostrado a seguir, com `id` e `n` como nomes das colunas e com 9 linhas.
 
     ```{r}
     #| echo: false
@@ -516,7 +516,7 @@ library(googlesheets4)
 library(tidyverse)
 ```
 
-Uma breve nota sobre o nome do pacote: googlesheets4 usa a [versão 4 da API do Planilhas Google](https://developers.google.com/sheets/api/) para fornecer uma interface do Planilhas Google para o R, por isso este nome.
+Uma breve nota sobre o nome do pacote: googlesheets4 usa a versão 4 da [API do Planilhas Google](https://developers.google.com/sheets/api/) para fornecer uma interface do Planilhas Google para o R, por isso este nome.
 
 ### Iniciando
 
@@ -594,7 +594,7 @@ sheet_names(pinguins_planilha_id)
 ```
 
 Finalmente, assim como na `read_excel()`, podemos importar um intervalo de uma planilha definindo o argumento `range` na função `read_sheet()`.
-Observe que estamos também utilizando a função `gs4_example()` para localizar a planilha de exemplo que vem junto com o pacote googlesheets4.
+Observe que também estamos utilizando a função `gs4_example()` para localizar a planilha de exemplo que vem junto com o pacote googlesheets4.
 
 ```{r}
 obitos_url <- gs4_example("obitos")
@@ -637,7 +637,7 @@ Para mais informações sobre autenticação, recomendamos ler a documentação 
 2.  Importe a planilha chamada pesquisa do Planilhas Google de <https://pos.it/r4ds-survey>, tendo `pesquisa_id` como uma variável texto (caractere) e `n_animais_estimacao` como numérica.
 
 3.  Importe do Planilhas Google o arquivo chamado lista de <https://pos.it/r4ds-roster>.
-    O *data frame* resultante deve se chamar `lista` e deve ser como abaixo.
+    O *data frame* resultante deve se chamar `lista` e deve se parecer como mostrado abaixo.
 
     ```{r}
     #| echo: false
