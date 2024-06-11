@@ -560,7 +560,7 @@ Isso permitiu que a implementação no R base se livrasse de funcionalidades com
 
 Até aqui você aprendeu sobre funções que trabalham com linhas e colunas.
 dplyr se torna ainda mais poderoso quando você acrescenta a habilidade de trabalhar com grupos. 
-Nessa seção, iremos focar nas funções mais importantes: `group_by()`, `summarize()`, e a família de funções _slice_. 
+Nessa seção, focaremos nas funções mais importantes: `group_by()`, `summarize()`, e a família de funções _slice_. 
 
 ### `group_by()`
 
