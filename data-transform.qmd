@@ -846,7 +846,7 @@ batters <- Lahman::Batting |>
 batters
 ```
 
-Quando plotamos a habilidade dos rebatedores (medidas pela média de acerto, `performance`) contra o número de oportunidades de acertar a bola (medidas pela númer de vezes ao bastão, `n`), é possível ver dois padrões:
+Quando montamos um gráfico da habilidade dos rebatedores (medidas pela média de acerto, `performance`) contra o número de oportunidades de acertar a bola (medidas pela númer de vezes ao bastão, `n`), é possível ver dois padrões:
 
 1.  A variação em `performance` é maior entre os jogadores que foram menos vezes ao bastão. 
     A forma do gráfico é muito característica: sempre que você plotar uma média (ou alguma outra sumarização estatística)  vs. tamanho do grupo, você verá que a variação diminui à medida que o tamanho da amostra aumenta[^data-transform-4].
