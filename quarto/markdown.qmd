@@ -1,22 +1,22 @@
-## Text formatting
+## Formatação de texto
 
-*italic* **bold** ~~strikeout~~ `code`
+*itálico* **negrito** ~~taxado~~ `código`
 
-superscript^2^ subscript~2~
+sobrescrito^2^ subscrito~2~
 
-[underline]{.underline} [small caps]{.smallcaps}
+[sublinhado]{.sublinhado} [small caps]{.smallcaps}
 
-## Headings
+## Títulos
 
-# 1st Level Header
+# Título Nível 1
 
-## 2nd Level Header
+## Título Nível 2
 
-### 3rd Level Header
+### Título Nível 3
 
-## Lists
+## Listas
 
--   Bulleted list item 1
+-   Item de lista não enumerada 1
 
 -   Item 2
 
@@ -24,22 +24,22 @@ superscript^2^ subscript~2~
 
     -   Item 2b
 
-1.  Numbered list item 1
+1.  Item de lista enumerada 1
 
 2.  Item 2.
-    The numbers are incremented automatically in the output.
+    Os números são incrementados automaticamente na saída.
 
-## Links and images
+## Links e imagens
 
 <http://example.com>
 
-[linked phrase](http://example.com)
+[frase com link](http://example.com)
 
-![optional caption text](quarto.png){fig-alt="Quarto logo and the word quarto spelled in small case letters"}
+![texto de legenda opcional](quarto.png){fig-alt="Logomarca Quarto com a palavra quarto escrita em letras minúsculas"}
 
-## Tables
+## Tabelas
 
-| First Header | Second Header |
-|--------------|---------------|
-| Content Cell | Content Cell  |
-| Content Cell | Content Cell  |
+| Primeiro título    | Segundo título     |
+|--------------------|--------------------|
+| Célula de conteúdo | Célula de conteúdo |
+| Célula de conteúdo | Célula de conteúdo |

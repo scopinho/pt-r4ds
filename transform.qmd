@@ -1,50 +1,51 @@
-# Transform {#sec-transform-intro .unnumbered}
+# ✅ Transformar {#sec-transform-intro .unnumbered}
 
 ```{r}
-#| results: "asis"
 #| echo: false
 source("_common.R")
 ```
 
-The second part of the book was a deep dive into data visualization.
-In this part of the book, you'll learn about the most important types of variables that you'll encounter inside a data frame and learn the tools you can use to work with them.
+A segunda parte do livro abordou, com profundidade, a visualização de dados.
+Nesta parte do livro, você aprenderá sobre os tipos mais importantes de variáveis que você encontrará dentro de um *data frame* e conhecerá as ferramentas que pode usar para trabalhar com essas variáveis.
 
 ```{r}
 #| label: fig-ds-transform
 #| echo: false
 #| fig-cap: |
-#|   The options for data transformation depends heavily on the type of 
-#|   data involved, the subject of this part of the book.
+#|   As opções de transformação de dados dependem bastante
+#|   do tipo de dados envolvidos, que é o foco desta parte
+#|   do livro.
 #| fig-alt: |
-#|   Our data science model, with transform highlighted in blue.
+#|   Nosso modelo do processo de ciência de dados com Transformar destacado em azul.
 #| out.width: NULL
 
 knitr::include_graphics("diagrams/data-science/transform.png", dpi = 270)
 ```
 
-You can read these chapters as you need them; they're designed to be largely standalone so that they can be read out of order.
+Você pode ler esses capítulos de acordo com a sua necessidade; eles foram escritos para serem independentes, permitindo que sejam lidos sem uma ordem específica.
 
--   @sec-logicals teaches you about logical vectors.
-    These are the simplest types of vectors, but are extremely powerful.
-    You'll learn how to create them with numeric comparisons, how to combine them with Boolean algebra, how to use them in summaries, and how to use them for condition transformations.
+-   O @sec-logicals descreve os vetores lógicos.
+    Estes são os tipos mais simples de vetores, porém são extremamente poderosos.
+    Neste capítulo, você aprenderá a criar esses vetores lógicos por meio de comparações numéricas, a combiná-los utilizando álgebra booleana, a empregá-los para fazer sumarizações e a aplicá-los em transformações condicionais.
 
--   @sec-numbers dives into tools for vectors of numbers, the powerhouse of data science.
-    You'll learn more about counting and a bunch of important transformation and summary functions.
+-   O @sec-numbers explora ferramentas para vetores numéricos, a coluna vertebral da ciência de dados.
+    Neste capítulo, você aprenderá mais sobre contagem e uma variedade de funções importantes de transformação e sumarização.
 
--   @sec-strings will give you the tools to work with strings: you'll slice them, you'll dice them, and you'll stick them back together again.
-    This chapter mostly focuses on the stringr package, but you'll also learn some more tidyr functions devoted to extracting data from character strings.
+-   O @sec-strings fornece as ferramentas necessárias para trabalhar com cadeias de caracteres (*strings*): você conseguirá extrair partes de uma *string*, separar uma *string* em vários caracteres e concatená-los para gerar uma *string* novamente.
+    Este capítulo dá ênfase principalmente ao pacote stringr, mas também aborda algumas funções do tidyr voltadas para a extração de dados de *strings*.
 
--   @sec-regular-expressions introduces you to regular expressions, a powerful tool for manipulating strings.
-    This chapter will take you from thinking that a cat walked over your keyboard to reading and writing complex string patterns.
+-   O @sec-regular-expressions introduz as expressões regulares, uma ferramenta poderosa para manipular cadeias de caracteres (*strings*).
+    Este capítulo fará com que você saia da fase de pensar que um um gato caminhou sobre o seu teclado e passe a ler e escrever com facilidade padrões complexos de *strings*.
 
--   @sec-factors introduces factors: the data type that R uses to store categorical data.
-    You use a factor when variable has a fixed set of possible values, or when you want to use a non-alphabetical ordering of a string.
+-   O @sec-factors introduz os fatores: o tipo de dado que o R utiliza para armazenar dados categóricos.
+    Você utiliza um fator quando uma variável possui um conjunto fixo de valores possíveis ou quando você deseja atribuir uma ordenação não alfabética a uma *string*.
 
--   @sec-dates-and-times will give you the key tools for working with dates and date-times.
-    Unfortunately, the more you learn about date-times, the more complicated they seem to get, but with the help of the lubridate package, you'll learn to how to overcome the most common challenges.
+-   O @sec-dates-and-times fornece as principais ferramentas para trabalhar com datas e horários.
+    Infelizmente, quanto mais você aprende sobre datas e horários, parece que o assunto se tornar mais complicado.
+    No entanto, com a ajuda do pacote lubridate, você aprenderá a superar os desafios mais frequentes.
 
--   @sec-missing-values discusses missing values in depth.
-    We've discussed them a couple of times in isolation, but now it's time to discuss them holistically, helping you come to grips with the difference between implicit and explicit missing values, and how and why you might convert between them.
+-   O @sec-missing-values discute, em detalhes, os valores faltantes (*missing values*).
+    Ao longo do livro, abordamos esse tema algumas vezes de forma isolada, mas agora é hora de uma análise mais abrangente que ajude você a distinguir valores ausentes implícitos de valores ausentes explícitos e a compreender como e por que você pode convertê-los.
 
--   @sec-joins finishes up this part of the book by giving you tools to join two (or more) data frames together.
-    Learning about joins will force you to grapple with the idea of keys, and think about how you identify each row in a dataset.
+-   O @sec-joins encerra esta parte do livro sobre transformação, fornecendo ferramentas para unir dois (ou mais) *data frames*.
+    Entender sobre uniões (*joins*) fará com que você assimile o conceito de chaves (*keys*) de banco de dados e pense sobre como identificar cada linha em um conjunto de dados.

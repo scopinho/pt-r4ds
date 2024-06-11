@@ -2,8 +2,9 @@
 
 ```{r}
 #| echo: false
-
+#| results: asis
 source("_common.R")
+mensagem_capitulo_sem_traducao()
 
 # https://github.com/tidyverse/lubridate/issues/1058
 options(warnPartialMatchArgs = FALSE)

@@ -2,8 +2,10 @@
 
 ```{r}
 #| echo: false
+#| results: asis
 
 source("_common.R")
+mensagem_capitulo_sem_traducao()
 ```
 
 ## Introdução
@@ -45,6 +47,7 @@ Estas funções possuem uma sintaxe similar às outras funções introduzidas an
 No restante deste capítulo focaremos no uso da função `read_excel()`.
 
 ### Importando arquivos do Excel {#sec-reading-spreadsheets-excel}
+
 
 A @fig-students-excel mostra como é a planilha do Excel que iremos importar para o R. Esta planilha pode ser baixada em <https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w/>.
 

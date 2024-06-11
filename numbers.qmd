@@ -1,88 +1,89 @@
-# Numbers {#sec-numbers}
+# ✅ Números {#sec-numbers}
 
 ```{r}
 #| echo: false
+#| results: asis
 
 source("_common.R")
 ```
 
-## Introduction
+## Introdução
 
-Numeric vectors are the backbone of data science, and you've already used them a bunch of times earlier in the book.
-Now it's time to systematically survey what you can do with them in R, ensuring that you're well situated to tackle any future problem involving numeric vectors.
+Vetores numéricos são a espinha dorsal da ciência de dados e você já os usou muitas vezes anteriormente neste livro.
+Agora é hora de pesquisar sistematicamente o que você pode fazer com eles em R, garantindo que você esteja bem situado para resolver qualquer problema futuro envolvendo vetores numéricos.
 
-We'll start by giving you a couple of tools to make numbers if you have strings, and then going into a little more detail of `count()`.
-Then we'll dive into various numeric transformations that pair well with `mutate()`, including more general transformations that can be applied to other types of vectors, but are often used with numeric vectors.
-We'll finish off by covering the summary functions that pair well with `summarize()` and show you how they can also be used with `mutate()`.
+Começaremos fornecendo algumas ferramentas para criar números se você tiver textos (*strings*) e depois entraremos em mais detalhes sobre `count()`.
+Em seguida, mergulharemos em várias transformações numéricas que combinam bem com `mutate()`, incluindo transformações mais gerais que podem ser aplicadas a outros tipos de vetores, mas são frequentemente usadas com vetores numéricos.
+Terminaremos abordando as funções de sumarização que combinam bem com `summarize()` e mostraremos como elas também podem ser usadas com `mutate()`.
 
-### Prerequisites
+### Pré-requisitos
 
-This chapter mostly uses functions from base R, which are available without loading any packages.
-But we still need the tidyverse because we'll use these base R functions inside of tidyverse functions like `mutate()` and `filter()`.
-Like in the last chapter, we'll use real examples from nycflights13, as well as toy examples made with `c()` and `tribble()`.
+Este capítulo usa principalmente funções do R base que estão disponíveis sem precisarmos carregar nenhum pacote.
+Mas ainda iremos carregar o pacote tidyverse pois usaremos estas funções do R base dentro de funções do tidyverse como `mutate()` e `filter()`.
+Como no capítulo anterior, usaremos exemplos reais do pacote dados, bem como exemplos simples feitos com `c()` e `tribble()`.
 
 ```{r}
 #| label: setup
 #| message: false
 
 library(tidyverse)
-library(nycflights13)
+library(dados)
 ```
 
-## Making numbers
+## Criando números
 
-In most cases, you'll get numbers already recorded in one of R's numeric types: integer or double.
-In some cases, however, you'll encounter them as strings, possibly because you've created them by pivoting from column headers or because something has gone wrong in your data import process.
+Na maioria dos casos, você obterá números já registrados em um dos dois tipos do R: inteiro (*integer*) ou ponto-flutuante (*double*), .
+Em alguns casos, você irá encontrá-los como textos (*strings*), possivelmente porque você os criou com pivotagem (*pivoting*) de algum cabeçalho de coluna ou porque algo deu errado em seu processo de importação.
 
-readr provides two useful functions for parsing strings into numbers: `parse_double()` and `parse_number()`.
-Use `parse_double()` when you have numbers that have been written as strings:
+O pacote readr fornece duas funções úteis para transformar *strings* em números: `parse_double()` e `parse_number()`.
+Use `parse_double()` quando possuir números que foram escritos como *strings*:
 
 ```{r}
 x <- c("1.2", "5.6", "1e3")
 parse_double(x)
 ```
 
-Use `parse_number()` when the string contains non-numeric text that you want to ignore.
-This is particularly useful for currency data and percentages:
+Use `parse_number()` quando possuir *strings* que contenham textos não numéricos que você deseja ignorar.
+Isto é particularmente útil para dados de moedas e porcentagens:
 
 ```{r}
 x <- c("$1,234", "USD 3,513", "59%")
 parse_number(x)
 ```
 
-## Counts {#sec-counts}
+## Contagens {#sec-counts}
 
-It's surprising how much data science you can do with just counts and a little basic arithmetic, so dplyr strives to make counting as easy as possible with `count()`.
-This function is great for quick exploration and checks during analysis:
+É uma supresa o quanto de ciência de dados você pode fazer somente com um pouco de contagem e aritmética básica, então o pacote dplyr torna a contagem o mais fácil possível com `count()`.
+Esta função é ótima para explorações rápidas e validações durante a análise:
 
 ```{r}
-flights |> count(dest)
+voos |> count(destino)
 ```
 
-(Despite the advice in @sec-workflow-style, we usually put `count()` on a single line because it's usually used at the console for a quick check that a calculation is working as expected.)
+(Independente do conselho no @sec-workflow-style, normalmente colocamos `count()` em uma única linha, pois é usado geralmente em linha de comando (*console*) para uma rápida verificação que um cálculo está funcionando como esperado.)
 
-If you want to see the most common values, add `sort = TRUE`:
+Se você quiser os valores mais comuns, adicione `sort = TRUE`:
 
 ```{r}
-flights |> count(dest, sort = TRUE)
+voos |> count(destino, sort = TRUE)
 ```
 
-And remember that if you want to see all the values, you can use `|> View()` or `|> print(n = Inf)`.
+E lembre-se que, se você quiser ver todos os valores, você pode usar `|> View()` ou `|> print(n = Inf)`.
 
-You can perform the same computation "by hand" with `group_by()`, `summarize()` and `n()`.
-This is useful because it allows you to compute other summaries at the same time:
+Você pode fazer o mesmo cálculo "na mão" com `group_by()`, `summarize()` e `n()`.
+Isto é útil pois permite que você faça outras sumarizações ao mesmo tempo:
 
 ```{r}
-flights |> 
-  group_by(dest) |> 
+voos |> 
+  group_by(destino) |> 
   summarize(
     n = n(),
-    delay = mean(arr_delay, na.rm = TRUE)
+    atraso = mean(atraso_chegada, na.rm = TRUE)
   )
 ```
 
-`n()` is a special summary function that doesn't take any arguments and instead accesses information about the "current" group.
-This means that it only works inside dplyr verbs:
+`n()` é uma função de sumarização especial que não recebe nenhum argumento, mas ao invés disso, acessa informação sobre o grupo "atual".
+Isto significa que funciona apenas dentro de verbos dplyr:
 
 ```{r}
 #| error: true
@@ -90,102 +91,102 @@ This means that it only works inside dplyr verbs:
 n()
 ```
 
-There are a couple of variants of `n()` and `count()` that you might find useful:
+Existem algumas variações de `n()` e `count()` que você deve achar útil:
 
--   `n_distinct(x)` counts the number of distinct (unique) values of one or more variables.
-    For example, we could figure out which destinations are served by the most carriers:
-
-    ```{r}
-    flights |> 
-      group_by(dest) |> 
-      summarize(carriers = n_distinct(carrier)) |> 
-      arrange(desc(carriers))
-    ```
-
--   A weighted count is a sum.
-    For example you could "count" the number of miles each plane flew:
+-   `n_distinct(x)` conta o número de valores distintos (únicos) de uma ou mais variáveis.
+    Por exemplo, poderíamos obter quais destinos são mais oferecidos por companhia aérea:
 
     ```{r}
-    flights |> 
-      group_by(tailnum) |> 
-      summarize(miles = sum(distance))
+    voos |> 
+      group_by(destino) |> 
+      summarize(companhia_aerea = n_distinct(companhia_aerea)) |> 
+      arrange(desc(companhia_aerea))
     ```
 
-    Weighted counts are a common problem so `count()` has a `wt` argument that does the same thing:
+-   Uma contagem ponderada (*weigthed count*) é uma soma.
+    Pode exemplo, você poderia "contar" o número de milhas que cada avião voou:
+
+    ```{r}
+    voos |> 
+      group_by(codigo_cauda) |> 
+      summarize(milhas = sum(distancia))
+    ```
+
+    Contagem ponderada é um problema tão comum que `count()` tem um argumento `wt` que faz a mesma coisa:
 
     ```{r}
     #| results: false
-    flights |> count(tailnum, wt = distance)
+    voos |> count(codigo_cauda, wt = distancia)
     ```
 
--   You can count missing values by combining `sum()` and `is.na()`.
-    In the `flights` dataset this represents flights that are cancelled:
+-   Você pode contar valores faltantes (*missing values*) combinando `sum()` e `is.na()`.
+    No conjunto de dados `voos` isto representa os voos cancelados:
 
     ```{r}
-    flights |> 
-      group_by(dest) |> 
-      summarize(n_cancelled = sum(is.na(dep_time))) 
+    voos |> 
+      group_by(destino) |> 
+      summarize(num_cancelados = sum(is.na(horario_saida))) 
     ```
 
-### Exercises
+### Exercícios
 
-1.  How can you use `count()` to count the number rows with a missing value for a given variable?
-2.  Expand the following calls to `count()` to instead use `group_by()`, `summarize()`, and `arrange()`:
+1.  Como você pode usar `count()` para contar o número de linhas com valores faltantes de uma determinada variável?
+2.  Expanda as seguintes chamadas `count()` para usar `group_by()`, `summarize()` e `arrange()` ao invés de `count()`:
     1.  `flights |> count(dest, sort = TRUE)`
 
     2.  `flights |> count(tailnum, wt = distance)`
 
-## Numeric transformations
+## Transformações numéricas
 
-Transformation functions work well with `mutate()` because their output is the same length as the input.
-The vast majority of transformation functions are already built into base R.
-It's impractical to list them all so this section will show the most useful ones.
-As an example, while R provides all the trigonometric functions that you might dream of, we don't list them here because they're rarely needed for data science.
+Funções de transformação trabalham bem com `mutate()` porque suas saídas são do mesmo tamanho que suas entradas.
+A grande maioria das funções de transformação já fazem parte do R base.
+É impraticável listar todas, portanto esta seção irá mostrar as mais úteis.
+Como um exemplo, enquanto o R fornece todas as funções trigonemétricas que você pode sonhar, não iremos listá-las aqui pois elas são raramente necessárias em ciência de dados.
 
-### Arithmetic and recycling rules {#sec-recycling}
+### Regras aritméticas e de reciclagem {#sec-recycling}
 
-We introduced the basics of arithmetic (`+`, `-`, `*`, `/`, `^`) in @sec-workflow-basics and have used them a bunch since.
-These functions don't need a huge amount of explanation because they do what you learned in grade school.
-But we need to briefly talk about the **recycling rules** which determine what happens when the left and right hand sides have different lengths.
-This is important for operations like `flights |> mutate(air_time = air_time / 60)` because there are 336,776 numbers on the left of `/` but only one on the right.
+Introduzimos a base da aritmética (`+`, `-`, `*`, `/`, `^`) no @sec-workflow-basics e desde então a temos usado muito.
+Estas funções não precisam de muitas explicações pois elas fazem o que você aprendeu na escola primária.
+Mas temos que falar brevemente sobre **regras de reciclagem** (*recycling rules*) que determinam o que ocorre quando os lados direito e esquerdo tem tamanhos diferentes.
+Isto é importante para operações como `voos |> mutate(tempo_voo = tempo_voo / 60)` pois existem 336.776 números do lado esquerdo da `/` mas apenas um no lado direito.
 
-R handles mismatched lengths by **recycling,** or repeating, the short vector.
-We can see this in operation more easily if we create some vectors outside of a data frame:
+O R lida com tamanhos incompatíveis (*mismatched lengths*) com **reciclagem** ou repetição, do vetor menor.
+Podemos ver isso mais facilmente se criarmos vetores fora de um *data frame*:
 
 ```{r}
 x <- c(1, 2, 10, 20)
 x / 5
-# is shorthand for
+# é um atalho para
 x / c(5, 5, 5, 5)
 ```
 
-Generally, you only want to recycle single numbers (i.e. vectors of length 1), but R will recycle any shorter length vector.
-It usually (but not always) gives you a warning if the longer vector isn't a multiple of the shorter:
+Geralmente, você quer reciclar apenas números únicos (i.e. vetores de tamanho 1), mas o R irá reciclar qualquer vetor de menor tamanho.
+Em geral (mas nem sempre), o R te retorna uma mensagem de aviso se o vetor maior não é um múltiplo do menor:
 
 ```{r}
 x * c(1, 2)
 x * c(1, 2, 3)
 ```
 
-These recycling rules are also applied to logical comparisons (`==`, `<`, `<=`, `>`, `>=`, `!=`) and can lead to a surprising result if you accidentally use `==` instead of `%in%` and the data frame has an unfortunate number of rows.
-For example, take this code which attempts to find all flights in January and February:
+Estas regras de reciclagem se aplicam também a comparações lógicas (`==`, `<`, `<=`, `>`, `>=`, `!=`) e podem levar à resultados surpreendentes se você acidentalmente usar `==` ao invés de `%in%` e o *data frame* tiver um número lamentável de linhas.
+Por exemplo, veja este código que tenta encontrar todos os voos de Janeiro e Fevereiro:
 
 ```{r}
-flights |> 
-  filter(month == c(1, 2))
+voos |> 
+  filter(mes == c(1, 2))
 ```
 
-The code runs without error, but it doesn't return what you want.
-Because of the recycling rules it finds flights in odd numbered rows that departed in January and flights in even numbered rows that departed in February.
-And unfortunately there's no warning because `flights` has an even number of rows.
+O código é executado sem erros, mas não retorna o que você espera.
+Devido às regras de reciclagem, ele encontra um número ímpar de linhas que saíram em Janeiro e um número par de voos que saíram em Fevereiro.
+E infelizmente, não há aviso de erro, pois `voos` possui um número par de linhas.
 
-To protect you from this type of silent failure, most tidyverse functions use a stricter form of recycling that only recycles single values.
-Unfortunately that doesn't help here, or in many other cases, because the key computation is performed by the base R function `==`, not `filter()`.
+Para te proteger desse tipo de falha silenciosa, a maioria das funções do tidyverse usa um forma restrita de reciclagem que recicla apenas valores únicos.
+Infelizmente isto não ajuda aqui, ou em vários outros casos, pois o cálculo é feito pela função `==` do R base e não pela `filter()`.
 
-### Minimum and maximum
+### Mínimo e máximo
 
-The arithmetic functions work with pairs of variables.
-Two closely related functions are `pmin()` and `pmax()`, which when given two or more variables will return the smallest or largest value in each row:
+As funções aritméticas trabalham com pares de variáveis.
+Duas funções intimamente relacionadas são `pmin()` e `pmax()`, que quando dadas duas ou mais variáveis ​​retornarão o menor ou maior valor em cada linha:
 
 ```{r}
 df <- tribble(
@@ -202,8 +203,8 @@ df |>
   )
 ```
 
-Note that these are different to the summary functions `min()` and `max()` which take multiple observations and return a single value.
-You can tell that you've used the wrong form when all the minimums and all the maximums have the same value:
+Observe que elas são diferentes das funções de sumarização `min()` e `max()` que recebem múltiplas observações e retornam um único valor.
+Você pode dizer quando usou a forma errada quando todos os mínimos e todos os máximos têm o mesmo valor:
 
 ```{r}
 df |> 
@@ -213,89 +214,90 @@ df |>
   )
 ```
 
-### Modular arithmetic
+### Aritmética modular
 
-Modular arithmetic is the technical name for the type of math you did before you learned about decimal places, i.e. division that yields a whole number and a remainder.
-In R, `%/%` does integer division and `%%` computes the remainder:
+Artitmética modular é o termo técnico para o tipo de matemática que você fez quando aprendeu sobre casas decimais, ex.
+divisão que retornam um valor inteiro e um resto.
+No R, `%/%` faz uma divisão inteira e `%%` calcula o resto:
 
 ```{r}
 1:10 %/% 3
 1:10 %% 3
 ```
 
-Modular arithmetic is handy for the `flights` dataset, because we can use it to unpack the `sched_dep_time` variable into `hour` and `minute`:
+Aritmética modular é útil para o conjunto de dados `voos`, pois podemos usá-la para quebrar a variável `saida_programada` em `hora` e `minuto`:
 
 ```{r}
-flights |> 
+voos |> 
   mutate(
-    hour = sched_dep_time %/% 100,
-    minute = sched_dep_time %% 100,
+    hora = saida_programada %/% 100,
+    minuto = saida_programada %% 100,
     .keep = "used"
   )
 ```
 
-We can combine that with the `mean(is.na(x))` trick from @sec-logical-summaries to see how the proportion of cancelled flights varies over the course of the day.
-The results are shown in @fig-prop-cancelled.
+Podemos combinar isto com o truque `mean(is.na(x))` da @sec-logical-summaries para ver como a proporção de voos cancelados varia ao longo do dia.
+Os resultados são mostrados na @fig-prop-cancelled.
 
 ```{r}
 #| label: fig-prop-cancelled
 #| fig-cap: | 
-#|   A line plot with scheduled departure hour on the x-axis, and proportion
-#|   of cancelled flights on the y-axis. Cancellations seem to accumulate
-#|   over the course of the day until 8pm, very late flights are much
-#|   less likely to be cancelled.
+#|   Um gráfico de linha com hora da saída programada no eixo-x e a proporção 
+#|   dos voos cancelados no eixo-y. Cancelamentos parecem se acumular
+#|   ao longo do dia até as 20:00 horas, voos noturnos parecem ter muito menos chances
+#|   de serem cancelados.
 #| fig-alt: |
-#|   A line plot showing how proportion of cancelled flights changes over
-#|   the course of the day. The proportion starts low at around 0.5% at
-#|   6am, then steadily increases over the course of the day until peaking
-#|   at 4% at 7pm. The proportion of cancelled flights then drops rapidly
-#|   getting down to around 1% by midnight.
-flights |> 
-  group_by(hour = sched_dep_time %/% 100) |> 
-  summarize(prop_cancelled = mean(is.na(dep_time)), n = n()) |> 
-  filter(hour > 1) |> 
-  ggplot(aes(x = hour, y = prop_cancelled)) +
+#|   Um gráfico de linha mostrando como a proporção de voos cancelados muda 
+#|   ao longo do dia. A proporção começa baixa, de aproximadamente 0.5% às 06:00 horas 
+#|   e então aumenta de forma uniforme ao longo do dia até um pico 
+#|   de 4% às 19:00m horas. A proporção de voos cancelados então cai rapidamente
+#|   chegando a aproximadamente 1% à meia-noite.
+voos |> 
+  group_by(hora = saida_programada %/% 100) |> 
+  summarize(prop_cancelados = mean(is.na(horario_saida)), n = n()) |> 
+  filter(hora > 1) |> 
+  ggplot(aes(x = hora, y = prop_cancelados)) +
   geom_line(color = "grey50") + 
   geom_point(aes(size = n))
 ```
 
-### Logarithms
+### Logaritmos
 
-Logarithms are an incredibly useful transformation for dealing with data that ranges across multiple orders of magnitude and converting exponential growth to linear growth.
-In R, you have a choice of three logarithms: `log()` (the natural log, base e), `log2()` (base 2), and `log10()` (base 10).
-We recommend using `log2()` or `log10()`.
-`log2()` is easy to interpret because a difference of 1 on the log scale corresponds to doubling on the original scale and a difference of -1 corresponds to halving; whereas `log10()` is easy to back-transform because (e.g.) 3 is 10\^3 = 1000.
-The inverse of `log()` is `exp()`; to compute the inverse of `log2()` or `log10()` you'll need to use `2^` or `10^`.
+Logaritmos são transformações incríveis para lidar com dados que variam em múltiplas ordens de magnitude e também para converter o crescimento exponencial em crescimento linear.
+No R, você tem escolha de três logaritmos: `log()` (o logaritmo natural, base e), `log2()` (base 2), e `log10()` (base 10).
+Recomendamos usar `log2()` ou `log10()`.
+`log2()` é fácil interpretar pois a diferença de 1 na escala logarítmica corresponde ao dobro na escalada original e a diferença de -1 corresponde à metade; e o `log10()` é de fácil transformação inversa (*back-transform*) (ex. 3 é 10\^3 = 1000).
+O inverso de `log()` é `exp()`; para calcular o inverso de `log2()` ou `log10()` você precisará usar `2^` ou `10^`.
 
-### Rounding {#sec-rounding}
+### Arredondamento {#sec-rounding}
 
-Use `round(x)` to round a number to the nearest integer:
+Use `round(x)` para arredondar um número para o inteiro mais próximo:
 
 ```{r}
 round(123.456)
 ```
 
-You can control the precision of the rounding with the second argument, `digits`.
-`round(x, digits)` rounds to the nearest `10^-n` so `digits = 2` will round to the nearest 0.01.
-This definition is useful because it implies `round(x, -3)` will round to the nearest thousand, which indeed it does:
+Você pode controlar a precisão do arredondamento usando o segundo argumento, `digits`.
+`round(x, digits)` arredonda para o próximo `10^-n` então `digits = 2` irá arredondar para o 0.01 mais próximo.
+Esta definição é útil, pois implica que `round(x, -3)` arredondará para o milésimo mais próximo, o que de fato acontece:
 
 ```{r}
-round(123.456, 2)  # two digits
-round(123.456, 1)  # one digit
-round(123.456, -1) # round to nearest ten
-round(123.456, -2) # round to nearest hundred
+round(123.456, 2)  # dois dígitos
+round(123.456, 1)  # um dígito
+round(123.456, -1) # arredonda para dezena mais próxima
+round(123.456, -2) # arredonda para a centena mais próxima
 ```
 
-There's one weirdness with `round()` that seems surprising at first glance:
+Há algo de estranho com `round()` que parece uma surpresa à primeira vista:
 
 ```{r}
 round(c(1.5, 2.5))
 ```
 
-`round()` uses what's known as "round half to even" or Banker's rounding: if a number is half way between two integers, it will be rounded to the **even** integer.
-This is a good strategy because it keeps the rounding unbiased: half of all 0.5s are rounded up, and half are rounded down.
+`round()` usa o que é conhecido como "arredondamento da metade para o par" ou arredondamento do banqueiro: se um número estiver no meio do caminho entre dois inteiros, ele será arredondado para o inteiro **par**.
+Esta é uma boa estratégia porque mantém o arredondamento imparcial: metade de todos os 0,5 são arredondados para cima e a outra metade para baixo.
 
-`round()` is paired with `floor()` which always rounds down and `ceiling()` which always rounds up:
+`round()` é acompanhada por `floor()` que sempre arredonda para baixo e `ceiling()` que sempre arredonda para cima:
 
 ```{r}
 x <- 123.456
@@ -304,45 +306,45 @@ floor(x)
 ceiling(x)
 ```
 
-These functions don't have a `digits` argument, so you can instead scale down, round, and then scale back up:
+Estas funções não possuem o argumento `digits`, portanto você deve escalar para baixo, arredondar e depois escalar para cima:
 
 ```{r}
-# Round down to nearest two digits
+# Arredonda para baixo para os dois dígitos mais próximos
 floor(x / 0.01) * 0.01
-# Round up to nearest two digits
+# Arredonda para cima para os dois dígitos mais próximos
 ceiling(x / 0.01) * 0.01
 ```
 
-You can use the same technique if you want to `round()` to a multiple of some other number:
+Você pode usar a mesma técnica com `round()` para arredondar para múltiplos de algum número:
 
 ```{r}
-# Round to nearest multiple of 4
+# Arredonda para o múltiplo de 4 mais próximo
 round(x / 4) * 4
 
-# Round to nearest 0.25
+# Arredonda para o 0.25 mais próximo
 round(x / 0.25) * 0.25
 ```
 
-### Cutting numbers into ranges
+### Separando (*cuttting*) números em intervalos
 
-Use `cut()`[^numbers-1] to break up (aka bin) a numeric vector into discrete buckets:
+Use `cut()`[^numbers-1] para separar um vetor numérico em intervalos (também chamadas de *bin*) discretos:
 
-[^numbers-1]: ggplot2 provides some helpers for common cases in `cut_interval()`, `cut_number()`, and `cut_width()`.
-    ggplot2 is an admittedly weird place for these functions to live, but they are useful as part of histogram computation and were written before any other parts of the tidyverse existed.
+[^numbers-1]: ggplot2 oferece funções de ajuda para casos comuns como `cut_interval()`, `cut_number()` e `cut_width()`.
+    ggplot2 é um lugar reconhecidamente estranho para manter essas funções, mas elas são úteis como parte do cálculo do histograma e foram escritas antes de qualquer outra parte do tidyverse existir.
 
 ```{r}
 x <- c(1, 2, 5, 10, 15, 20)
 cut(x, breaks = c(0, 5, 10, 15, 20))
 ```
 
-The breaks don't need to be evenly spaced:
+As quebras (`breaks`) não precisam ser espaçadas igualmente:
 
 ```{r}
 cut(x, breaks = c(0, 5, 10, 100))
 ```
 
-You can optionally supply your own `labels`.
-Note that there should be one less `labels` than `breaks`.
+Você pode, opcionalmente, definir seus próprios rótulos (`labels`).
+Note que deve haver um `labels` a menos que o número de `breaks`.
 
 ```{r}
 cut(x, 
@@ -351,106 +353,106 @@ cut(x,
 )
 ```
 
-Any values outside of the range of the breaks will become `NA`:
+Qualquer valor fora do intervalo de quebras, se torna automaticamente `NA`:
 
 ```{r}
 y <- c(NA, -10, 5, 10, 30)
 cut(y, breaks = c(0, 5, 10, 15, 20))
 ```
 
-See the documentation for other useful arguments like `right` and `include.lowest`, which control if the intervals are `[a, b)` or `(a, b]` and if the lowest interval should be `[a, b]`.
+Veja a documentação para outros argumentos úteis como `right` e `include.lowest`, que controlam se os intervalos são `[a, b)` ou `(a, b]` e se o intervalor mais baixo deve ser `[a, b]`.
 
-### Cumulative and rolling aggregates {#sec-cumulative-and-rolling-aggregates}
+### Agregadores cumulativos e rolantes (*Cumulative and rolling aggregates*) {#sec-cumulative-and-rolling-aggregates}
 
-Base R provides `cumsum()`, `cumprod()`, `cummin()`, `cummax()` for running, or cumulative, sums, products, mins and maxes.
-dplyr provides `cummean()` for cumulative means.
-Cumulative sums tend to come up the most in practice:
+O R base oferece `cumsum()`, `cumprod()`, `cummin()`, `cummax()` para somas, produtos, mínimos e máximos contínuos ou cumulativos.
+dplyr oferece `cummean()` para média cumulativa (um tipo de média móvel).
+Somas acumuladas tendem a ser de maior uso na prática:
 
 ```{r}
 x <- 1:10
 cumsum(x)
 ```
 
-If you need more complex rolling or sliding aggregates, try the [slider](https://slider.r-lib.org/) package.
+Se você precisar de agregadores cumulativos ou rolantes mais complexos, experimente o pacote [slider](https://slider.r-lib.org/).
 
-### Exercises
+### Exercícios
 
-1.  Explain in words what each line of the code used to generate @fig-prop-cancelled does.
+1.  Explique o que cada linha de código usada para gerar a @fig-prop-cancelled faz.
 
-2.  What trigonometric functions does R provide?
-    Guess some names and look up the documentation.
-    Do they use degrees or radians?
+2.  Quais funções de trigonometria o R oferece?
+    Adivinhe alguns nomes e veja a documentação.
+    Elas usam graus ou radianos?
 
-3.  Currently `dep_time` and `sched_dep_time` are convenient to look at, but hard to compute with because they're not really continuous numbers.
-    You can see the basic problem by running the code below: there's a gap between each hour.
+3.  Atualmente `horario_saida` e `saida_programada` são convenientes para consultá-las, mas difícil de calculá-las pois elas não são realmente números contínuos.
+    Você pode ver o problema básico executando o código abaixo: há um intervalo entre cada hora.
 
     ```{r}
     #| eval: false
-    flights |> 
-      filter(month == 1, day == 1) |> 
-      ggplot(aes(x = sched_dep_time, y = dep_delay)) +
+    voos |> 
+      filter(mes == 1, dia == 1) |> 
+      ggplot(aes(x = saida_programada, y = atraso_saida)) +
       geom_point()
     ```
 
-    Convert them to a more truthful representation of time (either fractional hours or minutes since midnight).
+    Converta estas variáveis para uma representação real de tempo (em frações de hora ou minutos a partir da meia-noite).
 
-4.  Round `dep_time` and `arr_time` to the nearest five minutes.
+4.  Arredonde `horario_saida` e `horario_chegada` para os cinco minutos mais próximos.
 
-## General transformations
+## Transformações gerais
 
-The following sections describe some general transformations which are often used with numeric vectors, but can be applied to all other column types.
+A seção seguinte descreve algumas transformações gerais que são frequentemente usadas em vetores numéricos, mas podem ser usadas em outros tipos de colunas.
 
-### Ranks
+### Ranqueamento (*rank*)
 
-dplyr provides a number of ranking functions inspired by SQL, but you should always start with `dplyr::min_rank()`.
-It uses the typical method for dealing with ties, e.g., 1st, 2nd, 2nd, 4th.
+O dplyr oferece diversas funções de ranqueamento inspiradas no SQL, mas você deve sempre começar com `dplyr::min_rank()`.
+Ela usa o método típico para lidar com empates, ex.: 1o, 2o, 2o, 4o.
 
 ```{r}
 x <- c(1, 2, 2, 3, 4, NA)
 min_rank(x)
 ```
 
-Note that the smallest values get the lowest ranks; use `desc(x)` to give the largest values the smallest ranks:
+Note que o valor mais baixo tem o menor ranqueamento; use `desc(x)` para dar aos maiores valores o menor ranqueamento:
 
 ```{r}
 min_rank(desc(x))
 ```
 
-If `min_rank()` doesn't do what you need, look at the variants `dplyr::row_number()`, `dplyr::dense_rank()`, `dplyr::percent_rank()`, and `dplyr::cume_dist()`.
-See the documentation for details.
+Caso `min_rank()` não fizer o que você deseja, então veja as variantes `dplyr::row_number()`, `dplyr::dense_rank()`, `dplyr::percent_rank()` e `dplyr::cume_dist()`.
+Veja a documentação para mais detalhes.
 
 ```{r}
 df <- tibble(x = x)
 df |> 
   mutate(
-    row_number = row_number(x),
-    dense_rank = dense_rank(x),
-    percent_rank = percent_rank(x),
-    cume_dist = cume_dist(x)
+    num_linha = row_number(x),
+    ranqueamento_dense = dense_rank(x),
+    ranqueamento_percentual = percent_rank(x),
+    distrib_cumulativa = cume_dist(x)
   )
 ```
 
-You can achieve many of the same results by picking the appropriate `ties.method` argument to base R's `rank()`; you'll probably also want to set `na.last = "keep"` to keep `NA`s as `NA`.
+Você pode chegar nos mesmos resultados selecionando o argumento `ties.method` adequado na `rank()` do R base; você provavelmente desejará definir `na.last = "keep"` para manter `NA`s como `NA`.
 
-`row_number()` can also be used without any arguments when inside a dplyr verb.
-In this case, it'll give the number of the "current" row.
-When combined with `%%` or `%/%` this can be a useful tool for dividing data into similarly sized groups:
+`row_number()` também pode ser usada sem nenhum argumento dentro de um verbo dplyr.
+Neste caso, irá te retornar o número da linha "atual".
+Quando combinado com `%%` ou `%/%`, pode ser uma ferramenta útil para dividir os dados em grupos de tamanhos parecidos:
 
 ```{r}
 df <- tibble(id = 1:10)
 
 df |> 
   mutate(
-    row0 = row_number() - 1,
-    three_groups = row0 %% 3,
-    three_in_each_group = row0 %/% 3
+    linha_0 = row_number() - 1,
+    tres_grupos = linha_0 %% 3,
+    tres_em_cada_grupo = linha_0 %/% 3
   )
 ```
 
-### Offsets
+### Deslocamentos (*offsets*)
 
-`dplyr::lead()` and `dplyr::lag()` allow you to refer the values just before or just after the "current" value.
-They return a vector of the same length as the input, padded with `NA`s at the start or end:
+`dplyr::lead()` e `dplyr::lag()` permitem que você consulte os valores imediatamente antes ou logo após o valor "atual".
+Elas retornam um vetor do mesmo comprimento da entrada, preenchido com `NA`s no início ou no final:
 
 ```{r}
 x <- c(2, 5, 11, 11, 19, 35)
@@ -458,55 +460,56 @@ lag(x)
 lead(x)
 ```
 
--   `x - lag(x)` gives you the difference between the current and previous value.
+-   `x - lag(x)` fornece a diferença entre o valor atual e o anterior.
 
     ```{r}
     x - lag(x)
     ```
 
--   `x == lag(x)` tells you when the current value changes.
+-   `x == lag(x)` informa quando o valor atual muda.
 
     ```{r}
     x == lag(x)
     ```
 
-You can lead or lag by more than one position by using the second argument, `n`.
+Você pode determinar o número de posições para frente (*lead*) ou para trás (*lag*) usando o segundo argumento `n`.
 
-### Consecutive identifiers
+### Identificadores consecutivos
 
-Sometimes you want to start a new group every time some event occurs.
-For example, when you're looking at website data, it's common to want to break up events into sessions, where you begin a new session after gap of more than `x` minutes since the last activity.
-For example, imagine you have the times when someone visited a website:
+Às vezes você deseja iniciar um novo grupo sempre que algum evento ocorrer.
+Por exemplo, quando você analisa dados de um site, é comum querer dividir os eventos em sessões, onde você inicia uma nova sessão após um intervalo de mais de `x` minutos desde a última atividade.
+Por exemplo, imagine que você tenha os horários em que alguém visitou um site:
 
 ```{r}
-events <- tibble(
-  time = c(0, 1, 2, 3, 5, 10, 12, 15, 17, 19, 20, 27, 28, 30)
+eventos <- tibble(
+  horario = c(0, 1, 2, 3, 5, 10, 12, 15, 17, 19, 20, 27, 28, 30)
 )
 
 ```
 
-And you've computed the time between each event, and figured out if there's a gap that's big enough to qualify:
+E você calculou o período entre cada ocorrência de eventos, e descobriu se há um intervalo grande o suficiente para se qualificar:
 
 ```{r}
-events <- events |> 
+eventos <- eventos |> 
   mutate(
-    diff = time - lag(time, default = first(time)),
-    has_gap = diff >= 5
+    diferenca = horario - lag(horario, default = first(horario)),
+    tem_intervalo_grande = diferenca >= 5
   )
-events
+eventos
 ```
 
-But how do we go from that logical vector to something that we can `group_by()`?
-`cumsum()`, from @sec-cumulative-and-rolling-aggregates, comes to the rescue as gap, i.e. `has_gap` is `TRUE`, will increment `group` by one (@sec-numeric-summaries-of-logicals):
+Mas como podemos ir deste vetor lógico para algo que podemos agrupar com `group_by()`?
+`cumsum()`, da @sec-cumulative-and-rolling-aggregates, vem pra ajudar com intervalos (*gaps*), ex.
+`tem_intervalo_grande` como `TRUE`, irá incrementar `grupo` em um (@sec-numeric-summaries-of-logicals):
 
 ```{r}
-events |> mutate(
-  group = cumsum(has_gap)
+eventos |> mutate(
+  grupo = cumsum(tem_intervalo_grande)
 )
 ```
 
-Another approach for creating grouping variables is `consecutive_id()`, which starts a new group every time one of its arguments changes.
-For example, inspired by [this stackoverflow question](https://stackoverflow.com/questions/27482712), imagine you have a data frame with a bunch of repeated values:
+Outra abordagem para criar variáveis de grupo é `consecutive_id()`, que inicia um novo grupo toda vez que algum de seus argumentos muda.
+Por exemplo, inspirado [nesta pergunta do stackoverflow](https://stackoverflow.com/questions/27482712), imagine que você tenha um *data frame* com vários valores repetidos:
 
 ```{r}
 df <- tibble(
@@ -515,7 +518,7 @@ df <- tibble(
 )
 ```
 
-If you want to keep the first row from each repeated `x`, you could use `group_by()`, `consecutive_id()`, and `slice_head()`:
+Se você quer manter a primeira linha para cada `x`repetido, você pode usar `group_by()`, `consecutive_id()` e `slice_head()`:
 
 ```{r}
 df |> 
@@ -523,258 +526,259 @@ df |>
   slice_head(n = 1)
 ```
 
-### Exercises
+### Exercícios
 
-1.  Find the 10 most delayed flights using a ranking function.
-    How do you want to handle ties?
-    Carefully read the documentation for `min_rank()`.
+1.  Encontre os 10 voos mais atrasados ​​usando uma função de ranqueamento.
+    Como você quer lidar com os empates?
+    Leia atentamente a documentação da `min_rank()`.
 
-2.  Which plane (`tailnum`) has the worst on-time record?
+2.  Qual avião (`codigo_cauda`) tem o pior histórico de pontualidade?
 
-3.  What time of day should you fly if you want to avoid delays as much as possible?
+3.  Em qual horário você deve voar se quiser evitar atrasos o máximo possível?
 
-4.  What does `flights |> group_by(dest) |> filter(row_number() < 4)` do?
-    What does `flights |> group_by(dest) |> filter(row_number(dep_delay) < 4)` do?
+4.  O que faz `voos |> group_by(destino) |> filter(row_number() < 4)` ?
+    O que faz `voos |> group_by(destino) |> filter(row_number(atraso_saida) < 4)` ?
 
-5.  For each destination, compute the total minutes of delay.
-    For each flight, compute the proportion of the total delay for its destination.
+5.  Para cada destino, calcule o total de minutos de atraso.
+    Para cada voo, calcule a proporção do atraso total para o seu destino.
 
-6.  Delays are typically temporally correlated: even once the problem that caused the initial delay has been resolved, later flights are delayed to allow earlier flights to leave.
-    Using `lag()`, explore how the average flight delay for an hour is related to the average delay for the previous hour.
+6.  Os atrasos são normalmente correlacionados temporalmente: mesmo depois de o problema que causou o atraso inicial ter sido resolvido, os voos posteriores são atrasados ​​para permitir a saída dos voos anteriores.
+    Usando `lag()`, explore como o atraso médio do voo de uma hora está relacionado ao atraso médio da hora anterior..
 
     ```{r}
     #| results: false
 
-    flights |> 
-      mutate(hour = dep_time %/% 100) |> 
-      group_by(year, month, day, hour) |> 
+    voos |> 
+      mutate(hora = horario_saida %/% 100) |> 
+      group_by(ano, mes, dia, hora) |> 
       summarize(
-        dep_delay = mean(dep_delay, na.rm = TRUE),
+        atraso_saida = mean(atraso_saida, na.rm = TRUE),
         n = n(),
         .groups = "drop"
       ) |> 
       filter(n > 5)
     ```
 
-7.  Look at each destination.
-    Can you find flights that are suspiciously fast (i.e. flights that represent a potential data entry error)?
-    Compute the air time of a flight relative to the shortest flight to that destination.
-    Which flights were most delayed in the air?
+7.  Veja cada destino.
+    Você consegue encontrar voos suspeitosamente rápidos (ou seja, voos que representam um possível erro de entrada de dados)?
+    Calcule o tempo de viagem de um voo em relação ao voo mais curto para esse destino.
+    Quais voos tiveram mais atrasos no ar?
 
-8.  Find all destinations that are flown by at least two carriers.
-    Use those destinations to come up with a relative ranking of the carriers based on their performance for the same destination.
+8.  Encontre todos os destinos operados por pelo menos duas companhias aéreas.
+    Use esses destinos para chegar a um ranqueamento relativo das transportadoras com base no seu desempenho para o mesmo destino.
 
-## Numeric summaries
+## Sumarização numérica
 
-Just using the counts, means, and sums that we've introduced already can get you a long way, but R provides many other useful summary functions.
-Here is a selection that you might find useful.
+Apenas usar as contagens, médias e somas que já apresentamos pode ajudar você a percorrer um longo caminho, mas o R fornece muitas outras funções de úteis de sumarização.
+Aqui está uma seleção que você pode achar útil.
 
-### Center
+### Centro
 
-So far, we've mostly used `mean()` to summarize the center of a vector of values.
-As we've seen in @sec-sample-size, because the mean is the sum divided by the count, it is sensitive to even just a few unusually high or low values.
-An alternative is to use the `median()`, which finds a value that lies in the "middle" of the vector, i.e. 50% of the values is above it and 50% are below it.
-Depending on the shape of the distribution of the variable you're interested in, mean or median might be a better measure of center.
-For example, for symmetric distributions we generally report the mean while for skewed distributions we usually report the median.
+Até agora, na maioria da vezes, usamos a média com `mean()` para sumarizar o centro de um vetor de valores.
+Como vimos na @sec-sample-size, uma vez que a média é a soma dividida pela contagem, ela é sensível até mesmo por um pequeno número de valores muito altos ou muito baixos.
+Uma alternativa é usar a mediana, com `median()`, que encontra o valor que se encontra no "meio" do vetor, ex.
+50% dos valores estão acima e 50% estão abaixo.
+Dependendo da forma da distribuição da variável de interesse, média ou mediana podem ser uma melhor medida de posição.
+Por exemplo, para distribuições simétricas, geralmente reportamos a média, enquanto para distribuições assimétricas (*skewed*), geralmente reportamos a mediana.
 
-@fig-mean-vs-median compares the mean vs. the median departure delay (in minutes) for each destination.
-The median delay is always smaller than the mean delay because flights sometimes leave multiple hours late, but never leave multiple hours early.
+A @fig-mean-vs-median compara a média e a mediana dos valores de atraso na saída (em minutos) para cada destino.
+A mediana de atraso é sempre menor que a média de atraso, pois em alguns casos, os voos saem com várias horas de atraso, mas nunca saem várias horas antecipadamente.
 
 ```{r}
 #| label: fig-mean-vs-median
 #| fig-cap: |
-#|   A scatterplot showing the differences of summarizing daily depature
-#|   delay with median instead of mean.
+#|   Um gráfico de dispersão mostrando a diferença entre sumarizar atraso das saídas diárias
+#|   com mediana ao invés da média.
 #| fig-alt: |
-#|   All points fall below a 45° line, meaning that the median delay is
-#|   always less than the mean delay. Most points are clustered in a 
-#|   dense region of mean [0, 20] and median [0, 5]. As the mean delay
-#|   increases, the spread of the median also increases. There are two
-#|   outlying points with mean ~60, median ~50, and mean ~85, median ~55.
-flights |>
-  group_by(year, month, day) |>
+#|   Todos os pontos estão sob a linha de 45°, signifcando que o atraso da mediana é
+#|   sempre menor que o atraso médio. A maioria dos pontos estão agrupados em um
+#|   região densa da média [0, 20] e mediana [0, 5]. Conforme o atraso médio aumenta,
+#|   a dispersão da mediana também aumenta. Existem dois pontos discrepantes
+#|   com média ~60, mediana ~50 e média ~85, mediana ~55.
+voos |>
+  group_by(ano, mes, dia) |>
   summarize(
-    mean = mean(dep_delay, na.rm = TRUE),
-    median = median(dep_delay, na.rm = TRUE),
+    media = mean(atraso_saida, na.rm = TRUE),
+    mediana = median(atraso_saida, na.rm = TRUE),
     n = n(),
     .groups = "drop"
   ) |> 
-  ggplot(aes(x = mean, y = median)) + 
+  ggplot(aes(x = media, y = mediana)) + 
   geom_abline(slope = 1, intercept = 0, color = "white", linewidth = 2) +
   geom_point()
 ```
 
-You might also wonder about the **mode**, or the most common value.
-This is a summary that only works well for very simple cases (which is why you might have learned about it in high school), but it doesn't work well for many real datasets.
-If the data is discrete, there may be multiple most common values, and if the data is continuous, there might be no most common value because every value is ever so slightly different.
-For these reasons, the mode tends not to be used by statisticians and there's no mode function included in base R[^numbers-2].
+Você também pode estar se perguntando sobre a **moda**, ou valor mais comum (ou mais frequente).
+Esta é uma medida que funciona bem apenas para casos muito simples (que pode ser a razão que você aprendeu sobre ela na escola primária), mas não funciona bem para conjuntos de dados reais.
+Se o dados forem discretos, podem existir muitos valores comuns, e se os dados forem contínuos, podem não existir valores comuns pois cada valor é ligeiramente diferente um do outro.
+Por estas razões, a moda tende a não ser usada por estatísticos e não há uma função de moda no R básico[^numbers-2].
 
-[^numbers-2]: The `mode()` function does something quite different!
+[^numbers-2]: A função `mode()` faz algo um pouco diferente!
 
-### Minimum, maximum, and quantiles {#sec-min-max-summary}
+### Minimos, maximos e quantis {#sec-min-max-summary}
 
-What if you're interested in locations other than the center?
-`min()` and `max()` will give you the largest and smallest values.
-Another powerful tool is `quantile()` which is a generalization of the median: `quantile(x, 0.25)` will find the value of `x` that is greater than 25% of the values, `quantile(x, 0.5)` is equivalent to the median, and `quantile(x, 0.95)` will find the value that's greater than 95% of the values.
+E se você tiver interesse em saber as posições diferentes do centro?
+`min()` e `max()` te darão os menores e maiores valores.
+Uma outra poderosa ferramenta é a `quantile()` que é uma generalização da mediana: `quantile(x, 0.25)` retorna o valor de `x` que é maior que 25% dos valores, `quantile(x, 0.5)` é equivalente à mediana e `quantile(x, 0.95)` retornará o valor que é maior que 95% dos valores.
 
-For the `flights` data, you might want to look at the 95% quantile of delays rather than the maximum, because it will ignore the 5% of most delayed flights which can be quite extreme.
+Para os dados de `voos`, você pode querer olhar no quantil 95% dos voos em atraso ao invés do valor máximo, pois isto ignora os voos com maior atraso, os quais podem ser muito extremos.
 
 ```{r}
-flights |>
-  group_by(year, month, day) |>
+voos |>
+  group_by(ano, mes, dia) |>
   summarize(
-    max = max(dep_delay, na.rm = TRUE),
-    q95 = quantile(dep_delay, 0.95, na.rm = TRUE),
+    max = max(atraso_saida, na.rm = TRUE),
+    q95 = quantile(atraso_saida, 0.95, na.rm = TRUE),
     .groups = "drop"
   )
 ```
 
-### Spread
+### Dispersão
 
-Sometimes you're not so interested in where the bulk of the data lies, but in how it is spread out.
-Two commonly used summaries are the standard deviation, `sd(x)`, and the inter-quartile range, `IQR()`.
-We won't explain `sd()` here since you're probably already familiar with it, but `IQR()` might be new --- it's `quantile(x, 0.75) - quantile(x, 0.25)` and gives you the range that contains the middle 50% of the data.
+Algumas vezes você não tem interesse em onde a maior parte dos dados se encontra, mas sim como estão dispersos.
+Duas medidas de dispersão muito usadas são, o desvio padrão, `sd(x)`, e o intervalo interquartil (*inter-quartile range*), `IQR()`.
+Não iremos explicar o `sd()` aqui, pois você já deve ser algo familiar a você, mas `IQR()` pode ser algo novo, --- ele é `quantile(x, 0.75) - quantile(x, 0.25)` e retornar um intervalo que contém a metade (50%) dos dados.
 
-We can use this to reveal a small oddity in the `flights` data.
-You might expect the spread of the distance between origin and destination to be zero, since airports are always in the same place.
-But the code below reveals a data oddity for airport [EGE](https://en.wikipedia.org/wiki/Eagle_County_Regional_Airport):
+Podemos usar isso para revelar uma pequena estranheza nos dados dos `voos`.
+Você poderia esperar que a dispersão da distância entre a origem e o destino fosse zero, uma vez que os aeroportos estão sempre no mesmo lugar.
+Mas o código abaixo revela uma estranheza nos dados do aeroporto [EGE](https://en.wikipedia.org/wiki/Eagle_County_Regional_Airport):
 
 ```{r}
-flights |> 
-  group_by(origin, dest) |> 
+voos |> 
+  group_by(origem, destino) |> 
   summarize(
-    distance_sd = IQR(distance), 
+    distancia_sd = IQR(distancia), 
     n = n(),
     .groups = "drop"
   ) |> 
-  filter(distance_sd > 0)
+  filter(distancia_sd > 0)
 ```
 
-### Distributions
+### Distribuições
 
-It's worth remembering that all of the summary statistics described above are a way of reducing the distribution down to a single number.
-This means that they're fundamentally reductive, and if you pick the wrong summary, you can easily miss important differences between groups.
-That's why it's always a good idea to visualize the distribution before committing to your summary statistics.
+Vale lembrar que todas as estatísticas de sumarização descritas acima são uma forma de reduzir a distribuição a um único número.
+Isso significa que eles são fundamentalmente redutores e, se você escolher a sumarização errada, poderá facilmente perder diferenças importantes entre os grupos.
+É por isso que é sempre uma boa ideia visualizar a distribuição antes de se comprometer com suas estatísticas de sumarização.
 
-@fig-flights-dist shows the overall distribution of departure delays.
-The distribution is so skewed that we have to zoom in to see the bulk of the data.
-This suggests that the mean is unlikely to be a good summary and we might prefer the median instead.
+A @fig-flights-dist mostra a distribuição geral dos atrasos nas saídas.
+A distribuição é tão distorcida que precisamos ampliar para ver a maior parte dos dados.
+Isto sugere que é pouco provável que a média seja um bom resumo e que poderíamos preferir a mediana.
 
 ```{r}
 #| echo: false
 #| label: fig-flights-dist
 #| fig-cap: |
-#|   (Left) The histogram of the full data is extremely skewed making it
-#|   hard to get any details. (Right) Zooming into delays of less than two
-#|   hours makes it possible to see what's happening with the bulk of the
-#|   observations.
+#|   (Esquerda) O histograma dos dados completos é extremamente distorcido, tornando-o
+#|   difícil obter detalhes. (Direita) Focar nos atrasos de menos de duas
+#|   horas torna possível ver o que está acontecendo com a maior parte das
+#|   observações.
 #| fig-alt: |
-#|   Two histograms of `dep_delay`. On the left, it's very hard to see
-#|   any pattern except that there's a very large spike around zero, the
-#|   bars rapidly decay in height, and for most of the plot, you can't
-#|   see any bars because they are too short to see. On the right,
-#|   where we've discarded delays of greater than two hours, we can
-#|   see that the spike occurs slightly below zero (i.e. most flights
-#|   leave a couple of minutes early), but there's still a very steep
-#|   decay after that.
+#|   Dois histogramas de `atraso_saida`. À esquerda, é muito difícil ver
+#|   qualquer padrão, exceto que há um pico muito grande em torno de zero, as barras
+#|   diminuem rapidamente de altura e, na maior parte do gráfico, você não consegue
+#|   ver nenhuma barra porque elas são muito curtas para serem vistas. À direita,
+#|   onde descartamos atrasos superiores a duas horas, podemos ver
+#|   que o pico ocorre ligeiramente abaixo de zero (ou seja, a maioria dos
+#|   voos saia alguns minutos mais cedo), mas ainda há uma queda acentuada
+#|   depois disso.
 #| fig-asp: 0.5
 
 library(patchwork)
 
-full <- flights |>
-  ggplot(aes(x = dep_delay)) + 
+todos <- voos |>
+  ggplot(aes(x = atraso_saida)) + 
   geom_histogram(binwidth = 15, na.rm = TRUE)
 
-delayed120 <- flights |>
-  filter(dep_delay < 120) |> 
-  ggplot(aes(x = dep_delay)) + 
+atraso120 <- voos |>
+  filter(atraso_saida < 120) |> 
+  ggplot(aes(x = atraso_saida)) + 
   geom_histogram(binwidth = 5)
 
-full + delayed120
+todos + atraso120
 ```
 
-It's also a good idea to check that distributions for subgroups resemble the whole.
-In the following plot 365 frequency polygons of `dep_delay`, one for each day, are overlaid.
-The distributions seem to follow a common pattern, suggesting it's fine to use the same summary for each day.
+Também é uma boa ideia verificar se as distribuições dos subgrupos se assemelham ao todo.
+No gráfico a seguir, 365 polígonos de frequência de `atraso_saida`, um para cada dia, são sobrepostos.
+As distribuições parecem seguir um padrão comum, sugerindo que não há problema em usar a mesma sumarização para cada dia.
 
 ```{r}
 #| fig-alt: |
-#|   The distribution of `dep_delay` is highly right skewed with a strong
-#|   peak slightly less than 0. The 365 frequency polygons are mostly 
-#|   overlapping forming a thick black bland.
+#|   A distribuição de `atraso_saida` é altamente distorcida para a direita com um forte
+#|   pico ligeiramente menor que 0. Os polígonos de 365 frequências estão em sua maioria
+#|   sobrepondo-se formando uma camada preta espessa e sem graça.
 
-flights |>
-  filter(dep_delay < 120) |> 
-  ggplot(aes(x = dep_delay, group = interaction(day, month))) + 
+voos |>
+  filter(atraso_saida < 120) |> 
+  ggplot(aes(x = atraso_saida, group = interaction(dia, mes))) + 
   geom_freqpoly(binwidth = 5, alpha = 1/5)
 ```
 
-Don't be afraid to explore your own custom summaries specifically tailored for the data that you're working with.
-In this case, that might mean separately summarizing the flights that left early vs. the flights that left late, or given that the values are so heavily skewed, you might try a log-transformation.
-Finally, don't forget what you learned in @sec-sample-size: whenever creating numerical summaries, it's a good idea to include the number of observations in each group.
+Não tenha medo de explorar suas próprias sumarizações personalizadas especificamente adaptadas aos dados com os quais você está trabalhando.
+Nesse caso, isso pode significar resumir separadamente os voos que partiram mais cedo versus os voos que partiram tarde, ou dado que os valores estão muito distorcidos, você pode tentar uma transformação logarítmica.
+Por fim, não esqueça o que você aprendeu na @sec-sample-size: sempre que criar sumarizações numéricas, é uma boa ideia incluir o número de observações em cada grupo.
 
-### Positions
+### Posições
 
-There's one final type of summary that's useful for numeric vectors, but also works with every other type of value: extracting a value at a specific position: `first(x)`, `last(x)`, and `nth(x, n)`.
+Há um último tipo de sumarização útil para vetores numéricos, que também funciona para outros tipos de valores: extrair um valor em uma posição específica: `first(x)`, `last(x)` e `nth(x, n)`.
 
-For example, we can find the first and last departure for each day:
+Por exemplo, podemos encontrar a primeira e última saída em cada dia:
 
 ```{r}
-flights |> 
-  group_by(year, month, day) |> 
+voos |> 
+  group_by(ano, mes, dia) |> 
   summarize(
-    first_dep = first(dep_time, na_rm = TRUE), 
-    fifth_dep = nth(dep_time, 5, na_rm = TRUE),
-    last_dep = last(dep_time, na_rm = TRUE)
+    primeira_saida = first(horario_saida, na_rm = TRUE), 
+    quinta_saida = nth(horario_saida, 5, na_rm = TRUE),
+    ultima_saida = last(horario_saida, na_rm = TRUE)
   )
 ```
 
-(NB: Because dplyr functions use `_` to separate components of function and arguments names, these functions use `na_rm` instead of `na.rm`.)
+(NB: Uma vez que as funções do dplyr usam `_` para separar componentes da função e nomes de argumentos, estas funções usam `na_rm` ao invés de `na.rm`.)
 
-If you're familiar with `[`, which we'll come back to in @sec-subset-many, you might wonder if you ever need these functions.
-There are three reasons: the `default` argument allows you to provide a default if the specified position doesn't exist, the `order_by` argument allows you to locally override the order of the rows, and the `na_rm` argument allows you to drop missing values.
+Se você está familiarizado com `[`, o qual retornaremos na @sec-subset-many, você pode estar se perguntando se você realmente precisa destas funções.
+Existem três razões: o argumento `default` permite que você forneça um padrão se a posição especificada não existir, o argumento `order_by` permite que você ordene localmente sobrescrevendo a ordenação das linhas, e o argumento `na_rm` permite você ignorar valores faltantes (*missing values*).
 
-Extracting values at positions is complementary to filtering on ranks.
-Filtering gives you all variables, with each observation in a separate row:
+Extrair valores em determinada posição é complementar à filtrar em ranqueamentos.
+Filtrar retorna todas as variáveis, com cada observação em uma linha separada:
 
 ```{r}
-flights |> 
-  group_by(year, month, day) |> 
-  mutate(r = min_rank(sched_dep_time)) |> 
+voos |> 
+  group_by(ano, mes, dia) |> 
+  mutate(r = min_rank(saida_programada)) |> 
   filter(r %in% c(1, max(r)))
 ```
 
-### With `mutate()`
+### Com `mutate()`
 
-As the names suggest, the summary functions are typically paired with `summarize()`.
-However, because of the recycling rules we discussed in @sec-recycling they can also be usefully paired with `mutate()`, particularly when you want do some sort of group standardization.
-For example:
+Como o nome sugere, funções de sumarização são usadas tipicamente com `summarize()`.
+Entretando, devido às regras de reciclagem discutidas na @sec-recycling, elas podem ser usadas também com `mutate()`, particularmente quando você deseja fazer algum tipo de padronização.
+Por exemplo:
 
--   `x / sum(x)` calculates the proportion of a total.
--   `(x - mean(x)) / sd(x)` computes a Z-score (standardized to mean 0 and sd 1).
--   `(x - min(x)) / (max(x) - min(x))` standardizes to range \[0, 1\].
--   `x / first(x)` computes an index based on the first observation.
+-   `x / sum(x)` calcula a proporção de um total.
+-   `(x - mean(x)) / sd(x)` calcula o *Z-score* (padronização com média 0 e desvio padrão 1).
+-   `(x - min(x)) / (max(x) - min(x))` padroniza em intervalo \[0, 1\].
+-   `x / first(x)` calcula um índice baseado na primeira observação.
 
-### Exercises
+### Exercícios
 
-1.  Brainstorm at least 5 different ways to assess the typical delay characteristics of a group of flights.
-    When is `mean()` useful?
-    When is `median()` useful?
-    When might you want to use something else?
-    Should you use arrival delay or departure delay?
-    Why might you want to use data from `planes`?
+1.  Pense em pelo menos 5 maneiras diferentes de avaliar as características típicas de atraso de um grupo de voos.
+    Quando a `mean()` é útil?
+    Quando a `median()` é útil?
+    Quando você poderia querer usar alguma outra maneira?
+    Você deveria usar atraso_chegada ou atraso_saida?
+    Quando você poderia querer usar dados de `dados::avioes`?
 
-2.  Which destinations show the greatest variation in air speed?
+2.  Quais destinos apresentam a maior variação na velocidade aérea?
 
-3.  Create a plot to further explore the adventures of EGE.
-    Can you find any evidence that the airport moved locations?
-    Can you find another variable that might explain the difference?
+3.  Crie um gráfico para explorar ainda mais as aventuras do EGE.
+    Você pode encontrar alguma evidência de que o aeroporto mudou de local?
+    Você pode encontrar outra variável que possa explicar a diferença?
 
-## Summary
+## Resumo
 
-You're already familiar with many tools for working with numbers, and after reading this chapter you now know how to use them in R.
-You've also learned a handful of useful general transformations that are commonly, but not exclusively, applied to numeric vectors like ranks and offsets.
-Finally, you worked through a number of numeric summaries, and discussed a few of the statistical challenges that you should consider.
+Você já tem familiaridade com muitas ferramentas para trabalhar com números e, depois de ler este capítulo, agora sabe como usá-las no R.
+Você também aprendeu algumas transformações gerais úteis que são comumente, mas não exclusivamente, aplicadas a vetores numéricos, como ranqueamentos e deslocamentos.
+Por fim, você trabalhou com várias sumarizações numéricas e discutiu alguns dos desafios estatísticos que deveria considerar.
 
-Over the next two chapters, we'll dive into working with strings with the stringr package.
-Strings are a big topic so they get two chapters, one on the fundamentals of strings and one on regular expressions.
+Nos próximos dois capítulos, nos aprofundaremos em *strings* com o pacote stringr.
+*Strings* são um grande tópico, então elas têm dois capítulos, um sobre os fundamentos de *strings* e outro sobre expressões regulares (*regex*).

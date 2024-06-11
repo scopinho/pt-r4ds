@@ -53,3 +53,14 @@ status <- function(type) {
     "::::\n"
   ))
 }
+
+mensagem_capitulo_sem_traducao <- function(){
+  cat(paste0(
+    "\n",
+    "::: {.callout-warning} \n",
+    "Olá! Este capítulo do livro ainda **não está traduzido** para a versão Português-BR.\n <br> ",
+    "Caso você queira contribuir com o projeto de tradução, leia as instruções em: <https://github.com/cienciadedatos/pt-r4ds/wiki> <br> \n",
+    "A versão original (em inglês) do livro R for Data Science está disponível em: <https://r4ds.hadley.nz/> \n",
+    ":::\n"
+  ))
+}

@@ -1,438 +1,441 @@
-# Factors {#sec-factors}
+# ✅ Fatores {#sec-factors}
 
 ```{r}
 #| echo: false
+#| results: asis
 
 source("_common.R")
+
 ```
 
-## Introduction
+## Introdução
 
-Factors are used for categorical variables, variables that have a fixed and known set of possible values.
-They are also useful when you want to display character vectors in a non-alphabetical order.
+Fatores (*factors*) são usados ​​para variáveis ​​categóricas, variáveis ​​que possuem um conjunto fixo e conhecido de valores possíveis.
+Eles também são úteis quando você deseja exibir vetores de caracteres em ordem não alfabética.
 
-We'll start by motivating why factors are needed for data analysis[^factors-1] and how you can create them with `factor()`. We'll then introduce you to the `gss_cat` dataset which contains a bunch of categorical variables to experiment with.
-You'll then use that dataset to practice modifying the order and values of factors, before we finish up with a discussion of ordered factors.
+Começaremos motivando a necessidade de fatores para a análise de dados[^factors-1] e como você pode criá-los com a função `factor()`. Em seguida, apresentaremos o conjunto de dados `questionario` do pacote dados, que contém um monte de variáveis ​​​​categóricas para experimentarmos.
+Em seguida, você usará esse conjunto de dados para praticar a modificação da ordem e dos valores dos fatores, antes de terminarmos com uma discussão sobre fatores ordenados.
 
-[^factors-1]: They're also really important for modelling.
+[^factors-1]: Eles também são muito importantes para modelagem.
 
-### Prerequisites
+### Pré-requisitos
 
-Base R provides some basic tools for creating and manipulating factors.
-We'll supplement these with the **forcats** package, which is part of the core tidyverse.
-It provides tools for dealing with **cat**egorical variables (and it's an anagram of factors!) using a wide range of helpers for working with factors.
+O R base fornece algumas ferramentas básicas para criar e manipular fatores.
+Iremos complementá-las com o pacote **forcats**, que é um integrante do tidyverse.
+Ele fornece ferramentas para lidar com variáveis ​​**cat**egóricas (e é um anagrama de fatores!) usando uma ampla gama de funções auxiliares para trabalhar com fatores.
 
 ```{r}
 #| label: setup
 #| message: false
 
 library(tidyverse)
+library(dados)
 ```
 
-## Factor basics
+## O básico sobre fatores
 
-Imagine that you have a variable that records month:
+Imagine que você tem uma variável que registra o mês:
 
 ```{r}
-x1 <- c("Dec", "Apr", "Jan", "Mar")
+x1 <- c("Dez", "Abr", "Jan", "Mar")
 ```
 
-Using a string to record this variable has two problems:
+Usar uma *string* para registrar esta variável tem dois problemas:
 
-1.  There are only twelve possible months, and there's nothing saving you from typos:
+1.  Existem apenas doze meses possíveis e não há nada que proteja você contra erros de digitação:
 
     ```{r}
-    x2 <- c("Dec", "Apr", "Jam", "Mar")
+    x2 <- c("Dez", "Abr", "Jam", "Mar")
     ```
 
-2.  It doesn't sort in a useful way:
+2.  Não ordena de maneira útil:
 
     ```{r}
     sort(x1)
     ```
 
-You can fix both of these problems with a factor.
-To create a factor you must start by creating a list of the valid **levels**:
+Você pode corrigir esses dois problemas com um fator.
+Para criar um fator você deve começar criando uma lista com **níveis** (*levels*) válidos:
 
 ```{r}
-month_levels <- c(
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+niveis_meses <- c(
+  "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", 
+  "Jul", "Ago", "Set", "Out", "Nov", "Dez"
 )
 ```
 
-Now you can create a factor:
+Agora você pode criar o fator:
 
 ```{r}
-y1 <- factor(x1, levels = month_levels)
+y1 <- factor(x1, levels = niveis_meses)
 y1
 
 sort(y1)
 ```
 
-And any values not in the level will be silently converted to NA:
+E quaisquer valores que não estejam nos níveis serão convertidos silenciosamente para NA:
 
 ```{r}
-y2 <- factor(x2, levels = month_levels)
+y2 <- factor(x2, levels = niveis_meses)
 y2
 ```
 
-This seems risky, so you might want to use `forcats::fct()` instead:
+Isso parece arriscado, então você pode querer usar `forcats::fct()` em vez disso:
 
 ```{r}
 #| error: true
-y2 <- fct(x2, levels = month_levels)
+y2 <- fct(x2, levels = niveis_meses)
 ```
 
-If you omit the levels, they'll be taken from the data in alphabetical order:
+Se você omitir os níveis, eles serão retirados dos dados em ordem alfabética:
 
 ```{r}
 factor(x1)
 ```
 
-Sorting alphabetically is slightly risky because not every computer will sort strings in the same way.
-So `forcats::fct()` orders by first appearance:
+Classificar em ordem alfabética é um pouco arriscado porque nem todo computador classificará as *strings* da mesma maneira.
+Então `forcats::fct()` ordena pela primeira aparição:
 
 ```{r}
 fct(x1)
 ```
 
-If you ever need to access the set of valid levels directly, you can do so with `levels()`:
+Se você precisar acessar diretamente o conjunto de níveis válidos, poderá fazê-lo com `levels()`:
 
 ```{r}
 levels(y2)
 ```
 
-You can also create a factor when reading your data with readr with `col_factor()`:
+Você também pode criar um fator ao ler seus dados com readr usando a `col_factor()`:
 
 ```{r}
 csv <- "
-month,value
+mes,valor
 Jan,12
-Feb,56
+Fev,56
 Mar,12"
 
-df <- read_csv(csv, col_types = cols(month = col_factor(month_levels)))
-df$month
+df <- read_csv(csv, col_types = cols(mes = col_factor(niveis_meses)))
+df$mes
 ```
 
-## General Social Survey
+## Questionário
 
-For the rest of this chapter, we're going to use `forcats::gss_cat`.
-It's a sample of data from the [General Social Survey](https://gss.norc.org), a long-running US survey conducted by the independent research organization NORC at the University of Chicago.
-The survey has thousands of questions, so in `gss_cat` Hadley selected a handful that will illustrate some common challenges you'll encounter when working with factors.
+No restante deste capítulo, usaremos `dados::questionario`.
+É uma amostra de dados da [Pesquisa Social Geral](https://gss.norc.org), uma pesquisa de longa data nos EUA conduzida pela organização de pesquisa independente NORC da Universidade de Chicago.
+A pesquisa tem milhares de perguntas, então em `questionario`, Hadley selecionou algumas que ilustrarão alguns desafios comuns que você encontrará ao trabalhar com fatores.
 
 ```{r}
-gss_cat
+questionario
 ```
 
-(Remember, since this dataset is provided by a package, you can get more information about the variables with `?gss_cat`.)
+(Lembre-se, como este conjunto de dados é fornecido por um pacote, você pode obter mais informações sobre as variáveis ​​com `?questionario`.)
 
-When factors are stored in a tibble, you can't see their levels so easily.
-One way to view them is with `count()`:
+Quando os fatores são armazenados em um *tibble*, você não consegue ver seus níveis tão facilmente.
+Uma maneira de visualizá-los é com `count()`:
 
 ```{r}
-gss_cat |>
-  count(race)
+questionario |>
+  count(raca)
 ```
 
-When working with factors, the two most common operations are changing the order of the levels, and changing the values of the levels.
-Those operations are described in the sections below.
+Ao trabalhar com fatores, as duas operações mais comuns são alterar a ordem dos níveis e alterar os valores dos níveis.
+Essas operações são descritas nas seções abaixo.
 
-### Exercise
+### Exercícios
 
-1.  Explore the distribution of `rincome` (reported income).
-    What makes the default bar chart hard to understand?
-    How could you improve the plot?
+1.  Explore a distribuição de `renda` (renda informada).
+    O que torna o gráfico de barras padrão difícil de ser entendido?
+    Como você pode melhorar o gráfico?
 
-2.  What is the most common `relig` in this survey?
-    What's the most common `partyid`?
+2.  Qual a `religiao` mais comum neste questionário?
+    Qual o `partido` mais comum?
 
-3.  Which `relig` does `denom` (denomination) apply to?
-    How can you find out with a table?
-    How can you find out with a visualization?
+3.  Qual `denominacao` se aplica a qual `religiao`?
+    Como você pode descobrir isso com uma tabela?
+    Como você pode descobrir isso com uma visualização?
 
-## Modifying factor order {#sec-modifying-factor-order}
+## Modificando a ordem de um fator {#sec-modifying-factor-order}
 
-It's often useful to change the order of the factor levels in a visualization.
-For example, imagine you want to explore the average number of hours spent watching TV per day across religions:
+Muitas vezes é útil alterar a ordem dos níveis dos fatores em uma visualização.
+Por exemplo, imagine que você deseja explorar o número médio de horas gastas assistindo TV por dia em todas as religiões:
 
 ```{r}
 #| fig-alt: |
-#|   A scatterplot of with tvhours on the x-axis and religion on the y-axis.
-#|   The y-axis is ordered seemingly aribtrarily making it hard to get
-#|   any sense of overall pattern.
-relig_summary <- gss_cat |>
-  group_by(relig) |>
+#|   Um gráfico de dispersão com horas_tv no eixo-x e religião no eixo-y.
+#|   O eixo-y parece estar ordenado de forma arbitrária, tornando difícil entender
+#|   qualquer padrão geral.
+resumo_religiao <- questionario |>
+  group_by(religiao) |>
   summarize(
-    tvhours = mean(tvhours, na.rm = TRUE),
+    horas_tv = mean(horas_tv, na.rm = TRUE),
     n = n()
   )
 
-ggplot(relig_summary, aes(x = tvhours, y = relig)) + 
+ggplot(resumo_religiao, aes(x = horas_tv, y = religiao)) + 
   geom_point()
 ```
 
-It is hard to read this plot because there's no overall pattern.
-We can improve it by reordering the levels of `relig` using `fct_reorder()`.
-`fct_reorder()` takes three arguments:
+É difícil ler esse gráfico porque não existe um padrão geral.
+Podemos melhorá-lo reordenando os níveis de `religiao` usando `fct_reorder()`.
+`fct_reorder()` possui três argumentos:
 
--   `f`, the factor whose levels you want to modify.
--   `x`, a numeric vector that you want to use to reorder the levels.
--   Optionally, `fun`, a function that's used if there are multiple values of `x` for each value of `f`. The default value is `median`.
+-   `f`, o fator cujos níveis você deseja modificar.
+-   `x`, um vetor numérico que você deseja usar para reordenar os níveis.
+-   Opcionalmente, `fun`, uma função que é usada se houver vários valores de `x` para cada valor de `f`. A função padrão é `median`.
 
 ```{r}
 #| fig-alt: |
-#|   The same scatterplot as above, but now the religion is displayed in
-#|   increasing order of tvhours. "Other eastern" has the fewest tvhours
-#|   under 2, and "Don't know" has the highest (over 5).
-ggplot(relig_summary, aes(x = tvhours, y = fct_reorder(relig, tvhours))) +
+#|   O mesmo gráfico de dispersão acima, mas agora a religião é exibida em
+#|   ordem crescente de horas_tv. "Outra religião oriental Leste" tem o menor número de horas de TV,
+#|   menos de 2, e “Não sabe” tem o valor mais alto (acima de 5).
+ggplot(resumo_religiao, aes(x = horas_tv, y = fct_reorder(religiao, horas_tv))) +
   geom_point()
 ```
 
-Reordering religion makes it much easier to see that people in the "Don't know" category watch much more TV, and Hinduism & Other Eastern religions watch much less.
+Reordenar a religião torna muito mais fácil ver que as pessoas na categoria “Não sabe” assistem muito mais TV, e o Hinduísmo e outras religiões orientais assistem muito menos.
 
-As you start making more complicated transformations, we recommend moving them out of `aes()` and into a separate `mutate()` step.
-For example, you could rewrite the plot above as:
+À medida que você começa a fazer transformações mais complicadas, recomendamos movê-las de `aes()` para uma etapa separada, usando `mutate()`.
+Por exemplo, você poderia reescrever o gráfico acima como:
 
 ```{r}
 #| eval: false
 
-relig_summary |>
+resumo_religiao |>
   mutate(
-    relig = fct_reorder(relig, tvhours)
+    religiao = fct_reorder(religiao, horas_tv)
   ) |>
-  ggplot(aes(x = tvhours, y = relig)) +
+  ggplot(aes(x = horas_tv, y = religiao)) +
   geom_point()
 ```
 
-What if we create a similar plot looking at how average age varies across reported income level?
+E se criarmos um gráfico semelhante observando como a idade média varia de acordo com o nível de renda informada?
 
 ```{r}
 #| fig-alt: |
-#|   A scatterplot with age on the x-axis and income on the y-axis. Income
-#|   has been reordered in order of average age which doesn't make much
-#|   sense. One section of the y-axis goes from $6000-6999, then <$1000, 
-#|   then $8000-9999.
-rincome_summary <- gss_cat |>
-  group_by(rincome) |>
+#|   Um gráfico de dispersão com idade no eixo-x e renda no eixo-y. A renda
+#|   foi reordenada com base na idade média, o que não faz muito
+#|   sentido. Uma seção do eixo-y vai de US$6.000 a 6.999, depois < US$ 1.000, 
+#|   então $8000-9999.
+resumo_renda <- questionario |>
+  group_by(renda) |>
   summarize(
-    age = mean(age, na.rm = TRUE),
+    idade = mean(idade, na.rm = TRUE),
     n = n()
   )
 
-ggplot(rincome_summary, aes(x = age, y = fct_reorder(rincome, age))) + 
+ggplot(resumo_renda, aes(x = idade, y = fct_reorder(renda, idade))) + 
   geom_point()
 ```
 
-Here, arbitrarily reordering the levels isn't a good idea!
-That's because `rincome` already has a principled order that we shouldn't mess with.
-Reserve `fct_reorder()` for factors whose levels are arbitrarily ordered.
+Aqui, reordenar arbitrariamente os níveis não é uma boa ideia!
+Isso porque `renda` já tem uma ordem fundamentada com a qual não devemos mexer.
+Reserve `fct_reorder()` para fatores cujos níveis são ordenados arbitrariamente.
 
-However, it does make sense to pull "Not applicable" to the front with the other special levels.
-You can use `fct_relevel()`.
-It takes a factor, `f`, and then any number of levels that you want to move to the front of the line.
+No entanto, faz sentido colocar "Não se aplica" na frente com os outros níveis especiais.
+Você pode usar `fct_relevel()`.
+É necessário um fator, `f`, e então qualquer número de níveis que você deseja mover para o início da linha.
 
 ```{r}
 #| fig-alt: |
-#|   The same scatterplot but now "Not Applicable" is displayed at the
-#|   bottom of the y-axis. Generally there is a positive association
-#|   between income and age, and the income band with the highethst average
-#|   age is "Not applicable".
+#|   O mesmo gráfico de dispersão, mas agora "Não se aplica", é exibido na
+#|   parte inferior do eixo-y. Geralmente há uma associação positiva
+#|   entre renda e idade, e a faixa de renda com maior média
+#|   idade é "Não se aplica".
 
-ggplot(rincome_summary, aes(x = age, y = fct_relevel(rincome, "Not applicable"))) +
+ggplot(resumo_renda, aes(x = idade, y = fct_relevel(renda, "Não se aplica"))) +
   geom_point()
 ```
 
-Why do you think the average age for "Not applicable" is so high?
+Por que você acha que a idade média para “Não se aplica” é tão alta?
 
-Another type of reordering is useful when you are coloring the lines on a plot.
-`fct_reorder2(f, x, y)` reorders the factor `f` by the `y` values associated with the largest `x` values.
-This makes the plot easier to read because the colors of the line at the far right of the plot will line up with the legend.
+Outro tipo de reordenação é útil quando você está colorindo as linhas em um gráfico.
+`fct_reorder2(f, x, y)` reordena o fator `f` pelos valores `y` associados aos maiores valores `x`.
+Isso torna o gráfico mais fácil de ler porque as cores da linha na extremidade direita do gráfico se alinharão com a legenda.
 
 ```{r}
 #| layout-ncol: 2
 #| fig-width: 3
 #| fig-alt: |
-#|     A line plot with age on the x-axis and proportion on the y-axis.
-#|     There is one line for each category of marital status: no answer,
-#|     never married, separated, divorced, widowed, and married. It is
-#|     a little hard to read the plot because the order of the legend is 
-#|     unrelated to the lines on the plot. Rearranging the legend makes 
-#|     the plot easier to read because the legend colors now match the 
-#|     order of the lines on the far right of the plot. You can see some 
-#|     unsurprising patterns: the proportion never married decreases with 
-#|     age, married forms an upside down U shape, and widowed starts off 
-#|     low but increases steeply after age 60.
-by_age <- gss_cat |>
-  filter(!is.na(age)) |> 
-  count(age, marital) |>
-  group_by(age) |>
+#|     Um gráfico de linha com idade no eixo-x e proporção no eixo-y.
+#|     Há uma linha para cada categoria de estado civil: sem resposta,
+#|     nunca casou, separado(a), divorciado(a), viúvo(a) e casado(a). O gráfico é
+#|     um pouco difícil de ler porque a ordem da legenda não é 
+#|     relacionada às linhas do gráfico. Reorganizar a legenda faz 
+#|     o gráfico ser mais fácil de ser lido porque as cores da legenda agora correspondem à 
+#|     ordem das linhas na extremidade direita do gráfico. Você pode ver alguns 
+#|     padrões não surpreendentes: a proporção de nunca casados(as) ​​diminui com a
+#|     idade, casado(a) forma um U de cabeça para baixo e viúvo(a) começa
+#|     baixo, mas aumenta acentuadamente após os 60 anos.
+por_idade <- questionario |>
+  filter(!is.na(idade)) |> 
+  count(idade, estado_civil) |>
+  group_by(idade) |>
   mutate(
     prop = n / sum(n)
   )
 
-ggplot(by_age, aes(x = age, y = prop, color = marital)) +
+ggplot(por_idade, aes(x = idade, y = prop, color = estado_civil)) +
   geom_line(linewidth = 1) + 
   scale_color_brewer(palette = "Set1")
 
-ggplot(by_age, aes(x = age, y = prop, color = fct_reorder2(marital, age, prop))) +
+ggplot(por_idade, aes(x = idade, y = prop, color = fct_reorder2(estado_civil, idade, prop))) +
   geom_line(linewidth = 1) +
   scale_color_brewer(palette = "Set1") + 
-  labs(color = "marital") 
+  labs(color = "estado civil") 
 ```
 
-Finally, for bar plots, you can use `fct_infreq()` to order levels in decreasing frequency: this is the simplest type of reordering because it doesn't need any extra variables.
-Combine it with `fct_rev()` if you want them in increasing frequency so that in the bar plot largest values are on the right, not the left.
+Finalmente, para gráficos de barras, você pode usar `fct_infreq()` para ordenar os níveis em frequência decrescente: este é o tipo mais simples de reordenação porque não precisa de nenhuma variável extra..
+Combine-a com a `fct_rev()` se desejar que eles aumentem a frequência, de modo que no gráfico de barras os maiores valores fiquem à direita, não à esquerda.
 
 ```{r}
 #| fig-alt: |
-#|   A bar char of marital status ordered in from least to most common:
-#|   no answer (~0), separated (~1,000), widowed (~2,000), divorced 
-#|   (~3,000), never married (~5,000), married (~10,000).
-gss_cat |>
-  mutate(marital = marital |> fct_infreq() |> fct_rev()) |>
-  ggplot(aes(x = marital)) +
+#|   Um gráfico de barras de estado civil ordenado do menos para mais comum:
+#|   sem resposta (~0), separado(a) (~1,000), viúvo(a) (~2,000), divorciado(a) 
+#|   (~3,000), nuca casou (~5,000), casado(a) (~10,000).
+questionario |>
+  mutate(estado_civil = estado_civil |> fct_infreq() |> fct_rev()) |>
+  ggplot(aes(x = estado_civil)) +
   geom_bar()
 ```
 
-### Exercises
+### Exercícios
 
-1.  There are some suspiciously high numbers in `tvhours`.
-    Is the mean a good summary?
+1.  Existem alguns números suspeitosamente altos em `horas_tv`.
+    A média é um bom resumo?
 
-2.  For each factor in `gss_cat` identify whether the order of the levels is arbitrary or principled.
+2.  Para cada fator em `questionario`, identifique se a ordem dos níveis é arbitrária ou fundamentada.
 
-3.  Why did moving "Not applicable" to the front of the levels move it to the bottom of the plot?
+3.  Por que mover "Não se aplica" para a frente dos níveis o moveu para a parte inferior do gráfico?
 
-## Modifying factor levels
+## Modificando os níveis do fator
 
-More powerful than changing the orders of the levels is changing their values.
-This allows you to clarify labels for publication, and collapse levels for high-level displays.
-The most general and powerful tool is `fct_recode()`.
-It allows you to recode, or change, the value of each level.
-For example, take the `partyid` variable from the `gss_cat` data frame:
+Mais poderoso do que alterar as ordens dos níveis é alterar os seus valores.
+Isso permite esclarecer rótulos para publicação e recolher níveis para exibições de alto nível.
+A ferramenta mais geral e poderosa é `fct_recode()`.
+Ela permite recodificar, ou alterar, o valor de cada nível.
+Por exemplo, pegue a variável `partido` do *data frame* `questionario`:
 
 ```{r}
-gss_cat |> count(partyid)
+questionario |> count(partido)
 ```
 
-The levels are terse and inconsistent.
-Let's tweak them to be longer and use a parallel construction.
-Like most rename and recoding functions in the tidyverse, the new values go on the left and the old values go on the right:
+Os níveis são concisos e inconsistentes.
+Vamos ajustá-los para serem mais longos e usar uma construção paralela.
+Como a maioria das funções de renomeação e recodificação no tidyverse, os novos valores ficam à esquerda e os valores antigos à direita:
 
 ```{r}
-gss_cat |>
+questionario |>
   mutate(
-    partyid = fct_recode(partyid,
-      "Republican, strong"    = "Strong republican",
-      "Republican, weak"      = "Not str republican",
-      "Independent, near rep" = "Ind,near rep",
-      "Independent, near dem" = "Ind,near dem",
-      "Democrat, weak"        = "Not str democrat",
-      "Democrat, strong"      = "Strong democrat"
+    partido = fct_recode(partido,
+      "Indivíduo fortemente republicano"    = "Fortemente republicano",
+      "Indivíduo não fortemente republicano"      = "Não fortemente republicano",
+      "Indivíduo independente com inclinação republicana" = "Independente, inclinação republicana",
+      "Indivíduo independente com inclinação democrata" = "Independente, inclinação democrata",
+      "Indivíduo não fortemente democrata"        = "Não fortemente democrata",
+      "Indivíduo fortemente democrata"      = "Fortemente democrata"
     )
   ) |>
-  count(partyid)
+  count(partido)
 ```
 
-`fct_recode()` will leave the levels that aren't explicitly mentioned as is, and will warn you if you accidentally refer to a level that doesn't exist.
+`fct_recode()` deixará os níveis que não são explicitamente mencionados como estão e irá avisá-lo se você acidentalmente se referir a um nível que não existe.
 
-To combine groups, you can assign multiple old levels to the same new level:
+Para combinar grupos, você pode atribuir vários níveis antigos a um mesmo nível novo:
 
 ```{r}
 #| results: false
-gss_cat |>
+questionario |>
   mutate(
-    partyid = fct_recode(partyid,
-      "Republican, strong"    = "Strong republican",
-      "Republican, weak"      = "Not str republican",
-      "Independent, near rep" = "Ind,near rep",
-      "Independent, near dem" = "Ind,near dem",
-      "Democrat, weak"        = "Not str democrat",
-      "Democrat, strong"      = "Strong democrat",
-      "Other"                 = "No answer",
-      "Other"                 = "Don't know",
-      "Other"                 = "Other party"
+    partido = fct_recode(partido,
+      "Indivíduo fortemente republicano"    = "Fortemente republicano",
+      "Indivíduo não fortemente republicano"      = "Não fortemente republicano",
+      "Indivíduo independente com inclinação republicana" = "Independente, inclinação republicana",
+      "Indivíduo independente com inclinação democrata" = "Independente, inclinação democrata",
+      "Indivíduo não fortemente democrata"        = "Não fortemente democrata",
+      "Indivíduo fortemente democrata"      = "Fortemente democrata",
+      "Outro"                 = "Sem resposta",
+      "Outro"                 = "Não sabe",
+      "Outro"                 = "Outro partido"
     )
   )
 ```
 
-Use this technique with care: if you group together categories that are truly different you will end up with misleading results.
+Use esta técnica com cuidado: se você agrupar categorias que são realmente diferentes, você acabará com resultados enganosos.
 
-If you want to collapse a lot of levels, `fct_collapse()` is a useful variant of `fct_recode()`.
-For each new variable, you can provide a vector of old levels:
+Se você deseja recolher vários níveis, `fct_collapse()` é uma variante útil de `fct_recode()`.
+Para cada nova variável, você pode fornecer um vetor de níveis antigos:
 
 ```{r}
-gss_cat |>
+questionario |>
   mutate(
-    partyid = fct_collapse(partyid,
-      "other" = c("No answer", "Don't know", "Other party"),
-      "rep" = c("Strong republican", "Not str republican"),
-      "ind" = c("Ind,near rep", "Independent", "Ind,near dem"),
-      "dem" = c("Not str democrat", "Strong democrat")
+    partido = fct_collapse(partido,
+      "other" = c("Sem resposta", "Não sabe", "Outro partido"),
+      "rep" = c("Fortemente republicano", "Não fortemente republicano"),
+      "ind" = c("Independente, inclinação republicana", "Independente", "Independente, inclinação democrata"),
+      "dem" = c("Não fortemente democrata", "Fortemente democrata")
     )
   ) |>
-  count(partyid)
+  count(partido)
 ```
 
-Sometimes you just want to lump together the small groups to make a plot or table simpler.
-That's the job of the `fct_lump_*()` family of functions.
-`fct_lump_lowfreq()` is a simple starting point that progressively lumps the smallest groups categories into "Other", always keeping "Other" as the smallest category.
+Às vezes, você só quer juntar em pequenos grupos para simplificar um gráfico ou uma tabela.
+Esse é o trabalho da família de funções `fct_lump_*()`.
+`fct_lump_lowfreq()` é um ponto de partida simples que agrupa progressivamente as categorias dos menores grupos em "Outros", sempre mantendo "Outros" como a menor categoria.
 
 ```{r}
-gss_cat |>
-  mutate(relig = fct_lump_lowfreq(relig)) |>
-  count(relig)
+questionario |>
+  mutate(religiao = fct_lump_lowfreq(religiao)) |>
+  count(religiao)
 ```
 
-In this case it's not very helpful: it is true that the majority of Americans in this survey are Protestant, but we'd probably like to see some more details!
-Instead, we can use the `fct_lump_n()` to specify that we want exactly 10 groups:
+Neste caso, não ajuda muito: é verdade que a maioria dos americanos nesta pesquisa são protestantes, mas provavelmente gostaríamos de ver mais alguns detalhes!
+Em vez disso, podemos usar `fct_lump_n()` para especificar que queremos exatamente 10 grupos:
 
 ```{r}
-gss_cat |>
-  mutate(relig = fct_lump_n(relig, n = 10)) |>
-  count(relig, sort = TRUE)
+questionario |>
+  mutate(religiao = fct_lump_n(religiao, n = 10)) |>
+  count(religiao, sort = TRUE)
 ```
 
-Read the documentation to learn about `fct_lump_min()` and `fct_lump_prop()` which are useful in other cases.
+Leia a documentação para aprender sobre `fct_lump_min()` e `fct_lump_prop()` que são úteis em outros casos.
 
-### Exercises
+### Exercícios
 
-1.  How have the proportions of people identifying as Democrat, Republican, and Independent changed over time?
+1.  Como mudaram ao longo do tempo as proporções de pessoas que se identificam como Democratas, Republicanas e Independentes?
 
-2.  How could you collapse `rincome` into a small set of categories?
+2.  Como você poderia agrupar a “renda” em um pequeno conjunto de categorias?
 
-3.  Notice there are 9 groups (excluding other) in the `fct_lump` example above.
-    Why not 10?
-    (Hint: type `?fct_lump`, and find the default for the argument `other_level` is "Other".)
+3.  Observe que existem 9 grupos (excluindo outros) no exemplo `fct_lump` acima.
+    Por que não 10?
+    (Dica: digite `?fct_lump` e note que o padrão para o argumento `other_level` é "Other".)
 
-## Ordered factors {#sec-ordered-factors}
+## Fatores ordenados {#sec-ordered-factors}
 
-Before we go on, there's a special type of factor that needs to be mentioned briefly: ordered factors.
-Ordered factors, created with `ordered()`, imply a strict ordering and equal distance between levels: the first level is "less than" the second level by the same amount that the second level is "less than" the third level, and so on.
-You can recognize them when printing because they use `<` between the factor levels:
+Antes de prosseguirmos, há um tipo especial de fator que precisa ser mencionado brevemente: fatores ordenados.
+Fatores ordenados, criados com `ordered()`, implicam uma ordenação estrita e distância igual entre os níveis: o primeiro nível é "menor que" o segundo nível na mesma quantidade que o segundo nível é "menor que" o terceiro nível e assim por diante.
+Você pode reconhecê-los ao imprimir porque eles usam `<` entre os níveis dos fatores:
 
 ```{r}
 ordered(c("a", "b", "c"))
 ```
 
-In practice, `ordered()` factors behave very similarly to regular factors.
-There are only two places where you might notice different behavior:
+Na prática, os fatores ordenados (`ordered()`) se comportam de forma muito semelhante aos fatores regulares.
+Existem apenas dois lugares onde você pode notar um comportamento diferente:
 
--   If you map an ordered factor to color or fill in ggplot2, it will default to `scale_color_viridis()`/`scale_fill_viridis()`, a color scale that implies a ranking.
--   If you use an ordered function in a linear model, it will use "polygonal contrasts". These are mildly useful, but you are unlikely to have heard of them unless you have a PhD in Statistics, and even then you probably don't routinely interpret them. If you want to learn more, we recommend `vignette("contrasts", package = "faux")` by Lisa DeBruine.
+-   Se você mapear um fator ordenado para colorir ou preencher no ggplot2, o padrão será `scale_color_viridis()`/`scale_fill_viridis()`, uma escala de cores que implica um ranqueamento.
+-   Se você usar uma função ordenada em um modelo linear, ela usará "contrastes poligonais". Eles são moderadamente úteis, mas é improvável que você já tenha ouvido falar deles, a menos que tenha um PhD em Estatística e, mesmo assim, provavelmente não os interpreta rotineiramente. Se você quiser saber mais, recomendamos a `vignette("contrasts", package = "faux")` de Lisa DeBruine.
 
-Given the arguable utility of these differences, we don't generally recommend using ordered factors.
+Dada a utilidade discutível dessas diferenças, geralmente não recomendamos o uso de fatores ordenados.
 
-## Summary
+## Resumo
 
-This chapter introduced you to the handy forcats package for working with factors, introducing you to the most commonly used functions.
-forcats contains a wide range of other helpers that we didn't have space to discuss here, so whenever you're facing a factor analysis challenge that you haven't encountered before, I highly recommend skimming the [reference index](https://forcats.tidyverse.org/reference/index.html) to see if there's a canned function that can help solve your problem.
+Este capítulo apresentou o prático pacote forcats para trabalhar com fatores, apresentando as funções mais comumente usadas.
+O pacote forcats contém uma ampla gama de outras funções auxiliares que não tivemos espaço para discutir aqui, portanto, sempre que você estiver enfrentando um desafio de análise com fatores que não encontrou antes, recomendo fortemente dar uma olhada no [índice remissivo](https://forcats.tidyverse.org/reference/index.html) para ver se existe uma função pronta que pode ajudar a resolver seu problema.
 
-If you want to learn more about factors after reading this chapter, we recommend reading Amelia McNamara and Nicholas Horton's paper, [*Wrangling categorical data in R*](https://peerj.com/preprints/3163/).
-This paper lays out some of the history discussed in [*stringsAsFactors: An unauthorized biography*](https://simplystatistics.org/posts/2015-07-24-stringsasfactors-an-unauthorized-biography/) and [*stringsAsFactors = \<sigh\>*](https://notstatschat.tumblr.com/post/124987394001/stringsasfactors-sigh), and compares the tidy approaches to categorical data outlined in this book with base R methods.
-An early version of the paper helped motivate and scope the forcats package; thanks Amelia & Nick!
+Se você quiser aprender mais sobre fatores depois de ler este capítulo, recomendamos a leitura do artigo de Amelia McNamara e Nicholas Horton, [*Wrangling categorical data in R*](https://peerj.com/preprints/3163/).
+Este artigo apresenta um pouco da história discutida em [*stringsAsFactors: Uma biografia não autorizada*](https://simplystatistics.org/posts/2015-07-24-stringsasfactors-an-unauthorized-biography/) e [*stringsAsFactors = \<sigh\>*](https://notstatschat.tumblr.com/post/124987394001/stringsasfactors-sigh) e compara as abordagens organizadas (*tidy approach*) para dados categóricos descritos neste livro com métodos do R base.
+Uma versão inicial do documento ajudou a motivar e definir o escopo do pacote forcats; obrigado Amélia e Nick!
 
-In the next chapter we'll switch gears to start learning about dates and times in R.
-Dates and times seem deceptively simple, but as you'll soon see, the more you learn about them, the more complex they seem to get!
+No próximo capítulo, mudaremos de assunto para começar a aprender sobre datas e horários no R.
+Datas e horários parecem enganosamente simples, mas como você verá em breve, quanto mais você aprende sobre eles, mais complexos eles parecem se tornar!

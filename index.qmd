@@ -1,9 +1,7 @@
-# Boas-vindas {.unnumbered}
+# ✅ Boas-vindas {.unnumbered}
 
 ::: callout-important
 Este website contém a tradução **em andamento** para Português da [2ª edição do livro **"R for Data Science"**](https://r4ds.hadley.nz/).
-
-Apenas os capítulos com versões traduzidas aparecerão neste site.
 
 Caso queira contribuir com a tradução deste livro, leia o [Guia de contribuição com a tradução do livro](https://github.com/cienciadedatos/pt-r4ds/wiki).
 :::
