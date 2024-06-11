@@ -1,11 +1,10 @@
-# Planilhas {#sec-import-spreadsheets}
+# ✅ Planilhas {#sec-import-spreadsheets}
 
 ```{r}
 #| echo: false
 #| results: asis
 
 source("_common.R")
-mensagem_capitulo_sem_traducao()
 ```
 
 ## Introdução
@@ -14,8 +13,7 @@ No @sec-data-import você aprendeu sobre importação de dados de arquivos de te
 Agora chegou a hora de aprender a extrair dados de planilhas, tanto do Excel quanto do Planilhas Google (*Google Sheets*).
 Para isto, usaremos muito do que você aprendeu no @sec-data-import, mas discutiremos também considerações adicionais e complexidades presentes quando trabalhamos com dados vindos de planilhas.
 
-Se você ou seus colaboradores estão usando planilhas para organizar dados, nós recomendamos fortemente a leitura do artigo "Organização de Dados em Planilhas (*Data Organization in Spreadsheets*) de Karl Broman e Kara Woo: <https://doi.org/10.1080/00031305.2017.1375989>.
-As boas práticas presentes neste artigo evitarão dores de cabeça ao importar dados de planilhas para análise e visualização com o R.
+Se você ou seus colaboradores estão usando planilhas para organizar dados, nós recomendamos fortemente a leitura do artigo "Organização de Dados em Planilhas (*Data Organization in Spreadsheets*) de Karl Broman e Kara Woo: <https://doi.org/10.1080/00031305.2017.1375989>. As boas práticas presentes neste artigo evitarão dores de cabeça ao importar dados de planilhas para análise e visualização com o R.
 
 ## Excel
 
@@ -48,8 +46,8 @@ No restante deste capítulo focaremos no uso da função `read_excel()`.
 
 ### Importando arquivos do Excel {#sec-reading-spreadsheets-excel}
 
-
-A @fig-students-excel mostra como é a planilha do Excel que iremos importar para o R. Esta planilha pode ser baixada em <https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w/>.
+A @fig-students-excel mostra como é a planilha do Excel que iremos importar para o R.
+Esta planilha pode ser baixada em <https://github.com/cienciadedatos/pt-r4ds/raw/traducao-pt-2ed/data/estudantes.xlsx>.
 
 ```{r}
 #| label: fig-students-excel
@@ -184,7 +182,7 @@ Você também não precisa ter medo de fazer o que fizemos aqui: Carregar o arqu
 
 Uma característica importante que distingue arquivos do Excel de arquivos texto, é a noção de várias planilhas (ou abas) dentro do mesmo arquivo.
 A @fig-penguins-islands mostra um arquivo Excel com várias planilhas.
-Os dados são do pacote **palmerpenguins**, e você pode fazer o download como um arquivo Excel em <https://docs.google.com/spreadsheets/d/1aFu8lnD_g0yjF5O-K6SFgSEWiHPpgvFCF0NY9D6LXnY/>.
+Os dados são do pacote **palmerpenguins**, e você pode fazer o download como um arquivo Excel em <https://github.com/cienciadedatos/pt-r4ds/raw/traducao-pt-2ed/data/pinguins.xlsx>.
 Cada planilha (ou aba) contém informações de pinguins de diferentes ilhas onde os dados foram coletados.
 
 ```{r}
@@ -203,13 +201,13 @@ Você pode importar uma única planilha usando o argumento `sheet` na função `
 Por padrão, o que utilizamos até agora, a primeira planilha é importada.
 
 ```{r}
-read_excel("data/penguins.xlsx", sheet = "Ilha Torgersen")
+read_excel("data/pinguins.xlsx", sheet = "Ilha Torgersen")
 ```
 
 Algumas variáveis que parecem conter dados numéricos, são importadas como caracteres (texto) devido à cadeia de caractere `"NA"` não ser reconhecida como um verdadeiro `NA`.
 
 ```{r}
-pinguins_torgersen <- read_excel("data/penguins.xlsx", sheet = "Ilha Torgersen", na = "NA")
+pinguins_torgersen <- read_excel("data/pinguins.xlsx", sheet = "Ilha Torgersen", na = "NA")
 
 pinguins_torgersen
 ```
@@ -254,9 +252,9 @@ A @fig-deaths-excel mostra um exemplo: no centro da planilha temos algo que se p
 #| label: fig-deaths-excel
 #| echo: false
 #| fig-cap: |
-#|   Arquivo do Excel chamado obitos.xlsx.
+#|   Arquivo do Excel chamado deaths.xlsx
 #| fig-alt: |
-#|   Uma visão da planilha 'óbitos' no Excel. A planilha possui quatro linhas 
+#|   Uma visão da planilha 'deaths' no Excel. A planilha possui quatro linhas 
 #|   no topo contém informações extras aos dados; o texto 'Por razôes de  
 #|   consistência no *layout* dos dados, algo que é realmente belo, continuarei 
 #|   a fazer notas por aqui.' está espalhado pelas quatro linhas. 
@@ -273,7 +271,8 @@ Esta planilha é um dos exemplos fornecidos com o pacote readxl.
 Você pode usar a função `readxl_example()` para localizar esta planilha no diretório em que o pacote foi instalado em seu computador.
 Esta função retorna o caminho para o arquivo do Excel, que você pode importar usando a `read_excel()` como de costume.
 
-obitos_caminho <- readxl_example("obitos.xlsx")
+```{r}
+obitos_caminho <- readxl_example("deaths.xlsx")
 obitos <- read_excel(obitos_caminho)
 obitos
 ```
@@ -281,10 +280,8 @@ obitos
 As primeiras três linhas e as quatro linhas no final, não fazem parte do *data frame*.
 É possível eliminar estas linhas extras usando os argumentos `skip` e `n_max`, mas recomendamos utilizar intervalos (*range*) de células.
 No Excel, a célula superior esquerda é a `A1`.
-Conforme você se move pelas colunas para a direita, o título da célula segue a sequência do alfabeto, ou seja: 
-`B1`, `C1`, etc.
-E conforme você se move para baixo na coluna, o número da célula aumenta, ex:
-`A2`, `A3`, etc.
+Conforme você se move pelas colunas para a direita, o título da célula segue a sequência do alfabeto, ou seja: `B1`, `C1`, etc.
+E conforme você se move para baixo na coluna, o número da célula aumenta, ex: `A2`, `A3`, etc.
 
 Aqui, os dados que desejamos importar começam na célula `A5` e terminam na célula `F15`.
 Na notação da planilha, temos `A5:F15`, que fornecemos para o argumento `range`:
@@ -295,8 +292,7 @@ read_excel(obitos_caminho, range = "A5:F15")
 
 ### Tipos de dados
 
-Em arquivos CSV, todos os valores são *strings".
-Isto não é particularmente verdadeiro para os dados, mas é simples: tudo é uma *string".
+Em arquivos CSV, todos os valores são *strings". Isto não é particularmente verdadeiro para os dados, mas é simples: tudo é uma* string".
 
 Os dados intrínsecos nas planilhas Excel são mais complexos.
 Uma célula pode conter uma dessas quatro coisas:
@@ -390,7 +386,7 @@ Uma boa forma de se familiarizar com o estilo de código em um novo pacote é ex
 ### Exercícios
 
 1.  Em um arquivo do Excel, crie o seguinte conjunto de dados e salve como `pesquisa.xlsx`.
-    Alternativamente, você pode baixar [aqui](https://docs.google.com/spreadsheets/d/1yc5gL-a2OOBr8M7B3IsDNX5uR17vBHOyWZq6xSTG2G8) como arquivo do Excel.
+    Alternativamente, você pode baixar [aqui](https://github.com/cienciadedatos/pt-r4ds/raw/traducao-pt-2ed/data/pesquisa.xlsx) como arquivo do Excel.
 
     ```{r}
     #| echo: false
@@ -421,7 +417,7 @@ Uma boa forma de se familiarizar com o estilo de código em um novo pacote é ex
     ```
 
 2.  Em outro arquivo do Excel, crie o seguinte conjunto de dados e salve como `lista.xlsx`.
-    Alternativamente, você pode baixar [aqui](https://docs.google.com/spreadsheets/d/1LgZ0Bkg9d_NK8uTdP2uHXm07kAlwx8-Ictf8NocebIE) como arquivo do Excel.
+    Alternativamente, você pode baixar [aqui](https://github.com/cienciadedatos/pt-r4ds/raw/traducao-pt-2ed/data/lista.xlsx) como arquivo do Excel.
 
     ```{r}
     #| echo: false
@@ -450,7 +446,7 @@ Uma boa forma de se familiarizar com o estilo de código em um novo pacote é ex
     ```
 
 3.  Em um novo arquivo do Excel, crie o seguinte conjunto de dados e salve como `vendas.xlsx`.
-    Alternativamente, você pode baixar [aqui](https://docs.google.com/spreadsheets/d/1oCqdXUNO8JR3Pca8fHfiz_WXWxMuZAp3YiYFaKze5V0) como arquivo do Excel.
+    Alternativamente, você pode baixar [aqui](https://github.com/cienciadedatos/pt-r4ds/raw/traducao-pt-2ed/data/vendas.xlsx) como arquivo do Excel.
 
     ```{r}
     #| echo: false
@@ -560,6 +556,7 @@ gs4_deauth()
 ```
 
 ```{r}
+#| cache: true
 estudantes_planilha_id <- "1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w"
 estudantes <- read_sheet(estudantes_planilha_id)
 estudantes
@@ -568,6 +565,7 @@ estudantes
 Assim como fizemos na `read_excel()`, você pode fornecer nomes para as colunas, *strings* de valores não disponíveis (NA) e os tipos das colunas para a `read_sheet()`.
 
 ```{r}
+#| cache: true
 estudantes <- read_sheet(
   estudantes_planilha_id,
   col_names = c("estudante_id", "nome_completo", "comida_favorita", "refeicao_plano", "idade"),
@@ -587,7 +585,7 @@ Para importar somente a planilha "Ilha Torgersen" da [Planilha Pinguins do Plani
 
 ```{r}
 pinguins_planilha_id <- "1aFu8lnD_g0yjF5O-K6SFgSEWiHPpgvFCF0NY9D6LXnY"
-read_sheet(pinguins_planilha_id, sheet = "Ilha Torgersen")
+read_sheet(pinguins_planilha_id, sheet = "Torgersen Island")
 ```
 
 Você pode obter todos os nomes de planilhas de dentro de um arquivo do Planilhas Google com `sheet_names()`:
@@ -600,7 +598,7 @@ Finalmente, assim como na `read_excel()`, podemos importar um intervalo de uma p
 Observe que também estamos utilizando a função `gs4_example()` para localizar a planilha de exemplo que vem junto com o pacote googlesheets4.
 
 ```{r}
-obitos_url <- gs4_example("obitos")
+obitos_url <- gs4_example("deaths")
 obitos <- read_sheet(obitos_url, range = "A5:F15")
 obitos
 ```
@@ -628,7 +626,8 @@ write_sheet(doces_vendas, ss = "doces-vendas", sheet = "Vendas")
 
 Apesar de você poder importar uma planilha pública com sua conta do Google e a função `gs4_deauth()`, importar uma planilha privada ou exportar para uma requer autenticação para que o pacote googlesheets4 possa acessar e gerenciar *suas* Planilhas Google.
 
-Quando você tenta acessar uma planilha que requer autenticação, o googlesheets4 irá te redirecionar para um navegador web e pedir sua conta do Google para obter a permissão de operar as planilhas em seu lugar. Entretanto, se você quiser definir uma conta específica, escopo de autenticação, etc, você pode fazer através da `gs4_auth()`, ex: `gs4_auth(email = "meu@exemplo.com")`, o qual irá forçar o uso de um *token* associado a este email específico.
+Quando você tenta acessar uma planilha que requer autenticação, o googlesheets4 irá te redirecionar para um navegador web e pedir sua conta do Google para obter a permissão de operar as planilhas em seu lugar.
+Entretanto, se você quiser definir uma conta específica, escopo de autenticação, etc, você pode fazer através da `gs4_auth()`, ex: `gs4_auth(email = "meu@exemplo.com")`, o qual irá forçar o uso de um *token* associado a este email específico.
 Para mais informações sobre autenticação, recomendamos ler a documentação do googlesheets4 (*auth vignette*) em <https://googlesheets4.tidyverse.org/articles/auth.html>.
 
 ### Exercícios
@@ -647,7 +646,7 @@ Para mais informações sobre autenticação, recomendamos ler a documentação 
     #| message: false
 
     read_sheet("https://docs.google.com/spreadsheets/d/1LgZ0Bkg9d_NK8uTdP2uHXm07kAlwx8-Ictf8NocebIE/") |>
-      fill(grupo, subgrupo) |>
+      fill(group, subgroup) |>
       print(n = 12)
     ```
 
