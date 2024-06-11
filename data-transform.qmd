@@ -16,17 +16,17 @@ Você vai aprender a fazer tudo isso (e mais um pouco!) nesse capítulo, em que 
 O objetivo desse capítulo é te dar uma visão geral de todas as principais ferramentas para transformar um data frame.
 Começaremos com as funções que operam sobre as linhas e colunas de um data frame, em seguida voltaremos para falar mais um pouco sobre o *pipe*, que é uma importante ferramenta que você utilizará para combinar os verbos das transformações.
 Depois, iremos introduzir a habilidade de trabalhar com grupos.
-Finalizaremos o capítulo com um caso de estudo que demonstra todas essas funções em ação, e, mais tarde, voltaremos para vê-las em detalhe nos capítulos que seguem, quando começaremos a nos aprofundar em tipos mais específicos de dados (números, strings (de caracteres) e datas)
+Finalizaremos o capítulo com um caso de estudo que demonstra todas essas funções em ação, e, mais tarde, voltaremos para vê-las em detalhe nos capítulos que seguem, quando começaremos a nos aprofundar em tipos mais específicos de dados (números, strings (de caracteres) e datas).
 
 ### Pré-requisitos
 
 Nesse capítulo focaremos no pacote dplyr, outro membro central do tidyverse.
-Ilustraremos as ideias principais utilizando dados do pacote nycflights13, e visualizaremos com o ggplot2 para nos ajudar a entender os dados.
+Ilustraremos as ideias principais utilizando dados do pacote dados, e visualizaremos com o ggplot2 para nos ajudar a entender os dados.
 
 ```{r}
 #| label: setup
 
-library(nycflights13)
+library(dados)
 library(tidyverse)
 ```
 
@@ -37,24 +37,24 @@ Até agora nós basicamente ignoramos o pacote ao qual uma função pertence, po
 
 No entanto, conhecer o pacote pode te auxiliar na obtenção de ajuda e na busca por funções relacionadas, então quando for necessário sermos precisos a respeito de qual pacote uma função pertence, nós utilizaremos a mesma sintaxe que o R: `nomedopacote::nomedafuncao()`.
 
-### nycflights13
+### Voos (nycflights13)
 
-Para explorar os verbos básicos do dplyr iremos utilizar a base de dados `nycflights13::flights`.
-Essa base contém todos os `r format(nrow(nycflights13::flights), big.mark = ",")` vôos que saíram da cidade de Nova Iorque em 2013.
-Esses dados vêm de um órgão de transporte dos EUA chamado [Bureau of Transportation Statistics](http://www.transtats.bts.gov/DatabaseInfo.asp?DB_ID=120&Link=0), e estão documentados em `?flights`.
+Para explorar os verbos básicos do dplyr iremos utilizar a base de dados `dados::voos`.
+Essa base contém todos os `r format(nrow(dados::voos), big.mark = ".")` vôos que saíram da cidade de Nova Iorque em 2013.
+Esses dados vêm de um órgão de transporte dos EUA chamado [Bureau of Transportation Statistics](http://www.transtats.bts.gov/DatabaseInfo.asp?DB_ID=120&Link=0), e estão documentados em `?dados::voos`.
 
 ```{r}
-flights
+voos
 ```
 
-`flights` é um tibble, um tipo especial de data frame utilizado pelo tidyverse para evitar algumas "pegadinhas" comuns.
+`voos` é um tibble, um tipo especial de data frame utilizado pelo tidyverse para evitar algumas "pegadinhas" comuns.
 A diferença principal entre tibbles e data frames é forma como tibbles são exibidos no console; eles foram pensados para grandes conjuntos de dados, então eles mostram apenas algumas das primeiras linhas e somente as colunas que cabem na tela.
 Existem algumas opções para visualizar tudo.
-Se você estiver utilizando o RStudio, o mais conveniente provavelmente é `View(flights)`, que vai abrir uma visualização interativa, com filtros e rolagem de tela.
-Caso não esteja, você pode utilizar `print(flights, width = Inf)` para mostrar todas as colunas, ou utilizar `glimpse()`:
+Se você estiver utilizando o RStudio, o mais conveniente provavelmente é `View(voos)`, que vai abrir uma visualização interativa, com filtros e rolagem de tela.
+Caso não esteja, você pode utilizar `print(voos, width = Inf)` para mostrar todas as colunas, ou utilizar `glimpse()`:
 
 ```{r}
-glimpse(flights)
+glimpse(voos)
 ```
 
 Em ambas as visualizações, o nome das variáveis estão seguidos por abreviaturas que te indicam o tipo de cada variável: `<int>` para inteiros, `<dbl>` double[^data-transform-1] (números reais), `<chr>` para caracteres (strings) e `<dttm>` para date-time (data e tempo).
@@ -62,7 +62,7 @@ Isso é importante pois as operações possíveis sobre uma coluna depende muito
 
 [^data-transform-1]: de *double precision floating number* - remete à forma como números reais são representados nos computadores, utilizando 64 bits em vez dos tradicionais 32 bits de um inteiro comum, por isso "double" (dobro).
 
-### básico do dplyr
+### Básico do dplyr
 
 Você está prestes a aprender os verbos (funções) primários do dplyr que já vão lhe permitir resolver a vasta maioria dos desafios de manipulação de dados.
 Mas antes de discutirir suas diferenças individuais, é importante destacar o que eles têm em comum:
@@ -83,11 +83,11 @@ Isso torna possível pegar a visão geral do código abaixo, mesmo que você ain
 ```{r}
 #| eval: false
 
-flights |>
-  filter(dest == "IAH") |> 
-  group_by(year, month, day) |> 
+voos |>
+  filter(destino == "IAH") |> 
+  group_by(ano, mes, dia) |> 
   summarize(
-    arr_delay = mean(arr_delay, na.rm = TRUE)
+    atraso_chegada = mean(atraso_chegada, na.rm = TRUE)
   )
 ```
 
@@ -111,21 +111,21 @@ Por exemplo, podemos achar todos os vôos que decolaram com mais de 120 minutos 
 [^data-transform-2]: Depos você irá aprender sobre a família de funções `slice_*()` que permite escolher linhas com base em suas posições.
 
 ```{r}
-flights |> 
-  filter(dep_delay > 120)
+voos |> 
+  filter(atraso_saida > 120)
 ```
 
 Assim como `>` (maior que), você também pode usar `>=` (maior ou igual a), `<` (menor que), `<=` (menor ou igual a), `==` (igual a), e `!=` (diferente de).
 Você também pode combinar condições com `&` ou `,` para indicar "e" (avalia ambas as condições) ou com `|` para indicar "ou" (avalia ao menos uma condição):
 
 ```{r}
-# Flights that departed on January 1
-flights |> 
-  filter(month == 1 & day == 1)
+# Voos que partiram no dia 1 de Janeiro
+voos |> 
+  filter(mes == 1 & dia == 1)
 
-# Flights that departed in January or February
-flights |> 
-  filter(month == 1 | month == 2)
+# Voos que partiram em janeiro ou fevereiro
+voos |> 
+  filter(mes == 1 | mes == 2)
 ```
 
 Existe um atalho útil quando você está combinando `|` e `==`: `%in%`.
@@ -133,19 +133,19 @@ Ele vai manter as linhas cujas variáveis são iguais a um dos valores à direit
 
 ```{r}
 # Uma forma mais curta de selecionar vôos que decolaram em janeiro ou fevereiro
-flights |> 
-  filter(month %in% c(1, 2))
+voos |> 
+  filter(mes %in% c(1, 2))
 ```
 
 Vamos voltar para essas comparações e operadores lógicos com mais detalhes em @sec-logicals.
 
 Quando você roda `filter()` o dplyr executa a operação de filtragem, criando um novo data frame, e em seguida o exibe.
-Ele não modifica o conjunto de dados `flights` já existente, pois as funções do dplyr nunca modificam seus argumentos de entrada.
+Ele não modifica o conjunto de dados `voos` já existente, pois as funções do dplyr nunca modificam seus argumentos de entrada.
 Para salvar o resultado, você precisa utilizar o operador de atribuição `<-`:
 
 ```{r}
-jan1 <- flights |> 
-  filter(month == 1 & day == 1)
+jan1 <- voos |> 
+  filter(mes == 1 & dia == 1)
 ```
 
 ### Erros comuns
@@ -156,8 +156,8 @@ Quando você está começando com o R, o erro mais fácil de se cometer é utili
 ```{r}
 #| error: true
 
-flights |> 
-  filter(month = 1)
+voos |> 
+  filter(mes = 1)
 ```
 
 Outro erro é escrever as expressões com "ou" como faríamos em Português:
@@ -165,11 +165,11 @@ Outro erro é escrever as expressões com "ou" como faríamos em Português:
 ```{r}
 #| eval: false
 
-flights |> 
-  filter(month == 1 | 2)
+voos |> 
+  filter(mes == 1 | 2)
 ```
 
-Isso até "funciona", no sentido de que não retornará um erro, mas ele não vai fazer o que você esperaria, pois `|` primeiro vai avaliar a condição `month == 1` e depois a condição `2`, que não é uma condição adequada para se avaliar nesse caso.
+Isso até "funciona", no sentido de que não retornará um erro, mas ele não vai fazer o que você esperaria, pois `|` primeiro vai avaliar a condição `mes == 1` e depois a condição `2`, que não é uma condição adequada para se avaliar nesse caso.
 Iremos aprender mais sobre o que está acontecendo aqui em @sec-boolean-operations.
 
 ### `arrange()`
@@ -181,16 +181,16 @@ Por exemplo, o código a seguir vai ordenar por horário da decolagem, que está
 Nós pegamos primeiro os anos mais antigos e então, dentro de cada ano, os primeiros meses e assim por diante.
 
 ```{r}
-flights |> 
-  arrange(year, month, day, dep_time)
+voos |> 
+  arrange(ano, mes, dia, horario_saida)
 ```
 
 Você pode utilizar `desc()` em uma coluna dentro de `arrange()` para re-ordenar o data frame com base naquele coluna em ordem decrescente (do maior para o menor).
 Por exemplo, esse código ordena os vôos do mais para os menos atrasados:
 
 ```{r}
-flights |> 
-  arrange(desc(dep_delay))
+voos |> 
+  arrange(desc(atraso_saida))
 ```
 
 Perceba que o número de linhas não se alterou -- estamos apenas organizando os dados e não filtrando.
@@ -202,19 +202,19 @@ No entanto, na maioria das vezes você vai querer combinações distintas de alg
 
 ```{r}
 # Remove linhas duplicadas, se existirem 
-flights |> 
+voos |> 
   distinct()
 
 # Acha todos os pares únicos de origens e destinos
-flights |> 
-  distinct(origin, dest)
+voos |> 
+  distinct(origem, destino)
 ```
 
 Por outro lado, caso você queira manter outras colunas quando estiver filtrando para linhas únicas, você pode usar a opção `.keep_all = TRUE`.
 
 ```{r}
-flights |> 
-  distinct(origin, dest, .keep_all = TRUE)
+voos |> 
+  distinct(origem, destino, .keep_all = TRUE)
 ```
 
 Não é uma coincidência que todos esses vôos distintos sejam em 1º de janeiro: `distinct()` irá achar a primeira ocorrência de uma linha única no conjunto de dados e decartar todas as demais.
@@ -223,8 +223,8 @@ Se, em vez disso, você quiser achar o número de ocorrências, é melhor trocar
 Você vai aprendar mais sobre contagens em @sec-counts.
 
 ```{r}
-flights |>
-  count(origin, dest, sort = TRUE)
+voos |>
+  count(origem, destino, sort = TRUE)
 ```
 
 ### Exercícios
@@ -238,10 +238,10 @@ flights |>
     -   Chegou com mais de duas horas de atraso, mas não teve atraso na decolagem.
     -   Atrasou pelo menos uma hora, mas recuperou mais de 30 minutos em vôo.
 
-2.  Ordene `flights` para achar os vôos com os maiores atrasos na decolagem.
+2.  Ordene `voos` para achar os vôos com os maiores atrasos na decolagem.
     Ache os vôos que saíram o mais cedo pela manhã.
 
-3.  Ordene `flights` para achar os vôos mais rápidos.
+3.  Ordene `voos` para achar os vôos mais rápidos.
     (Dica: tente incluir algum cálculo matemático dentro da sua função.)
 
 4.  Houve pelo menos um vôo em cada dia de 2013?
@@ -263,13 +263,13 @@ Existem quatro verbos importantes que afetam as colunas sem modificar as linhas:
 
 O papel de `mutate()` é adicionar novas colunas que são calculadas a partir de colunas existentes.
 Nos capítulos sobre transformações, você aprenderá sobre um grande conjunto de funções que podem ser utilizadas para manipular diferentes tipos de variáveis.
-Por enquanto, vamos nos ater à álgebra básica, que nos permite calcular o `gain`, ou seja, quanto tempo um vôo atrasado recuperou no ar, e a velocidade `speed` em milhas por hora:
+Por enquanto, vamos nos ater à álgebra básica, que nos permite calcular o `tempo_ganho`, ou seja, quanto tempo um vôo atrasado recuperou no ar, e a velocidade `velocidade` em milhas por hora:
 
 ```{r}
-flights |> 
+voos |> 
   mutate(
-    gain = dep_delay - arr_delay,
-    speed = distance / air_time * 60
+    tempo_ganho = atraso_saida - atraso_chegada,
+    velocidade = distancia / tempo_voo * 60
   )
 ```
 
@@ -279,48 +279,48 @@ Podemos usar o argumento `.before` para, em vez disso, adicionar as variáveis �
 [^data-transform-4]: Lembre-se que no RStudio, o jeito mais fácil de visualizar um conjunto de dados com muitas colunas é `View()`.
 
 ```{r}
-flights |> 
+voos |> 
   mutate(
-    gain = dep_delay - arr_delay,
-    speed = distance / air_time * 60,
+    tempo_ganho = atraso_saida - atraso_chegada,
+    velocidade = distancia / tempo_voo * 60,
     .before = 1
   )
 ```
 
 O `.` é um sinal que mostra que `.before` é um argumento da função e não o nome de uma terceira variável que estamos criando.
 Você também pode utilizar `.after` para adicionar após uma variável, e tanto com `.before` quanto com `.after` você pode utilizar o nome da variável em vez da posição.
-Por exemplo, nós podemos adicionar novas variáveis após `day`:
+Por exemplo, nós podemos adicionar novas variáveis após `dia`:
 
 ```{r}
 #| results: false
 
-flights |> 
+voos |> 
   mutate(
-    gain = dep_delay - arr_delay,
-    speed = distance / air_time * 60,
-    .after = day
+    tempo_ganho = atraso_saida - atraso_chegada,
+    velocidade = distancia / tempo_voo * 60,
+    .after = dia
   )
 ```
 
 Ou então, você pode controlar quais variáveis são mantidas com o argumento `.keep`.
 Um argumento particularmente útil é `"used"` que especifica que nós queremos manter apenas as colunas que estiveram envolvidas ou foram criadas pela etapa de `mutate()`.
-Por exemplo, a saída a seguir conterá apenas as variáveis `dep_delay`, `arr_delay`, `air_time`, `gain`, `hours` e `gain_per_hour`.
+Por exemplo, a saída a seguir conterá apenas as variáveis `atraso_saida`, `atraso_chegada`, `tempo_voo`, `tempo_ganho`, `horas` e `tempo_ganho_per_hour`.
 
 ```{r}
 #| results: false
 
-flights |> 
+voos |> 
   mutate(
-    gain = dep_delay - arr_delay,
-    hours = air_time / 60,
-    gain_per_hour = gain / hours,
+    tempo_ganho = atraso_saida - atraso_chegada,
+    horas = tempo_voo / 60,
+    tempo_ganho_por_hora = tempo_ganho / horas,
     .keep = "used"
   )
 ```
 
-Perceba que, uma vez que nós não atribuímos o resultado da operação de volta a `flights`, as novas variáveis `gain,` `hours` e `gain_per_hour` serão apenas exibidas no console mas não serão armazenadas em um data frame.
-Se nós quisermos tê-las disponíveis em um data frame para usá-las no futuro, devemos pensar com cuidado a respeito de atribuir o resultado de volta a `flights`, sobrescrevendo o data frame original com muito mais variáveis, ou em um novo objeto.
-Normalmente, a resposta correta é utilizar um novo objeto, que será nomeado de forma informativa para indicar seu conteúdo, ex: `delay_gain`, mas você talvez tenha boas razões para sobrescrever `flights`.
+Perceba que, uma vez que nós não atribuímos o resultado da operação de volta a `voos`, as novas variáveis `tempo_ganho,` `horas` e `tempo_ganho_por_hora` serão apenas exibidas no console mas não serão armazenadas em um data frame.
+Se nós quisermos tê-las disponíveis em um data frame para usá-las no futuro, devemos pensar com cuidado a respeito de atribuir o resultado de volta a `voos`, sobrescrevendo o data frame original com muito mais variáveis, ou em um novo objeto.
+Normalmente, a resposta correta é utilizar um novo objeto, que será nomeado de forma informativa para indicar seu conteúdo, ex: `ganho_atraso`, mas você talvez tenha boas razões para sobrescrever `voos`.
 
 ### `select()` {#sec-select}
 
@@ -333,8 +333,8 @@ Nessa situação, o primeiro desafio tende as ser focar apenas nas variáveis qu
     ```{r}
     #| results: false
 
-    flights |> 
-      select(year, month, day)
+    voos |> 
+      select(ano, mes, dia)
     ```
 
 -   Seleciona todas as colunas entre ano e dia (inclusos):
@@ -342,8 +342,8 @@ Nessa situação, o primeiro desafio tende as ser focar apenas nas variáveis qu
     ```{r}
     #| results: false
 
-    flights |> 
-      select(year:day)
+    voos |> 
+      select(ano:dia)
     ```
 
 -   Seleciona todas as colunas exceto aquelas entre ano e dia (inclusos):
@@ -351,8 +351,8 @@ Nessa situação, o primeiro desafio tende as ser focar apenas nas variáveis qu
     ```{r}
     #| results: false
 
-    flights |> 
-      select(!year:day)
+    voos |> 
+      select(!ano:dia)
     ```
 
 Historicamente, essa operação era feita com `-` em vez de `!`, então é provável que você veja isso por aí.
@@ -364,7 +364,7 @@ Recomendamos usar `!` porque é lido como "não" e se combina bem com `&` e `|`.
     ```{r}
     #| results: false
 
-    flights |> 
+    voos |> 
       select(where(is.character))
     ```
 
@@ -382,8 +382,8 @@ Você pode renomear variáveis à media que seleciona elas com `select()` utiliz
 O novo nome aparece à esquerda do `=` e o nome antigo à direita:
 
 ```{r}
-flights |> 
-  select(tail_num = tailnum)
+voos |> 
+  select(tail_num = codigo_cauda)
 ```
 
 ### `rename()`
@@ -391,8 +391,8 @@ flights |>
 Se você quiser manter todas as variáveis disponíveis e quer renomear apenas algumas delas, você pode utilizar `rename()` em vez de `select()`:
 
 ```{r}
-flights |> 
-  rename(tail_num = tailnum)
+voos |> 
+  rename(tail_num = codigo_cauda)
 ```
 
 Se você tem várias colunas com nomes inconsistentes e gostaria de manualmente consertá-las de uma vez, confira o pacote `janitor::clean_names()` que fornece alguns métodos úteis de limpeza.
@@ -404,8 +404,8 @@ Talvez você queira deixar variáveis relacionadas juntas ou mover variáveis im
 Por padrão `relocate()` já move as variáveis para a frente:
 
 ```{r}
-flights |> 
-  relocate(time_hour, air_time)
+voos |> 
+  relocate(data_hora, tempo_voo)
 ```
 
 Você também pode especificar onde quer colocá-las utilizando `.before` e `.after`, assim como em `mutate()`:
@@ -413,10 +413,10 @@ Você também pode especificar onde quer colocá-las utilizando `.before` e `.af
 ```{r}
 #| results: false
 
-flights |> 
-  relocate(year:dep_time, .after = time_hour)
-flights |> 
-  relocate(starts_with("arr"), .before = dep_time)
+voos |> 
+  relocate(ano:horario_saida, .after = data_hora)
+voos |> 
+  relocate(starts_with("cheg"), .before = horario_saida)
 ```
 
 ### Exercícios
@@ -426,22 +426,22 @@ flights |>
 #| echo: false
 
 # Para checagem de dados, não é utilizado nos resultados mostrados no livro 
-flights <- flights |> mutate(
-  dep_time = hour * 60 + minute,
+voos <- voos |> mutate(
+  horario_saida = hour * 60 + minute,
   arr_time = (arr_time %/% 100) * 60 + (arr_time %% 100),
-  airtime2 = arr_time - dep_time,
-  dep_sched = dep_time + dep_delay
+  airtime2 = arr_time - horario_saida,
+  dep_sched = horario_saida + atraso_saida
 )
 
-ggplot(flights, aes(x = dep_sched)) + geom_histogram(binwidth = 60)
-ggplot(flights, aes(x = dep_sched %% 60)) + geom_histogram(binwidth = 1)
-ggplot(flights, aes(x = air_time - airtime2)) + geom_histogram()
+ggplot(voos, aes(x = dep_sched)) + geom_histogram(binwidth = 60)
+ggplot(voos, aes(x = dep_sched %% 60)) + geom_histogram(binwidth = 1)
+ggplot(voos, aes(x = tempo_voo - airtime2)) + geom_histogram()
 ```
 
-1.  Compare `dep_time`, `sched_dep_time`, e `dep_delay`.
+1.  Compare `horario_saida`, `sched_horario_saida`, e `atraso_saida`.
     Como você esperaria que esses três números estivessem relacionados?
 
-2.  Esboce a maior quantidade possível de maneiras de selecionar `dep_time`, `dep_delay`, `arr_time`, e `arr_delay` a partir de `flights`.
+2.  Esboce a maior quantidade possível de maneiras de selecionar `horario_saida`, `atraso_saida`, `arr_time`, e `atraso_chegada` a partir de `voos`.
 
 3.  O que acontece se você especificar o nome de uma mesma variável múltiplas vezes em uma chamada à `select()`?
 
@@ -449,7 +449,7 @@ ggplot(flights, aes(x = air_time - airtime2)) + geom_histogram()
     Por que ela pode ser útil se utilizada em conjunto com esse vetor?
 
     ```{r}
-    variables <- c("year", "month", "day", "dep_delay", "arr_delay")
+    variables <- c("ano", "mes", "dia", "atraso_saida", "atraso_chegada")
     ```
 
 5.  O resultado de rodar o código a seguir te surpreende de alguma forma?
@@ -459,19 +459,19 @@ ggplot(flights, aes(x = air_time - airtime2)) + geom_histogram()
     ```{r}
     #| eval: false
 
-    flights |> select(contains("TIME"))
+    voos |> select(contains("TEMPO"))
     ```
 
-6.  Renomeie `air_time` para `air_time_min` para indicar as unidades de medida e mova-a para o início do data frame.
+6.  Renomeie `tempo_voo` para `tempo_voo_min` para indicar as unidades de medida e mova-a para o início do data frame.
 
 7.  Por que o código abaixo não funciona e o que o erro significa?
 
     ```{r}
     #| error: true
 
-    flights |> 
-      select(tailnum) |> 
-      arrange(arr_delay)
+    voos |> 
+      select(codigo_cauda) |> 
+      arrange(atraso_chegada)
     ```
 
 ## O pipe {#sec-the-pipe}
@@ -480,14 +480,14 @@ Nós te mostramos acima alguns exemplos simples do uso do pipe, mas o seu real p
 Por exemplo, imagine que você gostaria de achar os vôos mais rápidos do aeroporto IAH em Houston: você precisaria combinar `filter()`, `mutate()`, `select()` e `arrange()`:
 
 ```{r}
-flights |> 
-  filter(dest == "IAH") |> 
-  mutate(speed = distance / air_time * 60) |> 
-  select(year:day, dep_time, carrier, flight, speed) |> 
-  arrange(desc(speed))
+voos |> 
+  filter(destino == "IAH") |> 
+  mutate(velocidade = distancia / tempo_voo * 60) |> 
+  select(ano:dia, horario_saida, companhia_aerea, voo, velocidade) |> 
+  arrange(desc(velocidade))
 ```
 
-Mesmo que esse pipeline tenha quatro etapas, é fácil passar o olho e entendê-lo pois os verbos vêm no início de cada linha: começa com os dados de `flights`, então filtra (*filter*), então modifica (*mutate*), então seleciona (*select*), então ordena(*arrange*).
+Mesmo que esse pipeline tenha quatro etapas, é fácil passar o olho e entendê-lo pois os verbos vêm no início de cada linha: começa com os dados de `voos`, então filtra (*filter*), então modifica (*mutate*), então seleciona (*select*), então ordena(*arrange*).
 
 O que aconteceria se não tivéssemos o pipe?
 Poderíamos aninhar cada chamada de função dentro da chamada anterior:
@@ -499,14 +499,14 @@ arrange(
   select(
     mutate(
       filter(
-        flights, 
-        dest == "IAH"
+        voos, 
+        destino == "IAH"
       ),
-      speed = distance / air_time * 60
+      velocidade = distancia / tempo_voo * 60
     ),
-    year:day, dep_time, carrier, flight, speed
+    ano:dia, horario_saida, companhia_aerea, voo, velocidade
   ),
-  desc(speed)
+  desc(velocidade)
 )
 ```
 
@@ -515,10 +515,10 @@ Ou poderíamos utilizar um bando de objedos intermediários:
 ```{r}
 #| results: false
 
-flights1 <- filter(flights, dest == "IAH")
-flights2 <- mutate(flights1, speed = distance / air_time * 60)
-flights3 <- select(flights2, year:day, dep_time, carrier, flight, speed)
-arrange(flights3, desc(speed))
+voos1 <- filter(voos, destino == "IAH")
+voos2 <- mutate(voos1, velocidade = distancia / tempo_voo * 60)
+voos3 <- select(voos2, ano:dia, horario_saida, companhia_aerea, voo, velocidade)
+arrange(voos3, desc(velocidade))
 ```
 
 Ainda que ambas as formas tenham o sua hora e lugar, o pipe geralmente produz o código de análise de dados que é mais fácil de escrever e ler.
@@ -542,15 +542,16 @@ knitr::include_graphics("screenshots/rstudio-pipe-options.png")
 ## magrittr
 
 Se você vem utilizando o tidyverse há um tempo, você deve estar familiarizado com o pipe `%>%` fornecido pelo pacote **magrittr**.
-O pacote magrittr está incluído no core do tidyverse, então você pode utilizar `%>%` sempre que carregar o tidyverse:
+O pacote magrittr está incluído nos pacotes principais do tidyverse, então você pode utilizar `%>%` sempre que carregar o tidyverse:
 
 ```{r}
 #| eval: false
 
 library(tidyverse)
+library(dados)
 
-mtcars %>% 
-  group_by(cyl) %>%
+mtcarros %>% 
+  group_by(cilindros) %>%
   summarize(n = n())
 ```
 
@@ -572,11 +573,11 @@ Nessa seção, focaremos nas funções mais importantes: `group_by()`, `summariz
 Utilize `group_by()` para dividir o seu conjunto de dados em grupos que tenham algum significado para sua análise:
 
 ```{r}
-flights |> 
-  group_by(month)
+voos |> 
+  group_by(mes)
 ```
 
-`group_by()` não modifica seus dados mas, se você observar a saída de perto, você verá que a há uma indicação de que ela está agrupada (*"grouped by"*) mês (`Groups: month [12]`).
+`group_by()` não modifica seus dados mas, se você observar a saída de perto, você verá que a há uma indicação de que ela está agrupada (*"grouped by"*) mês (`Groups: mes [12]`).
 Isso significa que todas as operações subsequentes irão operar "por mês".
 `group_by()` adiciona essa funcionalidade agrupada (*"grouped"*) (referenciada como uma classe) ao data frame, que modifica o comportamento dos verbos subsequentes que são aplicados aos dados.
 
@@ -589,23 +590,23 @@ No dplyr, essa operação é feita pela função `summarize()`[^data-transform-5
 [^data-transform-5]: Ou `summarise()`, se você preferir o inglês britânico.
 
 ```{r}
-flights |> 
-  group_by(month) |> 
+voos |> 
+  group_by(mes) |> 
   summarize(
-    avg_delay = mean(dep_delay)
+    atraso_medio = mean(atraso_saida)
   )
 ```
 
 Uow!
 Alguma coisa deu errado e todos os nosso resultados viraram `NA`s (pronuncia-se "N-A"), que é o símbolo do R para valores ausentes.
-Isso ocorreu pois alguns dos vôos observados possuíam dados ausentes na coluna de atrasos (*delay*), e por isso, quando calculamos a média incluindo esses valores, obtemos um `NA` como resultado.
+Isso ocorreu pois alguns dos vôos observados possuíam dados ausentes na coluna de atrasos, e por isso, quando calculamos a média incluindo esses valores, obtemos um `NA` como resultado.
 Voltaremos a falar de valores ausentes em detalhes em @sec-missing-values, mas por enquanto, vamos pedir à função `mean()` para ignorar todos os valores ausentes definindo o argumento `na.rm` como `TRUE`:
 
 ```{r}
-flights |> 
-  group_by(month) |> 
+voos |> 
+  group_by(mes) |> 
   summarize(
-    delay = mean(dep_delay, na.rm = TRUE)
+    atraso = mean(atraso_saida, na.rm = TRUE)
   )
 ```
 
@@ -613,10 +614,10 @@ Você pode criar quantas sínteses quiser em uma única chamada à `summarize()`
 Você irá aprender várias sumarizações úteis nos próximos capítulos, mas uma que é muito útil é `n()`, que retorna o número de linhas de cada grupo.
 
 ```{r}
-flights |> 
-  group_by(month) |> 
+voos |> 
+  group_by(mes) |> 
   summarize(
-    delay = mean(dep_delay, na.rm = TRUE), 
+    atraso = mean(atraso_saida, na.rm = TRUE), 
     n = n()
   )
 ```
@@ -637,10 +638,10 @@ Você pode variar `n` para selecionar mais do que uma linha, ou, em vez de usar 
 Por exemplo, o código a seguir acha os vôos que estão mais atrasados na chegada em cada destino.
 
 ```{r}
-flights |> 
-  group_by(dest) |> 
-  slice_max(arr_delay, n = 1) |>
-  relocate(dest)
+voos |> 
+  group_by(destino) |> 
+  slice_max(atraso_chegada, n = 1) |>
+  relocate(destino)
 ```
 
 Perceba que existem 105 destinos, mas obtivemos 108 linhas aqui.
@@ -656,9 +657,9 @@ Você pode criar grupos utilizando mais de uma variável.
 Por exemplo, podemos fazer um grupo para cada data.
 
 ```{r}
-daily <- flights |>  
-  group_by(year, month, day)
-daily
+por_dia <- voos |>  
+  group_by(ano, mes, dia)
+por_dia
 ```
 
 Quando você cria um sumário de um tibble agrupado por mais de uma variável, cada sumário remove a camada do último grupo.
@@ -666,7 +667,7 @@ Na verdade, essa não era uma boa forma de fazer essa função funcionar, mas é
 Para tornar óbvio o que está acontecendo, o dplyr exibe uma mensagem que te diz como modificar esse comportamento:
 
 ```{r}
-daily_flights <- daily |> 
+voos_diarios <- por_dia |> 
   summarize(n = n())
 ```
 
@@ -675,7 +676,7 @@ Se você acha que esse comportamente está adequado, você pode requisitá-lo ex
 ```{r}
 #| results: false
 
-daily_flights <- daily |> 
+voos_diarios <- por_dia |> 
   summarize(
     n = n(), 
     .groups = "drop_last"
@@ -690,18 +691,18 @@ Você também pode querer remover agrupamentos de um data frame sem utilizar `su
 Você pode fazer isso com `ungroup()`.
 
 ```{r}
-daily |> 
+por_dia |> 
   ungroup()
 ```
 
 Agora, vamos ver o que acontece quando você tenta sumarizar um data frame desagrupado.
 
 ```{r}
-daily |> 
+por_dia |> 
   ungroup() |>
   summarize(
-    avg_delay = mean(dep_delay, na.rm = TRUE), 
-    flights = n()
+    atraso_medio = mean(atraso_saida, na.rm = TRUE), 
+    voos = n()
   )
 ```
 
@@ -714,11 +715,11 @@ dplyr 1.1.0 inclui uma nova e experimental sintaxe para agrupamentos por operaç
 
 ```{r}
 #| results: false
-flights |> 
+voos |> 
   summarize(
-    delay = mean(dep_delay, na.rm = TRUE), 
+    atraso = mean(atraso_saida, na.rm = TRUE), 
     n = n(),
-    .by = month
+    .by = mes
   )
 ```
 
@@ -726,11 +727,11 @@ Ou, se você quiser agrupar por múltiplas variáveis:
 
 ```{r}
 #| results: false
-flights |> 
+voos |> 
   summarize(
-    delay = mean(dep_delay, na.rm = TRUE), 
+    atraso = mean(atraso_saida, na.rm = TRUE), 
     n = n(),
-    .by = c(origin, dest)
+    .by = c(origem, destino)
   )
 ```
 
@@ -742,10 +743,10 @@ Você pode ler mais sobre ela em [dplyr 1.1.0 blog post](https://www.tidyverse.o
 
 ### Exercícios
 
-1.  Qual companhia aérea (*carrier*) possui a pior média de atrasos?
+1.  Qual companhia aérea (*companhia_aerea*) possui a pior média de atrasos?
     Desafio: você consegue desenrolar os efeitos de aeroportos ruins vs. companhias ruins?
     Por que/por que não?
-    (Dica: experimente usar `flights |> group_by(carrier, dest) |> summarize(n())`)
+    (Dica: experimente usar `voos |> group_by(companhia_aerea, destino) |> summarize(n())`)
 
 2.  Ache os vôos que estão mais atrasados no momento da decolagem, a partir de cada destino.
 
@@ -836,17 +837,17 @@ Você pode ler mais sobre ela em [dplyr 1.1.0 blog post](https://www.tidyverse.o
 
 Sempre que você fizer alguma agregação, é sempre uma boa ideia incluir a contagem (`n()`).
 Dessa foma, você pode se certificar que não está tirando conclusões baseadas em pequenas quantidades de dados.
-Vamos demonstrar isso com alguns dados de baseball do pacote **Lahman**.
-Especificamente, iremos comparar qual a proporção de vezes um jogador acertou a bola (*"hit"*) (`H`) vs. o número de vezes que ele tentou colocar a bola em jogo (`AB`):
+Vamos demonstrar isso com alguns dados de baseball do pacote dados.
+Especificamente, iremos comparar qual a proporção de vezes um jogador acertou a bola (*"hit"*) (`rebatidas_simples`) vs. o número de vezes que ele tentou colocar a bola em jogo (`vez_bastao`):
 
 ```{r}
-batters <- Lahman::Batting |> 
-  group_by(playerID) |> 
+rebatedores <- dados::rebatedores |> 
+  group_by(id_jogador) |> 
   summarize(
-    performance = sum(H, na.rm = TRUE) / sum(AB, na.rm = TRUE),
-    n = sum(AB, na.rm = TRUE)
+    performance = sum(rebatidas_simples, na.rm = TRUE) / sum(vez_bastao, na.rm = TRUE),
+    n = sum(vez_bastao, na.rm = TRUE)
   )
-batters
+rebatedores
 ```
 
 Quando montamos um gráfico da habilidade dos rebatedores (medidas pela média de acerto, `performance`) contra o número de oportunidades de acertar a bola (medidas pela númer de vezes ao bastão, `n`), é possível ver dois padrões:
@@ -867,7 +868,7 @@ Quando montamos um gráfico da habilidade dos rebatedores (medidas pela média d
 #|   continua crescendo linearmente em uma inclinação muito mais suave atingindo 
 #|   ~0.3 quando n é ~15,000.
 
-batters |> 
+rebatedores |> 
   filter(n > 100) |> 
   ggplot(aes(x = n, y = performance)) +
   geom_point(alpha = 1 / 10) + 
@@ -881,7 +882,7 @@ Isso também tem implicações importantes para ranqueamento.
 Se você simplesmente ordenar com `desc(performance)`, as pessoas com as melhoras médias de rebatidas serão claramente aquelas que tentaram botar a bola em jogo apenas algumas poucas vezes mas calhou de acertarem, esses não são necessariamente os jogadores mais hábeis:
 
 ```{r}
-batters |> 
+rebatedores |> 
   arrange(desc(performance))
 ```
 
