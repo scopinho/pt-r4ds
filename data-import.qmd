@@ -371,7 +371,7 @@ O pacote readr fornece um total de nove tipos de coluna para você usar:
 
 -   `col_logical()` e `col_double()` leem lógicos e números reais. É relativamente raro serem necessários (exceto como acima), já que o readr geralmente os adivinhará para você.
 -   `col_integer()` lê números inteiros (*integer*). Raramente distinguimos os números inteiros (*integer*) e reais (*doubles*) neste livro porque eles são funcionalmente equivalentes, mas ler números inteiros explicitamente pode ocasionalmente ser útil porque ocupam metade da memória dos números reais.
--   `col_character()` lê *strings*. Isso pode ser útil para especificar explicitamente quando você tem uma coluna que é um identificador numérico, ou seja, longas séries de dígitos que identificam um objeto, mas não faz sentido aplicar operações matemáticas a ele. Exemplos incluem números de telefone, números de seguro social, números de cartão de crédito, etc.
+-   `col_character()` lê *strings*. Isso pode ser útil para especificar explicitamente quando você tem uma coluna que é um identificador numérico, ou seja, longas séries de dígitos que identificam um objeto, mas onde não faz sentido aplicar operações matemáticas. Exemplos incluem números de telefone, números de seguro social, números de cartão de crédito, etc.
 -   `col_factor()`, `col_date()` e `col_datetime()` criam fatores, datas e data-horas, respectivamente; você aprenderá mais sobre esses tipos de dados quando chegarmos a eles em @sec-factors e @sec-dates-and-times.
 -   `col_number()` é um analisador numérico permissivo que ignorará componentes não numéricos, e é particularmente útil para moedas. Você aprenderá mais sobre ele em @sec-numbers.
 -   `col_skip()` pula uma coluna para que ela não seja incluída no resultado, o que pode ser útil para acelerar a leitura dos dados se você tiver um arquivo CSV grande e quiser usar apenas algumas das colunas.
@@ -407,7 +407,7 @@ Por exemplo, você pode ter dados de vendas para vários meses, com os dados de 
 #| message: false
 
 arquivos_vendas <- c("data/01-vendas.csv", "data/02-vendas.csv", "data/03-vendas.csv")
-read_csv(arquivos_vendas, id = "file")
+read_csv(arquivos_vendas, id = "arquivo")
 ```
 
 Mais uma vez, o código acima funcionará apenas se você tiver os arquivos CSV em uma pasta chamada `data` no seu projeto.
@@ -438,9 +438,9 @@ arquivos_vendas
 
 ## Exportando para um arquivo {#sec-writing-to-a-file}
 
-readr também vem com duas funções úteis para escrever dados de volta para o disco: `write_csv()` e `write_tsv()`.
+O pacote readr também vem com duas funções úteis para escrever dados de volta para o disco: `write_csv()` e `write_tsv()`.
 Os argumentos mais importantes para essas funções são `x` (o data frame a ser salvo) e `file` (o local para salvá-lo).
-Você também pode especificar como os valores ausentes são escritos com `na`, e se você deseja acrescentar, via o argumento `append`, a um arquivo existente.
+Você também pode especificar como os valores ausentes são escritos com `na`, e se você deseja acrescentar as linhas em um arquivo existente, utilizando o argumento `append`.
 
 ```{r}
 #| eval: false
@@ -448,7 +448,7 @@ Você também pode especificar como os valores ausentes são escritos com `na`, 
 write_csv(estudantes, "estudantes.csv")
 ```
 
-Agora, vamos ler esse arquivo CSV de volta.
+Agora, vamos ler esse arquivo CSV novamente.
 Observe que as informações de tipo de variável que você acabou de configurar são perdidas quando você salva em CSV porque você está começando de novo com a leitura de um arquivo de texto simples:
 
 ```{r}
