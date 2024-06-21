@@ -484,6 +484,18 @@ Existem duas formas principais:
     library(arrow)
     write_parquet(estudantes, "estudantes.parquet")
     read_parquet("estudantes.parquet")
+    # A tibble: 6 × 5
+    #   id_estudante nome_completo     comida_favorita
+    #          <dbl> <chr>             <chr>          
+    # 1            1 Pedro Cardoso     Iogurte de mor…
+    # 2            2 Rafaela Lorenzoni Batata frita   
+    # 3            3 Otávio Barros     <NA>           
+    # 4            4 Fernanda Melo     Brócolis       
+    # 5            5 Leopoldo Souza    Pizza          
+    # 6            6 Pérola Silva      Sorvete        
+    # # ℹ 2 more variables: plano_alimentar <fct>,
+    # #   idade <dbl>
+
     ```
 
 [^data-import-4]: No contexto de *wrappers*, funções ou métodos construídos como uma camada de abstração mais simples e consistente sobre outras funções ou métodos existentes, uniforme significa que o *wrapper* oferece uma interface padronizada em relação à outras funções e métodos de operações similares, oferecendo uma interação mais previsível ao usuário.
