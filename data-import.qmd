@@ -467,7 +467,7 @@ Isso faz arquivos CSVs um pouco não confiáveis para armazenar resultados inter
 
 1.  `write_rds()` e `read_rds()` são *wrappers* uniformes[^data-import-4] em torno das funções base `readRDS()` e `saveRDS()`.
     Eles armazenam dados no formato binário personalizado do R chamado RDS.
-    Isso significa que quando você recarrega o objeto, você está carregando o *mesmo* objeto R que você armazenou.
+    Isso significa que quando você recarrega o objeto, você está carregando *exatamente o mesmo* objeto R que você armazenou.
 
     ```{r}
     write_rds(estudantes, "estudantes.rds")
@@ -478,7 +478,7 @@ Isso faz arquivos CSVs um pouco não confiáveis para armazenar resultados inter
     Voltaremos ao arrow com mais detalhes em @sec-arrow.
 
     ```{r}
-    #| eval: true
+    #| eval: false
 
     library(arrow)
     write_parquet(estudantes, "estudantes.parquet")
@@ -508,10 +508,10 @@ tibble(
 ```
 
 Laying out the data by column can make it hard to see how the rows are related, so an alternative is `tribble()`, short for **tr**ansposed t**ibble**, which lets you lay out your data row by row.
-`tribble()` is customized for data entry in code: column headings start with `~` and entries are separated by commas.
-This makes it possible to lay out small amounts of data in an easy to read form:
+`tribble()` é customizado para entrada de dados no código: os cabeçalhos das colunas começam com `~` e as entradas são separadas por vírgulas.
+Isso torna possível dispor pequenas quantidades de dados em uma forma fácil de ler:
 
-Inserir os dados por coluna pode dificultar a visualização de como as linhas estão relacionadas, então uma alternativa é `tribble()`, abreviação de _**tr**ansposed t**ibble**_, que permite organizar seus dados linha por linha.
+Inserir os dados por coluna pode dificultar a visualização de como as linhas estão relacionadas, então uma alternativa é `tribble()`, abreviação de _**tr**ansposed t**ibble**_ (tibble transposta), que permite organizar seus dados linha por linha.
 
 ```{r}
 tribble(
@@ -524,12 +524,12 @@ tribble(
 
 ## Resumo
 
-Neste capítulo, você aprendeu a como carregar arquivos CSV com `read_csv()` e a como inserir seus próprios dados com `tibble()` e `tribble()`.
+Neste capítulo, você aprendeu como carregar arquivos CSV com `read_csv()` e como inserir seus próprios dados com `tibble()` e `tribble()`.
 Você aprendeu como arquivos CSV funcionam, alguns dos problemas que você pode encontrar e como superá-los.
-Voltaremos à importação de dados algumas vezes neste livro: @sec-import-spreadsheets do Excel e Google Planilhas, @sec-import-databases mostrará como carregar dados de bancos de dados, @sec-arrow de arquivos parquet, @sec-rectangling de JSON e @sec-scraping de sites.
+Voltaremos à importação de dados algumas vezes neste livro: @sec-import-spreadsheets do Excel e do Google Planilhas, @sec-import-databases mostrará para você como carregar dados de bancos de dados, @sec-arrow de arquivos parquet, @sec-rectangling de JSON e @sec-scraping de sites.
 
 Estamos quase no final desta seção do livro, mas há um último tópico importante a ser coberto: como obter ajuda.
-Então, no próximo capítulo, você aprenderá alguns bons lugares para procurar ajuda, como criar um reprex[^data-import-5] para maximizar suas chances de obter boa ajuda e alguns conselhos gerais sobre como acompanhar o mundo do R.
+Então, no próximo capítulo, você aprenderá alguns bons lugares para procurar ajuda, como criar um exemplo reprodutível (*reprex*)[^data-import-5] para maximizar suas chances de obter boa ajuda e alguns conselhos gerais sobre como acompanhar o mundo do R.
 
 [^data-import-1]: No Brasil, é mais comum o tipo CSV2, que utiliza ponto-e-vírgula como separador e é, portanto, compatível com o uso da vírgula como separador decimal. (N. dos T.)
 
