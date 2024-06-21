@@ -20,4 +20,3 @@ site_libs
 /data/seattle-library-checkouts.parquet
 /data/seattle-library-checkouts
 oreilly
-*.parquet
