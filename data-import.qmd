@@ -8,12 +8,12 @@ source("_common.R")
 
 ## Introdução
 
-Trabalhar com dados fornecidos por pacotes R é uma ótima maneira de aprender ferramentas de ciência de dados, mas você irá querer aplicar o que aprendeu aos seus próprios dados em algum momento.
-Neste capítulo, você aprenderá o básico de como ler arquivos de dados no R.
+Trabalhar com dados fornecidos por pacotes em R é uma ótima maneira de aprender ferramentas de ciência de dados, mas você irá querer aplicar o que aprendeu aos seus próprios dados em algum momento.
+Neste capítulo, você aprenderá o básico sobre como ler arquivos de dados no R.
 
 Especificamente, esse capítulo focará na leitura de arquivos de texto retangulares.
 Começaremos com conselhos práticos para lidar com recursos como nomes de colunas, tipos e dados ausentes.
-Você então aprenderá sobre como ler dados de múltiplos arquivos de uma vez e exportar dados do R para um arquivo.
+Você então aprenderá sobre como ler dados de múltiplos arquivos de uma única vez e exportar dados do R para um arquivo.
 Finalmente, você aprenderá a criar manualmente data frames no R.
 
 ### Pré-requisitos
@@ -27,7 +27,7 @@ Neste capítulo, você irá aprender como importar arquivos planos no R com o pa
 library(tidyverse)
 ```
 
-## Importando dados de um arquivo
+## Lendo dados de um arquivo
 
 De início, vamos focar no tipo de arquivo de dados retangulares mais comum: CSV, que é a sigla em inglês para valores separados por vírgula (*comma-separated values*)[^data-import-1].
 Aqui está como um arquivo CSV simples se parece.
@@ -54,9 +54,9 @@ read_csv("data/estudantes.csv") |>
   knitr::kable()
 ```
 
-Podemos importar esse arquivo para o R usando `read_csv()`.
+Podemos ler esse arquivo em R usando `read_csv()`.
 O primeiro argumento é o mais importante: o caminho para o arquivo.
-Você pode pensar no caminho como um endereço do arquivo: o nome do arquivo é `estudantes.csv` e ele mora na pasta `data`.
+Você pode pensar no caminho como um endereço do arquivo: o nome do arquivo é `estudantes.csv` e ele está armazenado na pasta `data`.
 
 ```{r}
 #| message: true
@@ -64,10 +64,6 @@ Você pode pensar no caminho como um endereço do arquivo: o nome do arquivo é 
 estudantes <- read_csv("data/estudantes.csv")
 ```
 
-<!--
-Ao revisor:
-Os links abaixo só funcionarão após o PR ser mesclado
--->
 
 O código acima irá funcionar se você tiver o arquivo `estudantes.csv` em uma pasta chamada `data` no seu projeto.
 Você pode baixar o arquivo `estudantes.csv` de <https://raw.githubusercontent.com/cienciadedatos/pt-r4ds/traducao-pt-2ed/data/estudantes.csv> ou você pode importá-lo diretamente dessa URL com:
