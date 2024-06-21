@@ -389,7 +389,7 @@ read_csv(
 )
 ```
 
-Outra função auxiliar é `cols_only()`, que lerá apenas as colunas que você especificar:
+Outra função auxiliar útil é `cols_only()`, que lerá apenas as colunas que você especificar:
 
 ```{r}
 read_csv(
@@ -460,10 +460,8 @@ write_csv(estudantes, "estudantes-2.csv")
 read_csv("estudantes-2.csv")
 ```
 
-This makes CSVs a little unreliable for caching interim results---you need to recreate the column specification every time you load in.
-There are two main alternatives:
-
 Isso faz arquivos CSVs um pouco não confiáveis para armazenar resultados intermediários --- você precisa recriar a especificação das colunas toda vez que carrega os dados.
+Existem duas formas principais:
 
 1.  `write_rds()` e `read_rds()` são *wrappers* uniformes[^data-import-4] em torno das funções base `readRDS()` e `saveRDS()`.
     Eles armazenam dados no formato binário personalizado do R chamado RDS.
