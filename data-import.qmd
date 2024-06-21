@@ -201,7 +201,7 @@ read_csv(
 )
 ```
 
-Alternativamente, você pode passar a `col_names` um vetor de caracteres que será usado como os nomes das colunas:
+Alternativamente, você pode fornecer à `col_names` um vetor de caracteres que será usado como os nomes das colunas:
 
 ```{r}
 #| message: false
@@ -221,11 +221,11 @@ Esses argumentos são tudo o que você precisa saber para ler a maioria dos arqu
 Uma vez que você tenha aprendido a usar `read_csv()`, usar as outras funções do readr é simples; é apenas uma questão de saber qual função usar:
 
 -   `read_csv2()` lê arquivos separados por ponto-e-vírgula.
-    Usa `;` ao invés de `,` para separar os campos e são comuns em países que usam `,` como marcador decimal.
+    Usa `;` ao invés de `,` para separar os campos, e são comuns em países que usam `,` como marcador decimal.
 
 -   `read_tsv()` lê arquivos delimitados por tabulação.
 
--   `read_delim()` lê arquivos com qualquer delimitador, tentando adivinhar automaticamente o delimitador se você não o especificar.
+-   `read_delim()` lê arquivos com qualquer delimitador, tentando supor automaticamente o delimitador se você não o especificar.
 
 -   `read_fwf()` lê arquivos de largura fixa.
     Você pode especificar os campos por suas larguras com `fwf_widths()` ou por suas posições com `fwf_positions()`.
@@ -238,17 +238,10 @@ Uma vez que você tenha aprendido a usar `read_csv()`, usar as outras funções 
 
 1.  Que função você usaria para ler um arquivo onde os campos são separados por `|`?
 
-2.  Apart from `file`, `skip`, and `comment`, what other arguments do `read_csv()` and `read_tsv()` have in common?
-
 2.  Além de `file`, `skip` e `comment`, quais outros argumentos `read_csv()` e `read_tsv()` têm em comum?
 
-3.  What are the most important arguments to `read_fwf()`?
 
 3.  Quais são os argumentos mais importantes para `read_fwf()`?
-
-4.  Sometimes strings in a CSV file contain commas.
-    To prevent them from causing problems, they need to be surrounded by a quoting character, like `"` or `'`. By default, `read_csv()` assumes that the quoting character will be `"`.
-    To read the following text into a data frame, what argument to `read_csv()` do you need to specify?
 
 4.  Às vezes, as *strings* em um arquivo CSV contêm vírgulas.
     Para evitar que elas causem problemas, elas precisam ser cercadas por um caractere de citação, como `"` ou `'`. Por padrão, `read_csv()` assume que o caractere de citação será `"`.
