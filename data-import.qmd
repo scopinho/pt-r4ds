@@ -88,6 +88,7 @@ estudantes
 ```
 
 Na coluna `comida.favorita`, há uma série de itens de comida, e o texto (*string*) `"N/A"`, que deveria ter sido um `NA` real que o R reconheceria como um dado faltante (*not available*).
+Isso é algo que podemos resolver usando o argumento `na`.
 Por padrão, `read_csv()` reconhece apenas strings vazias (`""`) como `NA`s, mas, para esse conjunto de dados, também queremos que ele reconheça a *string* de caracteres `"N/A"`.
 
 ```{r}
@@ -266,12 +267,12 @@ Uma vez que você tenha aprendido a usar `read_csv()`, usar as outras funções 
     read_csv("a;b\n1;3")
     ```
 
-6.  Pratique se referir a nomes não-sintáticos no seguinte data frame por:
+6.  Pratique se referir a nomes não-sintáticos no seguinte data frame:
 
-    a.  Extrair a variável chamada `1`.
-    b.  Plotar um gráfico de dispersão de `1` vs. `2`.
-    c.  Criar uma nova coluna chamada `3`, que é `2` dividido por `1`.
-    d.  Renomear as colunas para `um`, `dois` e `três`.
+    a.  Extraindo a variável chamada `1`.
+    b.  Plotando um gráfico de dispersão de `1` vs. `2`.
+    c.  Criando uma nova coluna chamada `3`, que é `2` dividido por `1`.
+    d.  Renomeando as colunas para `um`, `dois` e `três`.
 
     ```{r}
     irritante <- tibble(
