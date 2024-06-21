@@ -308,7 +308,7 @@ Você pode ver esse comportamento em ação neste exemplo simples:
 #| message: false
 
 read_csv("
-  logical,numeric,date,string
+  logico,numerico,data,string
   TRUE,1,2021-01-15,abc
   false,4.5,2021-02-15,def
   T,Inf,2021-02-16,ghi
