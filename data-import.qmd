@@ -283,13 +283,13 @@ Uma vez que você tenha aprendido a usar `read_csv()`, usar as outras funções 
 
 ## Controlando tipos de colunas {#sec-col-types}
 
-Um arquivo CSV não contém informações sobre o tipo de cada variável (ou seja, se é um lógico, número, *string*, etc.), então o readr tentará adivinhar o tipo.
+Um arquivo CSV não contém informações sobre o tipo de cada variável (ou seja, se é lógico, número, *string*, etc.), então readr tentará adivinhar o tipo.
 Esta seção descreve como o processo de adivinhação funciona, como resolver alguns problemas comuns que fazem com que ele falhe e, se necessário, como fornecer os tipos de coluna você mesmo.
 Por fim, mencionaremos algumas estratégias gerais que são úteis se o readr estiver falhando catastróficamente e você precisar obter mais informações sobre a estrutura do seu arquivo.
 
 ### Adivinhando tipos
 
-readr usa uma heurística para descobrir os tipos de coluna.
+O pacote readr usa uma heurística para descobrir os tipos de coluna.
 Para cada coluna, ele pega os valores de 1.000[^data-import-3] linhas espaçadas uniformemente da primeira à última, ignorando os valores ausentes.
 Ele então trabalha através das seguintes perguntas:
 
@@ -316,7 +316,7 @@ Essa heurística funciona bem se você tiver um conjunto de dados limpo, mas, na
 ### Valores ausentes, tipos de coluna e problemas
 
 A forma mais comum de falha na detecção de coluna é quando uma coluna contém valores inesperados, e você obtém uma coluna de caracteres em vez de um tipo mais específico.
-Uma das causas mais comuns para isso é um valor ausente, registrado usando algo diferente do `NA` que o readr espera.
+Uma das causas mais comuns para isso é um valor ausente registrado usando algo diferente do `NA` que o readr espera.
 
 Considere este exemplo simples de um arquivo CSV com 1 coluna:
 
@@ -367,10 +367,10 @@ read_csv(simple_csv, na = ".")
 
 ### Tipos de colunas
 
-readr fornece um total de nove tipos de coluna para você usar:
+O pacote readr fornece um total de nove tipos de coluna para você usar:
 
--   `col_logical()` e `col_double()` leem lógicos e números reais. Eles são relativamente raramente necessários (exceto como acima), já que o readr geralmente os adivinhará para você.
--   `col_integer()` lê inteiros. Raramente distinguimos inteiros e duplos neste livro porque eles são funcionalmente equivalentes, mas ler inteiros explicitamente pode ocasionalmente ser útil porque ocupam metade da memória dos reais.
+-   `col_logical()` e `col_double()` leem lógicos e números reais. É relativamente raro serem necessários (exceto como acima), já que o readr geralmente os adivinhará para você.
+-   `col_integer()` lê números inteiros (*integer*). Raramente distinguimos os números inteiros (*integer*) e reais (*doubles*) neste livro porque eles são funcionalmente equivalentes, mas ler números inteiros explicitamente pode ocasionalmente ser útil porque ocupam metade da memória dos números reais.
 -   `col_character()` lê *strings*. Isso pode ser útil para especificar explicitamente quando você tem uma coluna que é um identificador numérico, ou seja, longas séries de dígitos que identificam um objeto, mas não faz sentido aplicar operações matemáticas a ele. Exemplos incluem números de telefone, números de seguro social, números de cartão de crédito, etc.
 -   `col_factor()`, `col_date()` e `col_datetime()` criam fatores, datas e data-horas, respectivamente; você aprenderá mais sobre esses tipos de dados quando chegarmos a eles em @sec-factors e @sec-dates-and-times.
 -   `col_number()` é um analisador numérico permissivo que ignorará componentes não numéricos, e é particularmente útil para moedas. Você aprenderá mais sobre ele em @sec-numbers.
