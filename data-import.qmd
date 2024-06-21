@@ -18,7 +18,7 @@ Finalmente, você aprenderá a criar manualmente data frames no R.
 
 ### Pré-requisitos
 
-Neste capítulo, você irá aprender como importar arquivos planos no R com o pacote **readr**, que faz parte do tidyverse.
+Neste capítulo, você irá aprender como importar arquivos de texto no R com o pacote **readr**, que faz parte do tidyverse.
 
 ```{r}
 #| label: setup
@@ -87,7 +87,7 @@ Com isso em mente, vamos dar uma segunda olhada no conjunto de dados `estudantes
 estudantes
 ```
 
-Na coluna `camida.favorita`, há uma série de itens de comida, e então a *string* de caracteres `N/A`, que deveria ter sido um `NA` real que o R reconheceria como "não disponível" (*not available*).
+Na coluna `comida.favorita`, há uma série de itens de comida, e o texto (*string*) `"N/A"`, que deveria ter sido um `NA` real que o R reconheceria como um dado faltante (*not available*).
 Por padrão, `read_csv()` reconhece apenas strings vazias (`""`) como `NA`s, mas, para esse conjunto de dados, também queremos que ele reconheça a *string* de caracteres `"N/A"`.
 
 ```{r}
@@ -117,7 +117,7 @@ Uma abordagem alternativa é usar `janitor::clean_names()` para transformar todo
 estudantes |> janitor::clean_names()
 ```
 
-Outra tarefa comum após a importação dos dados é a correção dos tipos de variáveis.
+Outra tarefa comum após a leitura dos dados é examinar os tipos de variáveis.
 Por exemplo, `plano_alimentar` é uma variável categórica com um conjunto conhecido de valores possíveis, que no R deve ser representado como um fator:
 
 ```{r}
@@ -129,13 +129,9 @@ estudantes |>
 Note que os valores em `plano_alimentar` permaneceram os mesmos, mas o tipo de variável denotado abaixo do nome da variável mudou de caractere (`<chr>`) para fator (`<fct>`).
 Você aprenderá mais sobre fatores em @sec-factors.
 
-<!--
-Ao revisor:
-No parágrafo a seguir, estou traduzindo `id` para `student_id`, pois não há uma coluna chamada `id`.
--->
 
 Antes de analisar esses dados, você provavelmente vai querer corrigir as colunas `idade` e `id`.
-Atualmente, `idade` é uma variável de caractere porque uma das observações é digitada como `cinco` em vez de um `5` numérico.
+Atualmente, `idade` é uma variável de caractere porque uma das observações está digitada como `cinco` em vez de um `5` numérico.
 Discutiremos os detalhes de como corrigir esse problema em @sec-import-spreadsheets.
 
 ```{r}
@@ -171,7 +167,7 @@ read_csv(
 
 Normalmente, `read_csv()` usa a primeira linha de dados como os nomes das colunas, o que é uma convenção muito comum.
 Mas não é incomum que algumas linhas de metadados sejam incluídas no início do arquivo.
-Você pode usar `skip = n` para pular as primeiras `n` linhas ou usar `comment = "#"` para descartar todas as linhas que começam com `#`, por exemplo:
+Você pode usar `skip = n` para pular as primeiras `n` linhas ou usar `comment = "#"` para ignorar todas as linhas que começam com `#`, por exemplo:
 
 ```{r}
 #| message: false
@@ -193,7 +189,7 @@ read_csv(
 ```
 
 Em outros casos, os dados podem não ter nomes de colunas.
-Você pode usar `col_names = FALSE` para dizer ao `read_csv()` para não tratar a primeira linha como cabeçalhos e, em vez disso, rotulá-los sequencialmente de `X1` a `Xn`:
+Você pode usar `col_names = FALSE` para dizer ao `read_csv()` para não tratar a primeira linha como cabeçalho e, em vez disso, rotular as colunas sequencialmente de `X1` a `Xn`:
 
 ```{r}
 #| message: false
