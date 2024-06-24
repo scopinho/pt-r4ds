@@ -57,7 +57,7 @@ Caso não esteja, você pode utilizar `print(voos, width = Inf)` para mostrar to
 glimpse(voos)
 ```
 
-Em ambas as visualizações, o nome das variáveis estão seguidos por abreviaturas que te indicam o tipo de cada variável: `<int>` para inteiros, `<dbl>` double[^data-transform-1] (números reais), `<chr>` para caracteres (strings) e `<dttm>` para date-time (data e tempo).
+Em ambas as visualizações, o nome das variáveis estão seguidos por abreviaturas que te indicam o tipo de cada variável: `<int>` para inteiros, `<dbl>` double[^data-transform-1] (números reais), `<chr>` para caracteres (strings) e `<dttm>` para date-time (data e hora).
 Isso é importante pois as operações possíveis sobre uma coluna depende muito do seu "tipo".
 
 [^data-transform-1]: de *double precision floating number* - remete à forma como números reais são representados nos computadores, utilizando 64 bits em vez dos tradicionais 32 bits de um inteiro comum, por isso "double" (dobro).
