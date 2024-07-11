@@ -426,22 +426,22 @@ voos |>
 #| echo: false
 
 # Para checagem de dados, não é utilizado nos resultados mostrados no livro 
-voos <- voos |> mutate(
-  horario_saida = hour * 60 + minute,
-  arr_time = (arr_time %/% 100) * 60 + (arr_time %% 100),
-  airtime2 = arr_time - horario_saida,
-  dep_sched = horario_saida + atraso_saida
+voos2 <- voos |> mutate(
+  horario_saida = hora * 60 + minuto,
+  horario_chegada = (horario_chegada %/% 100) * 60 + (horario_chegada %% 100),
+  tempo_voo2 = horario_chegada - horario_saida,
+  saida_programada = horario_saida + atraso_saida
 )
 
-ggplot(voos, aes(x = dep_sched)) + geom_histogram(binwidth = 60)
-ggplot(voos, aes(x = dep_sched %% 60)) + geom_histogram(binwidth = 1)
-ggplot(voos, aes(x = tempo_voo - airtime2)) + geom_histogram()
+ggplot(voos2, aes(x = saida_programada)) + geom_histogram(binwidth = 60)
+ggplot(voos2, aes(x = saida_programada %% 60)) + geom_histogram(binwidth = 1)
+ggplot(voos2, aes(x = tempo_voo - tempo_voo2)) + geom_histogram()
 ```
 
-1.  Compare `horario_saida`, `sched_horario_saida`, e `atraso_saida`.
+1.  Compare `horario_saida`, `saida_programada`, e `atraso_saida`.
     Como você esperaria que esses três números estivessem relacionados?
 
-2.  Esboce a maior quantidade possível de maneiras de selecionar `horario_saida`, `atraso_saida`, `arr_time`, e `atraso_chegada` a partir de `voos`.
+2.  Esboce a maior quantidade possível de maneiras de selecionar `horario_saida`, `atraso_saida`, `horario_chegada`, e `atraso_chegada` a partir de `voos`.
 
 3.  O que acontece se você especificar o nome de uma mesma variável múltiplas vezes em uma chamada à `select()`?
 
