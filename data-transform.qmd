@@ -229,7 +229,7 @@ voos |>
 
 ### Exercícios
 
-1.  Utilizando um único pipeline para cada condição, ache todos os vôos que cumpram a condição:
+1.  Utilizando um único pipeline para cada condição, ache todos os vôos que cumpram cada condição:
 
     -   Teve um atraso na chegada de duas ou mais horas
     -   Voou para Houston (`IAH` ou `HOU`)
