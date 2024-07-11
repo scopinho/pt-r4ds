@@ -510,7 +510,7 @@ arrange(
 )
 ```
 
-Ou poderíamos utilizar um bando de objedos intermediários:
+Ou poderíamos utilizar alguns objetos intermediários:
 
 ```{r}
 #| results: false
@@ -521,7 +521,7 @@ voos3 <- select(voos2, ano:dia, horario_saida, companhia_aerea, voo, velocidade)
 arrange(voos3, desc(velocidade))
 ```
 
-Ainda que ambas as formas tenham o sua hora e lugar, o pipe geralmente produz o código de análise de dados que é mais fácil de escrever e ler.
+Ainda que ambas as formas tenham sua hora e lugar, o pipe geralmente produz o código de análise de dados que é mais fácil de escrever e ler.
 
 Para adicionar o pipe ao seu código, recomendamos utilizar o atalho nativo do teclado: Ctrl/Cmd + Shift + M.
 Você terá que fazer uma mudança nas opções do RStudio para utilizar `|>` em vez de `%>%` conforme mostrado em @fig-pipe-options; mais sobre `%>%` em breve.
