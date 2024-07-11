@@ -400,8 +400,8 @@ Se você tem várias colunas com nomes inconsistentes e gostaria de manualmente 
 ### `relocate()`
 
 Utilize `relocate()` para mover as variáveis de lugar.
-Talvez você queira deixar variáveis relacionadas juntas ou mover variáveis importantes para a frente do data frame.
-Por padrão `relocate()` já move as variáveis para a frente:
+Talvez você queira deixar variáveis relacionadas juntas ou mover variáveis importantes para o início do data frame.
+Por padrão `relocate()` já move as variáveis para o início:
 
 ```{r}
 voos |> 
