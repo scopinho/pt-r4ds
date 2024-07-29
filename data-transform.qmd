@@ -16,7 +16,7 @@ Você vai aprender a fazer tudo isso (e mais um pouco!) nesse capítulo, em que 
 O objetivo desse capítulo é te dar uma visão geral de todas as principais ferramentas para transformar um data frame.
 Começaremos com as funções que operam sobre as linhas e colunas de um data frame, em seguida voltaremos para falar mais um pouco sobre o *pipe*, que é uma importante ferramenta que você utilizará para combinar os verbos das transformações.
 Depois, iremos introduzir a habilidade de trabalhar com grupos.
-Finalizaremos o capítulo com um caso de estudo que demonstra todas essas funções em ação, e, mais tarde, voltaremos para vê-las em detalhe nos capítulos que seguem, quando começaremos a nos aprofundar em tipos mais específicos de dados (números, strings (de caracteres) e datas).
+Finalizaremos o capítulo com um estudo de caso que demonstra todas essas funções em ação, e, mais tarde, voltaremos para vê-las em detalhe nos capítulos que seguem, quando começaremos a nos aprofundar em tipos mais específicos de dados (números, strings (de caracteres) e datas).
 
 ### Pré-requisitos
 
@@ -744,8 +744,8 @@ Você pode ler mais sobre ela em [dplyr 1.1.0 blog post](https://www.tidyverse.o
 ### Exercícios
 
 1.  Qual companhia aérea (*companhia_aerea*) possui a pior média de atrasos?
-    Desafio: você consegue desenrolar os efeitos de aeroportos ruins vs. companhias ruins?
-    Por que/por que não?
+    Desafio: você consegue desvendar os efeitos de aeroportos ruins versus companhias aéreas ruins?
+    Por que sim ou por que não?
     (Dica: experimente usar `voos |> group_by(companhia_aerea, destino) |> summarize(n())`)
 
 2.  Ache os vôos que estão mais atrasados no momento da decolagem, a partir de cada destino.
@@ -833,7 +833,7 @@ Você pode ler mais sobre ela em [dplyr 1.1.0 blog post](https://www.tidyverse.o
           mutate(mean_x = mean(x))
         ```
 
-## Caso de estudo: agregados e tamanho de amostra {#sec-sample-size}
+## Estudo de caso: agregados e tamanho de amostra {#sec-sample-size}
 
 Sempre que você fizer alguma agregação, é sempre uma boa ideia incluir a contagem (`n()`).
 Dessa foma, você pode se certificar que não está tirando conclusões baseadas em pequenas quantidades de dados.
