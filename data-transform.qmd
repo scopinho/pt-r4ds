@@ -750,7 +750,7 @@ Você pode ler mais sobre ela em [dplyr 1.1.0 blog post](https://www.tidyverse.o
 
 2.  Ache os vôos que estão mais atrasados no momento da decolagem, a partir de cada destino.
 
-3.  Como os atrasaso variam ao longo do dia.
+3.  Como os atrasos variam ao longo do dia.
     Ilustre sua resposta com um gráfico.
 
 4.  O que acontece se você passar um `n` negativo para `slice_min()` e funções similares?
