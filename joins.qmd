@@ -3,9 +3,7 @@
 ```{r}
 #| echo: false
 #| results: asis
-
 source("_common.R")
-
 ```
 
 ## Introdução
@@ -14,19 +12,19 @@ source("_common.R")
 Normalmente você tem muitos quadros de dados e deve **uní-los** (*joins*) para responder às perguntas de seu interesse.
 Este capítulo apresentará dois tipos importantes de uniões (*joins*):
 
--   Uniões de mutação (*mutating joins*), que adicionam novas variáveis ​​a um *data frame* a partir de observações correspondentes em outro.
+-   Uniões de mutação (*mutating joins*), que adicionam novas variáveis a um *data frame* a partir de observações correspondentes em outro.
 -   Uniões de filtragem (*filtering joins*), que filtram observações de um *data frame* com base na correspondência ou não com uma observação em outro.
 
-Começaremos discutindo as chaves (*keys*), as variáveis ​​usadas para conectar um par de *data frames* através de uma união.
+Começaremos discutindo as chaves (*keys*), as variáveis usadas para conectar um par de *data frames* através de uma união.
 Consolidamos a teoria com examinando as chaves (*keys*) no conjuntos de dados do pacote dados e, em seguida, usamos esse conhecimento para começar a unir os *data frames*.
 A seguir discutiremos como funcionam as uniões (*joins*), focando em sua ação nas linhas.
 Terminaremos com uma discussão sobre uniões não-equivalentes (*non-equi joins*), uma família de uniões que fornece uma maneira mais flexível de combinar chaves (*keys*) do que o relacionamento de igualdade padrão.
 
 ### Pré-requisitos
 
-Neste capítulo, exploraremos os cinco conjuntos de dados relacionados do pacote nycflights13[^nt-joins-1] usando as funções de união do pacote dplyr.
+Neste capítulo, exploraremos os cinco conjuntos de dados relacionados do pacote nycflights13[^joins-1] usando as funções de união do pacote dplyr.
 
-[^nt-joins-1]: **Nota de tradução**: Disponíveis em português no pacotes [dados](https://cienciadedatos.github.io/dados/).
+[^joins-1]: **Nota de tradução**: Disponíveis em português no pacotes [dados](https://cienciadedatos.github.io/dados/).
 
 ```{r}
 #| label: setup
@@ -45,8 +43,9 @@ Você também aprenderá como verificar se suas chaves são válidas e o que faz
 ### Chaves primárias e chaves estrangeiras
 
 Cada união (*join*) envolve um par de chaves (*key*): uma chave primária (*primary key*) e uma chave estrangeira (*foreign key*).
-Uma **chave primária** é uma variável ou conjunto de variáveis ​​que identifica exclusivamente cada observação.
-Quando são necessárias mais de uma variável, a chave é denominada de chave primária composta (*compound primary key*). Por exemplo, no pacote dados:
+Uma **chave primária** é uma variável ou conjunto de variáveis que identifica exclusivamente cada observação.
+Quando são necessárias mais de uma variável, a chave é denominada de chave primária composta (*compound primary key*).
+Por exemplo, no pacote dados:
 
 -   `companhias_aereas` registra dois dados sobre cada companhia aérea: seu código e seu nome completo.
     Você pode identificar uma companhia aérea com seu código de transportadora de duas letras, tornando `companhia_aerea` a chave primária (*primary key*).
@@ -89,7 +88,7 @@ Por exemplo:
 -   `voos$companhia_aerea` é uma chave estrangeira que corresponde à chave primária `companhias_aereas$companhia_aerea`.
 -   `voos$origem` é uma chave estrangeira que corresponde à chave primária `aeroportos$codigo_aeroporto`.
 -   `voos$destino` é uma chave estrangeira que corresponde à chave primária `aeroportos$codigo_aeroporto`.
--   `voos$origem`-`voos$data_hora` é uma chave estrangeira composta que corresponde à chave primária composta  `clima$origem`-`clima$data_hora`.
+-   `voos$origem`-`voos$data_hora` é uma chave estrangeira composta que corresponde à chave primária composta `clima$origem`-`clima$data_hora`.
 
 Estes relacionamentos estão resumidos visualmente na @fig-flights-relationships.
 
@@ -99,7 +98,7 @@ Estes relacionamentos estão resumidos visualmente na @fig-flights-relationships
 #| out-width: ~
 #| fig-cap: |
 #|   Conexões entre cinco data frames no pacote dados.
-#|   As variáveis ​​que compõem uma chave primária são coloridas em cinza e estão conectadas
+#|   As variáveis que compõem uma chave primária são coloridas em cinza e estão conectadas
 #|   às suas chaves estrangeiras correspondentes com setas.
 #| fig-alt: |
 #|   As relações entre os data frames aeroportos, aviões, voos, clima e
@@ -114,7 +113,7 @@ knitr::include_graphics("diagrams/relational.png", dpi = 270)
 ```
 
 Você notará um recurso interessante no design dessas chaves: as chaves primária (*primary key*) e estrangeira (*foreign key*) quase sempre têm os mesmos nomes, o que, como você verá em breve, tornará sua vida para as uniões (*joins*) muito mais fácil.
-Também vale a pena notar a relação oposta: quase todos os nomes de variáveis ​​usados ​​em múltiplas tabelas têm o mesmo significado em cada lugar.
+Também vale a pena notar a relação oposta: quase todos os nomes de variáveis usados em múltiplas tabelas têm o mesmo significado em cada lugar.
 Há apenas uma exceção: `ano` significa ano de partida em `voos` e ano de fabricação em `avioes`.
 Isso se tornará importante quando começarmos a unir as tabelas.
 
@@ -149,7 +148,7 @@ clima |>
 Até agora não falamos sobre a chave primária para `voos`.
 Não é muito importante aqui, porque não existem *data frames* que o utilizem como chave estrangeira, mas ainda é útil considerar porque é mais fácil trabalhar com observações se tivermos alguma maneira de descrevê-las para outras pessoas.
 
-Após um pouco de reflexão e experimentação, determinamos que existem três variáveis ​​que juntas identificam cada voo de forma única:
+Após um pouco de reflexão e experimentação, determinamos que existem três variáveis que juntas identificam cada voo de forma única:
 
 ```{r}
 voos |> 
@@ -167,7 +166,7 @@ aeroportos |>
   filter(n > 1)
 ```
 
-Identificar um aeroporto pela sua latitude e longitude é claramente uma má ideia e, em geral, não é possível saber apenas a partir dos dados se uma combinação de variáveis ​​constitui ou não uma boa chave primária.
+Identificar um aeroporto pela sua latitude e longitude é claramente uma má ideia e, em geral, não é possível saber apenas a partir dos dados se uma combinação de variáveis constitui ou não uma boa chave primária.
 Mas para voos, a combinação de `data_hora`,`companhia_aerea` e `voo` parece razoável porque seria muito confuso para uma companhia aérea e seus clientes se houvesse vários voos com o mesmo número de voo no ar ao mesmo tempo.
 
 Dito isto, seria melhor introduzir uma chave substituta (*surrogate key*) numérica simples usando o número da linha:
@@ -188,7 +187,7 @@ Chaves substitutas podem ser particularmente úteis na comunicação com outras 
 2.  `clima` contém apenas informações para os três aeroportos de origem em Nova York (NYC).
     Se contivesse registros meteorológicos para todos os aeroportos dos EUA, que conexão adicional faria com `voos`?
 
-3.  As variáveis ​​`ano`, `mês`, `dia`, `hora` e `origem` quase formam uma chave composta para `clima`, mas há uma hora que tem observações duplicadas.
+3.  As variáveis `ano`, `mês`, `dia`, `hora` e `origem` quase formam uma chave composta para `clima`, mas há uma hora que tem observações duplicadas.
     Você consegue descobrir o que há de especial naquela hora?
 
 4.  Sabemos que alguns dias do ano são especiais e menos pessoas do que o normal voam neles (por exemplo, véspera de Natal e dia de Natal).
@@ -211,11 +210,11 @@ Na próxima seção, você aprenderá exatamente como essas funções funcionam 
 
 ### Uniões de mutação (*Mutating joins*)
 
-Uma **união de mutação** (*mutating join*), permite combinar variáveis ​​de dois *data frames*: primeiro ela combina as observações por suas chaves e depois copia as variáveis ​​de um *data frame* para outro.
-Assim como `mutate()`, as funções de união (*joins*) adicionam variáveis ​​à direita, portanto, se o seu conjunto de dados tiver muitas variáveis, você não verá as novas.
-Para esses exemplos, facilitaremos a visualização do que está acontecendo criando um conjunto de dados mais restrito com apenas seis variáveis[^joins-1]:
+Uma **união de mutação** (*mutating join*), permite combinar variáveis de dois *data frames*: primeiro ela combina as observações por suas chaves e depois copia as variáveis de um *data frame* para outro.
+Assim como `mutate()`, as funções de união (*joins*) adicionam variáveis à direita, portanto, se o seu conjunto de dados tiver muitas variáveis, você não verá as novas.
+Para esses exemplos, facilitaremos a visualização do que está acontecendo criando um conjunto de dados mais restrito com apenas seis variáveis[^joins-2]:
 
-[^joins-1]: Lembre-se que no RStudio você também pode usar `View()` para evitar este problema
+[^joins-2]: Lembre-se que no RStudio você também pode usar `View()` para evitar este problema
 
 ```{r}
 voos2 <- voos |> 
@@ -224,11 +223,11 @@ voos2
 ```
 
 Existem quatro tipos de uniões de mutação, mas há uma que você usará quase o tempo todo: `left_join()`.
-É especial porque a saída sempre terá as mesmas linhas de `x`, o *data frame* ao qual você está unindo[^joins-2].
+É especial porque a saída sempre terá as mesmas linhas de `x`, o *data frame* ao qual você está unindo[^joins-3].
 O principal uso de `left_join()` é adicionar metadados adicionais.
 Por exemplo, podemos usar `left_join()` para adicionar o nome completo da companhia aérea aos dados `voos2`:
 
-[^joins-2]: That's not 100% true, but you'll get a warning whenever it isn't.
+[^joins-3]: That's not 100% true, but you'll get a warning whenever it isn't.
 
 ```{r}
 voos2 |>
@@ -249,7 +248,7 @@ voos2 |>
   left_join(avioes |> select(codigo_cauda, tipo, motores, assentos))
 ```
 
-Quando `left_join()` não consegue encontrar uma correspondência para uma linha em `x`, ele preenche as novas variáveis ​​com valores ausentes (*missing values*).
+Quando `left_join()` não consegue encontrar uma correspondência para uma linha em `x`, ele preenche as novas variáveis com valores ausentes (*missing values*).
 Por exemplo, não há informações sobre o avião com código de cauda `N3ALAA`, então o `tipo`, os `motores` e os `assentos` ficarão faltando:
 
 ```{r}
@@ -260,9 +259,9 @@ voos2 |>
 
 Voltaremos a esse problema algumas vezes no restante do capítulo.
 
-### Especificando chaves das uniões (*join keys*)
+### Especificando chaves das uniões (*Join keys*)
 
-Por padrão, `left_join()` usará todas as variáveis ​​que aparecem em ambos os *data frames* como a chave de união (*join key*), a chamada união **natural** (*natural join*).
+Por padrão, `left_join()` usará todas as variáveis que aparecem em ambos os *data frames* como a chave de união (*join key*), a chamada união **natural** (*natural join*).
 Esta é uma heurística útil, mas nem sempre funciona.
 Por exemplo, o que acontece se tentarmos unir `voos2` com o conjunto de dados completo `avioes`
 
@@ -280,7 +279,7 @@ voos2 |>
   left_join(avioes, join_by(codigo_cauda))
 ```
 
-Observe que as variáveis ​​`ano` são diferenciadas na saída com um sufixo (`ano.x` e `ano.y`), que informa se a variável veio do argumento `x` ou `y`.
+Observe que as variáveis `ano` são diferenciadas na saída com um sufixo (`ano.x` e `ano.y`), que informa se a variável veio do argumento `x` ou `y`.
 Você pode substituir os sufixos padrão pelo argumento `suffix`.
 
 `join_by(codigo_cauda)` é a abreviação de `join_by(codigo_cauda == codigo_cauda)`.
@@ -320,14 +319,14 @@ Por exemplo, poderíamos usar um *semi-join* para filtrar o conjunto de dados `a
 
 ```{r}
 aeroportos |> 
-  semi_join(aeroportos, join_by(codigo_aeroporto == origem))
+  semi_join(voos2, join_by(codigo_aeroporto == origem))
 ```
 
 Ou apenas de destino:
 
 ```{r}
 aeroportos |> 
-  semi_join(aeroportos, join_by(codigo_aeroporto == destino))
+  semi_join(voos2, join_by(codigo_aeroporto == destino))
 ```
 
 **Anti-união** (*anti-join*) é o oposto: ela retorno todas as linha em `x` que não possuem correspondência em `y`.
@@ -336,9 +335,9 @@ Valores implicitamente ausentes não aparecem como `NA`s, mas existem apenas com
 Por exemplo, podemos encontrar linhas que estão faltando em `aeroportos` procurando voos que não tenham um aeroporto de destino correspondente.
 
 ```{r}
-flights2 |> 
-  anti_join(airports, join_by(dest == faa)) |> 
-  distinct(dest)
+voos2 |> 
+  anti_join(aeroportos, join_by(destino == codigo_aeroporto)) |> 
+  distinct(destino)
 ```
 
 Ou podemos encontrar cada valor em `codigo_cauda` que estiverem ausentes de `avioes`:
@@ -449,8 +448,7 @@ y <- tribble(
 knitr::include_graphics("diagrams/join/setup.png", dpi = 270)
 ```
 
-A @fig-join-setup2 apresenta a base para nossa representação visual
-Ele mostra todas as correspondências potenciais entre `x` e `y` como a interseção entre as linhas desenhadas de cada linha de `x` e cada linha de `y`..
+A @fig-join-setup2 apresenta a base para nossa representação visual Ele mostra todas as correspondências potenciais entre `x` e `y` como a interseção entre as linhas desenhadas de cada linha de `x` e cada linha de `y`..
 As linhas e colunas na saída são determinadas principalmente por `x`, então a tabela `x` é horizontal e se alinha com a saída.
 
 ```{r}
@@ -630,13 +628,11 @@ df1 |>
 
 Se você estiver fazendo isso deliberadamente, você pode definir `relationship = "many-to-many"`, como o aviso sugere.
 
-### Uniões de filtragem
+### Uniões de filtragem (*Filtering joins*)
 
-O número de correspondências também determina o comportamento das uniões de filtragem (*filtrering joins*).
+O número de correspondências também determina o comportamento das uniões de filtragem (*filtering joins*).
 A semi-união (*semi-join*) mantém linhas em `x` que possuem uma ou mais correspondências em `y`, como em @fig-join-semi.
-A anti-união **anti-join*) mantém linhas em `x` que correspondem a zero linhas em `y`, como na @ fig-join-anti.
-Em ambos os casos, apenas a existência de uma correspondência é importante; não importa quantas vezes corresponda.
-Isso significa que as uniões de filtragem (*filtering joins*) nunca duplicam linhas como as uniões de mutação (*mutating joins*) fazem.
+A anti-união \*\*anti-join*) mantém linhas em `x` que correspondem a zero linhas em `y`, como na \@ fig-join-anti. Em ambos os casos, apenas a existência de uma correspondência é importante; não importa quantas vezes corresponda. Isso significa que as uniões de filtragem (*filtering joins*) nunca duplicam linhas como as uniões de mutação (*mutating joins\*) fazem.
 
 ```{r}
 #| label: fig-join-semi
@@ -674,7 +670,7 @@ Agora vamos relaxar essa restrição e discutir outras maneiras de determinar se
 
 Mas antes de podermos fazer isso, precisamos rever uma simplificação que fizemos acima.
 Nas uniões equivalentes (*equi joins*), as chaves `x` e `y` são sempre iguais, então só precisamos mostrar uma na saída.
-Podemos solicitar que dplyr mantenha ambas as chaves com `keep = TRUE`, o que leva ao código abaixo e ao `inner_join()` redesenhado na @ fig-inner-both.
+Podemos solicitar que dplyr mantenha ambas as chaves com `keep = TRUE`, o que leva ao código abaixo e ao `inner_join()` redesenhado na \@ fig-inner-both.
 
 ```{r}
 x |> inner_join(y, join_by(chave == chave), keep = TRUE)
@@ -714,7 +710,8 @@ As funções de união do pacote dplyr entendem essa distinção entre uniões e
 knitr::include_graphics("diagrams/join/gte.png", dpi = 270)
 ```
 
-União não-equivalente (*non-equi join*) não é um termo particularmente útil porque apenas informa o que a união não é, e não o que é. O dplyr ajuda a identificar quatro tipos particularmente úteis de uniões não-equivalentes:
+União não-equivalente (*non-equi join*) não é um termo particularmente útil porque apenas informa o que a união não é, e não o que é.
+O dplyr ajuda a identificar quatro tipos particularmente úteis de uniões não-equivalentes:
 
 -   **Uniões cruzadas** (*cross joins*) correspondem a cada par de linhas.
 -   **Uniões de desigualdades** (*inequality joins*) usam `<`, `<=`, `>` e `>=` em vez de `==`.
@@ -745,7 +742,7 @@ Como estamos unindo `df` a ele mesmo, isso às vezes é chamado de **auto-união
 As uniões cruzadas usam uma função de união diferente porque não há distinção entre interno/esquerdo/direito/completo quando você corresponde todas as linhas.
 
 ```{r}
-df <- tibble(name = c("John", "Simon", "Tracy", "Max"))
+df <- tibble(name = c("João", "Maria", "José", "Ana"))
 df |> cross_join(df)
 ```
 
@@ -773,16 +770,16 @@ As uniões de desigualdade são extremamente gerais, tão gerais que é difícil
 Uma pequena técnica útil é usá-los para restringir a união cruzada de modo que, em vez de gerar todas as permutações, geremos todas as combinações:
 
 ```{r}
-df <- tibble(id = 1:4, name = c("John", "Simon", "Tracy", "Max"))
+df <- tibble(id = 1:4, name = c("João", "Maria", "José", "Ana"))
 
 df |> inner_join(df, join_by(id < id))
 ```
 
 ### Uniões deslizantes (*Rolling joins*)
 
-Uniões deslizantes (*rolling joins*) são um tipo especial de união de desigualdade em que ao invés de obter *todas* as linhas que satisfaçam a desigualdade, você obtém apenas a linha mais próxima, como na @ fig-join-closest.
+Uniões deslizantes (*rolling joins*) são um tipo especial de união de desigualdade em que ao invés de obter *todas* as linhas que satisfaçam a desigualdade, você obtém apenas a linha mais próxima, como na \@ fig-join-closest.
 Você pode transformar qualquer união de desigualdade em uma união deslizante adicionando a função `closest()`.
-Por exemplo, `join_by(closest(x <= y))` corresponde ao menor `y` que é maior ou igual a x, e `join_by(closest(x > y))` corresponde ao maior `y` que é menor que ` x`
+Por exemplo, `join_by(closest(x <= y))` corresponde ao menor `y` que é maior ou igual a x, e `join_by(closest(x > y))` corresponde ao maior `y` que é menor que `x`
 
 ```{r}
 #| label: fig-join-closest
