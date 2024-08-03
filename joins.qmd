@@ -792,7 +792,7 @@ Por exemplo, `join_by(closest(x <= y))` corresponde ao menor `y` que é maior ou
 #|   Uma união deslizante é semelhante a uma união de desigualdade maior ou igual a
 #|   mas corresponde apenas ao primeiro valor.
 #| fig-alt: |
-#|   Uma união dezlizante é um subconjunto de uma união de desigualdade, portanto algumas correspondências são
+#|   Uma união deslizante é um subconjunto de uma união de desigualdade, portanto algumas correspondências são
 #|   acinzentadas indicando que eles não são usados ​​porque não são os 
 #|   valores "mais próximos".
 knitr::include_graphics("diagrams/join/closest.png", dpi = 270)
