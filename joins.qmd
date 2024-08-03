@@ -146,7 +146,7 @@ clima |>
 
 ### Chaves substitutas (*Surrogate keys*)
 
-Até agora não falamos sobre a chave primária para `voos`..
+Até agora não falamos sobre a chave primária para `voos`.
 Não é muito importante aqui, porque não existem quadros de dados que o utilizem como chave estrangeira, mas ainda é útil considerar porque é mais fácil trabalhar com observações se tivermos alguma maneira de descrevê-las para outras pessoas.
 
 Após um pouco de reflexão e experimentação, determinamos que existem três variáveis ​​que juntas identificam cada voo de forma única:
