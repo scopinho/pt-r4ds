@@ -24,7 +24,9 @@ Terminaremos com uma discussão sobre uniões não-equivalentes (*non-equi joins
 
 ### Pré-requisitos
 
-Neste capítulo, exploraremos os cinco conjuntos de dados relacionados do pacote dados usando as funções de união do pacote dplyr.
+Neste capítulo, exploraremos os cinco conjuntos de dados relacionados do pacote nycflights13[^nt-joins-1] usando as funções de união do pacote dplyr.
+
+[^nt-joins-1]: **Nota de tradução**: Disponíveis em português no pacotes [dados](https://cienciadedatos.github.io/dados/).
 
 ```{r}
 #| label: setup
@@ -34,20 +36,20 @@ library(tidyverse)
 library(dados)
 ```
 
-## Chaves
+## Chaves (*keys*)
 
 Para entender as uniões (*joins*), primeiro você precisa entender como duas tabelas podem ser conectadas por meio de um par de chaves (*keys*), dentro de cada tabela.
-Nesta seção, você aprenderá sobre os dois tipos de chave e verá exemplos de ambos nos conjuntos de dados do pacote dados.
+Nesta seção, você aprenderá sobre os dois tipos de chave e verá exemplos de ambos nos conjuntos de dados do pacote nycflights13.
 Você também aprenderá como verificar se suas chaves são válidas e o que fazer se sua tabela não tiver uma chave.
 
 ### Chaves primárias e chaves estrangeiras
 
-Cada união envolve um par de chaves: uma chave primária (*primary key*) e uma chave estrangeira (*foreign key*).
+Cada união (*join*) envolve um par de chaves (*key*): uma chave primária (*primary key*) e uma chave estrangeira (*foreign key*).
 Uma **chave primária** é uma variável ou conjunto de variáveis ​​que identifica exclusivamente cada observação.
-Quando mais de uma variável é necessária, a chave é chamada de **chave primária composta.** (*compound primary key*). Por exemplo, no pacote dados:
+Quando são necessárias mais de uma variável, a chave é denominada de chave primária composta (*compound primary key*). Por exemplo, no pacote dados:
 
 -   `companhias_aereas` registra dois dados sobre cada companhia aérea: seu código e seu nome completo.
-    Você pode identificar uma companhia aérea com seu código de operadora de duas letras, tornando `companhia_aerea` a chave primária (*primary key*).
+    Você pode identificar uma companhia aérea com seu código de transportadora de duas letras, tornando `companhia_aerea` a chave primária (*primary key*).
 
     ```{r}
     companhias_aereas
@@ -71,8 +73,8 @@ Quando mais de uma variável é necessária, a chave é chamada de **chave prim�
     avioes
     ```
 
--   `clima` registra dados sobre cada os aeroportos de orgigem.
-    Você pode identificar cada observação pela combinação de origem e horário, tornando `origem` e `data_hora` a chave primária composta (*compound primary key*).
+-   `clima` registra dados sobre o clima nos aeroportos de origem.
+    Você pode identificar cada observação pela combinação de localização (origem do aeroporto) e horário, tornando `origem`e `data_hora` a chave primária composta (*compound primary key*).
 
     ```{r}
     #| R.options:
@@ -111,9 +113,9 @@ Estes relacionamentos estão resumidos visualmente na @fig-flights-relationships
 knitr::include_graphics("diagrams/relational.png", dpi = 270)
 ```
 
-Você notará um recurso interessante no design dessas chaves: as chaves primária e estrangeira quase sempre têm os mesmos nomes, o que, como você verá em breve, tornará sua vida para as uniões (*joins*) muito mais fácil.
+Você notará um recurso interessante no design dessas chaves: as chaves primária (*primary key*) e estrangeira (*foreign key*) quase sempre têm os mesmos nomes, o que, como você verá em breve, tornará sua vida para as uniões (*joins*) muito mais fácil.
 Também vale a pena notar a relação oposta: quase todos os nomes de variáveis ​​usados ​​em múltiplas tabelas têm o mesmo significado em cada lugar.
-Há apenas uma exceção: `ano` significa ano de saída em `voos` e ano de fabricação em `aviões`.
+Há apenas uma exceção: `ano` significa ano de partida em `voos` e ano de fabricação em `avioes`.
 Isso se tornará importante quando começarmos a unir as tabelas.
 
 ### Verificando chaves primárias
@@ -142,7 +144,7 @@ clima |>
   filter(is.na(data_hora) | is.na(origem))
 ```
 
-### Chaves substitutas
+### Chaves substitutas (*Surrogate keys*)
 
 Até agora não falamos sobre a chave primária para `voos`..
 Não é muito importante aqui, porque não existem quadros de dados que o utilizem como chave estrangeira, mas ainda é útil considerar porque é mais fácil trabalhar com observações se tivermos alguma maneira de descrevê-las para outras pessoas.
