@@ -840,7 +840,7 @@ funcionarios |>
 
 Para resolver este problema, precisaremos abordar o problema de uma maneira diferente, com uniões de sobreposições (*overlap joins*).
 
-### Uniões de sobreposições
+### Uniões de sobreposições (*Overlap joins*)
 
 Uniões de sobreposições (*overlap joins*) fornecem três funções de ajuda que usam uniões de desigualdade para facilitar o trabalho com intervalos:
 
