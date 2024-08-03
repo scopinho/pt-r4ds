@@ -147,7 +147,7 @@ clima |>
 ### Chaves substitutas (*Surrogate keys*)
 
 Até agora não falamos sobre a chave primária para `voos`.
-Não é muito importante aqui, porque não existem quadros de dados que o utilizem como chave estrangeira, mas ainda é útil considerar porque é mais fácil trabalhar com observações se tivermos alguma maneira de descrevê-las para outras pessoas.
+Não é muito importante aqui, porque não existem *data frames* que o utilizem como chave estrangeira, mas ainda é útil considerar porque é mais fácil trabalhar com observações se tivermos alguma maneira de descrevê-las para outras pessoas.
 
 Após um pouco de reflexão e experimentação, determinamos que existem três variáveis ​​que juntas identificam cada voo de forma única:
 
@@ -167,10 +167,10 @@ aeroportos |>
   filter(n > 1)
 ```
 
-Identificar um aeroporto pela sua latitude e longitude é claramente uma má ideia e, em geral, não é possível saber apenas a partir dos dados se uma combinação de variáveis ​​constitui ou não uma boa chave primária..
+Identificar um aeroporto pela sua latitude e longitude é claramente uma má ideia e, em geral, não é possível saber apenas a partir dos dados se uma combinação de variáveis ​​constitui ou não uma boa chave primária.
 Mas para voos, a combinação de `data_hora`,`companhia_aerea` e `voo` parece razoável porque seria muito confuso para uma companhia aérea e seus clientes se houvesse vários voos com o mesmo número de voo no ar ao mesmo tempo.
 
-Dito isto, seria melhor introduzir uma chave substituta numérica simples usando o número da linha:
+Dito isto, seria melhor introduzir uma chave substituta (*surrogate key*) numérica simples usando o número da linha:
 
 ```{r}
 voos2 <- voos |> 
@@ -209,7 +209,7 @@ A ordem das linhas e colunas na saída é determinada principalmente por `x`.
 Nesta seção, você aprenderá como usar uma união mutante (*mutating join*), `left_join()`, e duas uniões de filtragem (*filtering join*), `semi_join()` e `anti_join()`.
 Na próxima seção, você aprenderá exatamente como essas funções funcionam e também sobre as outras funções `inner_join()`, `right_join()` e `full_join()`
 
-### Uniões de mutação
+### Uniões de mutação (*Mutating joins*)
 
 Uma **união de mutação** (*mutating join*), permite combinar variáveis ​​de dois *data frames*: primeiro ela combina as observações por suas chaves e depois copia as variáveis ​​de um *data frame* para outro.
 Assim como `mutate()`, as funções de união (*joins*) adicionam variáveis ​​à direita, portanto, se o seu conjunto de dados tiver muitas variáveis, você não verá as novas.
@@ -260,9 +260,9 @@ voos2 |>
 
 Voltaremos a esse problema algumas vezes no restante do capítulo.
 
-### Especificando chaves das uniões
+### Especificando chaves das uniões (*join keys*)
 
-Por padrão, `left_join()` usará todas as variáveis ​​que aparecem em ambos os *data frames* como a chave de união, a chamada união **natural** (*natural join*).
+Por padrão, `left_join()` usará todas as variáveis ​​que aparecem em ambos os *data frames* como a chave de união (*join key*), a chamada união **natural** (*natural join*).
 Esta é uma heurística útil, mas nem sempre funciona.
 Por exemplo, o que acontece se tentarmos unir `voos2` com o conjunto de dados completo `avioes`
 
@@ -280,7 +280,7 @@ voos2 |>
   left_join(avioes, join_by(codigo_cauda))
 ```
 
-Observe que as variáveis ​​`ano` são desambiguadas na saída com um sufixo (`ano.x` e `ano.y`), que informa se a variável veio do argumento `x` ou `y`.
+Observe que as variáveis ​​`ano` são diferenciadas na saída com um sufixo (`ano.x` e `ano.y`), que informa se a variável veio do argumento `x` ou `y`.
 Você pode substituir os sufixos padrão pelo argumento `suffix`.
 
 `join_by(codigo_cauda)` é a abreviação de `join_by(codigo_cauda == codigo_cauda)`.
@@ -289,7 +289,7 @@ Em primeiro lugar, descreve a relação entre as duas tabelas: as chaves devem s
 É por isso que esse tipo de junção costuma ser chamado de **união equivalente** (*equi join*).
 Você aprenderá sobre uniões não equivalentes (*non-equi join*) na @sec-non-equi-joins.
 
-Em segundo lugar, é como você especifica diferentes chaves de união em cada tabela.
+Em segundo lugar, é como você especifica diferentes chaves de união (*join keys*) em cada tabela.
 Por exemplo, existem duas maneiras de unir as tabelas `voos2` e `aeroportos`: por `destino` ou `origem`:
 
 ```{r}
@@ -305,7 +305,7 @@ Em códigos mais antigos, você pode ver uma maneira diferente de especificar as
 -   `by = "x"` corresponde a `join_by(x)`.
 -   `by = c("a" = "x")` corresponde a `join_by(a == x)`.
 
-Agora que existe, preferimos `join_by()` pois fornece uma especificação mais clara e flexível.
+Agora que isto existe, preferimos `join_by()` pois fornece uma especificação mais clara e flexível.
 
 `inner_join()`, `right_join()`, `full_join()` têm a mesma interface que `left_join()`.
 A diferença é quais linhas elas mantêm: a *left join* mantém todas as linhas em `x`, a *right join* mantém todas as linhas em `y`, a *full join* mantém todas as linhas em `x` ou `y`, e a *inner join* mantém apenas as linhas que ocorrem em `x` e `y`.
