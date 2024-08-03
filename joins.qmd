@@ -658,10 +658,10 @@ knitr::include_graphics("diagrams/join/semi.png", dpi = 270)
 #| echo: false
 #| out-width: null
 #| fig-cap: |
-#|   Uma anti-união **anti-join*) é o inverso de uma semi-união (*semi-join*), eliminando linhas de `x`
+#|   Uma anti-união (*anti-join*) é o inverso de uma semi-união (*semi-join*), eliminando linhas de `x`
 #|   que têm uma correspondência em `y`.
 #| fig-alt: |
-#|   Uma anti-união é o inverso de uma semi-união, então as correspondências são desenhadas com
+#|   Uma anti-união (*anti-join*) é o inverso de uma semi-união (*semi-join*), então as correspondências são desenhadas com
 #|   linhas vermelhas indicando que elas serão eliminadas da saída.
 
 knitr::include_graphics("diagrams/join/anti.png", dpi = 270)
@@ -673,7 +673,7 @@ Até agora você só viu uniões equivalentes (*equi joins*), uniões onde as li
 Agora vamos relaxar essa restrição e discutir outras maneiras de determinar se um par de linhas se corresponde.
 
 Mas antes de podermos fazer isso, precisamos rever uma simplificação que fizemos acima.
-Nas uniões equivalentes, as chaves `x` e `y` são sempre iguais, então só precisamos mostrar uma na saída.
+Nas uniões equivalentes (*equi joins*), as chaves `x` e `y` são sempre iguais, então só precisamos mostrar uma na saída.
 Podemos solicitar que dplyr mantenha ambas as chaves com `keep = TRUE`, o que leva ao código abaixo e ao `inner_join()` redesenhado na @ fig-inner-both.
 
 ```{r}
