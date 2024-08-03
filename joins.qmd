@@ -286,7 +286,7 @@ Você pode substituir os sufixos padrão pelo argumento `suffix`.
 `join_by(codigo_cauda)` é a abreviação de `join_by(codigo_cauda == codigo_cauda)`.
 É importante conhecer essa forma mais completa por dois motivos.
 Em primeiro lugar, descreve a relação entre as duas tabelas: as chaves devem ser iguais.
-É por isso que esse tipo de junção costuma ser chamado de **união equivalente** (*equi join*).
+É por isso que esse tipo de união costuma ser chamado de **união equivalente** (*equi join*).
 Você aprenderá sobre uniões não equivalentes (*non-equi join*) na @sec-non-equi-joins.
 
 Em segundo lugar, é como você especifica diferentes chaves de união (*join keys*) em cada tabela.
@@ -308,10 +308,10 @@ Em códigos mais antigos, você pode ver uma maneira diferente de especificar as
 Agora que isto existe, preferimos `join_by()` pois fornece uma especificação mais clara e flexível.
 
 `inner_join()`, `right_join()`, `full_join()` têm a mesma interface que `left_join()`.
-A diferença é quais linhas elas mantêm: a *left join* mantém todas as linhas em `x`, a *right join* mantém todas as linhas em `y`, a *full join* mantém todas as linhas em `x` ou `y`, e a *inner join* mantém apenas as linhas que ocorrem em `x` e `y`.
+A diferença é quais linhas as funções mantêm: a *left join* mantém todas as linhas em `x`, a *right join* mantém todas as linhas em `y`, a *full join* mantém todas as linhas em `x` ou `y`, e a *inner join* mantém apenas as linhas que ocorrem em `x` e `y`.
 Voltaremos a isso com mais detalhes posteriormente.
 
-### Uniões de filtragem
+### Uniões de filtragem (*Filtering joins*)
 
 Como você pode imaginar, a ação principal de uma **união de filtragem** (*filtering joins*) é filtrar as linhas.
 Existem dois tipos: semi-união (*semi-join*) e anti-união (*anti-join*).
@@ -341,7 +341,7 @@ flights2 |>
   distinct(dest)
 ```
 
-Or we can find which `tailnum`s are missing from `planes`:
+Ou podemos encontrar cada valor em `codigo_cauda` que estiverem ausentes de `avioes`:
 
 ```{r}
 voos2 |>
@@ -412,10 +412,10 @@ voos2 |>
         coord_quickmap()
     ```
 
-## Como as uniões funcionam?
+## Como as uniões (*joins*) funcionam?
 
 Agora que você já usou uniões (*joins*) algumas vezes, é hora de aprender mais sobre como eles funcionam, focando em como cada linha em `x` corresponde às linhas em `y`.
-Começaremos apresentando uma representação visual de uniões, usando os *tibbles* simples definidos abaixo e mostrados na @fig-join-setup.
+Começaremos apresentando uma representação visual de uniões (*joins*), usando os *tibbles* simples definidos abaixo e mostrados na @fig-join-setup.
 Nestes exemplos usaremos uma única chave chamada `chave` e uma única coluna de valor (`val_x` e `val_y`), mas todas as ideias se generalizam para múltiplas chaves e múltiplos valores.
 
 ```{r}
@@ -719,7 +719,7 @@ União não-equivalente (*non-equi join*) não é um termo particularmente útil
 -   **Uniões cruzadas** (*cross joins*) correspondem a cada par de linhas.
 -   **Uniões de desigualdades** (*inequality joins*) usam `<`, `<=`, `>` e `>=` em vez de `==`.
 -   **Uniões deslizantes** (*rolling joins*) são semelhantes às junções de desigualdade, mas apenas encontram a correspondência mais próxima.
--   **Uniões de sobreposições** (*overlap joins*) são um tipo especial de junção de desigualdade projetada para trabalhar com intervalos.
+-   **Uniões de sobreposições** (*overlap joins*) são um tipo especial de união de desigualdade projetada para trabalhar com intervalos.
 
 Each of these is described in more detail in the following sections.
 
@@ -758,7 +758,7 @@ Uniões de desigualdade (*inequality joins*) usam `<`, `<=`, `>=` ou `>` para re
 #| echo: false
 #| out-width: ~
 #| fig-cap: |
-#|   AUma junção de desigualdade onde `x` é unido a `y` nas linhas onde a chave 
+#|  Uma união de desigualdade onde `x` é unido a `y` nas linhas onde a chave 
 #|   de `x` é menor que a chave de `y`. Isso forma um triângulo
 #|   no canto superior esquerdo.
 #| fig-alt: |
