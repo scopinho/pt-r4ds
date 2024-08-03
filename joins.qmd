@@ -458,7 +458,7 @@ As linhas e colunas na saída são determinadas principalmente por `x`, então a
 #| echo: false
 #| out-width: ~
 #| fig-cap: | 
-#|   TPara entender como funcionam as junções, é útil pensar em todos os possíveis
+#|   Para entender como funcionam as uniões, é útil pensar em todos os possíveis
 #|   correspondências. Aqui mostramos isso com uma grade (grid) de linhas de conexão.
 #| fig-alt: |
 #|   x e y são colocados em ângulos retos, com linhas horizontais estendendo-se 
@@ -718,7 +718,7 @@ União não-equivalente (*non-equi join*) não é um termo particularmente útil
 
 -   **Uniões cruzadas** (*cross joins*) correspondem a cada par de linhas.
 -   **Uniões de desigualdades** (*inequality joins*) usam `<`, `<=`, `>` e `>=` em vez de `==`.
--   **Uniões deslizantes** (*rolling joins*) são semelhantes às junções de desigualdade, mas apenas encontram a correspondência mais próxima.
+-   **Uniões deslizantes** (*rolling joins*) são semelhantes às uniões de desigualdade, mas apenas encontram a correspondência mais próxima.
 -   **Uniões de sobreposições** (*overlap joins*) são um tipo especial de união de desigualdade projetada para trabalhar com intervalos.
 
 Each of these is described in more detail in the following sections.
@@ -762,7 +762,7 @@ Uniões de desigualdade (*inequality joins*) usam `<`, `<=`, `>=` ou `>` para re
 #|   de `x` é menor que a chave de `y`. Isso forma um triângulo
 #|   no canto superior esquerdo.
 #| fig-alt: |
-#|   Um diagrama que descreve uma junção de desigualdade onde um quadro de dados x é unido por 
+#|   Um diagrama que descreve uma união de desigualdade onde um quadro de dados x é unido por 
 #|   um data frame y onde a chave de x é menor que a chave de y, resultando 
 #|   em um triangulo no canto superior esquerdo.
 
