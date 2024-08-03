@@ -707,7 +707,7 @@ As funções de união do pacote dplyr entendem essa distinção entre uniões e
 #|   chave em `y`. Muitas linhas geram múltiplas correspondências.
 #| fig-alt: |
 #|   Um diagrama de união ilustrando join_by(chave >= chave). A primeira linha
-#|   de x corresponde a uma linha de y e a segunda e terceira linhas correspondem
+#|   de x corresponde a uma linha de y e a segunda e terceira linhas correspondem a
 #|   duas linhas. Isso significa que a saída tem cinco linhas contendo cada um dos 
 #|   seguintes pares (chave.x, chave.y): (1, 1), (2, 1), (2, 2), (3, 1),
 #|   (3, 2).
@@ -721,9 +721,9 @@ União não-equivalente (*non-equi join*) não é um termo particularmente útil
 -   **Uniões deslizantes** (*rolling joins*) são semelhantes às uniões de desigualdade, mas apenas encontram a correspondência mais próxima.
 -   **Uniões de sobreposições** (*overlap joins*) são um tipo especial de união de desigualdade projetada para trabalhar com intervalos.
 
-Each of these is described in more detail in the following sections.
+Cada um deles é descrito em maiores detalhes nas seções a seguir.
 
-### Uniões cruzadas
+### Uniões cruzadas (*Cross joins*)
 
 Uma união cruzada (*cross join*) corresponde a tudo, como na @fig-join-cross, gerando o produto cartesiano de linhas.
 Isso significa que a saída terá linhas `nrow(x) * nrow(y)`.
@@ -739,19 +739,19 @@ Isso significa que a saída terá linhas `nrow(x) * nrow(y)`.
 knitr::include_graphics("diagrams/join/cross.png", dpi = 270)
 ```
 
-As uniõescruzadas são úteis ao gerar permutações.
+As uniões cruzadas são úteis ao gerar permutações.
 Por exemplo, o código abaixo gera todos os pares possíveis de nomes.
 Como estamos unindo `df` a ele mesmo, isso às vezes é chamado de **auto-união** (*self-join*).
-As uniões cruzadas usam uma função de união diferente porque não há distinção entre interno/esquerdo/direito/completo quando você corresponde a cada linha
+As uniões cruzadas usam uma função de união diferente porque não há distinção entre interno/esquerdo/direito/completo quando você corresponde todas as linhas.
 
 ```{r}
 df <- tibble(name = c("John", "Simon", "Tracy", "Max"))
 df |> cross_join(df)
 ```
 
-### Uniões de desigualdades
+### Uniões de desigualdades (*Inequality joins*)
 
-Uniões de desigualdade (*inequality joins*) usam `<`, `<=`, `>=` ou `>` para restringir o conjunto de correspondências possíveis, como na @fig-join-gte e na @fig-join-lt.
+Uniões de desigualdade (*inequality joins*) usam `<`, `<=`, `>=` ou `>` para restringir o conjunto de correspondências possíveis, como em @fig-join-gte e @fig-join-lt.
 
 ```{r}
 #| label: fig-join-lt
@@ -759,17 +759,17 @@ Uniões de desigualdade (*inequality joins*) usam `<`, `<=`, `>=` ou `>` para re
 #| out-width: ~
 #| fig-cap: |
 #|  Uma união de desigualdade onde `x` é unido a `y` nas linhas onde a chave 
-#|   de `x` é menor que a chave de `y`. Isso forma um triângulo
+#|   de `x` é menor que a chave de `y`. Isso retorna uma forma triangular
 #|   no canto superior esquerdo.
 #| fig-alt: |
 #|   Um diagrama que descreve uma união de desigualdade onde um quadro de dados x é unido por 
 #|   um data frame y onde a chave de x é menor que a chave de y, resultando 
-#|   em um triangulo no canto superior esquerdo.
+#|   em uma forma triangular no canto superior esquerdo.
 
 knitr::include_graphics("diagrams/join/lt.png", dpi = 270)
 ```
 
-As uniões de desigualdade são extremamente gerais, tão gerais que é difícil encontrar casos de uso específicos significativos.
+As uniões de desigualdade são extremamente gerais, tão gerais que é difícil encontrar casos relevantes de uso específico.
 Uma pequena técnica útil é usá-los para restringir a união cruzada de modo que, em vez de gerar todas as permutações, geremos todas as combinações:
 
 ```{r}
@@ -778,9 +778,9 @@ df <- tibble(id = 1:4, name = c("John", "Simon", "Tracy", "Max"))
 df |> inner_join(df, join_by(id < id))
 ```
 
-### Uniões deslizantes
+### Uniões deslizantes (*Rolling joins*)
 
-Uniões deslizantes (*rolling joins*) são um tipo especial de uniã0 de desigualdade onde, em vez de obter *todas* as linhas que satisfaçam a desigualdade, você obtém apenas a linha mais próxima, como na @ fig-join-closest.
+Uniões deslizantes (*rolling joins*) são um tipo especial de união de desigualdade em que ao invés de obter *todas* as linhas que satisfaçam a desigualdade, você obtém apenas a linha mais próxima, como na @ fig-join-closest.
 Você pode transformar qualquer união de desigualdade em uma união deslizante adicionando a função `closest()`.
 Por exemplo, `join_by(closest(x <= y))` corresponde ao menor `y` que é maior ou igual a x, e `join_by(closest(x > y))` corresponde ao maior `y` que é menor que ` x`
 
@@ -789,10 +789,10 @@ Por exemplo, `join_by(closest(x <= y))` corresponde ao menor `y` que é maior ou
 #| echo: false
 #| out-width: ~
 #| fig-cap: |
-#|   Uma união deslizante é semelhante a uma união de desigualdade maior ou igual
+#|   Uma união deslizante é semelhante a uma união de desigualdade maior ou igual a
 #|   mas corresponde apenas ao primeiro valor.
 #| fig-alt: |
-#|   Uma união dezlizante é um subconjunto de uma uniçao de desigualdade, portanto algumas correspondências são
+#|   Uma união dezlizante é um subconjunto de uma união de desigualdade, portanto algumas correspondências são
 #|   acinzentadas indicando que eles não são usados ​​porque não são os 
 #|   valores "mais próximos".
 knitr::include_graphics("diagrams/join/closest.png", dpi = 270)
@@ -838,7 +838,7 @@ funcionarios |>
   anti_join(festas, join_by(closest(aniversario >= festa)))
 ```
 
-Para resolver esse problema, precisaremos abordar o problema de uma maneira diferente, com uniões de sobreposições (*overlap joins*).
+Para resolver este problema, precisaremos abordar o problema de uma maneira diferente, com uniões de sobreposições (*overlap joins*).
 
 ### Uniões de sobreposições
 
@@ -871,7 +871,7 @@ festas |>
   select(inicio.x, fim.x, inicio.y, fim.y)
 ```
 
-Ops, há uma sobreposição, então vamos corrigir esse problema e continuar:
+Ops, há uma sobreposição, então vamos corrigir este problema e continuar:
 
 ```{r}
 festas <- tibble(
@@ -910,7 +910,7 @@ funcionarios |>
 Neste capítulo, você aprendeu como usar uniões de mutações (*mutating joins*) e filtragem (*filtering joins*) para combinar dados de dois *data frames*.
 Ao longo do caminho você aprendeu como identificar chaves (*keys*) e a diferença entre chaves primárias (*primary keys*) e estrangeiras (*foreign keys*).
 Você também entende como funcionam as uniões e como descobrir quantas linhas a saída terá.
-Finalmente, você teve uma ideia do poder das uniões não-equivalentes (*non-equi joins*) e viu alguns casos de uso interessantes.
+Finalmente, você teve uma ideia do poder das uniões não-equivalentes (*non-equi joins*) e viu alguns casos interessantes de seu uso.
 
 Este capítulo conclui a parte "Transformar" do livro, onde o foco estava nas ferramentas que você poderia usar com colunas e tabelas individuais.
 Você aprendeu sobre o pacote dyplr e suas funções base para trabalhar com vetores lógicos, números e tabelas completas, funções do pacote stringr para trabalhar com strings, funções do pacote lubridate para trabalhar com datas e horários e funções do pacote forcats para trabalhar com fatores.
