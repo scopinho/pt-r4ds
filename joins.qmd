@@ -505,7 +505,7 @@ Existem três tipos de uniões externas:
     #|   Uma representação visual da união esquerda onde cada linha em `x`
     #|   aparece na saída.
     #| fig-alt: |
-    #|   Em comparação com o diagrama anterior que mostra uma união interna, a tabela y
+    #|   Em comparação com o diagrama anterior que mostra uma união interna (*inner join*), a tabela y
     #|   obtém uma nova linha virtual contendo NA que corresponderá a qualquer linha em x
     #|   que de outra forma não correspondia. Isso significa que a saída agora tem
     #|   três linhas. Para chave = 3, que corresponde a esta linha virtual, val_y leva
@@ -542,7 +542,7 @@ Existem três tipos de uniões externas:
     #| echo: false
     #| out-width: ~
     #| fig-cap: | 
-    #|   Uma representação visual da união completa onde cada linha em `x`
+    #|   Uma representação visual da união completa (*full join*) onde cada linha em `x`
     #|   e `y` aparece na saída.
     #| fig-alt: |
     #|   Agora, x e y têm uma linha virtual que sempre corresponde.
@@ -564,22 +564,22 @@ No entanto, esta não é uma boa representação porque, embora possa refrescar 
 #|   Diagramas de Venn mostrando a diferença entre uniões internas, esquerda, direita e 
 #|   completa.
 #| fig-alt: |
-#|   Diagramas de Venn para uniões internas, completas, esquerda e direita. Cada união
+#|   Diagramas de Venn para uniões internas (*inner join*), completas (*full join*), esquerda (*left join*) e direita (*right join*). Cada união
 #|   representado com dois círculos que se cruzam representando data frame x
 #|   e y, com x à direita e y à esquerda. O sombreamento indica o
 #|   resultado da união. 
 #|
-#|   União interna: a interseção está sombreada. 
-#|   União completa: Tudo está sombreado. 
-#|   União esquerda: Tudo em x está sombreado.
-#|   União direita: Tudo em y está sombreado.
+#|   União interna (*inner join*): a interseção está sombreada. 
+#|   União completa (*full join*): Tudo está sombreado. 
+#|   União esquerda (*left join*): Tudo em x está sombreado.
+#|   União direita (*right join*): Tudo em y está sombreado.
 
 knitr::include_graphics("diagrams/join/venn.png", dpi = 270)
 ```
 
 As uniões mostradas até aqui são chamadas **uniões equivalentes** (*equi joins*), onde as linhas correspondem se as chaves forem iguais.
 Uniões equivalentes (*equi joins*) são o tipo mais comum de união, então normalmente omitiremos o prefixo equi e apenas diremos "união interna" (*inner join*) em vez de "união interna equivalente" (*equi inner join*).
-Voltaremos às unão não-equivalentes (*non-equi joins*) no @sec-non-equi-joins.
+Voltaremos às uniões não-equivalentes (*non-equi joins*) no @sec-non-equi-joins.
 
 ### Correspondências de linhas
 
