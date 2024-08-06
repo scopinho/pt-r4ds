@@ -1,4 +1,4 @@
-# Expressões regulares {#sec-regular-expressions}
+# ✅ Expressões regulares {#sec-regular-expressions}
 
 ```{r}
 #| echo: false
@@ -11,7 +11,7 @@ source("_common.R")
 ## Introdução
 
 No @sec-strings, você aprendeu diversas funções úteis para trabalhar com *strings*.
-Este capítulo se concentrará em funções que usam **expressões regulares**, uma linguagem concisa e poderosa para descrever padrões (*patterns*) em cadeia de caracteres (*strings*).
+Este capítulo se concentrará em funções que usam **expressões regulares**, uma linguagem concisa e poderosa para descrever padrões (*patterns*) em uma cadeia de caracteres (*strings*).
 O termo "expressão regular" é um pouco longo, então a maioria das pessoas o abrevia como "regex"[^regexps-1] ou "regexp" (do inglês "regular expression").
 
 [^regexps-1]: Você pode pronunciá-lo com um g-seco (reg-x) ou um g-suave (rej-x).
@@ -87,7 +87,7 @@ str_view(c("a", "ab", "abb"), "ab+")
 str_view(c("a", "ab", "abb"), "ab*")
 ```
 
-**Classes de caracteres** são definidas por `[]` e permitem que você defina um conjunto de caracteres, e.x., `[abcd]` corresponde a  "a", "b", "c" ou "d".
+**Classes de caracteres** são definidas por `[]` e permitem que você defina um conjunto de caracteres para serem identificados, e.x., `[abcd]` corresponde a  "a", "b", "c" ou "d".
 Você também pode inverter a correspondência com um `^`: `[^abcd]` corresponde a qualquer coisa, **exceto** "a", "b", "c" ou "d".
 Podemos usar esta ideia para encontrar palavras que contenham um "x" cercado por vogais, ou um "y" cercado por consoantes:
 
@@ -108,10 +108,10 @@ Expressões regulares são bastante compactas e usam diversos caracteres de pont
 Não se preocupe; você as entenderá melhor com a prática, e padrões simples se tornarão mais naturais com o tempo.
 Vamos iniciar este processo praticando com algumas funções úteis do stringr.
 
-## Funções chaves {#sec-stringr-regex-funs}
+## Funções chave {#sec-stringr-regex-funs}
 
 Agora que você tem o básico das expressões regulares em sua caixa de ferramentas, vamos usá-las em algumas funções dos pacotes stringr e tidyr.
-Na seção a seguir, você aprenderá como detectar a presença ou ausência de correspondências (*matches*), como contar o número de correspondências, como trocar uma correspondência por um texto fixo e como extrair textos usando um padrão (*pattern*).
+Na seção a seguir, você aprenderá como detectar a presença ou ausência de correspondências (*matches*), como contar o número de correspondências, trocar uma correspondência por um texto fixo e extrair textos usando um padrão (*pattern*).
 
 ### Detectando correspondências
 
@@ -162,17 +162,17 @@ x <- c("apple", "banana", "pear")
 str_count(x, "p")
 ```
 
-Note que cada correspondência começa ao final da anterior, e.x. regex nunca se sobrepõem.
+Note que cada correspondência começa ao final da anterior, i.e. regex nunca se sobrepõem.
 Por exemplo, em `"abababa"`, quantas vezes o padrão (*pattern*) `"aba"` é correspondido?
-A expressão regular diz, duas e não três vezes:
+A expressão regular diz que o padrão ocorre duas e não três vezes:
 
 ```{r}
 str_count("abababa", "aba")
 str_view("abababa", "aba")
 ```
 
-É comum usar a `str_count()` com `mutate()`.
-Os exemplos a seguir, usam `str_count()` com classes de caracteres para contar o número de vogais e consoantes em cada nome.
+É comum usar `str_count()` com `mutate()`.
+Os exemplos a seguir usam `str_count()` com classes de caracteres para contar o número de vogais e consoantes em cada nome.
 
 ```{r}
 bebes |> 
@@ -188,11 +188,11 @@ Isto acontece porque as expressões regulares consideram a diferença entre letr
 Existem três formas de arrumar isto:
 
 -   Adicionar as vogais maiúsculas nas classes de caracteres: `str_count(nome, "[aeiouAEIOU]")`.
--   Informar a expressão regular para ignnorar esta diferença: `str_count(nome, regex("[aeiou]", ignore_case = TRUE))`. Falaremos mais sobre isto na @sec-flags.
+-   Informar a expressão regular para ignorar esta diferença: `str_count(nome, regex("[aeiou]", ignore_case = TRUE))`. Falaremos mais sobre isto na @sec-flags.
 -   Usar a `str_to_lower()` para converter os nomes para letras minúsculas: `str_count(str_to_lower(nome), "[aeiou]")`.
 
 Esta variedade de abordagens é muito comum quando trabalhamos com *strings* --- em geral, há várias formas de atingir seus objetivos, seja formando padrões mais complexos ou efetuando algum pré-processamento em sua *string*.
-Se você se encontrar bloqueado com uma abordagem, em geral, pode ser melhor mudar abordagem e atacar seu problema sob uma perspectiva diferente.
+Se você se encontrar preso com uma abordagem, em geral, pode ser melhor mudar de abordagem e atacar seu problema sob uma perspectiva diferente.
 
 Neste caso, como estamos usando duas funções na variável nome, acredito ser mais fácil transformá-la antes:
 
@@ -216,14 +216,14 @@ x <- c("apple", "pear", "banana")
 str_replace_all(x, "[aeiou]", "-")
 ```
 
-`str_remove()` e `str_remove_all()` são funções atalhos para `str_replace(x, padrao, "")`:
+`str_remove()` e `str_remove_all()` são funções atalho para `str_replace(x, padrao, "")`:
 
 ```{r}
 x <- c("apple", "pear", "banana")
 str_remove_all(x, "[aeiou]")
 ```
 
-Estas funções combinam naturalmente com `mutate()` quando fazemos limpeza de dados, e você geralmente as aplicará repetidamente para remover camadas de incosistência de formatação.
+Estas funções combinam naturalmente com `mutate()` quando fazemos limpeza de dados e você geralmente as aplicará repetidamente para remover camadas de incosistência de formatação.
 
 ### Extraindo variáveis {#sec-extract-variables}
 
@@ -517,7 +517,7 @@ str_match(x, "famint(?:o|a)")
 
 ### Exercícios
 
-1.  Como você faria para identificar a *string* literal `"'\`? E a `"$^$"`?
+1.  Como você faria para identificar a *string* literal `"'\`? E `"$^$"`?
 
 2.  Explique por que cada um desses padrões não correspondem a `\`: `"\"`, `"\\"`, `"\\\"`.
 
@@ -595,10 +595,10 @@ Isso permite que você use comentários e espaços em branco para tornar express
 ```{r}
 telefone <- regex(
   r"(
-    \(?     # opcional abertura de parantese
-    (\d{3}) # codigo de area
-    [)\-]?  # opcional fechamento de parantese ou traço
-    \ ?     # opcional espaço
+    \(?     # opcional abertura de parêntese
+    (\d{3}) # codigo de área
+    [)\-]?  # opcional fechamento de parêntese ou traço
+    \ ?     # espaço opcional
     (\d{3}) # outros três números
     [\ -]?  # opcional espaço ou traço
     (\d{4}) # quatro outros números
@@ -677,7 +677,7 @@ Uma boa técnica é criar algumas correspondências positivas e negativas e usá
 
 ```{r}
 pos <- c("Ele é jovem", "Elas se divertiram")
-neg <- c("Eleitores não compareceram na data correta", "Hadley nos disse que é um bom dia!")
+neg <- c("Eleitores não compareceram na data correta", "Hadley nos disse 'É um ótimo dia!'")
 
 padrao <- "^(Eu|Tu|Ele|Ela|Nós|Vós|Eles|Elas)\\b"
 str_detect(pos, padrao)
@@ -843,8 +843,8 @@ Por exemplo, você pode encontrar todos os arquivos R Markdown no diretório atu
 head(list.files(pattern = "\\.Rmd$"))
 ```
 
-É importante notar que a linguagem de padrão usada pelo R base é ligeiramente diferente daquela usada pelo stringr..
-Isso ocorre porque stringr é construído sobre o [pacote stringi](https://stringi.gagolewski.com), que por sua vez é construído sobre o [mecanismo ICU](https://unicode-org.github.io /icu/userguide/strings/regexp.html), enquanto as funções base R usam o [mecanismo TRE](https://github.com/laurikari/tre) ou o [mecanismo PCRE](https://www.pcre .org), dependendo se você configurou ou não `perl = TRUE`.
+É importante notar que a linguagem de padrão usada pelo R base é ligeiramente diferente daquela usada pelo stringr.
+Isso ocorre porque stringr é construído sobre o [pacote stringi](https://stringi.gagolewski.com), que por sua vez é construído sobre o [mecanismo ICU](https://unicode-org.github.io/icu/userguide/strings/regexp.html), enquanto as funções base R usam o [mecanismo TRE](https://github.com/laurikari/tre) ou o [mecanismo PCRE](https://www.pcre .org), dependendo se você configurou ou não `perl = TRUE`.
 Felizmente, os princípios básicos das expressões regulares estão tão bem estabelecidos que você encontrará poucas variações ao trabalhar com os padrões que aprenderá neste livro.
 Você só precisa estar ciente da diferença quando começar a depender de recursos avançados, como intervalos complexos de caracteres Unicode ou recursos especiais que usam a sintaxe `(?…)`.
 
