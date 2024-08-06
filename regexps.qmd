@@ -445,9 +445,9 @@ Você também pode especificar o número exato de correspondências com `{}`:
 
 ### Precedência de operadores e parênteses
 
-Ao que `ab+` corresponde?
+A o que `ab+` corresponde?
 Corresponde a um "a" seguido por um ou mais "b"s, ou corresponde a "ab" repetidos qualquer número de vezes?
-Ao que corresponde `^a|b$`?
+A o que corresponde `^a|b$`?
 Corresponde a uma *string*  completa começando com "a" ou uma *string* completa terminando com "b", ou a uma *string* que começa com "a" ou uma *string* que termina com "b"?
 
 As respostas para estas perguntas são determinadas pela precedência de operadores, similar às regras de ordem de prioridade das operações aritméticas que você deve ter aprendido na escola.
