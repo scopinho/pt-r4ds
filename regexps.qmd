@@ -52,7 +52,7 @@ str_view(fruit, "berry")
 ```
 
 Letras e números tem uma correspondência direta à seus respectivos caracteres e são chamados **caracteres literais**.
-A maioria dos caracteres de pontuação, como `.`, `+`, `*`, `[`, `]` e `?`, tem significados especiais[^regexps-2] e são chamados de  **metacaracteres**. Por exemplo, `.`
+A maioria dos caracteres de pontuação, como `.`, `+`, `*`, `[`, `]` e `?`, tem significados especiais[^regexps-2] e são chamados de **metacaracteres**. Por exemplo, `.`
 corresponde a qualquer caractere[^regexps-3], portanto `"a."` irá corresponder a qualquer *string* que contenha a letra "a" seguida por qualquer outro caractere
 :
 
@@ -87,7 +87,7 @@ str_view(c("a", "ab", "abb"), "ab+")
 str_view(c("a", "ab", "abb"), "ab*")
 ```
 
-**Classes de caracteres** são definidas por `[]` e permitem que você defina um conjunto de caracteres para serem identificados, e.x., `[abcd]` corresponde a  "a", "b", "c" ou "d".
+**Classes de caracteres** são definidas por `[]` e permitem que você defina um conjunto de caracteres para serem identificados, e.x., `[abcd]` corresponde a "a", "b", "c" ou "d".
 Você também pode inverter a correspondência com um `^`: `[^abcd]` corresponde a qualquer coisa, **exceto** "a", "b", "c" ou "d".
 Podemos usar esta ideia para encontrar palavras que contenham um "x" cercado por vogais, ou um "y" cercado por consoantes:
 
@@ -184,8 +184,8 @@ bebes |>
 ```
 
 Se você observar bem, verá que há algo estranho em nossa contagem: "Aaban" contém três "a"s, mas nosso relatório sumarizado mostra apenas 2 vogais.
-Isto acontece porque as expressões regulares consideram a diferença entre letras maiúsculas e minúsculas (*case sensitive*)[^regexps-nt-1].
-[^regexps-nt-1]: **NT**: Dizemos que a linguagem de programação é *case sensitive* quando existe a diferença entre letras maiúsculas (*upper case*) e minúsculas (*lower case*).
+Isto acontece porque as expressões regulares consideram a diferença entre letras maiúsculas e minúsculas (*case sensitive*)\[\^regexps-nt-1\].
+\[\^regexps-nt-1\]: **NT**: Dizemos que a linguagem de programação é *case sensitive* quando existe a diferença entre letras maiúsculas (*upper case*) e minúsculas (*lower case*).
 Existem três formas de arrumar isto:
 
 -   Adicionar as vogais maiúsculas nas classes de caracteres: `str_count(nome, "[aeiouAEIOU]")`.
@@ -302,8 +302,7 @@ Nem sempre são os mais sugestivos em relação ao seu propósito, mas é muito 
 Para identificar um `.` literal, você precisa **escapar**, o que informa a expressão regular para interpretar o metacaractere [^regexps-6] literalmente.
 Assim como as *strings*, regexp usa a barra invertida para escapadas (*escaping*).
 Portanto, para identificar um `.`, você precisa da regexp `\.`. Infelizmente isto cria um problema.
-Nós usamos strings para representar expressões regulares, e `\` é também usada como símbolo de escapadas nas *strings*.
-Portanto, para criar a expressão regular `\.` , precismos da *string* `"\\."`, como mostra os exemplos a seguir.
+Nós usamos strings para representar expressões regulares, e `\` é também usada como símbolo de escapadas nas *strings*. Portanto, para criar a expressão regular `\.` , precismos da *string* `"\\."`, como mostra os exemplos a seguir.
 
 [^regexps-6]: A lista completa de metacaracteres é `.^$\|*+?{}[]()`
 
@@ -336,7 +335,7 @@ Isso permite que você evite uma camada de escape:
 str_view(x, r"{\\}")
 ```
 
-Se você está tentando identificar um `.`, `$`, `|`, `*`, `+`, `?`, `{`, `}`, `(`, `)` literal, há uma alternativa para não usar a escapada com barra invertida: você pode usar uma classe de caractere: `[.]`, `[$]`, `[|]`, \...
+Se você está tentando identificar um `.`, `$`, `|`, `*`, `+`, `?`, `{`, `}`, `(`, `)` literal, há uma alternativa para não usar a escapada com barra invertida: você pode usar uma classe de caractere: `[.]`, `[$]`, `[|]`, ...
 todas correspondem aos valores literais.
 
 ```{r}
@@ -449,7 +448,7 @@ Você também pode especificar o número exato de correspondências com `{}`:
 A o que `ab+` corresponde?
 Corresponde a um "a" seguido por um ou mais "b"s, ou corresponde a "ab" repetidos qualquer número de vezes?
 A o que corresponde `^a|b$`?
-Corresponde a uma *string*  completa começando com "a" ou uma *string* completa terminando com "b", ou a uma *string* que começa com "a" ou uma *string* que termina com "b"?
+Corresponde a uma *string* completa começando com "a" ou uma *string* completa terminando com "b", ou a uma *string* que começa com "a" ou uma *string* que termina com "b"?
 
 As respostas para estas perguntas são determinadas pela precedência de operadores, similar às regras de ordem de prioridade das operações aritméticas que você deve ter aprendido na escola.
 Você sabe que `a + b * c` é equivalente a `a + (b * c)` e não `(a + b) * c` pois `*` tem uma prioridade mais alta de precedência e `+` tem uma precedência mais baixa: você calcula o `*` antes do `+`.
@@ -845,7 +844,7 @@ head(list.files(pattern = "\\.Rmd$"))
 ```
 
 É importante notar que a linguagem de padrão usada pelo R base é ligeiramente diferente daquela usada pelo stringr.
-Isso ocorre porque stringr é construído sobre o [pacote stringi](https://stringi.gagolewski.com), que por sua vez é construído sobre o [mecanismo ICU](https://unicode-org.github.io/icu/userguide/strings/regexp.html), enquanto as funções base R usam o [mecanismo TRE](https://github.com/laurikari/tre) ou o [mecanismo PCRE](https://www.pcre .org), dependendo se você configurou ou não `perl = TRUE`.
+Isso ocorre porque stringr é construído sobre o [pacote stringi](https://stringi.gagolewski.com), que por sua vez é construído sobre o [mecanismo ICU](https://unicode-org.github.io/icu/userguide/strings/regexp.html), enquanto as funções base R usam o [mecanismo TRE](https://github.com/laurikari/tre) ou o [mecanismo PCRE](https://www.pcre%20.org), dependendo se você configurou ou não `perl = TRUE`.
 Felizmente, os princípios básicos das expressões regulares estão tão bem estabelecidos que você encontrará poucas variações ao trabalhar com os padrões que aprenderá neste livro.
 Você só precisa estar ciente da diferença quando começar a depender de recursos avançados, como intervalos complexos de caracteres Unicode ou recursos especiais que usam a sintaxe `(?…)`.
 
