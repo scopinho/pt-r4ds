@@ -146,7 +146,7 @@ Existem dois motivos principais:
 Isso significa que a maioria das análises reais vai demandar pelo menos alguma adaptação para o formato *tidy*.
 Você vai começar descobrindo quais são as variáveis e observações presentes.
 Algumas vezes isso é fácil, em outras você precisará consultar as pessoas que geraram os dados originalmente.
-Em seguida, você irá \*pivotar\*\* seus dados para o formato *tidy*, com as variáveis nas colunas e as observações nas linhas.
+Em seguida, você irá **pivotar** seus dados para o formato *tidy*, com as variáveis nas colunas e as observações nas linhas.
 
 `tidyr` disponibiliza duas funções para pivotar os dados: `pivot_longer()` e `pivot_wider()`.
 Começaremos com `pivot_longer()` pois é o caso mais comum.
@@ -397,7 +397,7 @@ nucleo_familiar
 
 Nesse conjunto temos dados de cinco famílias, com nomes e datas de nascimento de até duas crianças.
 O novo desafio é que nesses dados os nomes das colunas contêm os nomes de duas variáveis (`data_nascimento`, `nome)` e os valores de outra (criança - `crianca,` com valores 1 ou 2).
-Para resolver esse problema, novamente precisamods passar um vetor para `names_to`, mas dessa vamos vamos passar um parâmetro especial `".value"` (chamado de *sentinel*); esse parâmetro não é o nome de uma variável, mas um valor único que diz ao `pivot_longer()` para fazer algo diferente com ele.
+Para resolver esse problema, novamente precisamos passar um vetor para `names_to`, mas dessa vamos vamos passar um parâmetro especial `".value"` (chamado de *sentinel*); esse parâmetro não é o nome de uma variável, mas um valor único que diz ao `pivot_longer()` para fazer algo diferente com ele.
 Isso sobrepõe o argumento `values_to` normal em favor do primeiro componente do nome da coluna pivotada, utilizado como nome da variável na saída da função.
 
 ```{r}
