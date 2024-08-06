@@ -184,7 +184,8 @@ bebes |>
 ```
 
 Se você observar bem, verá que há algo estranho em nossa contagem: "Aaban" contém três "a"s, mas nosso relatório sumarizado mostra apenas 2 vogais.
-Isto acontece porque as expressões regulares consideram a diferença entre letras maiúsculas e minúsculas (*case sensitive*).
+Isto acontece porque as expressões regulares consideram a diferença entre letras maiúsculas e minúsculas (*case sensitive*)[^regexps-nt-1].
+[^regexps-nt-1]: **NT**: Dizemos que a linguagem de programação é *case sensitive* quando existe a diferença entre letras maiúsculas (*upper case*) e minúsculas (*lower case*).
 Existem três formas de arrumar isto:
 
 -   Adicionar as vogais maiúsculas nas classes de caracteres: `str_count(nome, "[aeiouAEIOU]")`.
