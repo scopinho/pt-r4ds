@@ -1,4 +1,4 @@
-# Visualizar {#sec-visualize .unnumbered}
+# ✅ Visualizar {#sec-visualize .unnumbered}
 
 ```{r}
 #| echo: false
