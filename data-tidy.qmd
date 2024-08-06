@@ -432,7 +432,7 @@ Quando você utiliza `".value"` em `names_to`, a coluna de nomes dos dados de en
 knitr::include_graphics("diagrams/tidy-data/names-and-values.png", dpi = 270)
 ```
 
-## Transformando os dados para o formato largo (*Widening data*)
+## Transformando os dados para o formato largo
 
 Até então, utilizamos `pivot_longer()` para resolver um tipo comum de problemas no qual os valores foram movidos para os nomes de colunas.
 Agora vamos pivotar (HA HA) para `pivot_wider()`, que vai tornar o conjunto de dados mais **largo** (*wider*) ao aumentar o número de colunas e diminuir o número de linhas, auxiliando quando uma informação está espalhada em múltiplas linhas.
