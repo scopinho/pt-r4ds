@@ -216,8 +216,7 @@ df |>
 
 ### Aritmética modular
 
-Artitmética modular é o termo técnico para o tipo de matemática que você fez quando aprendeu sobre casas decimais, ex.
-divisão que retornam um valor inteiro e um resto.
+Artitmética modular é o termo técnico para o tipo de matemática que você fez quando aprendeu sobre casas decimais, por exemplo: divisão que retornam um valor inteiro e um resto.
 No R, `%/%` faz uma divisão inteira e `%%` calcula o resto:
 
 ```{r}
@@ -266,7 +265,7 @@ voos |>
 Logaritmos são transformações incríveis para lidar com dados que variam em múltiplas ordens de magnitude e também para converter o crescimento exponencial em crescimento linear.
 No R, você tem escolha de três logaritmos: `log()` (o logaritmo natural, base e), `log2()` (base 2), e `log10()` (base 10).
 Recomendamos usar `log2()` ou `log10()`.
-`log2()` é fácil interpretar pois a diferença de 1 na escala logarítmica corresponde ao dobro na escalada original e a diferença de -1 corresponde à metade; e o `log10()` é de fácil transformação inversa (*back-transform*) (ex. 3 é 10\^3 = 1000).
+`log2()` é fácil interpretar pois a diferença de 1 na escala logarítmica corresponde ao dobro na escalada original e a diferença de -1 corresponde à metade; e o `log10()` é de fácil transformação inversa (*back-transform*) (por exemplo: 3 é 10\^3 = 1000).
 O inverso de `log()` é `exp()`; para calcular o inverso de `log2()` ou `log10()` você precisará usar `2^` ou `10^`.
 
 ### Arredondamento {#sec-rounding}
@@ -405,7 +404,7 @@ A seção seguinte descreve algumas transformações gerais que são frequenteme
 ### Ranqueamento (*rank*)
 
 O dplyr oferece diversas funções de ranqueamento inspiradas no SQL, mas você deve sempre começar com `dplyr::min_rank()`.
-Ela usa o método típico para lidar com empates, ex.: 1o, 2o, 2o, 4o.
+Ela usa o método típico para lidar com empates, por exemplo: 1o, 2o, 2o, 4o.
 
 ```{r}
 x <- c(1, 2, 2, 3, 4, NA)
@@ -499,8 +498,7 @@ eventos
 ```
 
 Mas como podemos ir deste vetor lógico para algo que podemos agrupar com `group_by()`?
-`cumsum()`, da @sec-cumulative-and-rolling-aggregates, vem pra ajudar com intervalos (*gaps*), ex.
-`tem_intervalo_grande` como `TRUE`, irá incrementar `grupo` em um (@sec-numeric-summaries-of-logicals):
+`cumsum()`, da @sec-cumulative-and-rolling-aggregates, vem pra ajudar com intervalos (*gaps*), por exemplo: `tem_intervalo_grande` como `TRUE`, irá incrementar `grupo` em um (@sec-numeric-summaries-of-logicals):
 
 ```{r}
 eventos |> mutate(

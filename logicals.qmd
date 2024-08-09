@@ -105,7 +105,7 @@ O que está acontecendo aqui?
 Os computadores armazenam números com um número fixo de casas decimais, então não há como representar exatamente 1/49 ou `sqrt(2)` e os cálculos subsequentes serão ligeiramente imprecisos.
 Podemos ver os valores exatos chamando `print()` com o argumento `digits`[^logicals-1]:
 
-[^logicals-1]: R normalmente chama *print* para você (ex. `x` é um atalho para `print(x)`), mas chamando-o explicitamente é útil se você quer fornecer outros argumentos.
+[^logicals-1]: R normalmente chama *print* para você (por exemplo, `x` é um atalho para `print(x)`), mas chamando-o explicitamente é útil se você quer fornecer outros argumentos.
 
 ```{r}
 print(x, digits = 16)
@@ -570,7 +570,7 @@ Não esperamos que você memorize essas regras, mas elas devem se tornar naturai
 
 3.  Use `ifelse()` para calcular o valor absoluto de um vetor numérico chamado `x`.
 
-4.  Escreva uma declaração `case_when()` que usa as colunas `mes` e `dia` de `voos` para rotular um conjunto de feriados importante dos Brasil (e.g., 7 de Setembro, Tiradentes, Carnaval e Natal[^logicals-5]).
+4.  Escreva uma declaração `case_when()` que usa as colunas `mes` e `dia` de `voos` para rotular um conjunto de feriados importante dos Brasil (por exemplo: 7 de Setembro, Tiradentes, Carnaval e Natal[^logicals-5]).
     Primeiro crie uma coluna lógica `TRUE` ou `FALSE`, e então uma coluna texto (*character*) que tenha o nome do feriado ou `NA`.
 
 [^logicals-5]: **Nota de tradução:** Na versão original em inglês, os feriados são dos Estados Unidos.
