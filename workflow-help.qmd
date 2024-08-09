@@ -25,7 +25,7 @@ Comece reservando tempo para buscar uma resposta já existente, incluindo `[R]` 
 
 ## Criando um exemplo reprodutível (*reprex*)
 
-Se a sua busca no Google não retornar nenhuma resposta satisfatória, é uma boa ideia preparar um **reprex**, termo para  **ex**emplo **repr**odutível (do inglês: **repr**oducible **ex**ample).
+Se a sua busca no Google não retornar nenhuma resposta satisfatória, é uma boa ideia preparar um **reprex**, termo para **ex**emplo **repr**odutível (do inglês: **repr**oducible **ex**ample).
 Um bom *reprex* facilita para que outras pessoas possam te ajudar, e geralmente você poderá resolver o problema durante a criação dele.
 Existem duas partes na criação de um *reprex*:
 
@@ -35,9 +35,10 @@ Existem duas partes na criação de um *reprex*:
 
 -   Segundo, você precisa ser minimalista.
     Exclua tudo que não for relacionado ao seu código.
-    Usualmente isto envolve a criação de um objeto R menor e mais simples do que aquele que você está criando de verdade ou até mesmo usar dados internos[^workflow-help-nt-1].
-    
-[^workflow-help-nt-1]: **Nota de tradução**: São dados que estão sempre disponíveis no R (ex. mtcars), e são bastante utilizados em exemplos, aulas, tutoriais, entre outros. Outra opção interessante é utilizar dados do pacote `{dados}` para criar exemplos reprodutíveis.
+    Usualmente isto envolve a criação de um objeto R menor e mais simples do que aquele que você está criando de verdade ou até mesmo usar dados internos[^workflow-help-1].
+
+[^workflow-help-1]: **Nota de tradução**: São dados que estão sempre disponíveis no R (ex. mtcars), e são bastante utilizados em exemplos, aulas, tutoriais, entre outros.
+    Outra opção interessante é utilizar dados do pacote `{dados}` para criar exemplos reprodutíveis.
 
 Isto parece muito trabalhoso!
 E pode ser, mas tem um grande retorno:
@@ -91,26 +92,26 @@ Qualquer pessoa poderá copiar, colar e rodar isto imediatamente.
 
 Existem três coisas que você precisa incluir para tornar seu exemplo reprodutível: pacotes necessários, dados e código.
 
-1. **Pacotes** devem ser carregados no início do script para facilitar a visualização de quais são necessários.
-   Este é um bom momento para você verificar que está usando a última versão dos pacotes; você poder ter encontado um bug que foi resolvido desde a sua última atualização dos pacotes.
-   Para pacotes do tidyverse, a maneira mais fácil de atualizar é com o comando `tidyverse_update()`.
+1.  **Pacotes** devem ser carregados no início do script para facilitar a visualização de quais são necessários.
+    Este é um bom momento para você verificar que está usando a última versão dos pacotes; você poder ter encontado um bug que foi resolvido desde a sua última atualização dos pacotes.
+    Para pacotes do tidyverse, a maneira mais fácil de atualizar é com o comando `tidyverse_update()`.
 
-2. A maneira mais fácil para incluir os dados é usar `dput()` para gerar o código em R necessário para recriar os dados.
-   Por exemplo, para recriar o dataset `mtcars` no R execute os seguintes comandos:
+2.  A maneira mais fácil para incluir os dados é usar `dput()` para gerar o código em R necessário para recriar os dados.
+    Por exemplo, para recriar o dataset `mtcars` no R execute os seguintes comandos:
 
-   1. Execute `dput(mtcars)` no R
-   2. Copie o resultado
-   3. No reprex, digite `mtcars <-` e então cole o resultado copiado no passo anterior.
+    1.  Execute `dput(mtcars)` no R
+    2.  Copie o resultado
+    3.  No reprex, digite `mtcars <-` e então cole o resultado copiado no passo anterior.
 
-   Tente usar a menor parte dos seus dados que ainda gera o erro.
+    Tente usar a menor parte dos seus dados que ainda gera o erro.
 
-3. Dedique um pouco de tempo para se certificar de que seu código é de fácil leitura por todos:
+3.  Dedique um pouco de tempo para se certificar de que seu código é de fácil leitura por todos:
 
-   - Esteja certo de que usou espaços e suas variáveis são concisas, porém objetivas;
-   - Use comentários para indicar onde está o problema;
-   - Faça seu melhor para excluir tudo que não é relacionado com o problema.
+    -   Esteja certo de que usou espaços e suas variáveis são concisas, porém objetivas;
+    -   Use comentários para indicar onde está o problema;
+    -   Faça seu melhor para excluir tudo que não é relacionado com o problema.
 
-   Quanto mais sucinto o código, mais fácil é para entender e mais fácil ainda para arrumar.
+    Quanto mais sucinto o código, mais fácil é para entender e mais fácil ainda para arrumar.
 
 Termine verificando que você fez um exemplo possível de ser reproduzido por meio de uma nova sessão do R, copiando e colando seu script.
 
