@@ -37,7 +37,7 @@ Existem duas partes na criação de um *reprex*:
     Exclua tudo que não for relacionado ao seu código.
     Usualmente isto envolve a criação de um objeto R menor e mais simples do que aquele que você está criando de verdade ou até mesmo usar dados internos[^workflow-help-1].
 
-[^workflow-help-1]: **Nota de tradução**: São dados que estão sempre disponíveis no R (ex. mtcars), e são bastante utilizados em exemplos, aulas, tutoriais, entre outros.
+[^workflow-help-1]: **Nota de tradução**: São dados que estão sempre disponíveis no R (por exemplo: mtcars), e são bastante utilizados em exemplos, aulas, tutoriais, entre outros.
     Outra opção interessante é utilizar dados do pacote `{dados}` para criar exemplos reprodutíveis.
 
 Isto parece muito trabalhoso!
