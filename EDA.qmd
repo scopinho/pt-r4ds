@@ -383,7 +383,7 @@ Um gráfico visualmente mais simples para explorar essa relação são os boxplo
 ```{r}
 #| fig-alt: |
 #| Boxplots lado a lado dos preços dos diamantes segundo o corte. A distribuição de
-#| preços é enviesado à direita para cada corte (razoável, bom, muito bom, premium e
+#| preços é assimétrica à direita para cada corte (Justo,  Bom, Muito Bom, Premium e
 #| Ideal). As medianas estão próximas umas das outras, sendo que a mediana dos diamantes do tipo Ideal
 #| são as mais baixas e as dos Justos as mais altas.
 
@@ -404,7 +404,7 @@ Você pode estar interessado em saber como o consumo de combustível na rodovia 
 
 ```{r}
 #| fig-alt: |
-#| Boxplots lado a lado de quilometragem rodoviária de carros por classe. As classes
+#| Boxplots lado a lado de consumo de combustível dos carros na rodovia segundo classe. As classes estão apresentadas
 #| no eixo x (2 lugares, compacto, médio, minivan, picape, subcompacto,
 #| e SUV).
 
@@ -416,7 +416,7 @@ Para tornar a tendência mais fácil de visualizar, nós podemos reordenar `clas
 
 ```{r}
 #| fig-alt: |
-#| Boxplots lado a lado de quilometragem rodoviária de carros por classe. As classes
+#| Boxplots lado a lado do consumo de combustível dos carros na rodovia segundo classe. As classes apresentadas 
 #| no eixo x estão ordenadas segundo o aumento do consumo mediano de combustível na rodovia (picape,
 #| suv, minivan, 2 lugares, subcompacto, compacto e médio).
 
@@ -463,13 +463,13 @@ ggplot(milhas, aes(x = rodovia, y = fct_reorder(classe, rodovia, median))) +
 
 ### Duas variáveis categóricas
 
-Para visualizar a covariação entre variáveis categóricas, você irá necessitar contar o número de observações para cada combinação dos níveis dessas variáveis categóricas.
-Uma maneira de fazer isso é contar com o `geom_count()` integrado:
+Para visualizar a covariação entre variáveis categóricas, você precisará contar o número de observações para cada combinação dos níveis dessas variáveis categóricas.
+Uma maneira de fazer isso é contar com a função embutida `geom_count()`:
 
 ```{r}
 #| fig-alt: |
 #| Um gráfico de dispersão de cor versus corte de diamantes. Há um ponto para cada
-#| combinação de níveis de corte (Razoável, Bom, Muito Bom, Premium e Ideal)
+#| combinação de níveis de corte (Justo, Bom, Muito Bom, Premium e Ideal)
 #| e cor (D, E, F, G, G, I e J). Os tamanhos dos pontos representam
 #| o número de observações para essa combinação. A legenda indica
 #| que esses tamanhos variam entre 1000 e 4000.
@@ -492,11 +492,11 @@ Em seguida, visualize com `geom_tile()` e a estética (aesthetic) de preechiment
 
 ```{r}
 #| fig-alt: |
-#| Um gráfico de corte versus cor de diamantes. Cada peça representa um
-#| combinação de corte/cor e os ladrilhos são coloridos de acordo com o número de
-#| observações em cada bloco. Existem mais diamantes ideais do que outros cortes,
+#| Um gráfico de corte versus cor de diamantes. Cada quadrado representa um
+#| combinação de corte/cor e as cores dos quadrados correspondem ao número de
+#| observações em cada quadrado. Existem mais diamantes ideais do que de outros cortes,
 #| com o número mais alto sendo diamantes ideais com cor G. Diamantes justos
-#| e os diamantes com cor I têm a frequência mais baixa.
+#| e os diamantes com cor I têm frequência mais baixa.
 
 diamante |> 
   count(cor, corte) |>  
@@ -504,7 +504,7 @@ diamante |>
   geom_tile(aes(fill = n))
 ```
 
-Se as variáveis categóricas não estão ordenadas, você pode querer usar o pacote de seriação para reordenar simultaneamente as linhas e colunas para revelar padrões interessantes com mais clareza.
+Se as variáveis categóricas não estão ordenadas, você pode querer usar o pacote de seriação para reordenar simultaneamente as linhas e as colunas para revelar padrões interessantes com mais clareza.
 Para gráficos maiores, você pode querer usar o pacote heatmaply, que cria gráficos interativos.
 
 #### Exercícios
@@ -515,7 +515,8 @@ Para gráficos maiores, você pode querer usar o pacote heatmaply, que cria grá
     Calcule as contagens que se enquadram em cada um dos segmentos.
 
 3.  Use `geom_tile()` junto com dplyr para explorar como os atrasos médios nas partidas de voos variam de acordo com o destino e o mês do ano.
-    O que torna o enredo difícil de ler?
+
+ O que torna o gráfico difícil de ler?
     Como você poderia melhorá-lo?
 
 ### Duas variáveis numéricas
@@ -538,39 +539,39 @@ ggplot(menores_diamantes, aes(x = quilate, y = preco)) +
   geom_point()
 ```
 
-(Nesta seção usaremos o conjunto de dados `menores_diamantes` para manter o foco na maior parte dos diamantes menores que 3 quilates)
+(Nesta seção usaremos o conjunto de dados `menores_diamantes` para manter o foco na maior parte dos diamantes, que são menores que 3 quilates)
 
 Gráficos de dispersão se tornam menos usuais à medida que seu conjunto de dados cresce, porque os pontos se acumulam, e se amontoam em áreas de preto uniforme, tornando difícil julgar diferenças na densidade dos dados em torno do espaço bidimensional, bem como difícil de ver alguma tendência.
-Você já tem visto uma forma de corrigir esse problema: usando a estética (aesthetic) `alpha` para adicionar transparência.
+Você viu uma forma de corrigir esse problema: usando a estética (aesthetic) `alpha` para adicionar transparência.
 
 ```{r}
 #| dev: "png"
 #| fig-alt: |
 #| Um gráfico de dispersão de preço versus quilate. A relação é positiva, um tanto
 #| forte e exponencial. Os pontos são transparentes, mostrando agrupamentos onde
-#| o número de pontos é maior do que outras áreas. Os agrupamentos mais óbvios
+#| o número de pontos é maior do que em outras áreas. Os agrupamentos mais óbvios
 #| são para diamantes com 1, 1,5 e 2 quilates.
 
 ggplot(menores_diamantes, aes(x = quilate, y = preco)) + 
   geom_point(alpha = 1 / 100)
 ```
 
-Mas usar transparência pode ser desafiador para conjunto de dados grandes.
+Mas usar transparência pode ser desafiador para conjunto de dados muito grande.
 Outra solução é usar classes (bins).
 Previamente, você usou `geom_histogram()` e `geom_freqpoly()` para bin em uma dimensão.
-Agora você irá aprender como usar `geom_bin2d()` e `geom_hex()` para bins em duas dimensões.
+Agora você irá aprender como usar `geom_bin2d()` e `geom_hex()` para criar classes em duas dimensões.
 
-`geom_bin2d()` e `geom_hex()` divide o plano de coordenadas em bins 2D e então usa um preenchimento de cor para exibir quantos pontos caem em cada bin.
-`geom_bin2d()` cria bins retangulares e `geom_hex()` cria bins hexagonais.
-Você irá necessitar instalar o pacote hexbin para usar `geom_hex()`.
+`geom_bin2d()` e `geom_hex()` divide o plano de coordenadas em classes de duas dimensões e então usa um preenchimento de cor para exibir quantos pontos caem em cada classe.
+`geom_bin2d()` cria classes retangulares e `geom_hex()` cria classes hexagonais.
+Você precisará instalar o pacote hexbin para usar `geom_hex()`.
 
 ```{r}
 #| layout-ncol: 2
 #| fig-width: 3
 #| fig-alt: |
-#| Plot 1: Um gráfico de densidade de preço versus quilate. Plot 2: Uma caixa hexagonal
-#| gráfico de preço versus quilate. Ambos os gráficos mostram que a maior densidade de
-#| os diamantes têm quilates e preços baixos.
+#| Plot 1: Um gráfico de densidade de preço versus quilate. Plot 2: Um gráfico de classes hexagonais
+#| de preço versus quilate. Ambos os gráficos mostram que a maior densidade dos
+#| diamantes têm quilates e preços baixos.
 
 ggplot(menores_diamantes, aes(x = quilate, y = preco)) +
   geom_bin2d()
@@ -580,18 +581,18 @@ ggplot(menores_diamantes, aes(x = quilate, y = preco)) +
   geom_hex()
 ```
 
-Outra opção é agrupar uma variável contínua para que ela atue como uma variável categórica.
-Então você usa uma das técnicas para visualizar a combinação de uma variável categórica e uma contínua que você aprendeu antes.
+Outra opção é discretizar uma variável contínua para que ela atue como uma variável categórica.
+Assim você consegue usar uma das técnicas para visualizar a combinação de uma variável categórica e uma contínua que você aprendeu antes.
 Por exemplo, você poderia categorizar a variável `quilate`, e então para cada grupo exibir um boxplot:
 
 ```{r}
 #| fig-alt: |
-#| Gráficos boxplot lado a lado de preços por quilate. Cada box plot representa
-#| diamantes que têm 0,1 quilates de diferença em peso. Os gráficos de caixa mostram
+#| Gráficos boxplot lado a lado de preços por quilate. Cada boxplot representa
+#| diamantes que têm 0,1 quilates de diferença em peso. Os boxplots mostram
 #| que à medida que quilate aumenta ocorrem aumentos do preço médio. Além disso,
-#| diamantes com 1,5 quilates ou menos têm distribuições de preços distorcidas para a
+#| diamantes com 1,5 quilates ou menos têm distribuições de preços assimétricos à
 #| direita, 1,5 a 2 têm distribuições de preços aproximadamente simétricas e os
-#| diamantes que pesam mais têm distribuições distorcidas à esquerda. Diamantes menores
+#| diamantes que pesam mais têm distribuições assimétricas à esquerda. Diamantes menores
 #| e mais baratos têm valores discrepantes na extremidade superior, diamantes maiores,
 #| e mais caros têm valores discrepantes na extremidade inferior.
 
