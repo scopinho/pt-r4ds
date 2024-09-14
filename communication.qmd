@@ -29,7 +29,7 @@ Ele não ensina a mecânica de criação de visualizações, mas concentra-se no
 ### Pré-requisitos
 
 Neste capítulo, focaremos mais uma vez no ggplot2.
-Também usaremos um pouco do pacote dplyr para transformação de dados, **scales** para substituir quebras, rótulos, transformações e paletas padrão, e alguns pacotes de extensão ggplot2, incluindo **ggrepel** ([https://ggrepel. slowkow.com](https://ggrepel.slowkow.com/)) de Kamil Slowikowski e o **patchwork** ([https://patchwork.data-imaginist.com](https://patchwork.data-imaginist .com/)) de Thomas Lin Pedersen.
+Também usaremos um pouco do pacote dplyr para transformação de dados, **scales** para substituir quebras, rótulos, transformações e paletas padrão, e alguns pacotes de extensão ggplot2, incluindo **ggrepel** ([https://ggrepel.slowkow.com](https://ggrepel.slowkow.com/)) de Kamil Slowikowski e o **patchwork** ([https://patchwork.data-imaginist.com](https://patchwork.data-imaginist .com/)) de Thomas Lin Pedersen.
 Usaremos também o pacote *dados* e seus conjuntos de dados *milhas*, *predisentes_eua* e *diamante*.
 Não se esqueça que você precisará instalar esses pacotes com `install.packages()` se ainda não os tiver.
 
@@ -511,7 +511,7 @@ Existem dois tipos de escalas que você provavelmente desejará trocar: escalas 
 Felizmente, os mesmos princípios se aplicam a todas as outras estéticas; portanto, depois de dominar a posição e a cor, você poderá escolher rapidamente outras substituições de escala.
 
 É muito útil traçar transformações de sua variável.
-Por exemplo, é mais fácil ver a relação precisa entre `quilate` e `preço` se aplicarmos o logaritimo:
+Por exemplo, é mais fácil ver a relação precisa entre `quilate` e `preço` se aplicarmos o logaritmo:
 
 ```{r}
 #| fig-align: default
@@ -642,7 +642,7 @@ Essas escalas estão disponíveis como paletas contínuas (`c`), discretas (`d`)
 #| fig-width: 3
 #| fig-asp: 0.75
 #| fig-alt: |
-#|   Três gráficos hexagonais onde a cor dos hexagonos mostram o número de observações 
+#|   Três gráficos hexagonais onde a cor dos hexágonos mostram o número de observações 
 #|   que caem naquela classe hexagonal. O primeiro gráfico usa o padrão contínuo
 #|   de escala do ggplot2. O segundo gráfico utiliza o viridis, escala contínua, e o
 #|   o terceiro gráfico usa a escala viridis discretizada.
@@ -690,7 +690,7 @@ A divisão dos dados em subconjuntos afetou as escalas x e y, bem como a curva s
 #| fig-width: 4
 #| message: false
 #| fig-alt: |
-#|   À esquerda, gráfico de dispersão da eficiência de combustível nas rodovias versus cilindrada 
+#|   À esquerda, gráfico de dispersão da eficiência de combustível nas rodovias versus cilindrada. 
 #|   A curva suave sobreposta mostra uma diminuição e, em seguida, 
 #|   tendência crescente, como um taco de hóquei. À direita, as mesmas variáveis 
 #|   são mostradas com cilindrada variando apenas de 5 a 6 e eficiência na rodovia 
@@ -722,7 +722,7 @@ Portanto, para ampliar uma região do gráfico, geralmente é melhor usar `coord
 #| fig-alt: |
 #|   À esquerda, gráfico de dispersão de eficiência de combustível nas rodovias versus cilindrada, com
 #|   a cilindrada de 5 a 6 e o eficiência em rodovias variando de
-#|   10 to 25. A curva suave sobreposta mostra uma tendência ligeiramente 
+#|   10 a 25. A curva suave sobreposta mostra uma tendência ligeiramente 
 #|   aumentando primeiro e depois diminuindo. À direita, as mesmas variáveis 
 #|   são mostradas com os mesmos limites, porém a curva suave sobreposta
 #|   mostra uma tendência relativamente plana com um ligeiro aumento no final.
