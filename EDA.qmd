@@ -558,7 +558,7 @@ ggplot(menores_diamantes, aes(x = quilate, y = preco)) +
 
 Mas usar transparência pode ser desafiador para conjunto de dados muito grande.
 Outra solução é usar classes (bins).
-Previamente, você usou `geom_histogram()` e `geom_freqpoly()` para bin em uma dimensão.
+Previamente, você usou `geom_histogram()` e `geom_freqpoly()` para criar classes em uma dimensão.
 Agora você irá aprender como usar `geom_bin2d()` e `geom_hex()` para criar classes em duas dimensões.
 
 `geom_bin2d()` e `geom_hex()` divide o plano de coordenadas em classes de duas dimensões e então usa um preenchimento de cor para exibir quantos pontos caem em cada classe.
@@ -600,9 +600,6 @@ ggplot(menores_diamantes, aes(x = quilate, y = preco)) +
   geom_boxplot(aes(group = cut_width(quilate, 0.1)))
 ```
 
-`cut_width(x, width)`, as used above, divides `x` into bins of width `width`.
-By default, boxplots look roughly the same (apart from number of outliers) regardless of how many observations there are, so it's difficult to tell that each boxplot summaries a different number of points.
-One way to show that is to make the width of the boxplot proportional to the number of points with `varwidth = TRUE`.
 
 `cut_width(x, width)`, conforme usado acima, divide `x` em compartimentos de largura (`width`).
 Por padrão, os boxplots parecem praticamente os mesmos (exceto pelo número de valores discrepantes) independentemente de quantas observações existem, então é difícil dizer que cada boxplot resume um diferente número de pontos.
