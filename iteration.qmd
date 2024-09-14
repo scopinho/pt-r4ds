@@ -11,22 +11,22 @@ source("_common.R")
 ## Introdução
 
 Neste capítulo, você aprenderá ferramentas para iteração, executando repetidamente a mesma ação em objetos diferentes.
-A iteração em R geralmente tende a parecer bastante diferente de outras linguagens de programação porque grande parte dela está implícita e a obtemos de graça.
+A iteração em R geralmente tende a parecer bastante diferente de outras linguagens de programação porque grande parte dela está implícita e a obtemos "de graça".
 Por exemplo, se você deseja duplicar um vetor numérico `x` no R, você pode simplesmente escrever `2 * x`.
-Na maioria das outras linguagens, você precisaria duplicar explicitamente cada elemento de `x` usando algum tipo de loop *for*.
+Na maioria das outras linguagens, você precisaria duplicar explicitamente cada elemento de `x` usando algum tipo de laço *for* (*for loop*).
 
 Este livro já lhe deu um pequeno, mas poderoso número de ferramentas que executam a mesma ação para múltiplas “coisas”:
 
 -   `facet_wrap()` e `facet_grid()` desenham um gráfico para cada subconjunto.
--   `group_by()` junto com a `summarize()` calcula estatísticas sumarizadas para cada subconjunto.
--   `unnest_wider()` e `unnest_longer()` criam novas linhas e colunas para cada elemento de uma coluna de lista (*list-column*).
+-   `group_by()` junto com `summarize()` calcula estatísticas resumo para cada subconjunto.
+-   `unnest_wider()` e `unnest_longer()` criam novas linhas e colunas para cada elemento de uma colunas-lista (*list-column*).
 
 Agora é hora de aprender algumas ferramentas mais gerais, geralmente chamadas de ferramentas de **programação funcional** (*functional programming*) porque são construídas em torno de funções que recebem outras funções como entradas.
-Aprender programação funcional pode facilmente se tornar abstrato, mas neste capítulo manteremos as coisas concretas, concentrando-nos em três tarefas comuns: modificar múltiplas colunas, ler vários arquivos e salvar vários objetos..
+Aprender programação funcional pode facilmente se tornar bastante abstrato, mas neste capítulo manteremos as coisas concretas, concentrando-nos em três tarefas comuns: modificar múltiplas colunas, ler vários arquivos e salvar vários objetos..
 
 ### Pré-requisitos
 
-Neste capítulo, focaremos nas ferramentas fornecidas peloas pacotes dplyr e purrr, ambos membros principais do tidyverse.
+Neste capítulo, focaremos nas ferramentas fornecidas pelos pacotes dplyr e purrr, ambos membros centrais do tidyverse.
 Você já viu o dplyr antes, mas o [purrr](http://purrr.tidyverse.org/) é novo.
 Usaremos apenas algumas funções do purrr neste capítulo, mas é um ótimo pacote para explorar à medida que você aprimora suas habilidades de programação. Usaremos também o pacote `dados` e seu conjunto de dados `diamante`.
 
@@ -84,7 +84,7 @@ O primeiro argumento para `across()`, `.cols`, seleciona as colunas a serem tran
 Isso usa as mesmas especificações de `select()`, @sec-select, então você pode usar funções como `starts_with()` e `ends_with()` para selecionar colunas com base em seus nomes.
 
 Existem duas técnicas de seleção adicionais que são particularmente úteis para `across()`: `everything()` e `where()`.
-`everything()` é simples: seleciona todas as colunas (não agrupadas):
+`everything()` (*tudo/todas* em inglês) é direto ao ponto: seleciona todas as colunas (não agrupadas):
 
 ```{r}
 df <- tibble(
@@ -142,7 +142,7 @@ median()
 
 Em casos mais complexos, talvez você queira fornecer argumentos adicionais ou executar diversas transformações.
 Vamos motivar este problema com um exemplo simples: o que acontece se tivermos alguns valores faltantes (*missing values*) em nossos dados?
-`median()` propaga esses valores ausentes, nos dando uma saída abaixo do ideal:
+`median()` propaga esses valores ausentes, fornecendo um resultado não ideal:
 
 ```{r}
 rnorm_na <- function(n, n_na, mean = 0, sd = 1) {
@@ -173,9 +173,9 @@ df_faltantes |>
   )
 ```
 
-Isso é um pouco detalhado, então R vem com um atalho útil: para esse tipo de função descartável, ou **anônima**[^iteration-1], você pode substituir `function` por `\`[^iteration-2 ]:
+Isso é um tanto verboso, então R vem com um atalho útil: para esse tipo de função descartável, ou **anônima**[^iteration-1], você pode substituir `function` por `\`[^iteration-2 ]:
 
-[^iteration-1]: Anônimo, porque nunca lhe demos explicitamente um nome com `<-`.
+[^iteration-1]: Ela é anônima, porque nunca lhe demos explicitamente um nome com `<-`.
     Outro termo que os programadores usam para isso é “função lambda”.
 
 [^iteration-2]: Em códigos mais antigos, você pode ver uma sintaxe semelhante a `~ .x + 1`.
@@ -221,16 +221,16 @@ df_faltantes |>
   )
 ```
 
-Se você olhar com atenção, poderá intuir que as colunas são nomeadas usando uma especificação de cola (@sec-glue) como `{.col}_{.fn}` onde `.col` é o nome da coluna original e `. fn` é o nome da função.
+Se você olhar com atenção, poderá intuir que as colunas são nomeadas usando uma especificação da função glue (@sec-glue) como `{.col}_{.fn}` onde `.col` é o nome da coluna original e `. fn` é o nome da função.
 Isso não é uma coincidência!
-Como você aprenderá na próxima seção, você pode usar o argumento `.names` para fornecer sua própria especificação de cola (*glue*).
+Como você aprenderá na próxima seção, você pode usar o argumento `.names` para fornecer sua própria especificação da função *glue*.
 
 ### Nomes de colunas
 
 O resultado de `across()` é nomeado de acordo com a especificação fornecida no argumento `.names`.
-Poderíamos especificar o nosso próprio se quiséssemos que o nome da função viesse primeiro[^iteration-3]:
+Poderíamos especificar o nosso próprio argumento se quiséssemos que o nome da função viesse primeiro[^iteration-3]:
 
-[^iteration-3]: Atualmente você não pode alterar a ordem das colunas, mas pode reordená-las após o fato usando `relocate()` ou similar.
+[^iteration-3]: Atualmente você não pode alterar a ordem das colunas, mas pode reordená-las posteriormente usando `relocate()` ou similar.
 
 ```{r}
 df_faltantes |> 
@@ -272,7 +272,7 @@ df_faltantes |>
 
 `across()` é uma ótima combinação para `summarize()` e `mutate()` mas é mais estranho de usar com `filter()`, porque você normalmente combina múltiplas condições com `|` ou `&`.
 É claro que `across()` pode ajudar a criar múltiplas colunas lógicas, mas e depois?
-Portanto, dplyr fornece duas variantes de `across()` chamadas `if_any()` e `if_all()`:
+Por isso, dplyr fornece duas variantes de `across()` chamadas `if_any()` e `if_all()`:
 
 ```{r}
 # o mesmo que df_faltantes |> filter(is.na(a) | is.na(b) | is.na(c) | is.na(d))
@@ -285,7 +285,7 @@ df_faltantes |> filter(if_all(a:d, is.na))
 ### `across()` em funções
 
 `across()` é particularmente útil para programar porque permite operar em múltiplas colunas.
-Por exemplo, [Jacob Scott](https://twitter.com/_wurli/status/1571836746899283969) usa esta pequena função auxiliar que envolve um monte de funções do pacote lubridate para expandir todas as colunas de data em colunas de ano, mês e dia:
+Por exemplo, [Jacob Scott](https://twitter.com/_wurli/status/1571836746899283969) usa esta pequena função auxiliar que agrega um monte de funções do pacote lubridate para expandir todas as colunas de data em colunas de ano, mês e dia:
 
 ```{r}
 expande_datas <- function(df) {
@@ -362,7 +362,7 @@ longo |>
   )
 ```
 
-Esta é uma técnica útil para conhecer porque às vezes você encontrará um problema que atualmente não é possível resolver com `across()`: quando você tem grupos de colunas com os quais deseja calcular simultaneamente.
+Esta é uma técnica útil para conhecer porque às vezes você encontrará um problema que atualmente não é possível resolver com `across()`: quando você tem grupos de colunas com os quais você deseja realizar cálculos simultaneamente.
 Por exemplo, imagine que nosso *data frame* contém valores e pesos e queremos calcular uma média ponderada:
 
 ```{r}
@@ -411,11 +411,11 @@ Se necessário, você poderia usar a `pivot_wider()` e voltar ao formato origina
 2.  O que acontece se você usar uma lista de funções em `across()`, mas não as nomear?
     Como a saída é nomeada?
 
-3.  Ajuste `expande_datas()` para remover automaticamente as colunas de data após elas terem sido expandidas.
+3.  Ajuste `expand_dates()` para remover automaticamente as colunas de data após elas terem sido expandidas.
     Você precisa abraçar algum argumento?
 
-4.  Explique o que faz cada etapa do pipeline nesta função.
-    De qual recurso especial de `where()` estamos aproveitando?
+4.  Explique o que cada etapa do *pipeline* faz nesta função.
+    De qual recurso especial de `where()` estamos nos aproveitando?
 
     ```{r}
     #| results: false
@@ -458,7 +458,7 @@ dados_todos <- bind_rows(dados2019, dados2020, dados2021, dados2022)
 
 Você pode imaginar que isso se tornaria entediante rapidamente, especialmente se você tivesse centenas de arquivos, não apenas quatro.
 As seções a seguir mostram como automatizar esse tipo de tarefa.
-Existem três etapas básicas: use `list.files()` para listar todos os arquivos em um diretório, depois use `purrr::map()` para ler cada um deles em uma lista e, em seguida, use `purrr::list_rbind( )` para combiná-los em um único quadro de dados.
+Existem três etapas básicas: use `list.files()` para listar todos os arquivos em um diretório, depois use `purrr::map()` para ler cada um deles em uma lista e, em seguida, use `purrr::list_rbind( )` para combiná-los em um único *data frame*.
 Discutiremos então como você pode lidar com situações de crescente heterogeneidade, onde não é possível fazer exatamente a mesma coisa com todos os arquivos.
 
 ### Listando arquivos do diretório
@@ -475,7 +475,7 @@ Você quase sempre usará três argumentos:
     Você quase sempre quer que isso seja `TRUE`.
 
 Para tornar concreto nosso exemplo motivador, este livro contém uma pasta com 12 planilhas Excel contendo dados do pacote gapminder.
-Cada arquivo contém dados de um ano para 142 países.
+Cada arquivo contém dados referentes a um ano para 142 países.
 Podemos listá-los todos com a chamada apropriada para `list.files()`:
 
 ```{r}
@@ -496,8 +496,8 @@ gapminder_1962 <- readxl::read_excel("data/gapminder/1962.xlsx")
 gapminder_2007 <- readxl::read_excel("data/gapminder/2007.xlsx")
 ```
 
-Mas colocar cada planilha em sua própria variável tornará difícil trabalhar com elas daqui a alguns passos.
-Em vez disso, será mais fácil trabalhar com eles se os colocarmos em um único objeto.
+Entretanto, colocar cada planilha em sua própria variável vai dificultar o trabalho com elas alguns passos adiante.
+Em vez disso, será mais fácil trabalhar com elas se as colocarmos em um único objeto.
 Uma lista é a ferramenta perfeita para este trabalho:
 
 ```{r}
@@ -516,14 +516,14 @@ arquivos <- list(
 arquivos <- map(caminhos, readxl::read_excel)
 ```
 
-Agora que você tem esses *data frames* em uma lista, como retirá-los?
-Você pode usar `files[[i]]` para extrair o i<sup>ésimo</sup> elemento:
+Agora que você tem esses *data frames* em uma lista, como retirar algum deles?
+Você pode usar `arquivos[[i]]` para extrair o i<sup>ésimo</sup> elemento:
 
 ```{r}
 arquivos[[3]]
 ```
 
-Voltaremos a `[[` com mais detalhes no @sec-subset-one.
+Voltaremos a ver `[[` com mais detalhes no @sec-subset-one.
 
 ### `purrr::map()` e `list_rbind()`
 
@@ -552,7 +552,7 @@ arquivos[[1]]
 
 (Esta é outra estrutura de dados que não é exibida de forma particularmente compacta com `str()`, então você pode querer carregá-la no RStudio e inspecioná-la com `View()`).
 
-Agora podemos usar `purrr::list_rbind()` para combinar essa lista de quadros de dados em um único *data frame*:
+Agora podemos usar `purrr::list_rbind()` para combinar essa lista de *data frames* em um único *data frame*:
 
 ```{r}
 list_rbind(arquivos)
@@ -582,12 +582,12 @@ Abordaremos esse problema a seguir.
 
 ### Dados no caminho {#sec-data-in-the-path}
 
-Às vezes, o nome do arquivo são os próprios dados.
-Neste exemplo, o nome do arquivo contém o ano, que de outra forma não é registrado nos arquivos individuais.
-Para colocar essa coluna no quadro de dados final, precisamos fazer duas coisas:
+Às vezes, o próprio nome do arquivo contém dados.
+Neste exemplo, o nome do arquivo contém o ano, que não é registrado de outra forma nos arquivos individuais.
+Para colocar essa coluna no *data frame* final, precisamos fazer duas coisas:
 
 Primeiro, nomeamos o vetor de caminhos (*paths*).
-A maneira mais fácil de fazer isso é com a função `set_names()`, que pode assumir uma função.
+A maneira mais fácil de fazer isso é com a função `set_names()`, que pode receber uma função.
 Aqui usamos a `basename()` para extrair apenas o nome do arquivo do caminho completo:
 
 ```{r}
@@ -645,7 +645,7 @@ caminhos |>
 
 ### Salve seu trabalho
 
-Agora que você fez todo esse trabalho duro para chegar a um quadro de dados bem organizado, é um ótimo momento para salvar seu trabalho:
+Agora que você fez todo esse trabalho duro para chegar a um *data frame* bem organizado, é um ótimo momento para salvar seu trabalho:
 
 ```{r}
 gapminder <- caminhos |> 
@@ -711,7 +711,7 @@ caminhos |>
 Recomendamos essa abordagem porque ela evita que você se preocupe em acertar o primeiro arquivo antes de passar para o resto.
 Ao considerar todos os dados ao fazer a arrumação (*tidying*) e a limpeza, é mais provável que você pense de forma holística e obtenha um resultado de maior qualidade.
 
-Neste exemplo específico, há outra otimização que você pode fazer, vinculando todos os *data frames* anteriormente.
+Neste exemplo específico, há outra otimização que você pode fazer, vinculando todos os *data frames* primeiro.
 Então você pode confiar no comportamento normal do dplyr:
 
 ```{r}
@@ -726,7 +726,7 @@ caminhos |>
 
 ### Dados Heterogêneos
 
-Infelizmente, às vezes não é possível ir de `map()` direto para `list_rbind()` porque os *data frames* são tão heterogêneos que `list_rbind()` falha ou produz um *data frame* que não é muito útil.
+Infelizmente, às vezes não é possível ir de `map()` direto para `list_rbind()` porque os *data frames* são tão heterogêneos que `list_rbind()` falha ou resulta um *data frame* que não é muito útil.
 Nesse caso, ainda é útil começar carregando todos os arquivos:
 
 ```{r}
@@ -735,10 +735,10 @@ arquivos <- caminhos |>
   map(readxl::read_excel) 
 ```
 
-Então, uma estratégia muito útil é capturar a estrutura dos quadros de dados para que você possa explorá-la usando suas habilidades em ciência de dados.
+Então, uma estratégia muito útil é capturar a estrutura dos *data frames* para que você possa explorá-la usando suas habilidades em ciência de dados.
 Uma maneira de fazer isso é com esta útil função `df_tipos`[^iteration-6] que retorna um *tibble* com uma linha para cada coluna:
 
-[^iteração-6]: Não vamos explicar como funciona, mas se você olhar a documentação para as funções usadas, você conseguirá decifrar.
+[^iteração-6]: Não vamos explicar como ela funciona, mas se você olhar a documentação para as funções usadas, você conseguirá decifrá-la.
 
 ```{r}
 df_tipos <- function(df) {
@@ -869,14 +869,14 @@ Isso certamente é possível com `map()`:
 caminhos |> map(adiciona_arquivo)
 ```
 
-Mas não nos importamos com a saída de `adiciona_arquivo()`, então em vez de `map()` é um pouco melhor usar `walk()`.
+Mas não nos importamos com a saída de `adiciona_arquivo()`, então em vez de `map()` é ligeiramente melhor usar `walk()`.
 `walk()` faz exatamente a mesma coisa que `map()` mas joga fora a saída:
 
 ```{r}
 caminhos |> walk(adiciona_arquivo)
 ```
 
-Now we can see if we have all the data in our table:
+Agora podemos verificar se temos todos os dados na nossa tabela:
 
 ```{r}
 con |> 
@@ -904,7 +904,7 @@ por_transparencia
 ```
 
 Isso nos dá um novo bloco com oito linhas e duas colunas.
-`transparencia` é nossa variável de agrupamento e `data` é uma coluna de lista contendo um tibble para cada valor único de `transparencia`:
+`transparencia` é nossa variável de agrupamento e `data` é uma coluna-lista contendo um tibble para cada valor único de `transparencia`:
 
 ```{r}
 por_transparencia$data[[1]]
@@ -930,7 +930,7 @@ write_csv(por_transparencia$data[[3]], por_transparencia$caminho[[3]])
 write_csv(por_transparencia$data[[8]], por_transparencia$caminho[[8]])
 ```
 
-sso é um pouco diferente dos nossos usos anteriores de `map()` porque há dois argumentos que estão mudando, não apenas um.
+Isso é um pouco diferente dos nossos usos anteriores de `map()` porque há dois argumentos que estão mudando, não apenas um.
 Isso significa que precisamos de uma nova função: `map2()`, que varia o primeiro e o segundo argumentos.
 E porque novamente não nos importamos com a saída, queremos `walk2()` em vez de `map2()`.
 Isso nos dá:
@@ -953,7 +953,7 @@ Vamos primeiro criar uma função que desenhe o gráfico que queremos:
 #| fig-alt: |
 #|   Histograma de quilates de diamantes do conjunto de dados por_transparencia, variando de 
 #|   0 a 5 quilates. A distribuição é unimodal e assimétrica à direita com um pico 
-#|   de aproximadamente 1 quilate.
+#|   em torno de 1 quilate.
 
 quilate_histograma <- function(df) {
   ggplot(df, aes(x = quilate)) + geom_histogram(binwidth = 0.1)  
@@ -1017,4 +1017,4 @@ Depois de dominar as técnicas deste capítulo, é altamente recomendável apren
 Se você sabe muito sobre iteração em outras linguagens, pode se surpreender por não termos discutido o loop `for`.
 Isso ocorre porque a orientação do R em relação à análise de dados muda a forma como iteramos: na maioria dos casos, você pode confiar em um idioma existente para fazer algo em cada coluna ou grupo.
 E quando não puder, muitas vezes você pode usar uma ferramenta de programação funcional como `map()` que faz algo para cada elemento de uma lista.
-No entanto, você verá loops `for` em códigos por aí, então aprenderá sobre eles no próximo capítulo, onde discutiremos algumas ferramentas do R base importantes.
+No entanto, você verá loops `for` em códigos por aí, então aprenderá sobre eles no próximo capítulo, onde discutiremos algumas ferramentas importantes do R base.
