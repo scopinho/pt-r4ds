@@ -317,7 +317,7 @@ Na próxima seção exploraremos algumas técnicas para melhorar essa comparaç�
 
 1.  O que acontece com valores perdidos em um histograma?
     O que acontece com valores perdidos em um gráfico de barras?
-    Por que existe uma diferença em como valores perdidos são tratados em histogramas e gráficos de barras?
+    Por que existe uma diferença em como valores ausentes são tratados em histogramas e gráficos de barras?
 
 2.  O que significa o `na.rm = TRUE` em `mean()` e `sum()`?
 
