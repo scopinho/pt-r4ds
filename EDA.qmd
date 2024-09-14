@@ -631,7 +631,7 @@ Uma maneira de mostrar isso é tornar a largura do boxplot proporcional ao núme
       coord_cartesian(xlim = c(4, 11), ylim = c(4, 11))
     ```
 
-6.  Em vez de criar caixas de largura igual com `cut_width()`, poderíamos criar caixas que contenham um número aproximadamente igual de pontos com `cut_number()`.
+6.  Em vez de criar classes de largura igual com `cut_width()`, poderíamos criar classes que contenham um número aproximadamente igual de pontos com `cut_number()`.
     Quais são as vantagens e desvantagens desta abordagem?
 
     ```{r}
@@ -656,7 +656,7 @@ Se você detectar um padrão, se questione:
 -   A relação muda se você observar subgrupos individuais dos dados?
 
 Os padrões nos seus dados revelam pistas sobre as relações, por exemplo, eles revelam covariação.
-Se pensarmos na variação como um fenômeno que cria incerteza, covariação é um fenômeno que reduz ela.
+Se pensarmos na variação como um fenômeno que cria incerteza, covariação é um fenômeno que a reduz.
 Se duas variáveis covariam, você pode usar os valores de uma variável para fazer melhores previsões sobre os valores da segunda.
 Se a covariação é uma relação causal (um caso especial), então você pode usar o valor de uma variável para controlar o valor da segunda.
 
@@ -664,9 +664,9 @@ Os modelos são ferramentas para extrair padrões dos dados.
 Por exemplo, considere os dados diamantes.
 É difícil entender a relação entre corte e preço, porque corte e quilate, e quilate e preço são intimamente relacionados.
 É possível usar o modelo para remover a forte relação entre preço e quilate, então nós podemos explorar as complexidades que permanecem.
-O seguinte código ajusta o modelo que prediz `preco` de `quilate` e então calcula os resíduos (a diferença entre o valor predito e o valor real).
-Os resíduos nos dão uma visão do preço do diamante, uma vez que o efeito do quilate tem sido removido.
-Note que ao invés de usar os valores das linhas de `preco` e `quilate`, nós transformamos em log primeiro, e ajustamos o modelo aos valores transformados em log.
+O código a seguir ajusta o modelo que prediz `preco` de `quilate` e então calcula os resíduos (a diferença entre o valor predito e o valor real).
+Os resíduos nos dão uma visão do preço do diamante, uma vez que o efeito do quilate foi removido.
+Note que ao invés de usar os valores originais de `preco` e `quilate`, nós aplicamos primeiramente o logaritmo, e ajustamos o modelo aos valores log-transformados.
 Depois, exponenciamos os resíduos para colocá-los de volta na escala de preços brutos.
 
 ```{r}
@@ -696,26 +696,26 @@ ggplot(diamante_aug, aes(x = quilate, y = .resid)) +
   geom_point()
 ```
 
-Uma vez que você tem removido a forte relação entre quilate e preço, você pode ver o esperado da relação entre corte e preço: relativo ao tamanho deles, diamantes de melhor qualidade (corte) são mais caros.
+Uma vez que você tenha removido a forte relação entre quilate e preço, você pode ver o esperado da relação entre corte e preço: relativo ao tamanho deles, diamantes de melhor qualidade (corte) são mais caros.
 
 ```{r}
 #| fig-alt: |
-#| Gráficos boxplot lado a lado de resíduos por corte. O eixo x exibe os vários
-#| cortes (justo para ideal), o eixo y varia de 0 a quase 5. As medianas são
+#| Gráficos boxplot lado a lado dos resíduos por corte. O eixo x exibe os vários
+#| cortes (justo até  ideal), o eixo y varia de 0 a quase 5. As medianas são
 #| bastante semelhantes, entre cerca de 0,75 a 1,25. Cada uma das distribuições 
-#| dos resíduos são distorcidos para a direita, com muitos valores discrepantes na
+#| dos resíduos são assimétricos à direita, com muitos valores discrepantes na
 #| extremidade superior.
 
 ggplot(diamante_aug, aes(x = corte, y = .resid)) + 
   geom_boxplot()
 ```
 
-Nós não discutimos modelagem nesse livro porque entender o que são os modelos e como eles trabalham é mais fácil uma vez que você tem ferramentas de organização de dados (data wrangling) e programação em mãos.
+Nós não discutiremos modelagem nesse livro porque será mais fácil entender o que são os modelos e como eles funcionam uma vez que você tenha ferramentas de tratamento de dados (*data wrangling*) e de programação em mãos.
 
 ## Resumo
 
-Nesse capítulo você tem aprendido uma variedade de ferramentas para ajudar você a entender a variação dentro dos dados.
-Você tem visto técnicas que trabalham com uma única variável no tempo e com um par de variáveis.
+Nesse capítulo você aprendeu uma variedade de ferramentas para ajudar você a entender a variação dentro dos dados.
+Você viu técnicas que trabalham com uma única variável no tempo e com um par de variáveis.
 Isso pode parecer dolorosamente restritivo se você tem dezenas ou centenas de variáveis nos seus dados, mas elas são a base sobre a qual todas as outras técnicas são construídas.
 
-No próximo capítulo, nós focaremos sobre ferramentas que podemos usar para comunicar nossos resultados.
+No próximo capítulo, nós focaremos em ferramentas que podemos usar para comunicar nossos resultados.
