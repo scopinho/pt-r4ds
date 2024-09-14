@@ -478,7 +478,7 @@ ggplot(diamante, aes(x = corte, y = cor)) +
 O tamanho de cada círculo no gráfico exibe quantas observações ocorrem em cada combinação de valores.
 A covariação aparecerá como uma forte correlação entre valores específicos de x e valores específicos de y.
 
-Outra abordagem para explorar a relação entre essas variáveis é calcular as contagens com dplyr:
+Outra abordagem para explorar a relação entre essas variáveis é calcular as contagens com o dplyr:
 
 ```{r}
 diamante |> 
