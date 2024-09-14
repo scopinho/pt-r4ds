@@ -258,7 +258,8 @@ Se você encontrou valores atípicos no seu conjunto de dados e simplesmente des
     Não recomendamos esta opção porque um valor inválido não implica que todos os outros valores para essa observação também sejam inválidos.
     Além disso, se você tiver dados de baixa qualidade, ao aplicar essa abordagem a todas as variáveis, você poderá descobrir que não sobrará mais dados!
 
-2.  Ao invés, nós recomendamos substituir os valores atípicos por valores faltantes (missing values).O caminho mais fácil para fazer isso, é usar a função mutate() para substituir os valores atípicos da variável.Você também pode usar o if_else() para substituir os valores atípicos por NA:
+2.  Ao invés disso, nós recomendamos substituir os valores atípicos por valores faltantes (missing values). O caminho mais fácil para fazer isso, é usar a função mutate() para substituir os valores atípicos da variável. 
+Você também pode usar o if_else() para substituir os valores atípicos por NA:
 
     ```{r}
     diamante2 <- diamante |> 
@@ -372,34 +373,34 @@ ggplot(diamante, aes(x = preco, y = after_stat(density))) +
   geom_freqpoly(aes(color = corte), binwidth = 500, linewidth = 0.75)
 ```
 
-Note que nós estamos mapeando a densidade para o eixo `y`, mas como `density` não é uma variável do `diamante`, nós precisamos primeiro calcular ela.
-Nós usamos a função `afer_stat()` para fazer isso.
+Note que nós estamos mapeando a densidade para o eixo `y`, mas como `density` não é uma variável do `diamante`, nós precisamos primeiro calculá-la.
+Nós usamos a função `after_stat()` para fazer isso.
 
-Há algo bastante surpreendente neste gráfico - parece que os diamantes razoáveis (de qualidade mais baixa) têm o preço médio mais alto!
+Há algo bastante surpreendente neste gráfico - parece que os diamantes Justos (de qualidade mais baixa) têm o preço médio mais alto!
 Mas talvez seja porque os polígonos de frequência são um pouco difíceis de interpretar -- há muita coisa acontecendo neste gráfico.
 Um gráfico visualmente mais simples para explorar essa relação são os boxplot.
 
 ```{r}
 #| fig-alt: |
-#| Boxplots lado a lado dos preços dos diamantes por corte. A distribuição de
+#| Boxplots lado a lado dos preços dos diamantes segundo o corte. A distribuição de
 #| preços é enviesado à direita para cada corte (razoável, bom, muito bom, premium e
-#| Ideal). As medianas estão próximas umas das outras, sendo a mediana do Ideal
-#| os diamantes são os mais baixos e os de Fair os mais altos.
+#| Ideal). As medianas estão próximas umas das outras, sendo que a mediana dos diamantes do tipo Ideal
+#| são as mais baixas e as dos Justos as mais altas.
 
 ggplot(diamante, aes(x = corte, y = preco)) +
   geom_boxplot()
 ```
 
-Agora nós vemos muito menos informações sobre a distribuição, mas os boxplots são muito mais compactos então nós podemos mais facilmente comparar eles (e se ajusta mais em um gráfico).
-Isto apoia a descoberta contra-intuitiva de que diamantes de melhor qualidade são normalmente mais baratos!
+Agora nós vemos muito menos informações sobre a distribuição, mas os boxplots são muito mais compactos então é possível compará-los mais facilmente (e mostrar mais coisas em um único gráfico).
+Isto corrobora a descoberta contra-intuitiva de que diamantes de melhor qualidade são normalmente mais baratos!
 Nos exercícios, você será desafiado a descobrir o porquê.
 
-`corte` é um fator ordenado: razoável é pior que bom, que por suas vez é pior que muito bom e assim por diante.
-Muitas variáveis categóricas não tem uma ordem intrínseca, então você pode querer reordenar elas para tornar uma exibição mais informativa.
-Um caminho para isso é usar a `fct_reorder()`.
-Você irá aprender mais sobre essa função em @sec-modifying-factor-order, mas nós queremos dar a você uma rápida pré-visualização do uso dela.
+`corte` é um fator ordenado: justo é pior que bom, que por sua vez é pior que muito bom e assim por diante.
+Muitas variáveis categóricas não têm uma ordem intrínseca, então você pode querer reordená-las para serem apresentadas de forma mais informativa.
+Uma forma de fazer isso é usar a `fct_reorder()`.
+Você irá aprender mais sobre essa função em @sec-modifying-factor-order, mas nós queremos lhe dar uma prévia rápida do porquê ela é tão útil.
 Por exemplo, pegue a variável `classe` do banco de dados `milhas`.
-Você pode estar interessado em saber como a quilometragem da rodovia varia entre as classes:
+Você pode estar interessado em saber como o consumo de combustível na rodovia varia entre as classes:
 
 ```{r}
 #| fig-alt: |
@@ -416,20 +417,20 @@ Para tornar a tendência mais fácil de visualizar, nós podemos reordenar `clas
 ```{r}
 #| fig-alt: |
 #| Boxplots lado a lado de quilometragem rodoviária de carros por classe. As classes
-#| no eixo x estão ordenadas pelo aumento da quilometragem média da rodovia (recolha,
+#| no eixo x estão ordenadas segundo o aumento do consumo mediano de combustível na rodovia (picape,
 #| suv, minivan, 2 lugares, subcompacto, compacto e médio).
 
 ggplot(milhas, aes(x = fct_reorder(classe, rodovia, median), y = rodovia)) +
   geom_boxplot()
 ```
 
-Se você tem nomes longos de variáveis, `geom_boxplot()` irá trabalhar melhor se você virar em 90º.
+Se você tem nomes variáveis com nomes longos, `geom_boxplot()` irá funcionar melhor se você girá-los em 90º.
 Você pode fazer isso trocando os eixos x e y.
 
 ```{r}
 #| fig-alt: |
-#| Boxplots lado a lado de quilometragem rodoviária de carros por classe. As classes
-#| estão ordenadas no eixo y pelo aumento da quilometragem média.
+#| Boxplots lado a lado do consumo de combustível dos carros na rodovia segundo classe. As classes
+#| estão ordenadas no eixo y segundo o aumento mediano do consumo de combustível.
 
 ggplot(milhas, aes(x = rodovia, y = fct_reorder(classe, rodovia, median))) +
   geom_boxplot()
@@ -437,28 +438,28 @@ ggplot(milhas, aes(x = rodovia, y = fct_reorder(classe, rodovia, median))) +
 
 #### Exercícios
 
-1.  Use o que você tem aprendido para melhorar a visualização dos horários de partida de voos cancelados e não cancelados.
+1.  Use o que você aprendeu para melhorar a visualização dos horários de partida de voos cancelados e não cancelados.
 
 2.  Com base na EDA, qual variável do banco de dados diamante parece ser mais importante para predizer o preço de um diamante?
     Como essa variável está correlacionada com corte?
-    Por que a combinação dessas duas relações leva a qualidade mais baixa de diamantes ser mais caros?
+    Por que a combinação dessas duas relações resulta em diamantes de pior qualidade terem preços mais elevados?
 
 3.  Ao invés de trocar as variáveis x e y, adicione `coord_flip()` como uma nova camada para transformar o boxplot de vertical para horizontal.
     Como isso se compara à troca de variáveis?
 
-4.  Um problema com os boxplots é que eles foram desenvolvidos em uma era de conjuntos de dados muito menores e tendem a exibir um número proibitivamente grande de "valores periféricos".
+4.  Um problema com os boxplots é que eles foram desenvolvidos em uma era de conjuntos de dados muito menores e tendem a exibir um número proibitivamente grande de "valores discrepantes".
     Uma abordagem para remediar esse problema é o gráfico de valores de letras.
-    Instale o pacote the lvplot, e tente usar `geom_lv()` para exibir a distribuição de preço vs. corte.
+    Instale o pacote lvplot, e tente usar `geom_lv()` para exibir a distribuição de preço vs. corte.
     O que você entende?
     Como você interpreta os gráficos?
 
-5.  Crie uma visualização dos preços dos diamantes vs. uma variável categórica do banco de dados diamante usando o `geom_violin()`, depois um facetado `geom_histogram()`, e depois um colorido `geom_freqpoly()`, e depois um colorido `geom_density()`.
+5.  Crie uma visualização dos preços dos diamantes vs. uma variável categórica do banco de dados diamante usando o `geom_violin()`, depois um `geom_histogram()` facetado, e depois um `geom_freqpoly()`  colorido, e então um `geom_density()` colorido .
     Compare e contraste os quatro gráficos.
     Quais são os prós e contras de cada método de visualização da distribuição de uma variável numérica baseada nos níveis de uma variável categórica?
 
-6.  Se você tem um pequeno conjunto de dados, às vezes é útil usar `geom_jitter()` para evitar plotagem excessiva e ver mais facilmente a relação entre as variáveis contínuas e categóricas.
-    O pacote ggbeeswarm disponibiliza um número de métodos similares ao `geom_jitter()`.
-    Liste eles e descreva brevemente o que cada um deles faz.
+6.  Se você tem um pequeno conjunto de dados, às vezes é útil usar `geom_jitter()` para evitar sobreposição dos pontos e visualizar mais facilmente a relação entre as variáveis contínuas e categóricas.
+    O pacote ggbeeswarm disponibiliza vários métodos similares ao `geom_jitter()`.
+    Liste-os e descreva brevemente o que cada um deles faz.
 
 ### Duas variáveis categóricas
 
