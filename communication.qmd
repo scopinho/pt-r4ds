@@ -1,17 +1,16 @@
-# Comunicação {#sec-communication}
+# ✅ Comunicação {#sec-communication}
 
 ```{r}
 #| echo: false
 #| results: asis
 
 source("_common.R")
-
 ```
 
 ## Introdução
 
 No @sec-exploratory-data-analysis, você aprendeu como usar gráficos como ferramentas para *exploração*.
-Ao fazer gráficos exploratórios, você sabe --- mesmo antes de olhar --- quais variáveis ​​o gráfico exibirá.
+Ao fazer gráficos exploratórios, você sabe --- mesmo antes de olhar --- quais variáveis o gráfico exibirá.
 Você criou cada gráfico com um propósito, pôde examiná-lo rapidamente e depois passar para o próximo gráfico.
 No decorrer da maior parte das análises, você produzirá dezenas ou centenas de gráficos, a maioria dos quais será imediatamente descartada.
 
@@ -29,7 +28,7 @@ Ele não ensina a mecânica de criação de visualizações, mas concentra-se no
 ### Pré-requisitos
 
 Neste capítulo, focaremos mais uma vez no ggplot2.
-Também usaremos um pouco do pacote dplyr para transformação de dados, **scales** para substituir quebras, rótulos, transformações e paletas padrão, e alguns pacotes de extensão ggplot2, incluindo **ggrepel** ([https://ggrepel.slowkow.com](https://ggrepel.slowkow.com/)) de Kamil Slowikowski e o **patchwork** ([https://patchwork.data-imaginist.com](https://patchwork.data-imaginist .com/)) de Thomas Lin Pedersen.
+Também usaremos um pouco do pacote dplyr para transformação de dados, **scales** para substituir quebras, rótulos, transformações e paletas padrão, e alguns pacotes de extensão ggplot2, incluindo **ggrepel** ([https://ggrepel.slowkow.com](https://ggrepel.slowkow.com/)) de Kamil Slowikowski e o **patchwork** ([https://patchwork.data-imaginist.com](https://patchwork.data-imaginist%20.com/)) de Thomas Lin Pedersen.
 Usaremos também o pacote *dados* e seus conjuntos de dados *milhas*, *predisentes_eua* e *diamante*.
 Não se esqueça que você precisará instalar esses pacotes com `install.packages()` se ainda não os tiver.
 
@@ -108,9 +107,9 @@ ggplot(df, aes(x, y)) +
 
 ### Exercícios
 
-1. Crie um gráfico com os dados de economia de combustível (milhas) com rótulos personalizados de `title`, `subtitle`, `caption`, `x`, `y` e `color`.
+1.  Crie um gráfico com os dados de economia de combustível (milhas) com rótulos personalizados de `title`, `subtitle`, `caption`, `x`, `y` e `color`.
 
-2. Recrie o gráfico a seguir usando os dados de economia de combustível.
+2.  Recrie o gráfico a seguir usando os dados de economia de combustível.
     Observe que as cores e os formatos dos pontos variam de acordo com o tipo de tração.
 
     ```{r}
@@ -231,15 +230,15 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
 Lembre-se, além de `geom_text()` e `geom_label()`, você tem muitas outras geometrias (*geoms*) no ggplot2 disponíveis para ajudar a anotar seu gráfico.
 Algumas ideias:
 
-- Use `geom_hline()` e `geom_vline()` para adicionar linhas de referência.
+-   Use `geom_hline()` e `geom_vline()` para adicionar linhas de referência.
     Freqüentemente, as tornamos grossas (`linewidth = 2`) e brancas (`color = white`) e as desenhamos abaixo da camada de dados primária.
     Isso os torna fáceis de ver, sem desviar a atenção dos dados.
 
-- Use `geom_rect()` para desenhar um retângulo ao redor dos pontos de interesse.
+-   Use `geom_rect()` para desenhar um retângulo ao redor dos pontos de interesse.
     Os limites do retângulo são definidos pela estética `xmin`, `xmax`, `ymin`, `ymax`.
     Como alternativa, consulte o [pacote ggforce](https://ggforce.data-imaginist.com/index.html), especificamente [`geom_mark_hull()`](https://ggforce.data-imaginist.com/reference/geom_mark_hull.html), que permite anotar subconjuntos de pontos.
 
-- Use `geom_segment()` com o argumento `arrow` para chamar a atenção para um ponto com uma seta.
+-   Use `geom_segment()` com o argumento `arrow` para chamar a atenção para um ponto com uma seta.
     Use a estética `x` e `y` para definir o local inicial e `xend` e `yend` para definir o local final.
 
 Outra função útil para adicionar anotações aos gráficos é `annotate()`.
@@ -284,19 +283,19 @@ O único limite é a sua imaginação (e a sua paciência com o posicionamento d
 
 ### Exercícios
 
-1. Use `geom_text()` com posições infinitas para colocar texto nos quatro cantos do gráfico.
+1.  Use `geom_text()` com posições infinitas para colocar texto nos quatro cantos do gráfico.
 
-2. Use `annotate()` para adicionar uma *geom* de ponto no meio de seu último gráfico sem ter que criar um tibble.
+2.  Use `annotate()` para adicionar uma *geom* de ponto no meio de seu último gráfico sem ter que criar um tibble.
     Personalize a forma, o tamanho ou a cor do ponto.
 
-3. Como os rótulos com `geom_text()` interagem com o facetamento (*faceting*)?
+3.  Como os rótulos com `geom_text()` interagem com o facetamento (*faceting*)?
     Como você pode adicionar um rótulo a uma única faceta?
     Como você pode colocar um rótulo diferente em cada faceta?
     (Dica: pense no conjunto de dados que está sendo passado para `geom_text()`.)
 
-4. Quais argumentos para `geom_label()` controlam a aparência do fundo da caixa?
+4.  Quais argumentos para `geom_label()` controlam a aparência do fundo da caixa?
 
-5. Quais são os quatro argumentos para `arrow()`?
+5.  Quais são os quatro argumentos para `arrow()`?
     Como eles funcionam?
     Crie uma série de gráficos que demonstrem as opções mais importantes.
 
@@ -338,16 +337,16 @@ Existem também muitas escalas fora do padrão que você aprenderá a seguir.
 As escalas padrão foram cuidadosamente escolhidas para fazer um bom trabalho para uma ampla gama de insumos.
 No entanto, você pode querer substituir os padrões por dois motivos:
 
-- Você pode querer ajustar alguns parâmetros da escala padrão.
+-   Você pode querer ajustar alguns parâmetros da escala padrão.
     Isso permite que você faça coisas como alterar as quebras nos eixos ou os rótulos das teclas na legenda.
 
-- Você pode querer substituir completamente a escala e usar um algoritmo completamente diferente.
+-   Você pode querer substituir completamente a escala e usar um algoritmo completamente diferente.
     Muitas vezes você pode fazer melhor que o padrão porque sabe mais sobre os dados.
 
 ### Marcações de eixo e chaves da legenda
 
 Coletivamente, eixos e legendas são chamados de **guias**.
-Os eixos são usados ​​para estética x e y; legendas são usadas para todo o resto.
+Os eixos são usados para estética x e y; legendas são usadas para todo o resto.
 
 Existem dois argumentos principais que afetam a aparência dos marcadores nos eixos e das chaves na legenda: `breaks` (quebras) e `labels` (rótulos).
 As quebras (*breaks*) controlam a posição dos marcadores ou os valores associados às chaves.
@@ -551,9 +550,7 @@ ggplot(diamante, aes(x = quilate, y = preco)) +
 Outra escala frequentemente personalizada é a cor.
 A escala categórica padrão seleciona cores uniformemente espaçadas no círculo cromático.
 Alternativas úteis são as escalas ColorBrewer que foram ajustadas manualmente para funcionar melhor para pessoas com tipos comuns de daltonismo.
-Os dois gráficos abaixo parecem semelhantes, mas há diferença suficiente nos tons de vermelho e verde para que os pontos à direita possam ser distinguidos até mesmo por pessoas com daltonismo vermelho-verde.[^comunicação-1]
-
-[^communication-1]: Você pode usar uma ferramenta como [SimDaltonism](https://michelf.ca/projects/sim-daltonism/) para simular daltonismo e testar essas imagens.
+Os dois gráficos abaixo parecem semelhantes, mas há diferença suficiente nos tons de vermelho e verde para que os pontos à direita possam ser distinguidos até mesmo por pessoas com daltonismo vermelho-verde.\[\^comunicação-1\]
 
 ```{r}
 #| fig-align: default
@@ -562,7 +559,7 @@ Os dois gráficos abaixo parecem semelhantes, mas há diferença suficiente nos 
 #| fig-alt: |
 #|   Dois gráficos de dispersão de eficiência de combustível nas rodovias versus cilindrada onde os pontos são 
 #|   coloridos por tipo de tração. O gráfico à esquerda usa  a paleta de cores padrão do
-#| ggplot2 e o gráfico à direita usa uma paleta de cores diferente
+#|   ggplot2 e o gráfico à direita usa uma paleta de cores diferente
 #| 
 
 ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
@@ -676,9 +673,9 @@ Observe que todas as escalas de cores vêm em duas variedades: `scale_color_*()`
 
 Existem três maneiras de controlar os limites do gráfico:
 
-1. Ajustando quais dados são plotados.
-2. Definir os limites em cada escala.
-3. Configurando `xlim` e `ylim` em `coord_cartesian()`.
+1.  Ajustando quais dados são plotados.
+2.  Definir os limites em cada escala.
+3.  Configurando `xlim` e `ylim` em `coord_cartesian()`.
 
 Demonstraremos essas opções em uma série de gráficos.
 O gráfico à esquerda mostra a relação entre o tamanho do motor e a eficiência de combustível, colorida por tipo de trem de força.
@@ -748,13 +745,15 @@ Por exemplo, se extrairmos duas classes de carros e plotá-las separadamente, se
 #| layout-ncol: 2
 #| fig-width: 4
 #| fig-alt: |
-#|   À esquerda, um gráfico de dispersão de eficiência de combustível nas rodovias versus cilindradas de SUVs.
-#|   À direita, um gráfico de dispersão das mesmas variáveis ​​para carros compactos..
+#|   À esquerda, um gráfico de dispersão de eficiência de combustível 
+#|   nas rodovias versus cilindradas de SUVs.
+#|   À direita, um gráfico de dispersão das mesmas variáveis para carros compactos..
 #|   Os pontos são coloridos por tipo de tração os gráficos. Entre os SUVs mais 
-#|  carros têm tração 4x4 e os demais têm tração traseira, enquanto 
+#|   carros têm tração 4x4 e os demais têm tração traseira, enquanto 
 #|   entre os carros compactos, mais carros têm tração dianteira e os outros 
 #|   têm tração 4x4. O gráfico do SUV mostra uma clara relação negativa
-#|   entre eficiência e cilindrada nas rodovias enquanto que no gráfico de carros compactos 
+#|   entre eficiência e cilindrada nas rodovias enquanto
+#|   que no gráfico de carros compactos 
 #|   o relacionamento é muito mais achatado.
 
 suv <- milhas |> filter(classe == "suv")
@@ -776,7 +775,7 @@ Uma forma de superar este problema é compartilhar escalas em múltiplos gráfic
 #| fig-width: 4
 #| fig-alt: |
 #|   À esquerda, um gráfico de dispersão da eficiência de combustível nas rodovias versus cilindrada de SUVs.
-#|   À direita, um gráfico de dispersão das mesmas variáveis ​​para carros compactos.
+#|   À direita, um gráfico de dispersão das mesmas variáveis para carros compactos.
 #|   Os pontos são coloridos por tipo de tração. Ambos os gráficos são plotados 
 #|   na mesma escala para eficiência de combustível em rodovias, cilindrada e tipo de tração,
 #|   resultando na legenda mostrando todos os três tipos (dianteiro, traseiro e nas 4 rodas)
@@ -861,11 +860,11 @@ ggplot(milhas, aes(x = cilindrada, y = rodovia)) +
   theme_bw()
 ```
 
-O ggplot2 inclui os oito temas mostrados na @fig-themes, com `theme_gray()` como padrão.[^communication-2]
+O ggplot2 inclui os oito temas mostrados na @fig-themes, com `theme_gray()` como padrão.[^communication-1]
 Muitos outros estão incluídos em pacotes complementares como **ggthemes** (<https://jrnold.github.io/ggthemes>), de Jeffrey Arnold.
 Você também pode criar seus próprios temas, se estiver tentando combinar com um estilo corporativo ou de periódico específico.
 
-[^communication-2]: Muitas pessoas se perguntam por que o tema padrão tem um fundo cinza.
+[^communication-1]: Muitas pessoas se perguntam por que o tema padrão tem um fundo cinza.
     Esta foi uma escolha deliberada porque apresenta os dados e ao mesmo tempo torna as linhas da grade visíveis.
     As linhas de grade brancas são visíveis (o que é importante porque auxiliam significativamente no julgamento de posição), mas têm pouco impacto visual e podemos facilmente desligá-las.
     O fundo cinza confere ao gráfico uma cor tipográfica semelhante ao texto, garantindo que os gráficos se ajustem ao fluxo de um documento sem sobressair com um fundo branco brilhante.
@@ -898,7 +897,7 @@ Observe que a personalização da caixa de legenda e dos elementos do título do
 Essas funções especificam o estilo de componentes que não são dos dados, por exemplo, o texto do título está em negrito no argumento `face` de `element_text()` e a cor da borda da legenda é definida no argumento `color` de `element_rect()`.
 Os elementos do tema que controlam a posição do título e da legenda são `plot.title.position` e `plot.caption.position`, respectivamente.
 No gráfico a seguir, eles são definidos como `"plot"` para indicar que esses elementos estão alinhados a toda a área do gráfico, em vez do painel de plotagem (o padrão).
-Alguns outros componentes `theme()` úteis são usados ​​para alterar o posicionamento do formato do título e do texto da legenda.
+Alguns outros componentes `theme()` úteis são usados para alterar o posicionamento do formato do título e do texto da legenda.
 
 ```{r}
 #| fig-alt: |
