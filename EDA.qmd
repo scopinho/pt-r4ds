@@ -97,7 +97,7 @@ ggplot(diamante, aes(x = quilate)) +
 Agora que você pode visualizar a variação, o que você deve observar em seus gráficos?
 E que tipo de perguntas complementares você deve fazer?
 Montamos abaixo uma lista dos tipos mais comuns de informações que você encontrará em seus gráficos, junto com algumas perguntas complementares para cada tipo de informação.
-A chave para fazer boas questões de acompanhamento irá depender da curiosidade (o que mais você quer aprender?) bem como do seu ceticismo (Como isso pode ser enganoso?).
+A chave para fazer boas questões de acompanhamento será contar com a sua curiosidade (o que mais você quer aprender?) bem como do seu ceticismo (Como isso pode ser enganoso?).
 
 ### Valores típicos
 
@@ -171,15 +171,15 @@ ggplot(diamante, aes(x = y)) +
   geom_histogram(binwidth = 0.5)
 ```
 
-Há muitas observações nas caixas comuns que as caixas raras são muito curtas, tornando muito difícil vê-las (embora talvez se você olhar atentamente para 0 você encontre algo).
-Para facilitar a visualização dos valores incomuns, precisamos ampliar para os valores pequenos do eixo y com `coord_cartesian()`:
+Há tantas observações nas classes comuns que as classes mais raras são muito baixas, tornando muito difícil vê-las (embora talvez, se você olhar atentamente para o 0, você consiga notar algo).
+Para facilitar a visualização dos valores incomuns, precisamos ampliar os valores pequenos do eixo y com `coord_cartesian()`:
 
 ```{r}
 #| fig-alt: |
 #| Um histograma de comprimentos de diamantes. O eixo x varia de 0 a 60 e o
 #| o eixo y varia de 0 a 50. Há um pico em torno de 5 e os dados
 #| parecem estar completamente agrupados em torno do pico. Além desses dados,
-#| há uma caixa em 0 com uma altura de cerca de 8, uma com pouco mais de 30 com
+#| há uma classe em 0 com uma altura de cerca de 8, uma outra classe com pouco mais de 30 com
 #| altura 1 e outra um pouco abaixo de 60 com altura 1.
 
 ggplot(diamante, aes(x = y)) + 
@@ -191,7 +191,7 @@ ggplot(diamante, aes(x = y)) +
 O ggplot2 também possui as funções `xlim()` e `ylim()` que funcionam de maneira um pouco diferente: elas jogam fora os dados fora dos limites.
 
 Isso nos permite ver que existem três valores incomuns: 0, \~30 e \~60.
-Nós retiramos eles com dplyr:
+Nós os retiramos com dplyr:
 
 ```{r}
 #| include: false
@@ -214,9 +214,10 @@ options(old)
 ```
 
 A variável `y` mede uma das três dimensões desses diamantes, em mm.
-Sabemos que os diamantes não podem ter largura de 0 mm, então esses valores devem estar incorretos.
-Ao fazer EDA, descobrimos dados faltantes codificados como 0, que nunca teríamos encontrado simplesmente procurando por `NA`s.do a diantes, nós podemos escolher recodificar estes valores como `NA`s, a fim de evitar cálculos enganosos.
-Também podemos suspeitar que as medidas de 32 mm e 59 mm são implausíveis: esses diamantes têm mais de uma polegada de comprimento, mas não custam centenas de milhares de dólares!
+Sabemos que os diamantes não podem ter largura de 0mm, então esses valores devem estar incorretos.
+Ao fazer EDA, descobrimos dados faltantes codificados como 0, que nunca teríamos encontrado simplesmente procurando por `NA`s.
+Em seguida, podemos escolher recodificar estes valores como `NA`s, a fim de evitar cálculos enganosos.
+Também podemos suspeitar que as medidas de 32mm e 59mm são implausíveis: esses diamantes têm mais de uma polegada de comprimento, mas não custam centenas de milhares de dólares!
 
 É uma boa prática repetir suas análises com e sem valores discrepantes.
 Se eles tiverem um efeito mínimo nos resultados e você não conseguir descobrir por que estão ali, é razoável omiti-los e seguir em frente.
@@ -225,7 +226,7 @@ Você precisará descobrir o que os causou (por exemplo, um erro de entrada de d
 
 ### Exercícios
 
-1.  Explore a distribuição das variáveis `x`, `y`, and `z` em `dados`.
+1.  Explore a distribuição das variáveis `x`, `y`, and `z` em `diamantes`.
     O que você aprendeu?
     Pense em um diamante e como você pode decidir qual dimensão é o comprimento, largura e profundidade.
 
@@ -237,7 +238,7 @@ Você precisará descobrir o que os causou (por exemplo, um erro de entrada de d
     Quantos equivalem a 1 quilate?
     O que você acha que é a causa da diferença?
 
-4.  Compare e contraste `coord_cartesian()` vs. `xlim()` ou `ylim()` quando ampliar em um histograma.
+4.  Compare e contraste `coord_cartesian()` vs. `xlim()` ou `ylim()` quando fizer uma ampliação em um histograma.
     O que acontece se você deixa o `binwidth` desativado?
     O que acontece se você tentar ampliar de forma que apenas meia barra seja exibida?
 
@@ -255,7 +256,7 @@ Se você encontrou valores atípicos no seu conjunto de dados e simplesmente des
     ```
 
     Não recomendamos esta opção porque um valor inválido não implica que todos os outros valores para essa observação também sejam inválidos.
-    Além disso, se você tiver dados de baixa qualidade, ao aplicar essa abordagem a todas as variáveis, você poderá descobrir que não tem mais dados!
+    Além disso, se você tiver dados de baixa qualidade, ao aplicar essa abordagem a todas as variáveis, você poderá descobrir que não sobrará mais dados!
 
 2.  Ao invés, nós recomendamos substituir os valores atípicos por valores faltantes (missing values).O caminho mais fácil para fazer isso, é usar a função mutate() para substituir os valores atípicos da variável.Você também pode usar o if_else() para substituir os valores atípicos por NA:
 
@@ -264,13 +265,12 @@ Se você encontrou valores atípicos no seu conjunto de dados e simplesmente des
       mutate(y = if_else(y < 3 | y > 20, NA, y))
     ```
 
-Não é óbvio onde você deve traçar os valores ausentes, então o ggplot2 não inclui os valores ausentes no gráfico, mas avisa que eles foram removidos:
+Não é óbvio onde você deve posicionar os valores ausentes, então o ggplot2 não os inclui no gráfico, mas avisa que eles foram removidos:
 
 ```{r}
 #| dev: "png"
 #| fig-alt: |
-#| Um gráfico de dispersão de larguras versus comprimentos de diamantes. Há um forte,
-#| associação linear entre as duas variáveis. Todos menos um dos diamantes
+#| Um gráfico de dispersão de larguras versus comprimentos de diamantes. Há uma forte associação linear entre as duas variáveis. Todos menos um dos diamantes
 #| tem comprimento maior que 3. O valor discrepante tem comprimento 0 e largura
 #| de cerca de 6,5.
 
@@ -288,14 +288,16 @@ ggplot(diamante2, aes(x = x, y = y)) +
 ```
 
 Outras vezes, você deseja entender o que torna as observações com valores ausentes diferentes das observações com valores registrados.
-Por exemplo, em `nycflights13::flights1`, valores ausentes na variável dep_time indicam que o voo foi cancelado.
+Por exemplo, em `nycflights13::flights1`[^eda-1], valores ausentes na variável dep_time indicam que o voo foi cancelado.
 Então, você pode querer comparar os horários de partida programados para horários cancelados e não cancelados.
 Você pode fazer isso criando uma nova variável, usando `is.na()` para verificar se `dep_time` está faltando.
+
+[^eda-1]: Lembre-se que quando é necessário ser explícito sobre o local de origem da função (ou conjunto de dados), usaremos a forma especial `pacote::função()` ou `pacote::dados`.
 
 ```{r}
 #| fig-alt: |
 #| Um polígono de frequência de horários programados de partida de voos. Duas linhas
-#| representam voos cancelados e não cancelados. Os intervalos do eixo x
+#| representam voos cancelados e não cancelados. O eixo x varia
 #| de 0 a 25 minutos e o eixo y varia de 0 a 10.000.
 #| os voos não cancelados são muito superiores aos cancelados.
 
@@ -313,17 +315,17 @@ dados::voos |>
 No entanto, este gráfico não é bom porque há muito mais voos não cancelados do que voos cancelados.
 Na próxima seção exploraremos algumas técnicas para melhorar essa comparação.
 
-### Exercises
+### Exercícios
 
-1.  O que acontece com valores perdidos em um histograma?
-    O que acontece com valores perdidos em um gráfico de barras?
+1.  O que acontece com valores ausentes em um histograma?
+    O que acontece com valores ausentes em um gráfico de barras?
     Por que existe uma diferença em como valores ausentes são tratados em histogramas e gráficos de barras?
 
 2.  O que significa o `na.rm = TRUE` em `mean()` e `sum()`?
 
-3.  Recrie o gráfico de frequência de `saida_programada` colorido de acordo com o cancelamento ou não do voo.
-    Também use o facetamento para a variável `cancelado` variable.
-    Experimente diferentes valores da variável `scales` na função de lapidação para mitigar o efeito de mais voos não cancelados do que voos cancelados.
+3.  Recrie o gráfico de frequência de `saida_programada` colorido de acordo com o voo ter sido cancelado ou não.
+    Também use o facetamento para a variável `cancelado`.
+    Experimente diferentes valores do argumento `scales` na função de facetamento para mitigar o efeito de mais voos não cancelados do que voos cancelados.
 
 ## Covariação
 
@@ -338,8 +340,8 @@ Por exemplo, vamos explorar como o preço do diamante varia com a qualidade dele
 ```{r}
 #| fig-alt: |
 #| Um polígono de frequência de preços de diamantes onde cada corte de quilate (Justo,
-#| Bom, Muito Bom, Premium e Ideal) é representado com uma cor diferente
-#| linha. O eixo x varia de 0 a 20.000 e o eixo y varia de 0 a
+#| Bom, Muito Bom, Premium e Ideal) é representado com uma linha de cor diferente.
+#| O eixo x varia de 0 a 20.000 e o eixo y varia de 0 a
 #| 5000. As linhas se sobrepõem bastante, sugerindo frequência semelhante nas
 #| distribuições dos preços dos diamantes. Uma característica notável é que
 #| Os diamantes ideais têm o pico mais alto por volta de 1500.
@@ -353,18 +355,18 @@ Você irá aprender mais sobre isso em @sec-ordered-factors.
 
 A aparência padrão de `geom_freqpoly()` não é tão útil aqui porque a altura, determinada pela contagem geral, difere muito entre os `corte`s, tornando difícil ver as diferenças nas formas de suas distribuições.
 
-Para fazer a comparação mais fácil nós necessitamos trocar o que está no eixo y.
+Para fazer a comparação mais facilmente, precisamos trocar o que está no eixo y.
 Ao invés da contagem (frequência), nós iremos exibir a **densidade** (**density**), que é a contagem padronizada para que a área sob cada polígono de frequência seja um.
 
 ```{r}
 #| fig-alt: |
 #| Um polígono de frequência de densidades de preços de diamantes onde cada corte de
-#| quilate (razoável, bom, muito bom, premium e ideal) é representado por um
+#| quilate (Justo, Bom, Muito Bom, Premium e Ideal) é representado por um
 #| linha de cor diferente. O eixo x varia de 0 a 20.000. As linhas se sobrepõem
 #| bastante, sugerindo distribuições de densidade semelhantes de preços de
 #| diamantes. Uma característica notável é que todos os diamantes, exceto os Justos,têm
-#| picos altos em torno de um preço de 1.500 e os diamantes justos têm uma média mais
-#| elevada do que outros.
+#| picos altos em torno de um preço de 1.500 e os diamantes Justos têm uma média mais
+#| alta do que outros.
 
 ggplot(diamante, aes(x = preco, y = after_stat(density))) + 
   geom_freqpoly(aes(color = corte), binwidth = 500, linewidth = 0.75)
