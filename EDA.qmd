@@ -8,7 +8,7 @@ source("_common.R")
 
 ## Introdução
 
-Esse capítulo mostrará a você como usar visualização e transformação para explorar seus dados em uma forma sistemática, uma tarefa que os estatísticos chamam de análise exploratória dos dados, ou EDA (Exploratory Data Analysis) abreviamente.
+Esse capítulo lhe mostrará como usar visualização e transformação para explorar seus dados de uma forma sistemática, uma tarefa que os estatísticos chamam de análise exploratória dos dados, ou EDA (Exploratory Data Analysis) abreviadamente.
 EDA é um ciclo iterativo.
 Você:
 
@@ -22,15 +22,15 @@ A EDA não é um processo formal com um conjunto estrito de regras.
 Mais que qualquer coisa, EDA é um estado da mente.
 Durante as fases inicias da EDA você deverá se sentir livre para investigar cada ideia que ocorre a você.
 Algumas dessas ideias darão certo e outras serão becos sem saída.
-À medida que sua exploração continua, você se concentrará em alguns insights particularmente produtivos que eventualmente escreverá e comunicará a outras pessoas.
+À medida que sua exploração continua, você se concentrará em alguns insights particularmente produtivos que você eventualmente compilará e comunicará a outras pessoas.
 
 A EDA é uma parte importante de qualquer análise de dados, mesmo que as principais questões de pesquisa sejam entregues a você de bandeja, porque você sempre precisa investigar a qualidade dos seus dados.
-Limpeza de dados é apenas uma das aplicações da EDA: você se questiona sobre se seus dados vão de encontro às suas expectativas ou não.
-Para fazer limpeza de dados, você irá necessitar implementar todas as ferramentas da EDA: visualização, transformação e modelagem.
+Limpeza de dados é apenas uma das aplicações da EDA: você questiona se seus dados estão de acordo com suas expectativas ou não.
+Para fazer limpeza de dados, você precisará implementar todas as ferramentas da EDA: visualização, transformação e modelagem.
 
 ### Pré-requisitos
 
-Nesse capítulo, nós iremos combinar o que você tem aprendido sobre dplyr e ggplot2 para fazer perguntas interativamente, responder com dados e, em seguida, fazer novas perguntas.
+Nesse capítulo, combinaremos o que você tem aprendido sobre dplyr e ggplot2 para fazer perguntas interativamente, responder com dados e, em seguida, fazer novas perguntas.
 
 ```{r}
 #| label: setup
@@ -43,7 +43,7 @@ library(tidyverse)
 
 > "Não existem questões estatísticas rotineiras, apenas rotinas estatísticas questionáveis." --- Sir David Cox
 
-> "É muito melhor uma resposta aproximada à pergunta certa, que muitas vezes é vaga, do que uma resposta exata à pergunta errada, que sempre pode ser precisa." --- John Tukey
+> "É muito melhor uma resposta aproximada à pergunta certa, que muitas vezes é vaga, do que uma resposta exata à pergunta errada, que sempre pode ser tornada precisa." --- John Tukey
 
 Seu objetivo durante a EDA é desenvolver uma compreensão dos seus dados.
 A maneira mais fácil de fazer isso é usar perguntas como ferramentas para orientar sua investigação.
@@ -72,21 +72,21 @@ Explicaremos o que são variação e covariação e mostraremos várias maneiras
 Você pode ver variações facilmente na vida real; se você medir qualquer variável contínua duas vezes, você obterá dois diferentes resultados.
 Isso é verdade mesmo se você mede quantidades constantes, como a velocidade da luz.
 Cada uma de suas medidas irá incluir uma pequena quantidade de erro que varia de medida a medida.
-Variáveis também muda se você mede diferentes objetos (por exemplo, cor dos olhos de diferentes pessoas) ou diferentes tempos (por exemplo, os níveis de energia de um elétron em diferentes momentos).
-Cada variável tem seu próprio padrão de variação, que pode revelar interessantes informações sobre como isso varia entre medições na mesma observação, bem como entre observações.
-A melhor forma de entender o padrão é visualizando a distribuição dos valores da variável, que você tem aprendido sobre no @sec-data-visualization.
+Variáveis também variam se você mede diferentes indivíduos (por exemplo, cor dos olhos de diferentes pessoas) ou diferentes tempos (por exemplo, os níveis de energia de um elétron em diferentes momentos).
+Cada variável tem seu próprio padrão de variação, que pode revelar informações interessantes sobre como ela varia entre medições na mesma observação, bem como entre observações diferentes.
+A melhor forma de entender o padrão é visualizando a distribuição dos valores da variável, o que você aprendeu em @sec-data-visualization.
 
-Vamos iniciar nossa exploração visualizando a variação nos pesos (`quilate`) de \~54,000 diamantes do `diamante`.
+Vamos iniciar nossa exploração visualizando a variação nos pesos (`quilate`) de \~54,000 diamantes do conjunto de dados `diamante`.
 Como `quilate` é uma variável numérica, podemos usar um histograma:
 
 ```{r}
 #| fig-alt: |
 #| Um histograma de quilates de diamantes, com o eixo x variando de 0 a 4,5
-#| e o eixo y variando de 0 a 30.000. A distribuição é distorcida para a direita
-#| com muito poucos diamantes na caixa centralizada em 0, quase 30.000 diamantes na
-#| caixa centralizada em 0,5, aproximadamente 15.000 diamantes na caixa centralizada
-#| em 1, e muito menos, aproximadamente 5.000 diamantes na caixa centralizada em
-#| 1.5. Além disso, há uma cauda arrastada.
+#| e o eixo y variando de 0 a 30.000. A distribuição é assimétrica à direita
+#| com muito poucos diamantes na classe centralizada em 0, quase 30.000 diamantes na
+#| caixa centralizada em 0,5, aproximadamente 15.000 diamantes na classe centralizada
+#| em 1, e muito menos, aproximadamente 5.000 diamantes na classe centralizada em
+#| 1.5. Além disso, há uma cauda alongada.
 
 library(dados)
 
@@ -95,14 +95,14 @@ ggplot(diamante, aes(x = quilate)) +
 ```
 
 Agora que você pode visualizar a variação, o que você deve observar em seus gráficos?
-E que tipo de perguntas de acompanhamento você deve fazer?
-Nós temos colocado abaixo uma lista dos tipos mais comuns de informações que você encontrará em seus gráficos, junto com algumas perguntas de acompanhamento para cada tipo de informação.
+E que tipo de perguntas complementares você deve fazer?
+Montamos abaixo uma lista dos tipos mais comuns de informações que você encontrará em seus gráficos, junto com algumas perguntas complementares para cada tipo de informação.
 A chave para fazer boas questões de acompanhamento irá depender da curiosidade (o que mais você quer aprender?) bem como do seu ceticismo (Como isso pode ser enganoso?).
 
 ### Valores típicos
 
-Em ambos gráficos de barras e histogramas, barras altas mostram valores comuns de uma variável, e barras mais curtas mostram valores menos comuns.
-Locais que não tem barras revelam valores que não foram vistos nos seus dados.
+Em ambos gráficos de barras e histogramas, barras altas mostram valores mais comuns de uma variável, e barras mais baixas mostram valores menos comuns.
+Locais que não têm barras revelam valores que não foram vistos nos seus dados.
 Para transformar essas informações em perguntas úteis, observe qualquer coisa não esperada:
 
 -   Quais valores são os mais comuns?
@@ -113,16 +113,16 @@ Para transformar essas informações em perguntas úteis, observe qualquer coisa
     Isso corresponde às suas expectativas?
 
 -   Você consegue ver padrões incomuns?
-    O que pode explicar eles?
+    O que poderia explicá-los?
 
 Vamos observar a distribuição de `quilate` para os diamantes menores.
 
 ```{r}
 #| fig-alt: |
 #| Um histograma de quilates de diamantes, com o eixo x variando de 0 a 3 e
-#| o eixo y variando de 0 a aproximadamente 2.500. A largura do compartimento é 
+#| o eixo y variando de 0 a aproximadamente 2.500. A amplitude da classe é 
 #| bastante estreita (0,01), resultando em um número muito grande de barras finas. 
-#| A distribuição é inclinada para a direita, com muitos picos seguidos por barras em
+#| A distribuição é assimétrica à direita, com muitos picos seguidos por barras em
 #| alturas decrescentes, até um aumento acentuado no próximo pico.
 
 menores_diamantes <- diamante |> 
@@ -141,9 +141,9 @@ Esse histograma sugere várias questões interessantes:
 Visualizações também podem revelar agrupamentos, os quais sugerem que existem subgrupos em seus dados.
 Para entender os subgrupos, questione:
 
--   Como são as observações dentro de cada subgrupo similares uns aos outros?
+-   Quão similares as observações dentro de cada subgrupo são umas às outras?
 
--   Como são as observações em grupos diferentes separados uns dos outros?
+-   Quão diferentes as observações em grupos separados são umas das outras?
 
 -   Como você pode explicar ou descrever os grupos?
 
@@ -156,8 +156,7 @@ Chegaremos a isso em breve.
 ### Valores atípicos
 
 Outliers são observações atípicas, pontos de dados que não estão ajustados ao padrão.
-Algumas vezes outliers são erros de entrada de dados.
-Algumas vezes são apenas valores extremos que passaram a ser observados nesta coleta de dados, e outras vezes, eles sugerem importantes novas descobertas.
+Algumas vezes outliers são erros de entrada de dados, algumas vezes são apenas valores extremos que passaram a ser observados nesta coleta de dados, e outras vezes, eles sugerem importantes novas descobertas.
 Quando você tem muitos dados, outliers são algumas vezes difíceis de serem vistos em histogramas.
 Por exemplo, pegue a distribuição da variável `y` do conjunto de dados de diamante.
 A única evidência de valores discrepantes são os limites incomumente amplos no eixo x.
