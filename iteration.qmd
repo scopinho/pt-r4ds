@@ -22,7 +22,7 @@ Este livro já lhe deu um pequeno, mas poderoso número de ferramentas que execu
 -   `unnest_wider()` e `unnest_longer()` criam novas linhas e colunas para cada elemento de uma colunas-lista (*list-column*).
 
 Agora é hora de aprender algumas ferramentas mais gerais, geralmente chamadas de ferramentas de **programação funcional** (*functional programming*) porque são construídas em torno de funções que recebem outras funções como entradas.
-Aprender programação funcional pode facilmente se tornar bastante abstrato, mas neste capítulo manteremos as coisas concretas, concentrando-nos em três tarefas comuns: modificar múltiplas colunas, ler vários arquivos e salvar vários objetos..
+Aprender programação funcional pode facilmente se tornar bastante abstrato, mas neste capítulo manteremos as coisas concretas, concentrando-nos em três tarefas comuns: modificar múltiplas colunas, ler vários arquivos e salvar vários objetos.
 
 ### Pré-requisitos
 
@@ -40,7 +40,7 @@ library(dados)
 
 ## Modificando múltiplas colunas {#sec-across}
 
-Imagine que você tem esse problema simples e deseja contar o número de observações e calcular a mediana de cada coluna.
+Imagine que você tem esse *tibble* simples e deseja contar o número de observações e calcular a mediana de cada coluna.
 
 ```{r}
 df <- tibble(
@@ -173,7 +173,7 @@ df_faltantes |>
   )
 ```
 
-Isso é um tanto verboso, então R vem com um atalho útil: para esse tipo de função descartável, ou **anônima**[^iteration-1], você pode substituir `function` por `\`[^iteration-2 ]:
+Isso é um tanto detalhado ou longo demais, então R vem com um atalho útil: para esse tipo de função descartável, ou **anônima**[^iteration-1], você pode substituir `function` por `\`[^iteration-2 ]:
 
 [^iteration-1]: Ela é anônima, porque nunca lhe demos explicitamente um nome com `<-`.
     Outro termo que os programadores usam para isso é “função lambda”.
@@ -230,7 +230,7 @@ Como você aprenderá na próxima seção, você pode usar o argumento `.names` 
 O resultado de `across()` é nomeado de acordo com a especificação fornecida no argumento `.names`.
 Poderíamos especificar o nosso próprio argumento se quiséssemos que o nome da função viesse primeiro[^iteration-3]:
 
-[^iteration-3]: Atualmente você não pode alterar a ordem das colunas, mas pode reordená-las posteriormente usando `relocate()` ou similar.
+[^iteration-3]: Atualmente, você não pode alterar a ordem das colunas, mas pode reordená-las posteriormente usando `relocate()` ou similar.
 
 ```{r}
 df_faltantes |> 
@@ -378,7 +378,7 @@ df_pareado <- tibble(
 )
 ```
 
-Atualmente não há como fazer isso com `across()`[^iteration-4], mas é relativamente simples com `pivot_longer()`:
+Atualmente, não há como fazer isso com `across()`[^iteration-4], mas é relativamente simples com `pivot_longer()`:
 
 [^iteration-4]: Talvez haja um dia, mas atualmente não vemos como.
 
@@ -412,7 +412,7 @@ Se necessário, você poderia usar a `pivot_wider()` e voltar ao formato origina
     Como a saída é nomeada?
 
 3.  Ajuste `expand_dates()` para remover automaticamente as colunas de data após elas terem sido expandidas.
-    Você precisa abraçar algum argumento?
+    Você precisa adotar algum argumento?
 
 4.  Explique o que cada etapa do *pipeline* faz nesta função.
     De qual recurso especial de `where()` estamos nos aproveitando?
@@ -474,7 +474,7 @@ Você quase sempre usará três argumentos:
 - `full.names` determina se o nome do diretório deve ou não ser incluído na saída.
     Você quase sempre quer que isso seja `TRUE`.
 
-Para tornar concreto nosso exemplo motivador, este livro contém uma pasta com 12 planilhas Excel contendo dados do pacote gapminder.
+Para tornar nosso exemplo motivador mais concreto, este livro contém uma pasta com 12 planilhas Excel contendo dados do pacote gapminder.
 Cada arquivo contém dados referentes a um ano para 142 países.
 Podemos listá-los todos com a chamada apropriada para `list.files()`:
 
@@ -582,7 +582,7 @@ Abordaremos esse problema a seguir.
 
 ### Dados no caminho {#sec-data-in-the-path}
 
-Às vezes, o próprio nome do arquivo contém dados.
+Às vezes, o nome do arquivo é o próprio dado .
 Neste exemplo, o nome do arquivo contém o ano, que não é registrado de outra forma nos arquivos individuais.
 Para colocar essa coluna no *data frame* final, precisamos fazer duas coisas:
 
@@ -631,7 +631,7 @@ caminhos |>
   mutate(ano = parse_number(ano))
 ```
 
-Em casos mais complicados, pode haver outras variáveis ​​armazenadas no nome do diretório ou talvez o nome do arquivo contenha outros dados.
+Em casos mais complicados, pode haver outras variáveis ​​armazenadas no nome do diretório ou talvez o nome do arquivo contenha vários elementos de dados.
 Nesse caso, use `set_names()` (sem quaisquer argumentos) para registrar o caminho (*path*) completo e, em seguida, use a função `tidyr::separate_wider_delim()` e similares para transformá-los em colunas úteis.
 
 ```{r}
@@ -708,7 +708,7 @@ caminhos |>
   list_rbind()
 ```
 
-Recomendamos essa abordagem porque ela evita que você se preocupe em acertar o primeiro arquivo antes de passar para o resto.
+Recomendamos essa abordagem porque ela evita que você fique obcecado em acertar o primeiro arquivo antes de passar para os demais.
 Ao considerar todos os dados ao fazer a arrumação (*tidying*) e a limpeza, é mais provável que você pense de forma holística e obtenha um resultado de maior qualidade.
 
 Neste exemplo específico, há outra otimização que você pode fazer, vinculando todos os *data frames* primeiro.
