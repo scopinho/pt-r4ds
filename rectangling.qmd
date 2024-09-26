@@ -18,7 +18,7 @@ Concluiremos falando sobre JSON, a fonte mais frequente de conjuntos de dados hi
 
 ### Pré-requisitos
 
-Neste capítulo, usaremos várias funções do tidyr, um componente principal do tidyverse.
+Neste capítulo, usaremos várias funções do tidyr, um pacote central do tidyverse.
 Usaremos também o pacote repurrrsive para nos fornecer alguns conjuntos de dados interessantes para praticar a representação retangular e concluiremos usando o pacote jsonlite para importar arquivos JSON para o R como listas.
 
 ```{r}
@@ -33,7 +33,7 @@ library(jsonlite)
 ## Listas
 
 Até agora você trabalhou com *data frames* que continham vetores simples como inteiros, números, caracteres, data_hora e fatores.
-Estes vetores são tidos como simples pois são homogêneos: cada elemento tem o mesmo tipo de dado.
+Estes vetores são simples pois são homogêneos: cada elemento tem o mesmo tipo de dado.
 Se você quiser armazenar elementos de diferentes tipos no mesmo vetor, você precisará de uma **lista**, que pode ser criada com a função `list()`:
 
 ```{r}
@@ -112,7 +112,7 @@ knitr::include_graphics("screenshots/View-1.png", dpi = 220)
 #|   e então você pode ver seus elementos filhos.
 #| fig.alt: >
 #|   Outra captura de tela do visualizador de listas com os elements do segundo elemento de
-#|   x5. Ele também tem dois filhos, um vetor *double* e outra
+#|   x5. Ele também tem dois elementos filhos, um vetor *double* e outra
 #|   lista.
 #| echo: false
 #| out-width: NULL
@@ -183,7 +183,7 @@ data.frame(
 )
 ```
 
-É mais fácil usar *list-columns* com *tibbles*, pois a função `tibble()` trata listas como vetores e o método de impressão exibição foi projetado tendo listas em mente.
+É mais fácil usar *list-columns* com *tibbles*, pois a função `tibble()` trata listas como vetores e o método de exibição foi projetado tendo listas em mente.
 :::
 
 ## Desaninhando (*unnesting*)
@@ -277,7 +277,7 @@ df4 <- tribble(
 )
 ```
 
-`unnest_longer()` sempre mantém o conjunto de colunas inmutável, enquanto muda o número de linhas.
+`unnest_longer()` sempre mantém o conjunto de colunas imutável, enquanto muda o número de linhas.
 Então, o que acontece?
 Como que `unnest_longer()` produz cinco linhas e ao mesmo tempo mantém tudo em `y`?
 
@@ -289,7 +289,7 @@ df4 |>
 Como você pode ver, a saída contém uma *list-column*, mas cada elemento da *list-column* contém um único elemento.
 Como `unnest_longer()` não pode encontrar um tipo de vetor comum, ela mantém os tipos originais em uma *list-column*.
 Você pode estar se perguntando se isso viola o mandamento de que cada elemento de uma coluna deve ser do mesmo tipo.
-Não: cada elemento é uma lista, mesmo que o conteúdo seja de tipos diferentes.
+Não: cada elemento é uma lista, mesmo que os conteúdos sejam de tipos diferentes.
 
 Lidar com tipos inconsistentes é desafiador e os detalhes dependem da natureza precisa do problema e dos seus objetivos, mas você provavelmente precisará de ferramentas do @sec-iteration.
 
@@ -334,7 +334,7 @@ Para mostrar isto em ação, esta seção faz uso de três desafios de represent
 ### Dados bem largos (*wide data*)
 
 Começaremos com `gh_repos`.
-Esta é uma lista que contém dados de uma coleção de repositórios do GitHub obtidos usando a API do GitHub. É uma lista aninhada em vários níveis, por isso é difícil de mostrar sua estrutura neste livro; nós recomendamos que você a explore por conta própria usando `View(gh_repos)` antes de continuar.
+Esta é uma lista que contém dados sobre uma coleção de repositórios do GitHub obtidos usando a API do GitHub. É uma lista aninhada em vários níveis, por isso é difícil de mostrar sua estrutura neste livro; nós recomendamos que você a explore por conta própria usando `View(gh_repos)` antes de continuar.
 
 `gh_repos` é uma lista, mas nossas ferramentas trabalham com *list-columns*, então iremos começar colocando-a em um *tibble*.
 Chamaremos esta coluna de `json` por razões que veremos mais tarde.
@@ -382,7 +382,7 @@ repos |>
   select(id, full_name, owner, description)
 ```
 
-Você pode usar isso para entender como o `gh_repos` foi estruturado: cada elemento era um usuário do GitHub contendo uma lista de até 30 repositórios do GitHub que eles criaram.
+Você pode usar isso para entender como o `gh_repos` foi estruturado: cada elemento filho era um usuário do GitHub contendo uma lista de até 30 repositórios do GitHub que eles criaram.
 
 `owner` é uma outra *list-column*, e uma vez que contém uma lista nomeada, podemos usar `unnest_wider()` para obter seus valores:
 
@@ -574,7 +574,7 @@ Se esses estudos de caso aguçaram seu apetite para mais representações retang
 1.  Estime aproximadamente quando o `gh_repos` foi criado.
     Porque você só pode estimar aproximadamente esta data?
 
-2.  A coluna `owner` do `gh_repo` contém muitas informações duplicadas pois cada pessoa priprietária pode ter vários repositórios.
+2.  A coluna `owner` do `gh_repo` contém muitas informações duplicadas pois cada pessoa proprietária pode ter vários repositórios.
     Você consegue contruir um *data frame* `owners` que contém uma linha para cada pessoa proprietária?
     (Dica: A `distinct()` funciona com `list-cols`?)
 
@@ -605,7 +605,7 @@ Se esses estudos de caso aguçaram seu apetite para mais representações retang
 
 ## JSON
 
-Todos os estudos de caso na seção anterior foram originados de JSONs obtidos por aí.
+Todos os estudos de caso na seção anterior foram originados de JSONs bruto/proveniente de fontes diretas.
 JSON é abreviação de **j***ava***s***cript* **o***bject* **n***otation* e é a forma que a maioria das APIs da web retornam dados.
 É importante saber que apesar dos tipos de dados JSON e R serem muito similares, não há uma correspondência de mapeamento 1-para-1, portanto é bom entender um pouco sobre JSON caso algo dê errado.
 
