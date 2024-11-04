@@ -28,7 +28,8 @@ Aprender programação funcional pode facilmente se tornar bastante abstrato, ma
 
 Neste capítulo, focaremos nas ferramentas fornecidas pelos pacotes dplyr e purrr, ambos membros centrais do tidyverse.
 Você já viu o dplyr antes, mas o [purrr](http://purrr.tidyverse.org/) é novo.
-Usaremos apenas algumas funções do purrr neste capítulo, mas é um ótimo pacote para explorar à medida que você aprimora suas habilidades de programação. Usaremos também o pacote `dados` e seu conjunto de dados `diamante`.
+Usaremos apenas algumas funções do purrr neste capítulo, mas é um ótimo pacote para explorar à medida que você aprimora suas habilidades de programação.
+Usaremos também o pacote `dados` e seu conjunto de dados `diamante`.
 
 ```{r}
 #| label: setup
@@ -466,12 +467,12 @@ Discutiremos então como você pode lidar com situações de crescente heterogen
 Como o nome sugere, `list.files()` lista os arquivos em um diretório.
 Você quase sempre usará três argumentos:
 
-- O primeiro argumento, `path`, é o diretório onde procurar.
+-   O primeiro argumento, `path`, é o diretório onde procurar.
 
-- `pattern` é uma expressão regular usada para filtrar os nomes dos arquivos.
+-   `pattern` é uma expressão regular usada para filtrar os nomes dos arquivos.
     O padrão mais comum é algo como `[.]xlsx$` ou `[.]csv$` para encontrar todos os arquivos com uma extensão especificada.
 
-- `full.names` determina se o nome do diretório deve ou não ser incluído na saída.
+-   `full.names` determina se o nome do diretório deve ou não ser incluído na saída.
     Você quase sempre quer que isso seja `TRUE`.
 
 Para tornar nosso exemplo motivador mais concreto, este livro contém uma pasta com 12 planilhas Excel contendo dados do pacote gapminder.
@@ -803,9 +804,9 @@ Na última seção, você aprendeu sobre `map()`, que é útil para ler vários 
 Nesta seção, exploraremos agora o problema oposto: como você pode pegar um ou mais objetos R e salvá-los em um ou mais arquivos?
 Exploraremos esse desafio usando três exemplos:
 
-- Salvar vários *data frames* em um banco de dados.
-- Salvar vários *data frames* em vários arquivos `.csv`.
-- Salvando vários gráficos em vários arquivos `.png`.
+-   Salvar vários *data frames* em um banco de dados.
+-   Salvar vários *data frames* em vários arquivos `.csv`.
+-   Salvando vários gráficos em vários arquivos `.png`.
 
 ### Gravando em um banco de dados {#sec-save-database}
 
