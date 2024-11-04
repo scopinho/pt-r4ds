@@ -393,7 +393,7 @@ df |> media_agrupada(grupo, y)
 ```
 
 Independentemente de como chamamos `media_agrupada()` ele sempre faz `df |> group_by(var_grupo) |> summary(mean(var_media))`, em vez de `df |> group_by(grupo) |> summary(mean(x) )` ou `df |> group_by(grupo) |> summary(mean(y))`.
-Este é um problema de indireção (*indirection*) e surge porque o dplyr usa **avaliação organizada** (*tidy evaluation*) para permitir que você se refira aos nomes das variáveis ​​dentro do seu *data frame* sem qualquer tratamento especial.
+Este é um problema de indireção (*indirection*) e surge porque o dplyr usa **avaliação organizada** (*tidy evaluation*) para permitir que você se refira aos nomes das variáveis dentro do seu *data frame* sem qualquer tratamento especial.
 
 A avaliação organizada (*tidy evaluation*) é ótima 95% das vezes porque torna suas análises de dados muito concisas, já que você nunca precisa dizer de qual *data frame* vem uma variável; é óbvio pelo contexto.
 A desvantagem da avaliação organizada surge quando queremos agrupar códigos repetidos do tidyverse em uma função.
@@ -615,7 +615,7 @@ Embora nossos exemplos tenham se concentrado principalmente no dplyr, a avaliaç
         voos |> horario_padronizado(saida_programada)
         ```
 
-2.  Para cada uma das funções a seguir, liste todos os argumentos que usam avaliação organizada (*tidy-evaluation) e descreva se eles usam mascaramento de dados (*data-masking*) ou seleção organizada (tidy-selection): `distinct()`, `count()`, `group_by()`, `rename_with()`, `slice_min()`, `slice_sample()`.
+2.  Para cada uma das funções a seguir, liste todos os argumentos que usam avaliação organizada (*tidy-evaluation*) e descreva se eles usam mascaramento de dados (*data-masking*) ou seleção organizada (tidy-selection): `distinct()`, `count()`, `group_by()`, `rename_with()`, `slice_min()`, `slice_sample()`.
 
 3.  Generalize a função a seguir para que você possa fornecer qualquer número de variáveis ​​para a função contar.
 
