@@ -40,7 +40,7 @@ No entanto, conhecer o pacote pode te auxiliar na obtenção de ajuda e na busca
 ### Voos (nycflights13)
 
 Para explorar os verbos básicos do dplyr iremos utilizar a base de dados `dados::voos`.
-Essa base contém todos os `r format(nrow(dados::voos), big.mark = ".")` vôos que saíram da cidade de Nova Iorque em 2013.
+Essa base contém todos os `r format(nrow(dados::voos), big.mark = ".", decimal.mark = ",")` vôos que saíram da cidade de Nova Iorque em 2013.
 Esses dados vêm de um órgão de transporte dos EUA chamado [Bureau of Transportation Statistics](http://www.transtats.bts.gov/DatabaseInfo.asp?DB_ID=120&Link=0), e estão documentados em `?dados::voos`.
 
 ```{r}
