@@ -174,7 +174,8 @@ df_faltantes |>
   )
 ```
 
-Isso é um tanto detalhado ou longo demais, então R vem com um atalho útil: para esse tipo de função descartável, ou **anônima**[^iteration-1], você pode substituir `function` por `\`[^iteration-2 ]:
+Isso é um tanto detalhado ou longo demais, então R vem com um atalho útil: para esse tipo de função descartável, ou **anônima**[^iteration-1], você pode substituir `function` por `\` [^iteration-2]
+:
 
 [^iteration-1]: Ela é anônima, porque nunca lhe demos explicitamente um nome com `<-`.
     Outro termo que os programadores usam para isso é “função lambda”.
