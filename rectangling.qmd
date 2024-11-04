@@ -1,4 +1,4 @@
-# Dado hierárquico {#sec-rectangling}
+# Dados hierárquicos (*rectangling*) {#sec-rectangling}
 
 ```{r}
 #| echo: false
