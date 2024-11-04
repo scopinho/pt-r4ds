@@ -5,7 +5,6 @@
 #| results: asis
 
 source("_common.R")
-
 ```
 
 ## Introdução
@@ -83,7 +82,7 @@ na_if(x, -99)
 ### NaN
 
 Antes de continuarmos, há um tipo especial de valor ausente que você encontrará de tempos em tempos: um `NaN` (pronuncia-se "nan") ou em inglês, **n**ot **a** **n**umber (em português, seria como "não é um número").
-Não é tão importante saber sobre ele, já que geralmente se comporta como `NA:
+Não é tão importante saber sobre ele, já que geralmente se comporta como `NA`:
 
 ```{r}
 x <- c(NA, NaN)
