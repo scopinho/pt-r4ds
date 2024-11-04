@@ -279,7 +279,7 @@ diamante |> pull(corte) |> levels()
 ### Tibbles
 
 Existem algumas diferenças importantes entre tibbles e `data.frame`s quando se trata de `$`.
-Os *data frames** acessam o prefixo de qualquer nome de variável (chamado de **correspondência parcial** ou *partial matching*) e reclamam se uma coluna não existir:
+Os *data frames* acessam o prefixo de qualquer nome de variável (chamado de **correspondência parcial** ou *partial matching*) e reclamam se uma coluna não existir:
 
 ```{r}
 df <- data.frame(x1 = 1)
