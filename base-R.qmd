@@ -5,7 +5,6 @@
 #| results: asis
 
 source("_common.R")
-
 ```
 
 ## Introdução
@@ -20,7 +19,8 @@ O que não focamos até agora são os fluxos de trabalho do R base, por isso des
 
 Depois de ler este livro, você aprenderá outras abordagens para os mesmos problemas usando o R base, data.table e outros pacotes.
 Sem dúvida, você encontrará essas outras abordagens quando começar a ler o código R escrito por outras pessoas, principalmente se estiver usando o *StackOverflow*.
-É 100% correto escrever código que use uma combinação de abordagens. Não deixe ninguém lhe dizer o contrário!
+É 100% correto escrever código que use uma combinação de abordagens.
+Não deixe ninguém lhe dizer o contrário!
 
 Neste capítulo, vamos nos concentrar em quatro grandes tópicos: subconjuntos com `[`, subconjuntos com `[[` e `$`, a família de funções apply e laços (*loops*) `for`.
 Para finalizar, discutiremos brevemente duas funções essenciais para criação de gráficos.
@@ -225,8 +225,8 @@ Esta função foi a inspiração para grande parte da sintaxe do dplyr.
 
 ## Selecionando um único elemento com `$` e `[[` {#sec-subset-one}
 
-`[`, que seleciona muitos elementos, é similar a  `[[` e `$`, que extraem um único elemento.
-Nesta seção, mostraremos como usar `[[` e `$` para extrair colunas de *data frames*, discutiremos mais algumas diferenças entre `data.frames` e tibbles e enfatizaremos algumas diferenças importantes entre `[ ` e `[[` quando usado com listas.
+`[`, que seleciona muitos elementos, é similar a `[[` e `$`, que extraem um único elemento.
+Nesta seção, mostraremos como usar `[[` e `$` para extrair colunas de *data frames*, discutiremos mais algumas diferenças entre `data.frames` e tibbles e enfatizaremos algumas diferenças importantes entre `[` e `[[` quando usado com listas.
 
 ### Data frames
 
@@ -247,7 +247,7 @@ tb[["x"]]
 tb$x
 ```
 
-Eles também podem ser usados ​​para criar novas colunas, o equivalente em R base  a `mutate()`:
+Eles também podem ser usados ​​para criar novas colunas, o equivalente em R base a `mutate()`:
 
 ```{r}
 tb$z <- tb$x + tb$y
@@ -339,7 +339,7 @@ l <- list(
 A diferença entre `[` e `[[` é particularmente importante para listas porque `[[` acessa um elemento da lista enquanto `[` retorna uma lista nova e menor.
 Para te ajudar a lembrar a diferença, dê uma olhada no pimenteiro incomum mostrado na @fig-pepper.
 Se este pimenteiro for sua lista `pimenteiro`, então `pimenteiro[1]` é um pimenteiro contendo um único pacote de pimenta.
-`pimenteiro[2]`  teria a mesma aparência, mas conteria o segundo pacote.
+`pimenteiro[2]` teria a mesma aparência, mas conteria o segundo pacote.
 `pimenteiro[1:2]` seria um pimenteiro contendo dois pacotes de pimenta.
 `pimenteiro[[1]]` extrairia o próprio pacote de pimenta.
 
