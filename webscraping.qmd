@@ -366,7 +366,7 @@ Preste atenção aos atributos class e id, uma vez que geralmente são usados pa
 
 Dentro do menu Elementos, você também pode clicar com o botão direito em um elemento e selecionar `Copiar como Seletor` para gerar um seletor que identificará de forma única o elemento de interesse.
 
-Caso o *SelectorGadget* ou as Ferramentas do Desenvolvedor (DevTools*) do *Chrome* gerarem um seletor CSS que você não entende, tente [Seletores Explicados](https://kittygiraudel.github.io/selectors-explained/){.uri} (*Selectors Explained*) que traduz seletores CSS para inglês básico.
+Caso o *SelectorGadget* ou as Ferramentas do Desenvolvedor (DevTools*) do* Chrome\* gerarem um seletor CSS que você não entende, tente [Seletores Explicados](https://kittygiraudel.github.io/selectors-explained/){.uri} (*Selectors Explained*) que traduz seletores CSS para inglês básico.
 Caso você se encontre fazendo isso muitas vezes, você pode querer aprender mais sobre seletores CSS em geral.
 Recomendamos começar com o engraçado tutorial [jantar CSS](https://flukeout.github.io/) e então conferir o [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors).
 

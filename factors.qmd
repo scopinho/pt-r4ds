@@ -10,10 +10,10 @@ source("_common.R")
 
 ## Introdução
 
-Fatores (*factors*) são usados ​​para variáveis ​​categóricas, variáveis ​​que possuem um conjunto fixo e conhecido de valores possíveis.
+Fatores (*factors*) são usados para variáveis categóricas, variáveis que possuem um conjunto fixo e conhecido de valores possíveis.
 Eles também são úteis quando você deseja exibir vetores de caracteres em ordem não alfabética.
 
-Começaremos motivando a necessidade de fatores para a análise de dados[^factors-1] e como você pode criá-los com a função `factor()`. Em seguida, apresentaremos o conjunto de dados `questionario` do pacote dados, que contém um monte de variáveis ​​​​categóricas para experimentarmos.
+Começaremos motivando a necessidade de fatores para a análise de dados[^factors-1] e como você pode criá-los com a função `factor()`. Em seguida, apresentaremos o conjunto de dados `questionario` do pacote dados, que contém um monte de variáveis categóricas para experimentarmos.
 Em seguida, você usará esse conjunto de dados para praticar a modificação da ordem e dos valores dos fatores, antes de terminarmos com uma discussão sobre fatores ordenados.
 
 [^factors-1]: Eles também são muito importantes para modelagem.
@@ -22,7 +22,7 @@ Em seguida, você usará esse conjunto de dados para praticar a modificação da
 
 O R base fornece algumas ferramentas básicas para criar e manipular fatores.
 Iremos complementá-las com o pacote **forcats**, que é um integrante do tidyverse.
-Ele fornece ferramentas para lidar com variáveis ​​**cat**egóricas (e é um anagrama de fatores!) usando uma ampla gama de funções auxiliares para trabalhar com fatores.
+Ele fornece ferramentas para lidar com variáveis **cat**egóricas (e é um anagrama de fatores!) usando uma ampla gama de funções auxiliares para trabalhar com fatores.
 
 ```{r}
 #| label: setup
@@ -129,7 +129,7 @@ A pesquisa tem milhares de perguntas, então em `questionario`, Hadley seleciono
 questionario
 ```
 
-(Lembre-se, como este conjunto de dados é fornecido por um pacote, você pode obter mais informações sobre as variáveis ​​com `?questionario`.)
+(Lembre-se, como este conjunto de dados é fornecido por um pacote, você pode obter mais informações sobre as variáveis com `?questionario`.)
 
 Quando os fatores são armazenados em um *tibble*, você não consegue ver seus níveis tão facilmente.
 Uma maneira de visualizá-los é com `count()`:

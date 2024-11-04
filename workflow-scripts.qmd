@@ -111,7 +111,8 @@ knitr::include_graphics("screenshots/rstudio-diagnostic-warn.png")
 ### Salvando e nomeando
 
 O RStudio salva automaticamente o conteúdo do editor de scripts quando você sai e recarrega automaticamente quando você reabre.
-Contudo, é altamente recomendável evitar os nomes como Untitled1, Untitled2, Untitled3, etc, que são o padrão para arquivos não nomeados. Salve seus scripts e atribua a eles nomes que façam sentido.
+Contudo, é altamente recomendável evitar os nomes como Untitled1, Untitled2, Untitled3, etc, que são o padrão para arquivos não nomeados.
+Salve seus scripts e atribua a eles nomes que façam sentido.
 
 Pode ser tentador nomear seus arquivos `codigo.R` ou `meuscript.R`, mas você deve pensar um pouco mais antes de escolher um nome para seu arquivo.
 Três princípios importantes para nomear arquivos são os seguintes:
@@ -133,6 +134,7 @@ primeira_tentativa_modelo.R
 executar-primeiro.r
 temporario.txt
 ```
+
 Existem vários problemas aqui: é difícil encontrar qual arquivo executar primeiro, os nomes dos arquivos contêm espaços, existem dois arquivos com o mesmo nome, um com caixa alta na primeira letra e outro sem (`relatoriofinal` vs. `RelatorioFinal`[^workflow-scripts-1]), e alguns nomes não descrevem seu conteúdo (`executar-primeiro` e `temporario`).
 
 [^workflow-scripts-1]: Sem mencionar que você está flertando com o azar ao usar "final" no nome 😆 A tirinha Piled Higher and Deeper tem uma [divertida historinha sobre isso](https://phdcomics.com/comics/archive.php?comicid=1531).
@@ -229,7 +231,6 @@ O RStudio mostra o seu diretório de trabalho atual no topo do console:
 #| out-width: ~
 knitr::include_graphics("screenshots/rstudio-wd.png")
 ```
-
 
 E você pode imprimir isso em código R executando `getwd()`:
 
@@ -346,10 +347,10 @@ Isso pode te frustrar, então recomendamos sempre usar o estilo do Linux/Mac com
 ## Exercícios
 
 1.  Acesse a conta do Twitter RStudio Tips (em inglês), <https://twitter.com/rstudiotips> e encontre uma dica que pareça interessante.
-  Pratique usá-la!
+    Pratique usá-la!
 
 2.  Quais outros erros comuns o diagnóstico do RStudio irá reportar?
-  Leia (em inglês) <https://support.posit.co/hc/en-us/articles/205753617-Code-Diagnostics> para descobrir.
+    Leia (em inglês) <https://support.posit.co/hc/en-us/articles/205753617-Code-Diagnostics> para descobrir.
 
 ## Sumário
 
