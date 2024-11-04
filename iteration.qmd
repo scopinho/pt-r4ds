@@ -740,7 +740,7 @@ arquivos <- caminhos |>
 Então, uma estratégia muito útil é capturar a estrutura dos *data frames* para que você possa explorá-la usando suas habilidades em ciência de dados.
 Uma maneira de fazer isso é com esta útil função `df_tipos` [^iteration-6] que retorna um *tibble* com uma linha para cada coluna:
 
-[^iteração-6]: Não vamos explicar como ela funciona, mas se você olhar a documentação para as funções usadas, você conseguirá decifrá-la.
+[^iteration-6]: Não vamos explicar como ela funciona, mas se você olhar a documentação para as funções usadas, você conseguirá decifrá-la.
 
 ```{r}
 df_tipos <- function(df) {
