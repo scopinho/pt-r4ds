@@ -5,7 +5,6 @@
 #| results: asis
 
 source("_common.R")
-mensagem_capitulo_sem_traducao()
 ```
 
 ## Introdução
@@ -336,7 +335,8 @@ Para mostrar isto em ação, esta seção faz uso de três desafios de represent
 ### Dados bem largos (*wide data*)
 
 Começaremos com `gh_repos`.
-Esta é uma lista que contém dados sobre uma coleção de repositórios do GitHub obtidos usando a API do GitHub. É uma lista aninhada em vários níveis, por isso é difícil de mostrar sua estrutura neste livro; nós recomendamos que você a explore por conta própria usando `View(gh_repos)` antes de continuar.
+Esta é uma lista que contém dados sobre uma coleção de repositórios do GitHub obtidos usando a API do GitHub.
+É uma lista aninhada em vários níveis, por isso é difícil de mostrar sua estrutura neste livro; nós recomendamos que você a explore por conta própria usando `View(gh_repos)` antes de continuar.
 
 `gh_repos` é uma lista, mas nossas ferramentas trabalham com *list-columns*, então iremos começar colocando-a em um *tibble*.
 Chamaremos esta coluna de `json` por razões que veremos mais tarde.
@@ -670,7 +670,8 @@ Isto geralmente funciona bem, particularmente em casos simples, mas achamos que 
 
 ### Iniciando o processo de representação retangular
 
-Na maioria dos casos, arquivos JSON contém um único *array* de nível mais alto (*top-level*), pois são projetados para prover dados sobre várias "coisas", e.x. várias páginas, ou vários registros, ou vários resultados.
+Na maioria dos casos, arquivos JSON contém um único *array* de nível mais alto (*top-level*), pois são projetados para prover dados sobre várias "coisas", e.x.
+várias páginas, ou vários registros, ou vários resultados.
 Neste caso, você comecará sua representação retangular com `tibble(json)` para que cada elemento se torne uma linha:
 
 ```{r}
