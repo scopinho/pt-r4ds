@@ -1,4 +1,4 @@
-# ✅ Vetores lógicos {#sec-logicals}
+# Vetores lógicos {#sec-logicals}
 
 ```{r}
 #| echo: false

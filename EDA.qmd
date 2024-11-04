@@ -1,4 +1,4 @@
-# ✅ Análise exploratória de dados {#sec-exploratory-data-analysis}
+# Análise exploratória de dados {#sec-exploratory-data-analysis}
 
 ```{r}
 #| echo: false

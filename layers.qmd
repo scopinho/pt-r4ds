@@ -1,4 +1,4 @@
-# ✅ Camadas {#sec-layers}
+# Camadas {#sec-layers}
 
 ```{r}
 #| echo: false

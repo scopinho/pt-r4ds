@@ -1,4 +1,4 @@
-# ✅ Quarto {#sec-quarto}
+# Quarto {#sec-quarto}
 
 ```{r}
 #| echo: false

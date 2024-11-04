@@ -1,4 +1,4 @@
-# ✅ Fluxo de Trabalho: básico {#sec-workflow-basics}
+# Fluxo de Trabalho: básico {#sec-workflow-basics}
 
 ```{r}
 #| echo: false

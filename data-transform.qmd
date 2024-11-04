@@ -1,4 +1,4 @@
-# ✅ Transformação de dados {#sec-data-transform}
+# Transformação de dados {#sec-data-transform}
 
 ```{r}
 #| echo: false

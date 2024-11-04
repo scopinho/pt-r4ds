@@ -1,4 +1,4 @@
-# ✅ Importação de dados {#sec-data-import}
+# Importação de dados {#sec-data-import}
 
 ```{r}
 #| echo: false

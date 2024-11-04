@@ -1,4 +1,4 @@
-# ✅ Fluxo de trabalho: obtendo ajuda {#sec-workflow-getting-help}
+# Fluxo de trabalho: obtendo ajuda {#sec-workflow-getting-help}
 
 ```{r}
 #| echo: false

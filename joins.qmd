@@ -1,4 +1,4 @@
-# ✅ Uniões (*joins*) {#sec-joins}
+# Uniões (*joins*) {#sec-joins}
 
 ```{r}
 #| echo: false

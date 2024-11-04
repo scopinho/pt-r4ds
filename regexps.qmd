@@ -1,4 +1,4 @@
-# ✅ Expressões regulares {#sec-regular-expressions}
+# Expressões regulares {#sec-regular-expressions}
 
 ```{r}
 #| echo: false

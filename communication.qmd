@@ -1,4 +1,4 @@
-# ✅ Comunicação {#sec-communication}
+# Comunicação {#sec-communication}
 
 ```{r}
 #| echo: false

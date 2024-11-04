@@ -1,4 +1,4 @@
-# ✅ Um guia para o R base {#sec-base-r}
+# Um guia para o R base {#sec-base-r}
 
 ```{r}
 #| echo: false

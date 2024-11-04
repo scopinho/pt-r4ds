@@ -1,4 +1,4 @@
-# ✅ Comunicar {#sec-communicate-intro .unnumbered}
+# Comunicar {#sec-communicate-intro .unnumbered}
 
 ```{r}
 #| echo: false
