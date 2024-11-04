@@ -404,7 +404,7 @@ Se necessário, você poderia usar a `pivot_wider()` e voltar ao formato origina
 
 1.  Pratique suas habilidades na função `across()`:
 
-    1.  Calculando o número de valores únicos em cada coluna de `dados::pinguins``.
+    1.  Calculando o número de valores únicos em cada coluna de `dados::pinguins`.
 
     2.  Calculando a média de cada coluna em `dados::mtcarros`.
 
