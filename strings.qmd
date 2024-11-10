@@ -97,7 +97,7 @@ str_view(x)
 
 ### Strings brutas {#sec-raw-strings}
 
-Criar uma *string* com várias aspas ou barras invertidas pode se torna uma tarefa complexa rapidamente.
+Criar uma *string* com várias aspas ou barras invertidas pode se tornar uma tarefa complexa rapidamente.
 Para ilustrar o problema, vamos criar uma *string* que contenha o conteúdo do bloco de código que definimos as variáveis `aspas_duplas` e `aspas_simples`.
 
 ```{r}
@@ -381,7 +381,7 @@ debug <- df |>
 debug
 ```
 
-Ao usa o modo de depuração, você observará que a saída contém três colunas extras: `x_ok`, `x_pieces` e `x_remainder` (se você separar uma variável com um nome diferente, obterá um prefixo diferente).
+Ao usar o modo de depuração, você observará que a saída contém três colunas extras: `x_ok`, `x_pieces` e `x_remainder` (se você separar uma variável com um nome diferente, obterá um prefixo diferente).
 Aqui, `x_ok` permite que você encontre rapidamente as entradas que falharam:
 
 ```{r}
@@ -540,7 +540,7 @@ Cada um desses seis números hexadecimais representa uma letra: `48` é H, `61` 
 A correspondência do número hexadecimal com o caractere é chamada de codificação de caracteres (*encoding*) e, neste caso, a codificação é chamada de ASCII.
 ASCII faz um excelente trabalho ao representar caracteres em inglês porque é o Código Padrão **Americano** para o Intercâmbio de Informações (***American** Standard Code for Information Interchange*).
 
-Mas, não é tão simples para idiomas diferentes do inglês.
+Mas não é tão simples para idiomas diferentes do inglês.
 Nos primórdios da computação, existiam muitos padrões concorrentes para a codificação de caracteres não ingleses.
 Por exemplo, havia duas codificações diferentes para a Europa: o Latin1 (também conhecido como ISO-8859-1) era utilizado para idiomas da Europa Ocidental e o Latin2 (também conhecido como ISO-8859-2) era utilizado para idiomas da Europa Central.
 No Latin1, o byte `b1` representa "±", mas, no Latin2, representa "ą"!
