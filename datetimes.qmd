@@ -25,7 +25,7 @@ O número de horas em um dia é um pouco menos óbvio: a maioria dos dias tem 24
 [^datetimes-1]: Um ano é bissexto se for divisível por 4, a menos que também seja divisível por 100, exceto se também for divisível por 400.
     Em outras palavras, em cada conjunto de 400 anos, há 97 anos bissextos.
 
-Datas e horários são difíceis porque têm de conciliar dois fenómenos físicos (a rotação da Terra e a sua órbita em torno do Sol) com uma série de fenómenos geopolíticos, incluindo meses, fusos horários e horário de verão.
+Datas e horários são difíceis porque têm de conciliar dois fenômenos físicos (a rotação da Terra e a sua órbita em torno do Sol) com uma série de fenômenos geopolíticos, incluindo meses, fusos horários e horário de verão.
 Este capítulo não ensinará todos os detalhes sobre datas e horários, mas fornecerá uma base sólida de habilidades práticas que te ajudarão com desafios comuns de análise de dados.
 
 Começaremos mostrando como criar datas e horários a partir de várias entradas e, depois de obter uma data e horário, como extrair componentes como ano, mês e dia.
@@ -416,7 +416,7 @@ Isto, por exemplo, permite-nos criar um gráfico com o número de voos por seman
 ```{r}
 #| fig-alt: |
 #|   Um gráfico de linhas com a semana (janeiro-dezembro de 2013) no eixo x e o número de
-#|   voos (2.000-7.000) no eixo y. O padrão é bastante constante entre
+#|   voos (2.000-7.000) no eixo y. O padrão é razoavelmente uniforme entre
 #|   fevereiro e novembro, com cerca de 7.000 voos por semana. Há
 #|   muito menos voos na primeira (aproximadamente 4.500 voos) e na última
 #|   semanas do ano (aproximadamente 2.500 voos).
@@ -653,7 +653,7 @@ voos_dt |>
 ### Intervalos {#sec-intervals}
 
 O que `dyears(1) / ddays(365)` retorna?
-Não é exatamente 1, porque `dyears()` é definido como o número de segundos pela duração média de um ano, que é 365,25 dias.
+Não é exatamente 1, porque `dyears()` é definido como o número de segundos por ano de duração média, que é 365,25 dias.
 
 O que `anos(1)/dias(1)` retorna?
 Bom, se o ano fosse 2015 deveria retornar 365, mas se fosse 2016 deveria retornar 366!
@@ -696,7 +696,7 @@ y2024 / days(1)
 
 4.  Por que `(today() %--% (today() + years(1))) / months(1)` funciona?
 
-## Fuso horários
+## Fusos horários
 
 Os fusos horários são um tema extremamente complicado devido à sua interação com entidades geopolíticas.
 Felizmente, não precisamos nos aprofundar em todos os detalhes, pois nem todos são importantes para a análise de dados, mas existem alguns desafios que precisaremos enfrentar de frente.
