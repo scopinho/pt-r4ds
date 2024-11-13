@@ -125,7 +125,8 @@ voos|>filter(!is.na(atraso_saida), !is.na(cauda))|>count(destino)
 ```
 
 Se a função para a qual você está encadeando tem argumentos nomeados (como `mutate()` ou `summarize()`), coloque cada argumento em uma nova linha.
-Se a função não tiver argumentos nomeados (como `select()` ou `filter()`), mantenha tudo em uma linha, caso caiba. Caso não caiba, você deve colocar cada argumento em sua própria linha.
+Se a função não tiver argumentos nomeados (como `select()` ou `filter()`), mantenha tudo em uma linha, caso caiba.
+Caso não caiba, você deve colocar cada argumento em sua própria linha.
 
 ```{r}
 #| eval: false
@@ -198,8 +199,9 @@ df |>
 
 Por último, tenha cuidado ao escrever *pipelines* muito longos, com mais de 10-15 linhas, por exemplo.
 Tente dividir o *pipeline* em subtarefas menores, dando a cada tarefa um nome que informe o objetivo daquela etapa.
-Os nomes ajudarão quem está lendo a entender o que está acontecendo e torna mais fácil de verificar se os resultados intermediários estão como o esperado.  
-Dê nomes informativos sempre que puder. Por exemplo, quando você alterar a estrutura dos dados em seu nível básico, como após pivotar ou sumarizar.
+Os nomes ajudarão quem está lendo a entender o que está acontecendo e torna mais fácil de verificar se os resultados intermediários estão como o esperado.
+Dê nomes informativos sempre que puder.
+Por exemplo, quando você alterar a estrutura dos dados em seu nível básico, como após pivotar ou sumarizar.
 Não espere acertar na primeira tentativa!
 Isso significa que você tem que dividir os encadeamentos longos se houver estados intermediários que possam receber bons nomes.
 
@@ -273,10 +275,10 @@ knitr::include_graphics("screenshots/rstudio-nav.png")
 
 ## Exercícios
 
-1. Aplique as boas normas de formatação aos seguintes *pipelines* seguindo as diretrizes apresentadas neste capítulo.
+1.  Aplique as boas normas de formatação aos seguintes *pipelines* seguindo as diretrizes apresentadas neste capítulo.
 
-    ```{r}
-    #| eval: false
+```{r}
+#| eval: false
 
     voos|>filter(destino=="IAH")|>group_by(ano,mes,dia)|>summarize(n=n(),
     atraso=mean(atraso_chegada,na.rm=TRUE))|>filter(n>10)
@@ -284,7 +286,7 @@ knitr::include_graphics("screenshots/rstudio-nav.png")
     voos|>filter(companhia_aerea=="UA",destino%in%c("IAH","HOU"),saida_programada>
     0900,chegada_prevista<2000)|>group_by(voo)|>summarize(atraso=mean(
     atraso_chegada,na.rm=TRUE),cancelado=sum(is.na(atraso_chegada)),n=n())|>filter(n>10)
-    ```
+```
 
 ## Sumário
 
